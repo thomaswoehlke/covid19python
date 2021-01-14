@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block navigation_breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Regions</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block navigation_navtabs %}
+  {% include 'fragment_navtabs_who.html' %}
+{% endblock %}
+
+{% block main_container %}
+
+    {% if page_data.pages > 1 %}
+    <!-- previous page -->
+        <ul class="pagination">
+        {% if page_data.has_prev %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('url_who_date_reported_all', page=page_data.prev_num) }}">Previous</a>
+        </li>
+        {% endif %}
+        <!-- all page numbers -->
+        {% for page_num in page_data.iter_pages() %}
+            {% if page_num %}
+                {% if page_num != page_data.page %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('url_who_date_reported_all', page=page_num) }}">{{ page_num }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item active">
+                        <a class="page-link" href="#">{{ page_num }}</a>
+                    </li>
+                {% endif %}
+           {% else %}
+               <li class="page-item">
+                   <span class="ellipsis page-link" style="white-space; nowrap; overflow: hidden; text-overflow: ellipsis">…</span>
+               </li>
+           {% endif %}
+        {% endfor %}
+        <!-- next page -->
+        {% if page_data.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('url_who_date_reported_all', page=page_data.next_num) }}">Next</a>
+        </li>
+        {% endif %}
+        </ul>
+    {% endif %}
+
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th scope="col">date_reported</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for who_date_reported in page_data.items %}
+            <tr>
+                <td><a href="/who/date_reported/{{ who_date_reported.id }}">{{ who_date_reported.date_reported }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block footer_container %}
+    <div>
+        {% for error in errors %}
+            <h4>{{ error }}</h4>
+        {% endfor %}
+    </div>
+{% endblock %}

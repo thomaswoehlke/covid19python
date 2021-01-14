@@ -1,0 +1,5 @@
+CREATE TABLE WHO_region (
+    id SERIAL PRIMARY KEY,
+    WHO_region VARCHAR(255) NOT NULL,
+    UNIQUE (WHO_region)
+);

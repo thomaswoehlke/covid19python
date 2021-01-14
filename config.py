@@ -1,0 +1,13 @@
+POSTGRES_USER = 'covid19data'
+POSTGRES_PW = 'covid19datapwd'
+POSTGRES_URL = 'localhost'
+POSTGRES_DB = 'covid19data'
+ITEMS_PER_PAGE = 20
+YOUR_NAME = 'covid19python'
+PASSWORD = 'vfdjv423ndf654&%%'
+VHOST_NAME = 'covid19python'
+#CELERY_BROKER_URL = 'amqp://covid19python:vfdjv423ndf654&%%@localhost/covid19python'
+#CELERY_RESULT_BACKEND = 'amqp://covid19python:vfdjv423ndf654&%%@localhost/covid19python'
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost/'
+CELERY_RESULT_BACKEND = 'amqp://guest:guest@localhost/'
+SECRET_KEY='vfdjv423ndf654&%%'
