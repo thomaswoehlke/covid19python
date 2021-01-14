@@ -12,6 +12,9 @@ celery.conf.update(app.config)
 @celery.task(bind=True)
 def who_run_update_task(self):
     self.update_state(state=states.STARTED)
+    app.logger.info("------------------------------------------------------------")
+    app.logger.info(" Received: who_run_update_task [OK] ")
+    app.logger.info("------------------------------------------------------------")
     who_service.run_update()
     self.update_state(state=states.SUCCESS)
     result = "OK"
@@ -21,6 +24,9 @@ def who_run_update_task(self):
 @celery.task(bind=True)
 def who_update_short_task(self):
     self.update_state(state=states.STARTED)
+    app.logger.info("------------------------------------------------------------")
+    app.logger.info(" Received: who_update_short_task [OK] ")
+    app.logger.info("------------------------------------------------------------")
     who_service.run_update_short()
     self.update_state(state=states.SUCCESS)
     result = "OK"
@@ -31,7 +37,7 @@ def who_update_short_task(self):
 def alive_message_task(self):
     self.update_state(state=states.STARTED)
     app.logger.info("------------------------------------------------------------")
-    app.logger.info(" Alive Message Received [OK] ")
+    app.logger.info(" Received: Alive Message [OK] ")
     app.logger.info("------------------------------------------------------------")
     self.update_state(state=states.SUCCESS)
     result = "OK"
