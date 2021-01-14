@@ -1,8 +1,10 @@
 # covid19python
 
 ## git
-* gitlab: https://git.noc.ruhr-uni-bochum.de/learn_r_and_python/covid19python.git
-* github: https://github.com/thomaswoehlke/covid19python.git
+### gitlab 
+* https://git.noc.ruhr-uni-bochum.de/learn_r_and_python/covid19python.git
+### github
+* https://github.com/thomaswoehlke/covid19python.git
 
 ## Data Sources:
 * [WHO](https://covid19.who.int/WHO-COVID-19-global-data.csv)
