@@ -19,6 +19,15 @@ def who_run_update_task(self):
 
 
 @celery.task(bind=True)
+def who_update_short_task(self):
+    self.update_state(state=states.STARTED)
+    who_service.run_update_short()
+    self.update_state(state=states.SUCCESS)
+    result = "OK"
+    return result
+
+
+@celery.task(bind=True)
 def alive_message_task(self):
     self.update_state(state=states.STARTED)
     app.logger.info("------------------------------------------------------------")

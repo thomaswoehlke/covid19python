@@ -59,10 +59,17 @@
 ### 0.0.6 Release
 * Fixed #6 data of all reported countries for WHO date reported
 * Fixed #7 WHO Countries all - data for Country
-  
+
 ### 0.0.7 Release
+* Issue #8 WhoServiceUpdate.update_db_short()
+* Issue #9 URL: /who/update/short 
+* Issue #10 async who_update_short_task
+* Issue #11 WhoServiceUpdate.__update_who_global_data_short()
+
+### 0.0.8 Release
 * Issue #3 ORM: 3NF for ecdc_europa_data_import
 * Issue #4 data update for 3NF ecdc_europa_data_import
 
-### 0.0.8 Release
+### 0.0.9 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
+
