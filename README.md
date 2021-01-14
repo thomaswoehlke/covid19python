@@ -1,4 +1,5 @@
 # covid19python
+* Version 0.0.5 SNAPSHOT
 
 ## git
 ### gitlab 
@@ -52,8 +53,12 @@
 * Fixed #15 Navigation: Region, Countries, Data per Countries order by Date
 
 ### 0.0.5 Release
-* Issue #5 ORM: 3NF for ecdc_europa_data_import
-* Issue #7 data update for 3NF ecdc_europa_data_import
+* Issue #1 Async Tasks for import and update Data with Celery and RabbitMQ
+* Issue #2 Move Repo to github
 
 ### 0.0.6 Release
-* Issue #16 Visual Graphs for Data per Countries order by Date
+* Issue #3 ORM: 3NF for ecdc_europa_data_import
+* Issue #4 data update for 3NF ecdc_europa_data_import
+
+### 0.0.7 Release
+* Issue #5 Visual Graphs for Data per Countries order by Date
