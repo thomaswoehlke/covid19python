@@ -153,6 +153,7 @@ def url_who_region_all(page=1):
 @app.route('/who/region/<int:region_id>/page/<int:page>')
 @app.route('/who/region/<int:region_id>')
 def url_who_region_countries(region_id, page=1):
+    who_region = None
     page_info = ApplicationPage("Countries", "WHO Region")
     try:
         who_region = WhoRegion.get_by_id(region_id)
@@ -170,6 +171,8 @@ def url_who_region_countries(region_id, page=1):
         page_info=page_info)
 
 
+@app.route('/who/country/<int:country_id>/page/<int:page>')
+@app.route('/who/country/<int:country_id>')
 @app.route('/who/region/country/<int:country_id>/page/<int:page>')
 @app.route('/who/region/country/<int:country_id>')
 def url_who_region_country(country_id, page=1):
