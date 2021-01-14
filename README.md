@@ -57,6 +57,7 @@
 * Fixed #2 Move Repo to github
 
 ### 0.0.6 Release
+* Fixed #6 data of all reported countries for WHO date reported
 * Issue #3 ORM: 3NF for ecdc_europa_data_import
 * Issue #4 data update for 3NF ecdc_europa_data_import
 

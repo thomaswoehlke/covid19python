@@ -210,6 +210,17 @@ class WhoGlobalData(db.Model):
         p = Pagination(sql_query, page, ITEMS_PER_PAGE, total, items_page)
         return p
 
+    @classmethod
+    def get_data_for_day(cls, date_reported, page):
+        return db.session.query(cls)\
+            .filter(cls.who_date_reported_id == date_reported.id)\
+            .order_by(
+                cls.deaths_new.desc(),
+                cls.cases_new.desc(),
+                cls.deaths_cumulative.desc(),
+                cls.cases_cumulative.desc())\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
+
 
 class WhoGlobalDataImportTable(db.Model):
     __tablename__ = 'who_global_data_import'

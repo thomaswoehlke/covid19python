@@ -7,7 +7,7 @@ from org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateRepo
 from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
 from org.woehlke.covid19.europe.europe_service import EuropeService
-from server_mq import who_run_update_task
+from server_mq import who_run_update_task, alive_message_task
 
 
 class ApplicationPage:
@@ -99,6 +99,27 @@ def url_who_date_reported_all(page=1):
         page_info=page_info)
 
 
+@app.route('/who/date_reported/<int:date_reported_id>/page/<int:page>')
+@app.route('/who/date_reported/<int:date_reported_id>')
+def url_who_date_reported_one(date_reported_id, page=1):
+    date_reported = WhoDateReported.get_by_id(date_reported_id)
+    page_info = ApplicationPage(
+        "Date Reported: " + date_reported.date_reported,
+        'WHO',
+        "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
+    )
+    try:
+        page_data = WhoGlobalData.get_data_for_day(date_reported, page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'who/who_date_reported_one.html',
+        who_date_reported=date_reported,
+        page_data=page_data,
+        page_info=page_info)
+
+
 @app.route('/who/country/all/page/<int:page>')
 @app.route('/who/country/all')
 def url_who_country_all(page=1):
@@ -167,7 +188,6 @@ def url_who_region_country(country_id, page=1):
 @app.route('/who/update')
 def url_who_update_run():
     app.logger.info("url_who_update_run [start]")
-    #who_service.run_update()
     who_service.who_service_download.download_file()
     who_run_update_task.apply_async()
     flash("who_service.run_update started")
@@ -225,7 +245,6 @@ def url_europe_data_imported(page=1):
     list_europe_data_imported = EuropeDataImportTable.get_all_as_page(page)
     return render_template(
         'europe/europe_imported.html',
-        #list_europe_data_imported=list_europe_data_imported,
         page_data=list_europe_data_imported,
         page_info=page_info)
 
@@ -260,7 +279,6 @@ def url_nrw_imported(page=1):
         who_imported_all = None
     return render_template(
         'nrw/nrw_imported.html',
-        #who_imported_all=who_imported_all,
         page_data=who_imported_all,
         page_info=page_info)
 
@@ -274,9 +292,17 @@ def url_nrw_bochum(page=1):
     return render_template(
         'nrw/nrw_stadt.html',
         who_country=who_country,
-        #list_who_global_data=list_who_global_data,
         page_data=list_who_global_data,
         page_info=page_info)
+
+
+@app.route('/test/alive_message')
+def url_alive_message_start():
+    app.logger.info("url_alive_message_start [start]")
+    alive_message_task.apply_async()
+    flash("alive_message_task started")
+    app.logger.info("url_alive_message_start [done]")
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
