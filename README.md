@@ -53,8 +53,8 @@
 * Fixed #15 Navigation: Region, Countries, Data per Countries order by Date
 
 ### 0.0.5 Release
-* Issue #1 Async Tasks for import and update Data with Celery and RabbitMQ
-* Issue #2 Move Repo to github
+* Fixed #1 Async Tasks for import and update Data with Celery and RabbitMQ
+* Fixed #2 Move Repo to github
 
 ### 0.0.6 Release
 * Issue #3 ORM: 3NF for ecdc_europa_data_import
