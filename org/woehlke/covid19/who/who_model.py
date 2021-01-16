@@ -124,7 +124,7 @@ class WhoCountry(db.Model):
             and_(
                 cls.country_code == i_country_code,
                 cls.country == i_country,
-                cls.who_region_id == my_region.id
+                cls.region_id == my_region.id
             )
         ).one_or_none()
 
