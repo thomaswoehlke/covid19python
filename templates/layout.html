@@ -58,9 +58,7 @@
 
     <main>
         <div class="container">
-            {% for message in get_flashed_messages() %}
-                <p style="color: red;">{{ message }}</p>
-            {% endfor %}
+            {% include 'fragment_flashed_messages.html' %}
             {% block main_container %}{% endblock %}
         </div>
     </main>
