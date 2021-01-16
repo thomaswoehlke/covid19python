@@ -7,7 +7,7 @@ class WhoRegion(db.Model):
     __tablename__ = 'who_region'
 
     id = db.Column(db.Integer, primary_key=True)
-    who_region = db.Column(db.String(255), unique=True, nullable=False)
+    region = db.Column(db.String(255), unique=True, nullable=False)
 
     @classmethod
     def remove_all(cls):
@@ -21,7 +21,7 @@ class WhoRegion(db.Model):
 
     @classmethod
     def get_all_as_page(cls, page):
-        return db.session.query(cls).order_by(cls.who_region).paginate(page, per_page=ITEMS_PER_PAGE)
+        return db.session.query(cls).order_by(cls.region).paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all_as_dict(cls):
@@ -36,7 +36,7 @@ class WhoRegion(db.Model):
 
     @classmethod
     def find_by_region(cls, i_who_region):
-        my_region = db.session.query(cls).filter(cls.who_region == i_who_region).one_or_none()
+        my_region = db.session.query(cls).filter(cls.region == i_who_region).one_or_none()
         return my_region
 
 
@@ -86,8 +86,8 @@ class WhoCountry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     country_code = db.Column(db.String(255), unique=True, nullable=False)
     country = db.Column(db.String(255), unique=False, nullable=False)
-    who_region_id = db.Column(db.Integer, db.ForeignKey('who_region.id'), nullable=False)
-    who_region = db.relationship('WhoRegion', lazy='joined')
+    region_id = db.Column(db.Integer, db.ForeignKey('who_region.id'), nullable=False)
+    region = db.relationship('WhoRegion', lazy='joined')
 
     @classmethod
     def remove_all(cls):
@@ -131,7 +131,7 @@ class WhoCountry(db.Model):
     @classmethod
     def get_who_countries_for_region(cls, region, page):
         return db.session.query(cls).filter(
-            cls.who_region == region
+            cls.region == region
         ).order_by(cls.country).paginate(page, per_page=ITEMS_PER_PAGE)
 
 
@@ -172,8 +172,8 @@ class WhoGlobalData(db.Model):
     def find_one_or_none_by_date_and_country(cls, my_date_reported, my_country):
         return db.session.query(cls).filter(
             and_(
-                cls.who_date_reported_id == my_date_reported.id,
-                cls.who_country_id == my_country.id
+                cls.date_reported_id == my_date_reported.id,
+                cls.country_id == my_country.id
             )
         ).one_or_none()
 
@@ -185,8 +185,8 @@ class WhoGlobalData(db.Model):
         sql_query = """
                    select * from who_global_data
                    left join who_date_reported 
-                   on who_global_data.who_date_reported_id = who_date_reported.id
-                   where who_country_id = :country_id 
+                   on who_global_data.date_reported_id = who_date_reported.id
+                   where country_id = :country_id 
                    order by who_date_reported.date_reported DESC
                    """
         total_items = db.session.execute(sql_query, sql_query_parameter)
@@ -200,8 +200,8 @@ class WhoGlobalData(db.Model):
         sql_query_page = """
                        select * from who_global_data
                        left join who_date_reported 
-                       on who_global_data.who_date_reported_id = who_date_reported.id
-                       where who_country_id = :country_id 
+                       on who_global_data.date_reported_id = who_date_reported.id
+                       where country_id = :country_id 
                        order by who_date_reported.date_reported DESC
                        limit :ITEMS_PER_PAGE
                        offset :OFFSET_FOR_PAGE
@@ -213,7 +213,7 @@ class WhoGlobalData(db.Model):
     @classmethod
     def get_data_for_day(cls, date_reported, page):
         return db.session.query(cls)\
-            .filter(cls.who_date_reported_id == date_reported.id)\
+            .filter(cls.date_reported_id == date_reported.id)\
             .order_by(
                 cls.deaths_new.desc(),
                 cls.cases_new.desc(),
