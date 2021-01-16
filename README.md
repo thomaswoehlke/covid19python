@@ -65,7 +65,7 @@
 * Issue #9 URL: /who/update/short 
 * Issue #10 async who_update_short_task
 * Issue #11 WhoServiceUpdate.__update_who_global_data_short()
-* Issue #12 better layout for flash messages
+* Fixed #12 better layout for flash messages
 
 ### 0.0.8 Release
 * Issue #3 ORM: 3NF for ecdc_europa_data_import
