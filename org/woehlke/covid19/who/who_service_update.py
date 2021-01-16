@@ -74,12 +74,10 @@ class WhoServiceUpdate:
         """
         result = db.session.execute(sql_text).fetchall()
         for result_item in result:
-            #print(result_item)
             i_country_code = result_item.country_code
             i_country = result_item.country
             i_who_region = result_item.who_region
             output = i_country_code + " " + i_country + " " + i_who_region
-            #logging.debug(output)
             my_region = WhoRegion.find_by_region(i_who_region)
             my_country = WhoCountry.find_by_country_code_and_country_and_who_region_id(
                 i_country_code, i_country, my_region
@@ -111,6 +109,9 @@ class WhoServiceUpdate:
         dates_reported = WhoDateReported.get_all_as_dict()
         regions = WhoRegion.get_all_as_dict()
         countries = WhoCountry.get_all_as_dict()
+
+        #
+        #
         i = 0
         result = WhoGlobalDataImportTable.get_all()
         for result_item in result:
@@ -143,14 +144,11 @@ class WhoServiceUpdate:
     def __update_who_global_data_short(self):
         app.logger.info(" update WHO short [begin]")
         app.logger.info("------------------------------------------------------------")
-        #dates_reported = WhoDateReported.get_all_as_dict()
-        #regions = WhoRegion.get_all_as_dict()
+        new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
         countries = WhoCountry.get_all_as_dict()
         i = 0
-        new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_reported_as_dict()
         for my_date_reported in new_dates_reported_from_import:
-            result = WhoGlobalDataImportTable.get_for_one_day(my_date_reported)
-            for result_item in result:
+            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
                 my_country = countries[result_item.country_code]
                 result_who_global_data = WhoGlobalData.find_one_or_none_by_date_and_country(
                     my_date_reported,

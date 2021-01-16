@@ -263,22 +263,34 @@ class WhoGlobalDataImportTable(db.Model):
         return db.session.query(cls.date_reported).distinct()
 
     @classmethod
-    def get_jounger_dates(cls, joungest_date_old):
-        return db.session.query(cls).filter(cls.date_reported > joungest_date_old).all()
-
-    @classmethod
-    def get_new_dates_reported_as_dict(cls):
-        new_dates_reported = []
-        joungest_date_old = WhoDateReported.get_joungest_date()
-        jounger_dates = None
-        if joungest_date_old is None:
-            jounger_dates = cls.get_dates_reported()
-        else:
-            jounger_dates = cls.get_jounger_dates(joungest_date_old)
-        for jounger_date in jounger_dates:
-            new_dates_reported.append(jounger_date.date_reported)
-        return new_dates_reported
-
-    @classmethod
     def get_for_one_day(cls, day):
         return db.session.query(cls).filter(cls.date_reported == day).all()
+
+    @classmethod
+    def get_new_dates_as_array(cls):
+        sql_query = """
+            select
+                date_reported
+            from
+                who_global_data_import
+            where
+                date_reported
+            not in (
+            select
+                distinct
+                    who_date_reported.date_reported
+                from
+                    who_global_data
+                left join
+                    who_date_reported
+                on
+                    who_global_data.date_reported_id=who_date_reported.id
+            )
+            group by
+                who_global_data_import.date_reported
+            order by date_reported desc
+            """
+        new_dates = []
+        for item in db.session.execute(sql_query):
+            new_dates.append(item['date_reported'])
+        return new_dates
