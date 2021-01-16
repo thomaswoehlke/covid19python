@@ -203,7 +203,7 @@ def url_who_update_short_run():
     # who_service.run_update_short()
     who_update_short_task.apply_async()
     flash("who_service.run_update_short started")
-    flash(message="long running background task started", category="error")
+    flash(message="long running background task started", category="warning")
     return redirect(url_for('home'))
 
 
