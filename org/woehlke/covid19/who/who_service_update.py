@@ -148,7 +148,7 @@ class WhoServiceUpdate:
         countries = WhoCountry.get_all_as_dict()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
-            my_date = WhoDateReported(my_date_reported)
+            my_date = WhoDateReported.find_by_date_reported(my_date_reported)
             for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date):
                 my_country = countries[result_item.country_code]
                 result_who_global_data = WhoGlobalData.find_one_or_none_by_date_and_country(
