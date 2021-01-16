@@ -21,7 +21,7 @@
         <ul class="pagination">
         {% if page_data.has_prev %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('url_who_region_countries', region_id=who_region.id , page=page_data.prev_num) }}">Previous</a>
+            <a class="page-link" href="{{ url_for('url_who_region_countries', who_region_id=region.id , page=page_data.prev_num) }}">Previous</a>
         </li>
         {% endif %}
         <!-- all page numbers -->
@@ -29,7 +29,7 @@
             {% if page_num %}
                 {% if page_num != page_data.page %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('url_who_region_countries',  region_id=who_region.id ,page=page_num) }}">{{ page_num }}</a>
+                        <a class="page-link" href="{{ url_for('url_who_region_countries', who_region_id=who_region.id ,page=page_num) }}">{{ page_num }}</a>
                     </li>
                 {% else %}
                     <li class="page-item active">
@@ -45,7 +45,7 @@
         <!-- next page -->
         {% if page_data.has_next %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('url_who_region_countries', region_id=who_region.id , page=page_data.next_num) }}">Next</a>
+            <a class="page-link" href="{{ url_for('url_who_region_countries', who_region_id=region.id , page=page_data.next_num) }}">Next</a>
         </li>
     {% endif %}
     </ul>
@@ -56,7 +56,7 @@
         <tr>
             <th scope="col">country_code</th>
             <th scope="col">country</th>
-            <th scope="col">who_region</th>
+            <th scope="col">region</th>
         </tr>
         </thead>
         <tbody>
@@ -64,7 +64,7 @@
             <tr>
                 <td><a href="/who/region/country/{{ who_country.id }}">{{ who_country.country_code }}</a></td>
                 <td><a href="/who/region/country/{{ who_country.id }}">{{ who_country.country }}</a></td>
-                <td><a href="/who/region/all">{{ who_country.who_region.who_region }}</a></td>
+                <td><a href="/who/region/all">{{ who_country.region.region }}</a></td>
             </tr>
         {% endfor %}
         </tbody>

@@ -158,9 +158,9 @@ def url_who_region_countries(region_id, page=1):
     try:
         who_region = WhoRegion.get_by_id(region_id)
         page_data = WhoCountry.get_who_countries_for_region(who_region, page)
-        page_info.title = who_region.who_region
+        page_info.title = who_region.region
         page_info.subtitle = "WHO Region"
-        page_info.subtitle_info = "Countries of WHO Region " + who_region.who_region
+        page_info.subtitle_info = "Countries of WHO Region " + who_region.region
     except OperationalError:
         flash("No countries of that region in the database.")
         page_data = None

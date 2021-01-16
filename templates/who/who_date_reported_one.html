@@ -68,14 +68,14 @@
         <tbody>
         {% for who_global_data in page_data.items %}
             <tr>
-                <th>{{ who_global_data.who_date_reported.date_reported }}</th>
+                <th>{{ who_global_data.date_reported.date_reported }}</th>
                 <td>{{ who_global_data.deaths_new }}</td>
                 <td>{{ who_global_data.cases_new }}</td>
                 <td>{{ who_global_data.deaths_cumulative }}</td>
                 <td>{{ who_global_data.cases_cumulative }}</td>
-                <td>{{ who_global_data.who_country.country_code }}</td>
-                <td>{{ who_global_data.who_country.country }}</td>
-                <td>{{ who_global_data.who_country.who_region.who_region }}</td>
+                <td>{{ who_global_data.country.country_code }}</td>
+                <td>{{ who_global_data.country.country }}</td>
+                <td>{{ who_global_data.country.region.region }}</td>
             </tr>
         {% endfor %}
         </tbody>
