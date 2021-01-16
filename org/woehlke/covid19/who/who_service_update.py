@@ -46,9 +46,9 @@ class WhoServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         i = 0
         for i_who_region, in db.session.query(WhoGlobalDataImportTable.who_region).distinct():
-            c = db.session.query(WhoRegion).filter(WhoRegion.who_region == i_who_region).count()
+            c = db.session.query(WhoRegion).filter(WhoRegion.region == i_who_region).count()
             if c == 0:
-                o = WhoRegion(who_region=i_who_region)
+                o = WhoRegion(region=i_who_region)
                 db.session.add(o)
                 app.logger.info(i_who_region +" added NEW ")
             else:
@@ -88,7 +88,7 @@ class WhoServiceUpdate:
                 o = WhoCountry(
                     country=i_country,
                     country_code=i_country_code,
-                    who_region=my_region)
+                    region=my_region)
                 db.session.add(o)
                 db.session.commit()
                 my_country = WhoCountry.find_by_country_code_and_country_and_who_region_id(
@@ -125,8 +125,8 @@ class WhoServiceUpdate:
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
                     deaths_cumulative=int(result_item.cumulative_deaths),
-                    who_date_reported=my_date_reported,
-                    who_country=my_country
+                    date_reported=my_date_reported,
+                    country=my_country
                 )
                 db.session.add(o)
             if i % 2000 == 0:
@@ -161,8 +161,8 @@ class WhoServiceUpdate:
                         cases_cumulative=int(result_item.cumulative_cases),
                         deaths_new=int(result_item.new_deaths),
                         deaths_cumulative=int(result_item.cumulative_deaths),
-                        who_date_reported=my_date_reported,
-                        who_country=my_country
+                        date_reported=my_date_reported,
+                        country=my_country
                     )
                     db.session.add(o)
                 result_item.row_imported = True

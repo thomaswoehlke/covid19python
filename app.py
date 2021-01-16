@@ -194,6 +194,7 @@ def url_who_update_run():
     who_service.who_service_download.download_file()
     who_run_update_task.apply_async()
     flash("who_service.run_update started")
+    flash(message="long running background task started", category="warning")
     app.logger.info("url_who_update_run [done]")
     return redirect(url_for('home'))
 
