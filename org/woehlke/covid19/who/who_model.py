@@ -27,7 +27,7 @@ class WhoRegion(db.Model):
     def get_all_as_dict(cls):
         regions = {}
         for my_region in cls.get_all():
-            regions[my_region.who_region] = my_region
+            regions[my_region.region] = my_region
         return regions
 
     @classmethod
