@@ -3,43 +3,6 @@ from sqlalchemy import and_, func
 from database import db, ITEMS_PER_PAGE
 
 
-class WhoRegion(db.Model):
-    __tablename__ = 'who_region'
-
-    id = db.Column(db.Integer, primary_key=True)
-    region = db.Column(db.String(255), unique=True, nullable=False)
-
-    @classmethod
-    def remove_all(cls):
-        db.session.execute("delete from " + cls.__tablename__)
-        db.session.commit()
-        return None
-
-    @classmethod
-    def get_all(cls):
-        return db.session.query(cls).all()
-
-    @classmethod
-    def get_all_as_page(cls, page):
-        return db.session.query(cls).order_by(cls.region).paginate(page, per_page=ITEMS_PER_PAGE)
-
-    @classmethod
-    def get_all_as_dict(cls):
-        regions = {}
-        for my_region in cls.get_all():
-            regions[my_region.region] = my_region
-        return regions
-
-    @classmethod
-    def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
-
-    @classmethod
-    def find_by_region(cls, i_who_region):
-        my_region = db.session.query(cls).filter(cls.region == i_who_region).one_or_none()
-        return my_region
-
-
 class WhoDateReported(db.Model):
     __tablename__ = 'who_date_reported'
 
@@ -78,6 +41,43 @@ class WhoDateReported(db.Model):
     @classmethod
     def get_joungest_date(cls):
         return db.session.query(func.max(cls.date_reported)).one_or_none()
+
+
+class WhoRegion(db.Model):
+    __tablename__ = 'who_region'
+
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(255), unique=True, nullable=False)
+
+    @classmethod
+    def remove_all(cls):
+        db.session.execute("delete from " + cls.__tablename__)
+        db.session.commit()
+        return None
+
+    @classmethod
+    def get_all(cls):
+        return db.session.query(cls).all()
+
+    @classmethod
+    def get_all_as_page(cls, page):
+        return db.session.query(cls).order_by(cls.region).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def get_all_as_dict(cls):
+        regions = {}
+        for my_region in cls.get_all():
+            regions[my_region.region] = my_region
+        return regions
+
+    @classmethod
+    def get_by_id(cls, other_id):
+        return db.session.query(cls).filter(cls.id == other_id).one()
+
+    @classmethod
+    def find_by_region(cls, i_who_region):
+        my_region = db.session.query(cls).filter(cls.region == i_who_region).one_or_none()
+        return my_region
 
 
 class WhoCountry(db.Model):
@@ -183,12 +183,12 @@ class WhoGlobalData(db.Model):
             "country_id": who_country.id
         }
         sql_query = """
-                   select * from who_global_data
-                   left join who_date_reported 
-                   on who_global_data.date_reported_id = who_date_reported.id
-                   where country_id = :country_id 
-                   order by who_date_reported.date_reported DESC
-                   """
+            select * from who_global_data
+            left join who_date_reported 
+            on who_global_data.date_reported_id = who_date_reported.id
+            where country_id = :country_id 
+            order by who_date_reported.date_reported DESC
+            """
         total_items = db.session.execute(sql_query, sql_query_parameter)
         total = len(total_items.fetchall())
         offset = ITEMS_PER_PAGE*(page-1)
@@ -198,14 +198,14 @@ class WhoGlobalData(db.Model):
             'OFFSET_FOR_PAGE': offset
         }
         sql_query_page = """
-                       select * from who_global_data
-                       left join who_date_reported 
-                       on who_global_data.date_reported_id = who_date_reported.id
-                       where country_id = :country_id 
-                       order by who_date_reported.date_reported DESC
-                       limit :ITEMS_PER_PAGE
-                       offset :OFFSET_FOR_PAGE
-                       """
+            select * from who_global_data
+            left join who_date_reported 
+            on who_global_data.date_reported_id = who_date_reported.id
+            where country_id = :country_id 
+            order by who_date_reported.date_reported DESC
+            limit :ITEMS_PER_PAGE
+            offset :OFFSET_FOR_PAGE
+            """
         items_page = db.session.execute(sql_query_page, sql_query_page_parameter)
         p = Pagination(sql_query, page, ITEMS_PER_PAGE, total, items_page)
         return p

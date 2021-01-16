@@ -148,7 +148,8 @@ class WhoServiceUpdate:
         countries = WhoCountry.get_all_as_dict()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
-            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
+            my_date = WhoDateReported(my_date_reported)
+            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date):
                 my_country = countries[result_item.country_code]
                 result_who_global_data = WhoGlobalData.find_one_or_none_by_date_and_country(
                     my_date_reported,
@@ -165,7 +166,7 @@ class WhoServiceUpdate:
                     db.session.add(o)
                 result_item.row_imported = True
                 db.session.add(result_item)
-                if i % 2000 == 0:
+                if i % 500 == 0:
                     app.logger.info(" update WHO short ... "+str(i)+" rows")
                     db.session.commit()
                 i += 1
