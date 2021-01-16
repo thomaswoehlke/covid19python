@@ -80,7 +80,7 @@
     <ul class="pagination">
     {% if page_data.has_prev %}
     <li class="page-item">
-        <a class="page-link" href="{{ url_for('url_who_region_country', country_id=country.id , page=page_data.prev_num) }}">Previous</a>
+        <a class="page-link" href="{{ url_for('url_who_region_country', country_id=who_country.id , page=page_data.prev_num) }}">Previous</a>
     </li>
     {% endif %}
     <!-- all page numbers -->

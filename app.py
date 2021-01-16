@@ -180,7 +180,7 @@ def url_who_region_country(country_id, page=1):
     page_data = WhoGlobalData.get_data_for_country(who_country, page)
     page_info = ApplicationPage(who_country.country,
            "Country "+who_country.country_code,
-           "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.who_region.who_region)
+           "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
         'who/who_region_country.html',
         who_country=who_country,
