@@ -144,11 +144,11 @@ class WhoGlobalData(db.Model):
     deaths_new = db.Column(db.Integer, nullable=False)
     deaths_cumulative = db.Column(db.Integer, nullable=False)
 
-    who_date_reported_id = db.Column(db.Integer, db.ForeignKey('who_date_reported.id'), nullable=False)
-    who_date_reported = db.relationship('WhoDateReported', lazy='joined')
+    date_reported_id = db.Column(db.Integer, db.ForeignKey('who_date_reported.id'), nullable=False)
+    date_reported = db.relationship('WhoDateReported', lazy='joined')
 
-    who_country_id = db.Column(db.Integer, db.ForeignKey('who_country.id'), nullable=False)
-    who_country = db.relationship('WhoCountry', lazy='joined')
+    country_id = db.Column(db.Integer, db.ForeignKey('who_country.id'), nullable=False)
+    country = db.relationship('WhoCountry', lazy='joined')
 
     @classmethod
     def remove_all(cls):
