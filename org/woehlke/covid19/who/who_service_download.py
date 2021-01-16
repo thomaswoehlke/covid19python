@@ -1,5 +1,6 @@
 import os
 import wget
+from flask import flash
 from database import app
 
 who_service_download = None
@@ -38,7 +39,9 @@ class WhoServiceDownload:
             app.logger.warning("############################################################")
             app.logger.warning(error)
             app.logger.warning("############################################################")
+            flash(message="downloaded: " + self.__who_cvsfile_name, category='error')
         finally:
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" download - WHO [done] ")
+            flash("downloaded: "+self.__who_cvsfile_name)
         return self

@@ -1,5 +1,10 @@
 <div class="fragment-flash-messages">
 {% for message in get_flashed_messages() %}
-    <div class="alert alert-success" role="alert">{{ message }}</div>
+    <div class="alert alert-success" role="alert">
+        <span>{{ message }}</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 {% endfor %}
 </div>
