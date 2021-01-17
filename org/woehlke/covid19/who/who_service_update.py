@@ -157,15 +157,15 @@ class WhoServiceUpdate:
                     deaths_new=int(result_item.new_deaths),
                     deaths_cumulative=int(result_item.cumulative_deaths),
                     date_reported=my_date_reported,
-                    country=my_country
+                    country = my_country
                 )
                 db.session.add(o)
                 #result_item.row_imported = True
                 #db.session.add(result_item)
+                i += 1
                 if i % 500 == 0:
                     app.logger.info(" update WHO short ... "+str(i)+" rows")
                     db.session.commit()
-                i += 1
         db.session.commit()
         app.logger.info(" update WHO short :  "+str(i)+" total rows")
         app.logger.info("")
