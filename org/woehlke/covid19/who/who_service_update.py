@@ -145,27 +145,23 @@ class WhoServiceUpdate:
         app.logger.info(" update WHO short [begin]")
         app.logger.info("------------------------------------------------------------")
         new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
-        countries = WhoCountry.get_all_as_dict()
+        #countries = WhoCountry.get_all_as_dict()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
-            my_date = WhoDateReported.find_by_date_reported(my_date_reported)
-            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date):
-                my_country = countries[result_item.country_code]
-                result_who_global_data = WhoGlobalData.find_one_or_none_by_date_and_country(
-                    my_date_reported,
-                    my_country)
-                if result_who_global_data is None:
-                    o = WhoGlobalData(
-                        cases_new=int(result_item.new_cases),
-                        cases_cumulative=int(result_item.cumulative_cases),
-                        deaths_new=int(result_item.new_deaths),
-                        deaths_cumulative=int(result_item.cumulative_deaths),
-                        date_reported=my_date_reported,
-                        country=my_country
-                    )
-                    db.session.add(o)
-                result_item.row_imported = True
-                db.session.add(result_item)
+            #my_date = WhoDateReported.find_by_date_reported(my_date_reported)
+            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
+                my_country = WhoCountry.find_by_country_code(result_item.country_code)
+                o = WhoGlobalData(
+                    cases_new=int(result_item.new_cases),
+                    cases_cumulative=int(result_item.cumulative_cases),
+                    deaths_new=int(result_item.new_deaths),
+                    deaths_cumulative=int(result_item.cumulative_deaths),
+                    date_reported=my_date_reported,
+                    country=my_country
+                )
+                db.session.add(o)
+                #result_item.row_imported = True
+                #db.session.add(result_item)
                 if i % 500 == 0:
                     app.logger.info(" update WHO short ... "+str(i)+" rows")
                     db.session.commit()

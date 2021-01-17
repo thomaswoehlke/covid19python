@@ -38,10 +38,6 @@ class WhoDateReported(db.Model):
     def find_by_date_reported(cls, i_date_reported):
         return db.session.query(cls).filter(cls.date_reported == i_date_reported).one_or_none()
 
-    @classmethod
-    def get_joungest_date(cls):
-        return db.session.query(func.max(cls.date_reported)).one_or_none()
-
 
 class WhoRegion(db.Model):
     __tablename__ = 'who_region'
@@ -126,6 +122,12 @@ class WhoCountry(db.Model):
                 cls.country == i_country,
                 cls.region_id == my_region.id
             )
+        ).one_or_none()
+
+    @classmethod
+    def find_by_country_code(cls, i_country_code):
+        return db.session.query(cls).filter(
+                cls.country_code == i_country_code
         ).one_or_none()
 
     @classmethod
