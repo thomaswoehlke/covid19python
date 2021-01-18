@@ -187,7 +187,10 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #14 /europe/imported/
 * Fixed #15 /who/update: Download  
 * Fixed #16 /who/update: Import File to DB
-* Issue #17 /who/update: Update DB
+* Fixed #17 /who/update: Update DB
+* Issue #18 /europe/update: Download
+* Issue #19 /europe/update: Import File to DB
+* Issue #20 /europe/update: Update DB
 * Issue #3 ORM: 3NF for ecdc_europa_data_import
 * Issue #4 data update for 3NF ecdc_europa_data_import
 
