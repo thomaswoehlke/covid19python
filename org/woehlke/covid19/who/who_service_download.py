@@ -27,10 +27,23 @@ class WhoServiceDownload:
         app.logger.info(" FROM: "+self.__url_src_data)
         app.logger.info("------------------------------------------------------------")
         os.makedirs('data', exist_ok=True)
+        data_file = None
         try:
             #os.remove(self.__src_who_cvsfile_name)
             os.chdir("data")
+        except Exception as error:
+            app.logger.warning("############################################################")
+            app.logger.warning(error)
+            app.logger.warning("############################################################")
+            flash(message="error before downloading ", category='error')
+        try:
             data_file = wget.download(self.__url_src_data)
+        except Exception as error:
+            app.logger.warning("############################################################")
+            app.logger.warning(error)
+            app.logger.warning("############################################################")
+            flash(message="error while downloading: " + self.__url_src_data, category='error')
+        try:
             os.renames(data_file, self.__who_cvsfile_name)
             for my_datafile in os.listdir():
                 app.logger.info(my_datafile)
@@ -39,7 +52,7 @@ class WhoServiceDownload:
             app.logger.warning("############################################################")
             app.logger.warning(error)
             app.logger.warning("############################################################")
-            flash(message="downloaded: " + self.__who_cvsfile_name, category='error')
+            flash(message="error after downloading: " + self.__who_cvsfile_name, category='error')
         finally:
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" download - WHO [done] ")
