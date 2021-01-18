@@ -24,22 +24,31 @@ class WhoService:
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" WHO Service [ready]")
 
-    def run_update(self):
+    def run_download(self):
         app.logger.info(" run update [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.who_service_download.download_file()
-        self.who_service_import.import_file()
+        success = self.who_service_download.download_file()
+        app.logger.info("")
+        app.logger.info(" run update [done]")
+        app.logger.info("------------------------------------------------------------")
+        return success
+
+    def run_update(self, import_file=True):
+        app.logger.info(" run update [begin]")
+        app.logger.info("------------------------------------------------------------")
+        if import_file:
+            self.who_service_import.import_file()
         self.who_service_update.update_db()
         app.logger.info("")
         app.logger.info(" run update [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def run_update_short(self):
+    def run_update_short(self, import_file=True):
         app.logger.info(" run update short [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.who_service_download.download_file()
-        self.who_service_import.import_file()
+        if import_file:
+            self.who_service_import.import_file()
         self.who_service_update.update_db_short()
         app.logger.info("")
         app.logger.info(" run update short [done]")

@@ -10,26 +10,26 @@ celery.conf.update(app.config)
 
 
 @celery.task(bind=True)
-def who_run_update_task(self):
+def who_run_update_task(self, import_file=True):
     self.update_state(state=states.STARTED)
     app.logger.info("------------------------------------------------------------")
     app.logger.info(" Received: who_run_update_task [OK] ")
     app.logger.info("------------------------------------------------------------")
-    who_service.run_update()
+    who_service.run_update(import_file)
     self.update_state(state=states.SUCCESS)
-    result = "OK"
+    result = "OK (who_run_update_task)"
     return result
 
 
 @celery.task(bind=True)
-def who_update_short_task(self):
+def who_update_short_task(self, import_file=True):
     self.update_state(state=states.STARTED)
     app.logger.info("------------------------------------------------------------")
     app.logger.info(" Received: who_update_short_task [OK] ")
     app.logger.info("------------------------------------------------------------")
-    who_service.run_update_short()
+    who_service.run_update_short(import_file)
     self.update_state(state=states.SUCCESS)
-    result = "OK"
+    result = "OK (who_update_short_task)"
     return result
 
 

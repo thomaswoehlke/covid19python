@@ -23,38 +23,49 @@ class WhoServiceDownload:
     def download_file(self):
         app.logger.info(" download - WHO [begin] ")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.__src_who_cvsfile_name)
-        app.logger.info(" FROM: "+self.__url_src_data)
+        app.logger.info(" FILE: "+self.__src_who_cvsfile_name+" ")
+        app.logger.info(" FROM: "+self.__url_src_data+" ")
         app.logger.info("------------------------------------------------------------")
         os.makedirs('data', exist_ok=True)
-        data_file = None
         try:
-            #os.remove(self.__src_who_cvsfile_name)
-            os.chdir("data")
-        except Exception as error:
-            app.logger.warning("############################################################")
-            app.logger.warning(error)
-            app.logger.warning("############################################################")
-            flash(message="error before downloading ", category='error')
-        try:
-            data_file = wget.download(self.__url_src_data)
-        except Exception as error:
-            app.logger.warning("############################################################")
-            app.logger.warning(error)
-            app.logger.warning("############################################################")
-            flash(message="error while downloading: " + self.__url_src_data, category='error')
-        try:
-            os.renames(data_file, self.__who_cvsfile_name)
-            for my_datafile in os.listdir():
-                app.logger.info(my_datafile)
-            os.chdir("..")
-        except Exception as error:
-            app.logger.warning("############################################################")
-            app.logger.warning(error)
-            app.logger.warning("############################################################")
-            flash(message="error after downloading: " + self.__who_cvsfile_name, category='error')
+            try:
+                app.logger.info("(x)")
+                #os.remove(self.__src_who_cvsfile_name)
+                #os.chdir("data")
+            except Exception as error:
+                app.logger.info("############################################################")
+                app.logger.info(error)
+                app.logger.info("############################################################")
+                flash(message="error before downloading ", category='error')
+            try:
+                data_file = wget.download(self.__url_src_data, self.__src_who_cvsfile_name)
+                app.logger.info(" " + data_file + " ")
+                success = True
+            except RuntimeError as error:
+                app.logger.info("############################################################")
+                app.logger.info(" " + error + " ")
+                app.logger.info("############################################################")
+                flash(message="error while downloading: " + self.__url_src_data, category='error')
+            try:
+                #os.renames(data_file, self.__who_cvsfile_name)
+                for my_dirfile in os.listdir():
+                    app.logger.info(my_dirfile)
+                os.chdir("..")
+            except Exception as error:
+                app.logger.info("############################################################")
+                app.logger.info(error)
+                app.logger.info("############################################################")
+                flash(message="error after downloading: " + self.__who_cvsfile_name, category='error')
+        except AttributeError as aerror:
+            app.logger.info("############################################################")
+            app.logger.info(aerror)
+            app.logger.info("############################################################")
         finally:
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" download - WHO [done] ")
-            flash("downloaded: "+self.__who_cvsfile_name)
+            msg = "downloaded: " + self.__who_cvsfile_name + " "
+            flash(msg)
+        return self
+
+    def download_file_ok(self):
         return self

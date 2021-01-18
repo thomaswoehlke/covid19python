@@ -1133,6 +1133,6 @@ Debug*/Debug*\ Libs
 .idea/*.iml
 /download.wget
 /WHO-COVID-19-global-data.csv
-/download (1).wget
-/WHO-COVID-19-global-data (1).csv
-/WHO-COVID-19-global-data (2).csv
+/download *.wget
+/WHO-COVID-19-global-data *.csv
+/data/WHO-COVID-19-global-data *.csv
