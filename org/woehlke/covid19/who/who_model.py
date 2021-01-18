@@ -8,7 +8,7 @@ class WhoDateReported(db.Model):
     __tablename__ = 'who_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
-    date_reported = db.Column(db.String(255), unique=True, nullable=False, index=True, primary_key=True)
+    date_reported = db.Column(db.String(255), nullable=False, index=True, primary_key=True)
 
     @classmethod
     def remove_all(cls):
@@ -44,7 +44,7 @@ class WhoRegion(db.Model):
     __tablename__ = 'who_region'
 
     id = db.Column(db.Integer, primary_key=True)
-    region = db.Column(db.String(255), unique=True, nullable=False, index=True)
+    region = db.Column(db.String(255), unique=True, nullable=False, primary_key=True)
 
     @classmethod
     def remove_all(cls):
@@ -81,9 +81,9 @@ class WhoCountry(db.Model):
     __tablename__ = 'who_country'
 
     id = db.Column(db.Integer, primary_key=True)
-    country_code = db.Column(db.String(255), unique=True, nullable=False, index=True)
-    country = db.Column(db.String(255), unique=True, nullable=False, index=True)
-    region_id = db.Column(db.Integer, db.ForeignKey('who_region.id'), nullable=False)
+    country_code = db.Column(db.String(255), unique=True, nullable=False, primary_key=True)
+    country = db.Column(db.String(255), unique=True, nullable=False, primary_key=True)
+    region_id = db.Column(db.Integer, db.ForeignKey('who_region.id'), nullable=False, primary_key=True)
     region = db.relationship(
         'WhoRegion',
         lazy='subquery',
@@ -149,18 +149,14 @@ class WhoGlobalData(db.Model):
     cases_cumulative = db.Column(db.Integer, nullable=False)
     deaths_new = db.Column(db.Integer, nullable=False)
     deaths_cumulative = db.Column(db.Integer, nullable=False)
-
-    date_reported_id = db.Column(db.Integer, db.ForeignKey('who_date_reported.id'), nullable=False)
+    date_reported_id = db.Column(db.Integer,
+        db.ForeignKey('who_date_reported.id'), nullable=False, index=True, primary_key=True)
     date_reported = db.relationship(
-        'WhoDateReported',
-        lazy='joined',
-        order_by='desc(WhoDateReported.date_reported)')
-
-    country_id = db.Column(db.Integer, db.ForeignKey('who_country.id'), nullable=False)
+        'WhoDateReported', lazy='joined', order_by='desc(WhoDateReported.date_reported)')
+    country_id = db.Column(db.Integer,
+        db.ForeignKey('who_country.id'), nullable=False, index=True, primary_key=True)
     country = db.relationship(
-        'WhoCountry',
-        lazy='joined',
-        order_by='WhoCountry.country')
+        'WhoCountry', lazy='joined', order_by='asc(WhoCountry.country)')
 
     @classmethod
     def remove_all(cls):
@@ -188,34 +184,6 @@ class WhoGlobalData(db.Model):
                 cls.country_id == my_country.id
             )
         ).one_or_none()
-
-    @classmethod
-    def get_data_for_country2(cls, who_country, page):
-        sql_query_parameter = {
-            "country_id": who_country.id
-        }
-        sql_query = """
-            select * from who_global_data
-            left join who_date_reported 
-            on who_global_data.date_reported_id = who_date_reported.id
-            where country_id = :country_id 
-            order by who_date_reported.date_reported DESC
-            """
-        total_items = db.session.execute(sql_query, sql_query_parameter)
-        total = len(total_items.fetchall())
-        offset = ITEMS_PER_PAGE*(page-1)
-        sql_query_page_parameter = {
-            'country_id': who_country.id,
-            'ITEMS_PER_PAGE': ITEMS_PER_PAGE,
-            'OFFSET_FOR_PAGE': offset
-        }
-        sql_query_page = sql_query + """
-            limit :ITEMS_PER_PAGE
-            offset :OFFSET_FOR_PAGE
-            """
-        items_page = db.session.execute(sql_query_page, sql_query_page_parameter)
-        p = Pagination(sql_query, page, ITEMS_PER_PAGE, total, items_page)
-        return p
 
     @classmethod
     def get_data_for_country(cls, who_country, page):
