@@ -188,13 +188,17 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #15 /who/update: Download  
 * Fixed #16 /who/update: Import File to DB
 * Fixed #17 /who/update: Update DB
+* Fixed #21 better templates for who_global_data tables
+
+
+### 0.0.9 Release
 * Issue #18 /europe/update: Download
 * Issue #19 /europe/update: Import File to DB
 * Issue #20 /europe/update: Update DB
 * Issue #3 ORM: 3NF for ecdc_europa_data_import
 * Issue #4 data update for 3NF ecdc_europa_data_import
 
-### 0.0.9 Release
+### 0.0.10 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
 
 
