@@ -56,7 +56,7 @@ def url_who_tasks():
         page_info=page_info)
 
 
-@app.route('/who/imported/<int:page>')
+@app.route('/who/imported/page/<int:page>')
 @app.route('/who/imported')
 def url_who_imported(page=1):
     page_info = ApplicationPage('WHO', "Last Import")
@@ -71,7 +71,7 @@ def url_who_imported(page=1):
         page_info=page_info)
 
 
-@app.route('/who/germany/<int:page>')
+@app.route('/who/germany/page/<int:page>')
 @app.route('/who/germany')
 def url_who_germany(page=1):
     page_info = ApplicationPage('WHO', "Germany")
@@ -247,10 +247,10 @@ def europe_update_data():
 @app.route('/europe/imported')
 def url_europe_data_imported(page=1):
     page_info = ApplicationPage('Europe', "Last Import")
-    list_europe_data_imported = EuropeDataImportTable.get_all_as_page(page)
+    page_data = EuropeDataImportTable.get_all_as_page(page)
     return render_template(
         'europe/europe_imported.html',
-        page_data=list_europe_data_imported,
+        page_data=page_data,
         page_info=page_info)
 
 
