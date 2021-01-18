@@ -35,15 +35,15 @@ class EuropeServiceImport:
                 for row in file_reader:
                     o = EuropeDataImportTable(
                         date_rep=row['dateRep'],
-                        year=row['year_week'],
-                        cases=row['cases_weekly'],
-                        deaths=row['deaths_weekly'],
+                        year_week=row['year_week'],
+                        cases_weekly=row['cases_weekly'],
+                        deaths_weekly=row['deaths_weekly'],
                         countries_and_territories=row['countriesAndTerritories'],
                         geo_id=row['geoId'],
                         country_territory_code=row['countryterritoryCode'],
                         pop_data_2019=row['popData2019'],
                         continent_exp=row['continentExp'],
-                        cumulative_number_for_14_days_of_covid19_cases_per_100000
+                        notification_rate_per_100000_population_14days
                         =row['notification_rate_per_100000_population_14-days']
                     )
                     db.session.add(o)

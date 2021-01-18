@@ -6,17 +6,15 @@ class EuropeDataImportTable(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     date_rep = db.Column(db.String(255), nullable=False)
-    day = db.Column(db.String(255), nullable=False)
-    month = db.Column(db.String(255), nullable=False)
-    year = db.Column(db.String(255), nullable=False)
-    cases = db.Column(db.String(255), nullable=False)
-    deaths = db.Column(db.String(255), nullable=False)
+    year_week = db.Column(db.String(255), nullable=False)
+    cases_weekly = db.Column(db.String(255), nullable=False)
+    deaths_weekly = db.Column(db.String(255), nullable=False)
     pop_data_2019 = db.Column(db.String(255), nullable=False)
     countries_and_territories = db.Column(db.String(255), nullable=False)
     geo_id = db.Column(db.String(255), nullable=False)
     country_territory_code = db.Column(db.String(255), nullable=False)
     continent_exp = db.Column(db.String(255), nullable=False)
-    cumulative_number_for_14_days_of_covid19_cases_per_100000 = db.Column(db.String(255), nullable=False)
+    notification_rate_per_100000_population_14days = db.Column(db.String(255), nullable=False)
 
     @classmethod
     def remove_all(cls):
