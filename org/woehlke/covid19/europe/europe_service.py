@@ -4,6 +4,9 @@ import psycopg2
 import wget
 from database import db, app
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
+from org.woehlke.covid19.europe.europe_service_download import EuropeServiceDownload
+from org.woehlke.covid19.europe.europe_service_import import EuropeServiceImport
+from org.woehlke.covid19.europe.europe_service_update import EuropeServiceUpdate
 
 europe_service = None
 
@@ -19,6 +22,9 @@ class EuropeService:
         self.__src_europa_cvsfile_name = "data"+os.sep+self.__europa_cvsfile_name
         self.__src_europa_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__europa_cvsfile_name
         self.__url_src_data = "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
+        self.europe_service_download = EuropeServiceDownload(database)
+        self.europe_service_import = EuropeServiceImport(database)
+        self.europe_service_update = EuropeServiceUpdate(database)
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Europe Service [ready] ")
 
@@ -31,7 +37,7 @@ class EuropeService:
         os.makedirs('data', exist_ok=True)
         app.logger.info("------------------------------------------------------------")
         try:
-            data_file = wget.download(self.__url_src_data,self.__src_europa_cvsfile_name)
+            data_file = wget.download(self.__url_src_data, self.__src_europa_cvsfile_name)
             #os.remove(self.__src_europa_cvsfile_name)
             #os.renames(data_file, self.__src_europa_cvsfile_name)
             app.logger.info("------------------------------------------------------------")
@@ -90,22 +96,19 @@ class EuropeService:
             app.logger.info(" import Europa [done]")
         return self
 
-    def __update_db(self):
-        return self
-
     def download(self):
         app.logger.info(" download [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__download()
+        self.europe_service_download.download()
         app.logger.info(" download [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
     def run_update(self):
-        app.logger.info(" run [begin]")
+        app.logger.info(" run update [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__import()
-        self.__update_db()
-        app.logger.info(" run [done]")
+        self.europe_service_import.import_datafile_to_db()
+        self.europe_service_update.update_db()
+        app.logger.info(" run update [done]")
         app.logger.info("------------------------------------------------------------")
         return self

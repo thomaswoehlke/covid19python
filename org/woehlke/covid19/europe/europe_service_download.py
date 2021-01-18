@@ -1,9 +1,6 @@
 import os
-import csv
-import psycopg2
 import wget
-from database import db, app
-from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
+from database import app
 
 europe_service_download = None
 
@@ -22,7 +19,7 @@ class EuropeServiceDownload:
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Europe Service Download [ready] ")
 
-    def __download(self):
+    def download(self):
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" download Europa [begin]")
         app.logger.info("------------------------------------------------------------")

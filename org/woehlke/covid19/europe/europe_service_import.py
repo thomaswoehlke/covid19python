@@ -1,7 +1,6 @@
 import os
 import csv
 import psycopg2
-import wget
 from database import db, app
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
 
@@ -22,27 +21,7 @@ class EuropeServiceImport:
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Europe Service Import [ready] ")
 
-    def __download(self):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" download Europa [begin]")
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.__src_europa_cvsfile_name+" <- "+self.__url_src_data)
-        app.logger.info("------------------------------------------------------------")
-        os.makedirs('data', exist_ok=True)
-        app.logger.info("------------------------------------------------------------")
-        try:
-            data_file = wget.download(self.__url_src_data)
-            os.remove(self.__src_europa_cvsfile_name)
-            os.renames(data_file, self.__src_europa_cvsfile_name)
-            app.logger.info("------------------------------------------------------------")
-        except Exception as error:
-            app.logger.warning(error)
-            app.logger.warning("------------------------------------------------------------")
-        finally:
-            app.logger.info(" download Europa [done]")
-        return self
-
-    def __import(self):
+    def import_datafile_to_db(self):
         app.logger.info(" import Europa [begin]")
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" FILE:  "+self.__src_europa_cvsfile_name)
@@ -88,17 +67,4 @@ class EuropeServiceImport:
         finally:
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" import Europa [done]")
-        return self
-
-    def __update_db(self):
-        return self
-
-    def run_update(self):
-        app.logger.info(" run [begin]")
-        app.logger.info("------------------------------------------------------------")
-        self.__download()
-        self.__import()
-        self.__update_db()
-        app.logger.info(" run [done]")
-        app.logger.info("------------------------------------------------------------")
         return self
