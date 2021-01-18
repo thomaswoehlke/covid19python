@@ -27,7 +27,7 @@ class WhoService:
     def run_update(self):
         app.logger.info(" run update [begin]")
         app.logger.info("------------------------------------------------------------")
-        #self.who_service_download.download_file()
+        self.who_service_download.download_file()
         self.who_service_import.import_file()
         self.who_service_update.update_db()
         app.logger.info("")
@@ -38,8 +38,8 @@ class WhoService:
     def run_update_short(self):
         app.logger.info(" run update short [begin]")
         app.logger.info("------------------------------------------------------------")
-        #self.who_service_download.download_file()
-        #self.who_service_import.import_file()
+        self.who_service_download.download_file()
+        self.who_service_import.import_file()
         self.who_service_update.update_db_short()
         app.logger.info("")
         app.logger.info(" run update short [done]")
