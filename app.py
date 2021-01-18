@@ -71,19 +71,6 @@ def url_who_imported(page=1):
         page_info=page_info)
 
 
-@app.route('/who/germany/page/<int:page>')
-@app.route('/who/germany')
-def url_who_germany(page=1):
-    page_info = ApplicationPage('WHO', "Germany")
-    who_country = WhoCountry.get_germany()
-    page_data = WhoGlobalData.get_data_for_country(who_country, page)
-    return render_template(
-        'who/who_region_country.html',
-        who_country=who_country,
-        page_data=page_data,
-        page_info=page_info)
-
-
 @app.route('/who/date_reported/all/page/<int:page>')
 @app.route('/who/date_reported/all')
 def url_who_date_reported_all(page=1):
@@ -101,7 +88,7 @@ def url_who_date_reported_all(page=1):
 
 @app.route('/who/date_reported/<int:date_reported_id>/page/<int:page>')
 @app.route('/who/date_reported/<int:date_reported_id>')
-def url_who_date_reported_one(date_reported_id, page=1):
+def url_who_date_reported(date_reported_id, page=1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
@@ -116,21 +103,6 @@ def url_who_date_reported_one(date_reported_id, page=1):
     return render_template(
         'who/who_date_reported_one.html',
         who_date_reported=date_reported,
-        page_data=page_data,
-        page_info=page_info)
-
-
-@app.route('/who/country/all/page/<int:page>')
-@app.route('/who/country/all')
-def url_who_country_all(page=1):
-    page_info = ApplicationPage('WHO', "Countries", "All")
-    try:
-        page_data = WhoCountry.get_all_as_page(page)
-    except OperationalError:
-        flash("No regions in the database.")
-        page_data = None
-    return render_template(
-        'who/who_country_all.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -152,7 +124,7 @@ def url_who_region_all(page=1):
 
 @app.route('/who/region/<int:region_id>/page/<int:page>')
 @app.route('/who/region/<int:region_id>')
-def url_who_region_countries(region_id, page=1):
+def url_who_region(region_id, page=1):
     who_region = None
     page_info = ApplicationPage("Countries", "WHO Region")
     try:
@@ -165,24 +137,50 @@ def url_who_region_countries(region_id, page=1):
         flash("No countries of that region in the database.")
         page_data = None
     return render_template(
-        'who/who_region_countries.html',
+        'who/who_region_one.html',
         who_region=who_region,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/who/country/all/page/<int:page>')
+@app.route('/who/country/all')
+def url_who_country_all(page=1):
+    page_info = ApplicationPage('WHO', "Countries", "All")
+    try:
+        page_data = WhoCountry.get_all_as_page(page)
+    except OperationalError:
+        flash("No regions in the database.")
+        page_data = None
+    return render_template(
+        'who/who_country_all.html',
         page_data=page_data,
         page_info=page_info)
 
 
 @app.route('/who/country/<int:country_id>/page/<int:page>')
 @app.route('/who/country/<int:country_id>')
-@app.route('/who/region/country/<int:country_id>/page/<int:page>')
-@app.route('/who/region/country/<int:country_id>')
-def url_who_region_country(country_id, page=1):
+def url_who_country(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoGlobalData.get_data_for_country(who_country, page)
     page_info = ApplicationPage(who_country.country,
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'who/who_region_country.html',
+        'who/who_country_one.html',
+        who_country=who_country,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/who/germany/page/<int:page>')
+@app.route('/who/germany')
+def url_who_germany(page=1):
+    page_info = ApplicationPage('WHO', "Germany")
+    who_country = WhoCountry.get_germany()
+    page_data = WhoGlobalData.get_data_for_country(who_country, page)
+    return render_template(
+        'who/who_country_germany.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)

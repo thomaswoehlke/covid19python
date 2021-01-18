@@ -1,7 +1,5 @@
 {% extends 'layout.html' %}
 
-{% include 'fragment_pagination.html' %}
-
 {% block navigation_breadcrumb %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -16,23 +14,26 @@
   {% include 'fragment_navtabs_who.html' %}
 {% endblock %}
 
-
 {% block main_container %}
 
     {% if page_data.pages > 1 %}
-    <!-- previous page -->
-        <ul class="pagination">
+    <ul class="pagination">
         {% if page_data.has_prev %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('url_who_date_reported', date_reported_id=who_date_reported.id, page=page_data.prev_num) }}">Previous</a>
+            <a class="page-link"
+               href="{{ url_for( 'url_who_country', country_id=who_country.id, page=page_data.prev_num) }}">
+                Previous
+            </a>
         </li>
         {% endif %}
-        <!-- all page numbers -->
         {% for page_num in page_data.iter_pages() %}
             {% if page_num %}
                 {% if page_num != page_data.page %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('url_who_date_reported', date_reported_id=who_date_reported.id, page=page_num) }}">{{ page_num }}</a>
+                        <a class="page-link"
+                           href="{{ url_for( 'url_who_country', country_id=who_country.id, page=page_num) }}">
+                            {{ page_num }}
+                        </a>
                     </li>
                 {% else %}
                     <li class="page-item active">
@@ -45,13 +46,15 @@
                </li>
            {% endif %}
         {% endfor %}
-        <!-- next page -->
         {% if page_data.has_next %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('url_who_date_reported', date_reported_id=who_date_reported.id, page=page_data.next_num) }}">Next</a>
+            <a class="page-link"
+               href="{{ url_for( 'url_who_country', country_id=who_country.id, page=page_data.next_num) }}">
+                Next
+            </a>
         </li>
         {% endif %}
-        </ul>
+    </ul>
     {% endif %}
 
     <table class="table table-hover table-striped">
@@ -84,6 +87,7 @@
     </table>
 
 {% endblock %}
+
 
 {% block footer_container %}
     <div>
