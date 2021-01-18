@@ -191,3 +191,4 @@ class WhoGlobalDataImportTable(db.Model):
 ### 0.0.9 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
 
+
