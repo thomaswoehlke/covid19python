@@ -177,11 +177,11 @@ def url_who_country(country_id, page=1):
 @app.route('/who/germany')
 def url_who_germany(page=1):
     page_info = ApplicationPage('WHO', "Germany")
-    who_country = WhoCountry.get_germany()
-    page_data = WhoGlobalData.get_data_for_country(who_country, page)
+    who_country_germany = WhoCountry.get_germany()
+    page_data = WhoGlobalData.get_data_for_country(who_country_germany, page)
     return render_template(
         'who/who_country_germany.html',
-        who_country=who_country,
+        who_country=who_country_germany,
         page_data=page_data,
         page_info=page_info)
 

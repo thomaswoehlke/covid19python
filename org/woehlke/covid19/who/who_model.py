@@ -1,13 +1,14 @@
 from flask_sqlalchemy import Pagination
 from sqlalchemy import and_, func
 from database import db, ITEMS_PER_PAGE
+from sqlalchemy.orm import joinedload, raiseload
 
 
 class WhoDateReported(db.Model):
     __tablename__ = 'who_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
-    date_reported = db.Column(db.String(255), unique=True, nullable=False)
+    date_reported = db.Column(db.String(255), unique=True, nullable=False, index=True, primary_key=True)
 
     @classmethod
     def remove_all(cls):
@@ -43,7 +44,7 @@ class WhoRegion(db.Model):
     __tablename__ = 'who_region'
 
     id = db.Column(db.Integer, primary_key=True)
-    region = db.Column(db.String(255), unique=True, nullable=False)
+    region = db.Column(db.String(255), unique=True, nullable=False, index=True)
 
     @classmethod
     def remove_all(cls):
@@ -80,10 +81,13 @@ class WhoCountry(db.Model):
     __tablename__ = 'who_country'
 
     id = db.Column(db.Integer, primary_key=True)
-    country_code = db.Column(db.String(255), unique=True, nullable=False)
-    country = db.Column(db.String(255), unique=False, nullable=False)
+    country_code = db.Column(db.String(255), unique=True, nullable=False, index=True)
+    country = db.Column(db.String(255), unique=True, nullable=False, index=True)
     region_id = db.Column(db.Integer, db.ForeignKey('who_region.id'), nullable=False)
-    region = db.relationship('WhoRegion', lazy='joined')
+    region = db.relationship(
+        'WhoRegion',
+        lazy='subquery',
+        order_by='WhoRegion.region')
 
     @classmethod
     def remove_all(cls):
@@ -147,10 +151,16 @@ class WhoGlobalData(db.Model):
     deaths_cumulative = db.Column(db.Integer, nullable=False)
 
     date_reported_id = db.Column(db.Integer, db.ForeignKey('who_date_reported.id'), nullable=False)
-    date_reported = db.relationship('WhoDateReported', lazy='joined')
+    date_reported = db.relationship(
+        'WhoDateReported',
+        lazy='joined',
+        order_by='desc(WhoDateReported.date_reported)')
 
     country_id = db.Column(db.Integer, db.ForeignKey('who_country.id'), nullable=False)
-    country = db.relationship('WhoCountry', lazy='joined')
+    country = db.relationship(
+        'WhoCountry',
+        lazy='joined',
+        order_by='WhoCountry.country')
 
     @classmethod
     def remove_all(cls):
@@ -180,7 +190,7 @@ class WhoGlobalData(db.Model):
         ).one_or_none()
 
     @classmethod
-    def get_data_for_country(cls, who_country, page):
+    def get_data_for_country2(cls, who_country, page):
         sql_query_parameter = {
             "country_id": who_country.id
         }
@@ -199,12 +209,7 @@ class WhoGlobalData(db.Model):
             'ITEMS_PER_PAGE': ITEMS_PER_PAGE,
             'OFFSET_FOR_PAGE': offset
         }
-        sql_query_page = """
-            select * from who_global_data
-            left join who_date_reported 
-            on who_global_data.date_reported_id = who_date_reported.id
-            where country_id = :country_id 
-            order by who_date_reported.date_reported DESC
+        sql_query_page = sql_query + """
             limit :ITEMS_PER_PAGE
             offset :OFFSET_FOR_PAGE
             """
@@ -213,15 +218,27 @@ class WhoGlobalData(db.Model):
         return p
 
     @classmethod
+    def get_data_for_country(cls, who_country, page):
+        return db.session.query(cls).filter(
+            cls.country_id == who_country.id
+        ).populate_existing().options(
+            joinedload(cls.country).subqueryload(WhoCountry.region),
+            joinedload(cls.date_reported)
+        ).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
     def get_data_for_day(cls, date_reported, page):
-        return db.session.query(cls)\
-            .filter(cls.date_reported_id == date_reported.id)\
-            .order_by(
+        return db.session.query(cls).filter(
+                cls.date_reported_id == date_reported.id
+            ).populate_existing().options(
+                joinedload(cls.country).subqueryload(WhoCountry.region),
+                joinedload(cls.date_reported)
+            ).order_by(
                 cls.deaths_new.desc(),
                 cls.cases_new.desc(),
                 cls.deaths_cumulative.desc(),
-                cls.cases_cumulative.desc())\
-            .paginate(page, per_page=ITEMS_PER_PAGE)
+                cls.cases_cumulative.desc()
+            ).paginate(page, per_page=ITEMS_PER_PAGE)
 
 
 class WhoGlobalDataImportTable(db.Model):
