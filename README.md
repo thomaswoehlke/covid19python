@@ -183,8 +183,11 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #12 better layout for flash messages
 
 ### 0.0.8 Release
-* Issue #13 /who/imported/
-* Issue #14 /europe/imported/
+* Fixed #13 /who/imported/
+* Fixed #14 /europe/imported/
+* Fixed #15 /who/update: Download  
+* Fixed #16 /who/update: Import File to DB
+* Issue #17 /who/update: Update DB
 * Issue #3 ORM: 3NF for ecdc_europa_data_import
 * Issue #4 data update for 3NF ecdc_europa_data_import
 
