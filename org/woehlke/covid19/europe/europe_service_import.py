@@ -24,7 +24,7 @@ class EuropeServiceImport:
     def import_datafile_to_db(self):
         app.logger.info(" import Europa [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  "+self.__src_europa_cvsfile_name)
+        app.logger.info(" FILE:  " + self.__src_europa_cvsfile_name)
         app.logger.info(" TABLE: europe_data_import")
         app.logger.info("------------------------------------------------------------")
         try:
@@ -35,18 +35,16 @@ class EuropeServiceImport:
                 for row in file_reader:
                     o = EuropeDataImportTable(
                         date_rep=row['dateRep'],
-                        day=row['day'],
-                        month=row['month'],
-                        year=row['year'],
-                        cases=row['cases'],
-                        deaths=row['deaths'],
+                        year=row['year_week'],
+                        cases=row['cases_weekly'],
+                        deaths=row['deaths_weekly'],
                         countries_and_territories=row['countriesAndTerritories'],
                         geo_id=row['geoId'],
                         country_territory_code=row['countryterritoryCode'],
                         pop_data_2019=row['popData2019'],
                         continent_exp=row['continentExp'],
                         cumulative_number_for_14_days_of_covid19_cases_per_100000
-                        =row['Cumulative_number_for_14_days_of_COVID-19_cases_per_100000']
+                        =row['notification_rate_per_100000_population_14-days']
                     )
                     db.session.add(o)
                     if (k % 1000) == 0:
@@ -56,9 +54,9 @@ class EuropeServiceImport:
                 db.session.commit()
         except KeyError as error:
             app.logger.warning("KeyError: import Europa [begin]")
-            app.logger.warning(":::"+str(error)+":::")
+            app.logger.warning(":::" + str(error) + ":::")
             for item_key, item_value in row.items():
-                app.logger.warning(item_key+" : "+item_value)
+                app.logger.warning(item_key + " : " + item_value)
             app.logger.warning("KeyError: import Europa [end]")
         except (Exception, psycopg2.DatabaseError) as error:
             app.logger.warning("WARN: import Europa [begin]")
