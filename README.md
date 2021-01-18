@@ -190,7 +190,6 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #17 /who/update: Update DB
 * Fixed #21 better templates for who_global_data tables
 
-
 ### 0.0.9 Release
 * Fixed #18 /europe/update: Download
 * Fixed #19 /europe/update: Import File to DB
