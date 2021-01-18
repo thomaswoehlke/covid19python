@@ -136,7 +136,6 @@ class WhoServiceUpdate:
             i += 1
         db.session.commit()
         app.logger.info(" update WHO :  "+str(i)+" total rows")
-        app.logger.info("")
         app.logger.info(" update WHO [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -145,7 +144,6 @@ class WhoServiceUpdate:
         app.logger.info(" update WHO short [begin]")
         app.logger.info("------------------------------------------------------------")
         new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
-        #countries = WhoCountry.get_all_as_dict()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
             my_date = WhoDateReported.find_by_date_reported(my_date_reported)
@@ -168,7 +166,6 @@ class WhoServiceUpdate:
                     db.session.commit()
             db.session.commit()
         app.logger.info(" update WHO short :  "+str(i)+" total rows")
-        app.logger.info("")
         app.logger.info(" update WHO short [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -180,7 +177,6 @@ class WhoServiceUpdate:
         self.__update_who_region()
         self.__update_who_country()
         self.__update_who_global_data()
-        app.logger.info("")
         app.logger.info(" update db [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -192,7 +188,6 @@ class WhoServiceUpdate:
         self.__update_who_region()
         self.__update_who_country()
         self.__update_who_global_data_short()
-        app.logger.info("")
         app.logger.info(" update db short [done]")
         app.logger.info("------------------------------------------------------------")
         return self
