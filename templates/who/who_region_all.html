@@ -1,7 +1,5 @@
 {% extends 'layout.html' %}
 
-{% include 'fragment_pagination.html' %}
-
 {% block navigation_breadcrumb %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -39,7 +37,7 @@
                 {% endif %}
            {% else %}
                <li>
-                   <span class="ellipsis" style="white-space; nowrap; overflow: hidden; text-overflow: ellipsis">…</span>
+                   <span class="ellipsis page-link my-page-item-ellipsis-page-link">…</span>
                </li>
            {% endif %}
         {% endfor %}
@@ -64,6 +62,7 @@
         {% endfor %}
         </tbody>
     </table>
+
 {% endblock %}
 
 {% block footer_container %}
