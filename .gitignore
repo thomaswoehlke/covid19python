@@ -1136,3 +1136,4 @@ Debug*/Debug*\ Libs
 /download *.wget
 /WHO-COVID-19-global-data *.csv
 /data/WHO-COVID-19-global-data *.csv
+/data/ecdc_europa_data (1).csv

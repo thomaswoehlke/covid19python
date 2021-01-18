@@ -31,9 +31,9 @@ class EuropeService:
         os.makedirs('data', exist_ok=True)
         app.logger.info("------------------------------------------------------------")
         try:
-            data_file = wget.download(self.__url_src_data)
-            os.remove(self.__src_europa_cvsfile_name)
-            os.renames(data_file, self.__src_europa_cvsfile_name)
+            data_file = wget.download(self.__url_src_data,self.__src_europa_cvsfile_name)
+            #os.remove(self.__src_europa_cvsfile_name)
+            #os.renames(data_file, self.__src_europa_cvsfile_name)
             app.logger.info("------------------------------------------------------------")
         except Exception as error:
             app.logger.warning(error)
@@ -93,10 +93,17 @@ class EuropeService:
     def __update_db(self):
         return self
 
+    def download(self):
+        app.logger.info(" download [begin]")
+        app.logger.info("------------------------------------------------------------")
+        self.__download()
+        app.logger.info(" download [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
     def run_update(self):
         app.logger.info(" run [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__download()
         self.__import()
         self.__update_db()
         app.logger.info(" run [done]")

@@ -7,7 +7,7 @@ from org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateRepo
 from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
 from org.woehlke.covid19.europe.europe_service import EuropeService
-from server_mq import who_run_update_task, alive_message_task, who_update_short_task
+from server_mq import who_run_update_task, alive_message_task, who_update_short_task, europe_update_task
 
 
 class ApplicationPage:
@@ -238,7 +238,8 @@ def url_europe_tasks():
 
 @app.route('/europe/update')
 def europe_update_data():
-    europe_service.run_update()
+    europe_service.download()
+    europe_update_task.apply_async()
     flash("europe_service.run_update started")
     return redirect(url_for('home'))
 
