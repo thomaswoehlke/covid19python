@@ -309,6 +309,33 @@ def url_alive_message_start():
     return redirect(url_for('home'))
 
 
+@app.route('/admin/database/dump')
+def url_admin_database_dump():
+    app.logger.info("url_admin_database_dump [start]")
+    alive_message_task.apply_async()
+    flash("alive_message_task started")
+    app.logger.info("url_admin_database_dump [done]")
+    return redirect(url_for('home'))
+
+
+@app.route('/admin/database/import')
+def url_admin_database_import():
+    app.logger.info("url_admin_database_import [start]")
+    alive_message_task.apply_async()
+    flash("alive_message_task started")
+    app.logger.info("url_admin_database_import [done]")
+    return redirect(url_for('home'))
+
+
+@app.route('/admin/database/drop')
+def url_admin_database_drop():
+    app.logger.info("url_admin_database_drop [start]")
+    alive_message_task.apply_async()
+    flash("alive_message_task started")
+    app.logger.info("url_admin_database_drop [done]")
+    return redirect(url_for('home'))
+
+
 if __name__ == '__main__':
     dictConfig(my_logging_comfig)
     db.create_all()
