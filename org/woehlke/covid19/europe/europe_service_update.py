@@ -75,6 +75,8 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         self.__update_date_reported()
         self.__update_continent()
+        self.__update_country()
+        self.__update_data()
         app.logger.info(" update_db [done]")
         app.logger.info("------------------------------------------------------------")
         return self
