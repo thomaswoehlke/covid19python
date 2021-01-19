@@ -1,7 +1,7 @@
 import os
 import psycopg2
 from database import db, app
-from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, EuropeDateReported
+from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
 
 
 class EuropeServiceUpdate:
@@ -26,7 +26,7 @@ class EuropeServiceUpdate:
         for result_item in result_date_rep:
             my_date_rep = result_item['date_rep']
             my_year_week = result_item['year_week']
-            app.logger.info("| "+my_date_rep+" | "+my_year_week+" |")
+            app.logger.info("| " + my_date_rep + " | " + my_year_week + " |")
             o = EuropeDateReported(
                 date_rep=my_date_rep,
                 year_week=my_year_week
@@ -40,7 +40,16 @@ class EuropeServiceUpdate:
     def __update_continent(self):
         app.logger.info(" __update_continent [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" ... ")
+        EuropeContinent.remove_all()
+        result_continent = EuropeDataImportTable.get_continent()
+        for result_item in result_continent:
+            my_continent_exp = result_item['continent_exp']
+            app.logger.info("| " + my_continent_exp + " |")
+            o = EuropeContinent(
+                continent_exp=my_continent_exp
+            )
+            db.session.add(o)
+        db.session.commit()
         app.logger.info(" __update_continent [done]")
         app.logger.info("------------------------------------------------------------")
         return self

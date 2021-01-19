@@ -39,6 +39,11 @@ class EuropeDataImportTable(db.Model):
         sql = "select distinct date_rep, year_week from europe_data_import order by year_week desc"
         return db.session.execute(sql)
 
+    @classmethod
+    def get_continent(cls):
+        sql = "select distinct continent_exp from europe_data_import order by continent_exp asc"
+        return db.session.execute(sql)
+
 
 class EuropeDateReported(db.Model):
     __tablename__ = 'europe_date_reported'
