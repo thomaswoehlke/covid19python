@@ -7,7 +7,8 @@ from org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateRepo
 from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
 from org.woehlke.covid19.europe.europe_service import EuropeService
-from server_mq import who_run_update_task, alive_message_task, who_update_short_task, europe_update_task
+from server_mq import who_run_update_task, alive_message_task, who_update_short_task, who_update_initial_task, \
+    europe_update_task
 
 
 class ApplicationPage:
@@ -201,6 +202,15 @@ def url_who_update_run():
 def url_who_update_short_run():
     who_service.who_service_download.download_file()
     who_update_short_task.apply_async()
+    flash("who_service.run_update_short started")
+    flash(message="long running background task started", category="warning")
+    return redirect(url_for('home'))
+
+
+@app.route('/who/update/initial')
+def url_who_update_initial_run():
+    who_service.who_service_download.download_file()
+    who_update_initial_task.apply_async()
     flash("who_service.run_update_short started")
     flash(message="long running background task started", category="warning")
     return redirect(url_for('home'))

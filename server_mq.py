@@ -35,6 +35,18 @@ def who_update_short_task(self):
 
 
 @celery.task(bind=True)
+def who_update_initial_task(self):
+    self.update_state(state=states.STARTED)
+    app.logger.info("------------------------------------------------------------")
+    app.logger.info(" Received: who_update_initial_task [OK] ")
+    app.logger.info("------------------------------------------------------------")
+    who_service.run_update_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (who_update_initial_task)"
+    return result
+
+
+@celery.task(bind=True)
 def alive_message_task(self):
     self.update_state(state=states.STARTED)
     app.logger.info("------------------------------------------------------------")

@@ -55,6 +55,17 @@ class WhoService:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    def run_update_initial(self, import_file=True):
+        app.logger.info(" run update initial [begin]")
+        app.logger.info("------------------------------------------------------------")
+        if import_file:
+            self.who_service_import.import_file()
+        self.who_service_update.update_db_initial()
+        app.logger.info("")
+        app.logger.info(" run update initial [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
     def run_update_countries(self):
         app.logger.info(" run update countries [begin]")
         app.logger.info("------------------------------------------------------------")
