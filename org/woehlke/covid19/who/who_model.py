@@ -8,7 +8,7 @@ class WhoDateReported(db.Model):
     __tablename__ = 'who_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
-    date_reported = db.Column(db.String(255), nullable=False, index=True, primary_key=True)
+    date_reported = db.Column(db.String(255), nullable=False, unique=True)
 
     @classmethod
     def remove_all(cls):
@@ -44,7 +44,7 @@ class WhoRegion(db.Model):
     __tablename__ = 'who_region'
 
     id = db.Column(db.Integer, primary_key=True)
-    region = db.Column(db.String(255), unique=True, nullable=False, primary_key=True)
+    region = db.Column(db.String(255), unique=True)
 
     @classmethod
     def remove_all(cls):
@@ -81,9 +81,9 @@ class WhoCountry(db.Model):
     __tablename__ = 'who_country'
 
     id = db.Column(db.Integer, primary_key=True)
-    country_code = db.Column(db.String(255), unique=True, nullable=False, primary_key=True)
-    country = db.Column(db.String(255), unique=True, nullable=False, primary_key=True)
-    region_id = db.Column(db.Integer, db.ForeignKey('who_region.id'), nullable=False, primary_key=True)
+    country_code = db.Column(db.String(255), unique=True, nullable=False)
+    country = db.Column(db.String(255), unique=True, nullable=False)
+    region_id = db.Column(db.Integer, db.ForeignKey('who_region.id'), nullable=False)
     region = db.relationship(
         'WhoRegion',
         lazy='subquery',
@@ -150,11 +150,11 @@ class WhoGlobalData(db.Model):
     deaths_new = db.Column(db.Integer, nullable=False)
     deaths_cumulative = db.Column(db.Integer, nullable=False)
     date_reported_id = db.Column(db.Integer,
-        db.ForeignKey('who_date_reported.id'), nullable=False, index=True, primary_key=True)
+        db.ForeignKey('who_date_reported.id'), nullable=False)
     date_reported = db.relationship(
         'WhoDateReported', lazy='joined', order_by='desc(WhoDateReported.date_reported)')
     country_id = db.Column(db.Integer,
-        db.ForeignKey('who_country.id'), nullable=False, index=True, primary_key=True)
+        db.ForeignKey('who_country.id'), nullable=False)
     country = db.relationship(
         'WhoCountry', lazy='joined', order_by='asc(WhoCountry.country)')
 
