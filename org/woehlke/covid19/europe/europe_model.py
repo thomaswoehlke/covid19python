@@ -34,15 +34,18 @@ class EuropeDataImportTable(db.Model):
     def get_by_id(cls, other_id):
         return db.session.query(cls).filter(cls.id == other_id).one()
 
+    @classmethod
+    def get_date_rep(cls):
+        sql = "select distinct date_rep, year_week from europe_data_import order by year_week desc"
+        return db.session.execute(sql).all()
+
 
 class EuropeDateReported(db.Model):
     __tablename__ = 'europe_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
     date_rep = db.Column(db.String(255), nullable=False)
-    day = db.Column(db.String(255), nullable=False)
-    month = db.Column(db.String(255), nullable=False)
-    year = db.Column(db.String(255), nullable=False)
+    year_week = db.Column(db.String(255), nullable=False)
 
     @classmethod
     def remove_all(cls):
@@ -123,9 +126,9 @@ class EuropeData(db.Model):
     __tablename__ = 'europe_data'
 
     id = db.Column(db.Integer, primary_key=True)
-    deaths = db.Column(db.String(255), nullable=False)
-    cases = db.Column(db.String(255), nullable=False)
-    cases_cumulative_14days_per_100000 = db.Column(db.String(255), nullable=False)
+    deaths_weekly = db.Column(db.String(255), nullable=False)
+    cases_weekly = db.Column(db.String(255), nullable=False)
+    notification_rate_per_100000_population_14days = db.Column(db.String(255), nullable=False)
 
     europe_country_id = db.Column(db.Integer, db.ForeignKey('europe_country.id'), nullable=False)
     europe_country = db.relationship('EuropeCountry', lazy='joined')
