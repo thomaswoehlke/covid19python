@@ -47,6 +47,8 @@ class EuropeDataImportTable(db.Model):
     @classmethod
     def get_countries_of_continent(cls, my_continent):
         my_continent_exp = my_continent.continent_exp
+        my_params = {}
+        my_params['my_continent_param'] = my_continent_exp
         sql = """
         select distinct
             countries_and_territories,
@@ -63,11 +65,11 @@ class EuropeDataImportTable(db.Model):
             pop_data_2019,
             continent_exp
         having
-            continent_exp = :my_continent_exp
+            continent_exp = :my_continent_param
         order by
             countries_and_territories
         """
-        return db.session.execute(sql, my_continent_exp=my_continent_exp)
+        return db.session.execute(sql, my_params)
 
 
 class EuropeDateReported(db.Model):
@@ -114,7 +116,7 @@ class EuropeContinent(db.Model):
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).limit(500)
+        return db.session.query(cls).all()
 
     @classmethod
     def get_by_id(cls, other_id):
@@ -131,7 +133,7 @@ class EuropeCountry(db.Model):
     country_territory_code = db.Column(db.String(255), nullable=False)
 
     continent_id = db.Column(db.Integer, db.ForeignKey('europe_continent.id'), nullable=False)
-    continent = db.relationship('EuropeContinent', lazy='joined')
+    continent = db.relationship('EuropeContinent', lazy='subquery', order_by='EuropeContinent.continent_exp')
 
     @classmethod
     def remove_all(cls):
