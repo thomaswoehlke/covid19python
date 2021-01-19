@@ -204,6 +204,7 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #4 data update for 3NF ecdc_europa_data_import
 
 ### 0.0.10 Release
+* Issue #24 update_data
 * Issue #26 /admin/database/dump
 * Issue #28 /admin/database/import
 * Issue #29 /who/info 
