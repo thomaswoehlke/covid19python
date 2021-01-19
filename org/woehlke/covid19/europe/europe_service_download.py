@@ -28,6 +28,7 @@ class EuropeServiceDownload:
         os.makedirs('data', exist_ok=True)
         app.logger.info("------------------------------------------------------------")
         try:
+            os.remove(self.__src_europa_cvsfile_name)
             wget.download(self.__url_src_data, self.__src_europa_cvsfile_name)
             app.logger.info("------------------------------------------------------------")
         except Exception as error:
