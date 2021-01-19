@@ -28,7 +28,7 @@ class EuropeDataImportTable(db.Model):
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).limit(500)
+        return db.session.query(cls).all()
 
     @classmethod
     def get_by_id(cls, other_id):
@@ -37,12 +37,12 @@ class EuropeDataImportTable(db.Model):
     @classmethod
     def get_date_rep(cls):
         sql = "select distinct date_rep, year_week from europe_data_import order by year_week desc"
-        return db.session.execute(sql)
+        return db.session.execute(sql).fetchall()
 
     @classmethod
     def get_continent(cls):
         sql = "select distinct continent_exp from europe_data_import order by continent_exp asc"
-        return db.session.execute(sql)
+        return db.session.execute(sql).fetchall()
 
     @classmethod
     def get_countries_of_continent(cls, my_continent):
@@ -69,7 +69,7 @@ class EuropeDataImportTable(db.Model):
         order by
             countries_and_territories
         """
-        return db.session.execute(sql, my_params)
+        return db.session.execute(sql, my_params).fetchall()
 
 
 class EuropeDateReported(db.Model):
