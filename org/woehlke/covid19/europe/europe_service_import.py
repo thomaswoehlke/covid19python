@@ -47,7 +47,7 @@ class EuropeServiceImport:
                         =row['notification_rate_per_100000_population_14-days']
                     )
                     db.session.add(o)
-                    if (k % 1000) == 0:
+                    if (k % 100) == 0:
                         db.session.commit()
                         app.logger.info("  import Europa  ...  " + str(k) + " rows")
                     k = k + 1
