@@ -170,6 +170,37 @@ class WhoServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    def __update_who_global_data_initial(self):
+        app.logger.info(" update WHO initial [begin]")
+        app.logger.info("------------------------------------------------------------")
+        WhoGlobalData.remove_all()
+        new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
+        i = 0
+        for my_date_reported in new_dates_reported_from_import:
+            my_date = WhoDateReported.find_by_date_reported(my_date_reported)
+            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
+                my_country = WhoCountry.find_by_country_code(result_item.country_code)
+                o = WhoGlobalData(
+                    cases_new=int(result_item.new_cases),
+                    cases_cumulative=int(result_item.cumulative_cases),
+                    deaths_new=int(result_item.new_deaths),
+                    deaths_cumulative=int(result_item.cumulative_deaths),
+                    date_reported=my_date,
+                    country=my_country
+                )
+                db.session.add(o)
+                result_item.row_imported = True
+                db.session.add(result_item)
+                i += 1
+                if i % 500 == 0:
+                    app.logger.info(" update WHO initial ... "+str(i)+" rows")
+                    db.session.commit()
+            db.session.commit()
+        app.logger.info(" update WHO initial :  "+str(i)+" total rows")
+        app.logger.info(" update WHO initial [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
     def update_db(self):
         app.logger.info(" update db [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -189,6 +220,17 @@ class WhoServiceUpdate:
         self.__update_who_country()
         self.__update_who_global_data_short()
         app.logger.info(" update db short [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
+    def update_db_initial(self):
+        app.logger.info(" update db initial [begin]")
+        app.logger.info("------------------------------------------------------------")
+        self.__update_who_date_reported()
+        self.__update_who_region()
+        self.__update_who_country()
+        self.__update_who_global_data_initial()
+        app.logger.info(" update db initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
