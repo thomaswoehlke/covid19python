@@ -19,12 +19,16 @@ class EuropeServiceUpdate:
         app.logger.info(" Europe Service Update [ready] ")
 
     def __update_date_reported(self):
+        app.logger.info(" __update_date_reported [begin]")
+        app.logger.info("------------------------------------------------------------")
         EuropeDataImportTable.remove_all()
-        result = EuropeDataImportTable.get_date_rep()
-        for result_item in result.items:
+        result_date_rep = EuropeDataImportTable.get_date_rep()
+        for result_item in result_date_rep:
             my_date_rep = result_item['date_rep']
             year_week = result_item['year_week']
             app.logger.info("| "+my_date_rep+" | "+year_week+" |")
+        app.logger.info(" __update_date_reported [done]")
+        app.logger.info("------------------------------------------------------------")
         return self
 
     def update_db(self):

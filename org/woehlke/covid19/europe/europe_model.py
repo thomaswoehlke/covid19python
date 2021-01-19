@@ -37,7 +37,7 @@ class EuropeDataImportTable(db.Model):
     @classmethod
     def get_date_rep(cls):
         sql = "select distinct date_rep, year_week from europe_data_import order by year_week desc"
-        return db.session.execute(sql).all()
+        return db.session.execute(sql)
 
 
 class EuropeDateReported(db.Model):
