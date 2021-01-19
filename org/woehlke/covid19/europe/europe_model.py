@@ -18,7 +18,7 @@ class EuropeDataImportTable(db.Model):
 
     @classmethod
     def remove_all(cls):
-        db.session.execute("delete from " + cls.__tablename__)
+        db.session.execute("delete from " + cls.__tablename__ + " cascade")
         db.session.commit()
         return None
 
@@ -81,7 +81,7 @@ class EuropeDateReported(db.Model):
 
     @classmethod
     def remove_all(cls):
-        db.session.execute("delete from " + cls.__tablename__)
+        db.session.execute("delete from " + cls.__tablename__ + " cascade")
         db.session.commit()
         return None
 
@@ -106,7 +106,7 @@ class EuropeContinent(db.Model):
 
     @classmethod
     def remove_all(cls):
-        db.session.execute("delete from " + cls.__tablename__)
+        db.session.execute("delete from " + cls.__tablename__ + " cascade")
         db.session.commit()
         return None
 
@@ -137,7 +137,7 @@ class EuropeCountry(db.Model):
 
     @classmethod
     def remove_all(cls):
-        db.session.execute("delete from " + cls.__tablename__)
+        db.session.execute("delete from " + cls.__tablename__ + " cascade")
         db.session.commit()
         return None
 
@@ -170,7 +170,7 @@ class EuropeData(db.Model):
 
     @classmethod
     def remove_all(cls):
-        db.session.execute("delete from " + cls.__tablename__)
+        db.session.execute("delete from " + cls.__tablename__ + " cascade")
         db.session.commit()
         return None
 

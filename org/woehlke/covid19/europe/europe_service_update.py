@@ -2,7 +2,7 @@ import os
 import psycopg2
 from database import db, app
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, \
-    EuropeDateReported, EuropeContinent, EuropeCountry
+    EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 
 
 class EuropeServiceUpdate:
@@ -22,7 +22,6 @@ class EuropeServiceUpdate:
     def __update_date_reported(self):
         app.logger.info(" __update_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
-        EuropeDateReported.remove_all()
         result_date_rep = EuropeDataImportTable.get_date_rep()
         for result_item in result_date_rep:
             my_date_rep = result_item['date_rep']
@@ -41,7 +40,6 @@ class EuropeServiceUpdate:
     def __update_continent(self):
         app.logger.info(" __update_continent [begin]")
         app.logger.info("------------------------------------------------------------")
-        EuropeContinent.remove_all()
         result_continent = EuropeDataImportTable.get_continent()
         for result_item in result_continent:
             my_continent_exp = result_item['continent_exp']
@@ -58,7 +56,6 @@ class EuropeServiceUpdate:
     def __update_country(self):
         app.logger.info(" __update_country [begin]")
         app.logger.info("------------------------------------------------------------")
-        EuropeCountry.remove_all()
         all_continents = EuropeContinent.get_all()
         for my_continent in all_continents:
             result_countries_of_continent = EuropeDataImportTable.get_countries_of_continent(my_continent)
@@ -83,9 +80,29 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    def __delete_data(self):
+        EuropeData.remove_all()
+        return self
+
+    def __delete_continent(self):
+        EuropeContinent.remove_all()
+        return self
+
+    def __delete_country(self):
+        EuropeCountry.remove_all()
+        return self
+
+    def __delete_date_reported(self):
+        EuropeDateReported.remove_all()
+        return self
+
     def update_db(self):
         app.logger.info(" update_db [begin]")
         app.logger.info("------------------------------------------------------------")
+        self.__delete_data()
+        self.__delete_continent()
+        self.__delete_country()
+        self.__delete_date_reported()
         self.__update_date_reported()
         self.__update_continent()
         self.__update_country()
