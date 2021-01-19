@@ -12,6 +12,7 @@ from server_mq import who_run_update_task, who_update_short_task, who_update_ini
 from server_mq import alive_message_task
 from server_mq import europe_update_task
 
+drop_and_create_data_again = True
 
 class ApplicationPage:
 
@@ -343,6 +344,11 @@ def url_admin_database_import():
 def url_admin_database_drop():
     app.logger.info("url_admin_database_drop [start]")
     admin_service.run_admin_database_drop()
+    if drop_and_create_data_again:
+        europe_service.download()
+        europe_update_task.apply_async()
+        who_service.run_download()
+        who_update_initial_task.apply_async()
     flash("admin_service.run_admin_database_drop started")
     app.logger.info("url_admin_database_drop [done]")
     return redirect(url_for('home'))
