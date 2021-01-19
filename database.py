@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation warning
 db = SQLAlchemy(app)
 
-my_logging_comfig = {
+my_logging_config = {
         'version': 1,
         'formatters': {'default': {
             'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',

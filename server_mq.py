@@ -1,6 +1,6 @@
 from logging.config import dictConfig
 from celery import Celery, states
-from database import db, app, my_logging_comfig
+from database import db, app, my_logging_config
 from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_service import EuropeService
 

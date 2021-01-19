@@ -1,14 +1,16 @@
 from logging.config import dictConfig
 from flask import render_template, redirect, url_for, flash
 from sqlalchemy.exc import OperationalError
-from database import db, app, my_logging_comfig
+from database import db, app, my_logging_config
 from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
 from org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData
 from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
 from org.woehlke.covid19.europe.europe_service import EuropeService
-from server_mq import who_run_update_task, alive_message_task, who_update_short_task, who_update_initial_task, \
-    europe_update_task
+from org.woehlke.covid19.admin.admin_service import AdminService
+from server_mq import who_run_update_task, who_update_short_task, who_update_initial_task
+from server_mq import alive_message_task
+from server_mq import europe_update_task
 
 
 class ApplicationPage:
@@ -322,8 +324,8 @@ def url_alive_message_start():
 @app.route('/admin/database/dump')
 def url_admin_database_dump():
     app.logger.info("url_admin_database_dump [start]")
-    alive_message_task.apply_async()
-    flash("alive_message_task started")
+    admin_service.run_admin_database_dump()
+    flash("admin_service.run_admin_database_dump started")
     app.logger.info("url_admin_database_dump [done]")
     return redirect(url_for('home'))
 
@@ -331,8 +333,8 @@ def url_admin_database_dump():
 @app.route('/admin/database/import')
 def url_admin_database_import():
     app.logger.info("url_admin_database_import [start]")
-    alive_message_task.apply_async()
-    flash("alive_message_task started")
+    admin_service.run_admin_database_import()
+    flash("admin_service.run_admin_database_import started")
     app.logger.info("url_admin_database_import [done]")
     return redirect(url_for('home'))
 
@@ -340,15 +342,16 @@ def url_admin_database_import():
 @app.route('/admin/database/drop')
 def url_admin_database_drop():
     app.logger.info("url_admin_database_drop [start]")
-    alive_message_task.apply_async()
-    flash("alive_message_task started")
+    admin_service.run_admin_database_drop()
+    flash("admin_service.run_admin_database_drop started")
     app.logger.info("url_admin_database_drop [done]")
     return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
-    dictConfig(my_logging_comfig)
+    dictConfig(my_logging_config)
     db.create_all()
     who_service = WhoService(db)
     europe_service = EuropeService(db)
+    admin_service = AdminService(db)
     app.run(debug=True)
