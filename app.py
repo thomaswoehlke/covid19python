@@ -14,6 +14,7 @@ from server_mq import europe_update_task
 
 drop_and_create_data_again = True
 
+
 class ApplicationPage:
 
     def __init__(self, default_title, default_subtitle=None, default_subtitle_info=None):
@@ -41,9 +42,11 @@ def url_root():
     return redirect(url_for('home'))
 
 
+##################################################################################################################
 #
 # WHO
 #
+##################################################################################################################
 @app.route('/who/info')
 def url_who_info():
     page_info = ApplicationPage('WHO', "Info")
@@ -226,9 +229,11 @@ def url_update_data_countries():
     return redirect(url_for('home'))
 
 
+##################################################################################################################
 #
 # Europe
 #
+##################################################################################################################
 @app.route('/europe/info')
 def url_europe_info():
     page_info = ApplicationPage('Europe', "Info")
@@ -266,9 +271,47 @@ def url_europe_data_imported(page=1):
         page_info=page_info)
 
 
+##################################################################################################################
+#
+# RKI
+#
+##################################################################################################################
+@app.route('/rki/info')
+def url_rki_info():
+    page_info = ApplicationPage('RKI', "Info")
+    return render_template(
+        'rki/rki_info.html',
+        page_info=page_info)
+
+
+@app.route('/rki/tasks')
+def url_rki_tasks():
+    page_info = ApplicationPage('RKI', "Tasks")
+    return render_template(
+        'rki/rki_tasks.html',
+        page_info=page_info)
+
+
+@app.route('/rki/imported/page/<int:page>')
+@app.route('/rki/imported')
+def url_rki_imported(page=1):
+    page_info = ApplicationPage('RKI', "Last Import")
+    try:
+        page_data = WhoGlobalDataImportTable.get_all_as_page(page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'rki/rki_imported.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
+##################################################################################################################
 #
 # NRW
 #
+##################################################################################################################
 @app.route('/nrw/info')
 def url_nrw_info():
     page_info = ApplicationPage('NRW', "Info")
@@ -313,6 +356,11 @@ def url_nrw_bochum(page=1):
         page_info=page_info)
 
 
+#################################################################################################################
+#
+# Admin
+#
+#################################################################################################################
 @app.route('/test/alive_message')
 def url_alive_message_start():
     app.logger.info("url_alive_message_start [start]")
