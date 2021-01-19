@@ -193,19 +193,19 @@ class WhoGlobalDataImportTable(db.Model):
 ### 0.0.9 Release
 * Fixed #18 /europe/update: Download
 * Fixed #19 /europe/update: Import File to DB
-* Issue #20 /europe/update: Update DB
-* Issue #21 update_date_reported
-* Issue #22 update_continent
-* Issue #23 update_country
-* Issue #24 update_data
-* Issue #25 /who/update/initial update_data_initial
-* Issue #26 /admin/database/dump
-* Issue #27 /admin/database/drop
-* Issue #28 /admin/database/import
-* Issue #3 ORM: 3NF for ecdc_europa_data_import
-* Issue #4 data update for 3NF ecdc_europa_data_import
+* Fixed #20 /europe/update: Update DB
+* Fixed #21 update_date_reported
+* Fixed #22 update_continent
+* Fixed #23 update_country
+* Fixed #24 update_data
+* Fixed #25 /who/update/initial update_data_initial
+* Fixed #27 /admin/database/drop
+* Fixed #3 ORM: 3NF for ecdc_europa_data_import
+* Fixed #4 data update for 3NF ecdc_europa_data_import
 
 ### 0.0.10 Release
+* Issue #26 /admin/database/dump
+* Issue #28 /admin/database/import
 * Issue #5 Visual Graphs for Data per Countries order by Date
 
 
