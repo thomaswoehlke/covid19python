@@ -206,6 +206,10 @@ class WhoGlobalDataImportTable(db.Model):
 ### 0.0.10 Release
 * Issue #26 /admin/database/dump
 * Issue #28 /admin/database/import
+* Issue #29 /who/info 
+* Issue #30 /europa/info 
+* Issue #31 /rki/info 
+* Issue #32 /nrw/info 
 * Issue #5 Visual Graphs for Data per Countries order by Date
 
 
