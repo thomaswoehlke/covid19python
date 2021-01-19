@@ -18,67 +18,70 @@
 
 {% block main_container %}
 
-     <!-- previous page -->
-    {% if page_data.has_prev %}
-    <li>
-        <a href="{{ url_for('url_europe_imported', page=page_data.prev_num) }}">Previous</a>
-    </li>
+    {% if page_data.pages > 1 %}
+    <!-- previous page -->
+        <ul class="pagination">
+        {% if page_data.has_prev %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('url_europe_data_imported', page=page_data.prev_num) }}">Previous</a>
+        </li>
+        {% endif %}
+        <!-- all page numbers -->
+        {% for page_num in page_data.iter_pages() %}
+            {% if page_num %}
+                {% if page_num != page_data.page %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('url_europe_data_imported', page=page_num) }}">{{ page_num }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item active">
+                        <a class="page-link" href="#">{{ page_num }}</a>
+                    </li>
+                {% endif %}
+           {% else %}
+               <li class="page-item">
+                   <span class="ellipsis page-link my-page-item-ellipsis-page-link">…</span>
+               </li>
+           {% endif %}
+        {% endfor %}
+        <!-- next page -->
+        {% if page_data.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('url_europe_data_imported', page=page_data.next_num) }}">Next</a>
+        </li>
+        {% endif %}
+        </ul>
     {% endif %}
-    <!-- all page numbers -->
-    {% for page_num in page_data.iter_pages() %}
-        {% if page_num %}
-            {% if page_num != page_data.page %}
-                <li>
-                    <a href="{{ url_for('url_europe_imported', page=page_num) }}">{{ page_num }}</a>
-                </li>
-            {% else %}
-                <li class="active">
-                    <a href="#">{{ page_num }}</a>
-                </li>
-            {% endif %}
-       {% else %}
-           <li>
-               <span class="ellipsis" style="white-space; nowrap; overflow: hidden; text-overflow: ellipsis">…</span>
-           </li>
-       {% endif %}
-    {% endfor %}
-    <!-- next page -->
-    {% if page_data.has_next %}
-    <li><a href="{{ url_for('url_europe_data_imported', page=page_data.next_num) }}">Next</a></li>
-    {% endif %}
+
 
     <table class="table">
         <thead>
         <tr>
             <th scope="col">date_rep</th>
-            <th scope="col">day</th>
-            <th scope="col">month</th>
-            <th scope="col">year</th>
-            <th scope="col">cases</th>
-            <th scope="col">deaths</th>
+            <th scope="col">year_week</th>
+            <th scope="col">cases_weekly</th>
+            <th scope="col">deaths_weekly</th>
             <th scope="col">pop_data_2019</th>
             <th scope="col">countries_and_territories</th>
             <th scope="col">geo_id</th>
             <th scope="col">country_territory_code</th>
             <th scope="col">continent_exp</th>
-            <th scope="col">cumulative_number_for_14_days_of_covid19_cases_per_100000</th>
+            <th scope="col">notification_rate_per_100000_population_14days</th>
         </tr>
         </thead>
         <tbody>
         {% for o in page_data.items %}
             <tr>
                 <td>{{ o.date_rep }}</td>
-                <td>{{ o.day }}</td>
-                <td>{{ o.month }}</td>
-                <td>{{ o.year }}</td>
-                <td>{{ o.cases }}</td>
-                <td>{{ o.deaths }}</td>
+                <td>{{ o.year_week }}</td>
+                <td>{{ o.cases_weekly }}</td>
+                <td>{{ o.deaths_weekly }}</td>
                 <td>{{ o.pop_data_2019 }}</td>
                 <td>{{ o.countries_and_territories }}</td>
                 <td>{{ o.geo_id }}</td>
                 <td>{{ o.country_territory_code }}</td>
                 <td>{{ o.continent_exp }}</td>
-                <td>{{ o.cumulative_number_for_14_days_of_covid19_cases_per_100000 }}</td>
+                <td>{{ o.notification_rate_per_100000_population_14days }}</td>
             </tr>
         {% endfor %}
         </tbody>
