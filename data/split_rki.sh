@@ -3,6 +3,7 @@
 JAHRE="2020 2021"
 MONATE="01 02 03 04 05 06 07 08 09 10 11 12"
 
+
 for JAHR in $JAHRE
 do
   echo $JAHR
