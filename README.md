@@ -210,7 +210,13 @@ class WhoGlobalDataImportTable(db.Model):
 * Issue #29 /who/info 
 * Issue #30 /europa/info 
 * Issue #31 /rki/info 
-* Issue #32 /nrw/info 
+* Issue #32 /nrw/info
+* Issue #33 /europe/date_reported
+* Issue #34 /europe/continent
+* Issue #35 /europe/country
+* Issue #36 /europe/data
+  
+### 0.0.11 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
 
 

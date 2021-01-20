@@ -5,7 +5,8 @@ from database import db, app, my_logging_config
 from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
 from org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData
 from org.woehlke.covid19.who.who_service import WhoService
-from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
+from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
+from org.woehlke.covid19.europe.europe_model import EuropeCountry, EuropeData
 from org.woehlke.covid19.europe.europe_service import EuropeService
 from org.woehlke.covid19.admin.admin_service import AdminService
 from server_mq import who_run_update_task, who_update_short_task, who_update_initial_task
@@ -271,6 +272,50 @@ def url_europe_data_imported(page=1):
         page_info=page_info)
 
 
+@app.route('/europe/date_reported/page/<int:page>')
+@app.route('/europe/date_reported')
+def url_europe_date_reported(page=1):
+    page_info = ApplicationPage('Europe', "date_reported")
+    page_data = EuropeDateReported.get_all_as_page(page)
+    return render_template(
+        'europe/europe_date_reported.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/europe/continent/page/<int:page>')
+@app.route('/europe/continent')
+def url_europe_continent(page=1):
+    page_info = ApplicationPage('Europe', "continent")
+    page_data = EuropeContinent.get_all_as_page(page)
+    return render_template(
+        'europe/europe_continent.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/europe/country/page/<int:page>')
+@app.route('/europe/country')
+def url_europe_country(page=1):
+    page_info = ApplicationPage('Europe', "country")
+    page_data = EuropeCountry.get_all_as_page(page)
+    return render_template(
+        'europe/europe_country.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/europe/data/page/<int:page>')
+@app.route('/europe/data')
+def url_europe_data(page=1):
+    page_info = ApplicationPage('Europe', "europe_data")
+    page_data = EuropeData.get_all_as_page(page)
+    return render_template(
+        'europe/europe_data.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
 ##################################################################################################################
 #
 # RKI
@@ -402,6 +447,11 @@ def url_admin_database_drop():
     return redirect(url_for('home'))
 
 
+#################################################################################################################
+#
+# MAIN
+#
+#################################################################################################################
 if __name__ == '__main__':
     dictConfig(my_logging_config)
     db.create_all()
