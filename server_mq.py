@@ -8,6 +8,8 @@ who_service = WhoService(db)
 europe_service = EuropeService(db)
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
+celery.conf.result_backend = app.config['CELERY_BROKER_URL']
+celery.conf.broker_transport_options = {'visibility_timeout': 18000, 'max_retries': 5}
 
 
 @celery.task(bind=True)
