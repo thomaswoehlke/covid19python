@@ -206,20 +206,20 @@ class WhoGlobalDataImportTable(db.Model):
 ### 0.0.10 Release
 * Issue #24 update_data
 * Issue #26 /admin/database/dump
-* Issue #28 /admin/database/import
 * Fixed #29 /who/info 
 * Fixed #30 /europa/info 
 * Fixed #31 /rki/info 
 * Fixed #32 /nrw/info
-* Issue #33 /europe/date_reported
-* Issue #34 /europe/continent
-* Issue #35 /europe/country
+* Fixed #33 /europe/date_reported
+* Fixed #34 /europe/continent
+* Fixed #35 /europe/country
 * Issue #36 /europe/data
 * Fixed #37 switch from RabbitMQ to Redis
 * Fixed #38 update Celery from 4 to 5
 
   
 ### 0.0.11 Release
+* Issue #28 /admin/database/import
 * Issue #5 Visual Graphs for Data per Countries order by Date
 
 
