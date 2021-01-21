@@ -10,6 +10,8 @@ celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 celery.conf.result_backend = app.config['CELERY_BROKER_URL']
 celery.conf.broker_transport_options = {'visibility_timeout': 18000, 'max_retries': 5}
+celery.conf.worker_send_task_events = True
+celery.conf.task_send_sent_event = True
 
 
 @celery.task(bind=True)
