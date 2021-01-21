@@ -1,9 +1,9 @@
 # TODO
 
-## Celery
-* https://stackabuse.com/asynchronous-tasks-using-flask-redis-and-celery/
-* https://www.linode.com/docs/guides/task-queue-celery-rabbitmq/
-* https://suzannewang.com/celery-rabbitmq-tutorial/
-
 ## Jinja
 * https://jinja.palletsprojects.com/en/2.11.x/templates/
+
+## Celery
+* https://stackabuse.com/asynchronous-tasks-using-flask-redis-and-celery/
+* https://docs.celeryproject.org/en/stable/userguide/monitoring.html#monitoring-redis-queues
+* https://docs.celeryproject.org/en/stable/userguide/daemonizing.html#service-file-celery-service
