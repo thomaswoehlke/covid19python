@@ -1,9 +1,11 @@
 from logging.config import dictConfig
+from celery.utils.log import get_task_logger
 from celery import Celery, states
 from database import db, app, my_logging_config
 from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_service import EuropeService
 
+logger = get_task_logger(__name__)
 who_service = WhoService(db)
 europe_service = EuropeService(db)
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
@@ -17,9 +19,9 @@ celery.conf.task_send_sent_event = True
 @celery.task(bind=True)
 def who_run_update_task(self, import_file=True):
     self.update_state(state=states.STARTED)
-    app.logger.info("------------------------------------------------------------")
-    app.logger.info(" Received: who_run_update_task [OK] ")
-    app.logger.info("------------------------------------------------------------")
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: who_run_update_task [OK] ")
+    logger.info("------------------------------------------------------------")
     who_service.run_update(import_file)
     self.update_state(state=states.SUCCESS)
     result = "OK (who_run_update_task)"
@@ -29,9 +31,9 @@ def who_run_update_task(self, import_file=True):
 @celery.task(bind=True)
 def who_update_short_task(self):
     self.update_state(state=states.STARTED)
-    app.logger.info("------------------------------------------------------------")
-    app.logger.info(" Received: who_update_short_task [OK] ")
-    app.logger.info("------------------------------------------------------------")
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: who_update_short_task [OK] ")
+    logger.info("------------------------------------------------------------")
     who_service.run_update_short()
     self.update_state(state=states.SUCCESS)
     result = "OK (who_update_short_task)"
@@ -41,9 +43,9 @@ def who_update_short_task(self):
 @celery.task(bind=True)
 def who_update_initial_task(self):
     self.update_state(state=states.STARTED)
-    app.logger.info("------------------------------------------------------------")
-    app.logger.info(" Received: who_update_initial_task [OK] ")
-    app.logger.info("------------------------------------------------------------")
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: who_update_initial_task [OK] ")
+    logger.info("------------------------------------------------------------")
     who_service.run_update_initial()
     self.update_state(state=states.SUCCESS)
     result = "OK (who_update_initial_task)"
@@ -53,9 +55,9 @@ def who_update_initial_task(self):
 @celery.task(bind=True)
 def alive_message_task(self):
     self.update_state(state=states.STARTED)
-    app.logger.info("------------------------------------------------------------")
-    app.logger.info(" Received: Alive Message [OK] ")
-    app.logger.info("------------------------------------------------------------")
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: Alive Message [OK] ")
+    logger.info("------------------------------------------------------------")
     self.update_state(state=states.SUCCESS)
     result = "OK"
     return result
@@ -64,9 +66,9 @@ def alive_message_task(self):
 @celery.task(bind=True)
 def europe_update_task(self):
     self.update_state(state=states.STARTED)
-    app.logger.info("------------------------------------------------------------")
-    app.logger.info(" Received: europe_update_task [OK] ")
-    app.logger.info("------------------------------------------------------------")
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: europe_update_task [OK] ")
+    logger.info("------------------------------------------------------------")
     europe_service.run_update()
     self.update_state(state=states.SUCCESS)
     result = "OK (europe_update_task)"
