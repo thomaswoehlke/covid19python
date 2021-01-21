@@ -215,6 +215,9 @@ class WhoGlobalDataImportTable(db.Model):
 * Issue #34 /europe/continent
 * Issue #35 /europe/country
 * Issue #36 /europe/data
+* Issue #37 switch from RabbitMQ to Redis
+* Issue #38 update Celery from 4 to 5
+
   
 ### 0.0.11 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
