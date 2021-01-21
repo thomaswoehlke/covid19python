@@ -207,16 +207,16 @@ class WhoGlobalDataImportTable(db.Model):
 * Issue #24 update_data
 * Issue #26 /admin/database/dump
 * Issue #28 /admin/database/import
-* Issue #29 /who/info 
-* Issue #30 /europa/info 
-* Issue #31 /rki/info 
-* Issue #32 /nrw/info
+* Fixed #29 /who/info 
+* Fixed #30 /europa/info 
+* Fixed #31 /rki/info 
+* Fixed #32 /nrw/info
 * Issue #33 /europe/date_reported
 * Issue #34 /europe/continent
 * Issue #35 /europe/country
 * Issue #36 /europe/data
-* Issue #37 switch from RabbitMQ to Redis
-* Issue #38 update Celery from 4 to 5
+* Fixed #37 switch from RabbitMQ to Redis
+* Fixed #38 update Celery from 4 to 5
 
   
 ### 0.0.11 Release
