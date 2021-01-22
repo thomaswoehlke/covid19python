@@ -307,7 +307,6 @@ def url_europe_continent_all(page=1):
         page_info=page_info)
 
 
-
 @app.route('/europe/continent/<int:continent_id>/page/<int:page>')
 @app.route('/europe/continent/<int:continent_id>')
 def url_europe_continent_one(continent_id, page=1):
