@@ -278,7 +278,7 @@ def url_europe_date_reported(page=1):
     page_info = ApplicationPage('Europe', "date_reported")
     page_data = EuropeDateReported.get_all_as_page(page)
     return render_template(
-        'europe/europe_date_reported.html',
+        'europe/europe_date_reported_all.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -289,7 +289,7 @@ def url_europe_continent(page=1):
     page_info = ApplicationPage('Europe', "continent")
     page_data = EuropeContinent.get_all_as_page(page)
     return render_template(
-        'europe/europe_continent.html',
+        'europe/europe_continent_all.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -300,7 +300,7 @@ def url_europe_country(page=1):
     page_info = ApplicationPage('Europe', "country")
     page_data = EuropeCountry.get_all_as_page(page)
     return render_template(
-        'europe/europe_country.html',
+        'europe/europe_country_all.html',
         page_data=page_data,
         page_info=page_info)
 
