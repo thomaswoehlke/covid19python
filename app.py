@@ -406,13 +406,21 @@ def url_nrw_bochum(page=1):
 # Admin
 #
 #################################################################################################################
-@app.route('/test/alive_message')
+@app.route('/admin')
+def url_admin():
+    page_info = ApplicationPage('Admin', "Tasks")
+    return render_template(
+        'admin/page_admin.html',
+        page_info=page_info)
+
+
+@app.route('/admin/alive_message')
 def url_alive_message_start():
     app.logger.info("url_alive_message_start [start]")
     alive_message_task.apply_async()
     flash("alive_message_task started")
     app.logger.info("url_alive_message_start [done]")
-    return redirect(url_for('home'))
+    return redirect(url_for('url_admin'))
 
 
 @app.route('/admin/database/dump')
@@ -421,7 +429,7 @@ def url_admin_database_dump():
     admin_service.run_admin_database_dump()
     flash("admin_service.run_admin_database_dump started")
     app.logger.info("url_admin_database_dump [done]")
-    return redirect(url_for('home'))
+    return redirect(url_for('url_admin'))
 
 
 @app.route('/admin/database/import')
@@ -430,7 +438,7 @@ def url_admin_database_import():
     admin_service.run_admin_database_import()
     flash("admin_service.run_admin_database_import started")
     app.logger.info("url_admin_database_import [done]")
-    return redirect(url_for('home'))
+    return redirect(url_for('url_admin'))
 
 
 @app.route('/admin/database/drop')
@@ -444,7 +452,7 @@ def url_admin_database_drop():
         who_update_initial_task.apply_async()
     flash("admin_service.run_admin_database_drop started")
     app.logger.info("url_admin_database_drop [done]")
-    return redirect(url_for('home'))
+    return redirect(url_for('url_admin'))
 
 
 #################################################################################################################

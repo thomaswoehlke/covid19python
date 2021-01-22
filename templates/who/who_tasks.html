@@ -9,13 +9,11 @@
 {% endblock %}
 
 {% block main_container %}
-    <div class="btn-group" role="group" aria-label="Views">
-        <a class="btn btn-secondary btn-lg" href="/who/region/all" role="button">WHO :: Region :: All</a>
-    </div>
-    <div class="btn-group" role="group" aria-label="Views">
-        <a class="btn btn-primary btn-lg" href="/who/update" role="button">WHO Update Data</a>
-        <a class="btn btn-primary btn-lg" href="/who/update/short" role="button">WHO Update Data Short</a>
-        <a class="btn btn-primary btn-lg" href="/europe/update" role="button">Europe Update Data</a>
+    <div class="row">
+        <div class="btn-group" role="group" aria-label="Views">
+            <a class="btn btn-primary btn-lg" href="/who/update/initial" role="button">WHO :: update :: initial</a>
+            <a class="btn btn-secondary btn-lg" href="/who/update/short" role="button">WHO :: update :: short</a>
+        </div>
     </div>
 {% endblock %}
 
