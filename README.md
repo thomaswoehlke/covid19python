@@ -219,10 +219,14 @@ class WhoGlobalDataImportTable(db.Model):
 ### 0.0.11 Release
 * Issue #26 /admin/database/dump
 * Issue #28 /admin/database/import
-* Issue #28 SQLalchemy instead of SQL: AllModelClasses.remove_all()
-* Issue #29 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()
-* Issue #30 SQLalchemy instead of SQL: EuropeDataImportTable.get_countries_of_continent()
-* Issue #31 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array() 
+* Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
+* Issue #40 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()
+* Issue #41 SQLalchemy instead of SQL: EuropeDataImportTable.get_countries_of_continent()
+* Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array() 
+
+### 0.0.12 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
+
+### 0.0.13 Release
 
 
