@@ -12,6 +12,7 @@ class WhoDateReported(db.Model):
 
     @classmethod
     def remove_all(cls):
+        # TODO: SQLalchemy instead of SQL
         db.session.execute("delete from " + cls.__tablename__)
         db.session.commit()
         return None
@@ -48,6 +49,7 @@ class WhoRegion(db.Model):
 
     @classmethod
     def remove_all(cls):
+        # TODO: SQLalchemy instead of SQL
         db.session.execute("delete from " + cls.__tablename__)
         db.session.commit()
         return None
@@ -91,6 +93,7 @@ class WhoCountry(db.Model):
 
     @classmethod
     def remove_all(cls):
+        # TODO: SQLalchemy instead of SQL
         db.session.execute("delete from " + cls.__tablename__)
         db.session.commit()
         return None
@@ -160,6 +163,7 @@ class WhoGlobalData(db.Model):
 
     @classmethod
     def remove_all(cls):
+        # TODO: SQLalchemy instead of SQL
         db.session.execute("delete from " + cls.__tablename__)
         db.session.commit()
         return None
@@ -225,6 +229,7 @@ class WhoGlobalDataImportTable(db.Model):
 
     @classmethod
     def remove_all(cls):
+        # TODO: SQLalchemy instead of SQL
         db.session.execute("delete from " + cls.__tablename__)
         db.session.commit()
         return None
@@ -255,6 +260,7 @@ class WhoGlobalDataImportTable(db.Model):
 
     @classmethod
     def get_new_dates_as_array(cls):
+        # TODO: SQLalchemy instead of SQL
         sql_query = """
             select
                 date_reported

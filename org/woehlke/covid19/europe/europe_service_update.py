@@ -1,5 +1,4 @@
 import os
-import psycopg2
 from database import db, app
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, \
     EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
@@ -75,34 +74,41 @@ class EuropeServiceUpdate:
     def __update_data(self):
         app.logger.info(" __update_data [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" ... ")
+        result_date_rep = EuropeDataImportTable.get_date_rep()
+        for item_date_rep in result_date_rep:
+            europe_date_reported = EuropeDateReported.find_by(
+                year_week=item_date_rep['year_week']
+            )
+            result_europe_data_import = EuropeDataImportTable.find_by_date_reported(europe_date_reported)
+            for item_europe_data_import in result_europe_data_import:
+                europe_country = EuropeCountry.find_by(
+                    countries_and_territories=item_europe_data_import['countries_and_territories'],
+                    geo_id=item_europe_data_import['geo_id'],
+                    country_territory_code=item_europe_data_import['country_territory_code']
+                )
+                o = EuropeData(
+                    europe_country=europe_country,
+                    europe_date_reported=europe_date_reported,
+                    deaths_weekly=item_europe_data_import['notification_rate_per_100000_population_14days'],
+                    cases_weekly=item_europe_data_import['deaths_weekly'],
+                    notification_rate_per_100000_population_14days=item_europe_data_import[
+                        'notification_rate_per_100000_population_14days']
+                )
+                db.session.add(o)
+                item_europe_data_import.row_imported = True
+                db.session.add(item_europe_data_import)
+            db.session.commit()
         app.logger.info(" __update_data [done]")
         app.logger.info("------------------------------------------------------------")
-        return self
-
-    def __delete_data(self):
-        EuropeData.remove_all()
-        return self
-
-    def __delete_continent(self):
-        EuropeContinent.remove_all()
-        return self
-
-    def __delete_country(self):
-        EuropeCountry.remove_all()
-        return self
-
-    def __delete_date_reported(self):
-        EuropeDateReported.remove_all()
         return self
 
     def update_db(self):
         app.logger.info(" update_db [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__delete_data()
-        self.__delete_country()
-        self.__delete_continent()
-        self.__delete_date_reported()
+        EuropeData.remove_all()
+        EuropeCountry.remove_all()
+        EuropeContinent.remove_all()
+        EuropeDateReported.remove_all()
         self.__update_date_reported()
         self.__update_continent()
         self.__update_country()
