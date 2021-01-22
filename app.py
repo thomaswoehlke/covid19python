@@ -11,7 +11,7 @@ from org.woehlke.covid19.europe.europe_service import EuropeService
 from org.woehlke.covid19.admin.admin_service import AdminService
 from server_mq import who_run_update_task, who_update_short_task, who_update_initial_task
 from server_mq import alive_message_task
-from server_mq import europe_update_task
+from server_mq import europe_update_initial_task
 
 drop_and_create_data_again = True
 
@@ -253,10 +253,10 @@ def url_europe_tasks():
         page_info=page_info)
 
 
-@app.route('/europe/update')
+@app.route('/europe/update/initial')
 def europe_update_data():
     europe_service.download()
-    europe_update_task.apply_async()
+    europe_update_initial_task.apply_async()
     flash("europe_service.run_update started")
     return redirect(url_for('home'))
 
@@ -406,11 +406,19 @@ def url_nrw_bochum(page=1):
 # Admin
 #
 #################################################################################################################
-@app.route('/admin')
-def url_admin():
+@app.route('/admin/tasks')
+def url_admin_tasks():
     page_info = ApplicationPage('Admin', "Tasks")
     return render_template(
-        'admin/page_admin.html',
+        'admin/admin_tasks.html',
+        page_info=page_info)
+
+
+@app.route('/admin/info')
+def url_admin_info():
+    page_info = ApplicationPage('Admin', "Info")
+    return render_template(
+        'admin/admin_info.html',
         page_info=page_info)
 
 
@@ -420,7 +428,7 @@ def url_alive_message_start():
     alive_message_task.apply_async()
     flash("alive_message_task started")
     app.logger.info("url_alive_message_start [done]")
-    return redirect(url_for('url_admin'))
+    return redirect(url_for('url_admin_tasks'))
 
 
 @app.route('/admin/database/dump')
@@ -429,7 +437,7 @@ def url_admin_database_dump():
     admin_service.run_admin_database_dump()
     flash("admin_service.run_admin_database_dump started")
     app.logger.info("url_admin_database_dump [done]")
-    return redirect(url_for('url_admin'))
+    return redirect(url_for('url_admin_tasks'))
 
 
 @app.route('/admin/database/import')
@@ -438,7 +446,7 @@ def url_admin_database_import():
     admin_service.run_admin_database_import()
     flash("admin_service.run_admin_database_import started")
     app.logger.info("url_admin_database_import [done]")
-    return redirect(url_for('url_admin'))
+    return redirect(url_for('url_admin_tasks'))
 
 
 @app.route('/admin/database/drop')
@@ -447,12 +455,12 @@ def url_admin_database_drop():
     admin_service.run_admin_database_drop()
     if drop_and_create_data_again:
         europe_service.download()
-        europe_update_task.apply_async()
         who_service.run_download()
+        europe_update_initial_task.apply_async()
         who_update_initial_task.apply_async()
     flash("admin_service.run_admin_database_drop started")
     app.logger.info("url_admin_database_drop [done]")
-    return redirect(url_for('url_admin'))
+    return redirect(url_for('url_admin_tasks'))
 
 
 #################################################################################################################

@@ -44,7 +44,8 @@
     <header>
         <div class="container">
             {% include 'fragment_navbar.html' %}
-            <br/>
+        </div>
+        <div class="container">
             {% block navigation_jumbotron %}
                 <div class="jumbotron">
                     <h1 class="display-4">{{ page_info.title }}</h1>
@@ -53,10 +54,14 @@
                     <p>{{ page_info.subtitle_info }}</p>
                 </div>
             {% endblock %}
-            <br/>
+        </div>
+        <div class="container">
             {% include 'fragment_navtabs.html' %}
+        </div>
+        <div class="container">
             {% block navigation_navtabs %}{% endblock %}
-             <br/>
+        </div>
+        <div class="container">
             {% block navigation_breadcrumb %}{% endblock %}
         </div>
     </header>
@@ -64,6 +69,8 @@
     <main>
         <div class="container">
             {% include 'fragment_flashed_messages.html' %}
+        </div>
+        <div class="container">
             {% block main_container %}{% endblock %}
         </div>
     </main>

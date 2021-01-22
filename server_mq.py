@@ -64,12 +64,12 @@ def alive_message_task(self):
 
 
 @celery.task(bind=True)
-def europe_update_task(self):
+def europe_update_initial_task(self):
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
     logger.info(" Received: europe_update_task [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.run_update()
+    europe_service.run_update_initial()
     self.update_state(state=states.SUCCESS)
     result = "OK (europe_update_task)"
     return result

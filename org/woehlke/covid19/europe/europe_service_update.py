@@ -71,8 +71,8 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def __update_data(self):
-        app.logger.info(" __update_data [begin]")
+    def __update_data_initial(self):
+        app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
         result_date_rep = EuropeDataImportTable.get_date_rep()
         i = 0
@@ -112,12 +112,21 @@ class EuropeServiceUpdate:
                     db.session.commit()
             db.session.commit()
             app.logger.info(" update Europa initial ... " + str(i) + " rows total")
-        app.logger.info(" __update_data [done]")
+        app.logger.info(" __update_data_initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def update_db(self):
-        app.logger.info(" update_db [begin]")
+    #TODO
+    def __update_data_short(self):
+        app.logger.info(" __update_data_initial [begin]")
+        app.logger.info("------------------------------------------------------------")
+        app.logger.info(" ... ")
+        app.logger.info(" __update_data_initial [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
+    def update_db_initial(self):
+        app.logger.info(" update_db_initial [begin]")
         app.logger.info("------------------------------------------------------------")
         EuropeData.remove_all()
         EuropeCountry.remove_all()
@@ -126,8 +135,23 @@ class EuropeServiceUpdate:
         self.__update_date_reported()
         self.__update_continent()
         self.__update_country()
-        self.__update_data()
-        app.logger.info(" update_db [done]")
+        self.__update_data_initial()
+        app.logger.info(" update_db_initial [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
+    def update_db_short(self):
+        app.logger.info(" update_db_short [begin]")
+        app.logger.info("------------------------------------------------------------")
+        EuropeData.remove_all()
+        EuropeCountry.remove_all()
+        EuropeContinent.remove_all()
+        EuropeDateReported.remove_all()
+        self.__update_date_reported()
+        self.__update_continent()
+        self.__update_country()
+        self.__update_data_short()
+        app.logger.info(" update_db_short [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 

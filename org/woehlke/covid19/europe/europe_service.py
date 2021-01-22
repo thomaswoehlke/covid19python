@@ -36,11 +36,20 @@ class EuropeService:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def run_update(self):
+    def run_update_initial(self):
         app.logger.info(" run update [begin]")
         app.logger.info("------------------------------------------------------------")
         self.europe_service_import.import_datafile_to_db()
-        self.europe_service_update.update_db()
+        self.europe_service_update.update_db_initial()
         app.logger.info(" run update [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
+    def run_update_short(self):
+        app.logger.info(" run update short [begin]")
+        app.logger.info("------------------------------------------------------------")
+        self.europe_service_import.import_datafile_to_db()
+        self.europe_service_update.update_db_short()
+        app.logger.info(" run update short [done]")
         app.logger.info("------------------------------------------------------------")
         return self
