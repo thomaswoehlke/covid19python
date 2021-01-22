@@ -216,7 +216,6 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #37 switch from RabbitMQ to Redis
 * Fixed #38 update Celery from 4 to 5
 
-  
 ### 0.0.11 Release
 * Issue #26 /admin/database/dump
 * Issue #28 /admin/database/import
