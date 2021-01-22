@@ -204,8 +204,7 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #4 data update for 3NF ecdc_europa_data_import
 
 ### 0.0.10 Release
-* Issue #24 update_data
-* Issue #26 /admin/database/dump
+* Fixed #24 update_data
 * Fixed #29 /who/info 
 * Fixed #30 /europa/info 
 * Fixed #31 /rki/info 
@@ -213,12 +212,13 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #33 /europe/date_reported
 * Fixed #34 /europe/continent
 * Fixed #35 /europe/country
-* Issue #36 /europe/data
+* Fixed #36 /europe/data
 * Fixed #37 switch from RabbitMQ to Redis
 * Fixed #38 update Celery from 4 to 5
 
   
 ### 0.0.11 Release
+* Issue #26 /admin/database/dump
 * Issue #28 /admin/database/import
 * Issue #28 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Issue #29 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()
