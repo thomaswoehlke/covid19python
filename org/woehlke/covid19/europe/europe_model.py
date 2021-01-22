@@ -213,7 +213,12 @@ class EuropeData(db.Model):
         return db.session.query(cls).filter(cls.id == other_id).one()
 
     @classmethod
-    def find_by_date_reported(cls, europe_date_reported):
+    def find_by_date_reported(cls, europe_date_reported, page):
         return db.session.query(cls).filter(
-            cls.europe_date_reported_id == europe_date_reported.id).all()
+            cls.europe_date_reported_id == europe_date_reported.id).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def find_by_country(cls, europe_country, page):
+        return db.session.query(cls).filter(
+            cls.europe_country_id == europe_country.id).paginate(page, per_page=ITEMS_PER_PAGE)
 

@@ -21,7 +21,7 @@
         {% if page_data.has_prev %}
         <li class="page-item">
             <a class="page-link"
-               href="{{ url_for( 'url_europe_country', page=page_data.prev_num) }}">
+               href="{{ url_for( 'url_europe_country_all', page=page_data.prev_num) }}">
                 Previous
             </a>
         </li>
@@ -31,7 +31,7 @@
                 {% if page_num != page_data.page %}
                     <li class="page-item">
                         <a class="page-link"
-                           href="{{ url_for( 'url_europe_country', page=page_num) }}">
+                           href="{{ url_for( 'url_europe_country_all', page=page_num) }}">
                             {{ page_num }}
                         </a>
                     </li>
@@ -49,7 +49,7 @@
         {% if page_data.has_next %}
         <li class="page-item">
             <a class="page-link"
-               href="{{ url_for( 'url_europe_country', page=page_data.next_num) }}">
+               href="{{ url_for( 'url_europe_country_all', page=page_data.next_num) }}">
                 Next
             </a>
         </li>
@@ -70,11 +70,16 @@
         <tbody>
         {% for europe_country in page_data.items %}
             <tr>
-                <td>{{ europe_country.countries_and_territories }}</td>
+                <td>
+                    <a href="/europe/country/{{ europe_country.id }}">
+                    {{ europe_country.countries_and_territories }}</a></td>
                 <td>{{ europe_country.pop_data_2019 }}</td>
-                <td>{{ europe_country.geo_id }}</td>
-                <td>{{ europe_country.country_territory_code }}</td>
-                <td>{{ europe_country.continent.continent_exp }}</td>
+                <td><a href="/europe/country/{{ europe_country.id }}">
+                    {{ europe_country.geo_id }}</a></td>
+                <td><a href="/europe/country/{{ europe_country.id }}">
+                    {{ europe_country.country_territory_code }}</a></td>
+                <td><a href="/europe/continent/{{ europe_country.continent.id }}">
+                    {{ europe_country.continent.continent_exp }}</a></td>
             </tr>
         {% endfor %}
         </tbody>
