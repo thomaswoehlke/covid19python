@@ -59,8 +59,11 @@
         <tbody>
         {% for who_date_reported in page_data.items %}
             <tr>
-                <td><a href="/who/date_reported/{{ who_date_reported.id }}">{{ who_date_reported.date_reported }}</a></td>
-
+                <td>
+                    <a href="/who/date_reported/{{ who_date_reported.id }}">
+                        {{ who_date_reported.date_reported }}
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

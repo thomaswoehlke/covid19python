@@ -272,9 +272,9 @@ def url_europe_data_imported(page=1):
         page_info=page_info)
 
 
-@app.route('/europe/date_reported/page/<int:page>')
-@app.route('/europe/date_reported')
-def url_europe_date_reported(page=1):
+@app.route('/europe/date_reported/all/page/<int:page>')
+@app.route('/europe/date_reported/all')
+def url_europe_date_reported_all(page=1):
     page_info = ApplicationPage('Europe', "date_reported")
     page_data = EuropeDateReported.get_all_as_page(page)
     return render_template(
@@ -296,13 +296,27 @@ def url_europe_date_reported_one(europe_date_reported_id, page=1):
         page_info=page_info)
 
 
-@app.route('/europe/continent/page/<int:page>')
-@app.route('/europe/continent')
-def url_europe_continent(page=1):
+@app.route('/europe/continent/all/page/<int:page>')
+@app.route('/europe/continent/all')
+def url_europe_continent_all(page=1):
     page_info = ApplicationPage('Europe', "continent")
     page_data = EuropeContinent.get_all_as_page(page)
     return render_template(
         'europe/europe_continent_all.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
+
+@app.route('/europe/continent/<int:continent_id>/page/<int:page>')
+@app.route('/europe/continent/<int:continent_id>')
+def url_europe_continent_one(continent_id, page=1):
+    page_info = ApplicationPage('Europe', "continent")
+    continent = EuropeContinent.get_by_id(continent_id)
+    page_data = EuropeCountry.find_by_continent(continent, page)
+    return render_template(
+        'europe/europe_continent_all.html',
+        continent=continent,
         page_data=page_data,
         page_info=page_info)
 

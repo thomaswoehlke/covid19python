@@ -178,6 +178,10 @@ class EuropeCountry(db.Model):
             (cls.country_territory_code == country_territory_code)
         )).one()
 
+    @classmethod
+    def find_by_continent(cls, continent, page):
+        return db.session.query(cls).filter(cls.continent_id == continent.id).paginate(page, per_page=ITEMS_PER_PAGE)
+
 
 class EuropeData(db.Model):
     __tablename__ = 'europe_data'

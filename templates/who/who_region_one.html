@@ -51,24 +51,7 @@
     </ul>
     {% endif %}
 
-    <table class="table table-hover table-striped">
-        <thead>
-        <tr>
-            <th scope="col">country_code</th>
-            <th scope="col">country</th>
-            <th scope="col">region</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for who_country in page_data.items %}
-            <tr>
-                <td><a href="/who/country/{{ who_country.id }}">{{ who_country.country_code }}</a></td>
-                <td><a href="/who/country/{{ who_country.id }}">{{ who_country.country }}</a></td>
-                <td><a href="/who/region/{{ who_country.region.id }}">{{ who_country.region.region }}</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% include 'who/fragment_who_country_table.html' %}
 
 {% endblock %}
 

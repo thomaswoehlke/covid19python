@@ -57,33 +57,7 @@
     </ul>
     {% endif %}
 
-    <table class="table table-hover table-striped">
-        <thead>
-        <tr>
-            <th scope="col">countries_and_territories</th>
-            <th scope="col">pop_data_2019</th>
-            <th scope="col">geo_id</th>
-            <th scope="col">country_territory_code</th>
-            <th scope="col">continent</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for europe_country in page_data.items %}
-            <tr>
-                <td>
-                    <a href="/europe/country/{{ europe_country.id }}">
-                    {{ europe_country.countries_and_territories }}</a></td>
-                <td>{{ europe_country.pop_data_2019 }}</td>
-                <td><a href="/europe/country/{{ europe_country.id }}">
-                    {{ europe_country.geo_id }}</a></td>
-                <td><a href="/europe/country/{{ europe_country.id }}">
-                    {{ europe_country.country_territory_code }}</a></td>
-                <td><a href="/europe/continent/{{ europe_country.continent.id }}">
-                    {{ europe_country.continent.continent_exp }}</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% include 'europe/fragment_europe_country_table.html' %}
 
 {% endblock %}
 

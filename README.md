@@ -228,6 +228,7 @@ class WhoGlobalDataImportTable(db.Model):
 * Issue #47 refactor Routes from app.py to org...who,europe,...
 * Issue #48 refactor Tasks from server_mq.py to org...who,europe,... 
 * Issue #49 EuropeServiceUpdate.__update_data_short()
+* Issue #50 remove unused requirements from requirements.txt
 
 ### 0.0.12 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date

@@ -24,7 +24,8 @@
         <ul class="pagination">
         {% if page_data.has_prev %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('url_who_date_reported', date_reported_id=who_date_reported.id, page=page_data.prev_num) }}">Previous</a>
+            <a class="page-link" href="{{ url_for('url_who_date_reported',
+            date_reported_id=who_date_reported.id, page=page_data.prev_num) }}">Previous</a>
         </li>
         {% endif %}
         <!-- all page numbers -->
@@ -32,7 +33,8 @@
             {% if page_num %}
                 {% if page_num != page_data.page %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('url_who_date_reported', date_reported_id=who_date_reported.id, page=page_num) }}">{{ page_num }}</a>
+                        <a class="page-link" href="{{ url_for('url_who_date_reported',
+                        date_reported_id=who_date_reported.id, page=page_num) }}">{{ page_num }}</a>
                     </li>
                 {% else %}
                     <li class="page-item active">
@@ -48,40 +50,14 @@
         <!-- next page -->
         {% if page_data.has_next %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('url_who_date_reported', date_reported_id=who_date_reported.id, page=page_data.next_num) }}">Next</a>
+            <a class="page-link" href="{{ url_for('url_who_date_reported',
+            date_reported_id=who_date_reported.id, page=page_data.next_num) }}">Next</a>
         </li>
         {% endif %}
         </ul>
     {% endif %}
 
-    <table class="table table-hover table-striped">
-        <thead>
-        <tr>
-            <th scope="col">date_reported</th>
-            <th scope="col">deaths_new</th>
-            <th scope="col">cases_new</th>
-            <th scope="col">deaths_cumulative</th>
-            <th scope="col">cases_cumulative</th>
-            <th scope="col">country_code</th>
-            <th scope="col">country</th>
-            <th scope="col">region</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for who_global_data in page_data.items %}
-            <tr>
-                <td><a href="/who/date_reported/{{ who_global_data.date_reported.id }}">{{ who_global_data.date_reported.date_reported }}</a></td>
-                <td>{{ who_global_data.deaths_new }}</td>
-                <td>{{ who_global_data.cases_new }}</td>
-                <td>{{ who_global_data.deaths_cumulative }}</td>
-                <td>{{ who_global_data.cases_cumulative }}</td>
-                <td><a href="/who/country/{{ who_global_data.country.id }}">{{ who_global_data.country.country_code }}</a></td>
-                <td><a href="/who/country/{{ who_global_data.country.id }}">{{ who_global_data.country.country }}</a></td>
-                <td><a href="/who/region/{{ who_global_data.country.region.id }}">{{ who_global_data.country.region.region }}</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% include 'who/fragment_who_global_data_table.html' %}
 
 {% endblock %}
 
