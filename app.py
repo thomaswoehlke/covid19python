@@ -283,6 +283,19 @@ def url_europe_date_reported(page=1):
         page_info=page_info)
 
 
+@app.route('/europe/date_reported/<int:europe_date_reported_id>/page/<int:page>')
+@app.route('/europe/date_reported/<int:europe_date_reported_id>')
+def url_europe_date_reported_one(europe_date_reported_id, page=1):
+    page_info = ApplicationPage('Europe', "date_reported")
+    europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
+    page_data = EuropeData.find_by_date_reported(europe_date_reported)
+    return render_template(
+        'europe/europe_date_reported_one.html',
+        europe_date_reported=europe_date_reported,
+        page_data=page_data,
+        page_info=page_info)
+
+
 @app.route('/europe/continent/page/<int:page>')
 @app.route('/europe/continent')
 def url_europe_continent(page=1):

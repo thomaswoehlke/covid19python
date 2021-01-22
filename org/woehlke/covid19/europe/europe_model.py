@@ -212,3 +212,8 @@ class EuropeData(db.Model):
     def get_by_id(cls, other_id):
         return db.session.query(cls).filter(cls.id == other_id).one()
 
+    @classmethod
+    def find_by_date_reported(cls, europe_date_reported):
+        return db.session.query(cls).filter(
+            cls.europe_date_reported_id == europe_date_reported.id).all()
+
