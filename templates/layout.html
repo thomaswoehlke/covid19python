@@ -29,7 +29,7 @@
             font-size: 150%;
         }
         .jumbotron {
-            padding: 1rem 1rem;
+            padding: 1rem 1rem 1rem 1rem;
             margin-bottom: 1rem;
         }
         .my-page-item-ellipsis-page-link {
@@ -37,15 +37,21 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        header div.container.tw_padding,
+        main div.container.tw_padding,
+        section div.container.tw_padding,
+        .btn-group {
+            padding: 1rem 1rem 1rem 1rem;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="container">
+        <div class="container tw_padding">
             {% include 'fragment_navbar.html' %}
         </div>
-        <div class="container">
+        <div class="container tw_padding">
             {% block navigation_jumbotron %}
                 <div class="jumbotron">
                     <h1 class="display-4">{{ page_info.title }}</h1>
@@ -55,7 +61,7 @@
                 </div>
             {% endblock %}
         </div>
-        <div class="container">
+        <div class="container tw_padding">
             {% include 'fragment_navtabs.html' %}
         </div>
         <div class="container">
@@ -67,10 +73,9 @@
     </header>
 
     <main>
-        <div class="container">
+        <div class="container tw_padding">
             {% include 'fragment_flashed_messages.html' %}
-        </div>
-        <div class="container">
+            <p></p>
             {% block main_container %}{% endblock %}
         </div>
     </main>
