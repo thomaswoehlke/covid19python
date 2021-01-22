@@ -217,6 +217,7 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #38 update Celery from 4 to 5
 
 ### 0.0.11 Release
+* Fixed #26 /admin/database/dump
 * Issue #43 /europe/date_reported
 * Issue #44 /europe/continent
 * Issue #45 /europe/country
@@ -224,17 +225,16 @@ class WhoGlobalDataImportTable(db.Model):
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Issue #40 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()
 * Issue #41 SQLalchemy instead of SQL: EuropeDataImportTable.get_countries_of_continent()
-* Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array() 
-* Issue #47 refactor Routes from app.py to org...who,europe,...
-* Issue #48 refactor Tasks from server_mq.py to org...who,europe,... 
+* Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array()
 * Issue #49 EuropeServiceUpdate.__update_data_short()
 * Issue #50 remove unused requirements from requirements.txt
 
 ### 0.0.12 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
-* Issue #26 /admin/database/dump
 * Issue #28 /admin/database/import
 
 ### 0.0.13 Release
+* Issue #47 refactor Routes from app.py to org...who,europe,...
+* Issue #48 refactor Tasks from server_mq.py to org...who,europe,... 
 
 
