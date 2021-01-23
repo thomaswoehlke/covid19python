@@ -27,6 +27,7 @@ class EuropeDataImportTable(db.Model):
 
     @classmethod
     def get_all_as_page(cls, page):
+        #TODO: #51 order_by: year_week, country
         return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
@@ -181,6 +182,11 @@ class EuropeCountry(db.Model):
     @classmethod
     def find_by_continent(cls, continent, page):
         return db.session.query(cls).filter(cls.continent_id == continent.id).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def get_germany(cls):
+        #TODO:
+        pass
 
 
 class EuropeData(db.Model):

@@ -348,7 +348,7 @@ def url_europe_country_one(country_id, page=1):
 @app.route('/europe/country/germany')
 def url_europe_country_germany(country_id, page=1):
     page_info = ApplicationPage('Europe', "country")
-    europe_country = EuropeCountry.get_by_id(country_id)
+    europe_country = EuropeCountry.get_germany()
     page_data = EuropeData.find_by_country(europe_country, page)
     return render_template(
         'europe/europe_country_germany.html',
@@ -357,17 +357,17 @@ def url_europe_country_germany(country_id, page=1):
         page_info=page_info)
 
 
-@app.route('/europe/data/page/<int:page>')
-@app.route('/europe/data')
-def url_europe_data(page=1):
-    page_info = ApplicationPage('Europe', "europe_data")
-    page_data = EuropeData.get_all_as_page(page)
-    return render_template(
-        'europe/europe_data.html',
-        page_data=page_data,
-        page_info=page_info)
-
-
+#@app.route('/europe/data/page/<int:page>')
+#@app.route('/europe/data')
+#def url_europe_data(page=1):
+#    page_info = ApplicationPage('Europe', "europe_data")
+#    page_data = EuropeData.get_all_as_page(page)
+#    return render_template(
+#        'europe/europe_data.html',
+#        page_data=page_data,
+#        page_info=page_info)
+#
+#
 ##################################################################################################################
 #
 # RKI

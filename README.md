@@ -221,13 +221,14 @@ class WhoGlobalDataImportTable(db.Model):
 * Issue #43 /europe/date_reported
 * Issue #44 /europe/continent
 * Issue #45 /europe/country
-* Issue #46 /europe/data
+* Issue #46 /europe/country/germany
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Issue #40 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()
 * Issue #41 SQLalchemy instead of SQL: EuropeDataImportTable.get_countries_of_continent()
 * Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array()
 * Issue #49 EuropeServiceUpdate.__update_data_short()
 * Issue #50 remove unused requirements from requirements.txt
+* Issue #51 /europe/imported
 
 ### 0.0.12 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
