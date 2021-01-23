@@ -14,9 +14,9 @@ class EuropeServiceImport:
         app.logger.info("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
-        self.__europa_cvsfile_name = "ecdc_europa_data.csv"
-        self.__src_europa_cvsfile_name = "data"+os.sep+self.__europa_cvsfile_name
-        self.__src_europa_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__europa_cvsfile_name
+        self.__cvsfile_name = "ecdc_europa_data.csv"
+        self.__src_cvsfile_name = "data" + os.sep + self.__cvsfile_name
+        self.__src_cvsfile_tmp_name = "data" + os.sep + "tmp_" + self.__cvsfile_name
         self.__url_src_data = "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Europe Service Import [ready] ")
@@ -24,12 +24,12 @@ class EuropeServiceImport:
     def import_datafile_to_db(self):
         app.logger.info(" import Europa [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  " + self.__src_europa_cvsfile_name)
+        app.logger.info(" FILE:  " + self.__src_cvsfile_name)
         app.logger.info(" TABLE: europe_data_import")
         app.logger.info("------------------------------------------------------------")
         try:
             EuropeDataImportTable.remove_all()
-            with open(self.__src_europa_cvsfile_name, newline='') as csv_file:
+            with open(self.__src_cvsfile_name, newline='') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:
