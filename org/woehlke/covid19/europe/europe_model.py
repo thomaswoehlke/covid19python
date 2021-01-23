@@ -181,7 +181,9 @@ class EuropeCountry(db.Model):
 
     @classmethod
     def find_by_continent(cls, continent, page):
-        return db.session.query(cls).filter(cls.continent_id == continent.id).paginate(page, per_page=ITEMS_PER_PAGE)
+        return db.session.query(cls)\
+            .filter(cls.continent_id == continent.id)\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_germany(cls):

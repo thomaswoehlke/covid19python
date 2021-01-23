@@ -4,25 +4,40 @@
             <th scope="col">date rep</th>
             <th scope="col">year_week</th>
             <th scope="col">
+                {% if europe_date_reported %}
                 <a href="{{ url_for( 'url_europe_date_reported_one_deaths_weekly',
                     europe_date_reported_id=europe_date_reported.id,
                     page=page_data.page) }}">
                     deaths weekly
                 </a>
+                {% endif %}
+                {% if europe_country %}
+                    deaths weekly
+                {% endif %}
             </th>
             <th scope="col">
+                {% if europe_date_reported %}
                 <a href="{{ url_for( 'url_europe_date_reported_one_cases_weekly',
                     europe_date_reported_id=europe_date_reported.id,
                     page=page_data.page) }}">
                 cases weekly
                 </a>
+                {% endif %}
+                {% if europe_country %}
+                    cases weekly
+                {% endif %}
             </th>
             <th scope="col">
+                {% if europe_date_reported %}
                 <a href="{{ url_for( 'url_europe_date_reported_one_notification_rate',
                             europe_date_reported_id=europe_date_reported.id,
                             page=page_data.page) }}">
                     notification rate per 100000 population 14days
                 </a>
+                {% endif %}
+                {% if europe_country %}
+                    notification rate per 100000 population 14days
+                {% endif %}
             </th>
             <th scope="col">countries and territories</th>
             <th scope="col">population data 2019</th>

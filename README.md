@@ -219,8 +219,8 @@ class WhoGlobalDataImportTable(db.Model):
 ### 0.0.11 Release
 * Fixed #26 /admin/database/dump
 * Fixed #43 /europe/date_reported
-* Issue #44 /europe/continent
-* Issue #45 /europe/country
+* Fixed #44 /europe/continent
+* Fixed #45 /europe/country
 * Issue #46 /europe/country/germany
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Issue #40 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()

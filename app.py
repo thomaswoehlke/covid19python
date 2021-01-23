@@ -342,7 +342,7 @@ def url_europe_continent_one(continent_id, page=1):
     continent = EuropeContinent.get_by_id(continent_id)
     page_data = EuropeCountry.find_by_continent(continent, page)
     return render_template(
-        'europe/europe_continent_all.html',
+        'europe/europe_continent_one.html',
         continent=continent,
         page_data=page_data,
         page_info=page_info)
