@@ -226,6 +226,13 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #51 /europe/imported
 
 ### 0.0.12 Release
+* Issue #52 download vaccination timeline data file
+* Issue #53 import vaccination timeline data file into db
+* Issue #54 /vaccination/imported
+* Issue #55 /vaccination/tasks
+* Issue #56 /vaccination/info
+
+### 0.0.13 Release
 * Issue #28 /admin/database/import
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Issue #40 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()
@@ -233,9 +240,9 @@ class WhoGlobalDataImportTable(db.Model):
 * Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array()
 * Fixed #49 EuropeServiceUpdate.__update_data_short() (wontfix)
 
-### 0.0.13 Release
+### 0.0.14 Release
 * Issue #47 refactor Routes from app.py to org...who,europe,...
 * Issue #48 refactor Tasks from server_mq.py to org...who,europe,... 
 
-### 0.0.14 Release
+### 0.0.15 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
