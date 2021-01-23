@@ -51,8 +51,8 @@ class EuropeServiceImport:
                         db.session.commit()
                         app.logger.info("  import Europa  ...  " + str(k) + " rows")
                     k = k + 1
-                db.session.commit()
-                app.logger.info("  import Europa  ...  " + str(k) + " rows total")
+            db.session.commit()
+            app.logger.info("  import Europa  ...  " + str(k) + " rows total")
         except KeyError as error:
             app.logger.warning("KeyError: import Europa [begin]")
             app.logger.warning(":::" + str(error) + ":::")
