@@ -231,7 +231,7 @@ class WhoGlobalDataImportTable(db.Model):
 * Issue #40 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()
 * Issue #41 SQLalchemy instead of SQL: EuropeDataImportTable.get_countries_of_continent()
 * Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array()
-* Issue #49 EuropeServiceUpdate.__update_data_short()
+* Fixed #49 EuropeServiceUpdate.__update_data_short() (wontfix)
 
 ### 0.0.13 Release
 * Issue #47 refactor Routes from app.py to org...who,europe,...
