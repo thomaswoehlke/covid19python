@@ -285,12 +285,40 @@ def url_europe_date_reported_all(page=1):
 
 @app.route('/europe/date_reported/<int:europe_date_reported_id>/page/<int:page>')
 @app.route('/europe/date_reported/<int:europe_date_reported_id>')
-def url_europe_date_reported_one(europe_date_reported_id, page=1):
+@app.route('/europe/date_reported/notification_rate/<int:europe_date_reported_id>/page/<int:page>')
+@app.route('/europe/date_reported/notification_rate/<int:europe_date_reported_id>')
+def url_europe_date_reported_one_notification_rate(europe_date_reported_id, page=1):
     page_info = ApplicationPage('Europe', "date_reported")
     europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
-    page_data = EuropeData.find_by_date_reported(europe_date_reported, page)
+    page_data = EuropeData.find_by_date_reported_notification_rate(europe_date_reported, page)
     return render_template(
-        'europe/europe_date_reported_one.html',
+        'europe/europe_date_reported_one_notification_rate.html',
+        europe_date_reported=europe_date_reported,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/europe/date_reported/deaths_weekly/<int:europe_date_reported_id>/page/<int:page>')
+@app.route('/europe/date_reported/deaths_weekly/<int:europe_date_reported_id>')
+def url_europe_date_reported_one_deaths_weekly(europe_date_reported_id, page=1):
+    page_info = ApplicationPage('Europe', "date_reported")
+    europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
+    page_data = EuropeData.find_by_date_reported_deaths_weekly(europe_date_reported, page)
+    return render_template(
+        'europe/europe_date_reported_one_deaths_weekly.html',
+        europe_date_reported=europe_date_reported,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/europe/date_reported/cases_weekly/<int:europe_date_reported_id>/page/<int:page>')
+@app.route('/europe/date_reported/cases_weekly/<int:europe_date_reported_id>')
+def url_europe_date_reported_one_cases_weekly(europe_date_reported_id, page=1):
+    page_info = ApplicationPage('Europe', "date_reported")
+    europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
+    page_data = EuropeData.find_by_date_reported_cases_weekly(europe_date_reported, page)
+    return render_template(
+        'europe/europe_date_reported_one_cases_weekly.html',
         europe_date_reported=europe_date_reported,
         page_data=page_data,
         page_info=page_info)

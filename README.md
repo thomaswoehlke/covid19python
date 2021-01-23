@@ -218,7 +218,7 @@ class WhoGlobalDataImportTable(db.Model):
 
 ### 0.0.11 Release
 * Fixed #26 /admin/database/dump
-* Issue #43 /europe/date_reported
+* Fixed #43 /europe/date_reported
 * Issue #44 /europe/continent
 * Issue #45 /europe/country
 * Issue #46 /europe/country/germany

@@ -3,9 +3,27 @@
         <tr>
             <th scope="col">date rep</th>
             <th scope="col">year_week</th>
-            <th scope="col">deaths weekly</th>
-            <th scope="col">cases weekly</th>
-            <th scope="col">notification rate per 100000 population 14days</th>
+            <th scope="col">
+                <a href="{{ url_for( 'url_europe_date_reported_one_deaths_weekly',
+                    europe_date_reported_id=europe_date_reported.id,
+                    page=page_data.page) }}">
+                    deaths weekly
+                </a>
+            </th>
+            <th scope="col">
+                <a href="{{ url_for( 'url_europe_date_reported_one_cases_weekly',
+                    europe_date_reported_id=europe_date_reported.id,
+                    page=page_data.page) }}">
+                cases weekly
+                </a>
+            </th>
+            <th scope="col">
+                <a href="{{ url_for( 'url_europe_date_reported_one_notification_rate',
+                            europe_date_reported_id=europe_date_reported.id,
+                            page=page_data.page) }}">
+                    notification rate per 100000 population 14days
+                </a>
+            </th>
             <th scope="col">countries and territories</th>
             <th scope="col">population data 2019</th>
             <th scope="col">geo id</th>
