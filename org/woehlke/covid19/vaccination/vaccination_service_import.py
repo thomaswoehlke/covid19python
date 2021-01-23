@@ -41,7 +41,7 @@ class VaccinationServiceImport:
                 k = 0
                 for row in file_reader:
                     o = VaccinationDataImportTable(
-                        datum=row['datum'],
+                        datum=row['date'],
                         dosen_kumulativ=int(row['dosen_kumulativ']),
                         dosen_differenz_zum_vortag=int(row['dosen_differenz_zum_vortag']),
                         dosen_biontech_kumulativ=int(row['dosen_biontech_kumulativ']),
