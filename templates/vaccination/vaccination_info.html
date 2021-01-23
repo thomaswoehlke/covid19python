@@ -1,0 +1,38 @@
+{% extends 'page_layout.html' %}
+
+{% block navigation_breadcrumb %}
+
+{% endblock %}
+
+
+{% block navigation_navtabs %}
+  {% include 'fragment_navtabs_vaccination.html' %}
+{% endblock %}
+
+
+{% block main_container %}
+    <div>
+        <h3>Impfdashboard</h3>
+        <p>
+            <a href="https://impfdashboard.de/">
+                https://impfdashboard.de/
+            </a>
+        </p>
+    </div>
+    <div>
+        <h3>Impfdashboard Datensatz</h3>
+        <p>
+            <a href="https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv">
+                https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv
+            </a>
+        </p>
+    </div>
+{% endblock %}
+
+
+{% block footer_container %}
+
+{% endblock %}
+
+
+

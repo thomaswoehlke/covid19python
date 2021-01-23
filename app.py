@@ -8,10 +8,13 @@ from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
 from org.woehlke.covid19.europe.europe_model import EuropeCountry, EuropeData
 from org.woehlke.covid19.europe.europe_service import EuropeService
+from org.woehlke.covid19.vaccination.vaccination_service import VaccinationService
+from org.woehlke.covid19.vaccination.vaccination_model import VaccinationDataImportTable
 from org.woehlke.covid19.admin.admin_service import AdminService
 from server_mq import who_run_update_task, who_update_short_task, who_update_initial_task
 from server_mq import alive_message_task
 from server_mq import europe_update_initial_task
+from server_mq import vaccination_update_initial_task
 
 drop_and_create_data_again = True
 
@@ -387,6 +390,46 @@ def url_europe_country_germany(page=1):
 
 ##################################################################################################################
 #
+# Vaccination
+#
+##################################################################################################################
+@app.route('/vaccination/info')
+def url_vaccination_info():
+    page_info = ApplicationPage('Vaccination', "Info")
+    return render_template(
+        'vaccination/vaccination_info.html',
+        page_info=page_info)
+
+
+@app.route('/vaccination/tasks')
+def url_vaccination_tasks():
+    page_info = ApplicationPage('Vaccination', "Tasks")
+    return render_template(
+        'vaccination/vaccination_tasks.html',
+        page_info=page_info)
+
+
+@app.route('/vaccination/update/initial')
+def url_vaccination_update_data():
+    vaccination_service.download()
+    vaccination_update_initial_task.apply_async()
+    flash("vaccination_service.run_update started")
+    return redirect(url_for('url_vaccination_tasks'))
+
+
+@app.route('/vaccination/imported/page/<int:page>')
+@app.route('/vaccination/imported')
+def url_vaccination_data_imported(page=1):
+    page_info = ApplicationPage('Vaccination', "Last Import")
+    page_data = VaccinationDataImportTable.get_all_as_page(page)
+    return render_template(
+        'vaccination/vaccination_imported.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
+##################################################################################################################
+#
 # RKI
 #
 ##################################################################################################################
@@ -521,13 +564,21 @@ def url_admin_database_import():
 @app.route('/admin/database/drop')
 def url_admin_database_drop():
     app.logger.info("url_admin_database_drop [start]")
+    flash("admin_service.run_admin_database_drop started")
     admin_service.run_admin_database_drop()
     if drop_and_create_data_again:
+        flash("europe_service.download started")
         europe_service.download()
+        flash("who_service.run_download started")
         who_service.run_download()
+        flash("vaccination_service.run_download started")
+        vaccination_service.run_download()
+        flash("europe_update_initial_task async started")
+        flash("who_update_initial_task async started")
+        flash("vaccination_update_initial_task async started")
         europe_update_initial_task.apply_async()
         who_update_initial_task.apply_async()
-    flash("admin_service.run_admin_database_drop started")
+        vaccination_update_initial_task.apply_async()
     app.logger.info("url_admin_database_drop [done]")
     return redirect(url_for('url_admin_tasks'))
 
@@ -542,5 +593,6 @@ if __name__ == '__main__':
     db.create_all()
     who_service = WhoService(db)
     europe_service = EuropeService(db)
+    vaccination_service = VaccinationService(db)
     admin_service = AdminService(db)
     app.run(debug=True)

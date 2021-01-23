@@ -1,34 +1,34 @@
 import os
 from database import db, app
-from org.woehlke.covid19.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
-from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
+from org.woehlke.covid19.vaccination.vaccination_model import VaccinationDataImportTable, VaccinationDateReported
+from org.woehlke.covid19.vaccination.vaccination_model import VaccinationCountry, VaccinationRegion, VaccinationData
 
 
-who_service_update = None
+vaccination_service_update = None
 
 
-class WhoServiceUpdate:
+class VaccinationServiceUpdate:
     def __init__(self, database):
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" WHO Service Update [init]")
+        app.logger.info(" Vaccination Service Update [init]")
         app.logger.info("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
-        self.__who_cvsfile_name = "WHO-COVID-19-global-data.csv"
-        self.__src_who_cvsfile_name = "data"+os.sep+self.__who_cvsfile_name
-        self.__src_who_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__who_cvsfile_name
-        self.__url_src_data = "https://covid19.who.int/"+self.__who_cvsfile_name
+        self.__cvsfile_name = "germany_vaccinations_timeseries_v2.tsv"
+        self.__src_cvsfile_name = "data" + os.sep + self.__cvsfile_name
+        self.__src_cvsfile_tmp_name = "data" + os.sep + "tmp_" + self.__cvsfile_name
+        self.__url_src_data = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" WHO Service Update [ready]")
+        app.logger.info(" Vaccination Service Update [ready]")
 
     def __update_who_date_reported(self):
         app.logger.info(" update who_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        for i_date_reported, in WhoGlobalDataImportTable.get_dates_reported():
-            c = WhoDateReported.find_by_date_reported(i_date_reported)
+        for i_date_reported, in VaccinationDataImportTable.get_dates_reported():
+            c = VaccinationDateReported.find_by_date_reported(i_date_reported)
             if c is None:
-                o = WhoDateReported(date_reported=i_date_reported)
+                o = VaccinationDateReported(date_reported=i_date_reported)
                 db.session.add(o)
                 app.logger.info(" update who_date_reported "+i_date_reported+" added NEW")
             if i % 10 == 0:
@@ -45,10 +45,10 @@ class WhoServiceUpdate:
         app.logger.info(" update who_region [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        for i_who_region, in db.session.query(WhoGlobalDataImportTable.who_region).distinct():
-            c = db.session.query(WhoRegion).filter(WhoRegion.region == i_who_region).count()
+        for i_who_region, in db.session.query(VaccinationDataImportTable.who_region).distinct():
+            c = db.session.query(VaccinationRegion).filter(VaccinationRegion.region == i_who_region).count()
             if c == 0:
-                o = WhoRegion(region=i_who_region)
+                o = VaccinationRegion(region=i_who_region)
                 db.session.add(o)
                 app.logger.info(i_who_region +" added NEW ")
             else:
@@ -78,18 +78,18 @@ class WhoServiceUpdate:
             i_country = result_item.country
             i_who_region = result_item.who_region
             output = i_country_code + " " + i_country + " " + i_who_region
-            my_region = WhoRegion.find_by_region(i_who_region)
-            my_country = WhoCountry.find_by_country_code_and_country_and_who_region_id(
+            my_region = VaccinationRegion.find_by_region(i_who_region)
+            my_country = VaccinationCountry.find_by_country_code_and_country_and_who_region_id(
                 i_country_code, i_country, my_region
             )
             if my_country is None:
-                o = WhoCountry(
+                o = VaccinationCountry(
                     country=i_country,
                     country_code=i_country_code,
                     region=my_region)
                 db.session.add(o)
                 db.session.commit()
-                my_country = WhoCountry.find_by_country_code_and_country_and_who_region_id(
+                my_country = VaccinationCountry.find_by_country_code_and_country_and_who_region_id(
                     i_country_code, i_country, my_region
                 )
                 output += " added NEW "
@@ -104,24 +104,23 @@ class WhoServiceUpdate:
         return self
 
     def __update_who_global_data(self):
-        app.logger.info(" update WHO [begin]")
+        app.logger.info(" update Vaccination [begin]")
         app.logger.info("------------------------------------------------------------")
-        dates_reported = WhoDateReported.get_all_as_dict()
-        regions = WhoRegion.get_all_as_dict()
-        countries = WhoCountry.get_all_as_dict()
-
+        dates_reported = VaccinationDateReported.get_all_as_dict()
+        regions = VaccinationRegion.get_all_as_dict()
+        countries = VaccinationCountry.get_all_as_dict()
         #
         #
         i = 0
-        result = WhoGlobalDataImportTable.get_all()
+        result = VaccinationDataImportTable.get_all()
         for result_item in result:
             my_country = countries[result_item.country_code]
             my_date_reported = dates_reported[result_item.date_reported]
-            result_who_global_data = WhoGlobalData.find_one_or_none_by_date_and_country(
+            result_who_global_data = VaccinationData.find_one_or_none_by_date_and_country(
                 my_date_reported,
                 my_country)
             if result_who_global_data is None:
-                o = WhoGlobalData(
+                o = VaccinationData(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
@@ -131,25 +130,25 @@ class WhoServiceUpdate:
                 )
                 db.session.add(o)
             if i % 2000 == 0:
-                app.logger.info(" update WHO ... "+str(i)+" rows")
+                app.logger.info(" update Vaccination ... "+str(i)+" rows")
                 db.session.commit()
             i += 1
         db.session.commit()
-        app.logger.info(" update WHO :  "+str(i)+" total rows")
-        app.logger.info(" update WHO [done]")
+        app.logger.info(" update Vaccination :  "+str(i)+" total rows")
+        app.logger.info(" update Vaccination [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
     def __update_who_global_data_short(self):
-        app.logger.info(" update WHO short [begin]")
+        app.logger.info(" update Vaccination short [begin]")
         app.logger.info("------------------------------------------------------------")
-        new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
+        new_dates_reported_from_import = VaccinationDataImportTable.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
-            my_date = WhoDateReported.find_by_date_reported(my_date_reported)
-            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
-                my_country = WhoCountry.find_by_country_code(result_item.country_code)
-                o = WhoGlobalData(
+            my_date = VaccinationDateReported.find_by_date_reported(my_date_reported)
+            for result_item in VaccinationDataImportTable.get_for_one_day(my_date_reported):
+                my_country = VaccinationCountry.find_by_country_code(result_item.country_code)
+                o = VaccinationData(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
@@ -162,25 +161,25 @@ class WhoServiceUpdate:
                 db.session.add(result_item)
                 i += 1
                 if i % 500 == 0:
-                    app.logger.info(" update WHO short ... "+str(i)+" rows")
+                    app.logger.info(" update Vaccination short ... "+str(i)+" rows")
                     db.session.commit()
             db.session.commit()
-        app.logger.info(" update WHO short :  "+str(i)+" total rows")
-        app.logger.info(" update WHO short [done]")
+        app.logger.info(" update Vaccination short :  "+str(i)+" total rows")
+        app.logger.info(" update Vaccination short [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
     def __update_who_global_data_initial(self):
-        app.logger.info(" update WHO initial [begin]")
+        app.logger.info(" update Vaccination initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        WhoGlobalData.remove_all()
-        new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
+        VaccinationData.remove_all()
+        new_dates_reported_from_import = VaccinationDataImportTable.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
-            my_date = WhoDateReported.find_by_date_reported(my_date_reported)
-            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
-                my_country = WhoCountry.find_by_country_code(result_item.country_code)
-                o = WhoGlobalData(
+            my_date = VaccinationDateReported.find_by_date_reported(my_date_reported)
+            for result_item in VaccinationDataImportTable.get_for_one_day(my_date_reported):
+                my_country = VaccinationCountry.find_by_country_code(result_item.country_code)
+                o = VaccinationData(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
@@ -193,11 +192,11 @@ class WhoServiceUpdate:
                 db.session.add(result_item)
                 i += 1
                 if i % 500 == 0:
-                    app.logger.info(" update WHO initial ... "+str(i)+" rows")
+                    app.logger.info(" update Vaccination initial ... "+str(i)+" rows")
                     db.session.commit()
             db.session.commit()
-        app.logger.info(" update WHO initial :  "+str(i)+" total rows")
-        app.logger.info(" update WHO initial [done]")
+        app.logger.info(" update Vaccination initial :  "+str(i)+" total rows")
+        app.logger.info(" update Vaccination initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
@@ -232,4 +231,8 @@ class WhoServiceUpdate:
         self.__update_who_global_data_initial()
         app.logger.info(" update db initial [done]")
         app.logger.info("------------------------------------------------------------")
+        return self
+
+    def update_who_country(self):
+        self.__update_who_country()
         return self

@@ -1,0 +1,28 @@
+{% extends 'page_layout.html' %}
+
+{% block navigation_breadcrumb %}
+
+{% endblock %}
+
+{% block navigation_navtabs %}
+  {% include 'fragment_navtabs_vaccination.html' %}
+{% endblock %}
+
+{% block main_container %}
+    <div class="btn-group" role="group" aria-label="Views">
+        <a class="btn btn-secondary btn-lg" href="/vaccination/region/all" role="button">RKI :: Region :: All</a>
+    </div>
+    <div class="btn-group" role="group" aria-label="Views">
+        <a class="btn btn-primary btn-lg" href="/vaccination/update/initial" role="button">RKI :: update :: initial</a>
+        <a class="btn btn-secondary btn-lg" href="/vaccination/update/short" role="button">RKI :: update :: short</a>
+    </div>
+{% endblock %}
+
+
+
+{% block footer_container %}
+
+{% endblock %}
+
+
+
