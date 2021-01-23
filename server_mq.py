@@ -5,11 +5,13 @@ from database import db, app, my_logging_config
 from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_service import EuropeService
 from org.woehlke.covid19.vaccination.vaccination_service import VaccinationService
+from org.woehlke.covid19.admin.admin_service import AdminService
 
 logger = get_task_logger(__name__)
 who_service = WhoService(db)
 europe_service = EuropeService(db)
 vaccination_service = VaccinationService(db)
+admin_service = AdminService(db)
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 celery.conf.result_backend = app.config['CELERY_BROKER_URL']
@@ -98,6 +100,7 @@ def admin_database_drop_create_task(self):
     who_service.run_update_initial()
     europe_service.run_update_initial()
     vaccination_service.run_update_initial()
+    admin_service.run_admin_database_dump()
     self.update_state(state=states.SUCCESS)
     result = "OK (admin_database_drop_create_task)"
     return result
