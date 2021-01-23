@@ -412,7 +412,7 @@ def url_vaccination_tasks():
 
 @app.route('/vaccination/update/initial')
 def url_vaccination_update_data():
-    vaccination_service.download()
+    vaccination_service.run_download()
     vaccination_update_initial_task.apply_async()
     flash("vaccination_service.run_update started")
     return redirect(url_for('url_vaccination_tasks'))
