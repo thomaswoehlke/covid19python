@@ -1,0 +1,32 @@
+    <table class="table table-hover table-striped table-dark">
+        <thead>
+        <tr>
+            <th scope="col">date_rep</th>
+            <th scope="col">year_week</th>
+            <th scope="col">cases_weekly</th>
+            <th scope="col">deaths_weekly</th>
+            <th scope="col">pop_data_2019</th>
+            <th scope="col">countries_and_territories</th>
+            <th scope="col">geo_id</th>
+            <th scope="col">country_territory_code</th>
+            <th scope="col">continent_exp</th>
+            <th scope="col">notification_rate_per_100000_population_14days</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for o in page_data.items %}
+            <tr>
+                <td>{{ o.date_rep }}</td>
+                <td>{{ o.year_week }}</td>
+                <td>{{ o.cases_weekly }}</td>
+                <td>{{ o.deaths_weekly }}</td>
+                <td>{{ o.pop_data_2019 }}</td>
+                <td>{{ o.countries_and_territories }}</td>
+                <td>{{ o.geo_id }}</td>
+                <td>{{ o.country_territory_code }}</td>
+                <td>{{ o.continent_exp }}</td>
+                <td>{{ o.notification_rate_per_100000_population_14days }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

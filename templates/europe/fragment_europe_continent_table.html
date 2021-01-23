@@ -1,0 +1,18 @@
+    <table class="table table-hover table-striped table-dark">
+        <thead>
+        <tr>
+            <th scope="col">continent</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for europe_continent in page_data.items %}
+            <tr>
+                <td>
+                    <a href="/europe/continent/{{ europe_continent.id }}">
+                        {{ europe_continent.continent_exp }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

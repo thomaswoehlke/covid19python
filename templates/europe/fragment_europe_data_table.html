@@ -1,4 +1,4 @@
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped table-dark">
         <thead>
         <tr>
             <th scope="col">date rep</th>
@@ -16,21 +16,40 @@
         <tbody>
         {% for europe_data in page_data.items %}
             <tr>
-                <th>{{ europe_data.europe_date_reported.date_rep }}</th>
-                <td><a href="/europe/date_reported/{{ europe_data.europe_date_reported.id }}">
-                    {{ europe_data.europe_date_reported.year_week }}</a></td>
+                <td>
+                    <a href="/europe/date_reported/{{ europe_data.europe_date_reported.id }}">
+                        {{ europe_data.europe_date_reported.date_rep }}
+                    </a>
+                </td>
+                <td>
+                    <a href="/europe/date_reported/{{ europe_data.europe_date_reported.id }}">
+                        {{ europe_data.europe_date_reported.year_week }}
+                    </a>
+                </td>
                 <td>{{ europe_data.deaths_weekly }}</td>
                 <td>{{ europe_data.cases_weekly }}</td>
                 <td>{{ europe_data.notification_rate_per_100000_population_14days }}</td>
-                <td><a href="/europe/country/{{ europe_data.europe_country.id }}">
-                    {{ europe_data.europe_country.countries_and_territories }}</a></td>
+                <td>
+                    <a href="/europe/country/{{ europe_data.europe_country.id }}">
+                        {{ europe_data.europe_country.countries_and_territories }}
+                    </a>
+                </td>
                 <td>{{ europe_data.europe_country.pop_data_2019 }}</td>
-                <td><a href="/europe/country/{{ europe_data.europe_country.id }}">
-                    {{ europe_data.europe_country.geo_id }}</a></td>
-                <td><a href="/europe/country/{{ europe_data.europe_country.id }}">
-                    {{ europe_data.europe_country.country_territory_code }}</a></td>
-                <td><a href="/europe/continent/{{ europe_data.europe_country.continent.id }}">
-                    {{ europe_data.europe_country.continent.continent_exp }}</a></td>
+                <td>
+                    <a href="/europe/country/{{ europe_data.europe_country.id }}">
+                        {{ europe_data.europe_country.geo_id }}
+                    </a>
+                </td>
+                <td>
+                    <a href="/europe/country/{{ europe_data.europe_country.id }}">
+                        {{ europe_data.europe_country.country_territory_code }}
+                    </a>
+                </td>
+                <td>
+                    <a href="/europe/continent/{{ europe_data.europe_country.continent.id }}">
+                        {{ europe_data.europe_country.continent.continent_exp }}
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

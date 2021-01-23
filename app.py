@@ -344,6 +344,19 @@ def url_europe_country_one(country_id, page=1):
         page_info=page_info)
 
 
+@app.route('/europe/country/germany/page/<int:page>')
+@app.route('/europe/country/germany')
+def url_europe_country_germany(country_id, page=1):
+    page_info = ApplicationPage('Europe', "country")
+    europe_country = EuropeCountry.get_by_id(country_id)
+    page_data = EuropeData.find_by_country(europe_country, page)
+    return render_template(
+        'europe/europe_country_germany.html',
+        europe_country=europe_country,
+        page_data=page_data,
+        page_info=page_info)
+
+
 @app.route('/europe/data/page/<int:page>')
 @app.route('/europe/data')
 def url_europe_data(page=1):
