@@ -213,15 +213,28 @@ class VaccinationDataImportTable(db.Model):
     __tablename__ = 'vaccination_data_import'
 
     id = db.Column(db.Integer, primary_key=True)
-    date_reported = db.Column(db.String(255), nullable=False)
-    country_code = db.Column(db.String(255), nullable=False)
-    country = db.Column(db.String(255), nullable=False)
-    who_region = db.Column(db.String(255), nullable=False)
-    new_cases = db.Column(db.String(255), nullable=False)
-    cumulative_cases = db.Column(db.String(255), nullable=False)
-    new_deaths = db.Column(db.String(255), nullable=False)
-    cumulative_deaths = db.Column(db.String(255), nullable=False)
-    row_imported = db.Column(db.Boolean, nullable=False)
+    datum = db.Column(db.String(255), nullable=False)
+    dosen_kumulativ = db.Column(db.Integer, nullable=False)
+    dosen_differenz_zum_vortag = db.Column(db.Integer, nullable=False)
+    dosen_biontech_kumulativ = db.Column(db.Integer, nullable=False)
+    dosen_moderna_kumulativ = db.Column(db.Integer, nullable=False)
+    personen_erst_kumulativ = db.Column(db.Integer, nullable=False)
+    personen_voll_kumulativ = db.Column(db.Integer, nullable=False)
+    impf_quote_erst = db.Column(db.Float, nullable=False)
+    impf_quote_voll = db.Column(db.Float, nullable=False)
+    indikation_alter_dosen = db.Column(db.Integer, nullable=False)
+    indikation_beruf_dosen = db.Column(db.Integer, nullable=False)
+    indikation_medizinisch_dosen = db.Column(db.Integer, nullable=False)
+    indikation_pflegeheim_dosen = db.Column(db.Integer, nullable=False)
+    indikation_alter_erst = db.Column(db.Integer, nullable=False)
+    indikation_beruf_erst = db.Column(db.Integer, nullable=False)
+    indikation_medizinisch_erst = db.Column(db.Integer, nullable=False)
+    indikation_pflegeheim_erst = db.Column(db.Integer, nullable=False)
+    indikation_alter_voll = db.Column(db.Integer, nullable=False)
+    indikation_beruf_voll = db.Column(db.Integer, nullable=False)
+    indikation_medizinisch_voll = db.Column(db.Integer, nullable=False)
+    indikation_pflegeheim_voll = db.Column(db.Integer, nullable=False)
+    row_imported = db.Column(db.Boolean, nullable=False, default=False)
 
     @classmethod
     def remove_all(cls):
@@ -240,18 +253,6 @@ class VaccinationDataImportTable(db.Model):
     @classmethod
     def get_by_id(cls, other_id):
         return db.session.query(cls).filter(cls.id == other_id).one()
-
-    @classmethod
-    def get_regions(cls):
-        return db.session.query(cls.who_region).distinct()
-
-    @classmethod
-    def get_dates_reported(cls):
-        return db.session.query(cls.date_reported).distinct()
-
-    @classmethod
-    def get_for_one_day(cls, day):
-        return db.session.query(cls).filter(cls.date_reported == day).all()
 
     @classmethod
     def get_new_dates_as_array(cls):

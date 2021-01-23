@@ -58,8 +58,8 @@ class VaccinationService:
     def run_update_initial(self, import_file=True):
         app.logger.info(" run update initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        #if import_file:
-        #    self.vaccination_service_import.import_file()
+        if import_file:
+            self.vaccination_service_import.import_file()
         #self.vaccination_service_update.update_db_initial()
         app.logger.info("")
         app.logger.info(" run update initial [done]")

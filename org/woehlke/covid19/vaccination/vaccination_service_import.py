@@ -37,18 +37,31 @@ class VaccinationServiceImport:
         try:
             VaccinationDataImportTable.remove_all()
             with open(self.__src_cvsfile_name, newline='\n') as csv_file:
-                file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
+                file_reader = csv.DictReader(csv_file, delimiter='\t', quotechar='"')
                 k = 0
                 for row in file_reader:
                     o = VaccinationDataImportTable(
-                        date_reported=row[keyDate_reported],
-                        country_code=row['Country_code'],
-                        country=row['Country'],
-                        who_region=row['WHO_region'],
-                        new_cases=row['New_cases'],
-                        cumulative_cases=row['Cumulative_cases'],
-                        new_deaths=row['New_deaths'],
-                        cumulative_deaths=row['Cumulative_deaths'],
+                        datum=row['datum'],
+                        dosen_kumulativ=int(row['dosen_kumulativ']),
+                        dosen_differenz_zum_vortag=int(row['dosen_differenz_zum_vortag']),
+                        dosen_biontech_kumulativ=int(row['dosen_biontech_kumulativ']),
+                        dosen_moderna_kumulativ=int(row['dosen_moderna_kumulativ']),
+                        personen_erst_kumulativ=int(row['personen_erst_kumulativ']),
+                        personen_voll_kumulativ=int(row['personen_voll_kumulativ']),
+                        impf_quote_erst=float(row['impf_quote_erst']),
+                        impf_quote_voll=float(row['impf_quote_voll']),
+                        indikation_alter_dosen=int(row['indikation_alter_dosen']),
+                        indikation_beruf_dosen=int(row['indikation_beruf_dosen']),
+                        indikation_medizinisch_dosen=int(row['indikation_medizinisch_dosen']),
+                        indikation_pflegeheim_dosen=int(row['indikation_pflegeheim_dosen']),
+                        indikation_alter_erst=int(row['indikation_alter_erst']),
+                        indikation_beruf_erst=int(row['indikation_beruf_erst']),
+                        indikation_medizinisch_erst=int(row['indikation_medizinisch_erst']),
+                        indikation_pflegeheim_erst=int(row['indikation_pflegeheim_erst']),
+                        indikation_alter_voll=int(row['indikation_alter_voll']),
+                        indikation_beruf_voll=int(row['indikation_beruf_voll']),
+                        indikation_medizinisch_voll=int(row['indikation_medizinisch_voll']),
+                        indikation_pflegeheim_voll=int(row['indikation_pflegeheim_voll']),
                         row_imported=False
                     )
                     db.session.add(o)
