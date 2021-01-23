@@ -236,7 +236,10 @@ class WhoGlobalDataImportTable(db.Model):
 
     @classmethod
     def get_all_as_page(cls, page):
-        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
+        return db.session.query(cls).order_by(
+            cls.date_reported.desc(),
+            cls.country.asc()
+        ).paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all(cls):
