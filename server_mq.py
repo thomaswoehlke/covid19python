@@ -83,9 +83,24 @@ def vaccination_update_initial_task(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: vaccination_update_initial_task [OK] ")
     logger.info("------------------------------------------------------------")
-    #vaccination_service.run_update_initial()
+    vaccination_service.run_update_initial()
     self.update_state(state=states.SUCCESS)
     result = "OK (vaccination_update_initial_task)"
     return result
+
+
+@celery.task(bind=True)
+def admin_database_drop_create_task(self):
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: admin_database_drop_create_task [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_initial()
+    europe_service.run_update_initial()
+    vaccination_service.run_update_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (admin_database_drop_create_task)"
+    return result
+
 
 

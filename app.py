@@ -15,6 +15,7 @@ from server_mq import who_run_update_task, who_update_short_task, who_update_ini
 from server_mq import alive_message_task
 from server_mq import europe_update_initial_task
 from server_mq import vaccination_update_initial_task
+from server_mq import admin_database_drop_create_task
 
 drop_and_create_data_again = True
 
@@ -573,12 +574,8 @@ def url_admin_database_drop():
         who_service.run_download()
         flash("vaccination_service.run_download started")
         vaccination_service.run_download()
-        flash("europe_update_initial_task async started")
-        flash("who_update_initial_task async started")
-        flash("vaccination_update_initial_task async started")
-        europe_update_initial_task.apply_async()
-        who_update_initial_task.apply_async()
-        vaccination_update_initial_task.apply_async()
+        flash("admin_database_drop_create_task async started")
+        admin_database_drop_create_task.apply_async()
     app.logger.info("url_admin_database_drop [done]")
     return redirect(url_for('url_admin_tasks'))
 

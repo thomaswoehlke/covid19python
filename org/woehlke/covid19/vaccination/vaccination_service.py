@@ -1,8 +1,8 @@
 import os
 from database import app
-from org.woehlke.covid19.who.who_service_download import WhoServiceDownload
-from org.woehlke.covid19.who.who_service_import import WhoServiceImport
-from org.woehlke.covid19.who.who_service_update import WhoServiceUpdate
+from org.woehlke.covid19.vaccination.vaccination_service_download import VaccinationServiceDownload
+from org.woehlke.covid19.vaccination.vaccination_service_import import VaccinationServiceImport
+from org.woehlke.covid19.vaccination.vaccination_service_update import VaccinationServiceUpdate
 
 vaccination_service = None
 
@@ -14,13 +14,13 @@ class VaccinationService:
         app.logger.info("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
-        self.__who_cvsfile_name = "WHO-COVID-19-global-data.csv"
-        self.__src_who_cvsfile_name = "data"+os.sep+self.__who_cvsfile_name
-        self.__src_who_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__who_cvsfile_name
-        self.__url_src_data = "https://covid19.who.int/"+self.__who_cvsfile_name
-        self.vaccination_service_download = WhoServiceDownload(database)
-        self.vaccination_service_import = WhoServiceImport(database)
-        self.vaccination_service_update = WhoServiceUpdate(database)
+        self.__cvsfile_name = "germany_vaccinations_timeseries_v2.tsv"
+        self.__src_cvsfile_name = "data"+os.sep+self.__cvsfile_name
+        self.__src_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__cvsfile_name
+        self.__url_src_data = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
+        self.vaccination_service_download = VaccinationServiceDownload(database)
+        self.vaccination_service_import = VaccinationServiceImport(database)
+        self.vaccination_service_update = VaccinationServiceUpdate(database)
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Vaccination Service [ready]")
 
@@ -58,9 +58,9 @@ class VaccinationService:
     def run_update_initial(self, import_file=True):
         app.logger.info(" run update initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        if import_file:
-            self.vaccination_service_import.import_file()
-        self.vaccination_service_update.update_db_initial()
+        #if import_file:
+        #    self.vaccination_service_import.import_file()
+        #self.vaccination_service_update.update_db_initial()
         app.logger.info("")
         app.logger.info(" run update initial [done]")
         app.logger.info("------------------------------------------------------------")
