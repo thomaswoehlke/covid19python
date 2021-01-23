@@ -49,25 +49,25 @@
         </ul>
     {% endif %}
 
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped table-dark">
         <thead>
             <tr>
-                <th scope="col">date_reported</th>
-                <th scope="col">country_code</th>
+                <th scope="col">date reported</th>
                 <th scope="col">country</th>
-                <th scope="col">who_region</th>
-                <th scope="col">new_cases</th>
-                <th scope="col">cumulative_cases</th>
-                <th scope="col">new_deaths</th>
-                <th scope="col">cumulative_deaths</th>
+                <th scope="col">country code</th>
+                <th scope="col">who region</th>
+                <th scope="col">new cases</th>
+                <th scope="col">cumulative cases</th>
+                <th scope="col">new deaths</th>
+                <th scope="col">cumulative deaths</th>
             </tr>
         </thead>
         <tbody>
         {% for who_global_data_import in page_data.items %}
             <tr>
                 <td>{{ who_global_data_import.date_reported }}</td>
-                <td>{{ who_global_data_import.country_code }}</td>
                 <td>{{ who_global_data_import.country }}</td>
+                <td>{{ who_global_data_import.country_code }}</td>
                 <td>{{ who_global_data_import.who_region }}</td>
                 <td>{{ who_global_data_import.new_cases }}</td>
                 <td>{{ who_global_data_import.cumulative_cases }}</td>
