@@ -42,12 +42,12 @@ class EuropeServiceDownload:
             app.logger.info("############################################################")
             app.logger.info(error)
             app.logger.info("############################################################")
-            flash(message="error after downloading: " + self.__who_cvsfile_name, category='error')
+            flash(message="error after downloading: " + self.__cvsfile_name, category='error')
         except AttributeError as aerror:
             app.logger.info("############################################################")
             app.logger.info(aerror)
             app.logger.info("############################################################")
-            flash(message="error after downloading: " + self.__who_cvsfile_name, category='error')
+            flash(message="error after downloading: " + self.__cvsfile_name, category='error')
         finally:
             app.logger.info(" download Europa [done]")
             msg = "downloaded: " + self.__cvsfile_name + " "
