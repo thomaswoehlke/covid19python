@@ -187,8 +187,9 @@ class EuropeCountry(db.Model):
 
     @classmethod
     def get_germany(cls):
-        #TODO:
-        pass
+        return db.session.query(cls) \
+            .filter(cls.country_territory_code == 'DEU') \
+            .one()
 
 
 class EuropeData(db.Model):
