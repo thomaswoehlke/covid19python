@@ -83,7 +83,7 @@ def vaccination_update_initial_task(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: vaccination_update_initial_task [OK] ")
     logger.info("------------------------------------------------------------")
-    vaccination_service.run_update_initial()
+    #vaccination_service.run_update_initial()
     self.update_state(state=states.SUCCESS)
     result = "OK (vaccination_update_initial_task)"
     return result

@@ -14,10 +14,10 @@ class WhoServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
-        self.__who_cvsfile_name = "WHO-COVID-19-global-data.csv"
-        self.__src_who_cvsfile_name = "data"+os.sep+self.__who_cvsfile_name
-        self.__src_who_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__who_cvsfile_name
-        self.__url_src_data = "https://covid19.who.int/"+self.__who_cvsfile_name
+        self.__cvsfile_name = "WHO-COVID-19-global-data.csv"
+        self.__src_cvsfile_name = "data" + os.sep + self.__cvsfile_name
+        self.__src_cvsfile_tmp_name = "data" + os.sep + "tmp_" + self.__cvsfile_name
+        self.__url_src_data = "https://covid19.who.int/" + self.__cvsfile_name
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" WHO Service Update [ready]")
 

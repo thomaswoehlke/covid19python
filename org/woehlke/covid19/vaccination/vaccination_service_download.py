@@ -45,6 +45,7 @@ class VaccinationServiceDownload:
             app.logger.info("############################################################")
             app.logger.info(aerror)
             app.logger.info("############################################################")
+            flash(message="error after downloading: " + self.__cvsfile_name, category='error')
         finally:
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" download - Vaccination [done] ")

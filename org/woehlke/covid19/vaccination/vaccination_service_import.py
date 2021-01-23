@@ -17,8 +17,8 @@ class VaccinationServiceImport:
         self.__database = database
         self.limit_nr = 20
         self.__cvsfile_name = "germany_vaccinations_timeseries_v2.tsv"
-        self.__src_cvsfile_name = "data" + os.sep + self.__cvsfile_name
-        self.__src_cvsfile_tmp_name = "data" + os.sep + "tmp_" + self.__cvsfile_name
+        self.__src_cvsfile_name = "data"+os.sep+self.__cvsfile_name
+        self.__src_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__cvsfile_name
         self.__url_src_data = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Vaccination Service Import [ready]")

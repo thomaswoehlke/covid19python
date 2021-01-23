@@ -11,9 +11,9 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
-        self.__europa_cvsfile_name = "ecdc_europa_data.csv"
-        self.__src_europa_cvsfile_name = "data"+os.sep+self.__europa_cvsfile_name
-        self.__src_europa_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__europa_cvsfile_name
+        self.__cvsfile_name = "ecdc_europa_data.csv"
+        self.__src_cvsfile_name = "data" + os.sep + self.__cvsfile_name
+        self.__src_cvsfile_tmp_name = "data" + os.sep + "tmp_" + self.__cvsfile_name
         self.__url_src_data = "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Europe Service Update [ready] ")
