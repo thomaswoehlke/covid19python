@@ -118,5 +118,3 @@ if __name__ == '__main__':
     admin_service = AdminService(db)
     args = ['worker', '-l', 'INFO']
     celery.start(args)
-
-
