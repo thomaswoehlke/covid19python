@@ -7,11 +7,12 @@ from org.woehlke.covid19.europe.europe_service import EuropeService
 from org.woehlke.covid19.vaccination.vaccination_service import VaccinationService
 from org.woehlke.covid19.admin.admin_service import AdminService
 
-logger = get_task_logger(__name__)
+
 who_service = WhoService(db)
 europe_service = EuropeService(db)
 vaccination_service = VaccinationService(db)
 admin_service = AdminService(db)
+#
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 celery.conf.result_backend = app.config['CELERY_BROKER_URL']
@@ -22,6 +23,7 @@ celery.conf.task_send_sent_event = True
 
 @celery.task(bind=True)
 def who_run_update_task(self, import_file=True):
+    logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
     logger.info(" Received: who_run_update_task [OK] ")
@@ -34,6 +36,7 @@ def who_run_update_task(self, import_file=True):
 
 @celery.task(bind=True)
 def who_update_short_task(self):
+    logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
     logger.info(" Received: who_update_short_task [OK] ")
@@ -46,6 +49,7 @@ def who_update_short_task(self):
 
 @celery.task(bind=True)
 def who_update_initial_task(self):
+    logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
     logger.info(" Received: who_update_initial_task [OK] ")
@@ -58,6 +62,7 @@ def who_update_initial_task(self):
 
 @celery.task(bind=True)
 def alive_message_task(self):
+    logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
     logger.info(" Received: Alive Message [OK] ")
@@ -69,6 +74,7 @@ def alive_message_task(self):
 
 @celery.task(bind=True)
 def europe_update_initial_task(self):
+    logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
     logger.info(" Received: europe_update_task [OK] ")
@@ -81,6 +87,7 @@ def europe_update_initial_task(self):
 
 @celery.task(bind=True)
 def vaccination_update_initial_task(self):
+    logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
     logger.info(" Received: vaccination_update_initial_task [OK] ")
@@ -93,6 +100,7 @@ def vaccination_update_initial_task(self):
 
 @celery.task(bind=True)
 def admin_database_drop_create_task(self):
+    logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
     logger.info(" Received: admin_database_drop_create_task [OK] ")
