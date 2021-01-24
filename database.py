@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 CORS(app)
 app.config.from_object("config")
-ITEMS_PER_PAGE = 10
+ITEMS_PER_PAGE = app.config['ITEMS_PER_PAGE']
 DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
     user=app.config['POSTGRES_USER'],
     pw=app.config['POSTGRES_PW'],

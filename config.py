@@ -2,6 +2,6 @@ POSTGRES_USER = 'covid19data'
 POSTGRES_PW = 'covid19datapwd'
 POSTGRES_URL = 'localhost'
 POSTGRES_DB = 'covid19data'
-ITEMS_PER_PAGE = 20
+ITEMS_PER_PAGE = 10
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 SECRET_KEY='vfdjv423ndf654&%%'
