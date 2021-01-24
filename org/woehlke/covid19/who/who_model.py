@@ -19,7 +19,9 @@ class WhoDateReported(db.Model):
 
     @classmethod
     def get_all_as_page(cls, page):
-        return db.session.query(cls).order_by(cls.date_reported.desc()).paginate(page, per_page=ITEMS_PER_PAGE)
+        return db.session.query(cls)\
+            .order_by(cls.date_reported.desc())\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all(cls):
@@ -34,11 +36,15 @@ class WhoDateReported(db.Model):
 
     @classmethod
     def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
 
     @classmethod
     def find_by_date_reported(cls, i_date_reported):
-        return db.session.query(cls).filter(cls.date_reported == i_date_reported).one_or_none()
+        return db.session.query(cls)\
+            .filter(cls.date_reported == i_date_reported)\
+            .one_or_none()
 
 
 class WhoRegion(db.Model):
@@ -60,7 +66,9 @@ class WhoRegion(db.Model):
 
     @classmethod
     def get_all_as_page(cls, page):
-        return db.session.query(cls).order_by(cls.region).paginate(page, per_page=ITEMS_PER_PAGE)
+        return db.session.query(cls)\
+            .order_by(cls.region)\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all_as_dict(cls):
@@ -71,11 +79,15 @@ class WhoRegion(db.Model):
 
     @classmethod
     def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
 
     @classmethod
     def find_by_region(cls, i_who_region):
-        my_region = db.session.query(cls).filter(cls.region == i_who_region).one_or_none()
+        my_region = db.session.query(cls)\
+            .filter(cls.region == i_who_region)\
+            .one_or_none()
         return my_region
 
 
@@ -88,7 +100,7 @@ class WhoCountry(db.Model):
     region_id = db.Column(db.Integer, db.ForeignKey('who_region.id'), nullable=False)
     region = db.relationship(
         'WhoRegion',
-        lazy='subquery',
+        lazy='joined',
         order_by='WhoRegion.region')
 
     @classmethod
@@ -155,11 +167,15 @@ class WhoGlobalData(db.Model):
     date_reported_id = db.Column(db.Integer,
         db.ForeignKey('who_date_reported.id'), nullable=False)
     date_reported = db.relationship(
-        'WhoDateReported', lazy='joined', order_by='desc(WhoDateReported.date_reported)')
+        'WhoDateReported',
+        lazy='joined',
+        order_by='desc(WhoDateReported.date_reported)')
     country_id = db.Column(db.Integer,
         db.ForeignKey('who_country.id'), nullable=False)
     country = db.relationship(
-        'WhoCountry', lazy='joined', order_by='asc(WhoCountry.country)')
+        'WhoCountry',
+        lazy='joined',
+        order_by='asc(WhoCountry.country)')
 
     @classmethod
     def remove_all(cls):
@@ -194,7 +210,7 @@ class WhoGlobalData(db.Model):
         return db.session.query(cls).filter(
             cls.country_id == who_country.id
         ).populate_existing().options(
-            joinedload(cls.country).subqueryload(WhoCountry.region),
+            joinedload(cls.country).joinedload(WhoCountry.region),
             joinedload(cls.date_reported)
         ).paginate(page, per_page=ITEMS_PER_PAGE)
 
@@ -203,7 +219,7 @@ class WhoGlobalData(db.Model):
         return db.session.query(cls).filter(
                 cls.date_reported_id == date_reported.id
             ).populate_existing().options(
-                joinedload(cls.country).subqueryload(WhoCountry.region),
+                joinedload(cls.country).joinedload(WhoCountry.region),
                 joinedload(cls.date_reported)
             ).order_by(
                 cls.deaths_new.desc(),
@@ -217,7 +233,7 @@ class WhoGlobalData(db.Model):
         return db.session.query(cls).filter(
                 cls.date_reported_id == date_reported.id
             ).populate_existing().options(
-                joinedload(cls.country).subqueryload(WhoCountry.region),
+                joinedload(cls.country).joinedload(WhoCountry.region),
                 joinedload(cls.date_reported)
             ).order_by(
                 cls.cases_new.desc()
@@ -228,7 +244,7 @@ class WhoGlobalData(db.Model):
         return db.session.query(cls).filter(
                 cls.date_reported_id == date_reported.id
             ).populate_existing().options(
-                joinedload(cls.country).subqueryload(WhoCountry.region),
+                joinedload(cls.country).joinedload(WhoCountry.region),
                 joinedload(cls.date_reported)
             ).order_by(
                 cls.cases_cumulative.desc()
@@ -239,7 +255,7 @@ class WhoGlobalData(db.Model):
         return db.session.query(cls).filter(
                 cls.date_reported_id == date_reported.id
             ).populate_existing().options(
-                joinedload(cls.country).subqueryload(WhoCountry.region),
+                joinedload(cls.country).joinedload(WhoCountry.region),
                 joinedload(cls.date_reported)
             ).order_by(
                 cls.deaths_new.desc()
@@ -250,7 +266,7 @@ class WhoGlobalData(db.Model):
         return db.session.query(cls).filter(
                 cls.date_reported_id == date_reported.id
             ).populate_existing().options(
-                joinedload(cls.country).subqueryload(WhoCountry.region),
+                joinedload(cls.country).joinedload(WhoCountry.region),
                 joinedload(cls.date_reported)
             ).order_by(
                 cls.deaths_cumulative.desc()
@@ -261,7 +277,7 @@ class WhoGlobalData(db.Model):
         return db.session.query(cls).filter(
             cls.country_id == who_country.id
         ).populate_existing().options(
-            joinedload(cls.country).subqueryload(WhoCountry.region),
+            joinedload(cls.country).joinedload(WhoCountry.region),
             joinedload(cls.date_reported)
         ).order_by(
             cls.cases_new.desc()
@@ -272,7 +288,7 @@ class WhoGlobalData(db.Model):
         return db.session.query(cls).filter(
             cls.country_id == who_country.id
         ).populate_existing().options(
-            joinedload(cls.country).subqueryload(WhoCountry.region),
+            joinedload(cls.country).joinedload(WhoCountry.region),
             joinedload(cls.date_reported)
         ).order_by(
             cls.cases_cumulative.desc()
@@ -283,7 +299,7 @@ class WhoGlobalData(db.Model):
         return db.session.query(cls).filter(
             cls.country_id == who_country.id
         ).populate_existing().options(
-            joinedload(cls.country).subqueryload(WhoCountry.region),
+            joinedload(cls.country).joinedload(WhoCountry.region),
             joinedload(cls.date_reported)
         ).order_by(
             cls.deaths_new.desc()
@@ -294,7 +310,7 @@ class WhoGlobalData(db.Model):
         return db.session.query(cls).filter(
             cls.country_id == who_country.id
         ).populate_existing().options(
-            joinedload(cls.country).subqueryload(WhoCountry.region),
+            joinedload(cls.country).joinedload(WhoCountry.region),
             joinedload(cls.date_reported)
         ).order_by(
             cls.deaths_cumulative.desc()
