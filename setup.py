@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='covid19python',
+    name='app',
     version='0.0.12',
     packages=find_packages(),
     url='https://github.com/thomaswoehlke/covid19python',

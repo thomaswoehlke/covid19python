@@ -14,7 +14,6 @@ DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation warning
 db = SQLAlchemy(app)
-run_run_with_debug = app.config['APP_DEBUGGER_ACTIVE']
 my_logging_config = {
         'version': 1,
         'formatters': {'default': {
@@ -30,3 +29,4 @@ my_logging_config = {
             'handlers': ['wsgi']
         }
     }
+run_run_with_debug = app.config['APP_DEBUGGER_ACTIVE']

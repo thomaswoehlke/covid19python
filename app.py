@@ -12,12 +12,14 @@ from org.woehlke.covid19.vaccination.vaccination_service import VaccinationServi
 from org.woehlke.covid19.admin.admin_service import AdminService
 from org.woehlke.covid19.vaccination.vaccination_model import VaccinationDataImportTable
 
-from covid19python_mq import who_run_update_task, who_update_short_task, who_update_initial_task
-from covid19python_mq import alive_message_task
-from covid19python_mq import europe_update_initial_task
-from covid19python_mq import vaccination_update_initial_task
-from covid19python_mq import admin_database_drop_create_task
+#from covid19python_mq import who_run_update_task, who_update_short_task, who_update_initial_task
+#from covid19python_mq import alive_message_task
+#from covid19python_mq import europe_update_initial_task
+#from covid19python_mq import vaccination_update_initial_task
+#from covid19python_mq import admin_database_drop_create_task
 
+from celery.utils.log import get_task_logger
+from celery import Celery, states
 
 drop_and_create_data_again = True
 
@@ -27,6 +29,115 @@ vaccination_service = None
 admin_service = None
 
 
+############################################################################################
+#
+# Celery
+#
+celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+celery.conf.update(app.config)
+celery.conf.result_backend = app.config['CELERY_BROKER_URL']
+celery.conf.broker_transport_options = {'visibility_timeout': 18000, 'max_retries': 5}
+celery.conf.worker_send_task_events = app.config['CELERY_CONF_WORKER_SEND_TASK_EVENTS']
+celery.conf.task_send_sent_event = app.config['CELERY_CONF_TASK_SEND_SENT_EVENT']
+
+
+@celery.task(bind=True)
+def who_run_update_task(self, import_file=True):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: who_run_update_task [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update(import_file)
+    self.update_state(state=states.SUCCESS)
+    result = "OK (who_run_update_task)"
+    return result
+
+
+@celery.task(bind=True)
+def who_update_short_task(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: who_update_short_task [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_short()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (who_update_short_task)"
+    return result
+
+
+@celery.task(bind=True)
+def who_update_initial_task(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: who_update_initial_task [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (who_update_initial_task)"
+    return result
+
+
+@celery.task(bind=True)
+def alive_message_task(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: Alive Message [OK] ")
+    logger.info("------------------------------------------------------------")
+    self.update_state(state=states.SUCCESS)
+    result = "OK"
+    return result
+
+
+@celery.task(bind=True)
+def europe_update_initial_task(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: europe_update_task [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.run_update_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (europe_update_task)"
+    return result
+
+
+@celery.task(bind=True)
+def vaccination_update_initial_task(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: vaccination_update_initial_task [OK] ")
+    logger.info("------------------------------------------------------------")
+    vaccination_service.run_update_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (vaccination_update_initial_task)"
+    return result
+
+
+@celery.task(bind=True)
+def admin_database_drop_create_task(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: admin_database_drop_create_task [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_initial()
+    europe_service.run_update_initial()
+    vaccination_service.run_update_initial()
+    admin_service.run_admin_database_dump()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (admin_database_drop_create_task)"
+    return result
+
+
+############################################################################################
+#
+# WEB
+#
 class ApplicationPage:
 
     def __init__(self, default_title, default_subtitle=None, default_subtitle_info=None):
@@ -599,4 +710,4 @@ if __name__ == '__main__':
     europe_service = EuropeService(db)
     vaccination_service = VaccinationService(db)
     admin_service = AdminService(db)
-    app.run(debug=run_run_with_debug, port=5001)
+    app.run(debug=run_run_with_debug)
