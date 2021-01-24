@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-python server_mq.py
-celery -A server_mq.celery worker  -l INFO
+python app_mq.py
+celery -A app_mq.celery worker  -l INFO

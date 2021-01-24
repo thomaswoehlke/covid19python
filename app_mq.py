@@ -8,17 +8,12 @@ from org.woehlke.covid19.vaccination.vaccination_service import VaccinationServi
 from org.woehlke.covid19.admin.admin_service import AdminService
 
 
-who_service = WhoService(db)
-europe_service = EuropeService(db)
-vaccination_service = VaccinationService(db)
-admin_service = AdminService(db)
-#
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 celery.conf.result_backend = app.config['CELERY_BROKER_URL']
 celery.conf.broker_transport_options = {'visibility_timeout': 18000, 'max_retries': 5}
-celery.conf.worker_send_task_events = True
-celery.conf.task_send_sent_event = True
+celery.conf.worker_send_task_events = app.config['CELERY_CONF_WORKER_SEND_TASK_EVENTS']
+celery.conf.task_send_sent_event = app.config['CELERY_CONF_TASK_SEND_SENT_EVENT']
 
 
 @celery.task(bind=True)
@@ -113,5 +108,15 @@ def admin_database_drop_create_task(self):
     result = "OK (admin_database_drop_create_task)"
     return result
 
+
+if __name__ == '__main__':
+    db.create_all()
+    dictConfig(my_logging_config)
+    who_service = WhoService(db)
+    europe_service = EuropeService(db)
+    vaccination_service = VaccinationService(db)
+    admin_service = AdminService(db)
+    args = ['worker', '-l', 'INFO']
+    celery.start(args)
 
 

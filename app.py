@@ -1,7 +1,7 @@
 from logging.config import dictConfig
 from flask import render_template, redirect, url_for, flash
 from sqlalchemy.exc import OperationalError
-from database import db, app, my_logging_config
+from database import db, app, my_logging_config, run_run_with_debug
 from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
 from org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData
 from org.woehlke.covid19.who.who_service import WhoService
@@ -11,11 +11,11 @@ from org.woehlke.covid19.europe.europe_service import EuropeService
 from org.woehlke.covid19.vaccination.vaccination_service import VaccinationService
 from org.woehlke.covid19.vaccination.vaccination_model import VaccinationDataImportTable
 from org.woehlke.covid19.admin.admin_service import AdminService
-from server_mq import who_run_update_task, who_update_short_task, who_update_initial_task
-from server_mq import alive_message_task
-from server_mq import europe_update_initial_task
-from server_mq import vaccination_update_initial_task
-from server_mq import admin_database_drop_create_task
+from app_mq import who_run_update_task, who_update_short_task, who_update_initial_task
+from app_mq import alive_message_task
+from app_mq import europe_update_initial_task
+from app_mq import vaccination_update_initial_task
+from app_mq import admin_database_drop_create_task
 
 drop_and_create_data_again = True
 
@@ -592,4 +592,4 @@ if __name__ == '__main__':
     europe_service = EuropeService(db)
     vaccination_service = VaccinationService(db)
     admin_service = AdminService(db)
-    app.run(debug=True)
+    app.run(debug=run_run_with_debug)
