@@ -239,6 +239,90 @@ def url_who_date_reported(date_reported_id, page=1):
         page_info=page_info)
 
 
+@app.route('/who/date_reported/<int:date_reported_id>/cases_new/page/<int:page>')
+@app.route('/who/date_reported/<int:date_reported_id>/cases_new')
+def url_who_date_reported_cases_new(date_reported_id, page=1):
+    date_reported = WhoDateReported.get_by_id(date_reported_id)
+    page_info = ApplicationPage(
+        "Date Reported: " + date_reported.date_reported,
+        'WHO',
+        "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
+    )
+    try:
+        page_data = WhoGlobalData.get_data_for_day_order_by_cases_new(date_reported, page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'who/who_date_reported_one_cases_new.html',
+        who_date_reported=date_reported,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/who/date_reported/<int:date_reported_id>/cases_cumulative/page/<int:page>')
+@app.route('/who/date_reported/<int:date_reported_id>/cases_cumulative')
+def url_who_date_reported_cases_cumulative(date_reported_id, page=1):
+    date_reported = WhoDateReported.get_by_id(date_reported_id)
+    page_info = ApplicationPage(
+        "Date Reported: " + date_reported.date_reported,
+        'WHO',
+        "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
+    )
+    try:
+        page_data = WhoGlobalData.get_data_for_day_order_by_cases_cumulative(date_reported, page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'who/who_date_reported_one_cases_cumulative.html',
+        who_date_reported=date_reported,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/who/date_reported/<int:date_reported_id>/deaths_new/page/<int:page>')
+@app.route('/who/date_reported/<int:date_reported_id>/deaths_new')
+def url_who_date_reported_deaths_new(date_reported_id, page=1):
+    date_reported = WhoDateReported.get_by_id(date_reported_id)
+    page_info = ApplicationPage(
+        "Date Reported: " + date_reported.date_reported,
+        'WHO',
+        "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
+    )
+    try:
+        page_data = WhoGlobalData.get_data_for_day_order_by_deaths_new(date_reported, page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'who/who_date_reported_one_deaths_new.html',
+        who_date_reported=date_reported,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/who/date_reported/<int:date_reported_id>/deaths_cumulative/page/<int:page>')
+@app.route('/who/date_reported/<int:date_reported_id>/deaths_cumulative')
+def url_who_date_reported_deaths_cumulative(date_reported_id, page=1):
+    date_reported = WhoDateReported.get_by_id(date_reported_id)
+    page_info = ApplicationPage(
+        "Date Reported: " + date_reported.date_reported,
+        'WHO',
+        "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
+    )
+    try:
+        page_data = WhoGlobalData.get_data_for_day_order_by_deaths_cumulative(date_reported, page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'who/who_date_reported_one_deaths_cumulative.html',
+        who_date_reported=date_reported,
+        page_data=page_data,
+        page_info=page_info)
+
+
 @app.route('/who/region/all/page/<int:page>')
 @app.route('/who/region/all')
 def url_who_region_all(page=1):
