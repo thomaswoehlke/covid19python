@@ -389,6 +389,66 @@ def url_who_country(country_id, page=1):
         page_info=page_info)
 
 
+@app.route('/who/country/<int:country_id>/cases_new/page/<int:page>')
+@app.route('/who/country/<int:country_id>/cases_new')
+def url_who_country_cases_new(country_id, page=1):
+    who_country = WhoCountry.get_by_id(country_id)
+    page_data = WhoGlobalData.get_data_for_country_order_by_cases_new(who_country, page)
+    page_info = ApplicationPage(who_country.country,
+           "Country "+who_country.country_code,
+           "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
+    return render_template(
+        'who/who_country_one_cases_new.html',
+        who_country=who_country,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/who/country/<int:country_id>/cases_cumulative/page/<int:page>')
+@app.route('/who/country/<int:country_id>/cases_cumulative')
+def url_who_country_cases_cumulative(country_id, page=1):
+    who_country = WhoCountry.get_by_id(country_id)
+    page_data = WhoGlobalData.get_data_for_country_order_by_cases_cumulative(who_country, page)
+    page_info = ApplicationPage(who_country.country,
+           "Country "+who_country.country_code,
+           "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
+    return render_template(
+        'who/who_country_one_cases_cumulative.html',
+        who_country=who_country,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/who/country/<int:country_id>/deaths_new/page/<int:page>')
+@app.route('/who/country/<int:country_id>/deaths_new')
+def url_who_country_deaths_new(country_id, page=1):
+    who_country = WhoCountry.get_by_id(country_id)
+    page_data = WhoGlobalData.get_data_for_country_order_by_deaths_new(who_country, page)
+    page_info = ApplicationPage(who_country.country,
+           "Country "+who_country.country_code,
+           "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
+    return render_template(
+        'who/who_country_one_deaths_new.html',
+        who_country=who_country,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app.route('/who/country/<int:country_id>/deaths_cumulative/page/<int:page>')
+@app.route('/who/country/<int:country_id>/deaths_cumulative')
+def url_who_country_deaths_cumulative(country_id, page=1):
+    who_country = WhoCountry.get_by_id(country_id)
+    page_data = WhoGlobalData.get_data_for_country_order_by_deaths_cumulative(who_country, page)
+    page_info = ApplicationPage(who_country.country,
+           "Country "+who_country.country_code,
+           "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
+    return render_template(
+        'who/who_country_one_deaths_cumulative.html',
+        who_country=who_country,
+        page_data=page_data,
+        page_info=page_info)
+
+
 @app.route('/who/germany/page/<int:page>')
 @app.route('/who/germany')
 def url_who_germany(page=1):

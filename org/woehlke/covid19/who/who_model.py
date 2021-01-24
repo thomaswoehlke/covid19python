@@ -256,6 +256,50 @@ class WhoGlobalData(db.Model):
                 cls.deaths_cumulative.desc()
             ).paginate(page, per_page=ITEMS_PER_PAGE)
 
+    @classmethod
+    def get_data_for_country_order_by_cases_new(cls, who_country, page):
+        return db.session.query(cls).filter(
+            cls.country_id == who_country.id
+        ).populate_existing().options(
+            joinedload(cls.country).subqueryload(WhoCountry.region),
+            joinedload(cls.date_reported)
+        ).order_by(
+            cls.cases_new.desc()
+        ).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def get_data_for_country_order_by_cases_cumulative(cls, who_country, page):
+        return db.session.query(cls).filter(
+            cls.country_id == who_country.id
+        ).populate_existing().options(
+            joinedload(cls.country).subqueryload(WhoCountry.region),
+            joinedload(cls.date_reported)
+        ).order_by(
+            cls.cases_cumulative.desc()
+        ).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def get_data_for_country_order_by_deaths_new(cls, who_country, page):
+        return db.session.query(cls).filter(
+            cls.country_id == who_country.id
+        ).populate_existing().options(
+            joinedload(cls.country).subqueryload(WhoCountry.region),
+            joinedload(cls.date_reported)
+        ).order_by(
+            cls.deaths_new.desc()
+        ).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def get_data_for_country_order_by_deaths_cumulative(cls, who_country, page):
+        return db.session.query(cls).filter(
+            cls.country_id == who_country.id
+        ).populate_existing().options(
+            joinedload(cls.country).subqueryload(WhoCountry.region),
+            joinedload(cls.date_reported)
+        ).order_by(
+            cls.deaths_cumulative.desc()
+        ).paginate(page, per_page=ITEMS_PER_PAGE)
+
 
 class WhoGlobalDataImportTable(db.Model):
     __tablename__ = 'who_global_data_import'
