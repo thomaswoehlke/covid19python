@@ -23,10 +23,12 @@ from celery import Celery, states
 
 drop_and_create_data_again = True
 
-who_service = None
-europe_service = None
-vaccination_service = None
-admin_service = None
+dictConfig(my_logging_config)
+db.create_all()
+who_service = WhoService(db)
+europe_service = EuropeService(db)
+vaccination_service = VaccinationService(db)
+admin_service = AdminService(db)
 
 
 ############################################################################################
@@ -704,10 +706,4 @@ def url_admin_database_drop():
 #
 #################################################################################################################
 if __name__ == '__main__':
-    dictConfig(my_logging_config)
-    db.create_all()
-    who_service = WhoService(db)
-    europe_service = EuropeService(db)
-    vaccination_service = VaccinationService(db)
-    admin_service = AdminService(db)
     app.run(debug=run_run_with_debug)

@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+app = Flask('app')
 CORS(app)
 app.config.from_object("config")
 ITEMS_PER_PAGE = app.config['ITEMS_PER_PAGE']
