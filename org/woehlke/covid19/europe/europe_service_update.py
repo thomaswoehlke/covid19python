@@ -110,8 +110,8 @@ class EuropeServiceUpdate:
                 if i % 500 == 0:
                     app.logger.info(" update Europa initial ... " + str(i) + " rows")
                     db.session.commit()
-            db.session.commit()
-            app.logger.info(" update Europa initial ... " + str(i) + " rows total")
+        db.session.commit()
+        app.logger.info(" update Europa initial ... " + str(i) + " rows total")
         app.logger.info(" __update_data_initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self

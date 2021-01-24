@@ -27,11 +27,11 @@ class EuropeServiceImport:
         app.logger.info(" FILE:  " + self.__src_cvsfile_name)
         app.logger.info(" TABLE: europe_data_import")
         app.logger.info("------------------------------------------------------------")
+        k = 0
         try:
             EuropeDataImportTable.remove_all()
             with open(self.__src_cvsfile_name, newline='') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
-                k = 0
                 for row in file_reader:
                     o = EuropeDataImportTable(
                         date_rep=row['dateRep'],
@@ -47,10 +47,10 @@ class EuropeServiceImport:
                         =row['notification_rate_per_100000_population_14-days']
                     )
                     db.session.add(o)
+                    k = k + 1
                     if (k % 100) == 0:
                         db.session.commit()
                         app.logger.info("  import Europa  ...  " + str(k) + " rows")
-                    k = k + 1
             db.session.commit()
             app.logger.info("  import Europa  ...  " + str(k) + " rows total")
         except KeyError as error:
