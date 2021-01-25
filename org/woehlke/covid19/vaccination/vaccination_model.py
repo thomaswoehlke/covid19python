@@ -35,13 +35,31 @@ class VaccinationGermanyTimeline(db.Model):
 
     @classmethod
     def get_all_as_page(cls, page):
-        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
+        return db.session.query(cls)\
+            .order_by(cls.datum.desc())\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).all()
+        return db.session.query(cls)\
+            .order_by(cls.datum.desc())\
+            .all()
 
     @classmethod
     def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
+
+    @classmethod
+    def find_by_id(cls, other_id):
+        return db.session.query(cls) \
+            .filter(cls.id == other_id) \
+            .one_or_none()
+
+    @classmethod
+    def find_by_datum(cls, other_datum):
+        return db.session.query(cls) \
+            .filter(cls.datum == other_datum) \
+            .one_or_none()
 
