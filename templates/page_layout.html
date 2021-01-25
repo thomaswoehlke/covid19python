@@ -77,11 +77,14 @@
     </section>
 
     <main>
-        <div class="tw_padding">
+        <div class="container tw_padding">
             {% include 'fragment_flashed_messages.html' %}
         </div>
-        <div class="tw_padding">
+        <div class="container tw_padding">
             {% block main_container %}{% endblock %}
+        </div>
+        <div class="tw_padding">
+            {% block main_container_fluid %}{% endblock %}
         </div>
     </main>
 
