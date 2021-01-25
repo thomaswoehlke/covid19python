@@ -1,27 +1,53 @@
     <table class="table table-hover table-striped table-dark">
         <thead>
             <tr>
-                <th scope="col">date_reported</th>
-                <th scope="col">country_code</th>
-                <th scope="col">country</th>
-                <th scope="col">who_region</th>
-                <th scope="col">new_cases</th>
-                <th scope="col">cumulative_cases</th>
-                <th scope="col">new_deaths</th>
-                <th scope="col">cumulative_deaths</th>
+                <th scope="col">datum</th>
+                <th scope="col">dosen_kumulativ</th>
+                <th scope="col">dosen_differenz_zum_vortag</th>
+                <th scope="col">dosen_biontech_kumulativ</th>
+                <th scope="col">dosen_moderna_kumulativ</th>
+                <th scope="col">personen_erst_kumulativ</th>
+                <th scope="col">personen_voll_kumulativ</th>
+                <th scope="col">impf_quote_erst</th>
+                <th scope="col">impf_quote_voll</th>
+                <th scope="col">indikation_alter_dosen</th>
+                <th scope="col">indikation_beruf_dosen</th>
+                <th scope="col">indikation_medizinisch_dosen</th>
+                <th scope="col">indikation_pflegeheim_dosen</th>
+                <th scope="col">indikation_alter_erst</th>
+                <th scope="col">indikation_beruf_erst</th>
+                <th scope="col">indikation_medizinisch_erst</th>
+                <th scope="col">indikation_pflegeheim_erst</th>
+                <th scope="col">indikation_alter_voll</th>
+                <th scope="col">indikation_beruf_voll</th>
+                <th scope="col">indikation_medizinisch_voll</th>
+                <th scope="col">indikation_pflegeheim_voll</th>
             </tr>
         </thead>
         <tbody>
         {% for vaccination_germany_timeline in page_data.items %}
             <tr>
-                <td>{{ vaccination_germany_timeline.date_reported }}</td>
-                <td>{{ vaccination_germany_timeline.country_code }}</td>
-                <td>{{ vaccination_germany_timeline.country }}</td>
-                <td>{{ vaccination_germany_timeline.who_region }}</td>
-                <td>{{ vaccination_germany_timeline.new_cases }}</td>
-                <td>{{ vaccination_germany_timeline.cumulative_cases }}</td>
-                <td>{{ vaccination_germany_timeline.new_deaths }}</td>
-                <td>{{ vaccination_germany_timeline.cumulative_deaths }}</td>
+                <td>{{ vaccination_germany_timeline.datum }}</td>
+                <td>{{ vaccination_germany_timeline.dosen_kumulativ }}</td>
+                <td>{{ vaccination_germany_timeline.dosen_differenz_zum_vortag }}</td>
+                <td>{{ vaccination_germany_timeline.dosen_biontech_kumulativ }}</td>
+                <td>{{ vaccination_germany_timeline.dosen_moderna_kumulativ }}</td>
+                <td>{{ vaccination_germany_timeline.personen_erst_kumulativ }}</td>
+                <td>{{ vaccination_germany_timeline.personen_voll_kumulativ }}</td>
+                <td>{{ vaccination_germany_timeline.impf_quote_erst }}</td>
+                <td>{{ vaccination_germany_timeline.impf_quote_voll }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_alter_dosen }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_beruf_dosen }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_medizinisch_dosen }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_pflegeheim_dosen }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_alter_erst }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_beruf_erst }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_medizinisch_erst }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_pflegeheim_erst }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_alter_voll }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_beruf_voll }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_medizinisch_voll }}</td>
+                <td>{{ vaccination_germany_timeline.indikation_pflegeheim_voll }}</td>
             </tr>
         {% endfor %}
         </tbody>

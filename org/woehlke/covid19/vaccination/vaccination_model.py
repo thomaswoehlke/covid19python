@@ -26,7 +26,6 @@ class VaccinationGermanyTimeline(db.Model):
     indikation_beruf_voll = db.Column(db.Integer, nullable=False)
     indikation_medizinisch_voll = db.Column(db.Integer, nullable=False)
     indikation_pflegeheim_voll = db.Column(db.Integer, nullable=False)
-    row_imported = db.Column(db.Boolean, nullable=False, default=False)
 
     @classmethod
     def remove_all(cls):

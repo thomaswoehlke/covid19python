@@ -55,8 +55,7 @@ class VaccinationServiceImport:
                         indikation_alter_voll=int(row['indikation_alter_voll']),
                         indikation_beruf_voll=int(row['indikation_beruf_voll']),
                         indikation_medizinisch_voll=int(row['indikation_medizinisch_voll']),
-                        indikation_pflegeheim_voll=int(row['indikation_pflegeheim_voll']),
-                        row_imported=False
+                        indikation_pflegeheim_voll=int(row['indikation_pflegeheim_voll'])
                     )
                     db.session.add(o)
                     k += 1
