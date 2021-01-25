@@ -45,17 +45,18 @@ class WhoServiceUpdate:
         app.logger.info(" update who_region [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
+        #TODO: Queries to Model-Classes
         for i_who_region, in db.session.query(WhoGlobalDataImportTable.who_region).distinct():
             c = db.session.query(WhoRegion).filter(WhoRegion.region == i_who_region).count()
             if c == 0:
                 o = WhoRegion(region=i_who_region)
                 db.session.add(o)
-                app.logger.info(i_who_region +" added NEW ")
+                app.logger.info(i_who_region + " added NEW ")
             else:
-                app.logger.info(i_who_region +" not added ")
+                app.logger.info(i_who_region + " not added ")
+            i += 1
             if i % 10 == 0:
                 db.session.commit()
-            i += 1
         db.session.commit()
         app.logger.info("")
         app.logger.info(" update who_region [done]")
@@ -92,10 +93,10 @@ class WhoServiceUpdate:
                 my_country = WhoCountry.find_by_country_code_and_country_and_who_region_id(
                     i_country_code, i_country, my_region
                 )
-                output += " added NEW "
+                output2 = " added NEW "
             else:
-                output += " not added "
-            output += i_country_code + " id=" + str(my_country.id)
+                output2 = " not added "
+            output += i_country_code + " id=" + str(my_country.id) + output2
             app.logger.info(output)
         db.session.commit()
         app.logger.info("")
@@ -107,11 +108,8 @@ class WhoServiceUpdate:
         app.logger.info(" update WHO [begin]")
         app.logger.info("------------------------------------------------------------")
         dates_reported = WhoDateReported.get_all_as_dict()
-        regions = WhoRegion.get_all_as_dict()
+        #regions = WhoRegion.get_all_as_dict()
         countries = WhoCountry.get_all_as_dict()
-
-        #
-        #
         i = 0
         result = WhoGlobalDataImportTable.get_all()
         for result_item in result:
@@ -130,12 +128,12 @@ class WhoServiceUpdate:
                     country=my_country
                 )
                 db.session.add(o)
+            i += 1
             if i % 2000 == 0:
                 app.logger.info(" update WHO ... "+str(i)+" rows")
                 db.session.commit()
-            i += 1
         db.session.commit()
-        app.logger.info(" update WHO :  "+str(i)+" total rows")
+        app.logger.info(" update WHO :  "+str(i)+" rows total")
         app.logger.info(" update WHO [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -165,7 +163,7 @@ class WhoServiceUpdate:
                     app.logger.info(" update WHO short ... "+str(i)+" rows")
                     db.session.commit()
             db.session.commit()
-        app.logger.info(" update WHO short :  "+str(i)+" total rows")
+        app.logger.info(" update WHO short :  "+str(i)+" rows total")
         app.logger.info(" update WHO short [done]")
         app.logger.info("------------------------------------------------------------")
         return self

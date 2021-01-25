@@ -52,11 +52,12 @@ class WhoServiceImport:
                         row_imported=False
                     )
                     db.session.add(o)
+                    k += 1
                     if (k % 2000) == 0:
                         db.session.commit()
                         app.logger.info(" import WHO  ... " + str(k) + " rows")
-                    k = k + 1
-                db.session.commit()
+            db.session.commit()
+            app.logger.info(" import WHO  ... " + str(k) + " rows total")
         except KeyError as error:
             app.logger.warning("WARN: import WHO [begin]")
             app.logger.warning(":::"+str(error)+":::")
