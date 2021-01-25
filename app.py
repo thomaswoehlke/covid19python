@@ -42,105 +42,12 @@ celery.conf.worker_send_task_events = app.config['CELERY_CONF_WORKER_SEND_TASK_E
 celery.conf.task_send_sent_event = app.config['CELERY_CONF_TASK_SEND_SENT_EVENT']
 
 
-@celery.task(bind=True)
-def who_run_update_task(self, import_file=True):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: who_run_update_task [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_update(import_file)
-    self.update_state(state=states.SUCCESS)
-    result = "OK (who_run_update_task)"
-    return result
-
-
-@celery.task(bind=True)
-def who_update_short_task(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: who_update_short_task [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_update_short()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (who_update_short_task)"
-    return result
-
-
-@celery.task(bind=True)
-def who_update_initial_task(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: who_update_initial_task [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_update_initial()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (who_update_initial_task)"
-    return result
-
-
-@celery.task(bind=True)
-def alive_message_task(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: Alive Message [OK] ")
-    logger.info("------------------------------------------------------------")
-    self.update_state(state=states.SUCCESS)
-    result = "OK"
-    return result
-
-
-@celery.task(bind=True)
-def europe_update_initial_task(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: europe_update_task [OK] ")
-    logger.info("------------------------------------------------------------")
-    europe_service.run_update_initial()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (europe_update_task)"
-    return result
-
-
-@celery.task(bind=True)
-def vaccination_update_initial_task(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: vaccination_update_initial_task [OK] ")
-    logger.info("------------------------------------------------------------")
-    vaccination_service.run_update_initial()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (vaccination_update_initial_task)"
-    return result
-
-
-@celery.task(bind=True)
-def admin_database_drop_create_task(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: admin_database_drop_create_task [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_update_initial()
-    europe_service.run_update_initial()
-    vaccination_service.run_update_initial()
-    admin_service.run_admin_database_dump()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (admin_database_drop_create_task)"
-    return result
-
-
 ############################################################################################
 #
 # WEB
 #
 @app.route('/home')
-def home():
+def url_home():
     page_info = ApplicationPage('Home', "Covid19 Data")
     return render_template(
         'page_home.html',
@@ -149,14 +56,54 @@ def home():
 
 @app.route('/')
 def url_root():
-    return redirect(url_for('home'))
-
+    return redirect(url_for('url_home'))
 
 ##################################################################################################################
 #
 # WHO
 #
 ##################################################################################################################
+
+
+@celery.task(bind=True)
+def task_who_run_update(self, import_file=True):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_run_update [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update(import_file)
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_run_update)"
+    return result
+
+
+@celery.task(bind=True)
+def task_who_update_short(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_update_short [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_short()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_update_short)"
+    return result
+
+
+@celery.task(bind=True)
+def task_who_update_initial(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_update_initial [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_update_initial)"
+    return result
+
+
 @app.route('/who/info')
 def url_who_info():
     page_info = ApplicationPage('WHO', "Info")
@@ -451,29 +398,29 @@ def url_who_germany(page=1):
 def url_who_update_run():
     app.logger.info("url_who_update_run [start]")
     who_service.who_service_download.download_file()
-    who_run_update_task.apply_async()
+    task_who_run_update.apply_async()
     flash("who_service.run_update started")
     flash(message="long running background task started", category="warning")
     app.logger.info("url_who_update_run [done]")
-    return redirect(url_for('home'))
+    return redirect(url_for('url_home'))
 
 
 @app.route('/who/update/short')
 def url_who_update_short_run():
     who_service.who_service_download.download_file()
-    who_update_short_task.apply_async()
+    task_who_update_short.apply_async()
     flash("who_service.run_update_short started")
     flash(message="long running background task started", category="warning")
-    return redirect(url_for('home'))
+    return redirect(url_for('url_home'))
 
 
 @app.route('/who/update/initial')
 def url_who_update_initial_run():
     who_service.who_service_download.download_file()
-    who_update_initial_task.apply_async()
+    task_who_update_initial.apply_async()
     flash("who_service.run_update_short started")
     flash(message="long running background task started", category="warning")
-    return redirect(url_for('home'))
+    return redirect(url_for('url_home'))
 
 
 ##################################################################################################################
@@ -481,6 +428,34 @@ def url_who_update_initial_run():
 # Europe
 #
 ##################################################################################################################
+
+
+@celery.task(bind=True)
+def task_europe_update_initial(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: europe_update_task [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.run_update_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_initial)"
+    return result
+
+
+@celery.task(bind=True)
+def task_europe_update_short(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_short [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.run_update_short()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_short)"
+    return result
+
+
 @app.route('/europe/info')
 def url_europe_info():
     page_info = ApplicationPage('Europe', "Info")
@@ -502,9 +477,9 @@ def url_europe_tasks():
 @app.route('/europe/update/initial')
 def europe_update_data():
     europe_service.download()
-    europe_update_initial_task.apply_async()
+    task_europe_update_initial.apply_async()
     flash("europe_service.run_update started")
-    return redirect(url_for('home'))
+    return redirect(url_for('url_home'))
 
 
 @app.route('/europe/imported/page/<int:page>')
@@ -636,6 +611,21 @@ def url_europe_country_germany(page=1):
 # Vaccination
 #
 ##################################################################################################################
+
+
+@celery.task(bind=True)
+def task_vaccination_update_initial(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_vaccination_update_initial [OK] ")
+    logger.info("------------------------------------------------------------")
+    vaccination_service.run_update_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_vaccination_update_initial)"
+    return result
+
+
 @app.route('/vaccination/info')
 def url_vaccination_info():
     page_info = ApplicationPage('Vaccination', "Info")
@@ -655,7 +645,7 @@ def url_vaccination_tasks():
 @app.route('/vaccination/update/initial')
 def url_vaccination_update_data():
     vaccination_service.run_download()
-    vaccination_update_initial_task.apply_async()
+    task_vaccination_update_initial.apply_async()
     flash("vaccination_service.run_update started")
     return redirect(url_for('url_vaccination_tasks'))
 
@@ -761,6 +751,36 @@ def url_nrw_bochum(page=1):
 # Admin
 #
 #################################################################################################################
+
+
+@celery.task(bind=True)
+def task_admin_alive_message(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_admin_alive_message [OK] ")
+    logger.info("------------------------------------------------------------")
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_admin_alive_message)"
+    return result
+
+
+@celery.task(bind=True)
+def task_admin_database_drop_create(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_admin_database_drop_create [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_initial()
+    europe_service.run_update_initial()
+    vaccination_service.run_update_initial()
+    admin_service.run_admin_database_dump()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_admin_database_drop_create)"
+    return result
+
+
 @app.route('/admin/tasks')
 def url_admin_tasks():
     page_info = ApplicationPage('Admin', "Tasks")
@@ -780,7 +800,7 @@ def url_admin_info():
 @app.route('/admin/alive_message')
 def url_alive_message_start():
     app.logger.info("url_alive_message_start [start]")
-    alive_message_task.apply_async()
+    task_admin_alive_message.apply_async()
     flash("alive_message_task started")
     app.logger.info("url_alive_message_start [done]")
     return redirect(url_for('url_admin_tasks'))
@@ -816,8 +836,8 @@ def url_admin_database_drop():
         who_service.run_download()
         flash("vaccination_service.run_download started")
         vaccination_service.run_download()
-        flash("admin_database_drop_create_task async started")
-        admin_database_drop_create_task.apply_async()
+        flash("task_admin_database_drop_create async started")
+        task_admin_database_drop_create.apply_async()
     app.logger.info("url_admin_database_drop [done]")
     return redirect(url_for('url_admin_tasks'))
 
