@@ -18,7 +18,7 @@ class CommonService:
         self.vaccination_service_import = VaccinationServiceImport(database)
         self.vaccination_service_update = VaccinationServiceUpdate(database)
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Vaccination Service [ready]")
+        app.logger.info(" Common Service [ready]")
 
     def add_new_datum(self, date_string):
         return self

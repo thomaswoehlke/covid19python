@@ -6,6 +6,8 @@ from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
 from org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
 from org.woehlke.covid19.europe.europe_model import EuropeCountry, EuropeData
+from org.woehlke.covid19.common.common_model import CommonDatum
+from org.woehlke.covid19.common.common_service import CommonService
 from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_service import EuropeService
 from org.woehlke.covid19.vaccination.vaccination_service import VaccinationService
@@ -25,6 +27,7 @@ drop_and_create_data_again = True
 
 dictConfig(my_logging_config)
 db.create_all()
+common_service = CommonService(db)
 who_service = WhoService(db)
 europe_service = EuropeService(db)
 vaccination_service = VaccinationService(db)
