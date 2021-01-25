@@ -2,7 +2,7 @@
 <div class="table-responsive">
     <table class="table table-hover table-striped table-sm table-bordered">
         <thead>
-        {% include 'vaccination/fragment_vaccination_timeline_germany_table_head.html' %}
+        {% include 'vaccination/fragments/fragment_vaccination_timeline_germany_table_head.html' %}
         </thead>
         <tbody>
         {% for vaccination_germany_timeline in page_data.items %}
@@ -40,7 +40,7 @@
         {% endfor %}
         </tbody>
         <tfoot>
-        {% include 'vaccination/fragment_vaccination_timeline_germany_table_head.html' %}
+        {% include 'vaccination/fragments/fragment_vaccination_timeline_germany_table_head.html' %}
         </tfoot>
     </table>
 </div>
