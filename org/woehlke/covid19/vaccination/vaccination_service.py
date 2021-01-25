@@ -47,9 +47,10 @@ class VaccinationService:
     def run_update_short(self, import_file=True):
         app.logger.info(" run update short [begin]")
         app.logger.info("------------------------------------------------------------")
-        if import_file:
-            self.vaccination_service_import.import_file()
-        self.vaccination_service_update.update_db_short()
+        app.logger.info(" ...")
+        #if import_file:
+        #    self.vaccination_service_import.import_file()
+        #self.vaccination_service_update.update_db_short()
         app.logger.info("")
         app.logger.info(" run update short [done]")
         app.logger.info("------------------------------------------------------------")

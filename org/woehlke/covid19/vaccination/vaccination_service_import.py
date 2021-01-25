@@ -36,9 +36,9 @@ class VaccinationServiceImport:
             keyDate_reported = 'ï»¿Date_reported'
         try:
             VaccinationDataImportTable.remove_all()
+            k = 0
             with open(self.__src_cvsfile_name, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter='\t', quotechar='"')
-                k = 0
                 for row in file_reader:
                     o = VaccinationDataImportTable(
                         datum=row['date'],
@@ -65,11 +65,12 @@ class VaccinationServiceImport:
                         row_imported=False
                     )
                     db.session.add(o)
-                    if (k % 2000) == 0:
+                    k += 1
+                    if (k % 100) == 0:
                         db.session.commit()
                         app.logger.info(" import Vaccination  ... " + str(k) + " rows")
-                    k = k + 1
-                db.session.commit()
+            db.session.commit()
+            app.logger.info(" import Vaccination  ... " + str(k) + " rows total")
         except KeyError as error:
             app.logger.warning("WARN: import Vaccination [begin]")
             app.logger.warning(":::"+str(error)+":::")
