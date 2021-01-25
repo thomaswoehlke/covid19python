@@ -3,7 +3,7 @@ import sys
 import csv
 import psycopg2
 from database import db, app
-from org.woehlke.covid19.vaccination.vaccination_model import VaccinationDataImportTable
+from org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
 
 
 vaccination_service_import = None
@@ -35,12 +35,12 @@ class VaccinationServiceImport:
         else:
             keyDate_reported = 'ï»¿Date_reported'
         try:
-            VaccinationDataImportTable.remove_all()
+            VaccinationGermanyTimeline.remove_all()
             k = 0
             with open(self.__src_cvsfile_name, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter='\t', quotechar='"')
                 for row in file_reader:
-                    o = VaccinationDataImportTable(
+                    o = VaccinationGermanyTimeline(
                         datum=row['date'],
                         dosen_kumulativ=int(row['dosen_kumulativ']),
                         dosen_differenz_zum_vortag=int(row['dosen_differenz_zum_vortag']),
