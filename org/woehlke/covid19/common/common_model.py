@@ -19,7 +19,7 @@ class CommonDatum(db.Model):
     week_of_year = db.Column(db.Integer, nullable=True)
 
     @classmethod
-    def create_rw_datum_factory(cls, date_string):
+    def create_new_datum_factory(cls, date_string):
         # check date_string syntax
         # load if already exists
         old = db.session.query(cls).filter(cls.date_string == date_string).one_or_none()
