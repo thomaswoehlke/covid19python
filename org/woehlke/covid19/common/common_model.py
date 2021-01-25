@@ -9,6 +9,7 @@ class CommonDatum(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     date_string = db.Column(db.String(255), nullable=False, unique=True, primary_key=True)
+    datum = db.Column(db.Date, nullable=False, unique=True, primary_key=True )
     year_week = db.Column(db.String(255), nullable=True, unique=True)
     year_day_of_year = db.Column(db.String(255), nullable=True, unique=True)
     year = db.Column(db.Integer, nullable=True)
@@ -27,6 +28,7 @@ class CommonDatum(db.Model):
             o = CommonDatum(date_string=date_string)
             # put year
             # put month
+            # put datum
             # day_of_month
             # compute day_of_year
             # compute week_of_year
