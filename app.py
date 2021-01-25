@@ -575,7 +575,7 @@ def url_europe_country_all(page=1):
     page_info = ApplicationPage('Europe', "country")
     page_data = EuropeCountry.get_all_as_page(page)
     return render_template(
-        'europe/europe_country_all.html',
+        'europe/country/europe_country_all.html',
         page_data=page_data,
         page_info=page_info)
 
