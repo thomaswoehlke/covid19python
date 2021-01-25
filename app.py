@@ -7,6 +7,7 @@ from org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateRepo
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
 from org.woehlke.covid19.europe.europe_model import EuropeCountry, EuropeData
 from org.woehlke.covid19.common.common_model import CommonDatum
+from org.woehlke.covid19.common.common_model_transient import ApplicationPage
 from org.woehlke.covid19.common.common_service import CommonService
 from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_service import EuropeService
@@ -14,11 +15,6 @@ from org.woehlke.covid19.vaccination.vaccination_service import VaccinationServi
 from org.woehlke.covid19.admin.admin_service import AdminService
 from org.woehlke.covid19.vaccination.vaccination_model import VaccinationDataImportTable
 
-#from covid19python_mq import who_run_update_task, who_update_short_task, who_update_initial_task
-#from covid19python_mq import alive_message_task
-#from covid19python_mq import europe_update_initial_task
-#from covid19python_mq import vaccination_update_initial_task
-#from covid19python_mq import admin_database_drop_create_task
 
 from celery.utils.log import get_task_logger
 from celery import Celery, states
@@ -143,20 +139,6 @@ def admin_database_drop_create_task(self):
 #
 # WEB
 #
-class ApplicationPage:
-
-    def __init__(self, default_title, default_subtitle=None, default_subtitle_info=None):
-        self.title = default_title
-        self.subtitle = default_subtitle
-        self.subtitle_info = default_subtitle_info
-        if self.subtitle is None:
-            self.subtitle = """This is a simple hero unit, a simple jumbotron-style component 
-                            for calling extra attention to featured content or information."""
-        if self.subtitle_info is None:
-            self.subtitle_info = """It uses utility classes for typography and spacing 
-                    to space content out within the larger container."""
-
-
 @app.route('/home')
 def home():
     page_info = ApplicationPage('Home', "Covid19 Data")

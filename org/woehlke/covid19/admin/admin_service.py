@@ -38,7 +38,7 @@ class AdminService:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def run_admin_database_drop(self):
+    def run_admin_database_drop(self, drop_and_create_data_again):
         app.logger.info(" run database drop and create [begin]")
         app.logger.info("------------------------------------------------------------")
         self.__database.drop_all()
