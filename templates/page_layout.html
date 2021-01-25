@@ -48,10 +48,10 @@
 <body>
 
     <header>
-        <div class="container tw_padding">
+        <div class="container-fluid tw_padding">
             {% include 'fragment_navbar.html' %}
         </div>
-        <div class="container tw_padding">
+        <div class="container-fluid tw_padding">
             {% block navigation_jumbotron %}
                 <div class="jumbotron">
                     <h1 class="display-4">{{ page_info.title }}</h1>
@@ -61,19 +61,22 @@
                 </div>
             {% endblock %}
         </div>
-        <div class="container tw_padding">
-            {% include 'fragment_navtabs.html' %}
-        </div>
-        <div class="container">
-            {% block navigation_navtabs %}{% endblock %}
-        </div>
-        <div class="container">
-            {% block navigation_breadcrumb %}{% endblock %}
-        </div>
     </header>
 
+    <section>
+        <div class="container-fluid tw_padding">
+            {% include 'fragment_navtabs.html' %}
+        </div>
+        <div class="container-fluid">
+            {% block navigation_navtabs %}{% endblock %}
+        </div>
+        <div class="container-fluid">
+            {% block navigation_breadcrumb %}{% endblock %}
+        </div>
+    </section>
+
     <main>
-        <div class="container tw_padding">
+        <div class="container-fluid tw_padding">
             {% include 'fragment_flashed_messages.html' %}
             <p></p>
             {% block main_container %}{% endblock %}
@@ -81,7 +84,7 @@
     </main>
 
     <section>
-        <div class="container">
+        <div class="container-fluid">
             {% for error in errors %}
                 <h4>{{ error }}</h4>
             {% endfor %}
@@ -89,7 +92,9 @@
     </section>
 
     <footer>
+        <div class="container-fluid">
         {% block footer_container %}{% endblock %}
+        </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
