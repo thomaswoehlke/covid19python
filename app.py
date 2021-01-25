@@ -13,7 +13,7 @@ from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_service import EuropeService
 from org.woehlke.covid19.vaccination.vaccination_service import VaccinationService
 from org.woehlke.covid19.admin.admin_service import AdminService
-from org.woehlke.covid19.vaccination.vaccination_model import VaccinationDataImportTable
+from org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
 
 
 from celery.utils.log import get_task_logger
@@ -645,6 +645,7 @@ def url_vaccination_tasks():
 @app.route('/vaccination/update/initial')
 def url_vaccination_update_data():
     vaccination_service.run_download()
+    flash("vaccination_service.run_download done")
     task_vaccination_update_initial.apply_async()
     flash("vaccination_service.run_update started")
     return redirect(url_for('url_vaccination_tasks'))
@@ -652,11 +653,11 @@ def url_vaccination_update_data():
 
 @app.route('/vaccination/imported/page/<int:page>')
 @app.route('/vaccination/imported')
-def url_vaccination_data_imported(page=1):
-    page_info = ApplicationPage('Vaccination', "Last Import")
-    page_data = VaccinationDataImportTable.get_all_as_page(page)
+def url_vaccination_germany_timeline(page=1):
+    page_info = ApplicationPage('Vaccination', "Germany Timeline")
+    page_data = VaccinationGermanyTimeline.get_all_as_page(page)
     return render_template(
-        'vaccination/vaccination_imported.html',
+        'vaccination/vaccination_germany_timeline.html',
         page_data=page_data,
         page_info=page_info)
 

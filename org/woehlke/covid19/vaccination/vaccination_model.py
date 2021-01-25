@@ -1,7 +1,4 @@
-from flask_sqlalchemy import Pagination
-from sqlalchemy import and_, func
 from database import db, ITEMS_PER_PAGE
-from sqlalchemy.orm import joinedload, raiseload
 
 
 class VaccinationGermanyTimeline(db.Model):
@@ -49,31 +46,3 @@ class VaccinationGermanyTimeline(db.Model):
     def get_by_id(cls, other_id):
         return db.session.query(cls).filter(cls.id == other_id).one()
 
-    @classmethod
-    def get_new_dates_as_array(cls):
-        sql_query = """
-            select
-                date_reported
-            from
-                vaccination_data_import
-            where
-                date_reported
-            not in (
-            select
-                distinct
-                    vaccination_date_reported.date_reported
-                from
-                    vaccination_global_data
-                left join
-                    vaccination_date_reported
-                on
-                    vaccination_global_data.date_reported_id=vaccination_date_reported.id
-            )
-            group by
-                vaccination_data_import.date_reported
-            order by date_reported desc
-            """
-        new_dates = []
-        for item in db.session.execute(sql_query):
-            new_dates.append(item['date_reported'])
-        return new_dates

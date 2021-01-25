@@ -1,5 +1,4 @@
 import os
-import sys
 import csv
 import psycopg2
 from database import db, app
@@ -29,11 +28,6 @@ class VaccinationServiceImport:
         app.logger.info(" FILE:  "+self.__src_cvsfile_name)
         app.logger.info(" TABLE: who_global_data_import")
         app.logger.info("------------------------------------------------------------")
-        row = None
-        if sys.platform == 'linux':
-            keyDate_reported ='\ufeffDate_reported'
-        else:
-            keyDate_reported = 'ï»¿Date_reported'
         try:
             VaccinationGermanyTimeline.remove_all()
             k = 0
