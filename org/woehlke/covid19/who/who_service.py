@@ -66,11 +66,3 @@ class WhoService:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def run_update_countries(self):
-        app.logger.info(" run update countries [begin]")
-        app.logger.info("------------------------------------------------------------")
-        self.who_service_update.update_who_country()
-        app.logger.info("")
-        app.logger.info(" run update countries [done]")
-        app.logger.info("------------------------------------------------------------")
-        return self

@@ -491,13 +491,6 @@ def url_who_update_initial_run():
     return redirect(url_for('home'))
 
 
-@app.route('/test/who/update/countries')
-def url_update_data_countries():
-    who_service.run_update_countries()
-    flash("who_service.run_update_countries started")
-    return redirect(url_for('home'))
-
-
 ##################################################################################################################
 #
 # Europe
