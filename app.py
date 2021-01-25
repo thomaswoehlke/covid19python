@@ -651,13 +651,13 @@ def url_vaccination_update_data():
     return redirect(url_for('url_vaccination_tasks'))
 
 
-@app.route('/vaccination/imported/page/<int:page>')
-@app.route('/vaccination/imported')
-def url_vaccination_germany_timeline(page=1):
+@app.route('/vaccination/timeline/germany/page/<int:page>')
+@app.route('/vaccination/timeline/germany')
+def url_vaccination_timeline_germany(page=1):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
     page_data = VaccinationGermanyTimeline.get_all_as_page(page)
     return render_template(
-        'vaccination/vaccination_germany_timeline.html',
+        'vaccination/vaccination_timeline_germany.html',
         page_data=page_data,
         page_info=page_info)
 
