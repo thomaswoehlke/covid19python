@@ -145,7 +145,7 @@ def url_who_date_reported_all(page=1):
         flash("No regions in the database.")
         page_data = None
     return render_template(
-        'who/who_date_reported_all.html',
+        'who/date_reported/who_date_reported_all.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -165,7 +165,7 @@ def url_who_date_reported(date_reported_id, page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'who/who_date_reported_one.html',
+        'who/date_reported/who_date_reported_one.html',
         who_date_reported=date_reported,
         page_data=page_data,
         page_info=page_info)
@@ -186,7 +186,7 @@ def url_who_date_reported_cases_new(date_reported_id, page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'who/who_date_reported_one_cases_new.html',
+        'who/date_reported/who_date_reported_one_cases_new.html',
         who_date_reported=date_reported,
         page_data=page_data,
         page_info=page_info)
@@ -207,7 +207,7 @@ def url_who_date_reported_cases_cumulative(date_reported_id, page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'who/who_date_reported_one_cases_cumulative.html',
+        'who/date_reported/who_date_reported_one_cases_cumulative.html',
         who_date_reported=date_reported,
         page_data=page_data,
         page_info=page_info)
@@ -228,7 +228,7 @@ def url_who_date_reported_deaths_new(date_reported_id, page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'who/who_date_reported_one_deaths_new.html',
+        'who/date_reported/who_date_reported_one_deaths_new.html',
         who_date_reported=date_reported,
         page_data=page_data,
         page_info=page_info)
@@ -249,7 +249,7 @@ def url_who_date_reported_deaths_cumulative(date_reported_id, page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'who/who_date_reported_one_deaths_cumulative.html',
+        'who/date_reported/who_date_reported_one_deaths_cumulative.html',
         who_date_reported=date_reported,
         page_data=page_data,
         page_info=page_info)
@@ -265,7 +265,7 @@ def url_who_region_all(page=1):
         flash("No regions in the database.")
         page_data = None
     return render_template(
-        'who/who_region_all.html',
+        'who/region/who_region_all.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -285,7 +285,7 @@ def url_who_region(region_id, page=1):
         flash("No countries of that region in the database.")
         page_data = None
     return render_template(
-        'who/who_region_one.html',
+        'who/region/who_region_one.html',
         who_region=who_region,
         page_data=page_data,
         page_info=page_info)
@@ -301,7 +301,7 @@ def url_who_country_all(page=1):
         flash("No regions in the database.")
         page_data = None
     return render_template(
-        'who/who_country_all.html',
+        'who/country/who_country_all.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -315,7 +315,7 @@ def url_who_country(country_id, page=1):
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'who/who_country_one.html',
+        'who/country/who_country_one.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)
@@ -330,7 +330,7 @@ def url_who_country_cases_new(country_id, page=1):
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'who/who_country_one_cases_new.html',
+        'who/country/who_country_one_cases_new.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)
@@ -345,7 +345,7 @@ def url_who_country_cases_cumulative(country_id, page=1):
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'who/who_country_one_cases_cumulative.html',
+        'who/country/who_country_one_cases_cumulative.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)
@@ -360,7 +360,7 @@ def url_who_country_deaths_new(country_id, page=1):
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'who/who_country_one_deaths_new.html',
+        'who/country/who_country_one_deaths_new.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)
@@ -375,7 +375,7 @@ def url_who_country_deaths_cumulative(country_id, page=1):
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'who/who_country_one_deaths_cumulative.html',
+        'who/country/who_country_one_deaths_cumulative.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)
@@ -388,7 +388,7 @@ def url_who_germany(page=1):
     who_country_germany = WhoCountry.get_germany()
     page_data = WhoGlobalData.get_data_for_country(who_country_germany, page)
     return render_template(
-        'who/who_country_germany.html',
+        'who/country/who_country_germany.html',
         who_country=who_country_germany,
         page_data=page_data,
         page_info=page_info)
