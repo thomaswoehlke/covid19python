@@ -3,6 +3,7 @@ import csv
 import psycopg2
 from database import db, app
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
+from org.woehlke.covid19.europe.europe_service_download import EuropeServiceDownloadConfig
 
 europe_service_import = None
 
@@ -13,24 +14,21 @@ class EuropeServiceImport:
         app.logger.info(" Europe Service Import [init]")
         app.logger.info("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
-        self.__cvsfile_name = "ecdc_europa_data.csv"
-        self.__src_cvsfile_name = "data" + os.sep + self.__cvsfile_name
-        self.__src_cvsfile_tmp_name = "data" + os.sep + "tmp_" + self.__cvsfile_name
-        self.__url_src_data = "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
+        self.cfg = EuropeServiceDownloadConfig()
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Europe Service Import [ready] ")
 
     def import_datafile_to_db(self):
+        src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info(" import Europa [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  " + self.__src_cvsfile_name)
+        app.logger.info(" FILE:  " + src_cvsfile_name)
         app.logger.info(" TABLE: europe_data_import")
         app.logger.info("------------------------------------------------------------")
         k = 0
         try:
             EuropeDataImportTable.remove_all()
-            with open(self.__src_cvsfile_name, newline='') as csv_file:
+            with open(src_cvsfile_name, newline='') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 for row in file_reader:
                     o = EuropeDataImportTable(

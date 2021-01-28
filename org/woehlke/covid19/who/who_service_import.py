@@ -4,7 +4,7 @@ import csv
 import psycopg2
 from database import db, app
 from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
-
+from org.woehlke.covid19.who.who_service_download import WhoServiceDownloadConfig
 
 who_service_import = None
 
@@ -15,18 +15,15 @@ class WhoServiceImport:
         app.logger.info(" WHO Service Import [init]")
         app.logger.info("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
-        self.__cvsfile_name = "WHO-COVID-19-global-data.csv"
-        self.__src_cvsfile_name = "data" + os.sep + self.__cvsfile_name
-        self.__src_cvsfile_tmp_name = "data" + os.sep + "tmp_" + self.__cvsfile_name
-        self.__url_src_data = "https://covid19.who.int/" + self.__cvsfile_name
+        self.cfg = WhoServiceDownloadConfig()
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" WHO Service Import [ready]")
 
     def import_file(self):
+        src_cvsfile_name = self.cfg.data_path + os.sep + self.cfg.cvsfile_name
         app.logger.info(" import WHO [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  "+self.__src_cvsfile_name)
+        app.logger.info(" FILE:  "+src_cvsfile_name)
         app.logger.info(" TABLE: who_global_data_import")
         app.logger.info("------------------------------------------------------------")
         row = None
@@ -36,7 +33,7 @@ class WhoServiceImport:
             keyDate_reported = 'ï»¿Date_reported'
         try:
             WhoGlobalDataImportTable.remove_all()
-            with open(self.__src_cvsfile_name, newline='\n') as csv_file:
+            with open(src_cvsfile_name, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:

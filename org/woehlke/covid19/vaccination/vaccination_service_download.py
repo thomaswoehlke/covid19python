@@ -6,51 +6,56 @@ from database import app
 vaccination_service_download = None
 
 
+class VaccinationServiceDownloadConfig:
+    def __init__(self):
+        self.limit_nr = 20
+        self.data_path = "data"
+        self.cvsfile_name = "germany_vaccinations_timeseries_v2.tsv"
+        self.url_src_data = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
+
+
 class VaccinationServiceDownload:
     def __init__(self, database):
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Vaccination Service Download [init]")
         app.logger.info("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
-        self.__cvsfile_name = "germany_vaccinations_timeseries_v2.tsv"
-        self.__src_cvsfile_name = "data"+os.sep+self.__cvsfile_name
-        self.__src_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__cvsfile_name
-        self.__url_src_data = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
+        self.cfg = VaccinationServiceDownloadConfig()
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Vaccination Service Download [ready]")
 
     def download_file(self):
+        src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info(" download - Vaccination [begin] ")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.__src_cvsfile_name+" ")
-        app.logger.info(" FROM: "+self.__url_src_data+" ")
+        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" ")
+        app.logger.info(" FROM: "+self.cfg.url_src_data+" ")
         app.logger.info("------------------------------------------------------------")
         os.makedirs('data', exist_ok=True)
         try:
-            if os.path.isfile(self.__src_cvsfile_name):
-                os.remove(self.__src_cvsfile_name)
-            data_file = wget.download(self.__url_src_data, self.__src_cvsfile_name)
+            if os.path.isfile(src_cvsfile_name):
+                os.remove(src_cvsfile_name)
+            data_file = wget.download(self.cfg.url_src_data, src_cvsfile_name)
             app.logger.info(" " + data_file + " ")
         except RuntimeError as error:
             app.logger.info("############################################################")
             app.logger.info(" " + error + " ")
             app.logger.info("############################################################")
-            flash(message="error while downloading: " + self.__url_src_data, category='error')
+            flash(message="error while downloading: " + src_cvsfile_name, category='error')
         except Exception as error:
             app.logger.info("############################################################")
             app.logger.info(error)
             app.logger.info("############################################################")
-            flash(message="error after downloading: " + self.__cvsfile_name, category='error')
+            flash(message="error after downloading: " + src_cvsfile_name, category='error')
         except AttributeError as aerror:
             app.logger.info("############################################################")
             app.logger.info(aerror)
             app.logger.info("############################################################")
-            flash(message="error after downloading: " + self.__cvsfile_name, category='error')
+            flash(message="error after downloading: " + src_cvsfile_name, category='error')
         finally:
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" download - Vaccination [done] ")
-            msg = "downloaded: " + self.__cvsfile_name + " "
+            msg = "downloaded: " + src_cvsfile_name + " "
             flash(msg)
         return self
 

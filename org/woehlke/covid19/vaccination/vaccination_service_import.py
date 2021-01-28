@@ -3,7 +3,7 @@ import csv
 import psycopg2
 from database import db, app
 from org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
-
+from org.woehlke.covid19.vaccination.vaccination_service_download import VaccinationServiceDownloadConfig
 
 vaccination_service_import = None
 
@@ -14,24 +14,22 @@ class VaccinationServiceImport:
         app.logger.info(" Vaccination Service Import [init]")
         app.logger.info("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
-        self.__cvsfile_name = "germany_vaccinations_timeseries_v2.tsv"
-        self.__src_cvsfile_name = "data"+os.sep+self.__cvsfile_name
-        self.__src_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__cvsfile_name
+        self.cfg = VaccinationServiceDownloadConfig()
         self.__url_src_data = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Vaccination Service Import [ready]")
 
     def import_file(self):
+        src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info(" import Vaccination [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  "+self.__src_cvsfile_name)
+        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" ")
         app.logger.info(" TABLE: who_global_data_import")
         app.logger.info("------------------------------------------------------------")
         try:
             VaccinationGermanyTimeline.remove_all()
             k = 0
-            with open(self.__src_cvsfile_name, newline='\n') as csv_file:
+            with open(src_cvsfile_name, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter='\t', quotechar='"')
                 for row in file_reader:
                     o = VaccinationGermanyTimeline(

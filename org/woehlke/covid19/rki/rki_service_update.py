@@ -1,7 +1,7 @@
 import os
 from database import db, app
-from org.woehlke.covid19.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
-from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
+from org.woehlke.covid19.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiGermanyData
+from org.woehlke.covid19.rki.rki_model import RkiGermanyDataImportTable
 
 
 rki_service_update = None
@@ -10,25 +10,25 @@ rki_service_update = None
 class RkiServiceUpdate:
     def __init__(self, database):
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" WHO Service Update [init]")
+        app.logger.info(" RKI Service Update [init]")
         app.logger.info("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
-        self.__who_cvsfile_name = "WHO-COVID-19-global-data.csv"
-        self.__src_who_cvsfile_name = "data"+os.sep+self.__who_cvsfile_name
-        self.__src_who_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__who_cvsfile_name
-        self.__url_src_data = "https://covid19.who.int/"+self.__who_cvsfile_name
+        #self.__who_cvsfile_name = "WHO-COVID-19-global-data.csv"
+        #self.__src_who_cvsfile_name = "data"+os.sep+self.__who_cvsfile_name
+        #self.__src_who_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__who_cvsfile_name
+        #self.__url_src_data = "https://covid19.who.int/"+self.__who_cvsfile_name
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" WHO Service Update [ready]")
+        app.logger.info(" RKI Service Update [ready]")
 
     def __update_who_date_reported(self):
         app.logger.info(" update who_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        for i_date_reported, in WhoGlobalDataImportTable.get_dates_reported():
-            c = WhoDateReported.find_by_date_reported(i_date_reported)
+        for i_date_reported, in RkiGermanyDataImportTable.get_dates_reported():
+            c = RkiDateReported.find_by_date_reported(i_date_reported)
             if c is None:
-                o = WhoDateReported(date_reported=i_date_reported)
+                o = RkiDateReported(date_reported=i_date_reported)
                 db.session.add(o)
                 app.logger.info(" update who_date_reported "+i_date_reported+" added NEW")
             if i % 10 == 0:
@@ -45,10 +45,10 @@ class RkiServiceUpdate:
         app.logger.info(" update who_region [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        for i_who_region, in db.session.query(WhoGlobalDataImportTable.who_region).distinct():
-            c = db.session.query(WhoRegion).filter(WhoRegion.region == i_who_region).count()
+        for i_who_region, in db.session.query(RkiGermanyDataImportTable.who_region).distinct():
+            c = db.session.query(RkiRegion).filter(RkiRegion.region == i_who_region).count()
             if c == 0:
-                o = WhoRegion(region=i_who_region)
+                o = RkiRegion(region=i_who_region)
                 db.session.add(o)
                 app.logger.info(i_who_region +" added NEW ")
             else:
@@ -78,18 +78,18 @@ class RkiServiceUpdate:
             i_country = result_item.country
             i_who_region = result_item.who_region
             output = i_country_code + " " + i_country + " " + i_who_region
-            my_region = WhoRegion.find_by_region(i_who_region)
-            my_country = WhoCountry.find_by_country_code_and_country_and_who_region_id(
+            my_region = RkiRegion.find_by_region(i_who_region)
+            my_country = RkiCountry.find_by_country_code_and_country_and_who_region_id(
                 i_country_code, i_country, my_region
             )
             if my_country is None:
-                o = WhoCountry(
+                o = RkiCountry(
                     country=i_country,
                     country_code=i_country_code,
                     region=my_region)
                 db.session.add(o)
                 db.session.commit()
-                my_country = WhoCountry.find_by_country_code_and_country_and_who_region_id(
+                my_country = RkiCountry.find_by_country_code_and_country_and_who_region_id(
                     i_country_code, i_country, my_region
                 )
                 output += " added NEW "
@@ -106,22 +106,20 @@ class RkiServiceUpdate:
     def __update_who_global_data(self):
         app.logger.info(" update WHO [begin]")
         app.logger.info("------------------------------------------------------------")
-        dates_reported = WhoDateReported.get_all_as_dict()
-        regions = WhoRegion.get_all_as_dict()
-        countries = WhoCountry.get_all_as_dict()
-
+        dates_reported = RkiDateReported.get_all_as_dict()
+        countries = RkiCountry.get_all_as_dict()
         #
         #
         i = 0
-        result = WhoGlobalDataImportTable.get_all()
+        result = RkiGermanyDataImportTable.get_all()
         for result_item in result:
             my_country = countries[result_item.country_code]
             my_date_reported = dates_reported[result_item.date_reported]
-            result_who_global_data = WhoGlobalData.find_one_or_none_by_date_and_country(
+            result_who_global_data = RkiGermanyData.find_one_or_none_by_date_and_country(
                 my_date_reported,
                 my_country)
             if result_who_global_data is None:
-                o = WhoGlobalData(
+                o = RkiGermanyData(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
@@ -135,21 +133,21 @@ class RkiServiceUpdate:
                 db.session.commit()
             i += 1
         db.session.commit()
-        app.logger.info(" update WHO :  "+str(i)+" total rows")
-        app.logger.info(" update WHO [done]")
+        app.logger.info(" update RKI :  "+str(i)+" total rows")
+        app.logger.info(" update RKI [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
     def __update_who_global_data_short(self):
-        app.logger.info(" update WHO short [begin]")
+        app.logger.info(" update RKI short [begin]")
         app.logger.info("------------------------------------------------------------")
-        new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
+        new_dates_reported_from_import = RkiGermanyDataImportTable.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
-            my_date = WhoDateReported.find_by_date_reported(my_date_reported)
-            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
-                my_country = WhoCountry.find_by_country_code(result_item.country_code)
-                o = WhoGlobalData(
+            my_date = RkiDateReported.find_by_date_reported(my_date_reported)
+            for result_item in RkiGermanyDataImportTable.get_for_one_day(my_date_reported):
+                my_country = RkiCountry.find_by_country_code(result_item.country_code)
+                o = RkiGermanyData(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
@@ -165,22 +163,22 @@ class RkiServiceUpdate:
                     app.logger.info(" update WHO short ... "+str(i)+" rows")
                     db.session.commit()
             db.session.commit()
-        app.logger.info(" update WHO short :  "+str(i)+" total rows")
-        app.logger.info(" update WHO short [done]")
+        app.logger.info(" update RKI short :  "+str(i)+" total rows")
+        app.logger.info(" update RKI short [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
     def __update_who_global_data_initial(self):
-        app.logger.info(" update WHO initial [begin]")
+        app.logger.info(" update RKI initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        WhoGlobalData.remove_all()
-        new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
+        RkiGermanyData.remove_all()
+        new_dates_reported_from_import = RkiGermanyDataImportTable.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
-            my_date = WhoDateReported.find_by_date_reported(my_date_reported)
-            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
-                my_country = WhoCountry.find_by_country_code(result_item.country_code)
-                o = WhoGlobalData(
+            my_date = RkiDateReported.find_by_date_reported(my_date_reported)
+            for result_item in RkiGermanyDataImportTable.get_for_one_day(my_date_reported):
+                my_country = RkiCountry.find_by_country_code(result_item.country_code)
+                o = RkiGermanyData(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
