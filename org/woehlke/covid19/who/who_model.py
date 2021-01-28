@@ -88,7 +88,7 @@ class WhoDateReported(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)
-    year_week = db.Column(db.String(255), nullable=False, unique=True)
+    year_week = db.Column(db.String(255), nullable=False)
     datum = db.Column(db.Date, nullable=False, unique=True)
     year = db.Column(db.Integer, nullable=False)
     month = db.Column(db.Integer, nullable=False)
