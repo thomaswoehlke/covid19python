@@ -6,4 +6,4 @@
 #flask run
 
 . venv/bin/activate
-python app_worker.py
+python app_worker
