@@ -1,8 +1,7 @@
 import os
 import subprocess
-from database import app
 
-admin_service = None
+from database import app
 
 
 class AdminService:
@@ -23,7 +22,7 @@ class AdminService:
         db = app.config['POSTGRES_DB']
         cmd = 'pg_dump -U '+user+' -h '+url+' '+db+' --inserts > data'+os.sep+'covid19data.sql'
         args = [cmd]
-        app.logger.info(" start: "+cmd)
+        app.logger.info(" start: "+str(cmd))
         result = subprocess.run(args, shell=True, check=True, capture_output=True, encoding='UTF-8')
         app.logger.info(" result: " + str(result.returncode))
         app.logger.info(" run database dump [done]")

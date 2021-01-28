@@ -1,10 +1,9 @@
 import os
+
 from database import app
 from org.woehlke.covid19.europe.europe_service_download import EuropeServiceDownload
 from org.woehlke.covid19.europe.europe_service_import import EuropeServiceImport
 from org.woehlke.covid19.europe.europe_service_update import EuropeServiceUpdate
-
-europe_service = None
 
 
 class EuropeService:

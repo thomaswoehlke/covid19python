@@ -3,8 +3,6 @@ import wget
 from flask import flash
 from database import app
 
-europe_service_download = None
-
 
 class EuropeServiceDownloadConfig:
     def __init__(self):

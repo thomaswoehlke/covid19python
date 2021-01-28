@@ -1,10 +1,8 @@
 import os
+
 from database import db, app
 from org.woehlke.covid19.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
 from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
-
-
-who_service_update = None
 
 
 class WhoServiceUpdate:

@@ -3,8 +3,6 @@ import wget
 from flask import flash
 from database import app
 
-vaccination_service_download = None
-
 
 class VaccinationServiceDownloadConfig:
     def __init__(self):

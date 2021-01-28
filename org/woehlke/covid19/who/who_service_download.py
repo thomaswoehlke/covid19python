@@ -3,8 +3,6 @@ import wget
 from flask import flash
 from database import app
 
-who_service_download = None
-
 
 class WhoServiceDownloadConfig:
     def __init__(self):

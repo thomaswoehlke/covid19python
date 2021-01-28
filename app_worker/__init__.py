@@ -1,4 +1,5 @@
-from app import celery, app
+from app import app
+from workers import celery
 
 #################################################################################################################
 #

@@ -1,10 +1,9 @@
 import os
+
 from database import app
 from org.woehlke.covid19.who.who_service_download import WhoServiceDownload
 from org.woehlke.covid19.who.who_service_import import WhoServiceImport
 from org.woehlke.covid19.who.who_service_update import WhoServiceUpdate
-
-who_service = None
 
 
 class WhoService:

@@ -1,7 +1,8 @@
-from sqlalchemy import and_, func
+from sqlalchemy import and_
 from datetime import date
+from sqlalchemy.orm import joinedload
+
 from database import db, ITEMS_PER_PAGE
-from sqlalchemy.orm import joinedload, raiseload
 
 
 class RkiGermanyDataImportTable(db.Model):

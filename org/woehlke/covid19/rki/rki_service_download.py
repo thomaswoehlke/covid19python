@@ -1,10 +1,9 @@
 import os
 import wget
-from flask import flash
-from database import app
 from datetime import date
+from flask import flash
 
-rki_service_download = None
+from database import app
 
 
 class RkiServiceDownload:
@@ -67,4 +66,3 @@ class RkiServiceDownload:
         app.logger.info(" download - RKI [done] ")
         app.logger.info("------------------------------------------------------------")
         return self
-

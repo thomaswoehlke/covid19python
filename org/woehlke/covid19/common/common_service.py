@@ -1,8 +1,4 @@
-import os
-from database import app, db
-from org.woehlke.covid19.common.common_model import CommonDatum
-
-common_service = None
+from database import app
 
 
 class CommonService:

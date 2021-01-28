@@ -2,11 +2,10 @@ import os
 import sys
 import csv
 import psycopg2
+
 from database import db, app
+
 from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
-
-
-rki_service_import = None
 
 
 class RkiServiceImport:

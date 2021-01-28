@@ -1,9 +1,8 @@
 from database import app
+
 from org.woehlke.covid19.rki.rki_service_download import RkiServiceDownload
 from org.woehlke.covid19.rki.rki_service_import import RkiServiceImport
 from org.woehlke.covid19.rki.rki_service_update import RkiServiceUpdate
-
-rki_service = None
 
 
 class RkiService:

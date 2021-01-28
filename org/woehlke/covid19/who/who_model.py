@@ -1,7 +1,7 @@
 from sqlalchemy import and_, func
 from datetime import date
 from database import db, ITEMS_PER_PAGE
-from sqlalchemy.orm import joinedload, raiseload
+from sqlalchemy.orm import joinedload
 
 
 class WhoGlobalDataImportTable(db.Model):

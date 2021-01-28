@@ -1,11 +1,10 @@
 import os
 import csv
 import psycopg2
+
 from database import db, app
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
 from org.woehlke.covid19.europe.europe_service_download import EuropeServiceDownloadConfig
-
-europe_service_import = None
 
 
 class EuropeServiceImport:

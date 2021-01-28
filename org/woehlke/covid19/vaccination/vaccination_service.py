@@ -1,9 +1,8 @@
 import os
+
 from database import app
 from org.woehlke.covid19.vaccination.vaccination_service_download import VaccinationServiceDownload
 from org.woehlke.covid19.vaccination.vaccination_service_import import VaccinationServiceImport
-
-vaccination_service = None
 
 
 class VaccinationService:
