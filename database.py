@@ -33,15 +33,6 @@ my_logging_config = {
 run_run_with_debug = app.config['APP_DEBUGGER_ACTIVE']
 
 
-def transform_datum_europe(my_date):
-    my_date_reported = my_date.split('/')
-    my_year = int(my_date_reported[2])
-    my_month = int(my_date_reported[1])
-    my_day = int(my_date_reported[0])
-    my_datum = date(year=my_year, month=my_month, day=my_day)
-    return my_datum
-
-
 def transform_datum(my_date_reported):
     my_date_reported = my_date_reported.split("-")
     my_year = int(my_date_reported[0])
