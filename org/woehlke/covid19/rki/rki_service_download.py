@@ -32,7 +32,8 @@ class RkiServiceDownload:
         app.logger.info("------------------------------------------------------------")
         os.makedirs('data', exist_ok=True)
         try:
-            os.remove(src_cvsfile_path)
+            if os.path.isfile(src_cvsfile_path):
+                os.remove(src_cvsfile_path)
             data_file = wget.download(url_src, src_cvsfile_path)
             app.logger.info(" " + data_file + " ")
         except RuntimeError as error:
