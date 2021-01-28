@@ -25,13 +25,13 @@ class RkiServiceDownload:
         app.logger.info(" RKI Service Download [ready]")
 
     def __download_file(self, datascope, cvsfile_name, url_src):
-        src_cvsfile_path = "data" + os.sep + cvsfile_name
+        src_cvsfile_path = ".." + os.sep + "data" + os.sep + cvsfile_name
         app.logger.info(" download - RKI "+datascope+" [begin] ")
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" FILE: "+cvsfile_name+" ")
         app.logger.info(" FROM: "+url_src+" ")
         app.logger.info("------------------------------------------------------------")
-        os.makedirs('data', exist_ok=True)
+        #os.makedirs('data', exist_ok=True)
         try:
             if os.path.isfile(src_cvsfile_path):
                 os.remove(src_cvsfile_path)
