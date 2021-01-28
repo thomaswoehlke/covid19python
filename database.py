@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from datetime import date
 
 app = Flask('app')
 CORS(app)
@@ -31,12 +30,3 @@ my_logging_config = {
         }
     }
 run_run_with_debug = app.config['APP_DEBUGGER_ACTIVE']
-
-
-def transform_datum(my_date_reported):
-    my_date_reported = my_date_reported.split("-")
-    my_year = int(my_date_reported[0])
-    my_month = int(my_date_reported[1])
-    my_day = int(my_date_reported[2])
-    my_datum = date(my_year, my_month, my_day)
-    return my_datum

@@ -1,9 +1,5 @@
 import os
-import csv
-import psycopg2
-import wget
-from database import db, app
-from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable
+from database import app
 from org.woehlke.covid19.europe.europe_service_download import EuropeServiceDownload
 from org.woehlke.covid19.europe.europe_service_import import EuropeServiceImport
 from org.woehlke.covid19.europe.europe_service_update import EuropeServiceUpdate

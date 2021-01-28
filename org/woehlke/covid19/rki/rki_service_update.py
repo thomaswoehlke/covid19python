@@ -1,4 +1,4 @@
-from database import db, app, transform_datum
+from database import db, app
 from org.woehlke.covid19.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiGermanyData
 from org.woehlke.covid19.rki.rki_model import RkiGermanyDataImportTable
 

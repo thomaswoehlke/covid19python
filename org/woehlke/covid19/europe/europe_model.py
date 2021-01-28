@@ -1,4 +1,3 @@
-import uuid
 from sqlalchemy import and_
 from datetime import date
 from database import db, ITEMS_PER_PAGE
