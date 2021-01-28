@@ -87,30 +87,32 @@ class EuropeDateReported(db.Model):
     __tablename__ = 'europe_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
-    datum = db.Column(db.Date, nullable=False, unique=True)
     date_rep = db.Column(db.String(255), nullable=False, unique=True)
     year_week = db.Column(db.String(255), nullable=False, unique=True)
-    week_of_year = db.Column(db.Integer, nullable=False)
+    datum = db.Column(db.Date, nullable=False, unique=True)
     year = db.Column(db.Integer, nullable=False)
     month = db.Column(db.Integer, nullable=False)
     day_of_month = db.Column(db.Integer, nullable=False)
+    day_of_week = db.Column(db.Integer, nullable=False)
+    week_of_year = db.Column(db.Integer, nullable=False)
 
     @classmethod
     def create_new_object_factory(cls, my_date_rep, my_year_week):
         my_date_reported = my_date_rep.split('/')
-        my_week_of_year = int(my_year_week.split("-")[1])
         my_year = int(my_date_reported[2])
         my_month = int(my_date_reported[1])
         my_day_of_month = int(my_date_reported[0])
         my_datum = date(year=my_year, month=my_month, day=my_day_of_month)
+        (my_iso_year, week_number, weekday) = my_datum.isocalendar()
         return EuropeDateReported(
-            datum=my_datum,
             date_rep=my_date_rep,
             year_week=my_year_week,
-            week_of_year=my_week_of_year,
-            year=my_year,
-            month=my_month,
-            day_of_month=my_day_of_month
+            datum=my_datum,
+            year=my_datum.year,
+            month=my_datum.month,
+            day_of_month=my_datum.day,
+            day_of_week=weekday,
+            week_of_year=week_number
         )
 
     @classmethod

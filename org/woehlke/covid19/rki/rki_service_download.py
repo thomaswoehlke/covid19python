@@ -2,6 +2,7 @@ import os
 import wget
 from flask import flash
 from database import app
+from datetime import date
 
 rki_service_download = None
 
@@ -13,11 +14,12 @@ class RkiServiceDownload:
         app.logger.info("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
+        datum_heute = date.today().isoformat()
         #
-        self.__bundeslaender_cvsfile_name = "RKI-COVID-19-bundeslaender-data.csv"
+        self.__bundeslaender_cvsfile_name = "RKI_COVID19__"+datum_heute+"__bundeslaender.csv"
         self.__bundeslaender_url_src = "https://opendata.arcgis.com/datasets/ef4b445a53c1406892257fe63129a8ea_0.csv"
         #
-        self.__landkreise_cvsfile_name = "RKI-COVID-19-landkreise-data.csv"
+        self.__landkreise_cvsfile_name = "RKI_COVID19__"+datum_heute+"__landkreise.csv"
         self.__landkreise_url_src ="https://opendata.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0.csv"
         #
         app.logger.info("------------------------------------------------------------")

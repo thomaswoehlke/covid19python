@@ -88,24 +88,31 @@ class WhoDateReported(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)
+    year_week = db.Column(db.String(255), nullable=False, unique=True)
     datum = db.Column(db.Date, nullable=False, unique=True)
     year = db.Column(db.Integer, nullable=False)
     month = db.Column(db.Integer, nullable=False)
     day_of_month = db.Column(db.Integer, nullable=False)
+    day_of_week = db.Column(db.Integer, nullable=False)
+    week_of_year = db.Column(db.Integer, nullable=False)
 
     @classmethod
     def create_new_object_factory(cls, my_date_rep):
-        my_date_reported = my_date_rep.split('-')
-        my_year = int(my_date_reported[0])
-        my_month = int(my_date_reported[1])
-        my_day_of_month = int(my_date_reported[2])
-        my_datum = date(year=my_year, month=my_month, day=my_day_of_month)
+        my_datum = date.fromisoformat(my_date_rep)
+        (my_iso_year, week_number, weekday) = my_datum.isocalendar()
+        if week_number < 10:
+            my_year_week = "" + str(my_iso_year) + "-0"+str(week_number)
+        else:
+            my_year_week = "" + str(my_iso_year) + "-"+str(week_number)
         return WhoDateReported(
             date_reported=my_date_rep,
             datum=my_datum,
-            year=my_year,
-            month=my_month,
-            day_of_month=my_day_of_month
+            year=my_datum.year,
+            month=my_datum.month,
+            day_of_month=my_datum.day,
+            day_of_week=weekday,
+            week_of_year=week_number,
+            year_week=my_year_week
         )
 
     @classmethod

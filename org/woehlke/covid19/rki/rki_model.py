@@ -1,4 +1,5 @@
 from sqlalchemy import and_, func
+from datetime import date
 from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload, raiseload
 
@@ -15,7 +16,6 @@ class RkiGermanyDataImportTable(db.Model):
     cumulative_cases = db.Column(db.String(255), nullable=False)
     new_deaths = db.Column(db.String(255), nullable=False)
     cumulative_deaths = db.Column(db.String(255), nullable=False)
-    row_imported = db.Column(db.Boolean, nullable=False)
 
     @classmethod
     def remove_all(cls):
@@ -81,8 +81,37 @@ class RkiDateReported(db.Model):
     __tablename__ = 'rki_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
-    datum = db.Column(db.Date, nullable=False, unique=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)
+    datum = db.Column(db.Date, nullable=False, unique=True)
+    year = db.Column(db.Integer, nullable=False)
+    month = db.Column(db.Integer, nullable=False)
+    day_of_month = db.Column(db.Integer, nullable=False)
+    day_of_week = db.Column(db.Integer, nullable=False)
+    week_of_year = db.Column(db.Integer, nullable=False)
+    year_week = db.Column(db.String(255), nullable=False, unique=True)
+
+    @classmethod
+    def create_new_object_factory(cls, my_date_rep):
+        my_date_reported = my_date_rep.split('/')
+        my_year = int(my_date_reported[0])
+        my_month = int(my_date_reported[1])
+        my_day_of_month = int(my_date_reported[2])
+        my_datum = date(year=my_year, month=my_month, day=my_day_of_month)
+        (my_iso_year, week_number, weekday) = my_datum.isocalendar()
+        if week_number < 10:
+            my_year_week = "" + str(my_year) + "-0"+str(week_number)
+        else:
+            my_year_week = "" + str(my_year) + "-"+str(week_number)
+        return RkiDateReported(
+            date_rep=my_date_rep,
+            year_week=my_year_week,
+            datum=my_datum,
+            year=my_datum.year,
+            month=my_datum.month,
+            day_of_month=my_datum.day,
+            day_of_week=weekday,
+            week_of_year=week_number
+        )
 
     @classmethod
     def remove_all(cls):

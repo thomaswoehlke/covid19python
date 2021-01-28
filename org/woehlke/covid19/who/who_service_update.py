@@ -29,7 +29,7 @@ class WhoServiceUpdate:
         for i_date_reported, in WhoGlobalDataImportTable.get_dates_reported():
             c = WhoDateReported.find_by_date_reported(i_date_reported)
             if c is None:
-                o = WhoDateReported(date_reported=i_date_reported, datum=transform_datum(i_date_reported))
+                o = WhoDateReported.create_new_object_factory(my_date_rep=i_date_reported)
                 db.session.add(o)
                 app.logger.info(" update who_date_reported "+i_date_reported+" added NEW")
             if i % 10 == 0:

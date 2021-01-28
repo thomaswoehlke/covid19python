@@ -23,7 +23,7 @@ class RkiServiceUpdate:
         for i_date_reported, in RkiGermanyDataImportTable.get_dates_reported():
             c = RkiDateReported.find_by_date_reported(i_date_reported)
             if c is None:
-                o = RkiDateReported(date_reported=i_date_reported, datum=transform_datum(i_date_reported))
+                o = RkiDateReported.create_new_object_factor(my_date_rep=i_date_reported)
                 db.session.add(o)
                 app.logger.info(" update who_date_reported "+i_date_reported+" added NEW")
             if i % 10 == 0:
