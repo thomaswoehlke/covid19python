@@ -7,12 +7,12 @@ from database import app
 from services import who_service, europe_service, vaccination_service, admin_service, rki_service
 from workers import celery
 
-from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
-from org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData
-from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
-from org.woehlke.covid19.europe.europe_model import EuropeCountry, EuropeData
-from org.woehlke.covid19.common.common_model_transient import ApplicationPage
-from org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
+from app.org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
+from app.org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData
+from app.org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
+from app.org.woehlke.covid19.europe.europe_model import EuropeCountry, EuropeData
+from app.org.woehlke.covid19.common.common_model_transient import ApplicationPage
+from app.org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
 
 drop_and_create_data_again = True
 
@@ -361,6 +361,9 @@ def url_who_country_deaths_cumulative(country_id, page=1):
 def url_who_germany(page=1):
     page_info = ApplicationPage('WHO', "Germany")
     who_country_germany = WhoCountry.get_germany()
+    if who_country_germany is None:
+        flash('country: Germany not found in Database', category='error')
+        return redirect(url_for('url_who_tasks'))
     page_data = WhoGlobalData.get_data_for_country(who_country_germany, page)
     return render_template(
         'who/country/who_country_germany.html',
@@ -573,6 +576,9 @@ def url_europe_country_one(country_id, page=1):
 def url_europe_country_germany(page=1):
     page_info = ApplicationPage('Europe', "country: Germany")
     europe_country = EuropeCountry.get_germany()
+    if europe_country is None:
+        flash('country: Germany not found in Database', category='error')
+        return redirect(url_for('url_europe_tasks'))
     page_data = EuropeData.find_by_country(europe_country, page)
     return render_template(
         'europe/country/europe_country_germany.html',

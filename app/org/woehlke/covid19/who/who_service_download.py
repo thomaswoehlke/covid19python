@@ -4,43 +4,42 @@ from flask import flash
 from database import app
 
 
-class EuropeServiceDownloadConfig:
+class WhoServiceDownloadConfig:
     def __init__(self):
         self.limit_nr = 20
-        self.data_path = "data"
-        self.cvsfile_name = "ecdc_europa_data.csv"
-        self.url_src_data = "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
+        self.data_path = ".."+os.sep+"data"
+        self.cvsfile_name = "WHO-COVID-19-global-data.csv"
+        self.url_src_data = "https://covid19.who.int/" + self.cvsfile_name
 
 
-class EuropeServiceDownload:
+class WhoServiceDownload:
     def __init__(self, database):
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Europe Service Download [init]")
+        app.logger.info(" WHO Service Download [init]")
         app.logger.info("------------------------------------------------------------")
         self.__database = database
-        self.cfg = EuropeServiceDownloadConfig()
+        self.cfg = WhoServiceDownloadConfig()
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Europe Service Download [ready] ")
+        app.logger.info(" WHO Service Download [ready]")
 
-    def download(self):
+    def download_file(self):
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
+        app.logger.info(" download - [begin] ")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" download Europa [begin]")
+        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" ")
+        app.logger.info(" FROM: "+self.cfg.url_src_data+" ")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" <- "+self.cfg.url_src_data)
-        app.logger.info("------------------------------------------------------------")
-        os.makedirs('data', exist_ok=True)
-        app.logger.info("------------------------------------------------------------")
+        os.makedirs(self.cfg.data_path, exist_ok=True)
         try:
             if os.path.isfile(src_cvsfile_name):
                 os.remove(src_cvsfile_name)
-            wget.download(self.cfg.url_src_data, src_cvsfile_name)
-            app.logger.info("------------------------------------------------------------")
+            data_file = wget.download(self.cfg.url_src_data, src_cvsfile_name)
+            app.logger.info(" " + data_file + " ")
         except RuntimeError as error:
             app.logger.info("############################################################")
             app.logger.info(" " + error + " ")
             app.logger.info("############################################################")
-            flash(message="error while downloading: " + src_cvsfile_name, category='error')
+            flash(message="error while downloading: " + self.cfg.url_src_data, category='error')
         except Exception as error:
             app.logger.info("############################################################")
             app.logger.info(error)
@@ -52,7 +51,9 @@ class EuropeServiceDownload:
             app.logger.info("############################################################")
             flash(message="error after downloading: " + src_cvsfile_name, category='error')
         finally:
-            app.logger.info(" download Europa [done]")
+            app.logger.info("------------------------------------------------------------")
+            app.logger.info(" download - [done] ")
             msg = "downloaded: " + src_cvsfile_name + " "
             flash(msg)
         return self
+

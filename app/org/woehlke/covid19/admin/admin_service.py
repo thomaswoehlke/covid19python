@@ -23,8 +23,15 @@ class AdminService:
         cmd = 'pg_dump -U '+user+' -h '+url+' '+db+' --inserts > data'+os.sep+'covid19data.sql'
         args = [cmd]
         app.logger.info(" start: "+str(cmd))
-        result = subprocess.run(args, shell=True, check=True, capture_output=True, encoding='UTF-8')
-        app.logger.info(" result: " + str(result.returncode))
+        returncode = 0
+        try:
+            result = subprocess.run(args, shell=True, check=True, capture_output=True, encoding='UTF-8')
+            returncode = result.returncode
+        except subprocess.CalledProcessError as error:
+            app.logger.warning("WARN: run_admin_database_dump [begin]")
+            app.logger.warning(":::"+str(error)+":::")
+            app.logger.warning("WARN: run_admin_database_dump [end]")
+        app.logger.info(" result: " + str(returncode))
         app.logger.info(" run database dump [done]")
         app.logger.info("------------------------------------------------------------")
         return self

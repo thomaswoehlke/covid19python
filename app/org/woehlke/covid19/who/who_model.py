@@ -257,7 +257,9 @@ class WhoCountry(db.Model):
 
     @classmethod
     def get_germany(cls):
-        return db.session.query(cls).filter(cls.country_code == 'DE').one()
+        return db.session.query(cls)\
+            .filter(cls.country_code == 'DE')\
+            .one_or_none()
 
     @classmethod
     def find_by_country_code_and_country_and_who_region_id(cls, i_country_code, i_country, my_region):

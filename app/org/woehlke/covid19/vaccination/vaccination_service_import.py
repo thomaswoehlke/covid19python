@@ -3,8 +3,8 @@ import csv
 import psycopg2
 
 from database import db, app
-from org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
-from org.woehlke.covid19.vaccination.vaccination_service_download import VaccinationServiceDownloadConfig
+from app.org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
+from app.org.woehlke.covid19.vaccination.vaccination_service_download import VaccinationServiceDownloadConfig
 
 
 class VaccinationServiceImport:

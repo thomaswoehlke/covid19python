@@ -1,9 +1,9 @@
 import os
 
 from database import app
-from org.woehlke.covid19.europe.europe_service_download import EuropeServiceDownload
-from org.woehlke.covid19.europe.europe_service_import import EuropeServiceImport
-from org.woehlke.covid19.europe.europe_service_update import EuropeServiceUpdate
+from app.org.woehlke.covid19.europe.europe_service_download import EuropeServiceDownload
+from app.org.woehlke.covid19.europe.europe_service_import import EuropeServiceImport
+from app.org.woehlke.covid19.europe.europe_service_update import EuropeServiceUpdate
 
 
 class EuropeService:

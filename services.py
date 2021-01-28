@@ -1,11 +1,11 @@
 from database import db
 
-from org.woehlke.covid19.common.common_service import CommonService
-from org.woehlke.covid19.who.who_service import WhoService
-from org.woehlke.covid19.europe.europe_service import EuropeService
-from org.woehlke.covid19.rki.rki_service import RkiService
-from org.woehlke.covid19.vaccination.vaccination_service import VaccinationService
-from org.woehlke.covid19.admin.admin_service import AdminService
+from app.org.woehlke.covid19.common.common_service import CommonService
+from app.org.woehlke.covid19.who.who_service import WhoService
+from app.org.woehlke.covid19.europe.europe_service import EuropeService
+from app.org.woehlke.covid19.rki.rki_service import RkiService
+from app.org.woehlke.covid19.vaccination.vaccination_service import VaccinationService
+from app.org.woehlke.covid19.admin.admin_service import AdminService
 
 ############################################################################################
 #
