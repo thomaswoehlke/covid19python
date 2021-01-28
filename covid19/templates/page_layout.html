@@ -50,7 +50,7 @@
 
     <header>
         <div class="tw_padding">
-            {% include 'fragment_navbar.html' %}
+            {% include 'common/fragment_navbar.html' %}
         </div>
         <div class="tw_padding">
             {% block navigation_jumbotron %}
@@ -66,7 +66,7 @@
 
     <section>
         <div class="tw_padding">
-            {% include 'fragment_navtabs.html' %}
+            {% include 'common/fragment_navtabs.html' %}
         </div>
         <div class="">
             {% block navigation_navtabs %}{% endblock %}
@@ -78,7 +78,7 @@
 
     <main>
         <div class="container tw_padding">
-            {% include 'fragment_flashed_messages.html' %}
+            {% include 'common/fragment_flashed_messages.html' %}
         </div>
         <div class="container tw_padding">
             {% block main_container %}{% endblock %}
