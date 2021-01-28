@@ -5,5 +5,5 @@
 #pip install -e .
 #flask run
 . venv/bin/activate
-python app.py
+python app
 
