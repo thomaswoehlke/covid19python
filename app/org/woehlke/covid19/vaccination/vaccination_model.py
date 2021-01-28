@@ -6,7 +6,6 @@ class VaccinationGermanyTimeline(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     datum = db.Column(db.String(255), nullable=False)
-    datum_bin = db.Column(db.Date, nullable=False)
     dosen_kumulativ = db.Column(db.Integer, nullable=False)
     dosen_differenz_zum_vortag = db.Column(db.Integer, nullable=False)
     dosen_biontech_kumulativ = db.Column(db.Integer, nullable=False)
