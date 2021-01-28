@@ -1,5 +1,4 @@
 import os
-from datetime import date
 from database import db, app
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, \
     EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
@@ -19,14 +18,6 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" Europe Service Update [ready] ")
 
-    def __transform_datum(my_date):
-        my_date_reported = my_date.split('/')
-        my_year = int(my_date_reported[2])
-        my_month = int(my_date_reported[1])
-        my_day = int(my_date_reported[0])
-        my_datum = date(year=my_year, month=my_month, day=my_day)
-        return my_datum
-
     def __update_date_reported(self):
         app.logger.info(" __update_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -36,13 +27,12 @@ class EuropeServiceUpdate:
             k += 1
             my_date_rep = result_item['date_rep']
             my_year_week = result_item['year_week']
-            app.logger.info("| " + my_date_rep + " | " + my_year_week + " | (" + k + ")")
-            o = EuropeDateReported(
-                date_rep=my_date_rep,
-                year_week=my_year_week,
-                datum=self.__transform_datum(my_date_rep)
+            o = EuropeDateReported.create_new_object_factory(
+                my_date_rep=my_date_rep,
+                my_year_week=my_year_week
             )
             db.session.add(o)
+            app.logger.info("| " + my_date_rep + " | " + my_year_week + " | " + k + " rows ")
         db.session.commit()
         app.logger.info(" __update_date_reported [done]")
         app.logger.info("------------------------------------------------------------")

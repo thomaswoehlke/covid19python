@@ -1,4 +1,5 @@
 from sqlalchemy import and_
+from datetime import date
 from database import db, ITEMS_PER_PAGE
 
 
@@ -16,7 +17,6 @@ class EuropeDataImportTable(db.Model):
     country_territory_code = db.Column(db.String(255), nullable=False)
     continent_exp = db.Column(db.String(255), nullable=False)
     notification_rate_per_100000_population_14days = db.Column(db.String(255), nullable=False)
-    row_imported = db.Column(db.Boolean, nullable=False, default=False)
 
     @classmethod
     def remove_all(cls):
@@ -90,6 +90,28 @@ class EuropeDateReported(db.Model):
     datum = db.Column(db.Date, nullable=False, unique=True)
     date_rep = db.Column(db.String(255), nullable=False, unique=True)
     year_week = db.Column(db.String(255), nullable=False, unique=True)
+    week_of_year = db.Column(db.Integer, nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    month = db.Column(db.Integer, nullable=False)
+    day_of_month = db.Column(db.Integer, nullable=False)
+
+    @classmethod
+    def create_new_object_factory(cls, my_date_rep, my_year_week):
+        my_date_reported = my_date_rep.split('/')
+        my_week_of_year = int(my_year_week.split("-")[1])
+        my_year = int(my_date_reported[2])
+        my_month = int(my_date_reported[1])
+        my_day_of_month = int(my_date_reported[0])
+        my_datum = date(year=my_year, month=my_month, day=my_day_of_month)
+        return EuropeDateReported(
+            datum=my_datum,
+            date_rep=my_date_rep,
+            year_week=my_year_week,
+            week_of_year=my_week_of_year,
+            year=my_year,
+            month=my_month,
+            day_of_month=my_day_of_month
+        )
 
     @classmethod
     def remove_all(cls):
