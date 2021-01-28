@@ -1,8 +1,4 @@
-from flask_sqlalchemy import Pagination
-from sqlalchemy import and_, func
-from datetime import date
-from database import db, ITEMS_PER_PAGE
-from sqlalchemy.orm import joinedload, raiseload
+from database import db, ITEMS_PER_PAGE, transform_datum
 
 
 class CommonDatum(db.Model):
@@ -26,7 +22,7 @@ class CommonDatum(db.Model):
         # load if already exists
         old = db.session.query(cls).filter(cls.date_string == date_string).one_or_none()
         if old is None:
-            o = CommonDatum(date_string=date_string, datum=date.today())
+            o = CommonDatum(date_string=date_string, datum=transform_datum(date_string))
             # put year
             # put month
             # put datum

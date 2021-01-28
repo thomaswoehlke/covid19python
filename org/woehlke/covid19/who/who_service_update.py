@@ -1,6 +1,6 @@
 import os
 from datetime import date
-from database import db, app
+from database import db, app, transform_datum
 from org.woehlke.covid19.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
 from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
 
@@ -29,7 +29,7 @@ class WhoServiceUpdate:
         for i_date_reported, in WhoGlobalDataImportTable.get_dates_reported():
             c = WhoDateReported.find_by_date_reported(i_date_reported)
             if c is None:
-                o = WhoDateReported(date_reported=i_date_reported, datum=date.today())
+                o = WhoDateReported(date_reported=i_date_reported, datum=transform_datum(i_date_reported))
                 db.session.add(o)
                 app.logger.info(" update who_date_reported "+i_date_reported+" added NEW")
             if i % 10 == 0:

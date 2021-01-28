@@ -1,6 +1,4 @@
-import os
-from datetime import date
-from database import db, app
+from database import db, app, transform_datum
 from org.woehlke.covid19.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiGermanyData
 from org.woehlke.covid19.rki.rki_model import RkiGermanyDataImportTable
 
@@ -15,10 +13,6 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
-        #self.__who_cvsfile_name = "WHO-COVID-19-global-data.csv"
-        #self.__src_who_cvsfile_name = "data"+os.sep+self.__who_cvsfile_name
-        #self.__src_who_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__who_cvsfile_name
-        #self.__url_src_data = "https://covid19.who.int/"+self.__who_cvsfile_name
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" RKI Service Update [ready]")
 
@@ -29,7 +23,7 @@ class RkiServiceUpdate:
         for i_date_reported, in RkiGermanyDataImportTable.get_dates_reported():
             c = RkiDateReported.find_by_date_reported(i_date_reported)
             if c is None:
-                o = RkiDateReported(date_reported=i_date_reported, datum=date.today())
+                o = RkiDateReported(date_reported=i_date_reported, datum=transform_datum(i_date_reported))
                 db.session.add(o)
                 app.logger.info(" update who_date_reported "+i_date_reported+" added NEW")
             if i % 10 == 0:

@@ -1,6 +1,6 @@
 import os
 from datetime import date
-from database import db, app
+from database import db, app, transform_datum
 from org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, \
     EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 
@@ -30,7 +30,7 @@ class EuropeServiceUpdate:
             o = EuropeDateReported(
                 date_rep=my_date_rep,
                 year_week=my_year_week,
-                datum=date.today()
+                datum=transform_datum(my_date_rep)
             )
             db.session.add(o)
         db.session.commit()
