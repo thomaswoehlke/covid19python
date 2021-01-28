@@ -1,4 +1,4 @@
-from database import db, ITEMS_PER_PAGE, transform_datum
+from database import db, ITEMS_PER_PAGE
 
 
 class CommonDatum(db.Model):

@@ -1,6 +1,5 @@
 import os
-from datetime import date
-from database import db, app, transform_datum
+from database import db, app
 from org.woehlke.covid19.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
 from org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
 

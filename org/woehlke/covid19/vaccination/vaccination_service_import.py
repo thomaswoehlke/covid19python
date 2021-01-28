@@ -1,8 +1,7 @@
 import os
 import csv
 import psycopg2
-from datetime import date
-from database import db, app, transform_datum
+from database import db, app
 from org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
 from org.woehlke.covid19.vaccination.vaccination_service_download import VaccinationServiceDownloadConfig
 
