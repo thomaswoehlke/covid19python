@@ -1,8 +1,8 @@
 import os
 
 from database import app
-from app.org.woehlke.covid19.vaccination.vaccination_service_download import VaccinationServiceDownload
-from app.org.woehlke.covid19.vaccination.vaccination_service_import import VaccinationServiceImport
+from app.oodm.woehlke.covid19.vaccination.vaccination_service_download import VaccinationServiceDownload
+from app.oodm.woehlke.covid19.vaccination.vaccination_service_import import VaccinationServiceImport
 
 
 class VaccinationService:

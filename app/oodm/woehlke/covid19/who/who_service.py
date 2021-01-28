@@ -1,9 +1,9 @@
 import os
 
 from database import app
-from app.org.woehlke.covid19.who.who_service_download import WhoServiceDownload
-from app.org.woehlke.covid19.who.who_service_import import WhoServiceImport
-from app.org.woehlke.covid19.who.who_service_update import WhoServiceUpdate
+from app.oodm.woehlke.covid19.who.who_service_download import WhoServiceDownload
+from app.oodm.woehlke.covid19.who.who_service_import import WhoServiceImport
+from app.oodm.woehlke.covid19.who.who_service_update import WhoServiceUpdate
 
 
 class WhoService:

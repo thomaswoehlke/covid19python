@@ -1,6 +1,6 @@
 import os
 from database import db, app
-from app.org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, \
+from app.oodm.woehlke.covid19.europe.europe_model import EuropeDataImportTable, \
     EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 
 

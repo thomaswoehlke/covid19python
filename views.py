@@ -7,12 +7,12 @@ from database import app
 from services import who_service, europe_service, vaccination_service, admin_service, rki_service
 from workers import celery
 
-from app.org.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
-from app.org.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData
-from app.org.woehlke.covid19.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
-from app.org.woehlke.covid19.europe.europe_model import EuropeCountry, EuropeData
-from app.org.woehlke.covid19.common.common_model_transient import ApplicationPage
-from app.org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
+from app.oodm.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
+from app.oodm.woehlke.covid19.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData
+from app.oodm.woehlke.covid19.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
+from app.oodm.woehlke.covid19.europe.europe_model import EuropeCountry, EuropeData
+from app.oodm.woehlke.covid19.common.common_model_transient import ApplicationPage
+from app.oodm.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
 
 drop_and_create_data_again = True
 
