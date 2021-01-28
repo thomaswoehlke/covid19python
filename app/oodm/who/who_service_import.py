@@ -3,8 +3,8 @@ import sys
 import csv
 import psycopg2
 from database import db, app
-from app.oodm.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
-from app.oodm.woehlke.covid19.who.who_service_download import WhoServiceDownloadConfig
+from app.oodm.who.who_model import WhoGlobalDataImportTable
+from app.oodm.who.who_service_download import WhoServiceDownloadConfig
 
 who_service_import = None
 

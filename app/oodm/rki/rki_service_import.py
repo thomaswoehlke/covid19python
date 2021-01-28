@@ -5,7 +5,7 @@ import psycopg2
 
 from database import db, app
 
-from app.oodm.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
+from app.oodm.who.who_model import WhoGlobalDataImportTable
 
 
 class RkiServiceImport:

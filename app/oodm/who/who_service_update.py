@@ -1,8 +1,8 @@
 import os
 
 from database import db, app
-from app.oodm.woehlke.covid19.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
-from app.oodm.woehlke.covid19.who.who_model import WhoGlobalDataImportTable
+from app.oodm.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
+from app.oodm.who.who_model import WhoGlobalDataImportTable
 
 
 class WhoServiceUpdate:

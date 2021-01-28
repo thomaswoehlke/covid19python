@@ -1,7 +1,7 @@
 from database import db, app
 
-from app.oodm.woehlke.covid19.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiGermanyData
-from app.oodm.woehlke.covid19.rki.rki_model import RkiGermanyDataImportTable
+from app.oodm.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiGermanyData
+from app.oodm.rki.rki_model import RkiGermanyDataImportTable
 
 
 rki_service_update = None
