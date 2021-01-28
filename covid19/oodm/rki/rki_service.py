@@ -1,8 +1,8 @@
 from database import app
 
-from app.oodm.rki.rki_service_download import RkiServiceDownload
-from app.oodm.rki.rki_service_import import RkiServiceImport
-from app.oodm.rki.rki_service_update import RkiServiceUpdate
+from covid19.oodm.rki.rki_service_download import RkiServiceDownload
+from covid19.oodm.rki.rki_service_import import RkiServiceImport
+from covid19.oodm.rki.rki_service_update import RkiServiceUpdate
 
 
 class RkiService:

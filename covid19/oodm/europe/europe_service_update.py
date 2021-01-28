@@ -1,6 +1,6 @@
 import os
 from database import db, app
-from app.oodm.europe.europe_model import EuropeDataImportTable, \
+from covid19.oodm.europe.europe_model import EuropeDataImportTable, \
     EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 
 

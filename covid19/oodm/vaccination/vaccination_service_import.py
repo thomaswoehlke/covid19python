@@ -3,8 +3,8 @@ import csv
 import psycopg2
 
 from database import db, app
-from app.oodm.vaccination.vaccination_model import VaccinationGermanyTimeline
-from app.oodm.vaccination.vaccination_service_download import VaccinationServiceDownloadConfig
+from covid19.oodm.vaccination.vaccination_model import VaccinationGermanyTimeline
+from covid19.oodm.vaccination.vaccination_service_download import VaccinationServiceDownloadConfig
 
 
 class VaccinationServiceImport:

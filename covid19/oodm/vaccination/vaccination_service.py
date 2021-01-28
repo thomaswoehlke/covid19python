@@ -1,8 +1,8 @@
 import os
 
 from database import app
-from app.oodm.vaccination.vaccination_service_download import VaccinationServiceDownload
-from app.oodm.vaccination.vaccination_service_import import VaccinationServiceImport
+from covid19.oodm.vaccination.vaccination_service_download import VaccinationServiceDownload
+from covid19.oodm.vaccination.vaccination_service_import import VaccinationServiceImport
 
 
 class VaccinationService:

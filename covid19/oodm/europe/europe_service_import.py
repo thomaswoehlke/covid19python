@@ -3,8 +3,8 @@ import csv
 import psycopg2
 
 from database import db, app
-from app.oodm.europe.europe_model import EuropeDataImportTable
-from app.oodm.europe.europe_service_download import EuropeServiceDownloadConfig
+from covid19.oodm.europe.europe_model import EuropeDataImportTable
+from covid19.oodm.europe.europe_service_download import EuropeServiceDownloadConfig
 
 
 class EuropeServiceImport:

@@ -1,9 +1,9 @@
 import os
 
 from database import app
-from app.oodm.who.who_service_download import WhoServiceDownload
-from app.oodm.who.who_service_import import WhoServiceImport
-from app.oodm.who.who_service_update import WhoServiceUpdate
+from covid19.oodm.who.who_service_download import WhoServiceDownload
+from covid19.oodm.who.who_service_import import WhoServiceImport
+from covid19.oodm.who.who_service_update import WhoServiceUpdate
 
 
 class WhoService:

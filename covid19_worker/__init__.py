@@ -1,4 +1,4 @@
-from app import app
+from covid19 import app
 from workers import celery
 
 #################################################################################################################
