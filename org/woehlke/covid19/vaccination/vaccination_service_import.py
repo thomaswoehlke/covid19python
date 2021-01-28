@@ -1,6 +1,7 @@
 import os
 import csv
 import psycopg2
+from datetime import date
 from database import db, app
 from org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
 from org.woehlke.covid19.vaccination.vaccination_service_download import VaccinationServiceDownloadConfig
@@ -34,6 +35,7 @@ class VaccinationServiceImport:
                 for row in file_reader:
                     o = VaccinationGermanyTimeline(
                         datum=row['date'],
+                        datum_bin=date.today(),
                         dosen_kumulativ=int(row['dosen_kumulativ']),
                         dosen_differenz_zum_vortag=int(row['dosen_differenz_zum_vortag']),
                         dosen_biontech_kumulativ=int(row['dosen_biontech_kumulativ']),

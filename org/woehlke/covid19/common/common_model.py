@@ -1,5 +1,6 @@
 from flask_sqlalchemy import Pagination
 from sqlalchemy import and_, func
+from datetime import date
 from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload, raiseload
 
@@ -8,8 +9,8 @@ class CommonDatum(db.Model):
     __tablename__ = 'common_datum'
 
     id = db.Column(db.Integer, primary_key=True)
-    date_string = db.Column(db.String(255), nullable=False, unique=True, primary_key=True)
-    datum = db.Column(db.Date, nullable=False, unique=True, primary_key=True )
+    date_string = db.Column(db.String(255), nullable=False, unique=True)
+    datum = db.Column(db.Date, nullable=False, unique=True)
     year_week = db.Column(db.String(255), nullable=True, unique=True)
     year_day_of_year = db.Column(db.String(255), nullable=True, unique=True)
     year = db.Column(db.Integer, nullable=True)
@@ -25,7 +26,7 @@ class CommonDatum(db.Model):
         # load if already exists
         old = db.session.query(cls).filter(cls.date_string == date_string).one_or_none()
         if old is None:
-            o = CommonDatum(date_string=date_string)
+            o = CommonDatum(date_string=date_string, datum=date.today())
             # put year
             # put month
             # put datum

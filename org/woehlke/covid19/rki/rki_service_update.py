@@ -1,4 +1,5 @@
 import os
+from datetime import date
 from database import db, app
 from org.woehlke.covid19.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiGermanyData
 from org.woehlke.covid19.rki.rki_model import RkiGermanyDataImportTable
@@ -28,7 +29,7 @@ class RkiServiceUpdate:
         for i_date_reported, in RkiGermanyDataImportTable.get_dates_reported():
             c = RkiDateReported.find_by_date_reported(i_date_reported)
             if c is None:
-                o = RkiDateReported(date_reported=i_date_reported)
+                o = RkiDateReported(date_reported=i_date_reported, datum=date.today())
                 db.session.add(o)
                 app.logger.info(" update who_date_reported "+i_date_reported+" added NEW")
             if i % 10 == 0:

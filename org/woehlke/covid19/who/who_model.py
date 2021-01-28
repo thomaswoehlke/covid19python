@@ -9,6 +9,7 @@ class WhoDateReported(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)
+    datum = db.Column(db.Date, nullable=False, unique=True)
 
     @classmethod
     def remove_all(cls):

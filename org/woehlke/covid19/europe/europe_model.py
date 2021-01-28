@@ -87,7 +87,8 @@ class EuropeDateReported(db.Model):
     __tablename__ = 'europe_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
-    date_rep = db.Column(db.String(255), nullable=False)
+    datum = db.Column(db.Date, nullable=False, unique=True)
+    date_rep = db.Column(db.String(255), nullable=False, unique=True)
     year_week = db.Column(db.String(255), nullable=False, unique=True)
 
     @classmethod

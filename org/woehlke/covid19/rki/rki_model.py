@@ -8,6 +8,7 @@ class RkiDateReported(db.Model):
     __tablename__ = 'rki_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
+    datum = db.Column(db.Date, nullable=False, unique=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)
 
     @classmethod
