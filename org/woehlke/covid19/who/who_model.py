@@ -96,6 +96,27 @@ class WhoDateReported(db.Model):
     day_of_week = db.Column(db.Integer, nullable=False)
     week_of_year = db.Column(db.Integer, nullable=False)
 
+    def __str__(self):
+        result = ""
+        if self.day_of_month < 10:
+            result += "0" + str(self.day_of_month)
+        else:
+            result += "" + str(self.day_of_month)
+        if self.month < 10:
+            result += ".0" + str(self.month)
+        else:
+            result += "." + str(self.month)
+        result += "." + str(self.year)
+        return result
+
+    def get_name_for_weekday(self):
+        return self.get_names_for_weekday()[self.day_of_week]
+
+    @classmethod
+    def get_names_for_weekday(cls):
+        return {1: "Montag", 2: "Dienstag", 3: "Mittwoch", 4: "Donnerstag", 5: "Freitag", 6: "Samstag",
+                             7: "Sonntag"}
+
     @classmethod
     def create_new_object_factory(cls, my_date_rep):
         my_datum = date.fromisoformat(my_date_rep)
