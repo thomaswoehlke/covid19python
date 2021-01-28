@@ -1,8 +1,11 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from flask_uuid import FlaskUUID
+
 
 app = Flask('app')
+FlaskUUID(app)
 CORS(app)
 app.config.from_object("config")
 ITEMS_PER_PAGE = app.config['ITEMS_PER_PAGE']
