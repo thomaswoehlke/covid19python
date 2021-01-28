@@ -1,4 +1,5 @@
 from sqlalchemy import and_, func
+from datetime import date
 from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload, raiseload
 
@@ -88,6 +89,24 @@ class WhoDateReported(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)
     datum = db.Column(db.Date, nullable=False, unique=True)
+    year = db.Column(db.Integer, nullable=False)
+    month = db.Column(db.Integer, nullable=False)
+    day_of_month = db.Column(db.Integer, nullable=False)
+
+    @classmethod
+    def create_new_object_factory(cls, my_date_rep):
+        my_date_reported = my_date_rep.split('-')
+        my_year = int(my_date_reported[0])
+        my_month = int(my_date_reported[1])
+        my_day_of_month = int(my_date_reported[2])
+        my_datum = date(year=my_year, month=my_month, day=my_day_of_month)
+        return WhoDateReported(
+            date_reported=my_date_rep,
+            datum=my_datum,
+            year=my_year,
+            month=my_month,
+            day_of_month=my_day_of_month
+        )
 
     @classmethod
     def remove_all(cls):
