@@ -11,6 +11,7 @@ from org.woehlke.covid19.common.common_model_transient import ApplicationPage
 from org.woehlke.covid19.common.common_service import CommonService
 from org.woehlke.covid19.who.who_service import WhoService
 from org.woehlke.covid19.europe.europe_service import EuropeService
+from org.woehlke.covid19.rki.rki_service import RkiService
 from org.woehlke.covid19.vaccination.vaccination_service import VaccinationService
 from org.woehlke.covid19.admin.admin_service import AdminService
 from org.woehlke.covid19.vaccination.vaccination_model import VaccinationGermanyTimeline
@@ -26,6 +27,7 @@ db.create_all()
 common_service = CommonService(db)
 who_service = WhoService(db)
 europe_service = EuropeService(db)
+rki_service = RkiService(db)
 vaccination_service = VaccinationService(db)
 admin_service = AdminService(db)
 
@@ -837,6 +839,8 @@ def url_admin_database_drop():
         who_service.run_download()
         flash("vaccination_service.run_download started")
         vaccination_service.run_download()
+        flash("rki_service.run_download started")
+        rki_service.run_download()
         flash("task_admin_database_drop_create async started")
         task_admin_database_drop_create.apply_async()
     app.logger.info("url_admin_database_drop [done]")

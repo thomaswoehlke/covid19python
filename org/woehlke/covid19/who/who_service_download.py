@@ -28,7 +28,7 @@ class WhoServiceDownload:
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info(" download - [begin] ")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.cfg.src_cvsfile_name+" ")
+        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" ")
         app.logger.info(" FROM: "+self.cfg.url_src_data+" ")
         app.logger.info("------------------------------------------------------------")
         os.makedirs(self.cfg.data_path, exist_ok=True)
