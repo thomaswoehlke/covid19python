@@ -53,7 +53,7 @@
     {% endif %}
 
     <table class="table table-hover table-striped table-dark">
-        <thead>
+        <thead class="table-secondary">
             <tr>
                 <th scope="col" class="text-right">day of week</th>
                 <th scope="col" class="text-left">date reported</th>
@@ -81,6 +81,14 @@
             </tr>
         {% endfor %}
         </tbody>
+        <tfoot class="table-secondary">
+            <tr>
+                <th scope="col" class="text-right">day of week</th>
+                <th scope="col" class="text-left">date reported</th>
+                <th scope="col" class="text-right">week of year</th>
+                <th scope="col" class="text-left">year</th>
+            </tr>
+        </tfoot>
     </table>
 
 {% endblock %}
