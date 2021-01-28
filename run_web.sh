@@ -6,5 +6,5 @@
 #flask run
 
 . venv/bin/activate
-python app
+python covid19
 
