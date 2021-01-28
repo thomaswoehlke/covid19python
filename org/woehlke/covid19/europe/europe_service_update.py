@@ -32,7 +32,7 @@ class EuropeServiceUpdate:
                 my_year_week=my_year_week
             )
             db.session.add(o)
-            app.logger.info("| " + my_date_rep + " | " + my_year_week + " | " + k + " rows ")
+            app.logger.info("| " + my_date_rep + " | " + my_year_week + " | " + str(k) + " rows ")
         db.session.commit()
         app.logger.info(" __update_date_reported [done]")
         app.logger.info("------------------------------------------------------------")
