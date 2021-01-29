@@ -1,6 +1,6 @@
 from database import app, run_run_with_debug
 
-import views
+import covid19.views
 
 #################################################################################################################
 #

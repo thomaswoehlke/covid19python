@@ -4,8 +4,8 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from services import who_service, europe_service, vaccination_service, admin_service, rki_service
-from workers import celery
+from covid19.services import who_service, europe_service, vaccination_service, admin_service, rki_service
+from covid19.workers import celery
 
 from covid19.oodm.who.who_model import WhoGlobalDataImportTable
 from covid19.oodm.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData

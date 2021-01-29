@@ -3,8 +3,8 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from services import europe_service
-from workers import celery
+from covid19.services import europe_service
+from covid19.workers import celery
 
 from covid19.oodm.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
 from covid19.oodm.europe.europe_model import EuropeCountry, EuropeData
