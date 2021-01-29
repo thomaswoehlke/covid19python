@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from logging.config import dictConfig
+
 
 app = Flask('app')
 CORS(app)
@@ -13,7 +15,10 @@ DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
     db=app.config['POSTGRES_DB'])
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation warning
+run_run_with_debug = app.config['APP_DEBUGGER_ACTIVE']
 db = SQLAlchemy(app)
+db.create_all()
+
 my_logging_config = {
         'version': 1,
         'formatters': {'default': {
@@ -29,4 +34,4 @@ my_logging_config = {
             'handlers': ['wsgi']
         }
     }
-run_run_with_debug = app.config['APP_DEBUGGER_ACTIVE']
+dictConfig(my_logging_config)

@@ -1,0 +1,89 @@
+    <table class="table table-hover table-striped table-dark">
+        <thead class="table-secondary">
+            <tr>
+                <th scope="col">date rep</th>
+                <th scope="col">year_week</th>
+                <th scope="col">
+                    {% if europe_date_reported %}
+                        <a href="{{ url_for( 'url_europe_date_reported_one_deaths_weekly',
+                            europe_date_reported_id=europe_date_reported.id,
+                            page=page_data.page) }}">
+                            deaths weekly
+                        </a>
+                    {% endif %}
+                    {% if europe_country %}
+                        deaths weekly
+                    {% endif %}
+                </th>
+                <th scope="col">
+                    {% if europe_date_reported %}
+                        <a href="{{ url_for( 'url_europe_date_reported_one_cases_weekly',
+                            europe_date_reported_id=europe_date_reported.id,
+                            page=page_data.page) }}">
+                            cases weekly
+                        </a>
+                    {% endif %}
+                    {% if europe_country %}
+                        cases weekly
+                    {% endif %}
+                </th>
+                <th scope="col">
+                    {% if europe_date_reported %}
+                        <a href="{{ url_for( 'url_europe_date_reported_one_notification_rate',
+                                    europe_date_reported_id=europe_date_reported.id,
+                                    page=page_data.page) }}">
+                            notification rate per 100000 population 14days
+                        </a>
+                    {% endif %}
+                    {% if europe_country %}
+                        notification rate per 100000 population 14days
+                    {% endif %}
+                </th>
+                <th scope="col">countries and territories</th>
+                <th scope="col">population data 2019</th>
+                <th scope="col">geo id</th>
+                <th scope="col">country territory code</th>
+                <th scope="col">continent</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for europe_data in page_data.items %}
+            <tr>
+                <td>
+                    <a href="/europe/date_reported/{{ europe_data.europe_date_reported.id }}">
+                        {{ europe_data.europe_date_reported.get_name_for_datum() }}
+                    </a>
+                </td>
+                <td>
+                    <a href="/europe/date_reported/{{ europe_data.europe_date_reported.id }}">
+                        {{ europe_data.europe_date_reported.year_week }}
+                    </a>
+                </td>
+                <td>{{ europe_data.deaths_weekly }}</td>
+                <td>{{ europe_data.cases_weekly }}</td>
+                <td>{{ europe_data.notification_rate_per_100000_population_14days }}</td>
+                <td>
+                    <a href="/europe/country/{{ europe_data.europe_country.id }}">
+                        {{ europe_data.europe_country.countries_and_territories }}
+                    </a>
+                </td>
+                <td>{{ europe_data.europe_country.pop_data_2019 }}</td>
+                <td>
+                    <a href="/europe/country/{{ europe_data.europe_country.id }}">
+                        {{ europe_data.europe_country.geo_id }}
+                    </a>
+                </td>
+                <td>
+                    <a href="/europe/country/{{ europe_data.europe_country.id }}">
+                        {{ europe_data.europe_country.country_territory_code }}
+                    </a>
+                </td>
+                <td>
+                    <a href="/europe/continent/{{ europe_data.europe_country.continent.id }}">
+                        {{ europe_data.europe_country.continent.continent_exp }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

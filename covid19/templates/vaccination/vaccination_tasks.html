@@ -1,0 +1,25 @@
+{% extends 'page_layout.html' %}
+
+{% block navigation_breadcrumb %}
+
+{% endblock %}
+
+{% block navigation_navtabs %}
+  {% include 'vaccination/fragments/fragment_vaccination_navtabs.html' %}
+{% endblock %}
+
+{% block main_container %}
+    <div class="btn-group" role="group" aria-label="Views">
+        <a class="btn btn-primary btn-lg" href="/vaccination/update/initial" role="button">Vaccination :: update :: initial</a>
+        <a class="btn btn-secondary btn-lg" href="/vaccination/update/short" role="button">Vaccination :: update :: short</a>
+    </div>
+{% endblock %}
+
+
+
+{% block footer_container %}
+
+{% endblock %}
+
+
+

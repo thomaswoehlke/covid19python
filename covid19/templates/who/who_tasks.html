@@ -1,0 +1,27 @@
+{% extends 'page_layout.html' %}
+
+{% block navigation_breadcrumb %}
+
+{% endblock %}
+
+{% block navigation_navtabs %}
+  {% include 'who/fragments/fragment_who_navtabs.html' %}
+{% endblock %}
+
+{% block main_container %}
+    <div class="row">
+        <div class="btn-group" role="group" aria-label="Views">
+            <a class="btn btn-primary btn-lg" href="/who/update/initial" role="button">WHO :: update :: initial</a>
+            <a class="btn btn-secondary btn-lg" href="/who/update/short" role="button">WHO :: update :: short</a>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block footer_container %}
+
+{% endblock %}
+
+
+

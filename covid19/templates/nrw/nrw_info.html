@@ -1,0 +1,31 @@
+{% extends 'page_layout.html' %}
+
+{% block navigation_breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/who/region/all">Regions</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Countries</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+
+{% block navigation_navtabs %}
+  {% include 'nrw/fragment_nrw_navtabs.html' %}
+{% endblock %}
+
+
+
+{% block main_container %}
+
+{% endblock %}
+
+
+{% block footer_container %}
+    <div>
+        {% for error in errors %}
+            <h4>{{ error }}</h4>
+        {% endfor %}
+    </div>
+{% endblock %}
