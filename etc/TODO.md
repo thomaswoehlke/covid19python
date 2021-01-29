@@ -16,3 +16,4 @@
 
 ### Flask-Login
 * https://flask-login.readthedocs.io/en/latest/
+* https://riptutorial.com/flask/example/28112/using-flask-login-extension
