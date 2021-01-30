@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, Blueprint
 from celery import states
 from celery.utils.log import get_task_logger
 
@@ -6,9 +6,12 @@ from database import app
 from covid19.services import europe_service
 from covid19.workers import celery
 
-from covid19.oodm.europe.europe_model_import import EuropeDataImportTable
-from covid19.oodm.europe.europe_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
-from covid19.oodm.common.common_model_transient import ApplicationPage
+from covid19.blueprints.europe.europe_model_import import EuropeDataImportTable
+from covid19.blueprints.europe.europe_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
+from covid19.blueprints.common.common_model_transient import ApplicationPage
+
+
+app_europe = Blueprint('europe', __name__, template_folder='templates', static_folder='static')
 
 
 ##################################################################################################################
@@ -44,7 +47,7 @@ def task_europe_update_short(self):
     return result
 
 
-@app.route('/europe/info')
+@app_europe.route('/europe/info')
 def url_europe_info():
     page_info = ApplicationPage('Europe', "Info")
     return render_template(
@@ -53,7 +56,7 @@ def url_europe_info():
         page_info=page_info)
 
 
-@app.route('/europe/tasks')
+@app_europe.route('/europe/tasks')
 def url_europe_tasks():
     page_info = ApplicationPage('Europe', "Tasks")
     return render_template(
@@ -62,7 +65,7 @@ def url_europe_tasks():
         page_info=page_info)
 
 
-@app.route('/europe/update/initial')
+@app_europe.route('/europe/update/initial')
 def europe_update_data():
     europe_service.download()
     task_europe_update_initial.apply_async()
@@ -70,8 +73,8 @@ def europe_update_data():
     return redirect(url_for('url_home'))
 
 
-@app.route('/europe/imported/page/<int:page>')
-@app.route('/europe/imported')
+@app_europe.route('/europe/imported/page/<int:page>')
+@app_europe.route('/europe/imported')
 def url_europe_data_imported(page=1):
     page_info = ApplicationPage('Europe', "Last Import")
     page_data = EuropeDataImportTable.get_all_as_page(page)
@@ -81,8 +84,8 @@ def url_europe_data_imported(page=1):
         page_info=page_info)
 
 
-@app.route('/europe/date_reported/all/page/<int:page>')
-@app.route('/europe/date_reported/all')
+@app_europe.route('/europe/date_reported/all/page/<int:page>')
+@app_europe.route('/europe/date_reported/all')
 def url_europe_date_reported_all(page=1):
     page_info = ApplicationPage('Europe', "date_reported")
     page_data = EuropeDateReported.get_all_as_page(page)
@@ -92,10 +95,10 @@ def url_europe_date_reported_all(page=1):
         page_info=page_info)
 
 
-@app.route('/europe/date_reported/<int:europe_date_reported_id>/page/<int:page>')
-@app.route('/europe/date_reported/<int:europe_date_reported_id>')
-@app.route('/europe/date_reported/notification_rate/<int:europe_date_reported_id>/page/<int:page>')
-@app.route('/europe/date_reported/notification_rate/<int:europe_date_reported_id>')
+@app_europe.route('/europe/date_reported/<int:europe_date_reported_id>/page/<int:page>')
+@app_europe.route('/europe/date_reported/<int:europe_date_reported_id>')
+@app_europe.route('/europe/date_reported/notification_rate/<int:europe_date_reported_id>/page/<int:page>')
+@app_europe.route('/europe/date_reported/notification_rate/<int:europe_date_reported_id>')
 def url_europe_date_reported_one_notification_rate(europe_date_reported_id, page=1):
     page_info = ApplicationPage('Europe', "date_reported")
     europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
@@ -107,8 +110,8 @@ def url_europe_date_reported_one_notification_rate(europe_date_reported_id, page
         page_info=page_info)
 
 
-@app.route('/europe/date_reported/deaths_weekly/<int:europe_date_reported_id>/page/<int:page>')
-@app.route('/europe/date_reported/deaths_weekly/<int:europe_date_reported_id>')
+@app_europe.route('/europe/date_reported/deaths_weekly/<int:europe_date_reported_id>/page/<int:page>')
+@app_europe.route('/europe/date_reported/deaths_weekly/<int:europe_date_reported_id>')
 def url_europe_date_reported_one_deaths_weekly(europe_date_reported_id, page=1):
     page_info = ApplicationPage('Europe', "date_reported")
     europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
@@ -120,8 +123,8 @@ def url_europe_date_reported_one_deaths_weekly(europe_date_reported_id, page=1):
         page_info=page_info)
 
 
-@app.route('/europe/date_reported/cases_weekly/<int:europe_date_reported_id>/page/<int:page>')
-@app.route('/europe/date_reported/cases_weekly/<int:europe_date_reported_id>')
+@app_europe.route('/europe/date_reported/cases_weekly/<int:europe_date_reported_id>/page/<int:page>')
+@app_europe.route('/europe/date_reported/cases_weekly/<int:europe_date_reported_id>')
 def url_europe_date_reported_one_cases_weekly(europe_date_reported_id, page=1):
     page_info = ApplicationPage('Europe', "date_reported")
     europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
@@ -133,8 +136,8 @@ def url_europe_date_reported_one_cases_weekly(europe_date_reported_id, page=1):
         page_info=page_info)
 
 
-@app.route('/europe/continent/all/page/<int:page>')
-@app.route('/europe/continent/all')
+@app_europe.route('/europe/continent/all/page/<int:page>')
+@app_europe.route('/europe/continent/all')
 def url_europe_continent_all(page=1):
     page_info = ApplicationPage('Europe', "continent")
     page_data = EuropeContinent.get_all_as_page(page)
@@ -144,8 +147,8 @@ def url_europe_continent_all(page=1):
         page_info=page_info)
 
 
-@app.route('/europe/continent/<int:continent_id>/page/<int:page>')
-@app.route('/europe/continent/<int:continent_id>')
+@app_europe.route('/europe/continent/<int:continent_id>/page/<int:page>')
+@app_europe.route('/europe/continent/<int:continent_id>')
 def url_europe_continent_one(continent_id, page=1):
     page_info = ApplicationPage('Europe', "continent")
     continent = EuropeContinent.get_by_id(continent_id)
@@ -157,8 +160,8 @@ def url_europe_continent_one(continent_id, page=1):
         page_info=page_info)
 
 
-@app.route('/europe/country/all/page/<int:page>')
-@app.route('/europe/country/all')
+@app_europe.route('/europe/country/all/page/<int:page>')
+@app_europe.route('/europe/country/all')
 def url_europe_country_all(page=1):
     page_info = ApplicationPage('Europe', "country")
     page_data = EuropeCountry.get_all_as_page(page)
@@ -168,8 +171,8 @@ def url_europe_country_all(page=1):
         page_info=page_info)
 
 
-@app.route('/europe/country/<int:country_id>/page/<int:page>')
-@app.route('/europe/country/<int:country_id>')
+@app_europe.route('/europe/country/<int:country_id>/page/<int:page>')
+@app_europe.route('/europe/country/<int:country_id>')
 def url_europe_country_one(country_id, page=1):
     page_info = ApplicationPage('Europe', "country")
     europe_country = EuropeCountry.get_by_id(country_id)
@@ -181,8 +184,8 @@ def url_europe_country_one(country_id, page=1):
         page_info=page_info)
 
 
-@app.route('/europe/country/germany/page/<int:page>')
-@app.route('/europe/country/germany')
+@app_europe.route('/europe/country/germany/page/<int:page>')
+@app_europe.route('/europe/country/germany')
 def url_europe_country_germany(page=1):
     page_info = ApplicationPage('Europe', "country: Germany")
     europe_country = EuropeCountry.get_germany()

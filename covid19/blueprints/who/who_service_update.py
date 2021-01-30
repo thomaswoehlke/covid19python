@@ -1,7 +1,7 @@
 from database import db, app
-from covid19.oodm.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
-from covid19.oodm.who.who_model_import import WhoGlobalDataImportTable
-from covid19.oodm.who.who_service_download import WhoServiceDownloadConfig
+from covid19.blueprints.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
+from covid19.blueprints.who.who_model_import import WhoGlobalDataImportTable
+from covid19.blueprints.who.who_service_download import WhoServiceDownloadConfig
 
 
 class WhoServiceUpdate:

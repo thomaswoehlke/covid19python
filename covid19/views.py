@@ -1,12 +1,12 @@
 from flask import render_template, redirect, url_for
 from database import app
-from covid19.oodm.common.common_model_transient import ApplicationPage
+from covid19.blueprints.common.common_model_transient import ApplicationPage
 
-import covid19.oodm.who.views_who
-import covid19.oodm.europe.views_europe
-import covid19.oodm.vaccination.views_vaccination
-import covid19.oodm.rki.views_rki
-import covid19.oodm.admin.views_admin
+import covid19.blueprints.who.views_who
+import covid19.blueprints.europe.views_europe
+import covid19.blueprints.vaccination.views_vaccination
+import covid19.blueprints.rki.views_rki
+import covid19.blueprints.admin.views_admin
 
 
 ############################################################################################

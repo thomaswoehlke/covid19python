@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, Blueprint
 from celery import states
 from celery.utils.log import get_task_logger
 
@@ -6,8 +6,11 @@ from database import app
 from covid19.services import vaccination_service
 from covid19.workers import celery
 
-from covid19.oodm.vaccination.vaccination_model_import import VaccinationGermanyTimeline
-from covid19.oodm.common.common_model_transient import ApplicationPage
+from covid19.blueprints.vaccination.vaccination_model_import import VaccinationGermanyTimeline
+from covid19.blueprints.common.common_model_transient import ApplicationPage
+
+
+app_vaccination = Blueprint('vaccination', __name__, template_folder='templates', static_folder='static')
 
 
 ##################################################################################################################
