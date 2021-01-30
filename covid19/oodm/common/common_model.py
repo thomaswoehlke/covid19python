@@ -1,4 +1,4 @@
-from dfdsfjshdbjhfds import db, ITEMS_PER_PAGE
+from database import db, ITEMS_PER_PAGE
 
 
 class CommonDatum(db.Model):

@@ -8,9 +8,9 @@ from database import app
 
 class RkiServiceDownload:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" RKI Service Download [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" RKI Service Download [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
         datum_heute = date.today().isoformat()
@@ -21,8 +21,8 @@ class RkiServiceDownload:
         self.__landkreise_cvsfile_name = "RKI_COVID19__"+datum_heute+"__landkreise.csv"
         self.__landkreise_url_src ="https://opendata.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0.csv"
         #
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" RKI Service Download [ready]")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" RKI Service Download [ready]")
 
     def __download_file(self, datascope, cvsfile_name, url_src):
         src_cvsfile_path = ".." + os.sep + "data" + os.sep + cvsfile_name
@@ -38,19 +38,19 @@ class RkiServiceDownload:
             data_file = wget.download(url_src, src_cvsfile_path)
             app.logger.info(" " + data_file + " ")
         except RuntimeError as error:
-            app.logger.info("############################################################")
-            app.logger.info(" " + error + " ")
-            app.logger.info("############################################################")
+            app.logger.error("############################################################")
+            app.logger.error(" " + error + " ")
+            app.logger.error("############################################################")
             flash(message="error while downloading: " + url_src, category='error')
         except Exception as error:
-            app.logger.info("############################################################")
-            app.logger.info(error)
-            app.logger.info("############################################################")
+            app.logger.error("############################################################")
+            app.logger.error(error)
+            app.logger.error("############################################################")
             flash(message="error after downloading: " + url_src, category='error')
         except AttributeError as aerror:
-            app.logger.info("############################################################")
-            app.logger.info(aerror)
-            app.logger.info("############################################################")
+            app.logger.error("############################################################")
+            app.logger.error(aerror)
+            app.logger.error("############################################################")
         finally:
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" download - RKI "+datascope+" [done] ")

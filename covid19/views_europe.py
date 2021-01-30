@@ -6,8 +6,8 @@ from database import app
 from covid19.services import europe_service
 from covid19.workers import celery
 
-from covid19.oodm.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
-from covid19.oodm.europe.europe_model import EuropeCountry, EuropeData
+from covid19.oodm.europe.europe_model_import import EuropeDataImportTable
+from covid19.oodm.europe.europe_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 from covid19.oodm.common.common_model_transient import ApplicationPage
 
 

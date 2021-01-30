@@ -1,5 +1,3 @@
-import os
-
 from database import app
 from covid19.oodm.europe.europe_service_download import EuropeServiceDownload
 from covid19.oodm.europe.europe_service_import import EuropeServiceImport
@@ -8,19 +6,14 @@ from covid19.oodm.europe.europe_service_update import EuropeServiceUpdate
 
 class EuropeService:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Europe Service [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" Europe Service [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
-        self.__europa_cvsfile_name = "ecdc_europa_data.csv"
-        self.__src_europa_cvsfile_name = "data"+os.sep+self.__europa_cvsfile_name
-        self.__src_europa_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__europa_cvsfile_name
-        self.__url_src_data = "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
         self.europe_service_download = EuropeServiceDownload(database)
         self.europe_service_import = EuropeServiceImport(database)
         self.europe_service_update = EuropeServiceUpdate(database)
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
         app.logger.info(" Europe Service [ready] ")
 
     def download(self):

@@ -236,8 +236,10 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #58 frontend: remove jumbotron from all pageheader, put jumbotron as main content on home page
 * Fixed #47 major refactoring: Routes from app.py to org...who,europe,... (Doublette von #65)
 * Fixed #48 major refactoring: Tasks from server_mq.py to org...who,europe,... (Doublette von #65)
-* Fixed #64 major refactoring: create two packages: for web app and for celery worker  
+* Fixed #64 major refactoring: create two packages: for web app and for celery worker
+* Issue #68 TODO: move Queries from Services to Model-Classes 
 * Issue #65 major refactoring: add flask-blueprints for admin, common, europe, rki, vaccination, who
+
 
 ### 0.0.14 Release
 * Issue #66 frontend: migrate to Bootstrap Theme sb-admin-angular

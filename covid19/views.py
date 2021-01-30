@@ -6,7 +6,6 @@ import covid19.views_who
 import covid19.views_europe
 import covid19.views_vaccination
 import covid19.views_rki
-import covid19.views_nrw
 import covid19.views_admin
 
 

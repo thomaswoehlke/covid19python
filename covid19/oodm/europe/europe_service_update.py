@@ -1,22 +1,19 @@
-import os
 from database import db, app
-from covid19.oodm.europe.europe_model import EuropeDataImportTable, \
-    EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
+from covid19.oodm.europe.europe_service_config import EuropeServiceDownloadConfig
+from covid19.oodm.europe.europe_model_import import EuropeDataImportTable
+from covid19.oodm.europe.europe_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 
 
 class EuropeServiceUpdate:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Europe Service Update [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" Europe Service Update [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
-        self.__cvsfile_name = "ecdc_europa_data.csv"
-        self.__src_cvsfile_name = "data" + os.sep + self.__cvsfile_name
-        self.__src_cvsfile_tmp_name = "data" + os.sep + "tmp_" + self.__cvsfile_name
+        self.cfg = EuropeServiceDownloadConfig()
         self.__url_src_data = "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Europe Service Update [ready] ")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" Europe Service Update [ready] ")
 
     def __update_date_reported(self):
         app.logger.info(" __update_date_reported [begin]")

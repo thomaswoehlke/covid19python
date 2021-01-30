@@ -3,21 +3,21 @@ import sys
 import csv
 import psycopg2
 from database import db, app
-from covid19.oodm.who.who_model import WhoGlobalDataImportTable
+from covid19.oodm.who.who_model_import import WhoGlobalDataImportTable
 from covid19.oodm.who.who_service_download import WhoServiceDownloadConfig
 
-who_service_import = None
+#who_service_import = None
 
 
 class WhoServiceImport:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" WHO Service Import [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" WHO Service Import [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = WhoServiceDownloadConfig()
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" WHO Service Import [ready]")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" WHO Service Import [ready]")
 
     def import_file(self):
         src_cvsfile_name = self.cfg.data_path + os.sep + self.cfg.cvsfile_name

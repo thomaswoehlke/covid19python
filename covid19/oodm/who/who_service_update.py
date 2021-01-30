@@ -1,23 +1,18 @@
-import os
-
 from database import db, app
 from covid19.oodm.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
-from covid19.oodm.who.who_model import WhoGlobalDataImportTable
+from covid19.oodm.who.who_model_import import WhoGlobalDataImportTable
+from covid19.oodm.who.who_service_download import WhoServiceDownloadConfig
 
 
 class WhoServiceUpdate:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" WHO Service Update [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" WHO Service Update [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
-        self.__cvsfile_name = "WHO-COVID-19-global-data.csv"
-        self.__src_cvsfile_name = "data" + os.sep + self.__cvsfile_name
-        self.__src_cvsfile_tmp_name = "data" + os.sep + "tmp_" + self.__cvsfile_name
-        self.__url_src_data = "https://covid19.who.int/" + self.__cvsfile_name
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" WHO Service Update [ready]")
+        self.cfg = WhoServiceDownloadConfig()
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" WHO Service Update [ready]")
 
     def __update_who_date_reported(self):
         app.logger.info(" update who_date_reported [begin]")
@@ -64,6 +59,7 @@ class WhoServiceUpdate:
     def __update_who_country(self):
         app.logger.info(" update who_country [begin]")
         app.logger.info("------------------------------------------------------------")
+        # TODO: Queries to Model-Classes
         sql_text = """
         select distinct 
             who_global_data_import.country_code,

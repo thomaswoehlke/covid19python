@@ -4,15 +4,12 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from covid19.services import who_service, europe_service, vaccination_service, admin_service, rki_service
+from covid19.services import who_service
 from covid19.workers import celery
 
-from covid19.oodm.who.who_model import WhoGlobalDataImportTable
+from covid19.oodm.who.who_model_import import WhoGlobalDataImportTable
 from covid19.oodm.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData
-from covid19.oodm.europe.europe_model import EuropeDataImportTable, EuropeDateReported, EuropeContinent
-from covid19.oodm.europe.europe_model import EuropeCountry, EuropeData
 from covid19.oodm.common.common_model_transient import ApplicationPage
-from covid19.oodm.vaccination.vaccination_model import VaccinationGermanyTimeline
 
 
 ##################################################################################################################
@@ -24,8 +21,8 @@ from covid19.oodm.vaccination.vaccination_model import VaccinationGermanyTimelin
 
 @celery.task(bind=True)
 def task_who_run_update(self, import_file=True):
-    logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
+    logger = get_task_logger(__name__)
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_who_run_update [OK] ")
     logger.info("------------------------------------------------------------")

@@ -10,17 +10,17 @@ from covid19.oodm.who.who_model import WhoGlobalDataImportTable
 
 class RkiServiceImport:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" RKI Service Import [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" RKI Service Import [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
         self.__who_cvsfile_name = "WHO-COVID-19-global-data.csv"
         self.__src_who_cvsfile_name = "data"+os.sep+self.__who_cvsfile_name
         self.__src_who_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__who_cvsfile_name
         self.__url_src_data = "https://covid19.who.int/"+self.__who_cvsfile_name
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" RKI Service Import [ready]")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" RKI Service Import [ready]")
 
     def import_file(self):
         app.logger.info(" import RKI [begin]")

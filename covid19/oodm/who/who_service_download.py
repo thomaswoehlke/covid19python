@@ -2,25 +2,18 @@ import os
 import wget
 from flask import flash
 from database import app
-
-
-class WhoServiceDownloadConfig:
-    def __init__(self):
-        self.limit_nr = 20
-        self.data_path = ".."+os.sep+"data"
-        self.cvsfile_name = "WHO-COVID-19-global-data.csv"
-        self.url_src_data = "https://covid19.who.int/" + self.cvsfile_name
+from covid19.oodm.who.who_service_config import WhoServiceDownloadConfig
 
 
 class WhoServiceDownload:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" WHO Service Download [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" WHO Service Download [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = WhoServiceDownloadConfig()
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" WHO Service Download [ready]")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" WHO Service Download [ready]")
 
     def download_file(self):
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name

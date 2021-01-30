@@ -3,19 +3,19 @@ import csv
 import psycopg2
 
 from database import db, app
-from covid19.oodm.europe.europe_model import EuropeDataImportTable
-from covid19.oodm.europe.europe_service_download import EuropeServiceDownloadConfig
+from covid19.oodm.europe.europe_model_import import EuropeDataImportTable
+from covid19.oodm.europe.europe_service_config import EuropeServiceDownloadConfig
 
 
 class EuropeServiceImport:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Europe Service Import [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" Europe Service Import [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = EuropeServiceDownloadConfig()
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Europe Service Import [ready] ")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" Europe Service Import [ready] ")
 
     def import_datafile_to_db(self):
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name

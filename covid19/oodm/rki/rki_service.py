@@ -7,15 +7,15 @@ from covid19.oodm.rki.rki_service_update import RkiServiceUpdate
 
 class RkiService:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" RKI Service [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" RKI Service [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
         self.service_download = RkiServiceDownload(database)
         self.service_import = RkiServiceImport(database)
         self.service_update = RkiServiceUpdate(database)
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
         app.logger.info(" RKI Service [ready]")
 
     def run_download(self):

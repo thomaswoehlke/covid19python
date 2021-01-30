@@ -9,13 +9,13 @@ rki_service_update = None
 
 class RkiServiceUpdate:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" RKI Service Update [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" RKI Service Update [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" RKI Service Update [ready]")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" RKI Service Update [ready]")
 
     def __update_who_date_reported(self):
         app.logger.info(" update who_date_reported [begin]")
@@ -24,7 +24,7 @@ class RkiServiceUpdate:
         for i_date_reported, in RkiGermanyDataImportTable.get_dates_reported():
             c = RkiDateReported.find_by_date_reported(i_date_reported)
             if c is None:
-                o = RkiDateReported.create_new_object_factor(my_date_rep=i_date_reported)
+                o = RkiDateReported.create_new_object_factory(my_date_rep=i_date_reported)
                 db.session.add(o)
                 app.logger.info(" update who_date_reported "+i_date_reported+" added NEW")
             if i % 10 == 0:

@@ -3,7 +3,7 @@ from sqlalchemy.exc import OperationalError
 
 from database import app
 
-from covid19.oodm.who.who_model import WhoGlobalDataImportTable
+from covid19.oodm.who.who_model_import import WhoGlobalDataImportTable
 from covid19.oodm.common.common_model_transient import ApplicationPage
 
 drop_and_create_data_again = True
