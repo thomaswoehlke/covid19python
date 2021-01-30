@@ -1,9 +1,5 @@
 from setuptools import setup, find_packages
 
-INSTALLED_APPS = [
-  'fontawesome-free'
-]
-
 setup(
     name='covid19python',
     version='0.0.13',
