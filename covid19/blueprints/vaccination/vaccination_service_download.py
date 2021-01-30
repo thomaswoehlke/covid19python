@@ -2,7 +2,7 @@ import os
 import wget
 from flask import flash
 from database import app
-from covid19.oodm.vaccination.vaccination_service_config import VaccinationServiceDownloadConfig
+from covid19.blueprints.vaccination.vaccination_service_config import VaccinationServiceDownloadConfig
 
 
 class VaccinationServiceDownload:

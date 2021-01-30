@@ -2,7 +2,7 @@ import os
 import wget
 from flask import flash
 from database import app
-from covid19.oodm.who.who_service_config import WhoServiceDownloadConfig
+from covid19.blueprints.who.who_service_config import WhoServiceDownloadConfig
 
 
 class WhoServiceDownload:

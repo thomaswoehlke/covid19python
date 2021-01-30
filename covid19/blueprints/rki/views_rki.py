@@ -1,12 +1,15 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, Blueprint
 from sqlalchemy.exc import OperationalError
 
 from database import app
 
-from covid19.oodm.who.who_model_import import WhoGlobalDataImportTable
-from covid19.oodm.common.common_model_transient import ApplicationPage
+from covid19.blueprints.who.who_model_import import WhoGlobalDataImportTable
+from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 drop_and_create_data_again = True
+
+
+app_rki = Blueprint('rki', __name__, template_folder='templates', static_folder='static')
 
 
 ##################################################################################################################
@@ -14,7 +17,7 @@ drop_and_create_data_again = True
 # RKI
 #
 ##################################################################################################################
-@app.route('/rki/info')
+@app_rki.route('/rki/info')
 def url_rki_info():
     page_info = ApplicationPage('RKI', "Info")
     return render_template(
@@ -22,7 +25,7 @@ def url_rki_info():
         page_info=page_info)
 
 
-@app.route('/rki/tasks')
+@app_rki.route('/rki/tasks')
 def url_rki_tasks():
     page_info = ApplicationPage('RKI', "Tasks")
     return render_template(
@@ -30,8 +33,8 @@ def url_rki_tasks():
         page_info=page_info)
 
 
-@app.route('/rki/imported/page/<int:page>')
-@app.route('/rki/imported')
+@app_rki.route('/rki/imported/page/<int:page>')
+@app_rki.route('/rki/imported')
 def url_rki_imported(page=1):
     page_info = ApplicationPage('RKI', "Last Import")
     try:

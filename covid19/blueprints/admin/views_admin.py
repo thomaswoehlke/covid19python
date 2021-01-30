@@ -6,7 +6,7 @@ from database import app
 from covid19.services import who_service, europe_service, vaccination_service, admin_service, rki_service
 from covid19.workers import celery
 
-from covid19.oodm.common.common_model_transient import ApplicationPage
+from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 
 drop_and_create_data_again = True

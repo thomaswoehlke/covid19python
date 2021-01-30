@@ -1,7 +1,7 @@
 from database import app
-from covid19.oodm.europe.europe_service_download import EuropeServiceDownload
-from covid19.oodm.europe.europe_service_import import EuropeServiceImport
-from covid19.oodm.europe.europe_service_update import EuropeServiceUpdate
+from covid19.blueprints.europe.europe_service_download import EuropeServiceDownload
+from covid19.blueprints.europe.europe_service_import import EuropeServiceImport
+from covid19.blueprints.europe.europe_service_update import EuropeServiceUpdate
 
 
 class EuropeService:
