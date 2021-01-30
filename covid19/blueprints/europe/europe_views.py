@@ -11,7 +11,7 @@ from covid19.blueprints.europe.europe_model import EuropeDateReported, EuropeCon
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 
-app_europe = Blueprint('europe', __name__, template_folder='templates', static_folder='static')
+app_europe = Blueprint('europe', __name__, template_folder='templates')
 
 
 ##################################################################################################################

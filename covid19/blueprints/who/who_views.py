@@ -12,7 +12,7 @@ from covid19.blueprints.who.who_model import WhoRegion, WhoCountry, WhoDateRepor
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 
-app_who = Blueprint('who', __name__, template_folder='templates', static_folder='static')
+app_who = Blueprint('who', __name__, template_folder='templates')
 
 
 ##################################################################################################################

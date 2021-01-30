@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, Blueprint
 from celery import states
 from celery.utils.log import get_task_logger
 
@@ -10,6 +10,9 @@ from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 
 drop_and_create_data_again = True
+
+
+app_admin = Blueprint('admin', __name__, template_folder='templates')
 
 
 #################################################################################################################
@@ -47,7 +50,7 @@ def task_admin_database_drop_create(self):
     return result
 
 
-@app.route('/admin/tasks')
+@app_admin.route('/admin/tasks')
 def url_admin_tasks():
     page_info = ApplicationPage('Admin', "Tasks")
     return render_template(
@@ -55,7 +58,7 @@ def url_admin_tasks():
         page_info=page_info)
 
 
-@app.route('/admin/info')
+@app_admin.route('/admin/info')
 def url_admin_info():
     page_info = ApplicationPage('Admin', "Info")
     return render_template(
@@ -63,7 +66,7 @@ def url_admin_info():
         page_info=page_info)
 
 
-@app.route('/admin/alive_message')
+@app_admin.route('/admin/alive_message')
 def url_alive_message_start():
     app.logger.info("url_alive_message_start [start]")
     task_admin_alive_message.apply_async()
@@ -72,7 +75,7 @@ def url_alive_message_start():
     return redirect(url_for('url_admin_tasks'))
 
 
-@app.route('/admin/database/dump')
+@app_admin.route('/admin/database/dump')
 def url_admin_database_dump():
     app.logger.info("url_admin_database_dump [start]")
     admin_service.run_admin_database_dump()
@@ -81,7 +84,7 @@ def url_admin_database_dump():
     return redirect(url_for('url_admin_tasks'))
 
 
-@app.route('/admin/database/import')
+@app_admin.route('/admin/database/import')
 def url_admin_database_import():
     app.logger.info("url_admin_database_import [start]")
     admin_service.run_admin_database_import()
@@ -90,7 +93,7 @@ def url_admin_database_import():
     return redirect(url_for('url_admin_tasks'))
 
 
-@app.route('/admin/database/drop')
+@app_admin.route('/admin/database/drop')
 def url_admin_database_drop():
     app.logger.info("url_admin_database_drop [start]")
     flash("admin_service.run_admin_database_drop started")
