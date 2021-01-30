@@ -21,7 +21,7 @@ app_rki = Blueprint('rki', __name__, template_folder='templates')
 def url_rki_info():
     page_info = ApplicationPage('RKI', "Info")
     return render_template(
-        'rki/rki_info.html',
+        'templates/rki/rki_info.html',
         page_info=page_info)
 
 
@@ -29,7 +29,7 @@ def url_rki_info():
 def url_rki_tasks():
     page_info = ApplicationPage('RKI', "Tasks")
     return render_template(
-        'rki/rki_tasks.html',
+        'templates/rki/rki_tasks.html',
         page_info=page_info)
 
 
@@ -43,6 +43,6 @@ def url_rki_imported(page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'rki/rki_imported.html',
+        'templates/rki/rki_imported.html',
         page_data=page_data,
         page_info=page_info)

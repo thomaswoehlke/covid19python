@@ -1,0 +1,34 @@
+{% extends 'common/page_layout.html' %}
+
+{% block navigation_breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/who/region/all">Regions</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Countries</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block navigation_navtabs %}
+  {% include 'europe/fragments/fragments/fragment_europe_navtabs.html' %}
+{% endblock %}
+
+
+{% block main_container %}
+    <div class="row">
+        <div class="btn-group" role="group" aria-label="Views">
+            <a class="btn btn-primary btn-lg" href="/europe/update/initial" role="button">Europe :: update :: initial</a>
+            <a class="btn btn-secondary btn-lg" href="/europe/update/short" role="button">Europe :: update :: short</a>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer_container %}
+    <div>
+        {% for error in errors %}
+            <h4>{{ error }}</h4>
+        {% endfor %}
+    </div>
+{% endblock %}

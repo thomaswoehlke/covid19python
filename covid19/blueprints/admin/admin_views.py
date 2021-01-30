@@ -54,7 +54,7 @@ def task_admin_database_drop_create(self):
 def url_admin_tasks():
     page_info = ApplicationPage('Admin', "Tasks")
     return render_template(
-        'admin/admin_tasks.html',
+        'templates/admin/admin_tasks.html',
         page_info=page_info)
 
 
@@ -62,7 +62,7 @@ def url_admin_tasks():
 def url_admin_info():
     page_info = ApplicationPage('Admin', "Info")
     return render_template(
-        'admin/admin_info.html',
+        'templates/admin/admin_info.html',
         page_info=page_info)
 
 
