@@ -17,7 +17,7 @@ import covid19.oodm.admin.views_admin
 def url_home():
     page_info = ApplicationPage('Home', "Covid19 Data")
     return render_template(
-        'page_home.html',
+        'common/page_home.html',
         page_info=page_info)
 
 
