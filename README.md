@@ -224,16 +224,14 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #51 /europe/imported
 
 ### 0.0.12 Release
-* Fixed #52 download vaccination timeline data file
-* Fixed #53 import vaccination timeline data file into db
-* Fixed #54 /vaccination/imported
 * Fixed #55 /vaccination/tasks
 * Fixed #56 /vaccination/info
 
 ### 0.0.13 Release
 * Fixed #49 EuropeServiceUpdate.__update_data_short() (wontfix)
-* Issue #47 refactor Routes from app.py to org...who,europe,...
-* Issue #48 refactor Tasks from server_mq.py to org...who,europe,...
+* Fixed #52 download vaccination timeline data file
+* Fixed #53 import vaccination timeline data file into db
+* Fixed #54 /vaccination/imported
 * Issue #57 frontend: use npm for handling 3rdParty css and javascript modules like jQuery, Bootstrap
 * Issue #58 frontend: remove jumbotron from all pageheader, put jumbotron as main content on home page
 * Issue #59 frontend: add correct breadcrumb to every page
@@ -241,16 +239,24 @@ class WhoGlobalDataImportTable(db.Model):
 * Issue #61 frontend: better design for navtabs
 * Issue #62 frontend: better design for pages
 * Issue #63 frontend: add footer design
+* Issue #47 major refactoring: Routes from app.py to org...who,europe,...
+* Issue #48 major refactoring: Tasks from server_mq.py to org...who,europe,...
 * Issue #64 major refactoring: create two packages: for web app and for celery worker  
 * Issue #65 major refactoring: add flask-blueprints for admin, common, europe, rki, vaccination, who
 
 ### 0.0.14 Release
+* Issue #66 frontend: migrate to Bootstrap Theme sb-admin-angular
+* Issue #67 implement Flask-Login
+
+### 0.0.15 Release
+* Issue #5 Visual Graphs for Data per Countries order by Date
+
+### 0.0.16 Release
 * Issue #28 /admin/database/import
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Issue #40 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()
 * Issue #41 SQLalchemy instead of SQL: EuropeDataImportTable.get_countries_of_continent()
 * Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array()
 
-### 0.0.15 Release
-* Issue #5 Visual Graphs for Data per Countries order by Date
-
+### 0.0.17 Release
+* 

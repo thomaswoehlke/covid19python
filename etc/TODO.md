@@ -20,3 +20,8 @@
 
 ### blueprints
 * https://flask.palletsprojects.com/en/1.1.x/blueprints/
+
+### Bootstrap Theme
+* https://startbootstrap.com/template/sb-admin-angular
+* https://github.com/startbootstrap/sb-admin-angular
+* https://startbootstrap.com/previews/sb-admin-angular
