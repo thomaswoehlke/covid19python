@@ -39,7 +39,7 @@ class WhoServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         i = 0
         for i_who_region, in WhoGlobalDataImportTable.get_regions():
-            c = WhoRegion.find_by_region()
+            c = WhoRegion.find_by_region(i_who_region)
             if c is None:
                 o = WhoRegion(region=i_who_region)
                 db.session.add(o)

@@ -22,9 +22,8 @@ class EuropeServiceDownload:
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" FILE: "+self.cfg.cvsfile_name+" <- "+self.cfg.url_src_data)
         app.logger.info("------------------------------------------------------------")
-        os.makedirs('data', exist_ok=True)
-        app.logger.info("------------------------------------------------------------")
         try:
+            os.makedirs(self.cfg.data_path, exist_ok=True)
             if os.path.isfile(src_cvsfile_name):
                 os.remove(src_cvsfile_name)
             wget.download(self.cfg.url_src_data, src_cvsfile_name)

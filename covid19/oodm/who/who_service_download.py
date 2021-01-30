@@ -19,11 +19,10 @@ class WhoServiceDownload:
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info(" download - [begin] ")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" ")
-        app.logger.info(" FROM: "+self.cfg.url_src_data+" ")
+        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" <- "+self.cfg.url_src_data)
         app.logger.info("------------------------------------------------------------")
-        os.makedirs(self.cfg.data_path, exist_ok=True)
         try:
+            os.makedirs(self.cfg.data_path, exist_ok=True)
             if os.path.isfile(src_cvsfile_name):
                 os.remove(src_cvsfile_name)
             data_file = wget.download(self.cfg.url_src_data, src_cvsfile_name)

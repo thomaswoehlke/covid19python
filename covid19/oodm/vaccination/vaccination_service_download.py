@@ -18,10 +18,10 @@ class VaccinationServiceDownload:
     def download_file(self):
         app.logger.info(" download - Vaccination [begin] ")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" ")
-        app.logger.info(" FROM: "+self.cfg.url_src_data+" ")
+        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" <- "+self.cfg.url_src_data)
         app.logger.info("------------------------------------------------------------")
         try:
+            os.makedirs(self.cfg.data_path, exist_ok=True)
             if os.path.isfile(self.cfg.cvsfile_path):
                 os.remove(self.cfg.cvsfile_path)
             data_file = wget.download(self.cfg.url_src_data, self.cfg.cvsfile_path)
