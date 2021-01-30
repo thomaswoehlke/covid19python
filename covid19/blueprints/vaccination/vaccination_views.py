@@ -10,7 +10,7 @@ from covid19.blueprints.vaccination.vaccination_model_import import VaccinationG
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 
-app_vaccination = Blueprint('vaccination', __name__, template_folder='templates', static_folder='static')
+app_vaccination = Blueprint('vaccination', __name__, template_folder='templates')
 
 
 ##################################################################################################################

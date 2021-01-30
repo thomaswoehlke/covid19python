@@ -9,7 +9,7 @@ from covid19.blueprints.common.common_model_transient import ApplicationPage
 drop_and_create_data_again = True
 
 
-app_rki = Blueprint('rki', __name__, template_folder='templates', static_folder='static')
+app_rki = Blueprint('rki', __name__, template_folder='templates')
 
 
 ##################################################################################################################

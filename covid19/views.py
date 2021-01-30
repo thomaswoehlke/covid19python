@@ -2,11 +2,11 @@ from flask import render_template, redirect, url_for
 from database import app
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
-import covid19.blueprints.who.views_who
-import covid19.blueprints.europe.views_europe
-import covid19.blueprints.vaccination.views_vaccination
-import covid19.blueprints.rki.views_rki
-import covid19.blueprints.admin.views_admin
+import covid19.blueprints.who.who_views
+import covid19.blueprints.europe.europe_views
+import covid19.blueprints.vaccination.vaccination_views
+import covid19.blueprints.rki.rki_views
+import covid19.blueprints.admin.admin_views
 
 
 ############################################################################################
