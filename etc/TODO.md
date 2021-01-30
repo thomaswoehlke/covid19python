@@ -13,3 +13,7 @@
 * https://setuptools.readthedocs.io/en/latest/userguide/dependency_management.html
 * https://setuptools.readthedocs.io/en/latest/userguide/declarative_config.html
 * https://setuptools.readthedocs.io/en/latest/userguide/quickstart.html#basic-use
+
+### Flask-Login
+* https://flask-login.readthedocs.io/en/latest/
+* https://riptutorial.com/flask/example/28112/using-flask-login-extension
