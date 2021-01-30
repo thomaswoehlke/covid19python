@@ -38,10 +38,9 @@ class WhoServiceUpdate:
         app.logger.info(" update who_region [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        #TODO: Queries to Model-Classes
-        for i_who_region, in db.session.query(WhoGlobalDataImportTable.who_region).distinct():
-            c = db.session.query(WhoRegion).filter(WhoRegion.region == i_who_region).count()
-            if c == 0:
+        for i_who_region, in WhoGlobalDataImportTable.get_regions():
+            c = WhoRegion.find_by_region()
+            if c is None:
                 o = WhoRegion(region=i_who_region)
                 db.session.add(o)
                 app.logger.info(i_who_region + " added NEW ")
@@ -59,15 +58,7 @@ class WhoServiceUpdate:
     def __update_who_country(self):
         app.logger.info(" update who_country [begin]")
         app.logger.info("------------------------------------------------------------")
-        # TODO: Queries to Model-Classes
-        sql_text = """
-        select distinct 
-            who_global_data_import.country_code,
-            who_global_data_import.country,
-            who_global_data_import.who_region
-        from who_global_data_import
-        """
-        result = db.session.execute(sql_text).fetchall()
+        result = WhoGlobalDataImportTable.countries()
         for result_item in result:
             i_country_code = result_item.country_code
             i_country = result_item.country
@@ -102,7 +93,6 @@ class WhoServiceUpdate:
         app.logger.info(" update WHO [begin]")
         app.logger.info("------------------------------------------------------------")
         dates_reported = WhoDateReported.get_all_as_dict()
-        #regions = WhoRegion.get_all_as_dict()
         countries = WhoCountry.get_all_as_dict()
         i = 0
         result = WhoGlobalDataImportTable.get_all()

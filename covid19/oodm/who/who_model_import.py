@@ -78,3 +78,14 @@ class WhoGlobalDataImportTable(db.Model):
         for item in db.session.execute(sql_query):
             new_dates.append(item['date_reported'])
         return new_dates
+
+    @classmethod
+    def countries(cls):
+        sql_query = """
+            select distinct 
+                who_global_data_import.country_code,
+                who_global_data_import.country,
+                who_global_data_import.who_region
+                from who_global_data_import
+            """
+        return db.session.execute(sql_query).fetchall()

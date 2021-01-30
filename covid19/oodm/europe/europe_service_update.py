@@ -11,7 +11,6 @@ class EuropeServiceUpdate:
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = EuropeServiceDownloadConfig()
-        self.__url_src_data = "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Update [ready] ")
 
@@ -91,7 +90,7 @@ class EuropeServiceUpdate:
                 )
                 my_d = int(item_europe_data_import.deaths_weekly)
                 my_e = int(item_europe_data_import.cases_weekly)
-                if item_europe_data_import.notification_rate_per_100000_population_14days=='':
+                if item_europe_data_import.notification_rate_per_100000_population_14days == '':
                     my_f = 0.0
                 else:
                     my_f = float(item_europe_data_import.notification_rate_per_100000_population_14days)
