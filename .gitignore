@@ -1138,4 +1138,3 @@ Debug*/Debug*\ Libs
 /data/WHO-COVID-19-global-data *.csv
 /data/ecdc_europa_data (1).csv
 /data/RKI_COVID19.csv
-/covid19/static/package-lock.json
