@@ -232,16 +232,12 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #52 download vaccination timeline data file
 * Fixed #53 import vaccination timeline data file into db
 * Fixed #54 /vaccination/imported
-* Issue #57 frontend: use npm for handling 3rdParty css and javascript modules like jQuery, Bootstrap
-* Issue #58 frontend: remove jumbotron from all pageheader, put jumbotron as main content on home page
+* Fixed #57 frontend: use npm for handling 3rdParty css and javascript modules like jQuery, Bootstrap
+* Fixed #58 frontend: remove jumbotron from all pageheader, put jumbotron as main content on home page
 * Issue #59 frontend: add correct breadcrumb to every page
-* Issue #60 frontend: better design for tables
-* Issue #61 frontend: better design for navtabs
-* Issue #62 frontend: better design for pages
-* Issue #63 frontend: add footer design
-* Issue #47 major refactoring: Routes from app.py to org...who,europe,...
-* Issue #48 major refactoring: Tasks from server_mq.py to org...who,europe,...
-* Issue #64 major refactoring: create two packages: for web app and for celery worker  
+* Fixed #47 major refactoring: Routes from app.py to org...who,europe,... (Doublette von #65)
+* Fixed #48 major refactoring: Tasks from server_mq.py to org...who,europe,... (Doublette von #65)
+* Fixed #64 major refactoring: create two packages: for web app and for celery worker  
 * Issue #65 major refactoring: add flask-blueprints for admin, common, europe, rki, vaccination, who
 
 ### 0.0.14 Release
@@ -250,6 +246,10 @@ class WhoGlobalDataImportTable(db.Model):
 
 ### 0.0.15 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
+* Issue #60 frontend: better design for tables
+* Issue #61 frontend: better design for navtabs
+* Issue #62 frontend: better design for pages
+* Issue #63 frontend: add footer design
 
 ### 0.0.16 Release
 * Issue #28 /admin/database/import
