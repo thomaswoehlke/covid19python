@@ -22,7 +22,7 @@ class CommonDatum(db.Model):
         # load if already exists
         old = db.session.query(cls).filter(cls.date_string == date_string).one_or_none()
         if old is None:
-            o = CommonDatum(date_string=date_string, datum=transform_datum(date_string))
+            o = CommonDatum(date_string=date_string)
             # put year
             # put month
             # put datum

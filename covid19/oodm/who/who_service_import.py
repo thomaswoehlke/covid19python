@@ -6,8 +6,6 @@ from database import db, app
 from covid19.oodm.who.who_model_import import WhoGlobalDataImportTable
 from covid19.oodm.who.who_service_download import WhoServiceDownloadConfig
 
-#who_service_import = None
-
 
 class WhoServiceImport:
     def __init__(self, database):

@@ -132,10 +132,9 @@ class WhoRegion(db.Model):
 
     @classmethod
     def find_by_region(cls, i_who_region):
-        my_region = db.session.query(cls)\
+        return db.session.query(cls)\
             .filter(cls.region == i_who_region)\
             .one_or_none()
-        return my_region
 
 
 class WhoCountry(db.Model):
