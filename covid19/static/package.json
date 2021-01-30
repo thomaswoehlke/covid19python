@@ -1,0 +1,28 @@
+{
+  "name": "covid19static",
+  "version": "0.0.13",
+  "description": "Covid19 Data Aggregation - also a Project to learn Python Flask, SQLAlchemy, Celery et al.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thomaswoehlke/covid19python/covid19/static"
+  },
+  "keywords": [
+    "virus",
+    "pandemic",
+    "covid19",
+    "data",
+    "statistic",
+    "who",
+    "rki",
+    "python",
+    "flask",
+    "sqlalchemy",
+    "postgresql"
+  ],
+  "author": "thomaswoehlke",
+  "license": "GPL-3.0-or-later",
+}
