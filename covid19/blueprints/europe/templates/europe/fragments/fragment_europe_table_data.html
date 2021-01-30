@@ -5,7 +5,7 @@
                 <th scope="col">year_week</th>
                 <th scope="col">
                     {% if europe_date_reported %}
-                        <a href="{{ url_for( 'url_europe_date_reported_one_deaths_weekly',
+                        <a href="{{ url_for( 'europe.url_europe_date_reported_one_deaths_weekly',
                             europe_date_reported_id=europe_date_reported.id,
                             page=page_data.page) }}">
                             deaths weekly
@@ -17,7 +17,7 @@
                 </th>
                 <th scope="col">
                     {% if europe_date_reported %}
-                        <a href="{{ url_for( 'url_europe_date_reported_one_cases_weekly',
+                        <a href="{{ url_for( 'europe.url_europe_date_reported_one_cases_weekly',
                             europe_date_reported_id=europe_date_reported.id,
                             page=page_data.page) }}">
                             cases weekly
@@ -29,7 +29,7 @@
                 </th>
                 <th scope="col">
                     {% if europe_date_reported %}
-                        <a href="{{ url_for( 'url_europe_date_reported_one_notification_rate',
+                        <a href="{{ url_for( 'europe.url_europe_date_reported_one_notification_rate',
                                     europe_date_reported_id=europe_date_reported.id,
                                     page=page_data.page) }}">
                             notification rate per 100000 population 14days

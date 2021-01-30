@@ -14,7 +14,6 @@ class VaccinationServiceImport:
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = VaccinationServiceDownloadConfig()
-        self.__url_src_data = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Import [ready]")
 
