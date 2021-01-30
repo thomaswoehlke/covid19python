@@ -234,7 +234,6 @@ class WhoGlobalDataImportTable(db.Model):
 * Fixed #54 /vaccination/imported
 * Fixed #57 frontend: use npm for handling 3rdParty css and javascript modules like jQuery, Bootstrap
 * Fixed #58 frontend: remove jumbotron from all pageheader, put jumbotron as main content on home page
-* Issue #59 frontend: add correct breadcrumb to every page
 * Fixed #47 major refactoring: Routes from app.py to org...who,europe,... (Doublette von #65)
 * Fixed #48 major refactoring: Tasks from server_mq.py to org...who,europe,... (Doublette von #65)
 * Fixed #64 major refactoring: create two packages: for web app and for celery worker  
@@ -246,6 +245,7 @@ class WhoGlobalDataImportTable(db.Model):
 
 ### 0.0.15 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
+* Issue #59 frontend: add correct breadcrumb to every page
 * Issue #60 frontend: better design for tables
 * Issue #61 frontend: better design for navtabs
 * Issue #62 frontend: better design for pages
