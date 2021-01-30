@@ -9,14 +9,14 @@ from covid19.oodm.vaccination.vaccination_service_config import VaccinationServi
 
 class VaccinationServiceImport:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Vaccination Service Import [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" Vaccination Service Import [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = VaccinationServiceDownloadConfig()
         self.__url_src_data = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Vaccination Service Import [ready]")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" Vaccination Service Import [ready]")
 
     def import_file(self):
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name

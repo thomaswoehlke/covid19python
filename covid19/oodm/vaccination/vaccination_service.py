@@ -1,24 +1,19 @@
-import os
-
 from database import app
 from covid19.oodm.vaccination.vaccination_service_download import VaccinationServiceDownload
 from covid19.oodm.vaccination.vaccination_service_import import VaccinationServiceImport
+from covid19.oodm.vaccination.vaccination_service_config import VaccinationServiceDownloadConfig
 
 
 class VaccinationService:
     def __init__(self, database):
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" Vaccination Service [init]")
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
+        app.logger.debug(" Vaccination Service [init]")
+        app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
-        self.__cvsfile_name = "germany_vaccinations_timeseries_v2.tsv"
-        self.__src_cvsfile_name = "data"+os.sep+self.__cvsfile_name
-        self.__src_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__cvsfile_name
-        self.__url_src_data = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
+        self.cfg = VaccinationServiceDownloadConfig()
         self.vaccination_service_download = VaccinationServiceDownload(database)
         self.vaccination_service_import = VaccinationServiceImport(database)
-        app.logger.info("------------------------------------------------------------")
+        app.logger.debug("------------------------------------------------------------")
         app.logger.info(" Vaccination Service [ready]")
 
     def run_download(self):
