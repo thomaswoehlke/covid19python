@@ -50,50 +50,50 @@ def task_admin_database_drop_create(self):
     return result
 
 
-@app_admin.route('/admin/tasks')
+@app_admin.route('/tasks')
 def url_admin_tasks():
     page_info = ApplicationPage('Admin', "Tasks")
     return render_template(
-        'templates/admin/admin_tasks.html',
+        'admin/admin_tasks.html',
         page_info=page_info)
 
 
-@app_admin.route('/admin/info')
+@app_admin.route('/info')
 def url_admin_info():
     page_info = ApplicationPage('Admin', "Info")
     return render_template(
-        'templates/admin/admin_info.html',
+        'admin/admin_info.html',
         page_info=page_info)
 
 
-@app_admin.route('/admin/alive_message')
+@app_admin.route('/alive_message')
 def url_alive_message_start():
     app.logger.info("url_alive_message_start [start]")
     task_admin_alive_message.apply_async()
     flash("alive_message_task started")
     app.logger.info("url_alive_message_start [done]")
-    return redirect(url_for('url_admin_tasks'))
+    return redirect(url_for('admin.url_admin_tasks'))
 
 
-@app_admin.route('/admin/database/dump')
+@app_admin.route('/database/dump')
 def url_admin_database_dump():
     app.logger.info("url_admin_database_dump [start]")
     admin_service.run_admin_database_dump()
     flash("admin_service.run_admin_database_dump started")
     app.logger.info("url_admin_database_dump [done]")
-    return redirect(url_for('url_admin_tasks'))
+    return redirect(url_for('admin.url_admin_tasks'))
 
 
-@app_admin.route('/admin/database/import')
+@app_admin.route('/database/import')
 def url_admin_database_import():
     app.logger.info("url_admin_database_import [start]")
     admin_service.run_admin_database_import()
     flash("admin_service.run_admin_database_import started")
     app.logger.info("url_admin_database_import [done]")
-    return redirect(url_for('url_admin_tasks'))
+    return redirect(url_for('admin.url_admin_tasks'))
 
 
-@app_admin.route('/admin/database/drop')
+@app_admin.route('/database/drop')
 def url_admin_database_drop():
     app.logger.info("url_admin_database_drop [start]")
     flash("admin_service.run_admin_database_drop started")
@@ -110,4 +110,4 @@ def url_admin_database_drop():
         flash("task_admin_database_drop_create async started")
         task_admin_database_drop_create.apply_async()
     app.logger.info("url_admin_database_drop [done]")
-    return redirect(url_for('url_admin_tasks'))
+    return redirect(url_for('admin.url_admin_tasks'))
