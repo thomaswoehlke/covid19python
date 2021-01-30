@@ -33,7 +33,7 @@ def task_vaccination_update_initial(self):
     return result
 
 
-@app.route('/info')
+@app_vaccination.route('/info')
 def url_vaccination_info():
     page_info = ApplicationPage('Vaccination', "Info")
     return render_template(
@@ -41,7 +41,7 @@ def url_vaccination_info():
         page_info=page_info)
 
 
-@app.route('/tasks')
+@app_vaccination.route('/tasks')
 def url_vaccination_tasks():
     page_info = ApplicationPage('Vaccination', "Tasks")
     return render_template(
@@ -49,7 +49,7 @@ def url_vaccination_tasks():
         page_info=page_info)
 
 
-@app.route('/update/initial')
+@app_vaccination.route('/update/initial')
 def url_vaccination_update_data():
     vaccination_service.run_download()
     flash("vaccination_service.run_download done")
@@ -58,8 +58,8 @@ def url_vaccination_update_data():
     return redirect(url_for('url_vaccination_tasks'))
 
 
-@app.route('/timeline/germany/page/<int:page>')
-@app.route('/timeline/germany')
+@app_vaccination.route('/timeline/germany/page/<int:page>')
+@app_vaccination.route('/timeline/germany')
 def url_vaccination_timeline_germany(page=1):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
     page_data = VaccinationGermanyTimeline.get_all_as_page(page)
