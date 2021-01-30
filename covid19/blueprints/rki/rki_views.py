@@ -17,24 +17,24 @@ app_rki = Blueprint('rki', __name__, template_folder='templates')
 # RKI
 #
 ##################################################################################################################
-@app_rki.route('/rki/info')
+@app_rki.route('/info')
 def url_rki_info():
     page_info = ApplicationPage('RKI', "Info")
     return render_template(
-        'templates/rki/rki_info.html',
+        'rki/rki_info.html',
         page_info=page_info)
 
 
-@app_rki.route('/rki/tasks')
+@app_rki.route('/tasks')
 def url_rki_tasks():
     page_info = ApplicationPage('RKI', "Tasks")
     return render_template(
-        'templates/rki/rki_tasks.html',
+        'rki/rki_tasks.html',
         page_info=page_info)
 
 
-@app_rki.route('/rki/imported/page/<int:page>')
-@app_rki.route('/rki/imported')
+@app_rki.route('/imported/page/<int:page>')
+@app_rki.route('/imported')
 def url_rki_imported(page=1):
     page_info = ApplicationPage('RKI', "Last Import")
     try:
@@ -43,6 +43,6 @@ def url_rki_imported(page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'templates/rki/rki_imported.html',
+        'rki/rki_imported.html',
         page_data=page_data,
         page_info=page_info)

@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block navigation_navtabs %}
-  {% include 'who/fragments/../fragments/fragment_who_navtabs.html' %}
+  {% include 'who/fragments/fragment_who_navtabs.html' %}
 {% endblock %}
 
 
@@ -26,7 +26,7 @@
         <ul class="pagination">
         {% if page_data.has_prev %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('url_who_date_reported_deaths_new',
+            <a class="page-link" href="{{ url_for('who.url_who_date_reported_deaths_new',
             date_reported_id=who_date_reported.id, page=page_data.prev_num) }}">Previous</a>
         </li>
         {% endif %}
@@ -35,7 +35,7 @@
             {% if page_num %}
                 {% if page_num != page_data.page %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('url_who_date_reported_deaths_new',
+                        <a class="page-link" href="{{ url_for('who.url_who_date_reported_deaths_new',
                         date_reported_id=who_date_reported.id, page=page_num) }}">{{ page_num }}</a>
                     </li>
                 {% else %}
@@ -52,14 +52,14 @@
         <!-- next page -->
         {% if page_data.has_next %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('url_who_date_reported_deaths_new',
+            <a class="page-link" href="{{ url_for('who.url_who_date_reported_deaths_new',
             date_reported_id=who_date_reported.id, page=page_data.next_num) }}">Next</a>
         </li>
         {% endif %}
         </ul>
     {% endif %}
 
-    {% include 'who/fragments/../fragments/fragment_who_table_global_data_date_reported.html' %}
+    {% include 'who/fragments/fragment_who_table_global_data_date_reported.html' %}
 
 {% endblock %}
 

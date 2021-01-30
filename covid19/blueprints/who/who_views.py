@@ -61,24 +61,24 @@ def task_who_update_initial(self):
     return result
 
 
-@app_who.route('/who/info')
+@app_who.route('/info')
 def url_who_info():
     page_info = ApplicationPage('WHO', "Info")
     return render_template(
-        'templates/who/who_info.html',
+        'who/who_info.html',
         page_info=page_info)
 
 
-@app_who.route('/who/tasks')
+@app_who.route('/tasks')
 def url_who_tasks():
     page_info = ApplicationPage('WHO', "Tasks")
     return render_template(
-        'templates/who/who_tasks.html',
+        'who/who_tasks.html',
         page_info=page_info)
 
 
-@app_who.route('/who/imported/page/<int:page>')
-@app_who.route('/who/imported')
+@app_who.route('/imported/page/<int:page>')
+@app_who.route('/imported')
 def url_who_imported(page=1):
     page_info = ApplicationPage('WHO', "Last Import")
     try:
@@ -87,13 +87,13 @@ def url_who_imported(page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'templates/who/who_imported.html',
+        'who/who_imported.html',
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/date_reported/all/page/<int:page>')
-@app_who.route('/who/date_reported/all')
+@app_who.route('/date_reported/all/page/<int:page>')
+@app_who.route('/date_reported/all')
 def url_who_date_reported_all(page=1):
     page_info = ApplicationPage('WHO', "Date Reported", "All")
     try:
@@ -102,13 +102,13 @@ def url_who_date_reported_all(page=1):
         flash("No regions in the database.")
         page_data = None
     return render_template(
-        'templates/who/date_reported/who_date_reported_all.html',
+        'who/date_reported/who_date_reported_all.html',
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/date_reported/<int:date_reported_id>/page/<int:page>')
-@app_who.route('/who/date_reported/<int:date_reported_id>')
+@app_who.route('/date_reported/<int:date_reported_id>/page/<int:page>')
+@app_who.route('/date_reported/<int:date_reported_id>')
 def url_who_date_reported(date_reported_id, page=1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
@@ -122,14 +122,14 @@ def url_who_date_reported(date_reported_id, page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'templates/who/date_reported/who_date_reported_one.html',
+        'who/date_reported/who_date_reported_one.html',
         who_date_reported=date_reported,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/date_reported/<int:date_reported_id>/cases_new/page/<int:page>')
-@app_who.route('/who/date_reported/<int:date_reported_id>/cases_new')
+@app_who.route('/date_reported/<int:date_reported_id>/cases_new/page/<int:page>')
+@app_who.route('/date_reported/<int:date_reported_id>/cases_new')
 def url_who_date_reported_cases_new(date_reported_id, page=1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
@@ -143,14 +143,14 @@ def url_who_date_reported_cases_new(date_reported_id, page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'templates/who/date_reported/who_date_reported_one_cases_new.html',
+        'who/date_reported/who_date_reported_one_cases_new.html',
         who_date_reported=date_reported,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/date_reported/<int:date_reported_id>/cases_cumulative/page/<int:page>')
-@app_who.route('/who/date_reported/<int:date_reported_id>/cases_cumulative')
+@app_who.route('/date_reported/<int:date_reported_id>/cases_cumulative/page/<int:page>')
+@app_who.route('/date_reported/<int:date_reported_id>/cases_cumulative')
 def url_who_date_reported_cases_cumulative(date_reported_id, page=1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
@@ -164,14 +164,14 @@ def url_who_date_reported_cases_cumulative(date_reported_id, page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'templates/who/date_reported/who_date_reported_one_cases_cumulative.html',
+        'who/date_reported/who_date_reported_one_cases_cumulative.html',
         who_date_reported=date_reported,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/date_reported/<int:date_reported_id>/deaths_new/page/<int:page>')
-@app_who.route('/who/date_reported/<int:date_reported_id>/deaths_new')
+@app_who.route('/date_reported/<int:date_reported_id>/deaths_new/page/<int:page>')
+@app_who.route('/date_reported/<int:date_reported_id>/deaths_new')
 def url_who_date_reported_deaths_new(date_reported_id, page=1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
@@ -185,14 +185,14 @@ def url_who_date_reported_deaths_new(date_reported_id, page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'templates/who/date_reported/who_date_reported_one_deaths_new.html',
+        'who/date_reported/who_date_reported_one_deaths_new.html',
         who_date_reported=date_reported,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/date_reported/<int:date_reported_id>/deaths_cumulative/page/<int:page>')
-@app_who.route('/who/date_reported/<int:date_reported_id>/deaths_cumulative')
+@app_who.route('/date_reported/<int:date_reported_id>/deaths_cumulative/page/<int:page>')
+@app_who.route('/date_reported/<int:date_reported_id>/deaths_cumulative')
 def url_who_date_reported_deaths_cumulative(date_reported_id, page=1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
@@ -206,14 +206,14 @@ def url_who_date_reported_deaths_cumulative(date_reported_id, page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'templates/who/date_reported/who_date_reported_one_deaths_cumulative.html',
+        'who/date_reported/who_date_reported_one_deaths_cumulative.html',
         who_date_reported=date_reported,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/region/all/page/<int:page>')
-@app_who.route('/who/region/all')
+@app_who.route('/region/all/page/<int:page>')
+@app_who.route('/region/all')
 def url_who_region_all(page=1):
     page_info = ApplicationPage('WHO', "Region", "All")
     try:
@@ -222,13 +222,13 @@ def url_who_region_all(page=1):
         flash("No regions in the database.")
         page_data = None
     return render_template(
-        'templates/who/region/who_region_all.html',
+        'who/region/who_region_all.html',
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/region/<int:region_id>/page/<int:page>')
-@app_who.route('/who/region/<int:region_id>')
+@app_who.route('/region/<int:region_id>/page/<int:page>')
+@app_who.route('/region/<int:region_id>')
 def url_who_region(region_id, page=1):
     who_region = None
     page_info = ApplicationPage("Countries", "WHO Region")
@@ -242,14 +242,14 @@ def url_who_region(region_id, page=1):
         flash("No countries of that region in the database.")
         page_data = None
     return render_template(
-        'templates/who/region/who_region_one.html',
+        'who/region/who_region_one.html',
         who_region=who_region,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/country/all/page/<int:page>')
-@app_who.route('/who/country/all')
+@app_who.route('/country/all/page/<int:page>')
+@app_who.route('/country/all')
 def url_who_country_all(page=1):
     page_info = ApplicationPage('WHO', "Countries", "All")
     try:
@@ -258,13 +258,13 @@ def url_who_country_all(page=1):
         flash("No regions in the database.")
         page_data = None
     return render_template(
-        'templates/who/country/who_country_all.html',
+        'who/country/who_country_all.html',
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/country/<int:country_id>/page/<int:page>')
-@app_who.route('/who/country/<int:country_id>')
+@app_who.route('/country/<int:country_id>/page/<int:page>')
+@app_who.route('/country/<int:country_id>')
 def url_who_country(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoGlobalData.get_data_for_country(who_country, page)
@@ -272,14 +272,14 @@ def url_who_country(country_id, page=1):
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'templates/who/country/who_country_one.html',
+        'who/country/who_country_one.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/country/<int:country_id>/cases_new/page/<int:page>')
-@app_who.route('/who/country/<int:country_id>/cases_new')
+@app_who.route('/country/<int:country_id>/cases_new/page/<int:page>')
+@app_who.route('/country/<int:country_id>/cases_new')
 def url_who_country_cases_new(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoGlobalData.get_data_for_country_order_by_cases_new(who_country, page)
@@ -287,14 +287,14 @@ def url_who_country_cases_new(country_id, page=1):
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'templates/who/country/who_country_one_cases_new.html',
+        'who/country/who_country_one_cases_new.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/country/<int:country_id>/cases_cumulative/page/<int:page>')
-@app_who.route('/who/country/<int:country_id>/cases_cumulative')
+@app_who.route('/country/<int:country_id>/cases_cumulative/page/<int:page>')
+@app_who.route('/country/<int:country_id>/cases_cumulative')
 def url_who_country_cases_cumulative(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoGlobalData.get_data_for_country_order_by_cases_cumulative(who_country, page)
@@ -302,14 +302,14 @@ def url_who_country_cases_cumulative(country_id, page=1):
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'templates/who/country/who_country_one_cases_cumulative.html',
+        'who/country/who_country_one_cases_cumulative.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/country/<int:country_id>/deaths_new/page/<int:page>')
-@app_who.route('/who/country/<int:country_id>/deaths_new')
+@app_who.route('/country/<int:country_id>/deaths_new/page/<int:page>')
+@app_who.route('/country/<int:country_id>/deaths_new')
 def url_who_country_deaths_new(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoGlobalData.get_data_for_country_order_by_deaths_new(who_country, page)
@@ -317,14 +317,14 @@ def url_who_country_deaths_new(country_id, page=1):
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'templates/who/country/who_country_one_deaths_new.html',
+        'who/country/who_country_one_deaths_new.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/country/<int:country_id>/deaths_cumulative/page/<int:page>')
-@app_who.route('/who/country/<int:country_id>/deaths_cumulative')
+@app_who.route('/country/<int:country_id>/deaths_cumulative/page/<int:page>')
+@app_who.route('/country/<int:country_id>/deaths_cumulative')
 def url_who_country_deaths_cumulative(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoGlobalData.get_data_for_country_order_by_deaths_cumulative(who_country, page)
@@ -332,14 +332,14 @@ def url_who_country_deaths_cumulative(country_id, page=1):
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
     return render_template(
-        'templates/who/country/who_country_one_deaths_cumulative.html',
+        'who/country/who_country_one_deaths_cumulative.html',
         who_country=who_country,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/germany/page/<int:page>')
-@app_who.route('/who/germany')
+@app_who.route('/germany/page/<int:page>')
+@app_who.route('/germany')
 def url_who_germany(page=1):
     page_info = ApplicationPage('WHO', "Germany")
     who_country_germany = WhoCountry.get_germany()
@@ -348,13 +348,13 @@ def url_who_germany(page=1):
         return redirect(url_for('url_who_tasks'))
     page_data = WhoGlobalData.get_data_for_country(who_country_germany, page)
     return render_template(
-        'templates/who/country/who_country_germany.html',
+        'who/country/who_country_germany.html',
         who_country=who_country_germany,
         page_data=page_data,
         page_info=page_info)
 
 
-@app_who.route('/who/update')
+@app_who.route('/update')
 def url_who_update_run():
     app.logger.info("url_who_update_run [start]")
     who_service.who_service_download.download_file()
@@ -365,7 +365,7 @@ def url_who_update_run():
     return redirect(url_for('url_home'))
 
 
-@app_who.route('/who/update/short')
+@app_who.route('/update/short')
 def url_who_update_short_run():
     who_service.who_service_download.download_file()
     task_who_update_short.apply_async()
@@ -374,7 +374,7 @@ def url_who_update_short_run():
     return redirect(url_for('url_home'))
 
 
-@app_who.route('/who/update/initial')
+@app_who.route('/update/initial')
 def url_who_update_initial_run():
     who_service.who_service_download.download_file()
     task_who_update_initial.apply_async()
