@@ -1122,11 +1122,6 @@ Debug*/Debug*\ Libs
 *.xojo_uistate
 *.obsolete
 
-#Würde content_architektur/src/Abbildungen_Lektion_2/Abbildungen_Lektion_2__20/web/ löschen
-#Würde content_architektur/src/Abbildungen_Lektion_2/Abbildungen_Lektion_2__40/web/ löschen
-#Würde content_architektur/src/Abbildungen_Lektion_7/Abbildungen_Lektion_7__100/ löschen
-#Würde content_architektur/web/Abbildungen_Lektion_2/web/ löschen
-#Würde content_architektur/web/Abbildungen_Lektion_7/Abbildungen_Lektion_7__100/ löschen
 /data/covid19.db.sqlite-journal
 
 .idea/misc.xml
@@ -1138,4 +1133,3 @@ Debug*/Debug*\ Libs
 /data/WHO-COVID-19-global-data *.csv
 /data/ecdc_europa_data (1).csv
 /data/RKI_COVID19.csv
-/covid19/static/package-lock.json
