@@ -1,12 +1,24 @@
 from flask import render_template, redirect, url_for
 from database import app
-from covid19.oodm.common.common_model_transient import ApplicationPage
+from covid19.blueprints.common.common_model_transient import ApplicationPage
 
-import covid19.views_who
-import covid19.views_europe
-import covid19.views_vaccination
-import covid19.views_rki
-import covid19.views_admin
+import covid19.blueprints.who.who_views
+import covid19.blueprints.europe.europe_views
+import covid19.blueprints.vaccination.vaccination_views
+import covid19.blueprints.rki.rki_views
+import covid19.blueprints.admin.admin_views
+
+from covid19.blueprints.who.who_views import app_who
+from covid19.blueprints.europe.europe_views import app_europe
+from covid19.blueprints.vaccination.vaccination_views import app_vaccination
+from covid19.blueprints.rki.rki_views import app_rki
+from covid19.blueprints.admin.admin_views import app_admin
+
+app.register_blueprint(app_who, url_prefix='/who')
+app.register_blueprint(app_europe, url_prefix='/europe')
+app.register_blueprint(app_vaccination, url_prefix='/vaccination')
+app.register_blueprint(app_rki, url_prefix='/rki')
+app.register_blueprint(app_admin, url_prefix='/admin')
 
 
 ############################################################################################
@@ -17,7 +29,7 @@ import covid19.views_admin
 def url_home():
     page_info = ApplicationPage('Home', "Covid19 Data")
     return render_template(
-        'page_home.html',
+        'common/page_home.html',
         page_info=page_info)
 
 
