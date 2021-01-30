@@ -17,3 +17,6 @@
 ### Flask-Login
 * https://flask-login.readthedocs.io/en/latest/
 * https://riptutorial.com/flask/example/28112/using-flask-login-extension
+
+### blueprints
+* https://flask.palletsprojects.com/en/1.1.x/blueprints/
