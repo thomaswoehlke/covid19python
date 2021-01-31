@@ -242,6 +242,8 @@ class WhoGlobalDataImportTable(db.Model):
 
 ### 0.0.14 Release
 * Issue #66 frontend: migrate to Bootstrap Theme sb-admin-angular
+* Issue #69 Branch: ISSUE_66_ATTEMPT_01
+* Issue #70 Load Bootstrap-Template sb-admin-angular into static
 
 ### 0.0.15 Release
 * Issue #67 implement Flask-Login
