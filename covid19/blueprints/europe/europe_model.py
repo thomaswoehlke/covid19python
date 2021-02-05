@@ -21,7 +21,7 @@ class EuropeCountry(db.Model):
     country_territory_code = db.Column(db.String(255), nullable=False)
 
     continent_id = db.Column(db.Integer, db.ForeignKey('common_region.id'), nullable=False)
-    continent = db.relationship('EuropeContinent', lazy='subquery', order_by='EuropeContinent.continent_exp')
+    continent = db.relationship('CommonRegion', lazy='subquery', order_by='CommonRegion.region')
 
     @classmethod
     def remove_all(cls):
