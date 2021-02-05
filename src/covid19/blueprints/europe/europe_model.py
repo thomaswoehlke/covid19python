@@ -1,5 +1,4 @@
 from sqlalchemy import and_
-from datetime import date
 from database import db, ITEMS_PER_PAGE
 from covid19.blueprints.common.common_model import CommonDateReported, CommonRegion
 
@@ -9,22 +8,8 @@ class EuropeDateReported(CommonDateReported):
 
     @classmethod
     def create_new_object_factory(cls, my_date_rep):
-        my_datum = date.fromisoformat(my_date_rep)
-        (my_iso_year, week_number, weekday) = my_datum.isocalendar()
-        if week_number < 10:
-            my_year_week = "" + str(my_iso_year) + "-0" + str(week_number)
-        else:
-            my_year_week = "" + str(my_iso_year) + "-" + str(week_number)
-        return EuropeDateReported(
-            date_reported=my_date_rep,
-            datum=my_datum,
-            year=my_datum.year,
-            month=my_datum.month,
-            day_of_month=my_datum.day,
-            day_of_week=weekday,
-            week_of_year=week_number,
-            year_week=my_year_week
-        )
+        o = CommonDateReported.create_new_object_factory(my_date_rep)
+        return EuropeDateReported(o)
 
 
 class EuropeContinent(CommonRegion):

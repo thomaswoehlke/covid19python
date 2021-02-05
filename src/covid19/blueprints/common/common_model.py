@@ -54,11 +54,12 @@ class CommonDateReported(db.Model):
     def create_new_object_factory(cls, my_date_rep):
         my_datum = date.fromisoformat(my_date_rep)
         (my_iso_year, week_number, weekday) = my_datum.isocalendar()
+        my_year_week = "" + str(my_iso_year)
         if week_number < 10:
-            my_year_week = "" + str(my_iso_year) + "-0"+str(week_number)
+            my_year_week += "-0"
         else:
-            my_year_week = "" + str(my_iso_year) + "-"+str(week_number)
-        day_of_year = my_datum.timetuple()
+            my_year_week += "-"
+        my_year_week += str(week_number)
         return CommonDateReported(
             date_reported=my_date_rep,
             datum=my_datum,
