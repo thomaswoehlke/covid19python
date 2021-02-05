@@ -113,6 +113,10 @@ class CommonDateReported(db.Model):
 
     @classmethod
     def find_by_year_week(cls, year_week):
+        return db.session.query(cls).filter(cls.year_week == year_week).one_or_none()
+
+    @classmethod
+    def get_by_year_week(cls, year_week):
         return db.session.query(cls).filter(cls.year_week == year_week).one()
 
 

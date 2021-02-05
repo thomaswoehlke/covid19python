@@ -56,7 +56,7 @@ class EuropeDataImportTable(db.Model):
 
     @classmethod
     def get_countries_of_continent(cls, my_continent):
-        my_continent_exp = my_continent.continent_exp
+        my_continent_exp = my_continent.region
         my_params = {}
         my_params['my_continent_param'] = my_continent_exp
         # TODO: SQLalchemy instead of SQL

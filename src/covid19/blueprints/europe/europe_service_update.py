@@ -74,9 +74,12 @@ class EuropeServiceUpdate:
         result_date_rep = EuropeDataImportTable.get_date_rep()
         i = 0
         for item_date_rep in result_date_rep:
-            europe_date_reported = EuropeDateReported.find_by_year_week(
-                year_week=item_date_rep['year_week']
+            europe_date_reported = EuropeDateReported.find_by_date_reported(
+                i_date_reported=item_date_rep['date_rep']
             )
+            if europe_date_reported is None:
+                o = EuropeDateReported.create_new_object_factory(item_date_rep['date_rep'])
+                europe_date_reported = o
             result_europe_data_import = EuropeDataImportTable.find_by_date_reported(europe_date_reported)
             for item_europe_data_import in result_europe_data_import:
                 my_a = item_europe_data_import.countries_and_territories
