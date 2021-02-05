@@ -1,36 +1,14 @@
 from sqlalchemy import and_
 from database import db, ITEMS_PER_PAGE
-from covid19.blueprints.common.common_model import CommonDateReported
+from covid19.blueprints.common.common_model import CommonDateReported, CommonRegion
 
 
 class EuropeDateReported(CommonDateReported):
     __mapper_args__ = {'polymorphic_identity': 'europe'}
 
 
-class EuropeContinent(db.Model):
-    __tablename__ = 'europe_continent'
-
-    id = db.Column(db.Integer, primary_key=True)
-    continent_exp = db.Column(db.String(255), nullable=False)
-
-    @classmethod
-    def remove_all(cls):
-        # TODO: SQLalchemy instead of SQL
-        db.session.execute("delete from " + cls.__tablename__ + " cascade")
-        db.session.commit()
-        return None
-
-    @classmethod
-    def get_all_as_page(cls, page):
-        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
-
-    @classmethod
-    def get_all(cls):
-        return db.session.query(cls).all()
-
-    @classmethod
-    def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
+class EuropeContinent(CommonRegion):
+    __mapper_args__ = {'polymorphic_identity': 'europe'}
 
 
 class EuropeCountry(db.Model):

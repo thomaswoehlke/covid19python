@@ -101,3 +101,48 @@ class CommonDateReported(db.Model):
     @classmethod
     def find_by_year_week(cls, year_week):
         return db.session.query(cls).filter(cls.year_week == year_week).one()
+
+
+class CommonRegion(db.Model):
+    __tablename__ = 'common_region'
+    discriminator = db.Column('type', db.String(50))
+    __mapper_args__ = {'polymorphic_on': discriminator}
+
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(255), unique=True)
+
+    @classmethod
+    def remove_all(cls):
+        # TODO: SQLalchemy instead of SQL
+        db.session.execute("delete from " + cls.__tablename__)
+        db.session.commit()
+        return None
+
+    @classmethod
+    def get_all(cls):
+        return db.session.query(cls).all()
+
+    @classmethod
+    def get_all_as_page(cls, page):
+        return db.session.query(cls)\
+            .order_by(cls.region)\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def get_all_as_dict(cls):
+        regions = {}
+        for my_region in cls.get_all():
+            regions[my_region.region] = my_region
+        return regions
+
+    @classmethod
+    def get_by_id(cls, other_id):
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
+
+    @classmethod
+    def find_by_region(cls, i_who_region):
+        return db.session.query(cls)\
+            .filter(cls.region == i_who_region)\
+            .one_or_none()

@@ -3,47 +3,20 @@ from sqlalchemy.orm import joinedload
 
 from covid19.blueprints.common.common_model import CommonDateReported
 from database import db, ITEMS_PER_PAGE
+from covid19.blueprints.common.common_model import CommonDateReported, CommonRegion
 
 
 class RkiDateReported(CommonDateReported):
     __mapper_args__ = {'polymorphic_identity': 'rki'}
 
 
-class RkiRegion(db.Model):
+class RkiRegion(CommonRegion):
+    __mapper_args__ = {'polymorphic_identity': 'rki'}
+
     __tablename__ = 'rki_region'
 
     id = db.Column(db.Integer, primary_key=True)
     region = db.Column(db.String(255), unique=True)
-
-    @classmethod
-    def remove_all(cls):
-        db.session.execute("delete from " + cls.__tablename__)
-        db.session.commit()
-        return None
-
-    @classmethod
-    def get_all(cls):
-        return db.session.query(cls).all()
-
-    @classmethod
-    def get_all_as_page(cls, page):
-        return db.session.query(cls).order_by(cls.region).paginate(page, per_page=ITEMS_PER_PAGE)
-
-    @classmethod
-    def get_all_as_dict(cls):
-        regions = {}
-        for my_region in cls.get_all():
-            regions[my_region.region] = my_region
-        return regions
-
-    @classmethod
-    def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
-
-    @classmethod
-    def find_by_region(cls, i_who_region):
-        my_region = db.session.query(cls).filter(cls.region == i_who_region).one_or_none()
-        return my_region
 
 
 class RkiCountry(db.Model):
@@ -52,7 +25,7 @@ class RkiCountry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     country_code = db.Column(db.String(255), unique=True, nullable=False)
     country = db.Column(db.String(255), unique=True, nullable=False)
-    region_id = db.Column(db.Integer, db.ForeignKey('who_region.id'), nullable=False)
+    region_id = db.Column(db.Integer, db.ForeignKey('common_region.id'), nullable=False)
     region = db.relationship(
         'WhoRegion',
         lazy='subquery',
