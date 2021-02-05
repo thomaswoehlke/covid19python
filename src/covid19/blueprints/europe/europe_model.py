@@ -47,7 +47,12 @@ class EuropeCountry(db.Model):
     country_territory_code = db.Column(db.String(255), nullable=False)
 
     continent_id = db.Column(db.Integer, db.ForeignKey('common_region.id'), nullable=False)
-    continent = db.relationship('CommonRegion', lazy='subquery', order_by='CommonRegion.region')
+    continent = db.relationship(
+        'CommonRegion',
+        lazy='subquery',
+        order_by='CommonRegion.region',
+        cascade="all, delete"
+    )
 
     def __str__(self):
         result = " " + self.geo_id + " " + self.country_territory_code + " " + self.countries_and_territories + " "
@@ -56,7 +61,7 @@ class EuropeCountry(db.Model):
     @classmethod
     def remove_all(cls):
         for one in cls.get_all():
-            db.session.delete(one).cascade()
+            db.session.delete(one)
         db.session.commit()
         return None
 
@@ -102,10 +107,10 @@ class EuropeData(db.Model):
     notification_rate_per_100000_population_14days = db.Column(db.Float, nullable=False)
 
     europe_country_id = db.Column(db.Integer, db.ForeignKey('europe_country.id'), nullable=False)
-    europe_country = db.relationship('EuropeCountry', lazy='joined')
+    europe_country = db.relationship('EuropeCountry', lazy='joined', cascade="all, delete")
 
     europe_date_reported_id = db.Column(db.Integer, db.ForeignKey('common_date_reported.id'), nullable=False)
-    europe_date_reported = db.relationship('EuropeDateReported', lazy='joined')
+    europe_date_reported = db.relationship('EuropeDateReported', lazy='joined', cascade="all, delete")
 
     @classmethod
     def remove_all(cls):
