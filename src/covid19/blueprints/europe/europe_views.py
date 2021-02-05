@@ -69,8 +69,16 @@ def url_europe_tasks():
 def europe_update_data():
     europe_service.download()
     task_europe_update_initial.apply_async()
-    flash("europe_service.run_update started")
-    return redirect(url_for('url_home'))
+    flash("task_europe_update_initial started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_europe.route('/update/short')
+def europe_update_data_short():
+    europe_service.download()
+    task_europe_update_short.apply_async()
+    flash("task_europe_update_short started")
+    return redirect(url_for('url_europe_tasks'))
 
 
 @app_europe.route('/imported/page/<int:page>')
