@@ -11,8 +11,6 @@ wget==3.2
 celery[redis]==5.0.5
 npmdownloader==1.2.1
 #
-# Frontend
-#
 pyecharts==1.9.0
 pyecharts-extras==0.0.5
 tokenize-rt==4.1.0
