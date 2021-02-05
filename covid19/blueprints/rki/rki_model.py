@@ -13,11 +13,6 @@ class RkiDateReported(CommonDateReported):
 class RkiRegion(CommonRegion):
     __mapper_args__ = {'polymorphic_identity': 'rki'}
 
-    __tablename__ = 'rki_region'
-
-    id = db.Column(db.Integer, primary_key=True)
-    region = db.Column(db.String(255), unique=True)
-
 
 class RkiCountry(db.Model):
     __tablename__ = 'rki_country'

@@ -66,7 +66,7 @@ class WhoGlobalDataImportTable(db.Model):
                 from
                     who_global_data
                 left join
-                    who_date_reported
+                    common_date_reported
                 on
                     who_global_data.date_reported_id=common_date_reported.id
             )
