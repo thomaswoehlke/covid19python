@@ -12,9 +12,7 @@ class CommonDateReported(db.Model):
         'polymorphic_on': type
     }
     __table_args__ = (
-        db.UniqueConstraint('type', 'date_reported', name='unique_common_date_reported_1'),
-        db.UniqueConstraint('type', 'datum', name='unique_common_date_reported_2'),
-        db.UniqueConstraint('type', 'year_week', name='unique_common_date_reported_3')
+        db.UniqueConstraint('type', 'date_reported', 'datum', 'year_week', name='unique_common_date_reported'),
     )
     #
     id = db.Column(db.Integer, primary_key=True)

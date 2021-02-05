@@ -24,8 +24,7 @@ class EuropeServiceUpdate:
             my_date_rep = result_item['date_rep']
             my_year_week = result_item['year_week']
             o = EuropeDateReported.create_new_object_factory(
-                my_date_rep=my_date_rep,
-                my_year_week=my_year_week
+                my_date_rep=my_date_rep
             )
             db.session.add(o)
             app.logger.info("| " + my_date_rep + " | " + my_year_week + " | " + str(k) + " rows ")
