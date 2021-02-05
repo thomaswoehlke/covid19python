@@ -1,96 +1,10 @@
 from sqlalchemy import and_
-from datetime import date
 from database import db, ITEMS_PER_PAGE
+from covid19.blueprints.common.common_model import CommonDateReported
 
 
-class EuropeDateReported(db.Model):
-    __tablename__ = 'europe_date_reported'
-
-    id = db.Column(db.Integer, primary_key=True)
-    date_rep = db.Column(db.String(255), nullable=False, unique=True)
-    year_week = db.Column(db.String(255), nullable=False, unique=True)
-    datum = db.Column(db.Date, nullable=False, unique=True)
-    year = db.Column(db.Integer, nullable=False)
-    month = db.Column(db.Integer, nullable=False)
-    day_of_month = db.Column(db.Integer, nullable=False)
-    day_of_week = db.Column(db.Integer, nullable=False)
-    week_of_year = db.Column(db.Integer, nullable=False)
-
-    def __str__(self):
-        result = ""
-        if self.day_of_month < 10:
-            result += "0" + str(self.day_of_month)
-        else:
-            result += "" + str(self.day_of_month)
-        if self.month < 10:
-            result += ".0" + str(self.month)
-        else:
-            result += "." + str(self.month)
-        result += "." + str(self.year)
-        return result
-
-    def get_name_for_weekday(self):
-        return self.get_names_for_weekday()[self.day_of_week]
-
-    @classmethod
-    def get_names_for_weekday(cls):
-        return {1: "Montag", 2: "Dienstag", 3: "Mittwoch", 4: "Donnerstag", 5: "Freitag", 6: "Samstag",
-                             7: "Sonntag"}
-
-    def get_name_for_datum(self):
-        result = ""
-        if self.day_of_month < 10:
-            result += "0" + str(self.day_of_month)
-        else:
-            result += "" + str(self.day_of_month)
-        if self.month < 10:
-            result += ".0" + str(self.month)
-        else:
-            result += "." + str(self.month)
-        result += "." + str(self.year)
-        return result
-
-    @classmethod
-    def create_new_object_factory(cls, my_date_rep, my_year_week):
-        my_date_reported = my_date_rep.split('/')
-        my_year = int(my_date_reported[2])
-        my_month = int(my_date_reported[1])
-        my_day_of_month = int(my_date_reported[0])
-        my_datum = date(year=my_year, month=my_month, day=my_day_of_month)
-        (my_iso_year, week_number, weekday) = my_datum.isocalendar()
-        return EuropeDateReported(
-            date_rep=my_date_rep,
-            year_week=my_year_week,
-            datum=my_datum,
-            year=my_datum.year,
-            month=my_datum.month,
-            day_of_month=my_datum.day,
-            day_of_week=weekday,
-            week_of_year=week_number
-        )
-
-    @classmethod
-    def remove_all(cls):
-        # TODO: SQLalchemy instead of SQL
-        db.session.execute("delete from " + cls.__tablename__ + " cascade")
-        db.session.commit()
-        return None
-
-    @classmethod
-    def get_all_as_page(cls, page):
-        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
-
-    @classmethod
-    def get_all(cls):
-        return db.session.query(cls).limit(500)
-
-    @classmethod
-    def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
-
-    @classmethod
-    def find_by(cls, year_week):
-        return db.session.query(cls).filter(cls.year_week == year_week).one()
+class EuropeDateReported(CommonDateReported):
+    __mapper_args__ = {'polymorphic_identity': 'europe'}
 
 
 class EuropeContinent(db.Model):
@@ -182,7 +96,7 @@ class EuropeData(db.Model):
     europe_country_id = db.Column(db.Integer, db.ForeignKey('europe_country.id'), nullable=False)
     europe_country = db.relationship('EuropeCountry', lazy='joined')
 
-    europe_date_reported_id = db.Column(db.Integer, db.ForeignKey('europe_date_reported.id'), nullable=False)
+    europe_date_reported_id = db.Column(db.Integer, db.ForeignKey('common_date_reported.id'), nullable=False)
     europe_date_reported = db.relationship('EuropeDateReported', lazy='joined')
 
     @classmethod

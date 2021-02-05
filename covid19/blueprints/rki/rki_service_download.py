@@ -31,7 +31,7 @@ class RkiServiceDownload:
         app.logger.info(" FILE: "+cvsfile_name+" <- "+url_src)
         app.logger.info("------------------------------------------------------------")
         try:
-            os.makedirs(self.cfg.data_path, exist_ok=True)
+            os.makedirs(cvsfile_name, exist_ok=True)
             if os.path.isfile(src_cvsfile_path):
                 os.remove(src_cvsfile_path)
             data_file = wget.download(url_src, src_cvsfile_path)

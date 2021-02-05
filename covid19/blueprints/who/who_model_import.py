@@ -62,13 +62,13 @@ class WhoGlobalDataImportTable(db.Model):
             not in (
             select
                 distinct
-                    who_date_reported.date_reported
+                    common_date_reported.date_reported
                 from
                     who_global_data
                 left join
                     who_date_reported
                 on
-                    who_global_data.date_reported_id=who_date_reported.id
+                    who_global_data.date_reported_id=common_date_reported.id
             )
             group by
                 who_global_data_import.date_reported

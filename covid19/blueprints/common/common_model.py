@@ -1,38 +1,66 @@
+from sqlalchemy import and_, func
+from datetime import date
 from database import db, ITEMS_PER_PAGE
+from sqlalchemy.orm import joinedload
 
 
-class CommonDatum(db.Model):
-    __tablename__ = 'common_datum'
+class CommonDateReported(db.Model):
+    __tablename__ = 'common_date_reported'
+    discriminator = db.Column('type', db.String(50))
+    __mapper_args__ = {'polymorphic_on': discriminator}
 
     id = db.Column(db.Integer, primary_key=True)
-    date_string = db.Column(db.String(255), nullable=False, unique=True)
+    date_reported = db.Column(db.String(255), nullable=False, unique=True)
+    year_week = db.Column(db.String(255), nullable=False)
     datum = db.Column(db.Date, nullable=False, unique=True)
-    year_week = db.Column(db.String(255), nullable=True, unique=True)
-    year_day_of_year = db.Column(db.String(255), nullable=True, unique=True)
-    year = db.Column(db.Integer, nullable=True)
-    month = db.Column(db.Integer, nullable=True)
-    day_of_week = db.Column(db.Integer, nullable=True)
-    day_of_month = db.Column(db.Integer, nullable=True)
+    year = db.Column(db.Integer, nullable=False)
+    month = db.Column(db.Integer, nullable=False)
+    day_of_month = db.Column(db.Integer, nullable=False)
+    day_of_week = db.Column(db.Integer, nullable=False)
+    week_of_year = db.Column(db.Integer, nullable=False)
+
     day_of_year = db.Column(db.Integer, nullable=True)
-    week_of_year = db.Column(db.Integer, nullable=True)
+    year_day_of_year = db.Column(db.String(255), nullable=True, unique=True)
+
+    def __str__(self):
+        result = ""
+        if self.day_of_month < 10:
+            result += "0" + str(self.day_of_month)
+        else:
+            result += "" + str(self.day_of_month)
+        if self.month < 10:
+            result += ".0" + str(self.month)
+        else:
+            result += "." + str(self.month)
+        result += "." + str(self.year)
+        return result
+
+    def get_name_for_weekday(self):
+        return self.get_names_for_weekday()[self.day_of_week]
 
     @classmethod
-    def create_new_datum_factory(cls, date_string):
-        # check date_string syntax
-        # load if already exists
-        old = db.session.query(cls).filter(cls.date_string == date_string).one_or_none()
-        if old is None:
-            o = CommonDatum(date_string=date_string)
-            # put year
-            # put month
-            # put datum
-            # day_of_month
-            # compute day_of_year
-            # compute week_of_year
-            # put year_week
-            db.session.add(o)
-            db.session.commit()
-        return o
+    def get_names_for_weekday(cls):
+        return {1: "Montag", 2: "Dienstag", 3: "Mittwoch", 4: "Donnerstag", 5: "Freitag", 6: "Samstag",
+                             7: "Sonntag"}
+
+    @classmethod
+    def create_new_object_factory(cls, my_date_rep):
+        my_datum = date.fromisoformat(my_date_rep)
+        (my_iso_year, week_number, weekday) = my_datum.isocalendar()
+        if week_number < 10:
+            my_year_week = "" + str(my_iso_year) + "-0"+str(week_number)
+        else:
+            my_year_week = "" + str(my_iso_year) + "-"+str(week_number)
+        return CommonDateReported(
+            date_reported=my_date_rep,
+            datum=my_datum,
+            year=my_datum.year,
+            month=my_datum.month,
+            day_of_month=my_datum.day,
+            day_of_week=weekday,
+            week_of_year=week_number,
+            year_week=my_year_week
+        )
 
     @classmethod
     def remove_all(cls):
@@ -44,7 +72,7 @@ class CommonDatum(db.Model):
     @classmethod
     def get_all_as_page(cls, page):
         return db.session.query(cls)\
-            .order_by(cls.date_string.desc())\
+            .order_by(cls.date_reported.desc())\
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
@@ -53,10 +81,10 @@ class CommonDatum(db.Model):
 
     @classmethod
     def get_all_as_dict(cls):
-        common_dates = {}
-        for my_common_datum in cls.get_all():
-            common_dates[my_common_datum.date_string] = my_common_datum
-        return common_dates
+        dates_reported = {}
+        for my_date_reported in cls.get_all():
+            dates_reported[my_date_reported.date_reported] = my_date_reported
+        return dates_reported
 
     @classmethod
     def get_by_id(cls, other_id):
@@ -65,7 +93,11 @@ class CommonDatum(db.Model):
             .one()
 
     @classmethod
-    def find_by_id(cls, other_id):
+    def find_by_date_reported(cls, i_date_reported):
         return db.session.query(cls)\
-            .filter(cls.id == other_id)\
+            .filter(cls.date_reported == i_date_reported)\
             .one_or_none()
+
+    @classmethod
+    def find_by_year_week(cls, year_week):
+        return db.session.query(cls).filter(cls.year_week == year_week).one()
