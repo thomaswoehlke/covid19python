@@ -166,4 +166,5 @@ class EuropeData(db.Model):
     @classmethod
     def find_by_country(cls, europe_country, page):
         return db.session.query(cls).filter(
-            cls.europe_country_id == europe_country.id).paginate(page, per_page=ITEMS_PER_PAGE)
+            cls.europe_country_id == europe_country.id)\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
