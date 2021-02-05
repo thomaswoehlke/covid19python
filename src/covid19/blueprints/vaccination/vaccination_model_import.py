@@ -29,7 +29,8 @@ class VaccinationGermanyTimeline(db.Model):
 
     @classmethod
     def remove_all(cls):
-        db.session.execute("delete from " + cls.__tablename__)
+        for one in cls.get_all():
+            db.session.delete(one).cascade()
         db.session.commit()
         return None
 

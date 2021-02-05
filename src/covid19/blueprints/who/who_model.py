@@ -48,8 +48,8 @@ class WhoCountry(db.Model):
 
     @classmethod
     def remove_all(cls):
-        # TODO: SQLalchemy instead of SQL
-        db.session.execute("delete from " + cls.__tablename__)
+        for one in cls.get_all():
+            db.session.delete(one).cascade()
         db.session.commit()
         return None
 

@@ -72,7 +72,7 @@ class CommonDateReported(db.Model):
     @classmethod
     def remove_all(cls):
         for one in cls.get_all():
-            db.session.delete(one)
+            db.session.delete(one).cascade()
         db.session.commit()
         return None
 
@@ -140,7 +140,7 @@ class CommonRegion(db.Model):
     @classmethod
     def remove_all(cls):
         for one in cls.get_all():
-            db.session.delete(one)
+            db.session.delete(one).cascade()
         db.session.commit()
         return None
 
