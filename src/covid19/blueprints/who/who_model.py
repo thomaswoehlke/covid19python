@@ -44,12 +44,13 @@ class WhoCountry(db.Model):
     region = db.relationship(
         'WhoRegion',
         lazy='joined',
+        cascade='all, delete',
         order_by='WhoRegion.region')
 
     @classmethod
     def remove_all(cls):
         for one in cls.get_all():
-            db.session.delete(one).cascade()
+            db.session.delete(one)
         db.session.commit()
         return None
 
@@ -138,18 +139,20 @@ class WhoGlobalData(db.Model):
     date_reported = db.relationship(
         'WhoDateReported',
         lazy='joined',
+        cascade='all, delete',
         order_by='desc(WhoDateReported.date_reported)')
     country_id = db.Column(db.Integer,
         db.ForeignKey('who_country.id'), nullable=False)
     country = db.relationship(
         'WhoCountry',
         lazy='joined',
+        cascade='all, delete',
         order_by='asc(WhoCountry.country)')
 
     @classmethod
     def remove_all(cls):
-        # TODO: SQLalchemy instead of SQL
-        db.session.execute("delete from " + cls.__tablename__)
+        for one in cls.get_all():
+            db.session.delete(one)
         db.session.commit()
         return None
 
