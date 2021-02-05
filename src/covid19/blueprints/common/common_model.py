@@ -120,14 +120,14 @@ class CommonRegion(db.Model):
     __tablename__ = 'common_region'
     type = db.Column('type', db.String(50))
     __mapper_args__ = {
-        'polymorphic_identity': 'common_date_reported',
+        'polymorphic_identity': 'common_region',
         'polymorphic_on': type
     }
     __table_args__ = (
         db.UniqueConstraint('type', 'region', name='unique_common_region_reported'),
     )
     id = db.Column(db.Integer, primary_key=True)
-    region = db.Column(db.String(255), unique=True)
+    region = db.Column(db.String(255), nullable=False)
 
     @classmethod
     def remove_all(cls):

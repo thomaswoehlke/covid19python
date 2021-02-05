@@ -9,7 +9,11 @@ class EuropeDateReported(CommonDateReported):
 
     @classmethod
     def create_new_object_factory(cls, my_date_rep):
-        my_datum = date.fromisoformat(my_date_rep)
+        my_date_parts = my_date_rep.split("/")
+        my_year = int(my_date_parts[2])
+        my_month = int(my_date_parts[1])
+        my_day = int(my_date_parts[0])
+        my_datum = date(my_year, my_month, my_day)
         (my_iso_year, week_number, weekday) = my_datum.isocalendar()
         my_year_week = "" + str(my_iso_year)
         if week_number < 10:

@@ -41,7 +41,7 @@ class EuropeServiceUpdate:
             my_continent_exp = result_item['continent_exp']
             app.logger.info("| " + my_continent_exp + " |")
             o = EuropeContinent(
-                continent_exp=my_continent_exp
+                region=my_continent_exp
             )
             db.session.add(o)
         db.session.commit()
@@ -74,7 +74,7 @@ class EuropeServiceUpdate:
         result_date_rep = EuropeDataImportTable.get_date_rep()
         i = 0
         for item_date_rep in result_date_rep:
-            europe_date_reported = EuropeDateReported.find_by(
+            europe_date_reported = EuropeDateReported.find_by_year_week(
                 year_week=item_date_rep['year_week']
             )
             result_europe_data_import = EuropeDataImportTable.find_by_date_reported(europe_date_reported)
