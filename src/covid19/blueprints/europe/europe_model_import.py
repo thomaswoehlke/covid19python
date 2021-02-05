@@ -18,19 +18,25 @@ class EuropeDataImportTable(db.Model):
 
     @classmethod
     def remove_all(cls):
-        # TODO: SQLalchemy instead of SQL
-        db.session.execute("delete from " + cls.__tablename__ + " cascade")
+        for one in cls.get_all():
+            db.session.delete(one)
         db.session.commit()
         return None
 
     @classmethod
     def get_all_as_page(cls, page):
         #TODO: #51 order_by: year_week, country
-        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
+        return db.session.query(cls).order_by(
+            cls.year_week,
+            cls.countries_and_territories
+        ).paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).all()
+        return db.session.query(cls).order_by(
+            cls.year_week,
+            cls.countries_and_territories
+        ).all()
 
     @classmethod
     def get_by_id(cls, other_id):

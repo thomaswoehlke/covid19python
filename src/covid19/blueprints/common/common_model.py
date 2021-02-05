@@ -71,8 +71,8 @@ class CommonDateReported(db.Model):
 
     @classmethod
     def remove_all(cls):
-        # TODO: SQLalchemy instead of SQL
-        db.session.execute("delete from " + cls.__tablename__)
+        for one in cls.get_all():
+            db.session.delete(one)
         db.session.commit()
         return None
 
@@ -123,13 +123,16 @@ class CommonRegion(db.Model):
         'polymorphic_identity': 'common_date_reported',
         'polymorphic_on': type
     }
+    __table_args__ = (
+        db.UniqueConstraint('type', 'region', name='unique_common_region_reported'),
+    )
     id = db.Column(db.Integer, primary_key=True)
     region = db.Column(db.String(255), unique=True)
 
     @classmethod
     def remove_all(cls):
-        # TODO: SQLalchemy instead of SQL
-        db.session.execute("delete from " + cls.__tablename__)
+        for one in cls.get_all():
+            db.session.delete(one)
         db.session.commit()
         return None
 
