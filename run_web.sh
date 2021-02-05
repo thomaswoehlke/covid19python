@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
+. venv/bin/activate
 #export FLASK_ENV=development
 #export FLASK_APP=covid19python
 #pip install -e .
 #flask run
 
-. venv/bin/activate
-python covid19
+
+python covid19.__init__
 

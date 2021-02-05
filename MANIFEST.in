@@ -1,0 +1,3 @@
+graft covid19/static
+graft covid19/templates
+global-exclude *.pyc
