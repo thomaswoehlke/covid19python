@@ -49,6 +49,10 @@ class EuropeCountry(db.Model):
     continent_id = db.Column(db.Integer, db.ForeignKey('common_region.id'), nullable=False)
     continent = db.relationship('CommonRegion', lazy='subquery', order_by='CommonRegion.region')
 
+    def __str__(self):
+        result = " " + self.geo_id + " " + self.country_territory_code + " " + self.countries_and_territories + " "
+        return result
+
     @classmethod
     def remove_all(cls):
         for one in cls.get_all():

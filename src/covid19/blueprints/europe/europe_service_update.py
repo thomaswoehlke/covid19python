@@ -39,10 +39,10 @@ class EuropeServiceUpdate:
         result_continent = EuropeDataImportTable.get_continent()
         for result_item in result_continent:
             my_continent_exp = result_item['continent_exp']
-            app.logger.info("| " + my_continent_exp + " |")
             o = EuropeContinent(
                 region=my_continent_exp
             )
+            app.logger.info("| " + str(o) + " |")
             db.session.add(o)
         db.session.commit()
         app.logger.info(" __update_continent [done]")
@@ -62,6 +62,7 @@ class EuropeServiceUpdate:
                     country_territory_code=c['country_territory_code'],
                     pop_data_2019=c['pop_data_2019'],
                     continent=my_continent)
+                app.logger.info("| " + str(o) + " |")
                 db.session.add(o)
             db.session.commit()
         app.logger.info(" __update_country [done]")

@@ -133,6 +133,10 @@ class CommonRegion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     region = db.Column(db.String(255), nullable=False)
 
+    def __str__(self):
+        result = " " + self.region + " "
+        return result
+
     @classmethod
     def remove_all(cls):
         for one in cls.get_all():
