@@ -17,4 +17,5 @@ tokenize-rt==4.1.0
 numpy==1.20.0
 pandas==1.2.1
 #
-#gaphor==2.2.1
+gaphor==2.2.1
+PyGObject==3.38.0
