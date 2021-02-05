@@ -1,3 +1,13 @@
-graft covid19/static
-graft covid19/templates
+graft src/covid19/static
+graft src/covid19/templates
+global-exclude *.pyc
+
+include CHANGES.md
+include LICENSE.md
+include tox.ini
+include requirements/*.txt
+graft artwork
+graft docs
+prune docs/_build
+graft tests
 global-exclude *.pyc
