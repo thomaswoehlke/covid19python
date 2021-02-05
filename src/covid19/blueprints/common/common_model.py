@@ -6,21 +6,28 @@ from sqlalchemy.orm import joinedload
 
 class CommonDateReported(db.Model):
     __tablename__ = 'common_date_reported'
-    discriminator = db.Column('type', db.String(50))
-    __mapper_args__ = {'polymorphic_on': discriminator}
-
+    type = db.Column(db.String(50), nullable=False)
+    __mapper_args__ = {
+        'polymorphic_identity': 'common_date_reported',
+        'polymorphic_on': type
+    }
+    __table_args__ = (
+        db.UniqueConstraint('type', 'date_reported', name='unique_common_date_reported_1'),
+        db.UniqueConstraint('type', 'datum', name='unique_common_date_reported_2'),
+        db.UniqueConstraint('type', 'year_week', name='unique_common_date_reported_3')
+    )
+    #
     id = db.Column(db.Integer, primary_key=True)
-    date_reported = db.Column(db.String(255), nullable=False, unique=True)
+    date_reported = db.Column(db.String(255), nullable=False)
     year_week = db.Column(db.String(255), nullable=False)
-    datum = db.Column(db.Date, nullable=False, unique=True)
+    datum = db.Column(db.Date, nullable=False)
     year = db.Column(db.Integer, nullable=False)
     month = db.Column(db.Integer, nullable=False)
     day_of_month = db.Column(db.Integer, nullable=False)
     day_of_week = db.Column(db.Integer, nullable=False)
     week_of_year = db.Column(db.Integer, nullable=False)
-
-    day_of_year = db.Column(db.Integer, nullable=True)
-    year_day_of_year = db.Column(db.String(255), nullable=True, unique=True)
+    #day_of_year = db.Column(db.Integer, nullable=True)
+    #year_day_of_year = db.Column(db.String(255), nullable=True, unique=True)
 
     def __str__(self):
         result = ""
@@ -51,6 +58,7 @@ class CommonDateReported(db.Model):
             my_year_week = "" + str(my_iso_year) + "-0"+str(week_number)
         else:
             my_year_week = "" + str(my_iso_year) + "-"+str(week_number)
+        day_of_year = my_datum.timetuple()
         return CommonDateReported(
             date_reported=my_date_rep,
             datum=my_datum,
@@ -111,9 +119,11 @@ class CommonDateReported(db.Model):
 
 class CommonRegion(db.Model):
     __tablename__ = 'common_region'
-    discriminator = db.Column('type', db.String(50))
-    __mapper_args__ = {'polymorphic_on': discriminator}
-
+    type = db.Column('type', db.String(50))
+    __mapper_args__ = {
+        'polymorphic_identity': 'common_date_reported',
+        'polymorphic_on': type
+    }
     id = db.Column(db.Integer, primary_key=True)
     region = db.Column(db.String(255), unique=True)
 

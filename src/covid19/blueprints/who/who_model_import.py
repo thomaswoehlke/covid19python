@@ -13,7 +13,6 @@ class WhoGlobalDataImportTable(db.Model):
     cumulative_cases = db.Column(db.String(255), nullable=False)
     new_deaths = db.Column(db.String(255), nullable=False)
     cumulative_deaths = db.Column(db.String(255), nullable=False)
-    row_imported = db.Column(db.Boolean, nullable=False)
 
     @classmethod
     def remove_all(cls):
@@ -50,14 +49,15 @@ class WhoGlobalDataImportTable(db.Model):
 
     @classmethod
     def get_dates_reported(cls):
-        return db.session.query(cls.date_reported.desc())\
-            .order_by(cls.date_reported)\
+        return db.session.query(cls.date_reported)\
+            .order_by(cls.date_reported.desc())\
             .distinct()
 
     @classmethod
     def get_for_one_day(cls, day):
         return db.session.query(cls)\
             .filter(cls.date_reported == day)\
+            .order_by(cls.country.asc())\
             .all()
 
     @classmethod

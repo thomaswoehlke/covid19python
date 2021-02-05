@@ -5,11 +5,11 @@ from covid19.blueprints.common.common_model import CommonDateReported, CommonReg
 
 
 class WhoDateReported(CommonDateReported):
-    __mapper_args__ = {'polymorphic_identity': 'who'}
+    __mapper_args__ = {'polymorphic_identity': 'who_date_reported'}
 
 
 class WhoRegion(CommonRegion):
-    __mapper_args__ = {'polymorphic_identity': 'who'}
+    __mapper_args__ = {'polymorphic_identity': 'who_region'}
 
 
 class WhoCountry(db.Model):
@@ -33,11 +33,15 @@ class WhoCountry(db.Model):
 
     @classmethod
     def get_all_as_page(cls, page):
-        return db.session.query(cls).order_by(cls.country).paginate(page, per_page=ITEMS_PER_PAGE)
+        return db.session.query(cls)\
+            .order_by(cls.country)\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).order_by(cls.country).all()
+        return db.session.query(cls)\
+            .order_by(cls.country)\
+            .all()
 
     @classmethod
     def get_all_as_dict(cls):
@@ -48,7 +52,9 @@ class WhoCountry(db.Model):
 
     @classmethod
     def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
 
     @classmethod
     def get_germany(cls):
@@ -69,8 +75,26 @@ class WhoCountry(db.Model):
     @classmethod
     def find_by_country_code(cls, i_country_code):
         return db.session.query(cls).filter(
-                cls.country_code == i_country_code
+            cls.country_code == i_country_code
         ).one_or_none()
+
+    @classmethod
+    def find_by_country(cls, i_country):
+        return db.session.query(cls).filter(
+            cls.country == i_country
+        ).one_or_none()
+
+    @classmethod
+    def get_by_country_code(cls, i_country_code):
+        return db.session.query(cls).filter(
+            cls.country_code == i_country_code
+        ).one()
+
+    @classmethod
+    def get_by_country(cls, i_country):
+        return db.session.query(cls).filter(
+            cls.country == i_country
+        ).one()
 
     @classmethod
     def get_who_countries_for_region(cls, region, page):
