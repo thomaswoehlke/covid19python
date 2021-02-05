@@ -99,6 +99,12 @@ class CommonDateReported(db.Model):
             .one_or_none()
 
     @classmethod
+    def get_by_date_reported(cls, i_date_reported):
+        return db.session.query(cls)\
+            .filter(cls.date_reported == i_date_reported)\
+            .one()
+
+    @classmethod
     def find_by_year_week(cls, year_week):
         return db.session.query(cls).filter(cls.year_week == year_week).one()
 

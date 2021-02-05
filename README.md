@@ -1,5 +1,5 @@
 # covid19python
-* Version 0.0.5 SNAPSHOT
+* Version 0.0.14
 
 ## git
 * gitlab: https://git.noc.ruhr-uni-bochum.de/learn_r_and_python/covid19python.git

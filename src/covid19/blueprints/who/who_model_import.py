@@ -31,23 +31,34 @@ class WhoGlobalDataImportTable(db.Model):
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).all()
+        return db.session.query(cls).order_by(
+            cls.date_reported.desc(),
+            cls.country.asc()
+        ).all()
 
     @classmethod
     def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
 
     @classmethod
     def get_regions(cls):
-        return db.session.query(cls.who_region).distinct()
+        return db.session.query(cls.who_region)\
+            .order_by(cls.who_region)\
+            .distinct()
 
     @classmethod
     def get_dates_reported(cls):
-        return db.session.query(cls.date_reported).distinct()
+        return db.session.query(cls.date_reported.desc())\
+            .order_by(cls.date_reported)\
+            .distinct()
 
     @classmethod
     def get_for_one_day(cls, day):
-        return db.session.query(cls).filter(cls.date_reported == day).all()
+        return db.session.query(cls)\
+            .filter(cls.date_reported == day)\
+            .all()
 
     @classmethod
     def get_new_dates_as_array(cls):

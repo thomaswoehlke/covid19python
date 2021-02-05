@@ -159,7 +159,7 @@ class WhoServiceUpdate:
         new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
-            my_date = WhoDateReported.find_by_date_reported(my_date_reported)
+            my_date = WhoDateReported.get_by_date_reported(my_date_reported)
             for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
                 my_country = WhoCountry.find_by_country_code(result_item.country_code)
                 o = WhoGlobalData(
@@ -168,6 +168,7 @@ class WhoServiceUpdate:
                     deaths_new=int(result_item.new_deaths),
                     deaths_cumulative=int(result_item.cumulative_deaths),
                     date_reported=my_date,
+                    date_reported_id=my_date.id,
                     country=my_country
                 )
                 db.session.add(o)
