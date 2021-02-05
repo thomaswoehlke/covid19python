@@ -62,7 +62,7 @@ class EuropeCountry(db.Model):
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).limit(500)
+        return db.session.query(cls).all()
 
     @classmethod
     def get_by_id(cls, other_id):
