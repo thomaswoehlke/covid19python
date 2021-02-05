@@ -25,7 +25,7 @@ class RkiServiceDownload:
         app.logger.debug(" RKI Service Download [ready]")
 
     def __download_file(self, datascope, cvsfile_name, url_src):
-        src_cvsfile_path = ".." + os.sep + "data" + os.sep + cvsfile_name
+        src_cvsfile_path = ".." + os.sep + ".." + os.sep + "data" + os.sep + cvsfile_name
         app.logger.info(" download - RKI "+datascope+" [begin] ")
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" FILE: "+cvsfile_name+" <- "+url_src)
