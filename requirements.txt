@@ -1,4 +1,3 @@
-
 # --------------------------------------------------------------
 # Covid 19 Data - Requirements
 # --------------------------------------------------------------
@@ -80,8 +79,7 @@ gaphor>=2.2.1
 #Flask-Caching
 #flask-roles
 #Flask-Login
-#
-#
+#-----------------------------------------------------------------
 alabaster==0.7.12
 babel==2.8.0
 certifi==2020.6.20
@@ -108,3 +106,4 @@ sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-log-cabinet==1.0.1
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.4
+
