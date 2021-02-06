@@ -23,11 +23,11 @@ app_who = Blueprint('who', __name__, template_folder='templates')
 
 
 @celery.task(bind=True)
-def task_who_run_update(self, import_file=True):
+def task_who_run_update_full(self, import_file=True):
     self.update_state(state=states.STARTED)
     logger = get_task_logger(__name__)
     logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_who_run_update [OK] ")
+    logger.info(" Received: task_who_run_update_full [OK] ")
     logger.info("------------------------------------------------------------")
     who_service.run_update(import_file)
     self.update_state(state=states.SUCCESS)
@@ -58,6 +58,32 @@ def task_who_update_initial(self):
     who_service.run_update_initial()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_who_update_initial)"
+    return result
+
+
+@celery.task(bind=True)
+def task_who_import_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_import_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.who_service_import.import_file()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_import_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_who_update_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_update_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.who_service_update.update_only_db()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_update_only)"
     return result
 
 
@@ -354,30 +380,64 @@ def url_who_germany(page=1):
         page_info=page_info)
 
 
-@app_who.route('/update')
-def url_who_update_run():
-    app.logger.info("url_who_update_run [start]")
+@app_who.route('/task/download/only')
+def url_who_task_download_only():
+    app.logger.info("url_who_task_download_only [start]")
     who_service.who_service_download.download_file()
-    task_who_run_update.apply_async()
+    flash("who_service.who_service_download.download_file ok")
+    flash(message="long running background task started", category="warning")
+    app.logger.info("url_who_task_download_only [done]")
+    return redirect(url_for('url_who_tasks'))
+
+
+@app_who.route('/task/import/only')
+def url_who_task_import_only():
+    app.logger.info("url_who_update_run [start]")
+    task_who_import_only.apply_async()
     flash("who_service.run_update started")
     flash(message="long running background task started", category="warning")
     app.logger.info("url_who_update_run [done]")
-    return redirect(url_for('url_home'))
+    return redirect(url_for('url_who_tasks'))
 
 
-@app_who.route('/update/short')
-def url_who_update_short_run():
-    who_service.who_service_download.download_file()
-    task_who_update_short.apply_async()
-    flash("who_service.run_update_short started")
+@app_who.route('/task/update/only')
+def url_who_task_update_only():
+    app.logger.info("url_who_update_run [start]")
+    task_who_update_only.apply_async()
+    flash("task_who_update_only started")
     flash(message="long running background task started", category="warning")
-    return redirect(url_for('url_home'))
+    app.logger.info("url_who_update_run [done]")
+    return redirect(url_for('url_who_tasks'))
 
 
-@app_who.route('/update/initial')
-def url_who_update_initial_run():
+@app_who.route('/task/update/initial')
+def url_who_task_update_initial():
     who_service.who_service_download.download_file()
+    flash("who_service.who_service_download.download_file ok")
     task_who_update_initial.apply_async()
-    flash("who_service.run_update_short started")
+    flash("task_who_update_initial started")
     flash(message="long running background task started", category="warning")
-    return redirect(url_for('url_home'))
+    return redirect(url_for('url_who_tasks'))
+
+
+@app_who.route('/task/update/short')
+def url_who_task_update_short():
+    who_service.who_service_download.download_file()
+    flash("who_service.who_service_download.download_file ok")
+    task_who_update_short.apply_async()
+    flash("task_who_update_short started")
+    flash(message="long running background task started", category="warning")
+    return redirect(url_for('url_who_tasks'))
+
+
+@app_who.route('/task/update/full')
+def url_who_task_update_full():
+    app.logger.info("url_who_task_update_full [start]")
+    who_service.who_service_download.download_file()
+    flash("who_service.who_service_download.download_file ok")
+    task_who_run_update_full.apply_async()
+    flash("task_who_run_update_full started")
+    flash(message="long running background task started", category="warning")
+    app.logger.info("url_who_task_update_full [done]")
+    return redirect(url_for('url_who_tasks'))
+

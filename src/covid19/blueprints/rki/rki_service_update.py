@@ -1,7 +1,7 @@
 from database import db, app
 
 from covid19.blueprints.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiGermanyData
-from covid19.blueprints.rki.rki_model_import import RkiGermanyDataImportTable
+from covid19.blueprints.rki.rki_model_import import RkiBundeslaenderImport
 
 
 rki_service_update = None
@@ -21,7 +21,7 @@ class RkiServiceUpdate:
         app.logger.info(" update who_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        for i_date_reported, in RkiGermanyDataImportTable.get_dates_reported():
+        for i_date_reported, in RkiBundeslaenderImport.get_dates_reported():
             c = RkiDateReported.find_by_date_reported(i_date_reported)
             if c is None:
                 o = RkiDateReported.create_new_object_factory(my_date_rep=i_date_reported)

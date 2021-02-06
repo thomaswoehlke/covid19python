@@ -16,45 +16,66 @@ class WhoService:
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" WHO Service [ready]")
 
-    def run_download(self):
-        app.logger.info(" run update [begin]")
+    def run_download_only(self):
+        app.logger.info(" run_download_only [begin]")
         app.logger.info("------------------------------------------------------------")
         success = self.who_service_download.download_file()
         app.logger.info("")
-        app.logger.info(" run update [done]")
+        app.logger.info(" run_download_only [done]")
         app.logger.info("------------------------------------------------------------")
         return success
 
-    def run_update(self, import_file=True):
-        app.logger.info(" run update [begin]")
+    def run_import_only(self):
+        app.logger.info(" run_import_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        if import_file:
-            self.who_service_import.import_file()
-        self.who_service_update.update_db()
+        self.who_service_import.import_file()
         app.logger.info("")
-        app.logger.info(" run update [done]")
+        app.logger.info(" run_import_only [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def run_update_short(self, import_file=True):
-        app.logger.info(" run update short [begin]")
+    def run_update_dimension_tables_only(self):
+        app.logger.info(" run_update_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        if import_file:
-            self.who_service_import.import_file()
-        self.who_service_update.update_db_short()
+        self.who_service_update.update_dimension_tables_only()
         app.logger.info("")
-        app.logger.info(" run update short [done]")
+        app.logger.info(" run_update_only [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def run_update_initial(self, import_file=True):
-        app.logger.info(" run update initial [begin]")
+    def run_update_fact_table_incremental_only(self):
+        app.logger.info(" run_update_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        if import_file:
-            self.who_service_import.import_file()
-        self.who_service_update.update_db_initial()
+        self.who_service_update.update_fact_table_incremental_only()
         app.logger.info("")
-        app.logger.info(" run update initial [done]")
+        app.logger.info(" run_update_only [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
+    def run_update_fact_table_initial_only(self):
+        app.logger.info(" run_update_initial [begin]")
+        app.logger.info("------------------------------------------------------------")
+        self.who_service_update.update_fact_table_initial_only()
+        app.logger.info("")
+        app.logger.info(" run_update_initial [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
+    def run_update_star_schema_incremental(self):
+        app.logger.info(" run_update_short [begin]")
+        app.logger.info("------------------------------------------------------------")
+        self.who_service_update.update_star_schema_incremental()
+        app.logger.info("")
+        app.logger.info(" run_update_short [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
+    def run_update_star_schema_initial(self):
+        app.logger.info(" run_update_initial_full [begin]")
+        app.logger.info("------------------------------------------------------------")
+        self.who_service_update.update_star_schema_initial()
+        app.logger.info("")
+        app.logger.info(" run_update_initial_full [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
