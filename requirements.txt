@@ -24,6 +24,7 @@ Flask-ESearch==0.3.0
 Flask-SSE==1.0.0
 Flask-PluginKit==3.6.0
 Flask-ResponseBuilder==2.0.12
+Flask-BS4==5.0.0.0
 SQLAlchemy==1.3.23
 psycopg2==2.8.6
 wget==3.2
