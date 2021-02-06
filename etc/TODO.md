@@ -25,3 +25,7 @@
 * https://startbootstrap.com/template/sb-admin-angular
 * https://github.com/startbootstrap/sb-admin-angular
 * https://startbootstrap.com/previews/sb-admin-angular
+
+### Visual Studio Code
+* Flask Tutorial in Visual Studio Code: https://code.visualstudio.com/docs/python/tutorial-flask
+
