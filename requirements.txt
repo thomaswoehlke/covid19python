@@ -6,6 +6,7 @@ Flask-SQLAlchemy==2.4.4
 Flask-Cors==3.0.10
 Flask-Login==0.5.0
 Flask-Authorization==1.4
+test-flask==0.2.0
 pytest-flask==1.1.0
 Flask-DB==0.3.0
 flask-pwa==0.1.0
