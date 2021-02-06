@@ -60,3 +60,5 @@ pandas==1.2.1
 dash==1.19.0
 dash-extensions==0.0.44
 permissions-system==0.2.3
+aiocronjob==0.2.6
+
