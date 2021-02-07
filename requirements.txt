@@ -46,7 +46,6 @@ Flask-Babel>=2
 Flask-Login<0.6.0,>=0.5.0
 #------------------------------------------
 manual-sitemap>=19.6.0
-#permissions-system>=0.2.3
 aiocronjob>=0.2.0
 # --------------------------------------------------------------
 # Frontend, Statistics, Data Vizualisation
