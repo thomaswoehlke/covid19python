@@ -8,7 +8,7 @@ from database import db, app
 # TODO: move WhoGlobalDataImportTable to RKI
 from covid19.blueprints.who.who_model_import import WhoGlobalDataImportTable
 
-# TODO: question: Split RkiService into two Services, one for bundeslaender and one for landkreise?
+# TODO: Split RkiService into two Services, one for bundeslaender and one for landkreise?
 class RkiServiceImport:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -23,7 +23,7 @@ class RkiServiceImport:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Import [ready]")
 
-    # TODO: question: Split RkiService into two Services, one for bundeslaender and one for landkreise?
+    # TODO: Split RkiService into two Services, one for bundeslaender and one for landkreise?
     def import_file(self):
         app.logger.info(" import RKI [begin]")
         app.logger.info("------------------------------------------------------------")

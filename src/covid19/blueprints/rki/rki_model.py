@@ -100,7 +100,7 @@ class RkiCountry(db.Model):
         ).order_by(cls.country).paginate(page, per_page=ITEMS_PER_PAGE)
 
 
-# TODO: question: Split RkiService into two Services, one for bundeslaender and one for landkreise?
+# TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
 # TODO: RkiGermanyData rename to RkiBundeslaender
 class RkiGermanyData(db.Model):
     __tablename__ = 'rki_bundeslsaender'
@@ -171,7 +171,7 @@ class RkiGermanyData(db.Model):
             ).paginate(page, per_page=ITEMS_PER_PAGE)
 
 
-# TODO: question: Split RkiService into two Services, one for bundeslaender and one for landkreise?
+# TODO: Split RkiService into two Services, one for bundeslaender and one for landkreise?
 # TODO: RkiLandkreise
 class RkiLandkreise(db.Model):
     __tablename__ = 'rki_landkreise'
