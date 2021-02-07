@@ -1,12 +1,12 @@
 from database import db, app
 
 from covid19.blueprints.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiGermanyData
-from covid19.blueprints.rki.rki_model_import import RkiBundeslaenderImport
-
+from covid19.blueprints.rki.rki_model_import import RkiBundeslaenderImport, RkiLandkreiseImport
+from covid19.blueprints.rki.rki_model_import import RkiGermanyDataImportTable
 
 rki_service_update = None
 
-
+# TODO: question: Split RkiService into two Services, one for bundeslaender and one for landkreise?
 class RkiServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -17,6 +17,7 @@ class RkiServiceUpdate:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Update [ready]")
 
+    # TODO: refactor RkiServiceUpdate.__update_who_date_reported
     def __update_who_date_reported(self):
         app.logger.info(" update who_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -37,6 +38,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: refactor RkiServiceUpdate.__update_who_region
     def __update_who_region(self):
         app.logger.info(" update who_region [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -58,6 +60,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: refactor RkiServiceUpdate.__update_who_country
     def __update_who_country(self):
         app.logger.info(" update who_country [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -99,6 +102,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: refactor RkiServiceUpdate.__update_who_global_data
     def __update_who_global_data(self):
         app.logger.info(" update WHO [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -134,6 +138,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: refactor RkiServiceUpdate.__update_who_global_data_short
     def __update_who_global_data_short(self):
         app.logger.info(" update RKI short [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -164,6 +169,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: refactor RkiServiceUpdate.__update_who_global_data_initial
     def __update_who_global_data_initial(self):
         app.logger.info(" update RKI initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -195,6 +201,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: refactor RkiServiceUpdate.update_db
     def update_db(self):
         app.logger.info(" update db [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -206,6 +213,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: refactor RkiServiceUpdate.update_db_short
     def update_db_short(self):
         app.logger.info(" update db short [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -217,6 +225,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: refactor RkiServiceUpdate.update_db_initial
     def update_db_initial(self):
         app.logger.info(" update db initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -228,6 +237,23 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def update_who_country(self):
-        self.__update_who_country()
+    def update_dimension_tables_only(self):
+        #TODO: implement RkiServiceUpdate.update_dimension_tables_only
         return self
+
+    def update_fact_table_incremental_only(self):
+        #TODO: implement RkiServiceUpdate.update_fact_table_incremental_only
+        return self
+
+    def update_fact_table_initial_only(self):
+        #TODO: implement RkiServiceUpdate.update_fact_table_initial_only
+        return self
+
+    def update_star_schema_incremental(self):
+        #TODO: implement RkiServiceUpdate.update_star_schema_incremental
+        return self
+
+    def update_star_schema_initial(self):
+        #TODO: implement RkiServiceUpdate.update_star_schema_initial
+        return self
+

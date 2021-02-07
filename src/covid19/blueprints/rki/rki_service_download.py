@@ -5,7 +5,8 @@ from flask import flash
 
 from database import app
 
-
+# TODO: question: Split RkiService into two Services, one for bundeslaender and one for landkreise?
+# TODO: refactor RkiServiceDownload to new method scheme introduced 07.02.2021
 class RkiServiceDownload:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -24,6 +25,7 @@ class RkiServiceDownload:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Download [ready]")
 
+    # TODO: question: Split RkiService into two Services, one for bundeslaender and one for landkreise?
     def __download_file(self, datascope, cvsfile_name, url_src):
         src_cvsfile_path = ".." + os.sep + ".." + os.sep + "data" + os.sep + cvsfile_name
         app.logger.info(" download - RKI "+datascope+" [begin] ")
@@ -57,6 +59,7 @@ class RkiServiceDownload:
             flash(msg)
         return self
 
+    # TODO: question: Split RkiService into two Services, one for bundeslaender and one for landkreise?
     def download_file(self):
         app.logger.info(" download - RKI [begin] ")
         app.logger.info("------------------------------------------------------------")

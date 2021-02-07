@@ -59,7 +59,8 @@ class EuropeDataImportTable(db.Model):
         my_continent_exp = my_continent.region
         my_params = {}
         my_params['my_continent_param'] = my_continent_exp
-        # TODO: SQLalchemy instead of SQL
+        #TODO: SQLalchemy instead of SQL
+        #TODO: BUG: change to ORM ClassHierarchy
         sql = """
         select distinct
             countries_and_territories,

@@ -7,7 +7,7 @@ from covid19.blueprints.common.common_model import CommonDateReported, CommonReg
 
 
 class RkiDateReported(CommonDateReported):
-    __mapper_args__ = {'polymorphic_identity': 'RkiDateReported'}
+    __mapper_args__ = {'polymorphic_identity': 'rki_date_reported'}
 
     @classmethod
     def create_new_object_factory(cls, my_date_rep):
@@ -100,8 +100,10 @@ class RkiCountry(db.Model):
         ).order_by(cls.country).paginate(page, per_page=ITEMS_PER_PAGE)
 
 
+# TODO: question: Split RkiService into two Services, one for bundeslaender and one for landkreise?
+# TODO: RkiGermanyData rename to RkiBundeslaender
 class RkiGermanyData(db.Model):
-    __tablename__ = 'rki_global_data'
+    __tablename__ = 'rki_bundeslsaender'
 
     id = db.Column(db.Integer, primary_key=True)
     cases_new = db.Column(db.Integer, nullable=False)
@@ -167,3 +169,50 @@ class RkiGermanyData(db.Model):
                 cls.deaths_cumulative.desc(),
                 cls.cases_cumulative.desc()
             ).paginate(page, per_page=ITEMS_PER_PAGE)
+
+
+# TODO: question: Split RkiService into two Services, one for bundeslaender and one for landkreise?
+# TODO: RkiLandkreise
+class RkiLandkreise(db.Model):
+    __tablename__ = 'rki_landkreise'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    OBJECTID_1 = db.Column(db.String(255), nullable=False)
+    LAN_ew_AGS = db.Column(db.String(255), nullable=False)
+    LAN_ew_GEN = db.Column(db.String(255), nullable=False)
+    LAN_ew_BEZ = db.Column(db.String(255), nullable=False)
+    LAN_ew_EWZ = db.Column(db.String(255), nullable=False)
+    OBJECTID = db.Column(db.String(255), nullable=False)
+    Fallzahl = db.Column(db.String(255), nullable=False)
+    Aktualisierung = db.Column(db.String(255), nullable=False)
+    AGS_TXT = db.Column(db.String(255), nullable=False)
+    GlobalID = db.Column(db.String(255), nullable=False)
+    faelle_100000_EW = db.Column(db.String(255), nullable=False)
+    Death = db.Column(db.String(255), nullable=False)
+    cases7_bl_per_100k = db.Column(db.String(255), nullable=False)
+    cases7_bl = db.Column(db.String(255), nullable=False)
+    death7_bl = db.Column(db.String(255), nullable=False)
+    cases7_bl_per_100k_txt = db.Column(db.String(255), nullable=False)
+    AdmUnitId = db.Column(db.String(255), nullable=False)
+    SHAPE_Length = db.Column(db.String(255), nullable=False)
+    SHAPE_Area = db.Column(db.String(255), nullable=False)
+
+    @classmethod
+    def remove_all(cls):
+        for one in cls.get_all():
+            db.session.delete(one)
+        db.session.commit()
+        return None
+
+    @classmethod
+    def get_all_as_page(cls, page):
+        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def get_all(cls):
+        return db.session.query(cls).all()
+
+    @classmethod
+    def get_by_id(cls, other_id):
+        return db.session.query(cls).filter(cls.id == other_id).one()

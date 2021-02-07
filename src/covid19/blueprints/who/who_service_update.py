@@ -207,3 +207,9 @@ class WhoServiceUpdate:
         app.logger.info(" update_star_schema_initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self
+
+    #def update_dimension_tables_only(self):
+    #def update_fact_table_incremental_only(self):
+    #def update_fact_table_initial_only(self):
+    #def update_star_schema_incremental(self):
+    #def update_star_schema_initial(self):

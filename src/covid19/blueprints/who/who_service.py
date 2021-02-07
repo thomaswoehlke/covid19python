@@ -20,7 +20,7 @@ class WhoService:
 
     def pretask_database_drop_create(self):
         flash("who_service.run_download started")
-        success = self.who_service_download.download_file()
+        self.who_service_download.download_file()
         return self
 
     def task_database_drop_create(self):
@@ -29,14 +29,22 @@ class WhoService:
         self.who_service_update.update_fact_table_incremental_only()
         return self
 
+    #def run_download_only(self):
+    #def run_import_only(self):
+    #def run_update_dimension_tables_only(self):
+    #def run_update_fact_table_incremental_only(self):
+    #def run_update_fact_table_initial_only(self):
+    #def run_update_star_schema_incremental(self):
+    #def run_update_star_schema_initial(self):
+
     def run_download_only(self):
         app.logger.info(" run_download_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        success = self.who_service_download.download_file()
+        self.who_service_download.download_file()
         app.logger.info("")
         app.logger.info(" run_download_only [done]")
         app.logger.info("------------------------------------------------------------")
-        return success
+        return self
 
     def run_import_only(self):
         app.logger.info(" run_import_only [begin]")

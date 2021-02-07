@@ -6,6 +6,7 @@ from covid19.blueprints.europe.europe_service_import import EuropeServiceImport
 from covid19.blueprints.europe.europe_service_update import EuropeServiceUpdate
 
 
+# TODO: refactor to new method scheme itroduced 07.02.2021
 class EuropeService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -26,6 +27,34 @@ class EuropeService:
     def task_database_drop_create(self):
         self.europe_service_import.import_datafile_to_db()
         self.europe_service_update.update_db_short()
+        return self
+
+    def run_download_only(self):
+        self.europe_service_download.download()
+        return self
+
+    def run_import_only(self):
+        self.europe_service_import.import_datafile_to_db()
+        return self
+
+    def run_update_dimension_tables_only(self):
+        # TODO: refactor to new method scheme itroduced 07.02.2021
+        return self
+
+    def run_update_fact_table_incremental_only(self):
+        # TODO: refactor to new method scheme itroduced 07.02.2021
+        return self
+
+    def run_update_fact_table_initial_only(self):
+        # TODO: refactor to new method scheme itroduced 07.02.2021
+        return self
+
+    def run_update_star_schema_incremental(self):
+        # TODO: refactor to new method scheme itroduced 07.02.2021
+        return self
+
+    def run_update_star_schema_initial(self):
+        # TODO: refactor to new method scheme itroduced 07.02.2021
         return self
 
     def download(self):

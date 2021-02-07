@@ -1,8 +1,10 @@
 from database import db, ITEMS_PER_PAGE
 
 
+#TODO: rename VaccinationGermanyTimeline to VaccinationImport
+#TODO change tablename from vaccination_germany_timeline_import to vaccination_import
 class VaccinationGermanyTimeline(db.Model):
-    __tablename__ = 'vaccination_germany_timeline'
+    __tablename__ = 'vaccination_germany_timeline_import'
 
     id = db.Column(db.Integer, primary_key=True)
     datum = db.Column(db.String(255), nullable=False)

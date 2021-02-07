@@ -68,3 +68,4 @@ def url_vaccination_timeline_germany(page=1):
         page_data=page_data,
         page_info=page_info)
 
+# TODO add Tasks and URLs for starting Tasks to vaccination_views

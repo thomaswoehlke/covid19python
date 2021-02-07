@@ -7,6 +7,7 @@ from covid19.blueprints.vaccination.vaccination_model_import import VaccinationG
 from covid19.blueprints.vaccination.vaccination_service_config import VaccinationServiceDownloadConfig
 
 
+# TODO: refactor VaccinationServiceImport to new method scheme introduced 07.02.2021
 class VaccinationServiceImport:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")

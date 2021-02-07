@@ -156,3 +156,22 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    def update_dimension_tables_only(self):
+        # TODO: refactor to new method scheme itroduced 07.02.2021
+        return self
+
+    def update_fact_table_incremental_only(self):
+        # TODO: refactor to new method scheme itroduced 07.02.2021
+        return self
+
+    def update_fact_table_initial_only(self):
+        # TODO: refactor to new method scheme itroduced 07.02.2021
+        return self
+
+    def update_star_schema_incremental(self):
+        # TODO: refactor to new method scheme itroduced 07.02.2021
+        return self
+
+    def update_star_schema_initial(self):
+        # TODO: refactor to new method scheme itroduced 07.02.2021
+        return self
