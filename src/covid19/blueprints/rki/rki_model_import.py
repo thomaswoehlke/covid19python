@@ -4,7 +4,7 @@ from database import db, ITEMS_PER_PAGE
 
 
 # TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-# TODO: RkiBundeslaenderImport
+# TODO: #126 implement RkiBundeslaenderImport
 class RkiBundeslaenderImport(db.Model):
     __tablename__ = 'rki_bundeslsaender_import'
 
@@ -51,12 +51,12 @@ class RkiBundeslaenderImport(db.Model):
 
     @classmethod
     def get_dates_reported(self):
-        #TODO: implement RkiBundeslaenderImport.get_dates_reported
+        #TODO: #127 implement RkiBundeslaenderImport.get_dates_reported
         return self
 
 
 # TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-# TODO: add fields from csv to RkiLandkreiseImport
+# TODO: #128 add fields from csv to RkiLandkreiseImport
 class RkiLandkreiseImport(db.Model):
     __tablename__ = 'rki_landkreise_import'
 
@@ -103,7 +103,7 @@ class RkiLandkreiseImport(db.Model):
 
     @classmethod
     def get_new_dates_as_array(cls):
-        #TODO: BUG: change to ORM ClassHierarchy
+        # TODO: #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
         sql_query = """
             select
                 date_reported
@@ -132,7 +132,7 @@ class RkiLandkreiseImport(db.Model):
         return new_dates
 
 
-# TODO: remove RkiGermanyDataImportTable
+# TODO: #130 remove RkiGermanyDataImportTable
 class RkiGermanyDataImportTable(db.Model):
     __tablename__ = 'rki_germany_data_import'
 
@@ -179,7 +179,7 @@ class RkiGermanyDataImportTable(db.Model):
 
     @classmethod
     def get_new_dates_as_array(cls):
-        #TODO: BUG: change to ORM ClassHierarchy
+        #TODO: #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
         sql_query = """
             select
                 date_reported

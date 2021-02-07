@@ -173,8 +173,15 @@
 * Issue #120 implement EuropeServiceUpdate.update_fact_table_initial_only
 * Issue #121 implement EuropeServiceUpdate.update_star_schema_incremental
 * Issue #122 implement EuropeServiceUpdate.update_star_schema_initial
-* Issue 
-* Issue 
+* Issue #123 split RkiService into two Services, one for bundeslaender and one for landkreise
+* Issue #124 rename RkiGermanyData to RkiBundeslaender
+* Issue #125 implement RkiLandkreise
+* Issue #126 implement RkiBundeslaenderImport
+* Issue #127 implement RkiBundeslaenderImport.get_dates_reported
+* Issue #128 add fields from csv to RkiLandkreiseImport
+* Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
+* Issue #130 remove RkiGermanyDataImportTable
+* Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
 * Issue 
 * Issue 
 * Issue 
