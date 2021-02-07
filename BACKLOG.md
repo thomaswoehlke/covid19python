@@ -193,9 +193,9 @@
 * Issue #140 move WhoGlobalDataImportTable to RKI in: rk_service_import.py
 * Issue #141 implement RkiServiceUpdate.update_dimension_tables_only
 * Issue #142 implement RkiServiceUpdate.update_fact_table_incremental_only
-* Issue 
-* Issue 
-* Issue 
+* Issue #143 implement RkiServiceUpdate.update_fact_table_initial_only
+* Issue #144 implement RkiServiceUpdate.update_star_schema_incremental
+* Issue #145 implement RkiServiceUpdate.update_star_schema_initial
 * Issue 
 * Issue 
 * Issue 
