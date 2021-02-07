@@ -119,7 +119,7 @@ def url_task_who_download_only():
     who_service.run_download_only()
     flash("who_service.run_download_only ok")
     app.logger.info("url_who_task_download_only [done]")
-    return redirect(url_for('url_who_tasks'))
+    return redirect(url_for('who.url_who_tasks'))
 
 
 @app_who.route('/task/import/only')
@@ -129,7 +129,7 @@ def url_task_who_import_only():
     flash("who_service.run_update started")
     flash(message="long running background task started", category="warning")
     app.logger.info("url_who_update_run [done]")
-    return redirect(url_for('url_who_tasks'))
+    return redirect(url_for('who.url_who_tasks'))
 
 
 @app_who.route('/task/update/dimension-tables/only')
@@ -139,31 +139,27 @@ def url_task_who_update_dimension_tables_only():
     flash("task_who_update_dimension_tables_only started")
     flash(message="long running background task started", category="warning")
     app.logger.info("url_task_who_update_dimension_tables_only [done]")
-    return redirect(url_for('url_who_tasks'))
+    return redirect(url_for('who.url_who_tasks'))
 
 
 @app_who.route('/task/update/fact-table/incremental/only')
 def url_task_who_update_fact_table_incremental_only():
     app.logger.info("url_task_who_update_fact_table_incremental_only [start]")
-    who_service.run_download_only()
-    flash("who_service.run_download_only ok")
     task_who_update_fact_table_incremental_only.apply_async()
     flash("task_who_update_fact_table_incremental_only started")
     flash(message="long running background task started", category="warning")
     app.logger.info("url_task_who_update_fact_table_incremental_only [done]")
-    return redirect(url_for('url_who_tasks'))
+    return redirect(url_for('who.url_who_tasks'))
 
 
 @app_who.route('/task/update/fact-table/initial/only')
 def url_task_who_update_fact_table_initial_only():
     app.logger.info("url_task_who_update_fact_table_initial_only [start]")
-    who_service.run_download_only()
-    flash("who_service.who_service_download.download_file ok")
     task_who_update_fact_table_initial_only.apply_async()
     flash("task_who_update_fact_table_initial_only started")
     flash(message="long running background task started", category="warning")
     app.logger.info("url_who_task_update_full [done]")
-    return redirect(url_for('url_who_tasks'))
+    return redirect(url_for('who.url_who_tasks'))
 
 
 @app_who.route('/task/update/star_schema/initial')
@@ -175,7 +171,7 @@ def url_task_who_update_star_schema_initial():
     flash("task_who_update_star_schema_initial started")
     flash(message="long running background task started", category="warning")
     app.logger.info("url_who_task_update_full [done]")
-    return redirect(url_for('url_who_tasks'))
+    return redirect(url_for('who.url_who_tasks'))
 
 
 @app_who.route('/task/update/star_schema/incremental')
@@ -187,7 +183,7 @@ def url_task_who_update_star_schema_incremental():
     flash("task_who_run_update_full started")
     flash(message="long running background task started", category="warning")
     app.logger.info("url_task_who_update_star_schema_incremental [done]")
-    return redirect(url_for('url_who_tasks'))
+    return redirect(url_for('who.url_who_tasks'))
 
 
 @app_who.route('/info')
