@@ -196,7 +196,7 @@
 * Issue #143 implement RkiServiceUpdate.update_fact_table_initial_only
 * Issue #144 implement RkiServiceUpdate.update_star_schema_incremental
 * Issue #145 implement RkiServiceUpdate.update_star_schema_initial
-* Issue 
+* Issue #146 add Tasks and URLs for starting Tasks to rki_views
 * Issue 
 * Issue 
 * Issue 
