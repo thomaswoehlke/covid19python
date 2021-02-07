@@ -6,7 +6,7 @@ from covid19.blueprints.rki.rki_model_import import RkiGermanyDataImportTable
 
 rki_service_update = None
 
-# TODO: Split RkiService into two Services, one for bundeslaender and one for landkreise?
+# TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
 class RkiServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
