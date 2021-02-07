@@ -206,9 +206,5 @@
 * Issue #153 refactor RkiServiceUpdate.update_db
 * Issue #154 refactor RkiServiceUpdate.update_db_short
 * Issue #155 refactor RkiServiceUpdate.update_db_initial
-* Issue 
-* Issue 
-* Issue 
-* Issue 
-* Issue 
-* Issue 
+* Issue #156 run_web.sh
+* Issue #157 run_worker.sh 
