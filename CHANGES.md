@@ -122,5 +122,12 @@
 * Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array()
 
 ### 0.0.18 Release
-* 
-``
+* Issue #71 add python modules to requirements.txt for User Login, Authentication and Autorisation
+* Issue #72 add python modules to requirements.txt for Ajax and other JS Features
+* Issue #73 add python modules to requirements.txt for further research and development
+* Issue #74 add Tasks to WHO Tasks Html 
+* Issue #75 add Tasks to Europe Tasks Html 
+* Issue #76 add Tasks to Vaccination Tasks Html 
+* Issue #77 add Tasks to RKI Tasks Html 
+* Issue #78 add PlantUML
+* Issue #79 add Gaphor UML
