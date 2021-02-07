@@ -98,10 +98,11 @@ gaphor>=2.2.1
 #
 #pallets-sphinx-themes==1.2.3
 #snowballstemmer==2.0.0
-#sphinx-issues==1.2.0
+#
 
 sphinx==3.4.3
 sphinx-tabs==2.0.0
+sphinx-issues==1.2.0
 
 #sphinxcontrib-applehelp==1.0.2
 #sphinxcontrib-devhelp==1.0.2
