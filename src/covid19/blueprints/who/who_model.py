@@ -125,8 +125,9 @@ class WhoCountry(db.Model):
             cls.region == region
         ).order_by(cls.country).paginate(page, per_page=ITEMS_PER_PAGE)
 
-# TODO: rename WhoGlobalData to WhoData
-# TODO: rename tablename from who_global_data to who_data
+
+# TODO: #85 rename WhoGlobalData to WhoData
+# TODO: #84 rename tablename from who_global_data to who_data
 class WhoGlobalData(db.Model):
     __tablename__ = 'who_global_data'
 

@@ -131,3 +131,13 @@
 * Issue #77 add Tasks to RKI Tasks Html 
 * Issue #78 add PlantUML
 * Issue #79 add Gaphor UML
+* Issue #80 rename WhoGlobalDataImportTable to WhoImport
+* Issue #81 change tablename from who_global_data_import to who_import
+* Issue #82 BUG: change to ORM ClassHierarchy
+* Issue #83 SQLalchemy instead of SQL in WhoGlobalDataImportTable.get_new_dates_as_array
+* Issue #85 rename WhoGlobalData to WhoData
+* Issue #84 rename tablename from who_global_data to who_data
+
+
+
+

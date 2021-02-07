@@ -1,8 +1,8 @@
 from database import db, ITEMS_PER_PAGE
 
 
-#TODO: rename WhoGlobalDataImportTable to WhoImport
-#TODO change tablename from who_global_data_import to who_import
+# TODO: #80 rename WhoGlobalDataImportTable to WhoImport
+# TODO: #81 change tablename from who_global_data_import to who_import
 class WhoGlobalDataImportTable(db.Model):
     __tablename__ = 'who_global_data_import'
 
@@ -64,8 +64,8 @@ class WhoGlobalDataImportTable(db.Model):
 
     @classmethod
     def get_new_dates_as_array(cls):
-        #TODO: BUG: change to ORM ClassHierarchy
-        #TODO: SQLalchemy instead of SQL
+        # TODO: #82 BUG: change to ORM ClassHierarchy
+        # TODO: #83 SQLalchemy instead of SQL in WhoGlobalDataImportTable.get_new_dates_as_array
         sql_query = """
             select
                 date_reported
