@@ -75,9 +75,9 @@ gaphor>=2.2.1
 #Flask-SeaSurf
 #Flask-ESearch
 #Flask-SSE
-#Flask-AppBuilder
 #flask-roles
-#Flask-Login
+Flask-AppBuilder==3.1.1
+Flask-Login<0.6.0,>=0.5.0
 #-----------------------------------------------------------------
 #
 #
