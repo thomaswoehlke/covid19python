@@ -17,15 +17,18 @@ class WhoServiceUpdate:
     def __update_who_date_reported(self):
         app.logger.info(" __update_who_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
+        i = 0
         for i_date_reported, in WhoGlobalDataImportTable.get_dates_reported():
+            i += 1
+            output = " [ " + str(i) + " ] " + i_date_reported
             c = WhoDateReported.find_by_date_reported(i_date_reported)
             if c is None:
                 o = WhoDateReported.create_new_object_factory(my_date_rep=i_date_reported)
                 db.session.add(o)
                 db.session.commit()
-                app.logger.info(" update who_date_reported "+i_date_reported+" added")
+                output += " added"
             else:
-                app.logger.info(" update who_date_reported "+i_date_reported+" NOT added "+str(c.id))
+                output += " NOT added "+str(c.id)
         app.logger.info("")
         app.logger.info(" __update_who_date_reported [done]")
         app.logger.info("------------------------------------------------------------")
@@ -34,15 +37,18 @@ class WhoServiceUpdate:
     def __update_who_region(self):
         app.logger.info(" __update_who_region [begin]")
         app.logger.info("------------------------------------------------------------")
+        i = 0
         for i_who_region, in WhoGlobalDataImportTable.get_regions():
+            i += 1
+            output = " [ " + str(i) + " ] " + i_who_region
             c = WhoRegion.find_by_region(i_who_region)
             if c is None:
                 o = WhoRegion(region=i_who_region)
                 db.session.add(o)
                 db.session.commit()
-                app.logger.info(i_who_region + " added")
+                output += " added"
             else:
-                app.logger.info(i_who_region + " NOT added "+str(c.id))
+                output += " NOT added ( " + str(c.id) + " ) "
         app.logger.info("")
         app.logger.info(" __update_who_region [done]")
         app.logger.info("------------------------------------------------------------")
@@ -52,11 +58,13 @@ class WhoServiceUpdate:
         app.logger.info(" __update_who_country [begin]")
         app.logger.info("------------------------------------------------------------")
         result = WhoGlobalDataImportTable.countries()
+        i = 0
         for result_item in result:
+            i += 1
             i_country_code = result_item.country_code
             i_country = result_item.country
             i_who_region = result_item.who_region
-            output = i_country_code + " " + i_country + " " + i_who_region
+            output = " [ " + str(i) + " ] " + i_country_code + " | " + i_country + " | " + i_who_region + " | "
             my_region = WhoRegion.find_by_region(i_who_region)
             my_country = WhoCountry.find_by_country_code_and_country_and_who_region_id(
                 i_country_code, i_country, my_region
@@ -68,12 +76,9 @@ class WhoServiceUpdate:
                     region=my_region)
                 db.session.add(o)
                 db.session.commit()
-                #my_country = WhoCountry.find_by_country_code_and_country_and_who_region_id(
-                #    i_country_code, i_country, my_region
-                #)
-                output2 = " added"
+                output2 = " added "
             else:
-                output2 = " NOT added " + str(my_country.id)
+                output2 = " NOT added ( " + str(my_country.id) + " ) "
             output += i_country_code + output2
             app.logger.info(output)
         db.session.commit()
@@ -94,6 +99,7 @@ class WhoServiceUpdate:
                 db.session.add(myday)
                 db.session.commit()
             my_date = WhoDateReported.get_by_date_reported(my_date_reported)
+            k = 0
             for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
                 if result_item.country_code == "":
                     my_country = WhoCountry.get_by_country(result_item.country)
@@ -109,10 +115,11 @@ class WhoServiceUpdate:
                 )
                 db.session.add(o)
                 i += 1
+                k += 1
                 if i % 500 == 0:
-                    app.logger.info(" update WHO short ... "+str(i)+" rows")
+                    app.logger.debug(" update WHO short ... "+str(i)+" rows")
             db.session.commit()
-            app.logger.info(" update WHO short ... " + str(i) + " rows ["+ str(my_date) +"]")
+            app.logger.info(" update WHO short ... " + str(i) + " rows [" + str(my_date) + "] (" + str(k) + ")")
         app.logger.info(" update WHO short :  "+str(i)+" rows total")
         app.logger.info(" __update_fact_tables_incremental [done]")
         app.logger.info("------------------------------------------------------------")
