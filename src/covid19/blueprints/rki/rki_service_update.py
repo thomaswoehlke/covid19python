@@ -17,7 +17,7 @@ class RkiServiceUpdate:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Update [ready]")
 
-    # TODO: refactor RkiServiceUpdate.__update_who_date_reported
+    # TODO: #147 refactor RkiServiceUpdate.__update_who_date_reported
     def __update_who_date_reported(self):
         app.logger.info(" update who_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -38,7 +38,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor RkiServiceUpdate.__update_who_region
+    # TODO: #148 refactor RkiServiceUpdate.__update_who_region
     def __update_who_region(self):
         app.logger.info(" update who_region [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -60,7 +60,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor RkiServiceUpdate.__update_who_country
+    # TODO: #149 refactor RkiServiceUpdate.__update_who_country
     def __update_who_country(self):
         app.logger.info(" update who_country [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -102,7 +102,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor RkiServiceUpdate.__update_who_global_data
+    # TODO: #150 refactor RkiServiceUpdate.__update_who_global_data
     def __update_who_global_data(self):
         app.logger.info(" update WHO [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -138,7 +138,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor RkiServiceUpdate.__update_who_global_data_short
+    # TODO: #151 refactor RkiServiceUpdate.__update_who_global_data_short
     def __update_who_global_data_short(self):
         app.logger.info(" update RKI short [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -169,7 +169,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor RkiServiceUpdate.__update_who_global_data_initial
+    # TODO: #152 refactor RkiServiceUpdate.__update_who_global_data_initial
     def __update_who_global_data_initial(self):
         app.logger.info(" update RKI initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -201,7 +201,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor RkiServiceUpdate.update_db
+    # TODO: #153 refactor RkiServiceUpdate.update_db
     def update_db(self):
         app.logger.info(" update db [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -213,7 +213,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor RkiServiceUpdate.update_db_short
+    # TODO: #154 refactor RkiServiceUpdate.update_db_short
     def update_db_short(self):
         app.logger.info(" update db short [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -225,7 +225,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor RkiServiceUpdate.update_db_initial
+    # TODO: #155 refactor RkiServiceUpdate.update_db_initial
     def update_db_initial(self):
         app.logger.info(" update db initial [begin]")
         app.logger.info("------------------------------------------------------------")

@@ -197,7 +197,15 @@
 * Issue #144 implement RkiServiceUpdate.update_star_schema_incremental
 * Issue #145 implement RkiServiceUpdate.update_star_schema_initial
 * Issue #146 add Tasks and URLs for starting Tasks to rki_views
-* Issue 
+* Issue #147 refactor RkiServiceUpdate.__update_who_date_reported 
+* Issue #148 refactor RkiServiceUpdate.__update_who_region
+* Issue #149 refactor RkiServiceUpdate.__update_who_country
+* Issue #150 refactor RkiServiceUpdate.__update_who_global_data
+* Issue #151 refactor RkiServiceUpdate.__update_who_global_data_short
+* Issue #152 refactor RkiServiceUpdate.__update_who_global_data_initial
+* Issue #153 refactor RkiServiceUpdate.update_db
+* Issue #154 refactor RkiServiceUpdate.update_db_short
+* Issue #155 refactor RkiServiceUpdate.update_db_initial
 * Issue 
 * Issue 
 * Issue 
