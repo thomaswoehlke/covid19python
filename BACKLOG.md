@@ -182,6 +182,20 @@
 * Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
 * Issue #130 remove RkiGermanyDataImportTable
 * Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
+* Issue #132 refactor RkiService to new method scheme introduced 07.02.2021
+* Issue #133 implement RkiService.task_database_drop_create
+* Issue #134 implement RkiService.run_update_dimension_tables_only
+* Issue #135 implement RkiService.run_update_fact_table_incremental_only
+* Issue #136 implement RkiService.run_update_fact_table_initial_only
+* Issue #137 implement RkiService.run_update_star_schema_incremental
+* Issue #138 implement RkiService.run_update_star_schema_initial
+* Issue #139 refactor RkiServiceDownload to new method scheme introduced 07.02.2021
+* Issue #140 move WhoGlobalDataImportTable to RKI in: rk_service_import.py
+* Issue #141 implement RkiServiceUpdate.update_dimension_tables_only
+* Issue #142 implement RkiServiceUpdate.update_fact_table_incremental_only
+* Issue 
+* Issue 
+* Issue 
 * Issue 
 * Issue 
 * Issue 

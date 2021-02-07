@@ -6,7 +6,7 @@ from covid19.blueprints.rki.rki_service_import import RkiServiceImport
 from covid19.blueprints.rki.rki_service_update import RkiServiceUpdate
 
 
-# TODO: refactor RkiService to new method scheme introduced 07.02.2021
+# TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
 class RkiService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -26,8 +26,8 @@ class RkiService:
         return self
 
     def task_database_drop_create(self):
-        # TODO: refactor RkiService to new method scheme introduced 07.02.2021
-        # TODO: implement RkiService.task_database_drop_create
+        # TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
+        # TODO: #133 implement RkiService.task_database_drop_create
         return self
 
     def run_download_only(self):
@@ -39,31 +39,31 @@ class RkiService:
         return self
 
     def run_update_dimension_tables_only(self):
-        # TODO: refactor RkiService to new method scheme introduced 07.02.2021
-        # TODO: implement RkiService.run_update_dimension_tables_only
+        # TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
+        # TODO: #134 implement RkiService.run_update_dimension_tables_only
         return self
 
     def run_update_fact_table_incremental_only(self):
-        # TODO: refactor RkiService to new method scheme introduced 07.02.2021
-        # TODO: implement RkiService.run_update_fact_table_incremental_only
+        # TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
+        # TODO: #135 implement RkiService.run_update_fact_table_incremental_only
         return self
 
     def run_update_fact_table_initial_only(self):
-        # TODO: refactor RkiService to new method scheme introduced 07.02.2021
-        # TODO: implement RkiService.run_update_fact_table_initial_only
+        # TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
+        # TODO: #136 implement RkiService.run_update_fact_table_initial_only
         return self
 
     def run_update_star_schema_incremental(self):
-        # TODO: refactor RkiService to new method scheme introduced 07.02.2021
-        # TODO: implement RkiService.run_update_star_schema_incremental
+        # TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
+        # TODO: #137 implement RkiService.run_update_star_schema_incremental
         return self
 
     def run_update_star_schema_initial(self):
-        # TODO: refactor RkiService to new method scheme introduced 07.02.2021
-        # TODO: implement RkiService.run_update_star_schema_initial
+        # TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
+        # TODO: #138 implement RkiService.run_update_star_schema_initial
         return self
 
-    # TODO: refactor RkiService to new method scheme introduced 07.02.2021
+    # TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
     def run_download(self):
         app.logger.info(" run update [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -73,7 +73,7 @@ class RkiService:
         app.logger.info("------------------------------------------------------------")
         return success
 
-    # TODO: refactor RkiService to new method scheme introduced 07.02.2021
+    # TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
     def run_update(self, import_file=True):
         app.logger.info(" run update [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -85,7 +85,7 @@ class RkiService:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor RkiService to new method scheme introduced 07.02.2021
+    # TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
     def run_update_short(self, import_file=True):
         app.logger.info(" run update short [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -97,7 +97,7 @@ class RkiService:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor RkiService to new method scheme introduced 07.02.2021
+    # TODO: #132 refactor RkiService to new method scheme introduced 07.02.2021
     def run_update_initial(self, import_file=True):
         app.logger.info(" run update initial [begin]")
         app.logger.info("------------------------------------------------------------")

@@ -238,22 +238,27 @@ class RkiServiceUpdate:
         return self
 
     def update_dimension_tables_only(self):
-        #TODO: implement RkiServiceUpdate.update_dimension_tables_only
+        #TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
+        #TODO: #141 implement RkiServiceUpdate.update_dimension_tables_only
         return self
 
     def update_fact_table_incremental_only(self):
-        #TODO: implement RkiServiceUpdate.update_fact_table_incremental_only
+        #TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
+        #TODO: #142 implement RkiServiceUpdate.update_fact_table_incremental_only
         return self
 
     def update_fact_table_initial_only(self):
+        #TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
         #TODO: implement RkiServiceUpdate.update_fact_table_initial_only
         return self
 
     def update_star_schema_incremental(self):
+        #TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
         #TODO: implement RkiServiceUpdate.update_star_schema_incremental
         return self
 
     def update_star_schema_initial(self):
+        #TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
         #TODO: implement RkiServiceUpdate.update_star_schema_initial
         return self
 

@@ -6,7 +6,7 @@ from flask import flash
 from database import app
 
 # TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-# TODO: refactor RkiServiceDownload to new method scheme introduced 07.02.2021
+# TODO: #139 refactor RkiServiceDownload to new method scheme introduced 07.02.2021
 class RkiServiceDownload:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
