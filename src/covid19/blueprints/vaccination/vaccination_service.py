@@ -45,22 +45,22 @@ class VaccinationService:
 
     def run_update_fact_table_incremental_only(self):
         # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: implement VaccinationService.run_update_fact_table_incremental_only
+        # TODO: #94 implement VaccinationService.run_update_fact_table_incremental_only
         return self
 
     def run_update_fact_table_initial_only(self):
         # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: implement VaccinationService.run_update_fact_table_initial_only
+        # TODO: #95 implement VaccinationService.run_update_fact_table_initial_only
         return self
 
     def run_update_star_schema_incremental(self):
         # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: implement VaccinationService.run_update_star_schema_incremental
+        # TODO: #96 implement VaccinationService.run_update_star_schema_incremental
         return self
 
     def run_update_star_schema_initial(self):
         # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: implement VaccinationService.run_update_star_schema_initial
+        # TODO: #97 implement VaccinationService.run_update_star_schema_initial
         return self
 
     # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021

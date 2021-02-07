@@ -5,7 +5,7 @@ from covid19.blueprints.vaccination.vaccination_model_import import VaccinationG
 from covid19.blueprints.vaccination.vaccination_model import VaccinationDateReported, VaccinationGermanyTimelineAAA
 
 
-# TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+# TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
 class VaccinationsServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -16,7 +16,7 @@ class VaccinationsServiceUpdate:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Update [ready] ")
 
-    # TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+    # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
     def __update_date_reported(self):
         app.logger.info(" __update_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -36,7 +36,7 @@ class VaccinationsServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+    # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
     def __update_data_initial(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -77,7 +77,7 @@ class VaccinationsServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+    # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
     def __update_data_short(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -86,7 +86,7 @@ class VaccinationsServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+    # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
     def update_db_initial(self):
         app.logger.info(" update_db_initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -98,7 +98,7 @@ class VaccinationsServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+    # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
     def update_db_short(self):
         app.logger.info(" update_db_short [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -111,26 +111,26 @@ class VaccinationsServiceUpdate:
         return self
 
     def update_dimension_tables_only(self):
-        # TODO: implement VaccinationsServiceUpdate.update_dimension_tables_only
-        # TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+        # TODO: #101 implement VaccinationsServiceUpdate.update_dimension_tables_only
+        # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
         return self
 
     def update_fact_table_incremental_only(self):
-        # TODO: implement VaccinationsServiceUpdate.update_fact_table_incremental_only
-        # TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+        # TODO: #102 implement VaccinationsServiceUpdate.update_fact_table_incremental_only
+        # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
         return self
 
     def update_fact_table_initial_only(self):
-        # TODO: implement VaccinationsServiceUpdate.update_fact_table_initial_only
-        # TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+        # TODO: #103 implement VaccinationsServiceUpdate.update_fact_table_initial_only
+        # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
         return self
 
     def update_star_schema_incremental(self):
-        # TODO: implement VaccinationsServiceUpdate.update_star_schema_incremental
-        # TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+        # TODO: #104 implement VaccinationsServiceUpdate.update_star_schema_incremental
+        # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
         return self
 
     def update_star_schema_initial(self):
-        # TODO: implement VaccinationsServiceUpdate.update_star_schema_initial
-        # TODO: refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+        # TODO: #105 implement VaccinationsServiceUpdate.update_star_schema_initial
+        # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
         return self
