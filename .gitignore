@@ -1134,3 +1134,6 @@ Debug*/Debug*\ Libs
 /data/ecdc_europa_data (1).csv
 /data/RKI_COVID19.csv
 /covid19/static/node_modules/
+/src/covid19/RKI_COVID19__2021-02-06__landkreise.csv/
+/src/covid19/RKI_COVID19__2021-02-06__bundeslaender.csv/
+/src/covid19/RKI_COVID19__2021-02-06__landkreise.csv/
