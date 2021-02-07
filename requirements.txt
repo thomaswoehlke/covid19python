@@ -41,6 +41,7 @@ Flask-ResponseBuilder>=2.0.12
 flask-was>=0.1.0
 Flask-GraphQL>=2.0.1
 flask-hintful>=0.0.7
+Flask-Caching>=1.9.0
 #------------------------------------------
 manual-sitemap>=19.6.0
 #permissions-system>=0.2.3
@@ -74,9 +75,7 @@ gaphor>=2.2.1
 #Flask-SeaSurf
 #Flask-ESearch
 #Flask-SSE
-#flask-templates
 #Flask-AppBuilder
-#Flask-Caching
 #flask-roles
 #Flask-Login
 #-----------------------------------------------------------------
