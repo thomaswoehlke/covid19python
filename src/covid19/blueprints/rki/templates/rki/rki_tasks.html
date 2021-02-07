@@ -9,12 +9,13 @@
 {% endblock %}
 
 {% block main_container %}
-    <div class="btn-group" role="group" aria-label="Views">
-        <a class="btn btn-secondary btn-lg" href="/rki/region/all" role="button">RKI :: Region :: All</a>
-    </div>
-    <div class="btn-group" role="group" aria-label="Views">
-        <a class="btn btn-primary btn-lg" href="/rki/update/initial" role="button">RKI :: update :: initial</a>
-        <a class="btn btn-secondary btn-lg" href="/rki/update/short" role="button">RKI :: update :: short</a>
+    <div class="row">
+        <div class="col">
+            <div class="btn-group-vertical" role="group" aria-label="Views">
+                <a class="btn btn-primary btn-lg" href="/rki/update/initial" role="button">RKI :: update :: initial</a>
+                <a class="btn btn-secondary btn-lg" href="/rki/update/short" role="button">RKI :: update :: short</a>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
