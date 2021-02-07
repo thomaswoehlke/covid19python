@@ -29,12 +29,12 @@ class VaccinationDateReported(CommonDateReported):
         )
 
 
-# TODO: rename VaccinationGermanyTimelineAAA to Vaccination
+# TODO: #86 rename VaccinationGermanyTimelineAAA to Vaccination
 class VaccinationGermanyTimelineAAA(db.Model):
     __tablename__ = 'vaccination_germany_timeline'
 
     id = db.Column(db.Integer, primary_key=True)
-    # TODO: change to: Vaccination.datum many to one VaccinationDateReported
+    # TODO: #87 change to: Vaccination.datum many to one VaccinationDateReported
     datum = db.Column(db.String(255), nullable=False)
     dosen_kumulativ = db.Column(db.Integer, nullable=False)
     dosen_differenz_zum_vortag = db.Column(db.Integer, nullable=False)

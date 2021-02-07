@@ -135,9 +135,25 @@
 * Issue #81 change tablename from who_global_data_import to who_import
 * Issue #82 BUG: change to ORM ClassHierarchy
 * Issue #83 SQLalchemy instead of SQL in WhoGlobalDataImportTable.get_new_dates_as_array
-* Issue #85 rename WhoGlobalData to WhoData
 * Issue #84 rename tablename from who_global_data to who_data
-
+* Issue #85 rename WhoGlobalData to WhoData
+* Issue #86 rename VaccinationGermanyTimelineAAA to Vaccination
+* Issue #87 change to: Vaccination.datum many to one VaccinationDateReported
+* Issue #89 change tablename from vaccination_germany_timeline_import to vaccination_import
+* Issue #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+* Issue #91 implement VaccinationService.run_download_only
+* Issue #92 implement VaccinationService.run_import_only
+* Issue #93 implement VaccinationService.run_update_dimension_tables_only
+* Issue 
+* Issue 
+* Issue 
+* Issue 
+* Issue 
+* Issue 
+* Issue 
+* Issue 
+* Issue 
+* Issue 
 
 
 

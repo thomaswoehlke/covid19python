@@ -6,7 +6,7 @@ from covid19.blueprints.vaccination.vaccination_service_import import Vaccinatio
 from covid19.blueprints.vaccination.vaccination_service_config import VaccinationServiceDownloadConfig
 
 
-# TODO: refactor VaccinationService to new method scheme introduced 07.02.2021
+# TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
 class VaccinationService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -29,41 +29,41 @@ class VaccinationService:
         return self
 
     def run_download_only(self):
-        # TODO: refactor VaccinationService to new method scheme introduced 07.02.2021
-        #TODO implement VaccinationService.run_download_only
+        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+        # TODO: #91 implement VaccinationService.run_download_only
         return self
 
     def run_import_only(self):
-        # TODO: refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO implement VaccinationService.run_import_only
+        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+        # TODO: #92 implement VaccinationService.run_import_only
         return self
 
     def run_update_dimension_tables_only(self):
-        # TODO: refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO implement VaccinationService.run_update_dimension_tables_only
+        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+        # TODO: #93 implement VaccinationService.run_update_dimension_tables_only
         return self
 
     def run_update_fact_table_incremental_only(self):
-        # TODO: refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO implement VaccinationService.run_update_fact_table_incremental_only
+        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+        # TODO: implement VaccinationService.run_update_fact_table_incremental_only
         return self
 
     def run_update_fact_table_initial_only(self):
-        # TODO: refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO implement VaccinationService.run_update_fact_table_initial_only
+        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+        # TODO: implement VaccinationService.run_update_fact_table_initial_only
         return self
 
     def run_update_star_schema_incremental(self):
-        # TODO: refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO implement VaccinationService.run_update_star_schema_incremental
+        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+        # TODO: implement VaccinationService.run_update_star_schema_incremental
         return self
 
     def run_update_star_schema_initial(self):
-        # TODO: refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO implement VaccinationService.run_update_star_schema_initial
+        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+        # TODO: implement VaccinationService.run_update_star_schema_initial
         return self
 
-    # TODO: refactor VaccinationService to new method scheme introduced 07.02.2021
+    # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
     def run_download(self):
         app.logger.info(" run update [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -73,7 +73,7 @@ class VaccinationService:
         app.logger.info("------------------------------------------------------------")
         return success
 
-    # TODO: refactor VaccinationService to new method scheme introduced 07.02.2021
+    # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
     def run_update_initial(self):
         app.logger.info(" run update initial [begin]")
         app.logger.info("------------------------------------------------------------")

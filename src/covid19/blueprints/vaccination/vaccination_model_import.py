@@ -1,8 +1,8 @@
 from database import db, ITEMS_PER_PAGE
 
 
-#TODO: rename VaccinationGermanyTimeline to VaccinationImport
-#TODO change tablename from vaccination_germany_timeline_import to vaccination_import
+# TODO: #88 rename VaccinationGermanyTimeline to VaccinationImport
+# TODO: #89 change tablename from vaccination_germany_timeline_import to vaccination_import
 class VaccinationGermanyTimeline(db.Model):
     __tablename__ = 'vaccination_germany_timeline_import'
 
