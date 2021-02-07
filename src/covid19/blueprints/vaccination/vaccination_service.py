@@ -1,3 +1,5 @@
+from flask import flash
+
 from database import app
 from covid19.blueprints.vaccination.vaccination_service_download import VaccinationServiceDownload
 from covid19.blueprints.vaccination.vaccination_service_import import VaccinationServiceImport
@@ -15,6 +17,15 @@ class VaccinationService:
         self.vaccination_service_import = VaccinationServiceImport(database)
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" Vaccination Service [ready]")
+
+    def pretask_database_drop_create(self):
+        flash("vaccination_service.run_download started")
+        success = self.vaccination_service_download.download_file()
+        return self
+
+    def task_database_drop_create(self):
+        self.vaccination_service_import.import_file()
+        return self
 
     def run_download(self):
         app.logger.info(" run update [begin]")

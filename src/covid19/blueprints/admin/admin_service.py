@@ -14,6 +14,10 @@ class AdminService:
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" Admin Service [ready]")
 
+    def task_database_drop_create(self):
+        self.run_admin_database_dump()
+        return self
+
     def run_admin_database_dump(self):
         app.logger.info(" run database dump [begin]")
         app.logger.info("------------------------------------------------------------")

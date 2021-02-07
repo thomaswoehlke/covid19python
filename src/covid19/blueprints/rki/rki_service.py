@@ -1,5 +1,6 @@
-from database import app
+from flask import flash
 
+from database import app
 from covid19.blueprints.rki.rki_service_download import RkiServiceDownload
 from covid19.blueprints.rki.rki_service_import import RkiServiceImport
 from covid19.blueprints.rki.rki_service_update import RkiServiceUpdate
@@ -17,6 +18,16 @@ class RkiService:
         self.service_update = RkiServiceUpdate(database)
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" RKI Service [ready]")
+
+    def pretask_database_drop_create(self):
+        flash("rki_service.run_download started")
+        success = self.service_download.download_file()
+        return self
+
+    def task_database_drop_create(self):
+        self.service_import.import_file()
+        self.service_update.update_db_short()
+        return self
 
     def run_download(self):
         app.logger.info(" run update [begin]")

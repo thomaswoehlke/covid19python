@@ -1,3 +1,5 @@
+from flask import flash
+
 from database import app
 from covid19.blueprints.europe.europe_service_download import EuropeServiceDownload
 from covid19.blueprints.europe.europe_service_import import EuropeServiceImport
@@ -15,6 +17,16 @@ class EuropeService:
         self.europe_service_update = EuropeServiceUpdate(database)
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" Europe Service [ready] ")
+
+    def pretask_database_drop_create(self):
+        flash("europe_service.download started")
+        self.europe_service_download.download()
+        return self
+
+    def task_database_drop_create(self):
+        self.europe_service_import.import_datafile_to_db()
+        self.europe_service_update.update_db_short()
+        return self
 
     def download(self):
         app.logger.info(" download [begin]")

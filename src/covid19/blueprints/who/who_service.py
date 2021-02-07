@@ -1,3 +1,5 @@
+from flask import flash
+
 from database import app
 from covid19.blueprints.who.who_service_download import WhoServiceDownload
 from covid19.blueprints.who.who_service_import import WhoServiceImport
@@ -15,6 +17,17 @@ class WhoService:
         self.who_service_update = WhoServiceUpdate(database)
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" WHO Service [ready]")
+
+    def pretask_database_drop_create(self):
+        flash("who_service.run_download started")
+        success = self.who_service_download.download_file()
+        return self
+
+    def task_database_drop_create(self):
+        self.who_service_import.import_file()
+        self.who_service_update.update_dimension_tables_only()
+        self.who_service_update.update_fact_table_incremental_only()
+        return self
 
     def run_download_only(self):
         app.logger.info(" run_download_only [begin]")
