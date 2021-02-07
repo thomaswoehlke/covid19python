@@ -29,6 +29,7 @@ setup(
         "Flask-BS4>=4.5.3.0,<5.0.0.0",
         "test-flask>=0.2.0",
         "pytest-flask>=1.1.0",
+        "Flask-Admin>=1.5.7",
         "Flask-Redisboard>=0.2.0",
         "Flask-Monitoring>=1.1.2",
         "flask-healthz>=0.0.2",
