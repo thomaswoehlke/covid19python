@@ -6,7 +6,7 @@ from covid19.blueprints.europe.europe_service_import import EuropeServiceImport
 from covid19.blueprints.europe.europe_service_update import EuropeServiceUpdate
 
 
-# TODO: refactor to new method scheme itroduced 07.02.2021
+# TODO: #111 refactor to new method scheme itroduced 07.02.2021
 class EuropeService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -38,25 +38,31 @@ class EuropeService:
         return self
 
     def run_update_dimension_tables_only(self):
-        # TODO: refactor to new method scheme itroduced 07.02.2021
+        # TODO: #112 implement EuropeService.run_update_dimension_tables_only
+        # TODO: #111 refactor to new method scheme itroduced 07.02.2021
         return self
 
     def run_update_fact_table_incremental_only(self):
-        # TODO: refactor to new method scheme itroduced 07.02.2021
+        # TODO: #113 implement EuropeService.run_update_fact_table_incremental_only
+        # TODO: #111 refactor to new method scheme itroduced 07.02.2021
         return self
 
     def run_update_fact_table_initial_only(self):
-        # TODO: refactor to new method scheme itroduced 07.02.2021
+        # TODO: #114 implement EuropeService.run_update_fact_table_initial_only
+        # TODO: #111 refactor to new method scheme itroduced 07.02.2021
         return self
 
     def run_update_star_schema_incremental(self):
-        # TODO: refactor to new method scheme itroduced 07.02.2021
+        # TODO: #115 implement EuropeService.run_update_star_schema_incremental
+        # TODO: #111 refactor to new method scheme itroduced 07.02.2021
         return self
 
     def run_update_star_schema_initial(self):
-        # TODO: refactor to new method scheme itroduced 07.02.2021
+        # TODO: #116 implement EuropeService.run_update_star_schema_initial
+        # TODO: #111 refactor to new method scheme itroduced 07.02.2021
         return self
 
+    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def download(self):
         app.logger.info(" download [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -65,6 +71,7 @@ class EuropeService:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def run_update_initial(self):
         app.logger.info(" run update [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -74,6 +81,7 @@ class EuropeService:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def run_update_short(self):
         app.logger.info(" run update short [begin]")
         app.logger.info("------------------------------------------------------------")

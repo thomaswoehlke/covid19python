@@ -4,6 +4,7 @@ from covid19.blueprints.europe.europe_model_import import EuropeDataImportTable
 from covid19.blueprints.europe.europe_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 
 
+# TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
 class EuropeServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -117,7 +118,7 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    #TODO
+    # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
     def __update_data_short(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -126,6 +127,7 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
     def update_db_initial(self):
         app.logger.info(" update_db_initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -141,6 +143,7 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
     def update_db_short(self):
         app.logger.info(" update_db_short [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -157,21 +160,26 @@ class EuropeServiceUpdate:
         return self
 
     def update_dimension_tables_only(self):
-        # TODO: refactor to new method scheme itroduced 07.02.2021
+        # TODO: #118 implement EuropeServiceUpdate.update_dimension_tables_only
+        # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
         return self
 
     def update_fact_table_incremental_only(self):
-        # TODO: refactor to new method scheme itroduced 07.02.2021
+        # TODO: #119 implement EuropeServiceUpdate.update_fact_table_incremental_only
+        # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
         return self
 
     def update_fact_table_initial_only(self):
-        # TODO: refactor to new method scheme itroduced 07.02.2021
+        # TODO: #120 implement EuropeServiceUpdate.update_fact_table_initial_only
+        # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
         return self
 
     def update_star_schema_incremental(self):
-        # TODO: refactor to new method scheme itroduced 07.02.2021
+        # TODO: #121 implement EuropeServiceUpdate.update_star_schema_incremental
+        # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
         return self
 
     def update_star_schema_initial(self):
-        # TODO: refactor to new method scheme itroduced 07.02.2021
+        # TODO: #122 implement EuropeServiceUpdate.update_star_schema_initial
+        # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
         return self

@@ -44,13 +44,13 @@ class EuropeDataImportTable(db.Model):
 
     @classmethod
     def get_date_rep(cls):
-        #TODO: SQLalchemy instead of SQL
+        # TODO: #109 SQLalchemy instead of SQL in: EuropeDataImportTable.get_date_rep
         sql = "select distinct date_rep, year_week from europe_data_import order by year_week desc"
         return db.session.execute(sql).fetchall()
 
     @classmethod
     def get_continent(cls):
-        # TODO: SQLalchemy instead of SQL
+        # TODO: #110 SQLalchemy instead of SQL in: EuropeDataImportTable.get_continent
         sql = "select distinct continent_exp from europe_data_import order by continent_exp asc"
         return db.session.execute(sql).fetchall()
 
@@ -59,8 +59,8 @@ class EuropeDataImportTable(db.Model):
         my_continent_exp = my_continent.region
         my_params = {}
         my_params['my_continent_param'] = my_continent_exp
-        #TODO: SQLalchemy instead of SQL
-        #TODO: BUG: change to ORM ClassHierarchy
+        #TODO: #107 SQLalchemy instead of SQL in: EuropeDataImportTable.get_countries_of_continent
+        #TODO: #108 BUG: change to ORM ClassHierarchy in: EuropeDataImportTable.get_countries_of_continent
         sql = """
         select distinct
             countries_and_territories,

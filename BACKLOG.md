@@ -156,6 +156,23 @@
 * Issue #103 implement VaccinationsServiceUpdate.update_fact_table_initial_only
 * Issue #104 implement VaccinationsServiceUpdate.update_star_schema_incremental
 * Issue #105 implement VaccinationsServiceUpdate.update_star_schema_initial
+* Issue #106 add Tasks and URLs for starting Tasks to vaccination_views
+* Issue #107 SQLalchemy instead of SQL in: EuropeDataImportTable.get_countries_of_continent
+* Issue #108 change to ORM ClassHierarchy in: EuropeDataImportTable.get_countries_of_continent
+* Issue #109 SQLalchemy instead of SQL in: EuropeDataImportTable.get_date_rep
+* Issue #110 SQLalchemy instead of SQL in: EuropeDataImportTable.get_continent
+* Issue #111 refactor to new method scheme itroduced 07.02.2021
+* Issue #112 implement EuropeService.run_update_dimension_tables_only
+* Issue #113 implement EuropeService.run_update_fact_table_incremental_only
+* Issue #114 implement EuropeService.run_update_fact_table_initial_only
+* Issue #115 implement EuropeService.run_update_star_schema_incremental
+* Issue #116 implement EuropeService.run_update_star_schema_initial
+* Issue #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
+* Issue #118 implement EuropeServiceUpdate.update_dimension_tables_only
+* Issue #119 implement EuropeServiceUpdate.update_fact_table_incremental_only
+* Issue #120 implement EuropeServiceUpdate.update_fact_table_initial_only
+* Issue #121 implement EuropeServiceUpdate.update_star_schema_incremental
+* Issue #122 implement EuropeServiceUpdate.update_star_schema_initial
 * Issue 
 * Issue 
 * Issue 
@@ -166,8 +183,3 @@
 * Issue 
 * Issue 
 * Issue 
-* Issue 
-* Issue 
-* Issue 
-
-
