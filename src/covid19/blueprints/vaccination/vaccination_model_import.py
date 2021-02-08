@@ -80,11 +80,11 @@ class VaccinationImport(db.Model):
     @classmethod
     def get_date_reported_as_array(cls):
         resultarray = []
-        resultlist = db.session.query(cls.datum)\
+        resultset = db.session.query(cls.datum)\
             .group_by(cls.datum)\
             .distinct()\
-            .order_by(cls.datum)\
             .all()
-        for resultitem in resultlist:
-            resultarray.append(resultitem[0])
+        for resultitem, in resultset:
+            o = str(resultitem)
+            resultarray.append(o)
         return resultarray

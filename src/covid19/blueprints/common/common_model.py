@@ -6,11 +6,9 @@ from sqlalchemy.orm import joinedload
 
 class CommonDateReported(db.Model):
     __tablename__ = 'common_date_reported'
-    __mapper_args__ = {
-        'concrete': True
-    }
     #
     id = db.Column(db.Integer, primary_key=True)
+    date_reported = db.Column(db.String(255), nullable=False, unique=True)
     year_week = db.Column(db.String(255), nullable=False)
     datum = db.Column(db.Date, nullable=False)
     year = db.Column(db.Integer, nullable=False)

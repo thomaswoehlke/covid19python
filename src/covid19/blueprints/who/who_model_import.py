@@ -76,15 +76,13 @@ class WhoImport(db.Model):
             not in (
             select
                 distinct
-                    common_date_reported.date_reported
+                    who_date_reported.date_reported
                 from
                     who_data
                 left join
-                    common_date_reported
+                    who_date_reported
                 on
-                    who_data.date_reported_id=common_date_reported.id
-                and
-                    common_date_reported.type='who_date_reported'
+                    who_data.date_reported_id=who_date_reported.id
             )
             group by
                 who_import.date_reported

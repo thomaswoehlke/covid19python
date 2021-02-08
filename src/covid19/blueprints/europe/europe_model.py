@@ -6,13 +6,19 @@ from covid19.blueprints.common.common_model import CommonDateReported, CommonReg
 
 class EuropeDateReported(CommonDateReported):
     __tablename__ = 'europe_date_reported'
-
-    id = db.Column(db.Integer, primary_key=True)
-    date_reported = db.Column(db.String(255), nullable=False, unique=True)
-
     __mapper_args__ = {
         'concrete': True
     }
+
+    id = db.Column(db.Integer, primary_key=True)
+    date_reported = db.Column(db.String(255), nullable=False, unique=True)
+    year_week = db.Column(db.String(255), nullable=False)
+    datum = db.Column(db.Date, nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    month = db.Column(db.Integer, nullable=False)
+    day_of_month = db.Column(db.Integer, nullable=False)
+    day_of_week = db.Column(db.Integer, nullable=False)
+    week_of_year = db.Column(db.Integer, nullable=False)
 
     @classmethod
     def create_new_object_factory(cls, my_date_rep):
