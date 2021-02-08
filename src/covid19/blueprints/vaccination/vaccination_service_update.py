@@ -165,7 +165,6 @@ class VaccinationServiceUpdate:
         return self
 
     def __update_dimension_table_date_reported(self):
-        VaccinationData.remove_all()
         self.__update_date_reported()
         return self
 
@@ -197,6 +196,8 @@ class VaccinationServiceUpdate:
     def update_star_schema_initial(self):
         # TODO: #105 implement VaccinationServiceUpdate.update_star_schema_initial
         # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
+        VaccinationData.remove_all()
+        VaccinationDateReported.remove_all()
         self.__update_dimension_table_date_reported()
         self.__update_data_initial()
         return self

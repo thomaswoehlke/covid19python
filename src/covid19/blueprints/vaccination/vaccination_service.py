@@ -69,6 +69,7 @@ class VaccinationService:
     def run_update_star_schema_initial(self):
         # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
         # TODO: #97 implement VaccinationService.run_update_star_schema_initial
+        self.run_import_only()
         self.vaccination_service_udpate.update_star_schema_initial()
         return self
 
