@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='covid19python-thomaswoehlke',
-    version='0.0.14',
+    version='0.0.15',
     packages=find_packages(),
     url='ttps://github.com/thomaswoehlke/covid19python.git',
     license='GNU General Public License v3.0',
