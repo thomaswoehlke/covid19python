@@ -40,12 +40,13 @@ class VaccinationServiceUpdate:
         VaccinationData.remove_all()
         result_date_rep = VaccinationImport.get_date_rep()
         i = 0
-        for item_date_rep in result_date_rep:
+        for item_date_rep, in result_date_rep:
+            #dt = item_date_rep['date_rep']
             europe_date_reported = VaccinationDateReported.find_by_date_reported(
-                i_date_reported=item_date_rep['date_rep']
+                i_date_reported=item_date_rep
             )
             if europe_date_reported is None:
-                o = VaccinationDateReported.create_new_object_factory(item_date_rep['date_rep'])
+                o = VaccinationDateReported.create_new_object_factory(item_date_rep)
                 europe_date_reported = o
             result_europe_data_import = VaccinationImport.find_by_datum(europe_date_reported)
             for item_europe_data_import in result_europe_data_import:
