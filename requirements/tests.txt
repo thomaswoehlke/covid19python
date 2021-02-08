@@ -26,7 +26,7 @@ psycopg2>=2.8.6
 #Flask-Authorization>=1.4
 Flask-Multipass>=0.3.3
 Flask-Cors>=3.0.10
-Flask-BS4>=4.5.3.0,<5.0.0.0
+Flask-BS4==4.5.3.0
 #------------------------------------------
 test-flask>=0.2.0
 pytest-flask>=1.1.0
@@ -78,7 +78,7 @@ gaphor>=2.2.1
 # docs - sphinx
 # --------------------------------------------------------------
 sphinx==3.4.3
-sphinx-tabs==2.0.0
+sphinx-tabs==2.0.1
 sphinx-issues==1.2.0
 pallets-sphinx-themes==1.2.3
 #
