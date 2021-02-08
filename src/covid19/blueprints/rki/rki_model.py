@@ -64,7 +64,7 @@ class RkiCountry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     country_code = db.Column(db.String(255), unique=True, nullable=False)
     country = db.Column(db.String(255), unique=True, nullable=False)
-    region_id = db.Column(db.Integer, db.ForeignKey('common_region.id'), nullable=False)
+    region_id = db.Column(db.Integer, db.ForeignKey('rki_region.id'), nullable=False)
     region = db.relationship(
         'RkiRegion',
         lazy='subquery',

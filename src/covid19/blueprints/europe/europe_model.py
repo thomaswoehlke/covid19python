@@ -69,11 +69,11 @@ class EuropeCountry(db.Model):
     geo_id = db.Column(db.String(255), nullable=False)
     country_territory_code = db.Column(db.String(255), nullable=False)
 
-    continent_id = db.Column(db.Integer, db.ForeignKey('common_region.id'), nullable=False)
+    continent_id = db.Column(db.Integer, db.ForeignKey('europe_continent.id'), nullable=False)
     continent = db.relationship(
-        'CommonRegion',
+        'EuropeContinent',
         lazy='subquery',
-        order_by='CommonRegion.region',
+        order_by='EuropeContinent.region',
         cascade="all, delete"
     )
 
@@ -152,7 +152,7 @@ class EuropeData(db.Model):
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).limit(500)
+        return db.session.query(cls).all()
 
     @classmethod
     def get_by_id(cls, other_id):
