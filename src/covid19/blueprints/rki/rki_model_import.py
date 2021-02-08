@@ -3,7 +3,7 @@ from database import db, ITEMS_PER_PAGE
 # OBJECTID_1,LAN_ew_AGS,LAN_ew_GEN,LAN_ew_BEZ,LAN_ew_EWZ,OBJECTID,Fallzahl,Aktualisierung,AGS_TXT,GlobalID,faelle_100000_EW,Death,cases7_bl_per_100k,cases7_bl,death7_bl,cases7_bl_per_100k_txt,AdmUnitId,SHAPE_Length,SHAPE_Area
 
 
-# TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
+# TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
 # TODO: #126 implement RkiBundeslaenderImport
 class RkiBundeslaenderImport(db.Model):
     __tablename__ = 'rki_bundeslsaender_import'
@@ -55,7 +55,7 @@ class RkiBundeslaenderImport(db.Model):
         return self
 
 
-# TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
+# TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
 # TODO: #128 add fields from csv to RkiLandkreiseImport
 class RkiLandkreiseImport(db.Model):
     __tablename__ = 'rki_landkreise_import'

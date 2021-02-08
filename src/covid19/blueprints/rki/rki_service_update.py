@@ -2,12 +2,12 @@ from database import db, app
 
 from covid19.blueprints.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiBundeslaender
 from covid19.blueprints.rki.rki_model_import import RkiBundeslaenderImport, RkiLandkreiseImport
-from covid19.blueprints.rki.rki_model_import import RkiGermanyDataImportTable
 
 rki_service_update = None
 
-# TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-class RkiServiceUpdate:
+
+# TODO: #123 split RkiService into two Services: RkiBundeslaenderService and RkiLandkreiseService
+class RkiBundeslaenderServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Update [init]")
@@ -17,7 +17,7 @@ class RkiServiceUpdate:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Update [ready]")
 
-    # TODO: #147 refactor RkiServiceUpdate.__update_who_date_reported
+    # TODO: #147 refactor RkiBundeslaenderServiceUpdate.__update_who_date_reported
     def __update_who_date_reported(self):
         app.logger.info(" update who_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -38,12 +38,12 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #148 refactor RkiServiceUpdate.__update_who_region
+    # TODO: #148 refactor RkiBundeslaenderServiceUpdate.__update_who_region
     def __update_who_region(self):
         app.logger.info(" update who_region [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        for i_who_region, in db.session.query(RkiGermanyDataImportTable.who_region).distinct():
+        for i_who_region, in db.session.query(RkiBundeslaenderImport.who_region).distinct():
             c = db.session.query(RkiRegion).filter(RkiRegion.region == i_who_region).count()
             if c == 0:
                 o = RkiRegion(region=i_who_region)
@@ -60,7 +60,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #149 refactor RkiServiceUpdate.__update_who_country
+    # TODO: #149 refactor RkiBundeslaenderServiceUpdate.__update_who_country
     def __update_who_country(self):
         app.logger.info(" update who_country [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -102,7 +102,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #150 refactor RkiServiceUpdate.__update_who_global_data
+    # TODO: #150 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data
     def __update_who_global_data(self):
         app.logger.info(" update WHO [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -111,7 +111,7 @@ class RkiServiceUpdate:
         #
         #
         i = 0
-        result = RkiGermanyDataImportTable.get_all()
+        result = RkiBundeslaenderImport.get_all()
         for result_item in result:
             my_country = countries[result_item.country_code]
             my_date_reported = dates_reported[result_item.date_reported]
@@ -138,15 +138,15 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #151 refactor RkiServiceUpdate.__update_who_global_data_short
+    # TODO: #151 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data_short
     def __update_who_global_data_short(self):
         app.logger.info(" update RKI short [begin]")
         app.logger.info("------------------------------------------------------------")
-        new_dates_reported_from_import = RkiGermanyDataImportTable.get_new_dates_as_array()
+        new_dates_reported_from_import = RkiBundeslaenderImport.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
             my_date = RkiDateReported.find_by_date_reported(my_date_reported)
-            for result_item in RkiGermanyDataImportTable.get_for_one_day(my_date_reported):
+            for result_item in RkiBundeslaenderImport.get_for_one_day(my_date_reported):
                 my_country = RkiCountry.find_by_country_code(result_item.country_code)
                 o = RkiBundeslaender(
                     cases_new=int(result_item.new_cases),
@@ -169,16 +169,16 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #152 refactor RkiServiceUpdate.__update_who_global_data_initial
+    # TODO: #152 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data_initial
     def __update_who_global_data_initial(self):
         app.logger.info(" update RKI initial [begin]")
         app.logger.info("------------------------------------------------------------")
         RkiBundeslaender.remove_all()
-        new_dates_reported_from_import = RkiGermanyDataImportTable.get_new_dates_as_array()
+        new_dates_reported_from_import = RkiBundeslaenderImport.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
             my_date = RkiDateReported.find_by_date_reported(my_date_reported)
-            for result_item in RkiGermanyDataImportTable.get_for_one_day(my_date_reported):
+            for result_item in RkiBundeslaenderImport.get_for_one_day(my_date_reported):
                 my_country = RkiCountry.find_by_country_code(result_item.country_code)
                 o = RkiBundeslaender(
                     cases_new=int(result_item.new_cases),
@@ -201,7 +201,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #153 refactor RkiServiceUpdate.update_db
+    # TODO: #153 refactor RkiBundeslaenderServiceUpdate.update_db
     def update_db(self):
         app.logger.info(" update db [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -213,7 +213,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #154 refactor RkiServiceUpdate.update_db_short
+    # TODO: #154 refactor RkiBundeslaenderServiceUpdate.update_db_short
     def update_db_short(self):
         app.logger.info(" update db short [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -225,7 +225,7 @@ class RkiServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #155 refactor RkiServiceUpdate.update_db_initial
+    # TODO: #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
     def update_db_initial(self):
         app.logger.info(" update db initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -238,27 +238,27 @@ class RkiServiceUpdate:
         return self
 
     def update_dimension_tables_only(self):
-        #TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-        #TODO: #141 implement RkiServiceUpdate.update_dimension_tables_only
+        #TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
+        #TODO: #141 implement RkiBundeslaenderServiceUpdate.update_dimension_tables_only
         return self
 
     def update_fact_table_incremental_only(self):
-        #TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-        #TODO: #142 implement RkiServiceUpdate.update_fact_table_incremental_only
+        #TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
+        #TODO: #142 implement RkiBundeslaenderServiceUpdate.update_fact_table_incremental_only
         return self
 
     def update_fact_table_initial_only(self):
-        #TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-        #TODO: #143 implement RkiServiceUpdate.update_fact_table_initial_only
+        #TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
+        #TODO: #143 implement RkiBundeslaenderServiceUpdate.update_fact_table_initial_only
         return self
 
     def update_star_schema_incremental(self):
-        #TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-        #TODO: #144 implement RkiServiceUpdate.update_star_schema_incremental
+        #TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
+        #TODO: #144 implement RkiBundeslaenderServiceUpdate.update_star_schema_incremental
         return self
 
     def update_star_schema_initial(self):
-        #TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-        #TODO: #145 implement RkiServiceUpdate.update_star_schema_initial
+        #TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
+        #TODO: #145 implement RkiBundeslaenderServiceUpdate.update_star_schema_initial
         return self
 

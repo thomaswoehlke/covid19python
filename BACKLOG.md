@@ -160,7 +160,7 @@
 * Issue #120 implement EuropeServiceUpdate.update_fact_table_initial_only
 * Issue #121 implement EuropeServiceUpdate.update_star_schema_incremental
 * Issue #122 implement EuropeServiceUpdate.update_star_schema_initial
-* Issue #123 split RkiService into two Services, one for bundeslaender and one for landkreise
+* Issue #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
 * Issue #124 rename RkiBundeslaender to RkiBundeslaender
 * Issue #125 implement RkiLandkreise
 * Issue #126 implement RkiBundeslaenderImport
@@ -169,30 +169,30 @@
 * Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
 * Issue #130 remove RkiGermanyDataImportTable
 * Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
-* Issue #132 refactor RkiService to new method scheme introduced 07.02.2021
-* Issue #133 implement RkiService.task_database_drop_create
-* Issue #134 implement RkiService.run_update_dimension_tables_only
-* Issue #135 implement RkiService.run_update_fact_table_incremental_only
-* Issue #136 implement RkiService.run_update_fact_table_initial_only
-* Issue #137 implement RkiService.run_update_star_schema_incremental
-* Issue #138 implement RkiService.run_update_star_schema_initial
-* Issue #139 refactor RkiServiceDownload to new method scheme introduced 07.02.2021
+* Issue #132 refactor RkiBundeslaenderService to new method scheme introduced 07.02.2021
+* Issue #133 implement RkiBundeslaenderService.task_database_drop_create
+* Issue #134 implement RkiBundeslaenderService.run_update_dimension_tables_only
+* Issue #135 implement RkiBundeslaenderService.run_update_fact_table_incremental_only
+* Issue #136 implement RkiBundeslaenderService.run_update_fact_table_initial_only
+* Issue #137 implement RkiBundeslaenderService.run_update_star_schema_incremental
+* Issue #138 implement RkiBundeslaenderService.run_update_star_schema_initial
+* Issue #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
 * Issue #140 move WhoGlobalDataImportTable to RKI in: rk_service_import.py
-* Issue #141 implement RkiServiceUpdate.update_dimension_tables_only
-* Issue #142 implement RkiServiceUpdate.update_fact_table_incremental_only
-* Issue #143 implement RkiServiceUpdate.update_fact_table_initial_only
-* Issue #144 implement RkiServiceUpdate.update_star_schema_incremental
-* Issue #145 implement RkiServiceUpdate.update_star_schema_initial
+* Issue #141 implement RkiBundeslaenderServiceUpdate.update_dimension_tables_only
+* Issue #142 implement RkiBundeslaenderServiceUpdate.update_fact_table_incremental_only
+* Issue #143 implement RkiBundeslaenderServiceUpdate.update_fact_table_initial_only
+* Issue #144 implement RkiBundeslaenderServiceUpdate.update_star_schema_incremental
+* Issue #145 implement RkiBundeslaenderServiceUpdate.update_star_schema_initial
 * Issue #146 add Tasks and URLs for starting Tasks to rki_views
-* Issue #147 refactor RkiServiceUpdate.__update_who_date_reported 
-* Issue #148 refactor RkiServiceUpdate.__update_who_region
-* Issue #149 refactor RkiServiceUpdate.__update_who_country
-* Issue #150 refactor RkiServiceUpdate.__update_who_global_data
-* Issue #151 refactor RkiServiceUpdate.__update_who_global_data_short
-* Issue #152 refactor RkiServiceUpdate.__update_who_global_data_initial
-* Issue #153 refactor RkiServiceUpdate.update_db
-* Issue #154 refactor RkiServiceUpdate.update_db_short
-* Issue #155 refactor RkiServiceUpdate.update_db_initial
+* Issue #147 refactor RkiBundeslaenderServiceUpdate.__update_who_date_reported 
+* Issue #148 refactor RkiBundeslaenderServiceUpdate.__update_who_region
+* Issue #149 refactor RkiBundeslaenderServiceUpdate.__update_who_country
+* Issue #150 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data
+* Issue #151 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data_short
+* Issue #152 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data_initial
+* Issue #153 refactor RkiBundeslaenderServiceUpdate.update_db
+* Issue #154 refactor RkiBundeslaenderServiceUpdate.update_db_short
+* Issue #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
 * Issue #156 run_web.sh
 * Issue #157 run_worker.sh 
 * Issue #162 rename table vaccination_germany_timeline into vaccination_data
