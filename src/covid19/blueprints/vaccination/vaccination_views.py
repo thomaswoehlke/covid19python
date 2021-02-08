@@ -22,6 +22,110 @@ app_vaccination = Blueprint('vaccination', __name__, template_folder='templates'
 
 
 @celery.task(bind=True)
+def task_vaccination_download_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_download_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    vaccination_service.task_europe_download_only() # TODO
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_download_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_vaccination_import_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_import_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    vaccination_service.task_europe_import_only() # TODO
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_import_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_vaccination_update_dimension_tables_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_dimension_tables_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    vaccination_service.task_europe_update_dimension_tables_only() # TODO
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_dimension_tables_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_vaccination_update_fact_table_incremental_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_fact_table_incremental_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    vaccination_service.task_europe_update_fact_table_incremental_only() # TODO
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_fact_table_incremental_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_vaccination_update_fact_table_initial_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_fact_table_initial_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    vaccination_service.task_europe_update_fact_table_initial_only() # TODO
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_fact_table_initial_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_vaccination_update_fact_table_initial_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_fact_table_initial_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    vaccination_service.task_europe_update_fact_table_initial_only() # TODO
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_fact_table_initial_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_vaccination_update_star_schema_incremental(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_star_schema_incremental [OK] ")
+    logger.info("------------------------------------------------------------")
+    vaccination_service.task_europe_update_star_schema_incremental() # TODO
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_star_schema_incremental)"
+    return result
+
+
+@celery.task(bind=True)
+def task_vaccination_update_star_schema_initial(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_star_schema_initial [OK] ")
+    logger.info("------------------------------------------------------------")
+    vaccination_service.task_europe_update_star_schema_initial()  # TODO
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_star_schema_initial)"
+    return result
+
+
+@celery.task(bind=True)
 def task_vaccination_update_initial(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
@@ -76,41 +180,48 @@ def url_vaccination_timeline_germany(page=1):
 @app_vaccination.route('/task/update/star_schema/initial')
 def url_vaccination_task_update_star_schema_initial():
     flash("url_vaccination_task_update_star_schema_initial started")
+    # TODO: implement  in vaccination_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_vaccination.route('/task/update/star_schema/incremental')
 def url_vaccination_task_update_starschema_incremental():
     flash("url_vaccination_task_update_starschema_incremental started")
+    # TODO: implement  in vaccination_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_vaccination.route('/task/download/only')
 def url_vaccination_task_download_only():
     flash("url_vaccination_task_download_only started")
+    # TODO: implement  in vaccination_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_vaccination.route('/task/import/only')
 def url_vaccination_task_import_only():
     flash("url_vaccination_task_import_only started")
+    # TODO: implement  in vaccination_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_vaccination.route('/task/update/dimension-tables/only')
 def url_vaccination_task_update_dimensiontables_only():
     flash("url_vaccination_task_update_dimensiontables_only started")
+    # TODO: implement  in vaccination_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_vaccination.route('/task/update/fact-table/incremental/only')
 def url_vaccination_task_update_facttable_incremental_only():
     flash("url_vaccination_task_update_facttable_incremental_only started")
+    # TODO: implement  in vaccination_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_vaccination.route('/task/update/fact-table/initial/only')
 def url_vaccination_task_update_facttable_initial_only():
     flash("url_vaccination_task_update_facttable_initial_only started")
+    # TODO: implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
     return redirect(url_for('url_europe_tasks'))
 

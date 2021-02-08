@@ -54,7 +54,7 @@ def task_europe_download_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_download_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_download_only()
+    europe_service.task_europe_download_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_download_only)"
     return result
@@ -67,7 +67,7 @@ def task_europe_import_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_import_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_import_only()
+    europe_service.task_europe_import_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_import_only)"
     return result
@@ -80,7 +80,7 @@ def task_europe_update_dimension_tables_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_dimension_tables_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_dimension_tables_only()
+    europe_service.task_europe_update_dimension_tables_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_dimension_tables_only)"
     return result
@@ -93,7 +93,7 @@ def task_europe_update_fact_table_incremental_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_fact_table_incremental_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_fact_table_incremental_only()
+    europe_service.task_europe_update_fact_table_incremental_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_fact_table_incremental_only)"
     return result
@@ -106,7 +106,7 @@ def task_europe_update_fact_table_initial_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_fact_table_initial_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_fact_table_initial_only()
+    europe_service.task_europe_update_fact_table_initial_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_fact_table_initial_only)"
     return result
@@ -119,7 +119,7 @@ def task_europe_update_fact_table_initial_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_fact_table_initial_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_fact_table_initial_only()
+    europe_service.task_europe_update_fact_table_initial_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_fact_table_initial_only)"
     return result
@@ -132,7 +132,7 @@ def task_europe_update_star_schema_incremental(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_star_schema_incremental [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_star_schema_incremental()
+    europe_service.task_europe_update_star_schema_incremental() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_star_schema_incremental)"
     return result
@@ -145,7 +145,7 @@ def task_europe_update_star_schema_initial(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_star_schema_initial [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_star_schema_initial()
+    europe_service.task_europe_update_star_schema_initial()  # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_star_schema_initial)"
     return result
