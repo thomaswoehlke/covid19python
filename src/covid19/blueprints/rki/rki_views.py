@@ -69,88 +69,103 @@ def url_rki_landkreise_imported(page=1):
 @app_rki.route('/bundeslaender/task/update/star_schema/initial')
 def url_rki_bundeslaender_task_update_starschema_initial():
     app.logger.info("url_rki_bundeslaender_task_update_starschema_initial [start]")
+    # TODO: implement url_rki_bundeslaender_task_update_starschema_initial in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/bundeslaender/task/update/star_schema/incremental')
 def url_rki_bundeslaender_task_update_starschema_incremental():
     app.logger.info("url_rki_bundeslaender_task_update_starschema_incremental [start]")
+    # TODO: implement url_rki_bundeslaender_task_update_starschema_incremental in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/bundeslaender/task/download/only')
 def url_rki_bundeslaender_task_download_only():
     app.logger.info("url_rki_bundeslaender_task_download_only [start]")
+    # TODO: implement url_rki_bundeslaender_task_download_only in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/bundeslaender/task/import/only')
 def url_rki_bundeslaender_task_import_only():
     app.logger.info("url_rki_bundeslaender_task_import_only [start]")
+    # TODO: implement url_rki_bundeslaender_task_import_only in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/bundeslaender/task/update/dimension-tables/only')
 def url_rki_bundeslaender_task_update_dimensiontables_only():
     app.logger.info("url_rki_bundeslaender_task_update_dimensiontables_only [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/bundeslaender/task/update/fact-table/incremental/only')
 def url_rki_bundeslaender_task_update_facttable_incremental_only():
     app.logger.info("url_rki_bundeslaender_task_update_facttable_incremental_only [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/bundeslaender/task/update/fact-table/initial/only')
 def url_rki_bundeslaender_task_update_facttable_initial_only():
     app.logger.info("url_rki_bundeslaender_task_update_facttable_initial_only [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/landkreise/task/update/star_schema/initial')
 def url_rki_landkreise_task_update_starschema_initial():
     app.logger.info("url_rki_landkreise_task_update_starschema_initial [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/landkreise/task/update/star_schema/incremental')
 def url_rki_landkreise_task_update_starschema_incremental():
     app.logger.info("url_rki_landkreise_task_update_starschema_incremental [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/landkreise/task/download/only')
 def url_rki_landkreise_task_download_only():
     app.logger.info("url_rki_landkreise_task_download_only [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/landkreise/task/import/only')
 def url_rki_landkreise_task_import_only():
     app.logger.info("url_rki_landkreise_task_import_only [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/landkreise/task/update/dimension-tables/only')
 def url_rki_landkreise_task_update_dimensiontables_only():
     app.logger.info("url_rki_landkreise_task_update_dimensiontables_only [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/landkreise/task/update/fact-table/incremental/only')
 def url_rki_landkreise_task_update_facttable_incremental_only():
     app.logger.info("url_rki_landkreise_task_update_facttable_incremental_only [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/landkreise/task/update/fact-table/initial/only')
 def url_rki_landkreise_task_update_facttable_initial_only():
     app.logger.info("url_rki_landkreise_task_update_facttable_initial_only [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
 
 
 @app_rki.route('/task/update/dimension-tables/only')
 def url_task_who_update_dimension_tables_only():
     app.logger.info("url_task_who_update_dimension_tables_only [start]")
+    # TODO: implement in rki_views.py
     return redirect(url_for('who.url_who_tasks'))
