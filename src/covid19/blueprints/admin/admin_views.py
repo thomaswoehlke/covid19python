@@ -92,6 +92,13 @@ def url_admin_database_import():
     app.logger.info("url_admin_database_import [done]")
     return redirect(url_for('admin.url_admin_tasks'))
 
+@app_admin.route('/database/dropcreate/only')
+def url_admin_database_dropcreate_only():
+    app.logger.info("url_admin_database_drop [start]")
+    flash("admin_service.run_admin_database_drop started")
+    admin_service.run_admin_database_drop()
+    app.logger.info("url_admin_database_drop [done]")
+    return redirect(url_for('admin.url_admin_tasks'))
 
 @app_admin.route('/database/drop')
 def url_admin_database_drop():
