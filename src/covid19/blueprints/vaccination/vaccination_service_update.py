@@ -48,7 +48,7 @@ class VaccinationServiceUpdate:
             if europe_date_reported is None:
                 o = VaccinationDateReported.create_new_object_factory(item_date_rep)
                 europe_date_reported = o
-            result_europe_data_import = VaccinationImport.find_by_datum(europe_date_reported)
+            result_europe_data_import = VaccinationImport.find_by_datum(europe_date_reported.date_reported)
             for item_europe_data_import in result_europe_data_import:
                 o = VaccinationData(
                     date_reported=europe_date_reported,
@@ -92,7 +92,7 @@ class VaccinationServiceUpdate:
         result_date_rep = VaccinationImport.get_daterep_missing_in_vaccination_data()
         i = 0
         for item_date_rep in result_date_rep:
-            europe_date_reported = VaccinationDateReported.create_new_object_factory(item_date_rep['date_rep'])
+            europe_date_reported = VaccinationDateReported.create_new_object_factory(item_date_rep)
             result_europe_data_import = VaccinationImport.find_by_datum(europe_date_reported)
             for item_europe_data_import in result_europe_data_import:
                 o = VaccinationData(

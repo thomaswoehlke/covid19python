@@ -9,11 +9,14 @@ class EuropeDateReported(CommonDateReported):
     __mapper_args__ = {
         'concrete': True
     }
+    __table_args__ = (
+        db.UniqueConstraint('date_reported', 'year_week', 'datum', name="uix_europe_date_reported"),
+    )
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)
-    year_week = db.Column(db.String(255), nullable=False)
-    datum = db.Column(db.Date, nullable=False)
+    year_week = db.Column(db.String(255), nullable=False, unique=True)
+    datum = db.Column(db.Date, nullable=False, unique=True)
     year = db.Column(db.Integer, nullable=False)
     month = db.Column(db.Integer, nullable=False)
     day_of_month = db.Column(db.Integer, nullable=False)
