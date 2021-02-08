@@ -8,7 +8,7 @@ from covid19.services import who_service
 from covid19.workers import celery
 
 from covid19.blueprints.who.who_model_import import WhoGlobalDataImportTable
-from covid19.blueprints.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoGlobalData
+from covid19.blueprints.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoData
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 
@@ -242,7 +242,7 @@ def url_who_date_reported(date_reported_id, page=1):
         "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
     )
     try:
-        page_data = WhoGlobalData.get_data_for_day(date_reported, page)
+        page_data = WhoData.get_data_for_day(date_reported, page)
     except OperationalError:
         flash("No data in the database.")
         page_data = None
@@ -263,7 +263,7 @@ def url_who_date_reported_cases_new(date_reported_id, page=1):
         "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
     )
     try:
-        page_data = WhoGlobalData.get_data_for_day_order_by_cases_new(date_reported, page)
+        page_data = WhoData.get_data_for_day_order_by_cases_new(date_reported, page)
     except OperationalError:
         flash("No data in the database.")
         page_data = None
@@ -284,7 +284,7 @@ def url_who_date_reported_cases_cumulative(date_reported_id, page=1):
         "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
     )
     try:
-        page_data = WhoGlobalData.get_data_for_day_order_by_cases_cumulative(date_reported, page)
+        page_data = WhoData.get_data_for_day_order_by_cases_cumulative(date_reported, page)
     except OperationalError:
         flash("No data in the database.")
         page_data = None
@@ -305,7 +305,7 @@ def url_who_date_reported_deaths_new(date_reported_id, page=1):
         "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
     )
     try:
-        page_data = WhoGlobalData.get_data_for_day_order_by_deaths_new(date_reported, page)
+        page_data = WhoData.get_data_for_day_order_by_deaths_new(date_reported, page)
     except OperationalError:
         flash("No data in the database.")
         page_data = None
@@ -326,7 +326,7 @@ def url_who_date_reported_deaths_cumulative(date_reported_id, page=1):
         "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
     )
     try:
-        page_data = WhoGlobalData.get_data_for_day_order_by_deaths_cumulative(date_reported, page)
+        page_data = WhoData.get_data_for_day_order_by_deaths_cumulative(date_reported, page)
     except OperationalError:
         flash("No data in the database.")
         page_data = None
@@ -392,7 +392,7 @@ def url_who_country_all(page=1):
 @app_who.route('/country/<int:country_id>')
 def url_who_country(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
-    page_data = WhoGlobalData.get_data_for_country(who_country, page)
+    page_data = WhoData.get_data_for_country(who_country, page)
     page_info = ApplicationPage(who_country.country,
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
@@ -407,7 +407,7 @@ def url_who_country(country_id, page=1):
 @app_who.route('/country/<int:country_id>/cases_new')
 def url_who_country_cases_new(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
-    page_data = WhoGlobalData.get_data_for_country_order_by_cases_new(who_country, page)
+    page_data = WhoData.get_data_for_country_order_by_cases_new(who_country, page)
     page_info = ApplicationPage(who_country.country,
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
@@ -422,7 +422,7 @@ def url_who_country_cases_new(country_id, page=1):
 @app_who.route('/country/<int:country_id>/cases_cumulative')
 def url_who_country_cases_cumulative(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
-    page_data = WhoGlobalData.get_data_for_country_order_by_cases_cumulative(who_country, page)
+    page_data = WhoData.get_data_for_country_order_by_cases_cumulative(who_country, page)
     page_info = ApplicationPage(who_country.country,
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
@@ -437,7 +437,7 @@ def url_who_country_cases_cumulative(country_id, page=1):
 @app_who.route('/country/<int:country_id>/deaths_new')
 def url_who_country_deaths_new(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
-    page_data = WhoGlobalData.get_data_for_country_order_by_deaths_new(who_country, page)
+    page_data = WhoData.get_data_for_country_order_by_deaths_new(who_country, page)
     page_info = ApplicationPage(who_country.country,
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
@@ -452,7 +452,7 @@ def url_who_country_deaths_new(country_id, page=1):
 @app_who.route('/country/<int:country_id>/deaths_cumulative')
 def url_who_country_deaths_cumulative(country_id, page=1):
     who_country = WhoCountry.get_by_id(country_id)
-    page_data = WhoGlobalData.get_data_for_country_order_by_deaths_cumulative(who_country, page)
+    page_data = WhoData.get_data_for_country_order_by_deaths_cumulative(who_country, page)
     page_info = ApplicationPage(who_country.country,
            "Country "+who_country.country_code,
            "Data per Day in Country "+who_country.country+" of WHO Region "+who_country.region.region)
@@ -470,8 +470,8 @@ def url_who_germany(page=1):
     who_country_germany = WhoCountry.get_germany()
     if who_country_germany is None:
         flash('country: Germany not found in Database', category='error')
-        return redirect(url_for('url_who_tasks'))
-    page_data = WhoGlobalData.get_data_for_country(who_country_germany, page)
+        return redirect(url_for('who.url_who_tasks'))
+    page_data = WhoData.get_data_for_country(who_country_germany, page)
     return render_template(
         'who/country/who_country_germany.html',
         who_country=who_country_germany,

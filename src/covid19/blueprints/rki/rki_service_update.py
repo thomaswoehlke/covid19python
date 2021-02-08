@@ -1,6 +1,6 @@
 from database import db, app
 
-from covid19.blueprints.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiGermanyData
+from covid19.blueprints.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiBundeslaender
 from covid19.blueprints.rki.rki_model_import import RkiBundeslaenderImport, RkiLandkreiseImport
 from covid19.blueprints.rki.rki_model_import import RkiGermanyDataImportTable
 
@@ -115,11 +115,11 @@ class RkiServiceUpdate:
         for result_item in result:
             my_country = countries[result_item.country_code]
             my_date_reported = dates_reported[result_item.date_reported]
-            result_who_global_data = RkiGermanyData.find_one_or_none_by_date_and_country(
+            result_who_global_data = RkiBundeslaender.find_one_or_none_by_date_and_country(
                 my_date_reported,
                 my_country)
             if result_who_global_data is None:
-                o = RkiGermanyData(
+                o = RkiBundeslaender(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
@@ -148,7 +148,7 @@ class RkiServiceUpdate:
             my_date = RkiDateReported.find_by_date_reported(my_date_reported)
             for result_item in RkiGermanyDataImportTable.get_for_one_day(my_date_reported):
                 my_country = RkiCountry.find_by_country_code(result_item.country_code)
-                o = RkiGermanyData(
+                o = RkiBundeslaender(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
@@ -173,14 +173,14 @@ class RkiServiceUpdate:
     def __update_who_global_data_initial(self):
         app.logger.info(" update RKI initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        RkiGermanyData.remove_all()
+        RkiBundeslaender.remove_all()
         new_dates_reported_from_import = RkiGermanyDataImportTable.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
             my_date = RkiDateReported.find_by_date_reported(my_date_reported)
             for result_item in RkiGermanyDataImportTable.get_for_one_day(my_date_reported):
                 my_country = RkiCountry.find_by_country_code(result_item.country_code)
-                o = RkiGermanyData(
+                o = RkiBundeslaender(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),

@@ -6,7 +6,7 @@ from database import app
 from covid19.services import vaccination_service
 from covid19.workers import celery
 
-from covid19.blueprints.vaccination.vaccination_model_import import VaccinationGermanyTimeline
+from covid19.blueprints.vaccination.vaccination_model_import import VaccinationImport
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 
@@ -62,7 +62,7 @@ def url_vaccination_update_data():
 @app_vaccination.route('/timeline/germany')
 def url_vaccination_timeline_germany(page=1):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
-    page_data = VaccinationGermanyTimeline.get_all_as_page(page)
+    page_data = VaccinationImport.get_all_as_page(page)
     return render_template(
         'vaccination/vaccination_timeline_germany.html',
         page_data=page_data,

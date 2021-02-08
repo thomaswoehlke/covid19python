@@ -106,8 +106,8 @@
 
 ### 0.0.15 Release
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
-* Issue #40 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()
-* Issue #41 SQLalchemy instead of SQL: EuropeDataImportTable.get_countries_of_continent()
+* Issue #40 SQLalchemy instead of SQL: EuropeImport.get_date_rep()
+* Issue #41 SQLalchemy instead of SQL: EuropeImport.get_countries_of_continent()
 * Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array()
 * Issue #71 add python modules to requirements.txt for User Login, Authentication and Autorisation
 * Issue #72 add python modules to requirements.txt for Ajax and other JS Features
@@ -123,8 +123,8 @@
 * Issue #82 BUG: change to ORM ClassHierarchy
 * Issue #83 SQLalchemy instead of SQL in WhoGlobalDataImportTable.get_new_dates_as_array
 * Issue #84 rename tablename from who_global_data to who_data
-* Issue #85 rename WhoGlobalData to WhoData
-* Issue #86 rename VaccinationGermanyTimelineAAA to Vaccination
+* Issue #85 rename WhoData to WhoData
+* Fixed #86 rename VaccinationData to Vaccination
 * Issue #87 change to: Vaccination.datum many to one VaccinationDateReported
 * Issue #89 change tablename from vaccination_germany_timeline_import to vaccination_import
 * Issue #90 refactor VaccinationService to new method scheme introduced 07.02.2021
@@ -144,10 +144,10 @@
 * Issue #104 implement VaccinationsServiceUpdate.update_star_schema_incremental
 * Issue #105 implement VaccinationsServiceUpdate.update_star_schema_initial
 * Issue #106 add Tasks and URLs for starting Tasks to vaccination_views
-* Issue #107 SQLalchemy instead of SQL in: EuropeDataImportTable.get_countries_of_continent
-* Issue #108 change to ORM ClassHierarchy in: EuropeDataImportTable.get_countries_of_continent
-* Issue #109 SQLalchemy instead of SQL in: EuropeDataImportTable.get_date_rep
-* Issue #110 SQLalchemy instead of SQL in: EuropeDataImportTable.get_continent
+* Issue #107 SQLalchemy instead of SQL in: EuropeImport.get_countries_of_continent
+* Issue #108 change to ORM ClassHierarchy in: EuropeImport.get_countries_of_continent
+* Issue #109 SQLalchemy instead of SQL in: EuropeImport.get_date_rep
+* Issue #110 SQLalchemy instead of SQL in: EuropeImport.get_continent
 * Issue #111 refactor to new method scheme itroduced 07.02.2021
 * Issue #112 implement EuropeService.run_update_dimension_tables_only
 * Issue #113 implement EuropeService.run_update_fact_table_incremental_only
@@ -161,7 +161,7 @@
 * Issue #121 implement EuropeServiceUpdate.update_star_schema_incremental
 * Issue #122 implement EuropeServiceUpdate.update_star_schema_initial
 * Issue #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-* Issue #124 rename RkiGermanyData to RkiBundeslaender
+* Issue #124 rename RkiBundeslaender to RkiBundeslaender
 * Issue #125 implement RkiLandkreise
 * Issue #126 implement RkiBundeslaenderImport
 * Issue #127 implement RkiBundeslaenderImport.get_dates_reported
@@ -195,6 +195,7 @@
 * Issue #155 refactor RkiServiceUpdate.update_db_initial
 * Issue #156 run_web.sh
 * Issue #157 run_worker.sh 
+* Issue #162 rename table vaccination_germany_timeline into vaccination_data
 
 ### 0.0.16 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date

@@ -3,7 +3,7 @@ import csv
 import psycopg2
 
 from database import db, app
-from covid19.blueprints.vaccination.vaccination_model_import import VaccinationGermanyTimeline
+from covid19.blueprints.vaccination.vaccination_model_import import VaccinationImport
 from covid19.blueprints.vaccination.vaccination_service_config import VaccinationServiceDownloadConfig
 
 
@@ -26,12 +26,12 @@ class VaccinationServiceImport:
         app.logger.info(" TABLE: who_global_data_import")
         app.logger.info("------------------------------------------------------------")
         try:
-            VaccinationGermanyTimeline.remove_all()
+            VaccinationImport.remove_all()
             k = 0
             with open(src_cvsfile_name, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter='\t', quotechar='"')
                 for row in file_reader:
-                    o = VaccinationGermanyTimeline(
+                    o = VaccinationImport(
                         datum=row['date'],
                         dosen_kumulativ=int(row['dosen_kumulativ']),
                         dosen_differenz_zum_vortag=int(row['dosen_differenz_zum_vortag']),

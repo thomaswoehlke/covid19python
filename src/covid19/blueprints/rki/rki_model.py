@@ -101,8 +101,8 @@ class RkiCountry(db.Model):
 
 
 # TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-# TODO: #124 rename RkiGermanyData to RkiBundeslaender
-class RkiGermanyData(db.Model):
+# TODO: #124 rename RkiBundeslaender to RkiBundeslaender
+class RkiBundeslaender(db.Model):
     __tablename__ = 'rki_bundeslsaender'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -113,11 +113,11 @@ class RkiGermanyData(db.Model):
     date_reported_id = db.Column(db.Integer,
         db.ForeignKey('common_date_reported.id'), nullable=False)
     date_reported = db.relationship(
-        'WhoDateReported', lazy='joined', order_by='desc(WhoDateReported.date_reported)')
+        'RkiDateReported', lazy='joined', order_by='desc(RkiDateReported.date_reported)')
     country_id = db.Column(db.Integer,
-        db.ForeignKey('who_country.id'), nullable=False)
+        db.ForeignKey('rki_country.id'), nullable=False)
     country = db.relationship(
-        'WhoCountry', lazy='joined', order_by='asc(WhoCountry.country)')
+        'RkiCountry', lazy='joined', order_by='asc(RkiCountry.country)')
 
     @classmethod
     def remove_all(cls):

@@ -126,10 +126,10 @@ class WhoCountry(db.Model):
         ).order_by(cls.country).paginate(page, per_page=ITEMS_PER_PAGE)
 
 
-# TODO: #85 rename WhoGlobalData to WhoData
+# TODO: #85 rename WhoData to WhoData
 # TODO: #84 rename tablename from who_global_data to who_data
-class WhoGlobalData(db.Model):
-    __tablename__ = 'who_global_data'
+class WhoData(db.Model):
+    __tablename__ = 'who_data'
 
     id = db.Column(db.Integer, primary_key=True)
     cases_new = db.Column(db.Integer, nullable=False)

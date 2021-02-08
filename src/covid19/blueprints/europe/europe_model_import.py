@@ -1,8 +1,8 @@
 from database import db, ITEMS_PER_PAGE
 
 
-class EuropeDataImportTable(db.Model):
-    __tablename__ = 'europe_data_import'
+class EuropeImport(db.Model):
+    __tablename__ = 'europe_import'
 
     id = db.Column(db.Integer, primary_key=True)
     date_rep = db.Column(db.String(255), nullable=False)
@@ -44,14 +44,14 @@ class EuropeDataImportTable(db.Model):
 
     @classmethod
     def get_date_rep(cls):
-        # TODO: #109 SQLalchemy instead of SQL in: EuropeDataImportTable.get_date_rep
-        sql = "select distinct date_rep, year_week from europe_data_import order by year_week desc"
+        # TODO: #109 SQLalchemy instead of SQL in: EuropeImport.get_date_rep
+        sql = "select distinct date_rep, year_week from europe_import order by year_week desc"
         return db.session.execute(sql).fetchall()
 
     @classmethod
     def get_continent(cls):
-        # TODO: #110 SQLalchemy instead of SQL in: EuropeDataImportTable.get_continent
-        sql = "select distinct continent_exp from europe_data_import order by continent_exp asc"
+        # TODO: #110 SQLalchemy instead of SQL in: EuropeImport.get_continent
+        sql = "select distinct continent_exp from europe_import order by continent_exp asc"
         return db.session.execute(sql).fetchall()
 
     @classmethod
@@ -59,8 +59,8 @@ class EuropeDataImportTable(db.Model):
         my_continent_exp = my_continent.region
         my_params = {}
         my_params['my_continent_param'] = my_continent_exp
-        #TODO: #107 SQLalchemy instead of SQL in: EuropeDataImportTable.get_countries_of_continent
-        #TODO: #108 BUG: change to ORM ClassHierarchy in: EuropeDataImportTable.get_countries_of_continent
+        #TODO: #107 SQLalchemy instead of SQL in: EuropeImport.get_countries_of_continent
+        #TODO: #108 BUG: change to ORM ClassHierarchy in: EuropeImport.get_countries_of_continent
         sql = """
         select distinct
             countries_and_territories,
@@ -69,7 +69,7 @@ class EuropeDataImportTable(db.Model):
             pop_data_2019,
             continent_exp
         from
-            europe_data_import
+            europe_import
         group by
             countries_and_territories,
             geo_id,
