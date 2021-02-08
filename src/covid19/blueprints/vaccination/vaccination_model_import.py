@@ -67,7 +67,7 @@ class VaccinationImport(db.Model):
     def find_by_datum(cls, other_datum):
         return db.session.query(cls) \
             .filter(cls.datum == other_datum) \
-            .one_or_none()
+            .all()
 
     @classmethod
     def get_date_rep(cls):
