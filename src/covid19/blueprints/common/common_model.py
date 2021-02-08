@@ -6,10 +6,8 @@ from sqlalchemy.orm import joinedload
 
 class CommonDateReported(db.Model):
     __tablename__ = 'common_date_reported'
-    type = db.Column(db.String(50), nullable=False)
     __mapper_args__ = {
-        'polymorphic_identity': 'common_date_reported',
-        'polymorphic_on': type
+        'concrete': True
     }
     __table_args__ = (
         db.UniqueConstraint('type', 'date_reported', name='unique_common_date_reported'),

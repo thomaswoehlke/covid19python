@@ -7,7 +7,12 @@ from covid19.blueprints.common.common_model import CommonDateReported, CommonReg
 
 
 class RkiDateReported(CommonDateReported):
-    __mapper_args__ = {'polymorphic_identity': 'rki_date_reported'}
+    __tablename__ = 'rki_date_reported'
+
+    id = db.Column(db.Integer, primary_key=True)
+    __mapper_args__ = {
+        'concrete': True
+    }
 
     @classmethod
     def create_new_object_factory(cls, my_date_rep):
