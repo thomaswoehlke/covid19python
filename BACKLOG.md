@@ -199,7 +199,7 @@ s* Issue #98 refactor VaccinationServiceDownload to new method scheme introduced
 * Issue #153 refactor RkiBundeslaenderServiceUpdate.update_db
 * Issue #154 refactor RkiBundeslaenderServiceUpdate.update_db_short
 * Issue #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
-  * -------------------------------------  s
+  * -------------------------------------  
 * Issue #156 run_web.sh
 * Issue #157 run_worker.sh
 * -------------------------------------  
@@ -212,7 +212,15 @@ s* Issue #98 refactor VaccinationServiceDownload to new method scheme introduced
 * Issue #167 implement url_europe_task_update_dimensiontables_only in europe_views.py
 * Issue #168 implement url_europe_task_update_facttable_incremental_only in europe_views.py
 * Issue #169 implement url_europe_task_update_facttable_initial_only in europe_views.py
-
+* -------------------------------------  
+* Issue #170 implement url_vaccination_task_update_star_schema_initial in vaccination_views.py
+* Issue #171 implement url_vaccination_task_update_starschema_incremental in vaccination_views.py
+* Issue #172 implement url_vaccination_task_import_only in vaccination_views.py
+* Issue #173 implement url_vaccination_task_import_only in vaccination_views.py
+* Issue #174 implement url_vaccination_task_update_dimensiontables_only in vaccination_views.py
+* Issue #175 implement url_vaccination_task_update_facttable_incremental_only in vaccination_views.py
+* Issue #176 implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
+ss
 ### 0.0.16 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
 * Issue #59 frontend: add correct breadcrumb to every page

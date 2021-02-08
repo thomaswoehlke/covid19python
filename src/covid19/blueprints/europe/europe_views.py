@@ -26,7 +26,7 @@ def task_europe_update_initial(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
-    logger.info(" Received: europe_update_task [OK] ")
+    logger.info(" Received: task_europe_update_initial [OK] ")
     logger.info("------------------------------------------------------------")
     europe_service.run_update_initial()
     self.update_state(state=states.SUCCESS)
