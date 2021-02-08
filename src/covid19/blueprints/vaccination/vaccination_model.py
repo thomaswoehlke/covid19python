@@ -72,13 +72,13 @@ class VaccinationData(db.Model):
     @classmethod
     def get_all_as_page(cls, page):
         return db.session.query(cls)\
-            .order_by(cls.datum.desc())\
+            .order_by(cls.date_reported)\
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all(cls):
         return db.session.query(cls)\
-            .order_by(cls.datum.desc())\
+            .order_by(cls.date_reported)\
             .all()
 
     @classmethod
@@ -96,10 +96,5 @@ class VaccinationData(db.Model):
     @classmethod
     def find_by_datum(cls, other_datum):
         return db.session.query(cls) \
-            .filter(cls.datum == other_datum) \
+            .filter(cls.date_reported == other_datum) \
             .one_or_none()
-
-    @classmethod
-    def create_new_object_factory(cls, my_date_rep):
-        # TODO implement VaccinationData.create_new_object_factory
-        pass

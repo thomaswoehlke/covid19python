@@ -25,7 +25,7 @@ class VaccinationServiceUpdate:
         for one_date_reported in date_reported_list:
             i += 1
             output = " [ " + str(i) + " ] " + one_date_reported + " added"
-            o = VaccinationData.create_new_object_factory(one_date_reported)
+            o = VaccinationDateReported.create_new_object_factory(one_date_reported)
             db.session.add(o)
             app.logger.info(output)
         db.session.commit()
