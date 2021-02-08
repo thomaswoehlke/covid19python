@@ -211,40 +211,47 @@ def url_europe_task_europe_update_data_short():
 @app_europe.route('/task/update/star_schema/initial')
 def url_europe_task_update_star_schema_initial():
     flash("url_europe_task_update_star_schema_initial started")
+    # TODO: #163 implement url_europe_task_update_star_schema_initial in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_europe.route('/task/update/star_schema/incremental')
 def url_europe_task_update_starschema_incremental():
     flash("url_europe_task_update_starschema_incremental started")
+    # TODO: #164 implement url_europe_task_update_starschema_incremental in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_europe.route('/task/download/only')
 def url_europe_task_download_only():
     flash("url_europe_task_download_only started")
+    # TODO: #165 implement url_europe_task_download_only in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_europe.route('/task/import/only')
 def url_europe_task_import_only():
     flash("url_europe_task_import_only started")
+    # TODO: #166 implement url_europe_task_import_only in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_europe.route('/task/update/dimension-tables/only')
 def url_europe_task_update_dimensiontables_only():
     flash("url_europe_task_update_dimensiontables_only started")
+    # TODO: #167 implement url_europe_task_update_dimensiontables_only in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_europe.route('/task/update/fact-table/incremental/only')
 def url_europe_task_update_facttable_incremental_only():
     flash("url_europe_task_update_facttable_incremental_only started")
+    # TODO: #168 implement url_europe_task_update_facttable_incremental_only in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
 @app_europe.route('/task/update/fact-table/initial/only')
 def url_europe_task_update_facttable_initial_only():
     flash("url_europe_task_update_facttable_initial_only started")
+    # TODO: #169 implement url_europe_task_update_facttable_initial_only in europe_views.py
     return redirect(url_for('url_europe_tasks'))

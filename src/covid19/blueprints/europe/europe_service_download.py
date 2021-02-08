@@ -2,7 +2,7 @@ import os
 import wget
 from flask import flash
 from database import app
-from covid19.blueprints.europe.europe_service_config import EuropeServiceDownloadConfig
+from covid19.blueprints.europe.europe_service_config import EuropeServiceConfig
 
 
 class EuropeServiceDownload:
@@ -11,7 +11,7 @@ class EuropeServiceDownload:
         app.logger.debug(" Europe Service Download [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = EuropeServiceDownloadConfig()
+        self.cfg = EuropeServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Download [ready] ")
 

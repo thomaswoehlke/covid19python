@@ -196,6 +196,13 @@
 * Issue #156 run_web.sh
 * Issue #157 run_worker.sh 
 * Issue #162 rename table vaccination_germany_timeline into vaccination_data
+* Issue #163 implement url_europe_task_update_star_schema_initial in europe_views.py
+* Issue #164 implement url_europe_task_update_starschema_incremental in europe_views.py
+* Issue #165 implement url_europe_task_download_only in europe_views.py
+* Issue #166 implement url_europe_task_import_only in europe_views.py
+* Issue #167 implement url_europe_task_update_dimensiontables_only in europe_views.py
+* Issue #168 implement url_europe_task_update_facttable_incremental_only in europe_views.py
+* Issue #169 implement url_europe_task_update_facttable_initial_only in europe_views.py
 
 ### 0.0.16 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date

@@ -4,7 +4,7 @@ import psycopg2
 
 from database import db, app
 from covid19.blueprints.europe.europe_model_import import EuropeImport
-from covid19.blueprints.europe.europe_service_config import EuropeServiceDownloadConfig
+from covid19.blueprints.europe.europe_service_config import EuropeServiceConfig
 
 
 class EuropeServiceImport:
@@ -13,7 +13,7 @@ class EuropeServiceImport:
         app.logger.debug(" Europe Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = EuropeServiceDownloadConfig()
+        self.cfg = EuropeServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Import [ready] ")
 

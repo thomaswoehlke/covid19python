@@ -1,5 +1,5 @@
 from database import db, app
-from covid19.blueprints.europe.europe_service_config import EuropeServiceDownloadConfig
+from covid19.blueprints.europe.europe_service_config import EuropeServiceConfig
 from covid19.blueprints.europe.europe_model_import import EuropeImport
 from covid19.blueprints.europe.europe_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 
@@ -11,7 +11,7 @@ class EuropeServiceUpdate:
         app.logger.debug(" Europe Service Update [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = EuropeServiceDownloadConfig()
+        self.cfg = EuropeServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Update [ready] ")
 
