@@ -154,8 +154,8 @@ def url_vaccination_update_data():
 @app_vaccination.route('/timeline/germany')
 def url_vaccination_timeline_germany(page=1):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
-    # page_data = VaccinationImport.get_all_as_page(page)
-    page_data = VaccinationData.get_all_as_page(page)
+    page_data = VaccinationImport.get_all_as_page(page)
+    page_data_tmp = VaccinationData.get_all_as_page(page)
     return render_template(
         'vaccination/vaccination_timeline_germany.html',
         page_data=page_data,
@@ -169,7 +169,7 @@ def url_vaccination_task_update_star_schema_initial():
     flash("url_vaccination_task_update_star_schema_initial started")
     # TODO: #170 implement url_vaccination_task_update_star_schema_initial in vaccination_views.py
     vaccination_service.run_download_only()
-    #async
+    task_vaccination_update_star_schema_initial.apply_async()
     return redirect(url_for('url_europe_tasks'))
 
 
@@ -187,7 +187,6 @@ def url_vaccination_task_download_only():
     flash("url_vaccination_task_download_only started")
     # TODO: #172 implement url_vaccination_task_import_only in vaccination_views.py
     vaccination_service.run_download_only()
-    task_vaccination_update_star_schema_initial.apply_async()
     return redirect(url_for('url_europe_tasks'))
 
 
@@ -195,7 +194,6 @@ def url_vaccination_task_download_only():
 def url_vaccination_task_import_only():
     flash("url_vaccination_task_import_only started")
     # TODO: #173 implement url_vaccination_task_import_only in vaccination_views.py
-    vaccination_service.run_import_only()
     task_vaccination_import_only.apply_async()
     return redirect(url_for('url_europe_tasks'))
 
@@ -204,8 +202,7 @@ def url_vaccination_task_import_only():
 def url_vaccination_task_update_dimensiontables_only():
     flash("url_vaccination_task_update_dimensiontables_only started")
     # TODO: #174 implement url_vaccination_task_update_dimensiontables_only in vaccination_views.py
-    vaccination_service.run_update_dimension_tables_only()
-    #async
+    task_vaccination_update_dimension_tables_only.apply_async()
     return redirect(url_for('url_europe_tasks'))
 
 
@@ -213,8 +210,7 @@ def url_vaccination_task_update_dimensiontables_only():
 def url_vaccination_task_update_facttable_incremental_only():
     flash("url_vaccination_task_update_facttable_incremental_only started")
     # TODO: #175 implement url_vaccination_task_update_facttable_incremental_only in vaccination_views.py
-
-
+    task_vaccination_update_fact_table_incremental_only.apply_async()
     return redirect(url_for('url_europe_tasks'))
 
 
@@ -222,7 +218,6 @@ def url_vaccination_task_update_facttable_incremental_only():
 def url_vaccination_task_update_facttable_initial_only():
     flash("url_vaccination_task_update_facttable_initial_only started")
     # TODO: #176 implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
-    #async
-
+    task_vaccination_update_fact_table_initial_only.apply_async()
     return redirect(url_for('url_europe_tasks'))
 
