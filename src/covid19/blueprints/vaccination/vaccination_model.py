@@ -71,8 +71,7 @@ class VaccinationData(db.Model):
 
     @classmethod
     def get_all_as_page(cls, page):
-        return db.session.query(cls).left_join()\
-            .order_by(cls.date_reported)\
+        return db.session.query(cls)\
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod

@@ -73,7 +73,6 @@ class VaccinationImport(db.Model):
     def get_date_rep(cls):
         return db.session.query(cls)\
             .options(defer('*'), undefer("datum")) \
-            .oder_by(cls.datum)\
             .group_by(cls.datum)\
             .distinct()\
             .all()
