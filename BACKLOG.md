@@ -99,29 +99,16 @@
 * Fixed #65 major refactoring: add flask-blueprints for admin, common, europe, rki, vaccination, who
 
 ### 0.0.14 Release
-* Issue #66 frontend: migrate to Bootstrap Theme sb-admin-angular
-* Issue #69 Branch: ISSUE_66_ATTEMPT_01
-* Issue #70 Load Bootstrap-Template sb-admin-angular into static
+* Fixed #69 Branch: ISSUE_66_ATTEMPT_01
+* Fixed #70 load package.json from Bootstrap-Template sb-admin-angular into statics
+* Fixed #67 implement Flask-Login (wontfix)
+* Issue #159 merge Branch ISSUE_66_ATTEMPT_01 to master
 
 ### 0.0.15 Release
-* Issue #67 implement Flask-Login
-  
-### 0.0.16 Release
-* Issue #5 Visual Graphs for Data per Countries order by Date
-* Issue #59 frontend: add correct breadcrumb to every page
-* Issue #60 frontend: better design for tables
-* Issue #61 frontend: better design for navtabs
-* Issue #62 frontend: better design for pages
-* Issue #63 frontend: add footer design
-
-### 0.0.17 Release
-* Issue #28 /admin/database/import
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Issue #40 SQLalchemy instead of SQL: EuropeDataImportTable.get_date_rep()
 * Issue #41 SQLalchemy instead of SQL: EuropeDataImportTable.get_countries_of_continent()
 * Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array()
-
-### 0.0.18 Release
 * Issue #71 add python modules to requirements.txt for User Login, Authentication and Autorisation
 * Issue #72 add python modules to requirements.txt for Ajax and other JS Features
 * Issue #73 add python modules to requirements.txt for further research and development
@@ -208,3 +195,19 @@
 * Issue #155 refactor RkiServiceUpdate.update_db_initial
 * Issue #156 run_web.sh
 * Issue #157 run_worker.sh 
+
+### 0.0.16 Release
+* Issue #5 Visual Graphs for Data per Countries order by Date
+* Issue #59 frontend: add correct breadcrumb to every page
+* Issue #60 frontend: better design for tables
+* Issue #61 frontend: better design for navtabs
+* Issue #62 frontend: better design for pages
+* Issue #63 frontend: add footer design
+
+### 0.0.17 Release
+* Issue #28 /admin/database/import
+* Issue #66 frontend: migrate to Bootstrap Theme sb-admin-angular
+* Issue #158 load Bootstrap-Template sb-admin-angular into static
+
+### 0.0.18 Release
+* 
