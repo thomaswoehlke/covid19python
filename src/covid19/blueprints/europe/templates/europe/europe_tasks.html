@@ -17,10 +17,56 @@
 
 {% block main_container %}
     <div class="row">
+        <div class="col">
+            <h3>Old tasks: Europe</h3>
+        </div>
+    </div>
+    <div class="row">
        <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">
-                <a class="btn btn-primary btn-lg btn-block text-left" href="/europe/update/initial" role="button">Europe :: update :: initial</a>
-                <a class="btn btn-primary btn-lg btn-block text-left" href="/europe/update/short" role="button">Europe :: update :: short</a>
+                <a class="btn btn-primary btn-lg btn-block text-left"
+                   href="/europe/update/initial"
+                   role="button">Europe :: update :: initial</a>
+                <a class="btn btn-primary btn-lg btn-block text-left"
+                   href="/europe/update/short"
+                   role="button">Europe :: update :: short</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3>Europe</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="btn-group-vertical" role="group" aria-label="Views">
+                <a class="btn btn-primary btn-lg btn-block text-left"
+                   href="/europe/task/update/star_schema/initial"
+                   role="button">Europe :: Task :: update :: star_schema :: initial</a>
+                <a class="btn btn-primary btn-lg btn-block text-left"
+                   href="/europe/task/update/star_schema/incremental"
+                   role="button">Europe :: Task :: update :: star_schema :: incremental</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="btn-group-vertical" role="group" aria-label="Views">
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/europe/task/download/only"
+                   role="button">Europe :: Task :: download :: only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/europe/task/import/only"
+                   role="button">Europe :: Task :: import :: only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/europe/task/update/dimension-tables/only"
+                   role="button">Europe :: Task :: update :: dimension-tables : only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/europe/task/update/fact-table/incremental/only"
+                   role="button">Europe :: Task :: update :: fact-table :: only :: incremental</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/europe/task/update/fact-table/initial/only"
+                   role="button">Europe :: Task :: update :: fact-table :: only :: initial</a>
             </div>
         </div>
     </div>

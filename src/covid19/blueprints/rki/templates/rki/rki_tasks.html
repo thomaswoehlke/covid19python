@@ -11,12 +11,78 @@
 {% block main_container %}
     <div class="row">
         <div class="col">
+            <h3>Bundeslaender</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">
-                <a class="btn btn-primary btn-lg" href="/rki/update/initial" role="button">RKI :: update :: initial</a>
-                <a class="btn btn-secondary btn-lg" href="/rki/update/short" role="button">RKI :: update :: short</a>
+                <a class="btn btn-primary btn-lg btn-block text-left"
+                   href="/rki/bundeslaender/task/update/star_schema/initial"
+                   role="button">RKI :: Bundeslaender :: Task :: update :: star_schema :: initial</a>
+                <a class="btn btn-primary btn-lg btn-block text-left"
+                   href="/rki/bundeslaender/task/update/star_schema/incremental"
+                   role="button">RKI :: Bundeslaender :: Task :: update :: star_schema :: incremental</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="btn-group-vertical" role="group" aria-label="Views">
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/rki/bundeslaender/task/download/only"
+                   role="button">RKI :: Bundeslaender :: Task :: download :: only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/rki/bundeslaender/task/import/only"
+                   role="button">RKI :: Bundeslaender :: Task :: import :: only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/rki/bundeslaender/task/update/dimension-tables/only"
+                   role="button">RKI :: Bundeslaender :: Task :: update :: dimension-tables : only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/rki/bundeslaender/task/update/fact-table/incremental/only"
+                   role="button">RKI :: Bundeslaender :: Task :: update :: fact-table :: only :: incremental</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/rki/bundeslaender/task/update/fact-table/initial/only"
+                   role="button">RKI :: Bundeslaender :: Task :: update :: fact-table :: only :: initial</a>
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col">
+            <h3>Landkreise</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="btn-group-vertical" role="group" aria-label="Views">
+                <a class="btn btn-primary btn-lg btn-block text-left"
+                   href="/rki/landkreise/task/update/star_schema/initial"
+                   role="button">RKI :: Landkreise :: Task :: update :: star_schema :: initial</a>
+                <a class="btn btn-primary btn-lg btn-block text-left"
+                   href="/rki/landkreise/task/update/star_schema/incremental"
+                   role="button">RKI :: Landkreise :: Task :: update :: star_schema :: incremental</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="btn-group-vertical" role="group" aria-label="Views">
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/rki/landkreise/task/download/only"
+                   role="button">RKI :: Landkreise :: Task :: download :: only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/rki/landkreise/task/import/only"
+                   role="button">RKI :: Landkreise :: Task :: import :: only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/rki/landkreise/task/update/dimension-tables/only"
+                   role="button">RKI :: Landkreise :: Task :: update :: dimension-tables : only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/rki/landkreise/task/update/fact-table/incremental/only"
+                   role="button">RKI :: Landkreise :: Task :: update :: fact-table :: only :: incremental</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left"
+                   href="/rki/landkreise/task/update/fact-table/initial/only"
+                   role="button">RKI :: Landkreise :: Task :: update :: fact-table :: only :: initial</a>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 

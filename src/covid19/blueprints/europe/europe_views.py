@@ -65,22 +65,6 @@ def url_europe_tasks():
         page_info=page_info)
 
 
-@app_europe.route('/update/initial')
-def europe_update_data():
-    europe_service.download()
-    task_europe_update_initial.apply_async()
-    flash("task_europe_update_initial started")
-    return redirect(url_for('url_europe_tasks'))
-
-
-@app_europe.route('/update/short')
-def europe_update_data_short():
-    europe_service.download()
-    task_europe_update_short.apply_async()
-    flash("task_europe_update_short started")
-    return redirect(url_for('url_europe_tasks'))
-
-
 @app_europe.route('/imported/page/<int:page>')
 @app_europe.route('/imported')
 def url_europe_data_imported(page=1):
@@ -207,3 +191,60 @@ def url_europe_country_germany(page=1):
         page_data=page_data,
         page_info=page_info)
 
+
+@app_europe.route('/update/initial')
+def url_europe_task_europe_update_data():
+    europe_service.download()
+    task_europe_update_initial.apply_async()
+    flash("task_europe_update_initial started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_europe.route('/update/short')
+def url_europe_task_europe_update_data_short():
+    europe_service.download()
+    task_europe_update_short.apply_async()
+    flash("task_europe_update_short started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_europe.route('/task/update/star_schema/initial')
+def url_europe_task_update_star_schema_initial():
+    flash("url_europe_task_update_star_schema_initial started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_europe.route('/task/update/star_schema/incremental')
+def url_europe_task_update_starschema_incremental():
+    flash("url_europe_task_update_starschema_incremental started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_europe.route('/task/download/only')
+def url_europe_task_download_only():
+    flash("url_europe_task_download_only started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_europe.route('/task/import/only')
+def url_europe_task_import_only():
+    flash("url_europe_task_import_only started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_europe.route('/task/update/dimension-tables/only')
+def url_europe_task_update_dimensiontables_only():
+    flash("url_europe_task_update_dimensiontables_only started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_europe.route('/task/update/fact-table/incremental/only')
+def url_europe_task_update_facttable_incremental_only():
+    flash("url_europe_task_update_facttable_incremental_only started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_europe.route('/task/update/fact-table/initial/only')
+def url_europe_task_update_facttable_initial_only():
+    flash("url_europe_task_update_facttable_initial_only started")
+    return redirect(url_for('url_europe_tasks'))
