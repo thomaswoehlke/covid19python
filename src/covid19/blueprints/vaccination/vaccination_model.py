@@ -10,12 +10,12 @@ class VaccinationDateReported(CommonDateReported):
         'concrete': True
     }
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'year_week', 'datum', name="uix_vaccination_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_vaccination_date_reported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)
-    year_week = db.Column(db.String(255), nullable=False, unique=True)
+    year_week = db.Column(db.String(255), nullable=False)
     datum = db.Column(db.Date, nullable=False, unique=True)
     year = db.Column(db.Integer, nullable=False)
     month = db.Column(db.Integer, nullable=False)
