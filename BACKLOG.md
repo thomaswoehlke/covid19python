@@ -195,6 +195,7 @@
 * Issue #155 refactor RkiServiceUpdate.update_db_initial
 * Issue #156 run_web.sh
 * Issue #157 run_worker.sh 
+* Issue #162 rename table vaccination_germany_timeline into vaccination_data
 
 ### 0.0.16 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
