@@ -6,7 +6,7 @@ from database import app
 from covid19.services import europe_service
 from covid19.workers import celery
 
-from covid19.blueprints.europe.europe_model_import import EuropeDataImportTable
+from covid19.blueprints.europe.europe_model_import import EuropeDataImport
 from covid19.blueprints.europe.europe_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
@@ -85,7 +85,7 @@ def europe_update_data_short():
 @app_europe.route('/imported')
 def url_europe_data_imported(page=1):
     page_info = ApplicationPage('Europe', "Last Import")
-    page_data = EuropeDataImportTable.get_all_as_page(page)
+    page_data = EuropeDataImport.get_all_as_page(page)
     return render_template(
         'europe/europe_imported.html',
         page_data=page_data,

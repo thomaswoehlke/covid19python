@@ -3,7 +3,7 @@ import csv
 import psycopg2
 
 from database import db, app
-from covid19.blueprints.europe.europe_model_import import EuropeDataImportTable
+from covid19.blueprints.europe.europe_model_import import EuropeDataImport
 from covid19.blueprints.europe.europe_service_config import EuropeServiceDownloadConfig
 
 
@@ -26,11 +26,11 @@ class EuropeServiceImport:
         app.logger.info("------------------------------------------------------------")
         k = 0
         try:
-            EuropeDataImportTable.remove_all()
+            EuropeDataImport.remove_all()
             with open(src_cvsfile_name, newline='') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 for row in file_reader:
-                    o = EuropeDataImportTable(
+                    o = EuropeDataImport(
                         date_rep=row['dateRep'],
                         year_week=row['year_week'],
                         cases_weekly=row['cases_weekly'],
