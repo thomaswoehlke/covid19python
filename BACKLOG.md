@@ -142,14 +142,14 @@
 * -------------------------------------   
 * Issue #87 change to: Vaccination.datum many to one VaccinationDateReported
 * Issue #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-s* Issue #98 refactor VaccinationServiceDownload to new method scheme introduced 07.02.2021
+* Issue #98 refactor VaccinationServiceDownload to new method scheme introduced 07.02.2021
 * Issue #99 refactor VaccinationServiceImport to new method scheme introduced 07.02.2021
 * Issue #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
 * Issue #91 implement VaccinationService.run_download_only
 * Issue #92 implement VaccinationService.run_import_only
 * Issue #93 implement VaccinationService.run_update_dimension_tables_only
 * Issue #94 implement VaccinationService.run_update_fact_table_incremental_only
-* Issue #95 implement VaccinationService.run_update_fact_table_initial_only
+* Fixed #95 implement VaccinationService.run_update_fact_table_initial_only
 * Issue #96 implement VaccinationService.run_update_star_schema_incremental
 * Issue #97 implement VaccinationService.run_update_star_schema_initial
 * Issue #101 implement VaccinationServiceUpdate.update_dimension_tables_only
