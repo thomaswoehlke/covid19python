@@ -32,7 +32,7 @@ class RkiDateReported(CommonDateReported):
 
 
 class RkiRegion(CommonRegion):
-    __mapper_args__ = {'polymorphic_identity': 'RkiRegion'}
+    __mapper_args__ = {'polymorphic_identity': 'rki_region'}
 
 
 class RkiCountry(db.Model):
@@ -43,9 +43,9 @@ class RkiCountry(db.Model):
     country = db.Column(db.String(255), unique=True, nullable=False)
     region_id = db.Column(db.Integer, db.ForeignKey('common_region.id'), nullable=False)
     region = db.relationship(
-        'WhoRegion',
+        'RkiRegion',
         lazy='subquery',
-        order_by='WhoRegion.region')
+        order_by='RkiRegion.region')
 
     @classmethod
     def remove_all(cls):

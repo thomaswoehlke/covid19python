@@ -51,7 +51,7 @@ class RkiBundeslaenderImport(db.Model):
 
     @classmethod
     def get_dates_reported(self):
-        #TODO: #127 implement RkiBundeslaenderImport.get_dates_reported
+        # TODO: #127 implement RkiBundeslaenderImport.get_dates_reported
         return self
 
 
