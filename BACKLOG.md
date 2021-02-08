@@ -103,31 +103,47 @@
 * Fixed #70 load package.json from Bootstrap-Template sb-admin-angular into statics
 * Fixed #67 implement Flask-Login (wontfix)
 * Issue #159 merge Branch ISSUE_66_ATTEMPT_01 to master
+* Fixed #71 add python modules to requirements.txt for User Login, Authentication and Autorisation
+* Fixed #72 add python modules to requirements.txt for Ajax and other JS Features
+* Fixed #73 add python modules to requirements.txt for further research and development
+* Fixed #74 add Tasks to WHO Tasks Html
+* Fixed #78 add PlantUML
+* Fixed #79 add Gaphor UML (wonfix)
+* Fixed #80 rename WhoXYImport to WhoImport
+* Fixed #81 change tablename from who_global_data_import to who_import
+* Fixed #84 rename tablename from who_global_data to who_data
+* Fixed #85 rename WhoData to WhoData
+* Fixed #86 rename VaccinationDataXY to VaccinationData
+* Fixed #89 change tablename from vaccination_germany_timeline_import to vaccination_import
+* Fixed #75 add Tasks to Europe Tasks Html 
+* Fixed #76 add Tasks to Vaccination Tasks Html 
+* Fixed #77 add Tasks to RKI Tasks Html
+* Fixed #124 rename RkiXXZBundeslaender to RkiBundeslaender
+* Fixed #162 rename table vaccination_germany_timeline into vaccination_data
+* Fixed #130 remove RkiGermanyDataImportTable
 
 ### 0.0.15 Release
+* -------------------------------------   
+* -------------------------------------   
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Issue #40 SQLalchemy instead of SQL: EuropeImport.get_date_rep()
 * Issue #41 SQLalchemy instead of SQL: EuropeImport.get_countries_of_continent()
 * Issue #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
-* Issue #71 add python modules to requirements.txt for User Login, Authentication and Autorisation
-* Issue #72 add python modules to requirements.txt for Ajax and other JS Features
-* Issue #73 add python modules to requirements.txt for further research and development
-* Issue #74 add Tasks to WHO Tasks Html 
-* Issue #75 add Tasks to Europe Tasks Html 
-* Issue #76 add Tasks to Vaccination Tasks Html 
-* Issue #77 add Tasks to RKI Tasks Html 
-* Issue #78 add PlantUML
-* Issue #79 add Gaphor UML
-* Issue #80 rename WhoImport to WhoImport
-* Issue #81 change tablename from who_global_data_import to who_import
-* Issue #82 BUG: change to ORM ClassHierarchy
 * Issue #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
-* Issue #84 rename tablename from who_global_data to who_data
-* Issue #85 rename WhoData to WhoData
-* Fixed #86 rename VaccinationData to Vaccination
+* Issue #107 SQLalchemy instead of SQL in: EuropeImport.get_countries_of_continent
+* Issue #109 SQLalchemy instead of SQL in: EuropeImport.get_date_rep
+* Issue #110 SQLalchemy instead of SQL in: EuropeImport.get_continent
+* -------------------------------------   
+* Issue #82 change to ORM ClassHierarchy
+* Issue #108 change to ORM ClassHierarchy in: EuropeImport.get_countries_of_continent  
+* Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
+* Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
+* -------------------------------------   
 * Issue #87 change to: Vaccination.datum many to one VaccinationDateReported
-* Issue #89 change tablename from vaccination_germany_timeline_import to vaccination_import
 * Issue #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+s* Issue #98 refactor VaccinationServiceDownload to new method scheme introduced 07.02.2021
+* Issue #99 refactor VaccinationServiceImport to new method scheme introduced 07.02.2021
+* Issue #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
 * Issue #91 implement VaccinationService.run_download_only
 * Issue #92 implement VaccinationService.run_import_only
 * Issue #93 implement VaccinationService.run_update_dimension_tables_only
@@ -135,19 +151,12 @@
 * Issue #95 implement VaccinationService.run_update_fact_table_initial_only
 * Issue #96 implement VaccinationService.run_update_star_schema_incremental
 * Issue #97 implement VaccinationService.run_update_star_schema_initial
-* Issue #98 refactor VaccinationServiceDownload to new method scheme introduced 07.02.2021
-* Issue #99 refactor VaccinationServiceImport to new method scheme introduced 07.02.2021
-* Issue #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
 * Issue #101 implement VaccinationsServiceUpdate.update_dimension_tables_only
 * Issue #102 implement VaccinationsServiceUpdate.update_fact_table_incremental_only
 * Issue #103 implement VaccinationsServiceUpdate.update_fact_table_initial_only
 * Issue #104 implement VaccinationsServiceUpdate.update_star_schema_incremental
 * Issue #105 implement VaccinationsServiceUpdate.update_star_schema_initial
-* Issue #106 add Tasks and URLs for starting Tasks to vaccination_views
-* Issue #107 SQLalchemy instead of SQL in: EuropeImport.get_countries_of_continent
-* Issue #108 change to ORM ClassHierarchy in: EuropeImport.get_countries_of_continent
-* Issue #109 SQLalchemy instead of SQL in: EuropeImport.get_date_rep
-* Issue #110 SQLalchemy instead of SQL in: EuropeImport.get_continent
+* -------------------------------------   
 * Issue #111 refactor to new method scheme itroduced 07.02.2021
 * Issue #112 implement EuropeService.run_update_dimension_tables_only
 * Issue #113 implement EuropeService.run_update_fact_table_incremental_only
@@ -160,15 +169,12 @@
 * Issue #120 implement EuropeServiceUpdate.update_fact_table_initial_only
 * Issue #121 implement EuropeServiceUpdate.update_star_schema_incremental
 * Issue #122 implement EuropeServiceUpdate.update_star_schema_initial
+* -------------------------------------   
 * Issue #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
-* Issue #124 rename RkiBundeslaender to RkiBundeslaender
 * Issue #125 implement RkiLandkreise
 * Issue #126 implement RkiBundeslaenderImport
 * Issue #127 implement RkiBundeslaenderImport.get_dates_reported
 * Issue #128 add fields from csv to RkiLandkreiseImport
-* Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
-* Issue #130 remove RkiGermanyDataImportTable
-* Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
 * Issue #132 refactor RkiBundeslaenderService to new method scheme introduced 07.02.2021
 * Issue #133 implement RkiBundeslaenderService.task_database_drop_create
 * Issue #134 implement RkiBundeslaenderService.run_update_dimension_tables_only
@@ -183,7 +189,6 @@
 * Issue #143 implement RkiBundeslaenderServiceUpdate.update_fact_table_initial_only
 * Issue #144 implement RkiBundeslaenderServiceUpdate.update_star_schema_incremental
 * Issue #145 implement RkiBundeslaenderServiceUpdate.update_star_schema_initial
-* Issue #146 add Tasks and URLs for starting Tasks to rki_views
 * Issue #147 refactor RkiBundeslaenderServiceUpdate.__update_who_date_reported 
 * Issue #148 refactor RkiBundeslaenderServiceUpdate.__update_who_region
 * Issue #149 refactor RkiBundeslaenderServiceUpdate.__update_who_country
@@ -193,9 +198,12 @@
 * Issue #153 refactor RkiBundeslaenderServiceUpdate.update_db
 * Issue #154 refactor RkiBundeslaenderServiceUpdate.update_db_short
 * Issue #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
+  * -------------------------------------  s
 * Issue #156 run_web.sh
-* Issue #157 run_worker.sh 
-* Issue #162 rename table vaccination_germany_timeline into vaccination_data
+* Issue #157 run_worker.sh
+* -------------------------------------  
+* Issue #106 add Tasks and URLs for starting Tasks to vaccination_views
+* Issue #146 add Tasks and URLs for starting Tasks to rki_views
 * Issue #163 implement url_europe_task_update_star_schema_initial in europe_views.py
 * Issue #164 implement url_europe_task_update_starschema_incremental in europe_views.py
 * Issue #165 implement url_europe_task_download_only in europe_views.py
