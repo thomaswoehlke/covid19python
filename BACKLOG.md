@@ -106,8 +106,8 @@
 
 ### 0.0.15 Release
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
-* Issue #40 SQLalchemy instead of SQL: EuropeDataImport.get_date_rep()
-* Issue #41 SQLalchemy instead of SQL: EuropeDataImport.get_countries_of_continent()
+* Issue #40 SQLalchemy instead of SQL: EuropeImport.get_date_rep()
+* Issue #41 SQLalchemy instead of SQL: EuropeImport.get_countries_of_continent()
 * Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array()
 * Issue #71 add python modules to requirements.txt for User Login, Authentication and Autorisation
 * Issue #72 add python modules to requirements.txt for Ajax and other JS Features
@@ -144,10 +144,10 @@
 * Issue #104 implement VaccinationsServiceUpdate.update_star_schema_incremental
 * Issue #105 implement VaccinationsServiceUpdate.update_star_schema_initial
 * Issue #106 add Tasks and URLs for starting Tasks to vaccination_views
-* Issue #107 SQLalchemy instead of SQL in: EuropeDataImport.get_countries_of_continent
-* Issue #108 change to ORM ClassHierarchy in: EuropeDataImport.get_countries_of_continent
-* Issue #109 SQLalchemy instead of SQL in: EuropeDataImport.get_date_rep
-* Issue #110 SQLalchemy instead of SQL in: EuropeDataImport.get_continent
+* Issue #107 SQLalchemy instead of SQL in: EuropeImport.get_countries_of_continent
+* Issue #108 change to ORM ClassHierarchy in: EuropeImport.get_countries_of_continent
+* Issue #109 SQLalchemy instead of SQL in: EuropeImport.get_date_rep
+* Issue #110 SQLalchemy instead of SQL in: EuropeImport.get_continent
 * Issue #111 refactor to new method scheme itroduced 07.02.2021
 * Issue #112 implement EuropeService.run_update_dimension_tables_only
 * Issue #113 implement EuropeService.run_update_fact_table_incremental_only
