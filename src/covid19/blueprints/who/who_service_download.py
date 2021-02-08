@@ -2,7 +2,7 @@ import os
 import wget
 from flask import flash
 from database import app
-from covid19.blueprints.who.who_service_config import WhoServiceDownloadConfig
+from covid19.blueprints.who.who_service_config import WhoServiceConfig
 
 
 class WhoServiceDownload:
@@ -11,7 +11,7 @@ class WhoServiceDownload:
         app.logger.debug(" WHO Service Download [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = WhoServiceDownloadConfig()
+        self.cfg = WhoServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" WHO Service Download [ready]")
 

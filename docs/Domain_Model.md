@@ -97,7 +97,7 @@ CREATE TABLE public.who_global_data_import (
 );
 ````
 ````python
-class WhoGlobalDataImportTable(db.Model):
+class WhoImport(db.Model):
     __tablename__ = 'who_global_data_import'
 
     id = db.Column(db.Integer, primary_key=True)

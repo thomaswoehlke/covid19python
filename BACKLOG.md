@@ -108,7 +108,7 @@
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Issue #40 SQLalchemy instead of SQL: EuropeImport.get_date_rep()
 * Issue #41 SQLalchemy instead of SQL: EuropeImport.get_countries_of_continent()
-* Issue #42 SQLalchemy instead of SQL: WhoGlobalDataImportTable.get_new_dates_as_array()
+* Issue #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
 * Issue #71 add python modules to requirements.txt for User Login, Authentication and Autorisation
 * Issue #72 add python modules to requirements.txt for Ajax and other JS Features
 * Issue #73 add python modules to requirements.txt for further research and development
@@ -118,10 +118,10 @@
 * Issue #77 add Tasks to RKI Tasks Html 
 * Issue #78 add PlantUML
 * Issue #79 add Gaphor UML
-* Issue #80 rename WhoGlobalDataImportTable to WhoImport
+* Issue #80 rename WhoImport to WhoImport
 * Issue #81 change tablename from who_global_data_import to who_import
 * Issue #82 BUG: change to ORM ClassHierarchy
-* Issue #83 SQLalchemy instead of SQL in WhoGlobalDataImportTable.get_new_dates_as_array
+* Issue #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
 * Issue #84 rename tablename from who_global_data to who_data
 * Issue #85 rename WhoData to WhoData
 * Fixed #86 rename VaccinationData to Vaccination
@@ -177,7 +177,7 @@
 * Issue #137 implement RkiBundeslaenderService.run_update_star_schema_incremental
 * Issue #138 implement RkiBundeslaenderService.run_update_star_schema_initial
 * Issue #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
-* Issue #140 move WhoGlobalDataImportTable to RKI in: rk_service_import.py
+* Issue #140 move WhoImport to RKI in: rk_service_import.py
 * Issue #141 implement RkiBundeslaenderServiceUpdate.update_dimension_tables_only
 * Issue #142 implement RkiBundeslaenderServiceUpdate.update_fact_table_incremental_only
 * Issue #143 implement RkiBundeslaenderServiceUpdate.update_fact_table_initial_only

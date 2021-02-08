@@ -3,8 +3,8 @@ import sys
 import csv
 import psycopg2
 from database import db, app
-from covid19.blueprints.who.who_model_import import WhoGlobalDataImportTable
-from covid19.blueprints.who.who_service_download import WhoServiceDownloadConfig
+from covid19.blueprints.who.who_model_import import WhoImport
+from covid19.blueprints.who.who_service_download import WhoServiceConfig
 
 
 class WhoServiceImport:
@@ -13,7 +13,7 @@ class WhoServiceImport:
         app.logger.debug(" WHO Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = WhoServiceDownloadConfig()
+        self.cfg = WhoServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" WHO Service Import [ready]")
 
@@ -30,12 +30,12 @@ class WhoServiceImport:
         else:
             keyDate_reported = 'ï»¿Date_reported'
         try:
-            WhoGlobalDataImportTable.remove_all()
+            WhoImport.remove_all()
             with open(src_cvsfile_name, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:
-                    o = WhoGlobalDataImportTable(
+                    o = WhoImport(
                         date_reported=row[keyDate_reported],
                         country_code=row['Country_code'],
                         country=row['Country'],

@@ -7,7 +7,7 @@ from database import app
 from covid19.services import who_service
 from covid19.workers import celery
 
-from covid19.blueprints.who.who_model_import import WhoGlobalDataImportTable
+from covid19.blueprints.who.who_model_import import WhoImport
 from covid19.blueprints.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoData
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
@@ -207,7 +207,7 @@ def url_who_tasks():
 def url_who_imported(page=1):
     page_info = ApplicationPage('WHO', "Last Import")
     try:
-        page_data = WhoGlobalDataImportTable.get_all_as_page(page)
+        page_data = WhoImport.get_all_as_page(page)
     except OperationalError:
         flash("No data in the database.")
         page_data = None

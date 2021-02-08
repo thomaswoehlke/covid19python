@@ -4,7 +4,7 @@ import psycopg2
 
 from database import db, app
 from covid19.blueprints.vaccination.vaccination_model_import import VaccinationImport
-from covid19.blueprints.vaccination.vaccination_service_config import VaccinationServiceDownloadConfig
+from covid19.blueprints.vaccination.vaccination_service_config import VaccinationServiceConfig
 
 
 # TODO: #99 refactor VaccinationServiceImport to new method scheme introduced 07.02.2021
@@ -14,7 +14,7 @@ class VaccinationServiceImport:
         app.logger.debug(" Vaccination Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = VaccinationServiceDownloadConfig()
+        self.cfg = VaccinationServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Import [ready]")
 

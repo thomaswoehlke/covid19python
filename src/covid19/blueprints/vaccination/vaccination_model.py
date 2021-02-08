@@ -94,3 +94,8 @@ class VaccinationData(db.Model):
         return db.session.query(cls) \
             .filter(cls.datum == other_datum) \
             .one_or_none()
+
+    @classmethod
+    def create_new_object_factory(cls, my_date_rep):
+        # TODO implement VaccinationData.create_new_object_factory
+        pass

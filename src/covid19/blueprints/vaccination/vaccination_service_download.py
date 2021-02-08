@@ -2,7 +2,7 @@ import os
 import wget
 from flask import flash
 from database import app
-from covid19.blueprints.vaccination.vaccination_service_config import VaccinationServiceDownloadConfig
+from covid19.blueprints.vaccination.vaccination_service_config import VaccinationServiceConfig
 
 
 # TODO: #98 refactor VaccinationServiceDownload to new method scheme introduced 07.02.2021
@@ -12,7 +12,7 @@ class VaccinationServiceDownload:
         app.logger.debug(" Vaccination Service Download [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = VaccinationServiceDownloadConfig()
+        self.cfg = VaccinationServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Download [ready]")
 

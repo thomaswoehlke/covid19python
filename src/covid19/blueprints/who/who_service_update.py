@@ -1,7 +1,7 @@
 from database import db, app
 from covid19.blueprints.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoData
-from covid19.blueprints.who.who_model_import import WhoGlobalDataImportTable
-from covid19.blueprints.who.who_service_download import WhoServiceDownloadConfig
+from covid19.blueprints.who.who_model_import import WhoImport
+from covid19.blueprints.who.who_service_download import WhoServiceConfig
 
 
 class WhoServiceUpdate:
@@ -10,7 +10,7 @@ class WhoServiceUpdate:
         app.logger.debug(" WHO Service Update [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = WhoServiceDownloadConfig()
+        self.cfg = WhoServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" WHO Service Update [ready]")
 
@@ -18,7 +18,7 @@ class WhoServiceUpdate:
         app.logger.info(" __update_who_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        for i_date_reported, in WhoGlobalDataImportTable.get_dates_reported():
+        for i_date_reported, in WhoImport.get_dates_reported():
             i += 1
             output = " [ " + str(i) + " ] " + i_date_reported
             c = WhoDateReported.find_by_date_reported(i_date_reported)
@@ -38,7 +38,7 @@ class WhoServiceUpdate:
         app.logger.info(" __update_who_region [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        for i_who_region, in WhoGlobalDataImportTable.get_regions():
+        for i_who_region, in WhoImport.get_regions():
             i += 1
             output = " [ " + str(i) + " ] " + i_who_region
             c = WhoRegion.find_by_region(i_who_region)
@@ -57,7 +57,7 @@ class WhoServiceUpdate:
     def __update_who_country(self):
         app.logger.info(" __update_who_country [begin]")
         app.logger.info("------------------------------------------------------------")
-        result = WhoGlobalDataImportTable.countries()
+        result = WhoImport.countries()
         i = 0
         for result_item in result:
             i += 1
@@ -90,7 +90,7 @@ class WhoServiceUpdate:
     def __update_fact_table_incremental(self):
         app.logger.info(" __update_fact_tables_incremental [begin]")
         app.logger.info("------------------------------------------------------------")
-        new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
+        new_dates_reported_from_import = WhoImport.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
             my_date = WhoDateReported.find_by_date_reported(my_date_reported)
@@ -100,7 +100,7 @@ class WhoServiceUpdate:
                 db.session.commit()
             my_date = WhoDateReported.get_by_date_reported(my_date_reported)
             k = 0
-            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
+            for result_item in WhoImport.get_for_one_day(my_date_reported):
                 if result_item.country_code == "":
                     my_country = WhoCountry.get_by_country(result_item.country)
                 else:
@@ -129,7 +129,7 @@ class WhoServiceUpdate:
         app.logger.info(" __update_fact_table_initial [begin]")
         app.logger.info("------------------------------------------------------------")
         WhoData.remove_all()
-        new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
+        new_dates_reported_from_import = WhoImport.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
             my_date = WhoDateReported.find_by_date_reported(my_date_reported)
@@ -137,7 +137,7 @@ class WhoServiceUpdate:
                 myday = WhoDateReported.create_new_object_factory(my_date_reported)
                 db.session.add(myday)
                 my_date = myday
-            for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
+            for result_item in WhoImport.get_for_one_day(my_date_reported):
                 my_country = WhoCountry.find_by_country_code(result_item.country_code)
                 o = WhoData(
                     cases_new=int(result_item.new_cases),
