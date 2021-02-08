@@ -65,7 +65,7 @@ CREATE TABLE public.who_global_data (
 );
 ````
 ````python
-class WhoGlobalData(db.Model):
+class WhoData(db.Model):
     __tablename__ = 'who_global_data'
 
     id = db.Column(db.Integer, primary_key=True)

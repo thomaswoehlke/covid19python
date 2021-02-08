@@ -1,5 +1,5 @@
 from database import db, app
-from covid19.blueprints.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoGlobalData
+from covid19.blueprints.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoData
 from covid19.blueprints.who.who_model_import import WhoGlobalDataImportTable
 from covid19.blueprints.who.who_service_download import WhoServiceDownloadConfig
 
@@ -105,7 +105,7 @@ class WhoServiceUpdate:
                     my_country = WhoCountry.get_by_country(result_item.country)
                 else:
                     my_country = WhoCountry.get_by_country_code(result_item.country_code)
-                o = WhoGlobalData(
+                o = WhoData(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
@@ -128,7 +128,7 @@ class WhoServiceUpdate:
     def __update_fact_table_initial(self):
         app.logger.info(" __update_fact_table_initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        WhoGlobalData.remove_all()
+        WhoData.remove_all()
         new_dates_reported_from_import = WhoGlobalDataImportTable.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
@@ -139,7 +139,7 @@ class WhoServiceUpdate:
                 my_date = myday
             for result_item in WhoGlobalDataImportTable.get_for_one_day(my_date_reported):
                 my_country = WhoCountry.find_by_country_code(result_item.country_code)
-                o = WhoGlobalData(
+                o = WhoData(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),

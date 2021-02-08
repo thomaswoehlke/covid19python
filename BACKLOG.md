@@ -123,7 +123,7 @@
 * Issue #82 BUG: change to ORM ClassHierarchy
 * Issue #83 SQLalchemy instead of SQL in WhoGlobalDataImportTable.get_new_dates_as_array
 * Issue #84 rename tablename from who_global_data to who_data
-* Issue #85 rename WhoGlobalData to WhoData
+* Issue #85 rename WhoData to WhoData
 * Fixed #86 rename VaccinationData to Vaccination
 * Issue #87 change to: Vaccination.datum many to one VaccinationDateReported
 * Issue #89 change tablename from vaccination_germany_timeline_import to vaccination_import

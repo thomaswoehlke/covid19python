@@ -4,7 +4,7 @@ from database import db, ITEMS_PER_PAGE
 # TODO: #80 rename WhoGlobalDataImportTable to WhoImport
 # TODO: #81 change tablename from who_global_data_import to who_import
 class WhoGlobalDataImportTable(db.Model):
-    __tablename__ = 'who_global_data_import'
+    __tablename__ = 'who_import'
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False)
@@ -70,7 +70,7 @@ class WhoGlobalDataImportTable(db.Model):
             select
                 date_reported
             from
-                who_global_data_import
+                who_import
             where
                 date_reported
             not in (
@@ -78,14 +78,16 @@ class WhoGlobalDataImportTable(db.Model):
                 distinct
                     common_date_reported.date_reported
                 from
-                    who_global_data
+                    who_data
                 left join
                     common_date_reported
                 on
-                    who_global_data.date_reported_id=common_date_reported.id
+                    who_data.date_reported_id=common_date_reported.id
+                and
+                    common_date_reported.type='who_date_reported'
             )
             group by
-                who_global_data_import.date_reported
+                who_import.date_reported
             order by date_reported desc
             """
         new_dates = []
@@ -97,9 +99,9 @@ class WhoGlobalDataImportTable(db.Model):
     def countries(cls):
         sql_query = """
             select distinct 
-                who_global_data_import.country_code,
-                who_global_data_import.country,
-                who_global_data_import.who_region
-                from who_global_data_import
+                who_import.country_code,
+                who_import.country,
+                who_import.who_region
+                from who_import
             """
         return db.session.execute(sql_query).fetchall()
