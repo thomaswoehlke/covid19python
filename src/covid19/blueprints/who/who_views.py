@@ -470,7 +470,7 @@ def url_who_germany(page=1):
     who_country_germany = WhoCountry.get_germany()
     if who_country_germany is None:
         flash('country: Germany not found in Database', category='error')
-        return redirect(url_for('url_who_tasks'))
+        return redirect(url_for('who.url_who_tasks'))
     page_data = WhoGlobalData.get_data_for_country(who_country_germany, page)
     return render_template(
         'who/country/who_country_germany.html',
