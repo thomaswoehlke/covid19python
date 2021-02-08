@@ -1,6 +1,8 @@
 from database import db, ITEMS_PER_PAGE
 
 
+# TODO: #80 rename WhoGlobalDataImportTable to WhoImport
+# TODO: #81 change tablename from who_global_data_import to who_import
 class WhoGlobalDataImportTable(db.Model):
     __tablename__ = 'who_global_data_import'
 
@@ -13,12 +15,11 @@ class WhoGlobalDataImportTable(db.Model):
     cumulative_cases = db.Column(db.String(255), nullable=False)
     new_deaths = db.Column(db.String(255), nullable=False)
     cumulative_deaths = db.Column(db.String(255), nullable=False)
-    row_imported = db.Column(db.Boolean, nullable=False)
 
     @classmethod
     def remove_all(cls):
-        # TODO: SQLalchemy instead of SQL
-        db.session.execute("delete from " + cls.__tablename__)
+        for one in cls.get_all():
+            db.session.delete(one)
         db.session.commit()
         return None
 
@@ -31,27 +32,40 @@ class WhoGlobalDataImportTable(db.Model):
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).all()
+        return db.session.query(cls).order_by(
+            cls.date_reported.desc(),
+            cls.country.asc()
+        ).all()
 
     @classmethod
     def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
 
     @classmethod
     def get_regions(cls):
-        return db.session.query(cls.who_region).distinct()
+        return db.session.query(cls.who_region)\
+            .order_by(cls.who_region)\
+            .distinct()
 
     @classmethod
     def get_dates_reported(cls):
-        return db.session.query(cls.date_reported).distinct()
+        return db.session.query(cls.date_reported)\
+            .order_by(cls.date_reported.desc())\
+            .distinct()
 
     @classmethod
     def get_for_one_day(cls, day):
-        return db.session.query(cls).filter(cls.date_reported == day).all()
+        return db.session.query(cls)\
+            .filter(cls.date_reported == day)\
+            .order_by(cls.country.asc())\
+            .all()
 
     @classmethod
     def get_new_dates_as_array(cls):
-        # TODO: SQLalchemy instead of SQL
+        # TODO: #82 BUG: change to ORM ClassHierarchy
+        # TODO: #83 SQLalchemy instead of SQL in WhoGlobalDataImportTable.get_new_dates_as_array
         sql_query = """
             select
                 date_reported
@@ -62,13 +76,13 @@ class WhoGlobalDataImportTable(db.Model):
             not in (
             select
                 distinct
-                    who_date_reported.date_reported
+                    common_date_reported.date_reported
                 from
                     who_global_data
                 left join
-                    who_date_reported
+                    common_date_reported
                 on
-                    who_global_data.date_reported_id=who_date_reported.id
+                    who_global_data.date_reported_id=common_date_reported.id
             )
             group by
                 who_global_data_import.date_reported

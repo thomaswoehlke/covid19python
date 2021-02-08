@@ -14,13 +14,17 @@ class AdminService:
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" Admin Service [ready]")
 
+    def task_database_drop_create(self):
+        self.run_admin_database_dump()
+        return self
+
     def run_admin_database_dump(self):
         app.logger.info(" run database dump [begin]")
         app.logger.info("------------------------------------------------------------")
         user = app.config['POSTGRES_USER']
         url = app.config['POSTGRES_URL']
         db = app.config['POSTGRES_DB']
-        cmd = 'pg_dump -U '+user+' -h '+url+' '+db+' --inserts > ..'+os.sep+'data'+os.sep+'covid19data.sql'
+        cmd = 'pg_dump -U '+user+' -h '+url+' '+db+' --inserts > ..'+os.sep+'..'+os.sep+'data'+os.sep+'covid19data.sql'
         args = [cmd]
         app.logger.info(" start: "+str(cmd))
         returncode = 0

@@ -4,6 +4,7 @@ from covid19.blueprints.europe.europe_model_import import EuropeDataImportTable
 from covid19.blueprints.europe.europe_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 
 
+# TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
 class EuropeServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -24,8 +25,7 @@ class EuropeServiceUpdate:
             my_date_rep = result_item['date_rep']
             my_year_week = result_item['year_week']
             o = EuropeDateReported.create_new_object_factory(
-                my_date_rep=my_date_rep,
-                my_year_week=my_year_week
+                my_date_rep=my_date_rep
             )
             db.session.add(o)
             app.logger.info("| " + my_date_rep + " | " + my_year_week + " | " + str(k) + " rows ")
@@ -40,10 +40,10 @@ class EuropeServiceUpdate:
         result_continent = EuropeDataImportTable.get_continent()
         for result_item in result_continent:
             my_continent_exp = result_item['continent_exp']
-            app.logger.info("| " + my_continent_exp + " |")
             o = EuropeContinent(
-                continent_exp=my_continent_exp
+                region=my_continent_exp
             )
+            app.logger.info("| " + str(o) + " |")
             db.session.add(o)
         db.session.commit()
         app.logger.info(" __update_continent [done]")
@@ -63,6 +63,7 @@ class EuropeServiceUpdate:
                     country_territory_code=c['country_territory_code'],
                     pop_data_2019=c['pop_data_2019'],
                     continent=my_continent)
+                app.logger.info("| " + str(o) + " |")
                 db.session.add(o)
             db.session.commit()
         app.logger.info(" __update_country [done]")
@@ -75,9 +76,12 @@ class EuropeServiceUpdate:
         result_date_rep = EuropeDataImportTable.get_date_rep()
         i = 0
         for item_date_rep in result_date_rep:
-            europe_date_reported = EuropeDateReported.find_by(
-                year_week=item_date_rep['year_week']
+            europe_date_reported = EuropeDateReported.find_by_date_reported(
+                i_date_reported=item_date_rep['date_rep']
             )
+            if europe_date_reported is None:
+                o = EuropeDateReported.create_new_object_factory(item_date_rep['date_rep'])
+                europe_date_reported = o
             result_europe_data_import = EuropeDataImportTable.find_by_date_reported(europe_date_reported)
             for item_europe_data_import in result_europe_data_import:
                 my_a = item_europe_data_import.countries_and_territories
@@ -114,7 +118,7 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    #TODO
+    # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
     def __update_data_short(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -123,6 +127,7 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
     def update_db_initial(self):
         app.logger.info(" update_db_initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -138,6 +143,7 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
     def update_db_short(self):
         app.logger.info(" update_db_short [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -153,3 +159,27 @@ class EuropeServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    def update_dimension_tables_only(self):
+        # TODO: #118 implement EuropeServiceUpdate.update_dimension_tables_only
+        # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
+        return self
+
+    def update_fact_table_incremental_only(self):
+        # TODO: #119 implement EuropeServiceUpdate.update_fact_table_incremental_only
+        # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
+        return self
+
+    def update_fact_table_initial_only(self):
+        # TODO: #120 implement EuropeServiceUpdate.update_fact_table_initial_only
+        # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
+        return self
+
+    def update_star_schema_incremental(self):
+        # TODO: #121 implement EuropeServiceUpdate.update_star_schema_incremental
+        # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
+        return self
+
+    def update_star_schema_initial(self):
+        # TODO: #122 implement EuropeServiceUpdate.update_star_schema_initial
+        # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
+        return self

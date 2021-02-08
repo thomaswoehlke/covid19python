@@ -5,7 +5,8 @@ from flask import flash
 
 from database import app
 
-
+# TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
+# TODO: #139 refactor RkiServiceDownload to new method scheme introduced 07.02.2021
 class RkiServiceDownload:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -24,14 +25,15 @@ class RkiServiceDownload:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Download [ready]")
 
+    # TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
     def __download_file(self, datascope, cvsfile_name, url_src):
-        src_cvsfile_path = ".." + os.sep + "data" + os.sep + cvsfile_name
+        src_cvsfile_path = ".." + os.sep + ".." + os.sep + "data" + os.sep + cvsfile_name
         app.logger.info(" download - RKI "+datascope+" [begin] ")
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" FILE: "+cvsfile_name+" <- "+url_src)
         app.logger.info("------------------------------------------------------------")
         try:
-            os.makedirs(self.cfg.data_path, exist_ok=True)
+            os.makedirs(cvsfile_name, exist_ok=True)
             if os.path.isfile(src_cvsfile_path):
                 os.remove(src_cvsfile_path)
             data_file = wget.download(url_src, src_cvsfile_path)
@@ -57,6 +59,7 @@ class RkiServiceDownload:
             flash(msg)
         return self
 
+    # TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
     def download_file(self):
         app.logger.info(" download - RKI [begin] ")
         app.logger.info("------------------------------------------------------------")

@@ -7,6 +7,7 @@ from logging.config import dictConfig
 app = Flask('app')
 CORS(app)
 app.config.from_object("config")
+port = app.config['PORT']
 ITEMS_PER_PAGE = app.config['ITEMS_PER_PAGE']
 DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
     user=app.config['POSTGRES_USER'],

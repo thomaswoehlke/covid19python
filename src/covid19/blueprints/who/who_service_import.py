@@ -43,8 +43,7 @@ class WhoServiceImport:
                         new_cases=row['New_cases'],
                         cumulative_cases=row['Cumulative_cases'],
                         new_deaths=row['New_deaths'],
-                        cumulative_deaths=row['Cumulative_deaths'],
-                        row_imported=False
+                        cumulative_deaths=row['Cumulative_deaths']
                     )
                     db.session.add(o)
                     k += 1

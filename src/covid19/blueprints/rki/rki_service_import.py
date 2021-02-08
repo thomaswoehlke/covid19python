@@ -5,9 +5,10 @@ import psycopg2
 
 from database import db, app
 
+# TODO: #140 move WhoGlobalDataImportTable to RKI in: rk_service_import.py
 from covid19.blueprints.who.who_model_import import WhoGlobalDataImportTable
 
-
+# TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
 class RkiServiceImport:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -22,6 +23,7 @@ class RkiServiceImport:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Import [ready]")
 
+    # TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
     def import_file(self):
         app.logger.info(" import RKI [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -34,11 +36,13 @@ class RkiServiceImport:
         else:
             keyDate_reported = 'ï»¿Date_reported'
         try:
+            # TODO: #140 move WhoGlobalDataImportTable to RKI in: rk_service_import.py
             WhoGlobalDataImportTable.remove_all()
             with open(self.__src_who_cvsfile_name, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:
+                    # TODO: #140 move WhoGlobalDataImportTable to RKI in: rk_service_import.py
                     o = WhoGlobalDataImportTable(
                         date_reported=row[keyDate_reported],
                         country_code=row['Country_code'],
@@ -47,8 +51,7 @@ class RkiServiceImport:
                         new_cases=row['New_cases'],
                         cumulative_cases=row['Cumulative_cases'],
                         new_deaths=row['New_deaths'],
-                        cumulative_deaths=row['Cumulative_deaths'],
-                        row_imported=False
+                        cumulative_deaths=row['Cumulative_deaths']
                     )
                     db.session.add(o)
                     if (k % 2000) == 0:

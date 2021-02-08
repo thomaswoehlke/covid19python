@@ -1,5 +1,5 @@
 {
-  "name": "covid19python",
+  "name": "covid19python-thomaswoehlke",
   "version": "0.0.14",
   "description": "Covid19 Data Aggregation - also a Project to learn Python Flask, SQLAlchemy, Celery et al.",
   "main": "index.js",
@@ -26,7 +26,7 @@
     "sqlalchemy",
     "postgresql"
   ],
-  "author": "thomaswoehlke",
+  "author": "Thomas Woehlke",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/thomaswoehlke/covid19python/issues"

@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
-#export FLASK_ENV=development
-#export FLASK_APP=covid19python
-#pip install -e .
-#flask run
+#
+# TODO #156 run_web.sh - this is not yet working
+#
+
 
 . venv/bin/activate
-python covid19
+export FLASK_ENV=development
+export FLASK_APP=covid19
+pip install -e .
+flask run
+
+
+#python covid19.__init__
 

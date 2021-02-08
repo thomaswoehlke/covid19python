@@ -10,9 +10,20 @@
 
 {% block main_container %}
     <div class="row">
-        <div class="btn-group" role="group" aria-label="Views">
-            <a class="btn btn-primary btn-lg" href="/who/update/initial" role="button">WHO :: update :: initial</a>
-            <a class="btn btn-secondary btn-lg" href="/who/update/short" role="button">WHO :: update :: short</a>
+        <div class="col">
+            <div class="btn-group-vertical" role="group" aria-label="Views">
+                <a class="btn btn-primary btn-lg btn-block text-left" href="/who/task/update/star_schema/initial" role="button">WHO :: Task :: update :: star_schema :: initial</a>
+                <a class="btn btn-primary btn-lg btn-block text-left" href="/who/task/update/star_schema/incremental" role="button">WHO :: Task :: update :: star_schema :: incremental</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="btn-group-vertical" role="group" aria-label="Views">
+                <a class="btn btn-secondary btn-lg btn-block text-left" href="/who/task/download/only" role="button">WHO :: Task :: download :: only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left" href="/who/task/import/only" role="button">WHO :: Task :: import :: only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left" href="/who/task/update/dimension-tables/only" role="button">WHO :: Task :: update :: dimension-tables : only</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left" href="/who/task/update/fact-table/incremental/only" role="button">WHO :: Task :: update :: fact-table :: only :: incremental</a>
+                <a class="btn btn-secondary btn-lg btn-block text-left" href="/who/task/update/fact-table/initial/only" role="button">WHO :: Task :: update :: fact-table :: only :: initial</a>
+            </div>
         </div>
     </div>
 {% endblock %}
