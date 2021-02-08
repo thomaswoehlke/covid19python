@@ -96,5 +96,5 @@ class VaccinationData(db.Model):
     @classmethod
     def find_by_datum(cls, other_datum):
         return db.session.query(cls) \
-            .filter(cls.date_reported == other_datum) \
+            .filter(cls.date_reported_id == other_datum.id) \
             .one_or_none()
