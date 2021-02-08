@@ -47,13 +47,13 @@ class WhoImport(db.Model):
     def get_regions(cls):
         return db.session.query(cls.who_region)\
             .order_by(cls.who_region)\
-            .distinct()
+            .distinct().all()
 
     @classmethod
     def get_dates_reported(cls):
         return db.session.query(cls.date_reported)\
             .order_by(cls.date_reported.desc())\
-            .distinct()
+            .distinct().all()
 
     @classmethod
     def get_for_one_day(cls, day):
@@ -63,30 +63,47 @@ class WhoImport(db.Model):
             .all()
 
     @classmethod
+    def get_dates_reported_as_array(cls):
+        myresultarray = []
+        myresultset = db.session.query(cls.date_reported)\
+            .order_by(cls.date_reported.desc())\
+            .group_by(cls.date_reported)\
+            .distinct()
+        for item, in myresultset:
+            pass
+        return myresultarray
+
+    @classmethod
     def get_new_dates_as_array(cls):
         # TODO: #82 BUG: change to ORM ClassHierarchy
         # TODO: #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
         sql_query = """
             select
-                date_reported
-            from
-                who_import
-            where
-                date_reported
-            not in (
-            select
-                distinct
-                    who_date_reported.date_reported
+                distinct 
+                    who_import.date_reported
                 from
-                    who_data
-                left join
-                    who_date_reported
-                on
-                    who_data.date_reported_id=who_date_reported.id
-            )
-            group by
-                who_import.date_reported
-            order by date_reported desc
+                    who_import
+                where
+                    date_reported
+                not in (
+                    select
+                        distinct
+                            who_date_reported.date_reported
+                        from
+                            who_data
+                        left join
+                            who_date_reported
+                        on
+                            who_data.date_reported_id=who_date_reported.id
+                        group by 
+                            who_date_reported.date_reported
+                        order by
+                            who_date_reported.date_reported desc
+                )
+                group by
+                    who_import.date_reported
+                order by 
+                    who_import.date_reported desc
             """
         new_dates = []
         for item in db.session.execute(sql_query):

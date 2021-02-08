@@ -106,27 +106,31 @@ class RkiLandkreiseImport(db.Model):
         # TODO: #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
         sql_query = """
             select
-                date_reported
-            from
-                rki_landkreise_import
-            where
-                date_reported
-            not in (
-            select
                 distinct
-                    common_date_reported.date_reported
+                    rki_landkreise_import.date_reported
                 from
-                    rki_landkreise
-                left join
-                    rki_date_reported
-                on
-                    rki_landkreise.date_reported_id=common_date_reported.id 
-                and 
-                    common_date_reported.type='rki_date_reported'    
-            )
-            group by
-                rki_landkreise_import.date_reported
-            order by date_reported desc
+                    rki_landkreise_import
+                where
+                    date_reported
+                not in (
+                    select
+                        distinct
+                            rki_date_reported.date_reported
+                        from
+                            rki_landkreise
+                        left join
+                            rki_date_reported
+                        on
+                            rki_landkreise.date_reported_id=rki_date_reported.id
+                        group by 
+                            rki_date_reported.datum
+                        order by
+                            rki_date_reported.datum desc 
+                    )
+                group by
+                    rki_landkreise_import.date_reported
+                order by 
+                    rki_landkreise_import.date_reported desc
             """
         new_dates = []
         for item in db.session.execute(sql_query):

@@ -92,13 +92,14 @@ class VaccinationImport(db.Model):
     @classmethod
     def get_daterep_missing_in_vaccination_data(cls):
         sql_query = """
-                    select
-                        datum
-                    from
-                        vaccination_import
-                    where
-                        datum
-                    not in (
+            select
+                distinct 
+                    vaccination_import.datum
+                from
+                    vaccination_import
+                where
+                    datum
+                not in (
                     select
                         distinct
                             vaccination_import.datum
@@ -108,11 +109,16 @@ class VaccinationImport(db.Model):
                             vaccination_date_reported
                         on
                             vaccination_data.date_reported_id=vaccination_date_reported.id
-                    )
-                    group by
-                       vaccination_import.datum
-                    order by datum desc
-                    """
+                        group by 
+                            vaccination_import.datum
+                        order by
+                            vaccination_import.datum desc
+                )
+                group by
+                    vaccination_import.datum
+                order by 
+                    vaccination_import.datum desc
+            """
         new_dates = []
         for item, in db.session.execute(sql_query):
             new_dates.append(item)
