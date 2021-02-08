@@ -7,9 +7,7 @@ from covid19.blueprints.common.common_model import CommonDateReported, CommonReg
 
 class WhoDateReported(CommonDateReported):
     __tablename__ = 'who_date_reported'
-    __mapper_args__ = {
-        'concrete': True
-    }
+    __mapper_args__ = {'concrete': True}
     __table_args__ = (
         db.UniqueConstraint('date_reported', 'year_week', 'datum', name="uix_who_date_reported"),
     )
@@ -47,7 +45,14 @@ class WhoDateReported(CommonDateReported):
 
 
 class WhoRegion(CommonRegion):
-    __mapper_args__ = {'polymorphic_identity': 'who_region'}
+    __tablename__ = 'who_region'
+    __mapper_args__ = {'concrete': True}
+    __table_args__ = (
+        db.UniqueConstraint('region', name="uix_who_region"),
+    )
+
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(255), nullable=False, unique=True)
 
 
 class WhoCountry(db.Model):

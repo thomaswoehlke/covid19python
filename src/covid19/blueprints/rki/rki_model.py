@@ -48,7 +48,14 @@ class RkiDateReported(CommonDateReported):
 
 
 class RkiRegion(CommonRegion):
-    __mapper_args__ = {'polymorphic_identity': 'rki_region'}
+    __tablename__ = 'rki_region'
+    __mapper_args__ = {'concrete': True}
+    __table_args__ = (
+        db.UniqueConstraint('region', name="uix_rki_region"),
+    )
+
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(255), nullable=False, unique=True)
 
 
 class RkiCountry(db.Model):

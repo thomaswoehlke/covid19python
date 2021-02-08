@@ -50,7 +50,14 @@ class EuropeDateReported(CommonDateReported):
 
 
 class EuropeContinent(CommonRegion):
-    __mapper_args__ = {'polymorphic_identity': 'europe_continent'}
+    __tablename__ = 'europe_continent'
+    __mapper_args__ = {'concrete': True}
+    __table_args__ = (
+        db.UniqueConstraint('region', name="uix_europe_continent"),
+    )
+
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(255), nullable=False, unique=True)
 
 
 class EuropeCountry(db.Model):
