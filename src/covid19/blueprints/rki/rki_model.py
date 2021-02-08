@@ -101,8 +101,8 @@ class RkiCountry(db.Model):
 
 
 # TODO: #123 split RkiService into two Services, one for bundeslaender and one for landkreise
-# TODO: #124 rename RkiGermanyData to RkiBundeslaender
-class RkiGermanyData(db.Model):
+# TODO: #124 rename RkiBundeslaender to RkiBundeslaender
+class RkiBundeslaender(db.Model):
     __tablename__ = 'rki_bundeslsaender'
 
     id = db.Column(db.Integer, primary_key=True)
