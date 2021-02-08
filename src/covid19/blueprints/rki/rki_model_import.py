@@ -134,7 +134,7 @@ class RkiLandkreiseImport(db.Model):
 
 # TODO: #130 remove RkiGermanyDataImportTable
 class RkiGermanyDataImportTable(db.Model):
-    __tablename__ = 'rki_germany_data_import'
+    __tablename__ = 'rki_germanydata_import'
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False)
