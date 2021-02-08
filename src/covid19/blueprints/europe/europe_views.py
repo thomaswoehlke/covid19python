@@ -47,6 +47,110 @@ def task_europe_update_short(self):
     return result
 
 
+@celery.task(bind=True)
+def task_europe_download_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_download_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.task_europe_download_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_download_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_europe_import_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_import_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.task_europe_import_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_import_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_europe_update_dimension_tables_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_dimension_tables_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.task_europe_update_dimension_tables_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_dimension_tables_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_europe_update_fact_table_incremental_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_fact_table_incremental_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.task_europe_update_fact_table_incremental_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_fact_table_incremental_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_europe_update_fact_table_initial_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_fact_table_initial_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.task_europe_update_fact_table_initial_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_fact_table_initial_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_europe_update_fact_table_initial_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_fact_table_initial_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.task_europe_update_fact_table_initial_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_fact_table_initial_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_europe_update_star_schema_incremental(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_star_schema_incremental [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.task_europe_update_star_schema_incremental()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_star_schema_incremental)"
+    return result
+
+
+@celery.task(bind=True)
+def task_europe_update_star_schema_initial(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_europe_update_star_schema_initial [OK] ")
+    logger.info("------------------------------------------------------------")
+    europe_service.task_europe_update_star_schema_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_europe_update_star_schema_initial)"
+    return result
+
+
 @app_europe.route('/info')
 def url_europe_info():
     page_info = ApplicationPage('Europe', "Info")

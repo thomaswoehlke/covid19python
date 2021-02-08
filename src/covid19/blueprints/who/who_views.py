@@ -21,6 +21,14 @@ app_who = Blueprint('who', __name__, template_folder='templates')
 #
 ##################################################################################################################
 
+# def task_who_download_only(self):
+# def task_who_import_only(self):
+# def task_who_update_dimension_tables_only(self):
+# def task_who_update_fact_table_incremental_only(self):
+# def task_who_update_fact_table_initial_only(self):
+# def task_who_update_fact_table_initial_only(self):
+# def task_who_update_star_schema_incremental(self):
+# def task_who_update_star_schema_initial(self):
 
 @celery.task(bind=True)
 def task_who_download_only(self):
