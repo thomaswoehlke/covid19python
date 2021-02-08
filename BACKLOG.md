@@ -121,6 +121,7 @@
 * Fixed #124 rename RkiXXZBundeslaender to RkiBundeslaender
 * Fixed #162 rename table vaccination_germany_timeline into vaccination_data
 * Fixed #130 remove RkiGermanyDataImportTable
+* ------------------------------------- 
 
 ### 0.0.15 Release
 * -------------------------------------   
