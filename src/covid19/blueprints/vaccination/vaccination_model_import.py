@@ -1,3 +1,6 @@
+from sqlalchemy.orm import defer
+from sqlalchemy.orm import undefer
+
 from database import db, ITEMS_PER_PAGE
 
 
@@ -67,12 +70,11 @@ class VaccinationImport(db.Model):
             .one_or_none()
 
     @classmethod
-    def find_by_date_reported(cls, europe_date_reported):
-        # TODO implement VaccinationImport.find_by_date_reported
-        pass
-
-    @classmethod
     def get_date_rep(cls):
-        # TODO implement VaccinationImport.get_date_rep
-        pass
+        return db.session.query(cls)\
+            .options(defer('*'), undefer("datum")) \
+            .oder_by(cls.datum)\
+            .group_by(cls.datum)\
+            .distinct()\
+            .all()
 

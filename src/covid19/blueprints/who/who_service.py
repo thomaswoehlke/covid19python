@@ -85,6 +85,7 @@ class WhoService:
     def run_update_star_schema_incremental(self):
         app.logger.info(" run_update_short [begin]")
         app.logger.info("------------------------------------------------------------")
+        self.who_service_import.import_file()
         self.who_service_update.update_star_schema_incremental()
         app.logger.info("")
         app.logger.info(" run_update_short [done]")
@@ -94,6 +95,7 @@ class WhoService:
     def run_update_star_schema_initial(self):
         app.logger.info(" run_update_initial_full [begin]")
         app.logger.info("------------------------------------------------------------")
+        self.who_service_import.import_file()
         self.who_service_update.update_star_schema_initial()
         app.logger.info("")
         app.logger.info(" run_update_initial_full [done]")

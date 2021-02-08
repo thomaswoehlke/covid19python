@@ -35,8 +35,12 @@ class VaccinationData(db.Model):
     __tablename__ = 'vaccination_data'
 
     id = db.Column(db.Integer, primary_key=True)
-    # TODO: #87 change to: Vaccination.datum many to one VaccinationDateReported
-    datum = db.Column(db.String(255), nullable=False)
+    date_reported_id = db.Column(db.Integer, db.ForeignKey('common_date_reported.id'), nullable=False)
+    date_reported = db.relationship(
+        'VaccinationDateReported',
+        lazy='joined',
+        cascade='all, delete',
+        order_by='desc(VaccinationDateReported.date_reported)')
     dosen_kumulativ = db.Column(db.Integer, nullable=False)
     dosen_differenz_zum_vortag = db.Column(db.Integer, nullable=False)
     dosen_biontech_kumulativ = db.Column(db.Integer, nullable=False)

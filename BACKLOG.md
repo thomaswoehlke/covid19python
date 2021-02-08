@@ -144,7 +144,7 @@
 * Issue #90 refactor VaccinationService to new method scheme introduced 07.02.2021
 s* Issue #98 refactor VaccinationServiceDownload to new method scheme introduced 07.02.2021
 * Issue #99 refactor VaccinationServiceImport to new method scheme introduced 07.02.2021
-* Issue #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+* Issue #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
 * Issue #91 implement VaccinationService.run_download_only
 * Issue #92 implement VaccinationService.run_import_only
 * Issue #93 implement VaccinationService.run_update_dimension_tables_only
@@ -152,11 +152,11 @@ s* Issue #98 refactor VaccinationServiceDownload to new method scheme introduced
 * Issue #95 implement VaccinationService.run_update_fact_table_initial_only
 * Issue #96 implement VaccinationService.run_update_star_schema_incremental
 * Issue #97 implement VaccinationService.run_update_star_schema_initial
-* Issue #101 implement VaccinationsServiceUpdate.update_dimension_tables_only
-* Issue #102 implement VaccinationsServiceUpdate.update_fact_table_incremental_only
-* Issue #103 implement VaccinationsServiceUpdate.update_fact_table_initial_only
-* Issue #104 implement VaccinationsServiceUpdate.update_star_schema_incremental
-* Issue #105 implement VaccinationsServiceUpdate.update_star_schema_initial
+* Issue #101 implement VaccinationServiceUpdate.update_dimension_tables_only
+* Issue #102 implement VaccinationServiceUpdate.update_fact_table_incremental_only
+* Issue #103 implement VaccinationServiceUpdate.update_fact_table_initial_only
+* Issue #104 implement VaccinationServiceUpdate.update_star_schema_incremental
+* Issue #105 implement VaccinationServiceUpdate.update_star_schema_initial
 * -------------------------------------   
 * Issue #111 refactor to new method scheme itroduced 07.02.2021
 * Issue #112 implement EuropeService.run_update_dimension_tables_only

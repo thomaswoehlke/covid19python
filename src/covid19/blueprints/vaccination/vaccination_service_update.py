@@ -5,8 +5,8 @@ from covid19.blueprints.vaccination.vaccination_model_import import VaccinationI
 from covid19.blueprints.vaccination.vaccination_model import VaccinationDateReported, VaccinationData
 
 
-# TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
-class VaccinationsServiceUpdate:
+# TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
+class VaccinationServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Update [init]")
@@ -16,30 +16,28 @@ class VaccinationsServiceUpdate:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Update [ready] ")
 
-    # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def __update_date_reported(self):
         app.logger.info(" __update_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
-        result_date_rep = VaccinationImport.get_date_rep()
-        k = 0
-        for result_item in result_date_rep:
-            k += 1
-            my_date_rep = result_item['date_rep']
-            my_year_week = result_item['year_week']
-            o = VaccinationData.create_new_object_factory(
-                my_date_rep=my_date_rep
-            )
+        date_reported_list = VaccinationImport.get_date_rep()
+        i = 0
+        for one_date_reported in date_reported_list:
+            i += 1
+            output = " [ " + str(i) + " ] " + one_date_reported + " added"
+            o = VaccinationData.create_new_object_factory(one_date_reported)
             db.session.add(o)
-            app.logger.info("| " + my_date_rep + " | " + my_year_week + " | " + str(k) + " rows ")
+            app.logger.info(output)
         db.session.commit()
         app.logger.info(" __update_date_reported [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def __update_data_initial(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
+        VaccinationData.remove_all()
         result_date_rep = VaccinationImport.get_date_rep()
         i = 0
         for item_date_rep in result_date_rep:
@@ -49,20 +47,30 @@ class VaccinationsServiceUpdate:
             if europe_date_reported is None:
                 o = VaccinationDateReported.create_new_object_factory(item_date_rep['date_rep'])
                 europe_date_reported = o
-            result_europe_data_import = VaccinationImport.find_by_date_reported(europe_date_reported)
+            result_europe_data_import = VaccinationImport.find_by_datum(europe_date_reported)
             for item_europe_data_import in result_europe_data_import:
-                #my_d = int(item_europe_data_import.deaths_weekly)
-                #my_e = int(item_europe_data_import.cases_weekly)
-                #if item_europe_data_import.notification_rate_per_100000_population_14days == '':
-                #    my_f = 0.0
-                #else:
-                #    my_f = float(item_europe_data_import.notification_rate_per_100000_population_14days)
                 o = VaccinationData(
-                    #europe_country=europe_country,
-                    #europe_date_reported=europe_date_reported,
-                    #deaths_weekly=my_d,
-                    #cases_weekly=my_e,
-                    #notification_rate_per_100000_population_14days=my_f
+                    date_reported=europe_date_reported,
+                    dosen_kumulativ=item_europe_data_import.dosen_kumulativ,
+                    dosen_differenz_zum_vortag=item_europe_data_import.dosen_differenz_zum_vortag,
+                    dosen_biontech_kumulativ=item_europe_data_import.dosen_biontech_kumulativ,
+                    dosen_moderna_kumulativ=item_europe_data_import.dosen_moderna_kumulativ,
+                    personen_erst_kumulativ=item_europe_data_import.personen_erst_kumulativ,
+                    personen_voll_kumulativ=item_europe_data_import.personen_voll_kumulativ,
+                    impf_quote_erst=item_europe_data_import.impf_quote_erst,
+                    impf_quote_voll=item_europe_data_import.impf_quote_voll,
+                    indikation_alter_dosen=item_europe_data_import.indikation_alter_dosen,
+                    indikation_beruf_dosen=item_europe_data_import.indikation_beruf_dosen,
+                    indikation_medizinisch_dosen=item_europe_data_import.indikation_medizinisch_dosen,
+                    indikation_pflegeheim_dosen=item_europe_data_import.indikation_pflegeheim_dosen,
+                    indikation_alter_erst=item_europe_data_import.indikation_alter_erst,
+                    indikation_beruf_erst=item_europe_data_import.indikation_beruf_erst,
+                    indikation_medizinisch_erst=item_europe_data_import.indikation_medizinisch_erst,
+                    indikation_pflegeheim_erst=item_europe_data_import.indikation_pflegeheim_erst,
+                    indikation_alter_voll=item_europe_data_import.indikation_alter_voll,
+                    indikation_beruf_voll=item_europe_data_import.indikation_beruf_voll,
+                    indikation_medizinisch_voll=item_europe_data_import.indikation_medizinisch_voll,
+                    indikation_pflegeheim_voll=item_europe_data_import.indikation_pflegeheim_voll
                 )
                 db.session.add(o)
                 item_europe_data_import.row_imported = True
@@ -77,7 +85,52 @@ class VaccinationsServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+    def __update_data_incremental(self):
+        app.logger.info(" __update_data_initial [begin]")
+        app.logger.info("------------------------------------------------------------")
+        result_date_rep = VaccinationImport.get_daterep_missing_in_vaccination_data()
+        i = 0
+        for item_date_rep in result_date_rep:
+            europe_date_reported = VaccinationDateReported.create_new_object_factory(item_date_rep['date_rep'])
+            result_europe_data_import = VaccinationImport.find_by_datum(europe_date_reported)
+            for item_europe_data_import in result_europe_data_import:
+                o = VaccinationData(
+                    date_reported=europe_date_reported,
+                    dosen_kumulativ=item_europe_data_import.dosen_kumulativ,
+                    dosen_differenz_zum_vortag=item_europe_data_import.dosen_differenz_zum_vortag,
+                    dosen_biontech_kumulativ=item_europe_data_import.dosen_biontech_kumulativ,
+                    dosen_moderna_kumulativ=item_europe_data_import.dosen_moderna_kumulativ,
+                    personen_erst_kumulativ=item_europe_data_import.personen_erst_kumulativ,
+                    personen_voll_kumulativ=item_europe_data_import.personen_voll_kumulativ,
+                    impf_quote_erst=item_europe_data_import.impf_quote_erst,
+                    impf_quote_voll=item_europe_data_import.impf_quote_voll,
+                    indikation_alter_dosen=item_europe_data_import.indikation_alter_dosen,
+                    indikation_beruf_dosen=item_europe_data_import.indikation_beruf_dosen,
+                    indikation_medizinisch_dosen=item_europe_data_import.indikation_medizinisch_dosen,
+                    indikation_pflegeheim_dosen=item_europe_data_import.indikation_pflegeheim_dosen,
+                    indikation_alter_erst=item_europe_data_import.indikation_alter_erst,
+                    indikation_beruf_erst=item_europe_data_import.indikation_beruf_erst,
+                    indikation_medizinisch_erst=item_europe_data_import.indikation_medizinisch_erst,
+                    indikation_pflegeheim_erst=item_europe_data_import.indikation_pflegeheim_erst,
+                    indikation_alter_voll=item_europe_data_import.indikation_alter_voll,
+                    indikation_beruf_voll=item_europe_data_import.indikation_beruf_voll,
+                    indikation_medizinisch_voll=item_europe_data_import.indikation_medizinisch_voll,
+                    indikation_pflegeheim_voll=item_europe_data_import.indikation_pflegeheim_voll
+                )
+                db.session.add(o)
+                item_europe_data_import.row_imported = True
+                db.session.add(item_europe_data_import)
+                i += 1
+                if i % 500 == 0:
+                    app.logger.info(" update Europa initial ... " + str(i) + " rows")
+                    db.session.commit()
+        db.session.commit()
+        app.logger.info(" update Europa initial ... " + str(i) + " rows total")
+        app.logger.info(" __update_data_initial [done]")
+        app.logger.info("------------------------------------------------------------")
+        return self
+
+    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def __update_data_short(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -86,7 +139,7 @@ class VaccinationsServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def update_db_initial(self):
         app.logger.info(" update_db_initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -98,7 +151,7 @@ class VaccinationsServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def update_db_short(self):
         app.logger.info(" update_db_short [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -110,27 +163,39 @@ class VaccinationsServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    def __update_dimension_table_date_reported(self):
+        VaccinationData.remove_all()
+        self.__update_date_reported()
+        return self
+
     def update_dimension_tables_only(self):
-        # TODO: #101 implement VaccinationsServiceUpdate.update_dimension_tables_only
-        # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+        # TODO: #101 implement VaccinationServiceUpdate.update_dimension_tables_only
+        # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
+        self.__update_dimension_table_date_reported()
         return self
 
     def update_fact_table_incremental_only(self):
-        # TODO: #102 implement VaccinationsServiceUpdate.update_fact_table_incremental_only
-        # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+        # TODO: #102 implement VaccinationServiceUpdate.update_fact_table_incremental_only
+        # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
+        self.__update_data_incremental()
         return self
 
     def update_fact_table_initial_only(self):
-        # TODO: #103 implement VaccinationsServiceUpdate.update_fact_table_initial_only
-        # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+        # TODO: #103 implement VaccinationServiceUpdate.update_fact_table_initial_only
+        # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
+        self.__update_data_initial()
         return self
 
     def update_star_schema_incremental(self):
-        # TODO: #104 implement VaccinationsServiceUpdate.update_star_schema_incremental
-        # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+        # TODO: #104 implement VaccinationServiceUpdate.update_star_schema_incremental
+        # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
+        self.__update_dimension_table_date_reported()
+        self.__update_data_incremental()
         return self
 
     def update_star_schema_initial(self):
-        # TODO: #105 implement VaccinationsServiceUpdate.update_star_schema_initial
-        # TODO: #100 refactor VaccinationsServiceUpdate to new method scheme introduced 07.02.2021
+        # TODO: #105 implement VaccinationServiceUpdate.update_star_schema_initial
+        # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
+        self.__update_dimension_table_date_reported()
+        self.__update_data_initial()
         return self
