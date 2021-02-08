@@ -69,3 +69,46 @@ def url_vaccination_timeline_germany(page=1):
         page_info=page_info)
 
 # TODO: #106 add Tasks and URLs for starting Tasks to vaccination_views
+
+
+@app_vaccination('/task/update/star_schema/initial')
+def url_vaccination_task_update_star_schema_initial():
+    flash("url_vaccination_task_update_star_schema_initial started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_vaccination('/task/update/star_schema/incremental')
+def url_vaccination_task_update_starschema_incremental():
+    flash("url_vaccination_task_update_starschema_incremental started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_vaccination('/task/download/only')
+def url_vaccination_task_download_only():
+    flash("url_vaccination_task_download_only started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_vaccination('/task/import/only')
+def url_vaccination_task_import_only():
+    flash("url_vaccination_task_import_only started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_vaccination('/task/update/dimension-tables/only')
+def url_vaccination_task_update_dimensiontables_only():
+    flash("url_vaccination_task_update_dimensiontables_only started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_vaccination('/task/update/fact-table/incremental/only')
+def url_vaccination_task_update_facttable_incremental_only():
+    flash("url_vaccination_task_update_facttable_incremental_only started")
+    return redirect(url_for('url_europe_tasks'))
+
+
+@app_vaccination('/task/update/fact-table/initial/only')
+def url_vaccination_task_update_facttable_initial_only():
+    flash("url_vaccination_task_update_facttable_initial_only started")
+    return redirect(url_for('url_europe_tasks'))
+
