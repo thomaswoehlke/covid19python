@@ -29,10 +29,10 @@ class VaccinationDateReported(CommonDateReported):
         )
 
 
-# TODO: #86 rename VaccinationGermanyTimelineAAA to Vaccination
+# TODO: #86 rename VaccinationData to VaccinationData
 # TODO: #162 rename table vaccination_germany_timeline into vaccination_data
-class VaccinationGermanyTimelineAAA(db.Model):
-    __tablename__ = 'vaccination_germany_timeline'
+class VaccinationData(db.Model):
+    __tablename__ = 'vaccination_data'
 
     id = db.Column(db.Integer, primary_key=True)
     # TODO: #87 change to: Vaccination.datum many to one VaccinationDateReported
