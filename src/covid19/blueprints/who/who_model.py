@@ -9,6 +9,8 @@ class WhoDateReported(CommonDateReported):
     __tablename__ = 'who_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
+    date_reported = db.Column(db.String(255), nullable=False, unique=True)
+
     __mapper_args__ = {
         'concrete': True
     }
@@ -142,7 +144,7 @@ class WhoData(db.Model):
     deaths_new = db.Column(db.Integer, nullable=False)
     deaths_cumulative = db.Column(db.Integer, nullable=False)
     date_reported_id = db.Column(db.Integer,
-        db.ForeignKey('common_date_reported.id'), nullable=False)
+        db.ForeignKey('who_date_reported.id'), nullable=False)
     date_reported = db.relationship(
         'WhoDateReported',
         lazy='joined',

@@ -9,12 +9,8 @@ class CommonDateReported(db.Model):
     __mapper_args__ = {
         'concrete': True
     }
-    __table_args__ = (
-        db.UniqueConstraint('type', 'date_reported', name='unique_common_date_reported'),
-    )
     #
     id = db.Column(db.Integer, primary_key=True)
-    date_reported = db.Column(db.String(255), nullable=False)
     year_week = db.Column(db.String(255), nullable=False)
     datum = db.Column(db.Date, nullable=False)
     year = db.Column(db.Integer, nullable=False)

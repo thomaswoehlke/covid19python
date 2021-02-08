@@ -8,6 +8,8 @@ class VaccinationDateReported(CommonDateReported):
     __tablename__ = 'vaccination_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
+    date_reported = db.Column(db.String(255), nullable=False, unique=True)
+
     __mapper_args__ = {
         'concrete': True
     }
@@ -40,7 +42,7 @@ class VaccinationData(db.Model):
     __tablename__ = 'vaccination_data'
 
     id = db.Column(db.Integer, primary_key=True)
-    date_reported_id = db.Column(db.Integer, db.ForeignKey('common_date_reported.id'), nullable=False)
+    date_reported_id = db.Column(db.Integer, db.ForeignKey('vaccination_date_reported.id'), nullable=False)
     date_reported = db.relationship(
         'VaccinationDateReported',
         lazy='joined',

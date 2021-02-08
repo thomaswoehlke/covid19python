@@ -8,6 +8,8 @@ class EuropeDateReported(CommonDateReported):
     __tablename__ = 'europe_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
+    date_reported = db.Column(db.String(255), nullable=False, unique=True)
+
     __mapper_args__ = {
         'concrete': True
     }
@@ -114,8 +116,12 @@ class EuropeData(db.Model):
     europe_country_id = db.Column(db.Integer, db.ForeignKey('europe_country.id'), nullable=False)
     europe_country = db.relationship('EuropeCountry', lazy='joined', cascade="all, delete")
 
-    europe_date_reported_id = db.Column(db.Integer, db.ForeignKey('common_date_reported.id'), nullable=False)
-    europe_date_reported = db.relationship('EuropeDateReported', lazy='joined', cascade="all, delete")
+    europe_date_reported_id = db.Column(db.Integer, db.ForeignKey('europe_date_reported.id'), nullable=False)
+    europe_date_reported = db.relationship(
+        'EuropeDateReported',
+        lazy='joined',
+        cascade='all, delete',
+        order_by='desc(EuropeDateReported.date_reported)')
 
     @classmethod
     def remove_all(cls):

@@ -10,6 +10,8 @@ class RkiDateReported(CommonDateReported):
     __tablename__ = 'rki_date_reported'
 
     id = db.Column(db.Integer, primary_key=True)
+    date_reported = db.Column(db.String(255), nullable=False, unique=True)
+
     __mapper_args__ = {
         'concrete': True
     }
@@ -116,9 +118,12 @@ class RkiBundeslaender(db.Model):
     deaths_new = db.Column(db.Integer, nullable=False)
     deaths_cumulative = db.Column(db.Integer, nullable=False)
     date_reported_id = db.Column(db.Integer,
-        db.ForeignKey('common_date_reported.id'), nullable=False)
+        db.ForeignKey('rki_date_reported.id'), nullable=False)
     date_reported = db.relationship(
-        'RkiDateReported', lazy='joined', order_by='desc(RkiDateReported.date_reported)')
+        'RkiDateReported',
+        lazy='joined',
+        cascade='all, delete',
+        order_by='desc(RkiDateReported.date_reported)')
     country_id = db.Column(db.Integer,
         db.ForeignKey('rki_country.id'), nullable=False)
     country = db.relationship(
