@@ -9,7 +9,7 @@ class WhoDateReported(CommonDateReported):
     __tablename__ = 'who_date_reported'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'year_week', 'datum', name="uix_who_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_who_date_reported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -57,6 +57,9 @@ class WhoRegion(CommonRegion):
 
 class WhoCountry(db.Model):
     __tablename__ = 'who_country'
+    __table_args__ = (
+        db.UniqueConstraint('country_code', 'country', name="uix_who_country"),
+    )
 
     id = db.Column(db.Integer, primary_key=True)
     country_code = db.Column(db.String(255), unique=True, nullable=False)

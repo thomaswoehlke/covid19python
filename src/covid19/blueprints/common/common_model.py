@@ -7,7 +7,7 @@ from sqlalchemy.orm import joinedload
 class CommonDateReported(db.Model):
     __tablename__ = 'common_date_reported'
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'year_week', 'datum', name="uix_common_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_common_date_reported"),
     )
     #
     id = db.Column(db.Integer, primary_key=True)

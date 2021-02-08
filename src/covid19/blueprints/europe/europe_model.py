@@ -10,7 +10,7 @@ class EuropeDateReported(CommonDateReported):
         'concrete': True
     }
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'year_week', 'datum', name="uix_europe_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_europe_date_reported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -62,6 +62,9 @@ class EuropeContinent(CommonRegion):
 
 class EuropeCountry(db.Model):
     __tablename__ = 'europe_country'
+    __table_args__ = (
+        db.UniqueConstraint('countries_and_territories', 'geo_id', 'country_territory_code', name="uix_europe_country"),
+    )
 
     id = db.Column(db.Integer, primary_key=True)
     countries_and_territories = db.Column(db.String(255), nullable=False)
