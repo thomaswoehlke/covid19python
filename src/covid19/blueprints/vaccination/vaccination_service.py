@@ -28,6 +28,7 @@ class VaccinationService:
 
     def task_database_drop_create(self):
         self.vaccination_service_import.import_file()
+        self.vaccination_service_udpate.update_star_schema_initial()
         return self
 
     def run_download_only(self):
