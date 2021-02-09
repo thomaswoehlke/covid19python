@@ -28,29 +28,33 @@
         <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">
                 <a class="btn btn-primary btn-lg btn-block text-left"
-                   href="/vaccination/task/update/star_schema/initial"
+                   href="{{ url_for( 'vaccination.task_vaccination_update_star_schema_incremental') }}"
                    role="button">Vaccination :: Task :: update :: star_schema :: initial</a>
                 <a class="btn btn-primary btn-lg btn-block text-left"
-                   href="/vaccination/task/update/star_schema/incremental"
+                   href="{{ url_for( 'vaccination.url_alive_message_start') }}"
                    role="button">Vaccination :: Task :: update :: star_schema :: incremental</a>
             </div>
         </div>
         <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/vaccination/task/download/only"
+                   href="{{ url_for( 'vaccination.task_vaccination_download_only') }}"
                    role="button">Vaccination :: Task :: download :: only</a>
+
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/vaccination/task/import/only"
+                   href="{{ url_for( 'vaccination.task_vaccination_import_only') }}"
                    role="button">Vaccination :: Task :: import :: only</a>
+
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/vaccination/task/update/dimension-tables/only"
+                   # #href="{{ url_for( 'vaccination.url_vaccination_task_download_only') }}"
                    role="button">Vaccination :: Task :: update :: dimension-tables : only</a>
+
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/vaccination/task/update/fact-table/incremental/only"
+                   href="{{ url_for( 'vaccination.url_vaccination_task_update_facttable_incremental_only') }}"
                    role="button">Vaccination :: Task :: update :: fact-table :: only :: incremental</a>
+
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/vaccination/task/update/fact-table/initial/only"
+                   href="{{ url_for( 'vaccination.url_vaccination_task_update_facttable_initial_only') }}"
                    role="button">Vaccination :: Task :: update :: fact-table :: only :: initial</a>
             </div>
         </div>

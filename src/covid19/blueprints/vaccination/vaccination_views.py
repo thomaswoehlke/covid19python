@@ -143,23 +143,60 @@ def url_vaccination_tasks():
 
 @app_vaccination.route('/update/initial')
 def url_vaccination_update_data():
-    vaccination_service.run_download()
-    flash("vaccination_service.run_download done")
-    task_vaccination_update_initial.apply_async()
-    flash("vaccination_service.run_update started")
-    return redirect(url_for('vaccination.url_vaccination_tasks'))
+    #vaccination_service.run_download()
+    #flash("vaccination_service.run_download done")
+    #task_vaccination_update_initial.apply_async()
+    #flash("vaccination_service.run_update started")
+    return redirect(url_for('vaccination.url_vaccination_task_update_star_schema_initial'))
+
+
+@app_vaccination.route('/tmp/timeline/germany/page/<int:page>')
+@app_vaccination.route('/tmp/timeline/germany')
+def url_vaccination_timeline_germany_tmp(page=1):
+    page_info = ApplicationPage('Vaccination', "Germany Timeline")
+    page_data = VaccinationImport.get_all_as_page(page)
+    #page_data_tmp = VaccinationData.get_all_as_page(page)
+    return render_template(
+        'vaccination/vaccination_timeline_germany.html',
+        page_data=page_data,
+        page_info=page_info)
 
 
 @app_vaccination.route('/timeline/germany/page/<int:page>')
 @app_vaccination.route('/timeline/germany')
 def url_vaccination_timeline_germany(page=1):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
-    page_data = VaccinationImport.get_all_as_page(page)
+    #page_data = VaccinationImport.get_all_as_page(page)
     page_data_tmp = VaccinationData.get_all_as_page(page)
     return render_template(
         'vaccination/vaccination_timeline_germany.html',
-        page_data=page_data,
+        page_data=page_data_tmp,
         page_info=page_info)
+
+
+@app_vaccination.route('/date-reported/all/page/<int:page>')
+@app_vaccination.route('/date-reported/all')
+def url_vaccination_timeline_germany(page=1):
+    page_info = ApplicationPage('Vaccination', "Germany Timeline")
+    #page_data = VaccinationImport.get_all_as_page(page)
+    page_data_tmp = VaccinationData.get_all_as_page(page)
+    return render_template(
+        'vaccination/vaccination_timeline_germany.html',
+        page_data=page_data_tmp,
+        page_info=page_info)
+
+
+@app_vaccination.route('/date-reported/<int:vaccination_data_id>/page/<int:page>')
+@app_vaccination.route('/date-reported/<int:vaccination_data_id>')
+def url_vaccination_timeline_germany(page=1, vaccination_data_id=0):
+    page_info = ApplicationPage('Vaccination', "Germany Timeline")
+    #page_data = VaccinationImport.get_all_as_page(page)
+    page_data_tmp = VaccinationData.get_all_as_page(page)
+    return render_template(
+        'vaccination/vaccination_timeline_germany.html',
+        page_data=page_data_tmp,
+        page_info=page_info)
+
 
 # TODO: #106 add Tasks and URLs for starting Tasks to vaccination_views
 
