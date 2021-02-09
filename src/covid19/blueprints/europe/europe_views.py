@@ -28,7 +28,7 @@ def task_europe_update_initial(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_initial [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.run_update_initial()
+    europe_service.run_update_initial_DEPRECATED()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_initial)"
     return result

@@ -31,51 +31,52 @@ class VaccinationService:
         self.vaccination_service_udpate.update_star_schema_initial()
         return self
 
+    # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+    # TODO: #91 implement VaccinationService.run_download_only
     def run_download_only(self):
-        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: #91 implement VaccinationService.run_download_only
         self.vaccination_service_download.download_file()
         return self
 
+    # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+    # TODO: #92 implement VaccinationService.run_import_only
     def run_import_only(self):
-        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: #92 implement VaccinationService.run_import_only
         self.vaccination_service_import.import_file()
         return self
 
+    # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+    # TODO: #93 implement VaccinationService.run_update_dimension_tables_only
     def run_update_dimension_tables_only(self):
-        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: #93 implement VaccinationService.run_update_dimension_tables_only
         self.vaccination_service_udpate.update_dimension_tables_only()
         return self
 
+    # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+    # TODO: #94 implement VaccinationService.run_update_fact_table_incremental_only
     def run_update_fact_table_incremental_only(self):
-        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: #94 implement VaccinationService.run_update_fact_table_incremental_only
         self.vaccination_service_udpate.update_fact_table_incremental_only()
         return self
 
+    # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+    # TODO: #95 implement VaccinationService.run_update_fact_table_initial_only
     def run_update_fact_table_initial_only(self):
-        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: #95 implement VaccinationService.run_update_fact_table_initial_only
         self.vaccination_service_udpate.update_fact_table_initial_only()
         return self
 
+    # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+    # TODO: #96 implement VaccinationService.run_update_star_schema_incremental
     def run_update_star_schema_incremental(self):
-        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: #96 implement VaccinationService.run_update_star_schema_incremental
         self.vaccination_service_udpate.update_star_schema_incremental()
         return self
 
+    # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
+    # TODO: #97 implement VaccinationService.run_update_star_schema_initial
     def run_update_star_schema_initial(self):
-        # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-        # TODO: #97 implement VaccinationService.run_update_star_schema_initial
         self.run_import_only()
         self.vaccination_service_udpate.update_star_schema_initial()
         return self
 
+    # TODO remove DEPRECATED
     # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-    def run_download(self):
+    def run_download_DEPRECATED(self):
         app.logger.info(" run update [begin]")
         app.logger.info("------------------------------------------------------------")
         success = self.vaccination_service_download.download_file()
@@ -84,8 +85,9 @@ class VaccinationService:
         app.logger.info("------------------------------------------------------------")
         return success
 
+    # TODO remove DEPRECATED
     # TODO: #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-    def run_update_initial(self):
+    def run_update_initial_DEPRECATED(self):
         app.logger.info(" run update initial [begin]")
         app.logger.info("------------------------------------------------------------")
         self.vaccination_service_import.import_file()
