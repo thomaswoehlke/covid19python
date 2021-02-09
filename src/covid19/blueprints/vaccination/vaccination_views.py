@@ -61,7 +61,7 @@ def task_vaccination_update_dimension_tables_only(self):
 
 
 @celery.task(bind=True)
-def task_vaccination_update_fact_table_incremental_only(self):
+def task_vaccination_update_facttable_incremental_only(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
@@ -74,7 +74,7 @@ def task_vaccination_update_fact_table_incremental_only(self):
 
 
 @celery.task(bind=True)
-def task_vaccination_update_fact_table_initial_only(self):
+def task_vaccination_update_facttable_initial_only(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
@@ -87,7 +87,7 @@ def task_vaccination_update_fact_table_initial_only(self):
 
 
 @celery.task(bind=True)
-def task_vaccination_update_star_schema_incremental(self):
+def task_vaccination_update_starschema_incremental(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
@@ -100,7 +100,7 @@ def task_vaccination_update_star_schema_incremental(self):
 
 
 @celery.task(bind=True)
-def task_vaccination_update_star_schema_initial(self):
+def task_vaccination_task_update_starschema_initial(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
@@ -109,19 +109,6 @@ def task_vaccination_update_star_schema_initial(self):
     vaccination_service.run_update_star_schema_initial()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_star_schema_initial)"
-    return result
-
-
-@celery.task(bind=True)
-def task_vaccination_update_initial(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_vaccination_update_initial [OK] ")
-    logger.info("------------------------------------------------------------")
-    vaccination_service.run_update_initial()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_vaccination_update_initial)"
     return result
 
 
@@ -139,15 +126,6 @@ def url_vaccination_tasks():
     return render_template(
         'vaccination/vaccination_tasks.html',
         page_info=page_info)
-
-
-@app_vaccination.route('/update/initial')
-def url_vaccination_update_data():
-    #vaccination_service.run_download()
-    #flash("vaccination_service.run_download done")
-    #task_vaccination_update_initial.apply_async()
-    #flash("vaccination_service.run_update started")
-    return redirect(url_for('vaccination.url_vaccination_task_update_star_schema_initial'))
 
 
 @app_vaccination.route('/tmp/timeline/germany/page/<int:page>')
@@ -201,60 +179,59 @@ def url_vaccination_datereported_one(page=1, vaccination_data_id=0):
 # TODO: #106 add Tasks and URLs for starting Tasks to vaccination_views
 
 
-@app_vaccination.route('/task/update/star_schema/initial')
-def url_vaccination_task_update_star_schema_initial():
-    flash("url_vaccination_task_update_star_schema_initial started")
-    # TODO: #170 implement url_vaccination_task_update_star_schema_initial in vaccination_views.py
-    vaccination_service.run_download_only()
-    task_vaccination_update_star_schema_initial.apply_async()
-    return redirect(url_for('vaccination.url_vaccination_tasks'))
-
-
-@app_vaccination.route('/task/update/star_schema/incremental')
-def url_vaccination_task_update_starschema_incremental():
-    flash("url_vaccination_task_update_starschema_incremental started")
-    # TODO: #171 implement url_vaccination_task_update_starschema_incremental in vaccination_views.py
-    vaccination_service.run_download_only()
-    task_vaccination_update_star_schema_incremental.apply_async()
-    return redirect(url_for('vaccination.url_vaccination_tasks'))
-
-
+# TODO: #172 implement url_vaccination_task_import_only in vaccination_views.py
 @app_vaccination.route('/task/download/only')
 def url_vaccination_task_download_only():
     flash("url_vaccination_task_download_only started")
-    # TODO: #172 implement url_vaccination_task_import_only in vaccination_views.py
     vaccination_service.run_download_only()
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
 
+# TODO: #173 implement url_vaccination_task_import_only in vaccination_views.py
 @app_vaccination.route('/task/import/only')
 def url_vaccination_task_import_only():
     flash("url_vaccination_task_import_only started")
-    # TODO: #173 implement url_vaccination_task_import_only in vaccination_views.py
     task_vaccination_import_only.apply_async()
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
 
+# TODO: #174 implement url_vaccination_task_update_dimensiontables_only in vaccination_views.py
 @app_vaccination.route('/task/update/dimension-tables/only')
 def url_vaccination_task_update_dimensiontables_only():
     flash("url_vaccination_task_update_dimensiontables_only started")
-    # TODO: #174 implement url_vaccination_task_update_dimensiontables_only in vaccination_views.py
     task_vaccination_update_dimension_tables_only.apply_async()
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
 
+# TODO: #175 implement url_vaccination_task_update_facttable_incremental_only in vaccination_views.py
 @app_vaccination.route('/task/update/fact-table/incremental/only')
 def url_vaccination_task_update_facttable_incremental_only():
     flash("url_vaccination_task_update_facttable_incremental_only started")
-    # TODO: #175 implement url_vaccination_task_update_facttable_incremental_only in vaccination_views.py
-    task_vaccination_update_fact_table_incremental_only.apply_async()
+    task_vaccination_update_facttable_incremental_only.apply_async()
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
 
+# TODO: #176 implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
 @app_vaccination.route('/task/update/fact-table/initial/only')
 def url_vaccination_task_update_facttable_initial_only():
     flash("url_vaccination_task_update_facttable_initial_only started")
-    # TODO: #176 implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
-    task_vaccination_update_fact_table_initial_only.apply_async()
+    task_vaccination_update_facttable_initial_only.apply_async()
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
+
+# TODO: #170 implement url_vaccination_task_update_starschema_initial in vaccination_views.py
+@app_vaccination.route('/task/update/star_schema/initial')
+def url_vaccination_task_update_starschema_initial():
+    flash("url_vaccination_task_update_star_schemainitial started")
+    vaccination_service.run_download_only()
+    task_vaccination_task_update_starschema_initial.apply_async()
+    return redirect(url_for('vaccination.url_vaccination_tasks'))
+
+
+# TODO: #171 implement url_vaccination_task_update_starschema_incremental in vaccination_views.py
+@app_vaccination.route('/task/update/star_schema/incremental')
+def url_vaccination_task_update_starschema_incremental():
+    flash("url_vaccination_task_update_starschema_incremental started")
+    vaccination_service.run_download_only()
+    task_vaccination_update_starschema_incremental.apply_async()
+    return redirect(url_for('vaccination.url_vaccination_tasks'))
