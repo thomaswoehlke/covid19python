@@ -45,7 +45,7 @@ setup(
         "Flask-GraphQL>=2.0.1",
         "flask-hintful>=0.0.7",
         "Flask-Caching>=1.9.0",
-        "flask-roles>=0.5",
+        #"flask-roles>=0.5",
         "Flask-Babel>=2",
         "Flask-Login<0.6.0,>=0.5.0",
         "manual-sitemap>=19.6.0",
