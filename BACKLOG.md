@@ -124,8 +124,32 @@
 * ------------------------------------- 
 
 ### 0.0.15 Release
-* -------------------------------------   
-* -------------------------------------   
+* -------------------------------------
+* Fixed #170 implement url_vaccination_task_update_star_schema_initial in vaccination_views.py
+* Fixed #171 implement url_vaccination_task_update_starschema_incremental in vaccination_views.py
+* Fixed #172 implement url_vaccination_task_import_only in vaccination_views.py
+* Fixed #173 implement url_vaccination_task_import_only in vaccination_views.py
+* Fixed #174 implement url_vaccination_task_update_dimensiontables_only in vaccination_views.py
+* Fixed #175 implement url_vaccination_task_update_facttable_incremental_only in vaccination_views.py
+* Fixed #176 implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
+* -------------------------------------
+* Fixed #91 implement VaccinationService.run_download_only
+* Fixed #92 implement VaccinationService.run_import_only
+* Fixed #93 implement VaccinationService.run_update_dimension_tables_only
+* Fixed #94 implement VaccinationService.run_update_fact_table_incremental_only
+* Fixed #95 implement VaccinationService.run_update_fact_table_initial_only
+* Fixed #96 implement VaccinationService.run_update_star_schema_incremental
+* Fixed #97 implement VaccinationService.run_update_star_schema_initial
+* Fixed #101 implement VaccinationServiceUpdate.update_dimension_tables_only
+* Fixed #102 implement VaccinationServiceUpdate.update_fact_table_incremental_only
+* Fixed #103 implement VaccinationServiceUpdate.update_fact_table_initial_only
+* Fixed #104 implement VaccinationServiceUpdate.update_star_schema_incremental
+* Fixed #105 implement VaccinationServiceUpdate.update_star_schema_initial
+* -------------------------------------
+* Fixed #87 change to: Vaccination.datum many to one VaccinationDateReported
+* Fixed #106 add Tasks and URLs for starting Tasks to vaccination_views
+* Issue #146 add Tasks and URLs for starting Tasks to rki_views
+* -------------------------------------  
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Issue #40 SQLalchemy instead of SQL: EuropeImport.get_date_rep()
 * Issue #41 SQLalchemy instead of SQL: EuropeImport.get_countries_of_continent()
@@ -139,38 +163,27 @@
 * Issue #108 change to ORM ClassHierarchy in: EuropeImport.get_countries_of_continent  
 * Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
 * Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
-* -------------------------------------   
-* Issue #87 change to: Vaccination.datum many to one VaccinationDateReported
+* -------------------------------------
 * Issue #90 refactor VaccinationService to new method scheme introduced 07.02.2021
 * Issue #98 refactor VaccinationServiceDownload to new method scheme introduced 07.02.2021
 * Issue #99 refactor VaccinationServiceImport to new method scheme introduced 07.02.2021
 * Issue #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
-* Fixed #91 implement VaccinationService.run_download_only
-* Fixed #92 implement VaccinationService.run_import_only
-* Fixed #93 implement VaccinationService.run_update_dimension_tables_only
-* Fixed #94 implement VaccinationService.run_update_fact_table_incremental_only
-* Fixed #95 implement VaccinationService.run_update_fact_table_initial_only
-* Fixed #96 implement VaccinationService.run_update_star_schema_incremental
-* Fixed #97 implement VaccinationService.run_update_star_schema_initial
-* Fixed #101 implement VaccinationServiceUpdate.update_dimension_tables_only
-* Fixed #102 implement VaccinationServiceUpdate.update_fact_table_incremental_only
-* Fixed #103 implement VaccinationServiceUpdate.update_fact_table_initial_only
-* Fixed #104 implement VaccinationServiceUpdate.update_star_schema_incremental
-* Fixed #105 implement VaccinationServiceUpdate.update_star_schema_initial
 * -------------------------------------   
 * Issue #111 refactor to new method scheme itroduced 07.02.2021
+* Issue #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021 
 * Issue #112 implement EuropeService.run_update_dimension_tables_only
 * Issue #113 implement EuropeService.run_update_fact_table_incremental_only
 * Issue #114 implement EuropeService.run_update_fact_table_initial_only
 * Issue #115 implement EuropeService.run_update_star_schema_incremental
 * Issue #116 implement EuropeService.run_update_star_schema_initial
-* Issue #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021
 * Issue #118 implement EuropeServiceUpdate.update_dimension_tables_only
 * Issue #119 implement EuropeServiceUpdate.update_fact_table_incremental_only
 * Issue #120 implement EuropeServiceUpdate.update_fact_table_initial_only
 * Issue #121 implement EuropeServiceUpdate.update_star_schema_incremental
 * Issue #122 implement EuropeServiceUpdate.update_star_schema_initial
 * -------------------------------------   
+* Issue #140 move WhoImport to RKI in: rk_service_import.py
+* Issue #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
 * Issue #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
 * Issue #125 implement RkiLandkreise
 * Issue #126 implement RkiBundeslaenderImport
@@ -183,8 +196,6 @@
 * Issue #136 implement RkiBundeslaenderService.run_update_fact_table_initial_only
 * Issue #137 implement RkiBundeslaenderService.run_update_star_schema_incremental
 * Issue #138 implement RkiBundeslaenderService.run_update_star_schema_initial
-* Issue #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
-* Issue #140 move WhoImport to RKI in: rk_service_import.py
 * Issue #141 implement RkiBundeslaenderServiceUpdate.update_dimension_tables_only
 * Issue #142 implement RkiBundeslaenderServiceUpdate.update_fact_table_incremental_only
 * Issue #143 implement RkiBundeslaenderServiceUpdate.update_fact_table_initial_only
@@ -199,12 +210,10 @@
 * Issue #153 refactor RkiBundeslaenderServiceUpdate.update_db
 * Issue #154 refactor RkiBundeslaenderServiceUpdate.update_db_short
 * Issue #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
-  * -------------------------------------  
+* -------------------------------------  
 * Issue #156 run_web.sh
 * Issue #157 run_worker.sh
-* -------------------------------------  
-* Issue #106 add Tasks and URLs for starting Tasks to vaccination_views
-* Issue #146 add Tasks and URLs for starting Tasks to rki_views
+* -------------------------------------
 * Issue #163 implement url_europe_task_update_star_schema_initial in europe_views.py
 * Issue #164 implement url_europe_task_update_starschema_incremental in europe_views.py
 * Issue #165 implement url_europe_task_download_only in europe_views.py
@@ -212,15 +221,7 @@
 * Issue #167 implement url_europe_task_update_dimensiontables_only in europe_views.py
 * Issue #168 implement url_europe_task_update_facttable_incremental_only in europe_views.py
 * Issue #169 implement url_europe_task_update_facttable_initial_only in europe_views.py
-* -------------------------------------  
-* Fixed #170 implement url_vaccination_task_update_star_schema_initial in vaccination_views.py
-* Fixed #171 implement url_vaccination_task_update_starschema_incremental in vaccination_views.py
-* Fixed #172 implement url_vaccination_task_import_only in vaccination_views.py
-* Fixed #173 implement url_vaccination_task_import_only in vaccination_views.py
-* Fixed #174 implement url_vaccination_task_update_dimensiontables_only in vaccination_views.py
-* Fixed #175 implement url_vaccination_task_update_facttable_incremental_only in vaccination_views.py
-* Fixed #176 implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
-ss
+
 ### 0.0.16 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
 * Issue #59 frontend: add correct breadcrumb to every page
