@@ -3,7 +3,7 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from covid19.services import who_service, europe_service, vaccination_service, admin_service, rki_service
+from covid19.services import who_service, europe_service, vaccination_service, admin_service, rki_service_bundeslaender
 from covid19.workers import celery
 
 from covid19.blueprints.common.common_model_transient import ApplicationPage
@@ -109,7 +109,7 @@ def url_admin_database_drop():
         who_service.pretask_database_drop_create()
         europe_service.pretask_database_drop_create()
         vaccination_service.pretask_database_drop_create()
-        rki_service.pretask_database_drop_create()
+        rki_service_bundeslaender.pretask_database_drop_create()
         flash("task_admin_database_drop_create async started")
         task_admin_database_drop_create.apply_async()
     app.logger.info("url_admin_database_drop [done]")

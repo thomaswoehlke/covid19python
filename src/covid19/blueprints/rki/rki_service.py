@@ -22,7 +22,7 @@ class RkiBundeslaenderService:
         app.logger.info(" RKI Service [ready]")
 
     def pretask_database_drop_create(self):
-        flash("rki_service.run_download started")
+        flash("rki_service_bundeslaender.run_download started")
         self.service_download.download_file()
         return self
 
@@ -127,7 +127,7 @@ class RkiLandkreiseService:
         app.logger.info(" RKI Service [ready]")
 
     def pretask_database_drop_create(self):
-        flash("rki_service.run_download started")
+        flash("rki_service_bundeslaender.run_download started")
         self.service_download.download_file()
         return self
 

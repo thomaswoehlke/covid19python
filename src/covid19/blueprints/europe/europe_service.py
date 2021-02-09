@@ -37,33 +37,36 @@ class EuropeService:
         self.europe_service_import.import_datafile_to_db()
         return self
 
-    def run_update_dimension_tables_only(self):
-        # TODO: #112 implement EuropeService.run_update_dimension_tables_only
-        # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-        return self
-
-    def run_update_fact_table_incremental_only(self):
-        # TODO: #113 implement EuropeService.run_update_fact_table_incremental_only
-        # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-        return self
-
-    def run_update_fact_table_initial_only(self):
-        # TODO: #114 implement EuropeService.run_update_fact_table_initial_only
-        # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-        return self
-
-    def run_update_star_schema_incremental(self):
-        # TODO: #115 implement EuropeService.run_update_star_schema_incremental
-        # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-        return self
-
-    def run_update_star_schema_initial(self):
-        # TODO: #116 implement EuropeService.run_update_star_schema_initial
-        # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-        return self
-
+    # TODO: #112 implement EuropeService.run_update_dimension_tables_only
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-    def download(self):
+    def run_update_dimension_tables_only(self):
+        return self
+
+    # TODO: #113 implement EuropeService.run_update_fact_table_incremental_only
+    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
+    def run_update_fact_table_incremental_only(self):
+        return self
+
+
+    # TODO: #114 implement EuropeService.run_update_fact_table_initial_only
+    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
+    def run_update_fact_table_initial_only(self):
+        return self
+
+    # TODO: #115 implement EuropeService.run_update_star_schema_incremental
+    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
+    def run_update_star_schema_incremental(self):
+        return self
+
+
+    # TODO: #116 implement EuropeService.run_update_star_schema_initial
+    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
+    def run_update_star_schema_initial(self):
+        return self
+
+    # TODO remove DEPRECATED
+    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
+    def download_DEPRECATED(self):
         app.logger.info(" download [begin]")
         app.logger.info("------------------------------------------------------------")
         self.europe_service_download.download()
@@ -71,8 +74,9 @@ class EuropeService:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO remove DEPRECATED
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-    def run_update_initial(self):
+    def run_update_initial_DEPRECATED(self):
         app.logger.info(" run update [begin]")
         app.logger.info("------------------------------------------------------------")
         self.europe_service_import.import_datafile_to_db()
@@ -81,8 +85,9 @@ class EuropeService:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    # TODO remove DEPRECATED
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-    def run_update_short(self):
+    def run_update_short_DEPRECATED(self):
         app.logger.info(" run update short [begin]")
         app.logger.info("------------------------------------------------------------")
         self.europe_service_import.import_datafile_to_db()

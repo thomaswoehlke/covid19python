@@ -14,7 +14,7 @@ from covid19.blueprints.admin.admin_service import AdminService
 common_service = CommonService(db)
 who_service = WhoService(db)
 europe_service = EuropeService(db)
-rki_service = RkiBundeslaenderService(db)
+rki_service_bundeslaender = RkiBundeslaenderService(db)
 vaccination_service = VaccinationService(db)
 admin_service = AdminService(db)
 db.create_all()

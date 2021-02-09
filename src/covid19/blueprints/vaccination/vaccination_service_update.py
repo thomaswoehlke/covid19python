@@ -5,7 +5,6 @@ from covid19.blueprints.vaccination.vaccination_model_import import VaccinationI
 from covid19.blueprints.vaccination.vaccination_model import VaccinationDateReported, VaccinationData
 
 
-# TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
 class VaccinationServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -16,7 +15,6 @@ class VaccinationServiceUpdate:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Update [ready] ")
 
-    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def __update_date_reported(self):
         app.logger.info(" __update_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -35,7 +33,6 @@ class VaccinationServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def __update_data_initial(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
@@ -134,73 +131,60 @@ class VaccinationServiceUpdate:
         return self
 
     # TODO: remove DEPRECATED
-    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
-    def __update_data_short_DEPRECATED(self):
-        app.logger.info(" __update_data_initial [begin]")
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" ... ")
-        app.logger.info(" __update_data_initial [done]")
-        app.logger.info("------------------------------------------------------------")
-        return self
+    #def __update_data_short_DEPRECATED(self):
+    #    app.logger.info(" __update_data_initial [begin]")
+    #    app.logger.info("------------------------------------------------------------")
+    #    app.logger.info(" ... ")
+    #    app.logger.info(" __update_data_initial [done]")
+    #    app.logger.info("------------------------------------------------------------")
+    #    return self
 
     # TODO: remove DEPRECATED
-    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
-    def update_db_initial_DEPRECATED(self):
-        app.logger.info(" update_db_initial [begin]")
-        app.logger.info("------------------------------------------------------------")
-        VaccinationDateReported.remove_all()
-        VaccinationData.remove_all()
-        self.__update_date_reported()
-        self.__update_data_initial()
-        app.logger.info(" update_db_initial [done]")
-        app.logger.info("------------------------------------------------------------")
-        return self
+    #def update_db_initial_DEPRECATED(self):
+    #    app.logger.info(" update_db_initial [begin]")
+    #    app.logger.info("------------------------------------------------------------")
+    #    VaccinationDateReported.remove_all()
+    #    VaccinationData.remove_all()
+    #    self.__update_date_reported()
+    #    self.__update_data_initial()
+    #    app.logger.info(" update_db_initial [done]")
+    #    app.logger.info("------------------------------------------------------------")
+    #    return self
 
     # TODO: remove DEPRECATED
-    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
-    def update_db_short_DEPRECATED(self):
-        app.logger.info(" update_db_short [begin]")
-        app.logger.info("------------------------------------------------------------")
-        VaccinationDateReported.remove_all()
-        VaccinationData.remove_all()
-        self.__update_date_reported()
-        self.__update_data_short_DEPRECATED()
-        app.logger.info(" update_db_short [done]")
-        app.logger.info("------------------------------------------------------------")
-        return self
+    #def update_db_short_DEPRECATED(self):
+    #    app.logger.info(" update_db_short [begin]")
+    #    app.logger.info("------------------------------------------------------------")
+    #    VaccinationDateReported.remove_all()
+    #    VaccinationData.remove_all()
+    #    self.__update_date_reported()
+    #    self.__update_data_short_DEPRECATED()
+    #    app.logger.info(" update_db_short [done]")
+    #    app.logger.info("------------------------------------------------------------")
+    #    return self
 
     # Delegate
     def __update_dimension_table_date_reported(self):
         self.__update_date_reported()
         return self
 
-    # TODO: #101 implement VaccinationServiceUpdate.update_dimension_tables_only
-    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021s
     def update_dimension_tables_only(self):
         self.__update_dimension_table_date_reported()
         return self
 
-    # TODO: #102 implement VaccinationServiceUpdate.update_fact_table_incremental_only
-    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def update_fact_table_incremental_only(self):
         self.__update_data_incremental()
         return self
 
-    # TODO: #103 implement VaccinationServiceUpdate.update_fact_table_initial_only
-    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def update_fact_table_initial_only(self):
         self.__update_data_initial()
         return self
 
-    # TODO: #104 implement VaccinationServiceUpdate.update_star_schema_incremental
-    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def update_star_schema_incremental(self):
         self.__update_dimension_table_date_reported()
         self.__update_data_incremental()
         return self
 
-    # TODO: #105 implement VaccinationServiceUpdate.update_star_schema_initial
-    # TODO: #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
     def update_star_schema_initial(self):
         VaccinationData.remove_all()
         VaccinationDateReported.remove_all()

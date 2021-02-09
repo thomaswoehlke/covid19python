@@ -95,9 +95,9 @@ class CommonDateReported(db.Model):
             .one()
 
     @classmethod
-    def find_by_date_reported(cls, i_date_reported):
+    def find_by_id(cls, other_id):
         return db.session.query(cls)\
-            .filter(cls.date_reported == i_date_reported)\
+            .filter(cls.id == other_id)\
             .one_or_none()
 
     @classmethod
@@ -107,9 +107,9 @@ class CommonDateReported(db.Model):
             .one()
 
     @classmethod
-    def find_by_year_week(cls, year_week):
+    def find_by_date_reported(cls, i_date_reported):
         return db.session.query(cls)\
-            .filter(cls.year_week == year_week)\
+            .filter(cls.date_reported == i_date_reported)\
             .one_or_none()
 
     @classmethod
@@ -118,6 +118,11 @@ class CommonDateReported(db.Model):
             .filter(cls.year_week == year_week)\
             .one()
 
+    @classmethod
+    def find_by_year_week(cls, year_week):
+        return db.session.query(cls)\
+            .filter(cls.year_week == year_week)\
+            .one_or_none()
 
 class CommonRegion(db.Model):
     __tablename__ = 'common_region'
@@ -159,6 +164,18 @@ class CommonRegion(db.Model):
     def get_by_id(cls, other_id):
         return db.session.query(cls)\
             .filter(cls.id == other_id)\
+            .one()
+
+    @classmethod
+    def find_by_id(cls, other_id):
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one_or_none()
+
+    @classmethod
+    def get_by_region(cls, i_who_region):
+        return db.session.query(cls)\
+            .filter(cls.region == i_who_region)\
             .one()
 
     @classmethod

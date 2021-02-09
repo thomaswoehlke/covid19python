@@ -21,8 +21,9 @@ app_europe = Blueprint('europe', __name__, template_folder='templates')
 ##################################################################################################################
 
 
+# TODO remove DEPRECATED
 @celery.task(bind=True)
-def task_europe_update_initial(self):
+def task_europe_update_initial_DEPRECATED(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
@@ -34,14 +35,15 @@ def task_europe_update_initial(self):
     return result
 
 
+# TODO remove DEPRECATED
 @celery.task(bind=True)
-def task_europe_update_short(self):
+def task_europe_update_short_DEPRECATED(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_short [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.run_update_short()
+    europe_service.run_update_short_DEPRECATED()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_short)"
     return result
@@ -54,7 +56,7 @@ def task_europe_download_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_download_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_download_only() # TODO
+    europe_service.task_download_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_download_only)"
     return result
@@ -67,7 +69,7 @@ def task_europe_import_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_import_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_import_only() # TODO
+    europe_service.task_import_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_import_only)"
     return result
@@ -80,7 +82,7 @@ def task_europe_update_dimension_tables_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_dimension_tables_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_dimension_tables_only() # TODO
+    europe_service.task_update_dimension_tables_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_dimension_tables_only)"
     return result
@@ -93,7 +95,7 @@ def task_europe_update_fact_table_incremental_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_fact_table_incremental_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_fact_table_incremental_only() # TODO
+    europe_service.task_update_fact_table_incremental_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_fact_table_incremental_only)"
     return result
@@ -106,7 +108,7 @@ def task_europe_update_fact_table_initial_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_fact_table_initial_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_fact_table_initial_only() # TODO
+    europe_service.task_update_fact_table_initial_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_fact_table_initial_only)"
     return result
@@ -119,7 +121,7 @@ def task_europe_update_fact_table_initial_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_fact_table_initial_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_fact_table_initial_only() # TODO
+    europe_service.task_update_fact_table_initial_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_fact_table_initial_only)"
     return result
@@ -132,7 +134,7 @@ def task_europe_update_star_schema_incremental(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_star_schema_incremental [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_star_schema_incremental() # TODO
+    europe_service.task_update_star_schema_incremental() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_star_schema_incremental)"
     return result
@@ -145,7 +147,7 @@ def task_europe_update_star_schema_initial(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_europe_update_star_schema_initial [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_europe_update_star_schema_initial()  # TODO
+    europe_service.task_update_star_schema_initial()  # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_europe_update_star_schema_initial)"
     return result
@@ -296,66 +298,68 @@ def url_europe_country_germany(page=1):
         page_info=page_info)
 
 
+# TODO remove DEPRECATED
 @app_europe.route('/update/initial')
-def url_europe_task_europe_update_data():
-    europe_service.download()
-    task_europe_update_initial.apply_async()
+def url_europe_task_update_data_DEPRECATED():
+    europe_service.download_DEPRECATED()
+    task_europe_update_initial_DEPRECATED.apply_async()
     flash("task_europe_update_initial started")
     return redirect(url_for('url_europe_tasks'))
 
 
+# TODO remove DEPRECATED
 @app_europe.route('/update/short')
-def url_europe_task_europe_update_data_short():
-    europe_service.download()
-    task_europe_update_short.apply_async()
+def url_europe_task_update_data_short_DEPRECATED():
+    europe_service.download_DEPRECATED()
+    task_europe_update_short_DEPRECATED.apply_async()
     flash("task_europe_update_short started")
     return redirect(url_for('url_europe_tasks'))
 
 
+# TODO: #163 implement url_europe_task_update_star_schema_initial in europe_views.py
 @app_europe.route('/task/update/star_schema/initial')
 def url_europe_task_update_star_schema_initial():
     flash("url_europe_task_update_star_schema_initial started")
-    # TODO: #163 implement url_europe_task_update_star_schema_initial in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
+# TODO: #164 implement url_europe_task_update_starschema_incremental in europe_views.py
 @app_europe.route('/task/update/star_schema/incremental')
 def url_europe_task_update_starschema_incremental():
     flash("url_europe_task_update_starschema_incremental started")
-    # TODO: #164 implement url_europe_task_update_starschema_incremental in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
+# TODO: #165 implement url_europe_task_download_only in europe_views.py
 @app_europe.route('/task/download/only')
 def url_europe_task_download_only():
     flash("url_europe_task_download_only started")
-    # TODO: #165 implement url_europe_task_download_only in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
+# TODO: #166 implement url_europe_task_import_only in europe_views.py
 @app_europe.route('/task/import/only')
 def url_europe_task_import_only():
     flash("url_europe_task_import_only started")
-    # TODO: #166 implement url_europe_task_import_only in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
+# TODO: #167 implement url_europe_task_update_dimensiontables_only in europe_views.py
 @app_europe.route('/task/update/dimension-tables/only')
 def url_europe_task_update_dimensiontables_only():
     flash("url_europe_task_update_dimensiontables_only started")
-    # TODO: #167 implement url_europe_task_update_dimensiontables_only in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
+# TODO: #168 implement url_europe_task_update_facttable_incremental_only in europe_views.py
 @app_europe.route('/task/update/fact-table/incremental/only')
 def url_europe_task_update_facttable_incremental_only():
     flash("url_europe_task_update_facttable_incremental_only started")
-    # TODO: #168 implement url_europe_task_update_facttable_incremental_only in europe_views.py
     return redirect(url_for('url_europe_tasks'))
 
 
+# TODO: #169 implement url_europe_task_update_facttable_initial_only in europe_views.py
 @app_europe.route('/task/update/fact-table/initial/only')
 def url_europe_task_update_facttable_initial_only():
     flash("url_europe_task_update_facttable_initial_only started")
-    # TODO: #169 implement url_europe_task_update_facttable_initial_only in europe_views.py
     return redirect(url_for('url_europe_tasks'))

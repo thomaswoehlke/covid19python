@@ -6,7 +6,7 @@ from database import app
 from covid19.services import vaccination_service
 from covid19.workers import celery
 
-from covid19.blueprints.vaccination.vaccination_model import VaccinationData
+from covid19.blueprints.vaccination.vaccination_model import VaccinationData, VaccinationDateReported
 from covid19.blueprints.vaccination.vaccination_model_import import VaccinationImport
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
@@ -128,27 +128,25 @@ def url_vaccination_tasks():
         page_info=page_info)
 
 
-@app_vaccination.route('/tmp/timeline/germany/page/<int:page>')
-@app_vaccination.route('/tmp/timeline/germany')
-def url_vaccination_timeline_germany_tmp(page=1):
-    page_info = ApplicationPage('Vaccination', "Germany Timeline")
+@app_vaccination.route('/imported/page/<int:page>')
+@app_vaccination.route('/imported')
+def url_vaccination_imported(page=1):
+    page_info = ApplicationPage('Vaccination', "Data: Germany Timeline imported")
     page_data = VaccinationImport.get_all_as_page(page)
-    #page_data_tmp = VaccinationData.get_all_as_page(page)
     return render_template(
-        'vaccination/vaccination_timeline_germany.html',
+        'vaccination/vaccination_imported.html',
         page_data=page_data,
         page_info=page_info)
 
 
-@app_vaccination.route('/timeline/germany/page/<int:page>')
-@app_vaccination.route('/timeline/germany')
-def url_vaccination_timeline_germany(page=1):
-    page_info = ApplicationPage('Vaccination', "Germany Timeline")
-    #page_data = VaccinationImport.get_all_as_page(page)
-    page_data_tmp = VaccinationData.get_all_as_page(page)
+@app_vaccination.route('/data/page/<int:page>')
+@app_vaccination.route('/data')
+def url_vaccination_data(page=1):
+    page_info = ApplicationPage('Vaccination', "Data: Germany Timeline")
+    page_data = VaccinationData.get_all_as_page(page)
     return render_template(
-        'vaccination/vaccination_timeline_germany.html',
-        page_data=page_data_tmp,
+        'vaccination/vaccination_data.html',
+        page_data=page_data,
         page_info=page_info)
 
 
@@ -156,30 +154,26 @@ def url_vaccination_timeline_germany(page=1):
 @app_vaccination.route('/date-reported/all')
 def url_vaccination_datereported_all(page=1):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
-    #page_data = VaccinationImport.get_all_as_page(page)
-    page_data_tmp = VaccinationData.get_all_as_page(page)
+    page_data = VaccinationDateReported.get_all_as_page(page)
     return render_template(
         'vaccination/vaccination_timeline_germany.html',
-        page_data=page_data_tmp,
+        page_data=page_data,
         page_info=page_info)
 
 
-@app_vaccination.route('/date-reported/<int:vaccination_data_id>/page/<int:page>')
-@app_vaccination.route('/date-reported/<int:vaccination_data_id>')
-def url_vaccination_datereported_one(page=1, vaccination_data_id=0):
+@app_vaccination.route('/date-reported/<int:vaccination_date_reported_id>/page/<int:page>')
+@app_vaccination.route('/date-reported/<int:vaccination_date_reported_id>')
+def url_vaccination_datereported_one(page=1, vaccination_date_reported_id=0):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
-    #page_data = VaccinationImport.get_all_as_page(page)
-    page_data_tmp = VaccinationData.get_all_as_page(page)
+    datereported = VaccinationDateReported.find_by_id(vaccination_date_reported_id)
+    page_data = VaccinationData.find_by_datum(page, datereported)
     return render_template(
         'vaccination/vaccination_timeline_germany.html',
-        page_data=page_data_tmp,
+        datereported=datereported,
+        page_data=page_data,
         page_info=page_info)
 
 
-# TODO: #106 add Tasks and URLs for starting Tasks to vaccination_views
-
-
-# TODO: #172 implement url_vaccination_task_import_only in vaccination_views.py
 @app_vaccination.route('/task/download/only')
 def url_vaccination_task_download_only():
     flash("url_vaccination_task_download_only started")
@@ -187,7 +181,6 @@ def url_vaccination_task_download_only():
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
 
-# TODO: #173 implement url_vaccination_task_import_only in vaccination_views.py
 @app_vaccination.route('/task/import/only')
 def url_vaccination_task_import_only():
     flash("url_vaccination_task_import_only started")
@@ -195,7 +188,6 @@ def url_vaccination_task_import_only():
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
 
-# TODO: #174 implement url_vaccination_task_update_dimensiontables_only in vaccination_views.py
 @app_vaccination.route('/task/update/dimension-tables/only')
 def url_vaccination_task_update_dimensiontables_only():
     flash("url_vaccination_task_update_dimensiontables_only started")
@@ -203,7 +195,6 @@ def url_vaccination_task_update_dimensiontables_only():
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
 
-# TODO: #175 implement url_vaccination_task_update_facttable_incremental_only in vaccination_views.py
 @app_vaccination.route('/task/update/fact-table/incremental/only')
 def url_vaccination_task_update_facttable_incremental_only():
     flash("url_vaccination_task_update_facttable_incremental_only started")
@@ -211,7 +202,6 @@ def url_vaccination_task_update_facttable_incremental_only():
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
 
-# TODO: #176 implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
 @app_vaccination.route('/task/update/fact-table/initial/only')
 def url_vaccination_task_update_facttable_initial_only():
     flash("url_vaccination_task_update_facttable_initial_only started")
@@ -219,7 +209,6 @@ def url_vaccination_task_update_facttable_initial_only():
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
 
-# TODO: #170 implement url_vaccination_task_update_starschema_initial in vaccination_views.py
 @app_vaccination.route('/task/update/star_schema/initial')
 def url_vaccination_task_update_starschema_initial():
     flash("url_vaccination_task_update_star_schemainitial started")
@@ -228,7 +217,6 @@ def url_vaccination_task_update_starschema_initial():
     return redirect(url_for('vaccination.url_vaccination_tasks'))
 
 
-# TODO: #171 implement url_vaccination_task_update_starschema_incremental in vaccination_views.py
 @app_vaccination.route('/task/update/star_schema/incremental')
 def url_vaccination_task_update_starschema_incremental():
     flash("url_vaccination_task_update_starschema_incremental started")

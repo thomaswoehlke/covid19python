@@ -45,8 +45,6 @@ class VaccinationDateReported(CommonDateReported):
         )
 
 
-# TODO: #86 rename VaccinationData to VaccinationData
-# TODO: #162 rename table vaccination_germany_timeline into vaccination_data
 class VaccinationData(db.Model):
     __tablename__ = 'vaccination_data'
 

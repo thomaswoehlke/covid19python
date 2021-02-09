@@ -1,11 +1,6 @@
-from sqlalchemy.orm import defer
-from sqlalchemy.orm import undefer
-
 from database import db, ITEMS_PER_PAGE
 
 
-# TODO: #88 rename VaccinationImport to VaccinationImport
-# TODO: #89 change tablename from vaccination_germany_timeline_import to vaccination_import
 class VaccinationImport(db.Model):
     __tablename__ = 'vaccination_import'
 
@@ -122,5 +117,4 @@ class VaccinationImport(db.Model):
         new_dates = []
         for item, in db.session.execute(sql_query):
             new_dates.append(item)
-            #new_dates.append(item['date_reported'])
         return new_dates

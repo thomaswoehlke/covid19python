@@ -125,6 +125,11 @@
 
 ### 0.0.15 Release
 * -------------------------------------
+* Fixed #88 rename VaccinationImport to VaccinationImport
+* Fixed #89 change tablename from vaccination_germany_timeline_import to vaccination_import
+* Fixed #86 rename VaccinationData to VaccinationData
+* Fixed #162 rename table vaccination_germany_timeline into vaccination_data
+* -------------------------------------
 * Fixed #170 implement url_vaccination_task_update_star_schema_initial in vaccination_views.py
 * Fixed #171 implement url_vaccination_task_update_starschema_incremental in vaccination_views.py
 * Fixed #172 implement url_vaccination_task_import_only in vaccination_views.py
