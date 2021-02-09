@@ -2,13 +2,28 @@
                 <ul class="nav nav-tabs">
                 <!-- TODO: change URL to for_url() -->
                     <li class="nav-item">
-                        <a class="nav-link" href="/vaccination/info">Vaccination Info</a>
+                        <a class="nav-link"
+                           href="{{ url_for( 'vaccination.url_vaccination_info') }}">
+                            Vaccination Info
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/vaccination/tasks">Vaccination tasks</a>
+                        <a class="nav-link"
+                           href="{{ url_for( 'vaccination.url_vaccination_tasks') }}">
+                            Vaccination tasks
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/vaccination/timeline/germany">Vaccination :: Timeline :: Germany</a>
+                        <a class="nav-link"
+                           href="{{ url_for( 'vaccination.url_vaccination_imported') }}"
+                            Vaccination :: imported
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{{ url_for( 'vaccination.url_vaccination_data') }}"
+                            Vaccination :: Data
+                        </a>
                     </li>
                 </ul>
             </nav>
