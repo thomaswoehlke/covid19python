@@ -159,14 +159,8 @@
 * Fixed #87 change to: Vaccination.datum many to one VaccinationDateReported
 * Fixed #106 add Tasks and URLs for starting Tasks to vaccination_views
 * -------------------------------------  
-* Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
-* Issue #40 SQLalchemy instead of SQL: EuropeImport.get_date_rep()
-* Issue #41 SQLalchemy instead of SQL: EuropeImport.get_countries_of_continent()
-* Issue #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
-* Issue #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
-* Issue #107 SQLalchemy instead of SQL in: EuropeImport.get_countries_of_continent
-* Issue #109 SQLalchemy instead of SQL in: EuropeImport.get_date_rep
-* Issue #110 SQLalchemy instead of SQL in: EuropeImport.get_continent
+
+### 0.0.16 Release
 * -------------------------------------   
 * Issue #82 change to ORM ClassHierarchy
 * Issue #108 change to ORM ClassHierarchy in: EuropeImport.get_countries_of_continent  
@@ -193,7 +187,9 @@
 * Issue #167 implement url_europe_task_update_dimensiontables_only in europe_views.py
 * Issue #168 implement url_europe_task_update_facttable_incremental_only in europe_views.py
 * Issue #169 implement url_europe_task_update_facttable_initial_only in europe_views.py
-* -------------------------------------  
+
+
+### 0.0.17 Release
 * Issue #146 add Tasks and URLs for starting Tasks to rki_views
 * Issue #140 move WhoImport to RKI in: rk_service_import.py
 * Issue #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
@@ -223,11 +219,18 @@
 * Issue #153 refactor RkiBundeslaenderServiceUpdate.update_db
 * Issue #154 refactor RkiBundeslaenderServiceUpdate.update_db_short
 * Issue #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
-* -------------------------------------  
-* Issue #156 run_web.sh
-* Issue #157 run_worker.sh
 
-### 0.0.16 Release
+### 0.0.18 Release
+* Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
+* Issue #40 SQLalchemy instead of SQL: EuropeImport.get_date_rep()
+* Issue #41 SQLalchemy instead of SQL: EuropeImport.get_countries_of_continent()
+* Issue #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
+* Issue #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
+* Issue #107 SQLalchemy instead of SQL in: EuropeImport.get_countries_of_continent
+* Issue #109 SQLalchemy instead of SQL in: EuropeImport.get_date_rep
+* Issue #110 SQLalchemy instead of SQL in: EuropeImport.get_continent
+
+### 0.0.198 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
 * Issue #59 frontend: add correct breadcrumb to every page
 * Issue #60 frontend: better design for tables
@@ -235,10 +238,12 @@
 * Issue #62 frontend: better design for pages
 * Issue #63 frontend: add footer design
 
-### 0.0.17 Release
+### 0.0.20 Release
 * Issue #28 /admin/database/import
 * Issue #66 frontend: migrate to Bootstrap Theme sb-admin-angular
 * Issue #158 load Bootstrap-Template sb-admin-angular into static
 
-### 0.0.18 Release
-* 
+### 0.0.21 Release
+* -------------------------------------  
+* Issue #156 run_web.sh
+* Issue #157 run_worker.sh
