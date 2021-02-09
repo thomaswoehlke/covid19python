@@ -176,7 +176,7 @@ def url_vaccination_timeline_germany(page=1):
 
 @app_vaccination.route('/date-reported/all/page/<int:page>')
 @app_vaccination.route('/date-reported/all')
-def url_vaccination_timeline_germany(page=1):
+def url_vaccination_datereported_all(page=1):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
     #page_data = VaccinationImport.get_all_as_page(page)
     page_data_tmp = VaccinationData.get_all_as_page(page)
@@ -188,7 +188,7 @@ def url_vaccination_timeline_germany(page=1):
 
 @app_vaccination.route('/date-reported/<int:vaccination_data_id>/page/<int:page>')
 @app_vaccination.route('/date-reported/<int:vaccination_data_id>')
-def url_vaccination_timeline_germany(page=1, vaccination_data_id=0):
+def url_vaccination_datereported_one(page=1, vaccination_data_id=0):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
     #page_data = VaccinationImport.get_all_as_page(page)
     page_data_tmp = VaccinationData.get_all_as_page(page)
