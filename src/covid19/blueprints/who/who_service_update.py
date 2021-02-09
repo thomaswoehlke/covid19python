@@ -117,10 +117,10 @@ class WhoServiceUpdate:
                 i += 1
                 k += 1
                 if i % 500 == 0:
-                    app.logger.debug(" update WHO short ... "+str(i)+" rows")
+                    app.logger.debug(" update WHO incremental ... "+str(i)+" rows")
             db.session.commit()
-            app.logger.info(" update WHO short ... " + str(i) + " rows [" + str(my_date) + "] (" + str(k) + ")")
-        app.logger.info(" update WHO short :  "+str(i)+" rows total")
+            app.logger.info(" update WHO incremental ... " + str(i) + " rows [" + str(my_date) + "] (" + str(k) + ")")
+        app.logger.info(" update WHO incremental :  "+str(i)+" rows total")
         app.logger.info(" __update_fact_tables_incremental [done]")
         app.logger.info("------------------------------------------------------------")
         return self
