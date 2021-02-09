@@ -213,13 +213,13 @@
 * Issue #168 implement url_europe_task_update_facttable_incremental_only in europe_views.py
 * Issue #169 implement url_europe_task_update_facttable_initial_only in europe_views.py
 * -------------------------------------  
-* Issue #170 implement url_vaccination_task_update_star_schema_initial in vaccination_views.py
-* Issue #171 implement url_vaccination_task_update_starschema_incremental in vaccination_views.py
-* Issue #172 implement url_vaccination_task_import_only in vaccination_views.py
-* Issue #173 implement url_vaccination_task_import_only in vaccination_views.py
-* Issue #174 implement url_vaccination_task_update_dimensiontables_only in vaccination_views.py
-* Issue #175 implement url_vaccination_task_update_facttable_incremental_only in vaccination_views.py
-* Issue #176 implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
+* Fixed #170 implement url_vaccination_task_update_star_schema_initial in vaccination_views.py
+* Fixed #171 implement url_vaccination_task_update_starschema_incremental in vaccination_views.py
+* Fixed #172 implement url_vaccination_task_import_only in vaccination_views.py
+* Fixed #173 implement url_vaccination_task_import_only in vaccination_views.py
+* Fixed #174 implement url_vaccination_task_update_dimensiontables_only in vaccination_views.py
+* Fixed #175 implement url_vaccination_task_update_facttable_incremental_only in vaccination_views.py
+* Fixed #176 implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
 ss
 ### 0.0.16 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
