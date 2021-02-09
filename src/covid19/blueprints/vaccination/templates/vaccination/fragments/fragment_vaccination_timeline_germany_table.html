@@ -7,6 +7,7 @@
         <tbody>
         {% for vaccination_germany_timeline in page_data.items %}
             <tr>
+                <!-- TODO: change URL to for_url() -->
                 <td class="text-center table-dark" nowrap>{{ vaccination_germany_timeline.datum }}</td>
 
                 <td class="text-right table-secondary">{{ vaccination_germany_timeline.dosen_differenz_zum_vortag }}</td>

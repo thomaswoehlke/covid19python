@@ -1,30 +1,3 @@
-    <!--
-    <table class="table table-hover table-striped table-dark">
-        <thead class="table-secondary">
-            <tr>
-                <th scope="col">date reported</th>
-                <th scope="col">year week</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for europe_date_reported in page_data.items %}
-            <tr>
-                <td>
-                    <a href="/europe/date_reported/{{ europe_date_reported.id }}">
-                        {{ europe_date_reported.get_name_for_datum()  }}
-                    </a>
-                </td>
-                <td>
-                    <a href="/europe/date_reported/{{ europe_date_reported.id }}">
-                        {{ europe_date_reported.year_week }}
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    -->
-
     <table class="table table-hover table-striped table-dark">
         <thead class="table-secondary">
             <tr>
@@ -37,6 +10,7 @@
         <tbody>
         {% for europe_date_reported in page_data.items %}
             <tr>
+                <!-- TODO: change URL to for_url() -->
                 <td class="text-right">
                     {{ europe_date_reported.get_name_for_weekday() }}
                 </td>
