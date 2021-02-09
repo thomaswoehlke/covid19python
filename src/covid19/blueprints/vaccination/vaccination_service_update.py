@@ -20,6 +20,8 @@ class VaccinationServiceUpdate:
     def __update_date_reported(self):
         app.logger.info(" __update_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
+        VaccinationData.remove_all()
+        VaccinationDateReported.remove_all()
         date_reported_list = VaccinationImport.get_date_reported_as_array()
         i = 0
         for one_date_reported in date_reported_list:

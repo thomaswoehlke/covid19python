@@ -145,18 +145,18 @@
 * Issue #98 refactor VaccinationServiceDownload to new method scheme introduced 07.02.2021
 * Issue #99 refactor VaccinationServiceImport to new method scheme introduced 07.02.2021
 * Issue #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
-* Issue #91 implement VaccinationService.run_download_only
-* Issue #92 implement VaccinationService.run_import_only
-* Issue #93 implement VaccinationService.run_update_dimension_tables_only
-* Issue #94 implement VaccinationService.run_update_fact_table_incremental_only
+* Fixed #91 implement VaccinationService.run_download_only
+* Fixed #92 implement VaccinationService.run_import_only
+* Fixed #93 implement VaccinationService.run_update_dimension_tables_only
+* Fixed #94 implement VaccinationService.run_update_fact_table_incremental_only
 * Fixed #95 implement VaccinationService.run_update_fact_table_initial_only
-* Issue #96 implement VaccinationService.run_update_star_schema_incremental
-* Issue #97 implement VaccinationService.run_update_star_schema_initial
-* Issue #101 implement VaccinationServiceUpdate.update_dimension_tables_only
-* Issue #102 implement VaccinationServiceUpdate.update_fact_table_incremental_only
-* Issue #103 implement VaccinationServiceUpdate.update_fact_table_initial_only
-* Issue #104 implement VaccinationServiceUpdate.update_star_schema_incremental
-* Issue #105 implement VaccinationServiceUpdate.update_star_schema_initial
+* Fixed #96 implement VaccinationService.run_update_star_schema_incremental
+* Fixed #97 implement VaccinationService.run_update_star_schema_initial
+* Fixed #101 implement VaccinationServiceUpdate.update_dimension_tables_only
+* Fixed #102 implement VaccinationServiceUpdate.update_fact_table_incremental_only
+* Fixed #103 implement VaccinationServiceUpdate.update_fact_table_initial_only
+* Fixed #104 implement VaccinationServiceUpdate.update_star_schema_incremental
+* Fixed #105 implement VaccinationServiceUpdate.update_star_schema_initial
 * -------------------------------------   
 * Issue #111 refactor to new method scheme itroduced 07.02.2021
 * Issue #112 implement EuropeService.run_update_dimension_tables_only
