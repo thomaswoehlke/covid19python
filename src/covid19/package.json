@@ -1,0 +1,48 @@
+{
+    "name": "covid19static",
+    "version": "0.0.16",
+    "description": "Covid19 Data Aggregation - also a Project to learn Python Flask, SQLAlchemy, Celery et al.",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thomaswoehlke/covid19python/covid19/static"
+    },
+    "keywords": [
+        "virus",
+        "pandemic",
+        "covid19",
+        "data",
+        "statistic",
+        "who",
+        "rki",
+        "python",
+        "flask",
+        "sqlalchemy",
+        "postgresql"
+    ],
+    "author": "thomaswoehlke",
+    "license": "GPL-3.0-or-later",
+    "scripts": {
+        "build": "npm run build:pug && npm run ng -- build --prod --build-optimizer=true --statsJson=true && npm run build:version",
+        "build:debug": "npm run build:pug && npm run ng -- build --prod --source-map --build-optimizer=true --statsJson=true && npm run build:version",
+        "build:pug": "node scripts/build-pug.js",
+        "build:version": "node scripts/version.js",
+        "bundle-report": "webpack-bundle-analyzer dist/sb-admin-angular/stats-es2015.json",
+        "docker:build": "node scripts/docker/docker-build.js",
+        "docker:run": "node scripts/docker/docker-run.js",
+        "e2e": "npm run ng -- e2e",
+        "generate:component": "./node_modules/.bin/ng generate @sbpro/ng:component",
+        "generate:directive": "./node_modules/.bin/ng generate @sbpro/ng:directive",
+        "generate:module": "./node_modules/.bin/ng generate @sbpro/ng:module",
+        "generate:service": "./node_modules/.bin/ng generate @sbpro/ng:service",
+        "lint:fix": "npm run ng -- lint --fix",
+        "lint": "npm run ng -- lint",
+        "ng": "cross-env NODE_OPTIONS=--max_old_space_size=2048 ./node_modules/.bin/ng",
+        "serve": "./node_modules/.bin/static-server dist/sb-admin-angular",
+        "start": "node scripts/start.js",
+        "test": "npm run ng -- test"
+    },
+    "private": true,
+    "dependencies": {},
+    "devDependencies": {}
+}

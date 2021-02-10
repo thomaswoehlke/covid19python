@@ -7,7 +7,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "test",
-    "postinstall": "cd src/covid19/static && npm install && cd ../../.."
+    "postinstall": "cd src/covid19 && npm install && cd ../.."
   },
   "repository": {
     "type": "git",
