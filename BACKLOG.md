@@ -193,7 +193,7 @@
 * Issue #146 add Tasks and URLs for starting Tasks to rki_views
 * Issue #140 move WhoImport to RKI in: rk_service_import.py
 * Issue #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
-* Issue #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
+* Fixed #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
 * Issue #125 implement RkiLandkreise
 * Issue #126 implement RkiBundeslaenderImport
 * Issue #127 implement RkiBundeslaenderImport.get_dates_reported
