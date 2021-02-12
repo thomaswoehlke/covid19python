@@ -41,7 +41,7 @@
         "serve": "./node_modules/.bin/static-server dist/sb-admin-angular",
         "start": "node scripts/start.js",
         "test": "npm run ng -- test",
-        "postinstall": "./node_modules/.bin/gulp gulpfile.js"
+        "postinstall": "./node_modules/.bin/gulp"
     },
     "private": true,
     "dependencies": {
