@@ -190,14 +190,14 @@
 
 
 ### 0.0.17 Release
-* Issue #146 add Tasks and URLs for starting Tasks to rki_views
-* Fixed #140 move WhoImport to RKI in: rk_service_import.py
-* Issue #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
 * Fixed #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
-* Issue #125 implement RkiLandkreise
-* Issue #126 implement RkiBundeslaenderImport
-* Issue #127 implement RkiBundeslaenderImport.get_dates_reported
 * Fixed #128 add fields from csv to RkiLandkreiseImport
+* Fixed #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
+* Fixed #140 move WhoImport to RKI in: rk_service_import.py
+* Fixed #125 implement RkiLandkreise
+* Fixed #126 implement RkiBundeslaenderImport
+* Issue #146 add Tasks and URLs for starting Tasks to rki_views  
+* Issue #127 implement RkiBundeslaenderImport.get_dates_reported
 * Issue #132 refactor RkiBundeslaenderService to new method scheme introduced 07.02.2021
 * Issue #133 implement RkiBundeslaenderService.task_database_drop_create
 * Issue #134 implement RkiBundeslaenderService.run_update_dimension_tables_only
