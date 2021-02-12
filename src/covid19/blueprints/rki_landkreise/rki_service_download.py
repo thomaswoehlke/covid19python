@@ -1,28 +1,23 @@
 import os
 import wget
-from datetime import date
 from flask import flash
 
 from database import app
 from covid19.blueprints.rki_landkreise.rki_service_config import RkiLandkreiseServiceConfig
 
 
-# RkiBundeslaenderServiceDownload
-# TODO: #123 split RkiService into two Services: RkiBundeslaenderService and RkiLandkreiseService
-# TODO: #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
 class RkiLandkreiseServiceDownload:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" RKI Service Download [init]")
+        app.logger.debug(" RKI Landkreise Service Download [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = RkiLandkreiseServiceConfig()
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" RKI Service Download [ready]")
+        app.logger.debug(" RKI Landkreise Service Download [ready]")
 
-    # TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
     def download_file(self):
-        app.logger.info(" download - RKI [begin] ")
+        app.logger.info(" RKI Landkreise Service Download - download_file begin] ")
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" FILE: "+self.cfg.cvsfile_name+" <- "+self.cfg.url_src)
         app.logger.info("------------------------------------------------------------")
@@ -48,7 +43,7 @@ class RkiLandkreiseServiceDownload:
             app.logger.error("############################################################")
         finally:
             app.logger.info("------------------------------------------------------------")
-            app.logger.info(" download - RKI [done] ")
+            app.logger.info(" RKI Landkreise Service Download - download_file [done] ")
             msg = "downloaded: " + self.cfg.cvsfile_name + " "
             flash(msg)
         return self

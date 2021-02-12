@@ -6,12 +6,11 @@ from covid19.blueprints.rki_landkreise.rki_service_import import RkiLandkreiseSe
 from covid19.blueprints.rki_landkreise.rki_service_update import RkiLandkreiseServiceUpdate
 
 
-# TODO: #123 split RkiService into two Services: RkiBundeslaenderService and RkiLandkreiseService
 # TODO: #132 refactor RkiBundeslaenderService to new method scheme introduced 07.02.2021
 class RkiLandkreiseService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" RKI Service [init]")
+        app.logger.debug(" RkiLandkreiseService [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
@@ -19,10 +18,10 @@ class RkiLandkreiseService:
         self.service_import = RkiLandkreiseServiceImport(database)
         self.service_update = RkiLandkreiseServiceUpdate(database)
         app.logger.debug("------------------------------------------------------------")
-        app.logger.info(" RKI Service [ready]")
+        app.logger.info(" RkiLandkreiseService [ready]")
 
     def pretask_database_drop_create(self):
-        flash("rki_service_bundeslaender.run_download started")
+        flash("RkiLandkreiseService.pretask_database_drop_create started")
         self.service_download.download_file()
         return self
 

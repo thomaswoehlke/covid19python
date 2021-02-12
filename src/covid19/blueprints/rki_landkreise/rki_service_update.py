@@ -1,13 +1,12 @@
 from database import db, app
 
-from covid19.blueprints.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry
-from covid19.blueprints.rki.rki_landkreise.rki_model import RkiLandkreise
-from covid19.blueprints.rki.rki_landkreise.rki_model_import import RkiLandkreiseImport
+from covid19.blueprints.common.common_model import RkiRegion, RkiDateReported, RkiCountry
+from covid19.blueprints.rki_landkreise.rki_model import RkiLandkreise
+from covid19.blueprints.rki_landkreise.rki_model_import import RkiLandkreiseImport
 
 rki_service_update = None
 
 
-# TODO: #123 split RkiService into two Services: RkiBundeslaenderService and RkiLandkreiseService
 class RkiLandkreiseServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
