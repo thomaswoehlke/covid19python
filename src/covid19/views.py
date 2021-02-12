@@ -5,7 +5,8 @@ from covid19.blueprints.common.common_model_transient import ApplicationPage
 import covid19.blueprints.who.who_views
 import covid19.blueprints.europe.europe_views
 import covid19.blueprints.vaccination.vaccination_views
-import covid19.blueprints.rki.rki_views
+import covid19.blueprints.rki_landkreise.rki_views
+import covid19.blueprints.rki_bundeslaender.rki_views
 import covid19.blueprints.admin.admin_views
 
 from covid19.blueprints.who.who_views import app_who
