@@ -14,7 +14,7 @@ from covid19.blueprints.common.common_model_transient import ApplicationPage
 drop_and_create_data_again = True
 
 
-app_rki_bundeslaender = Blueprint('rki/bundeslaender', __name__, template_folder='templates')
+app_rki_bundeslaender = Blueprint('/rki/bundeslaender', __name__, template_folder='templates')
 
 
 ##################################################################################################################
