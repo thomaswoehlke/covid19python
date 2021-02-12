@@ -7,6 +7,7 @@ from database import db, app
 
 # TODO: #140 move WhoImport to RKI in: rk_service_import.py
 from covid19.blueprints.who.who_model_import import WhoImport
+from covid19.blueprints.rki_landkreise.rki_service_config import RkiLandkreiseServiceConfig
 
 
 # TODO: #123 split RkiService into two Services: RkiBundeslaenderService and RkiLandkreiseService
@@ -16,11 +17,7 @@ class RkiLandkreiseServiceImport:
         app.logger.debug(" RKI Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
-        self.__who_cvsfile_name = "WHO-COVID-19-global-data.csv"
-        self.__src_who_cvsfile_name = "data"+os.sep+self.__who_cvsfile_name
-        self.__src_who_cvsfile_tmp_name = "data"+os.sep+"tmp_"+self.__who_cvsfile_name
-        self.__url_src_data = "https://covid19.who.int/"+self.__who_cvsfile_name
+        self.cfg = RkiLandkreiseServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Import [ready]")
 
@@ -28,7 +25,7 @@ class RkiLandkreiseServiceImport:
     def import_file(self):
         app.logger.info(" import RKI [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  "+self.__src_who_cvsfile_name)
+        app.logger.info(" FILE:  "+self.cfg.cvsfile_name)
         app.logger.info(" TABLE: who_global_data_import")
         app.logger.info("------------------------------------------------------------")
         row = None
@@ -39,7 +36,7 @@ class RkiLandkreiseServiceImport:
         try:
             # TODO: #140 move WhoImport to RKI in: rk_service_import.py
             WhoImport.remove_all()
-            with open(self.__src_who_cvsfile_name, newline='\n') as csv_file:
+            with open(self.cfg.cvsfile_name, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:

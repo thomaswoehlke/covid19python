@@ -6,7 +6,7 @@ import psycopg2
 from database import db, app
 
 # TODO: #140 move WhoImport to RKI in: rk_service_import.py
-from covid19.blueprints.who.who_model_import import WhoImport
+from covid19.blueprints.rki_bundeslaender.rki_model_import import RkiBundeslaenderImport
 
 
 # TODO: #123 split RkiService into two Services: RkiBundeslaenderService and RkiLandkreiseService
@@ -38,13 +38,13 @@ class RkiBundeslaenderServiceImport:
             keyDate_reported = 'ï»¿Date_reported'
         try:
             # TODO: #140 move WhoImport to RKI in: rk_service_import.py
-            WhoImport.remove_all()
+            RkiBundeslaenderImport.remove_all()
             with open(self.__src_who_cvsfile_name, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:
                     # TODO: #140 move WhoImport to RKI in: rk_service_import.py
-                    o = WhoImport(
+                    o = RkiBundeslaenderImport(
                         date_reported=row[keyDate_reported],
                         country_code=row['Country_code'],
                         country=row['Country'],

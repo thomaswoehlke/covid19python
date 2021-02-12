@@ -4,7 +4,7 @@ from sqlalchemy.orm import joinedload
 
 from database import db, ITEMS_PER_PAGE
 from covid19.blueprints.common.common_model import CommonDateReported, CommonRegion
-from covid19.blueprints.rki.rki_model import RkiDateReported, RkiRegion, RkiCountry
+from covid19.blueprints.common.common_model import RkiDateReported, RkiRegion, RkiCountry
 
 
 # TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
