@@ -13,7 +13,6 @@ class RkiLandkreiseService:
         app.logger.debug(" RkiLandkreiseService [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
         self.service_download = RkiLandkreiseServiceDownload(database)
         self.service_import = RkiLandkreiseServiceImport(database)
         self.service_update = RkiLandkreiseServiceUpdate(database)
