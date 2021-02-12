@@ -40,7 +40,8 @@
         "ng": "cross-env NODE_OPTIONS=--max_old_space_size=2048 ./node_modules/.bin/ng",
         "serve": "./node_modules/.bin/static-server dist/sb-admin-angular",
         "start": "node scripts/start.js",
-        "test": "npm run ng -- test"
+        "test": "npm run ng -- test",
+        "postinstall": "./node_modules/.bin/gulp gulpfile.js"
     },
     "private": true,
     "dependencies": {
@@ -60,7 +61,10 @@
         "@ng-bootstrap/ng-bootstrap": "9.0.2",
         "@prettier/plugin-pug": "1.13.3",
         "@schematics/angular": "^11.2.0",
+        "browser-sync": "^2.26.14",
         "chart.js": "^2.9.4",
+        "debug": "^4.3.1",
+        "loader-utils": "^1.1.0",
         "object-hash": "2.1.1",
         "plantuml-file-loader": "^2.0.0",
         "rxjs": "6.6.3",
@@ -68,7 +72,6 @@
         "uuid": "8.3.2",
         "webpack": "^4.0.0",
         "webpack-bundle-analyzer": "4.4.0",
-        "loader-utils": "^1.1.0",
         "yarn": "^1.22.10",
         "zone.js": "~0.10.3"
     },
