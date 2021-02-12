@@ -41,11 +41,26 @@ function modules() {
       './node_modules/popper.js/dist/**/*'
     ])
     .pipe(gulp.dest('./static/vendor/popper.js'));
-  var fortawesome = gulp.src([
-      './node_modules/popper.js/dist/**/*'
+  var fortawesome_svg_core = gulp.src([
+      './node_modules/@fortawesome/fontawesome-svg-core/**/*'
     ])
-    .pipe(gulp.dest('./static/vendor/popper.js'));
-  return merge(bootstrap, jquery, popper_js);
+    .pipe(gulp.dest('./static/vendor/fontawesome-svg-core'));
+  var fortawesome_brands_svg_icons = gulp.src([
+      './node_modules/@fortawesome/free-brands-svg-icons/**/*'
+    ])
+    .pipe(gulp.dest('./static/vendor/free-brands-svg-icons'));
+  var fortawesome_regular_svg_icons = gulp.src([
+      './node_modules/@fortawesome/free-regular-svg-icons/**/*'
+    ])
+    .pipe(gulp.dest('./static/vendor/free-regular-svg-icons'));
+  var fortawesome_solid_svg_icons = gulp.src([
+      './node_modules/@fortawesome/free-solid-svg-icons/**/*'
+    ])
+    .pipe(gulp.dest('./static/vendor/free-solid-svg-icons'));
+  return merge(
+      bootstrap, jquery, popper_js, fortawesome_svg_core,
+      fortawesome_brands_svg_icons, fortawesome_regular_svg_icons, fortawesome_solid_svg_icons
+  );
 }
 
 // Watch files
