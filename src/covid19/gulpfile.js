@@ -32,13 +32,13 @@ function clean() {
 function modules() {
   // Bootstrap
   var bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*')
-    .pipe(gulp.dest('./vendor/bootstrap'));
+    .pipe(gulp.dest('./static/vendor/bootstrap'));
   // jQuery
   var jquery = gulp.src([
       './node_modules/jquery/dist/*',
       '!./node_modules/jquery/dist/core.js'
     ])
-    .pipe(gulp.dest('./vendor/jquery'));
+    .pipe(gulp.dest('./static/vendor/jquery'));
   return merge(bootstrap, jquery);
 }
 
