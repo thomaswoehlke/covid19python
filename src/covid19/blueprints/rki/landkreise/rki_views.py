@@ -7,8 +7,8 @@ from covid19.blueprints.rki.rki_model import RkiDateReported, RkiRegion, RkiCoun
 from covid19.blueprints.rki.landkreise.rki_model import RkiLandkreise
 from covid19.blueprints.rki.landkreise.rki_model_import import RkiBundeslaenderImport
 
-from covid19.blueprints.rki.bundeslaender.rki_model import RkiBundeslaender
-from covid19.blueprints.rki.bundeslaender.rki_model_import import RkiLandkreiseImport
+from covid19.blueprints.rki.rki_bundeslaender.rki_model import RkiBundeslaender
+from covid19.blueprints.rki.rki_bundeslaender.rki_model_import import RkiLandkreiseImport
 
 
 from covid19.blueprints.common.common_model_transient import ApplicationPage

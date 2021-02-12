@@ -1,9 +1,9 @@
 from flask import flash
 
 from database import app
-from covid19.blueprints.rki.bundeslaender.rki_service_download import RkiBundeslaenderServiceDownload
-from covid19.blueprints.rki.bundeslaender.rki_service_import import RkiBundeslaenderServiceImport
-from covid19.blueprints.rki.bundeslaender.rki_service_update import RkiBundeslaenderServiceUpdate
+from covid19.blueprints.rki.rki_bundeslaender.rki_service_download import RkiBundeslaenderServiceDownload
+from covid19.blueprints.rki.rki_bundeslaender.rki_service_import import RkiBundeslaenderServiceImport
+from covid19.blueprints.rki.rki_bundeslaender.rki_service_update import RkiBundeslaenderServiceUpdate
 
 
 # TODO: #123 split RkiService into two Services: RkiBundeslaenderService and RkiLandkreiseService
