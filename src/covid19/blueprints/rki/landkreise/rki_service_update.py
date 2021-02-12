@@ -1,13 +1,14 @@
 from database import db, app
 
-from covid19.blueprints.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry, RkiBundeslaender
-from covid19.blueprints.rki.rki_model_import import RkiBundeslaenderImport, RkiLandkreiseImport
+from covid19.blueprints.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry
+from covid19.blueprints.rki.landkreise.rki_model import RkiLandkreise
+from covid19.blueprints.rki.landkreise.rki_model_import import RkiLandkreiseImport
 
 rki_service_update = None
 
 
 # TODO: #123 split RkiService into two Services: RkiBundeslaenderService and RkiLandkreiseService
-class RkiBundeslaenderServiceUpdate:
+class RkiLandkreiseServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Update [init]")
@@ -22,7 +23,7 @@ class RkiBundeslaenderServiceUpdate:
         app.logger.info(" update who_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        for i_date_reported, in RkiBundeslaenderImport.get_dates_reported():
+        for i_date_reported, in RkiLandkreiseImport.get_dates_reported():
             c = RkiDateReported.find_by_date_reported(i_date_reported)
             if c is None:
                 o = RkiDateReported.create_new_object_factory(my_date_rep=i_date_reported)
@@ -43,7 +44,7 @@ class RkiBundeslaenderServiceUpdate:
         app.logger.info(" update who_region [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
-        for i_who_region, in db.session.query(RkiBundeslaenderImport.who_region).distinct():
+        for i_who_region, in db.session.query(RkiLandkreiseImport.who_region).distinct():
             c = db.session.query(RkiRegion).filter(RkiRegion.region == i_who_region).count()
             if c == 0:
                 o = RkiRegion(region=i_who_region)
@@ -111,15 +112,15 @@ class RkiBundeslaenderServiceUpdate:
         #
         #
         i = 0
-        result = RkiBundeslaenderImport.get_all()
+        result = RkiLandkreiseImport.get_all()
         for result_item in result:
             my_country = countries[result_item.country_code]
             my_date_reported = dates_reported[result_item.date_reported]
-            result_who_global_data = RkiBundeslaender.find_one_or_none_by_date_and_country(
+            result_who_global_data = RkiLandkreise.find_one_or_none_by_date_and_country(
                 my_date_reported,
                 my_country)
             if result_who_global_data is None:
-                o = RkiBundeslaender(
+                o = RkiLandkreise(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
@@ -142,13 +143,13 @@ class RkiBundeslaenderServiceUpdate:
     def __update_who_global_data_short(self):
         app.logger.info(" update RKI short [begin]")
         app.logger.info("------------------------------------------------------------")
-        new_dates_reported_from_import = RkiBundeslaenderImport.get_new_dates_as_array()
+        new_dates_reported_from_import = RkiLandkreiseImport.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
             my_date = RkiDateReported.find_by_date_reported(my_date_reported)
-            for result_item in RkiBundeslaenderImport.get_for_one_day(my_date_reported):
+            for result_item in RkiLandkreiseImport.get_for_one_day(my_date_reported):
                 my_country = RkiCountry.find_by_country_code(result_item.country_code)
-                o = RkiBundeslaender(
+                o = RkiLandkreise(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
@@ -173,14 +174,14 @@ class RkiBundeslaenderServiceUpdate:
     def __update_who_global_data_initial(self):
         app.logger.info(" update RKI initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        RkiBundeslaender.remove_all()
-        new_dates_reported_from_import = RkiBundeslaenderImport.get_new_dates_as_array()
+        RkiLandkreise.remove_all()
+        new_dates_reported_from_import = RkiLandkreiseImport.get_new_dates_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
             my_date = RkiDateReported.find_by_date_reported(my_date_reported)
-            for result_item in RkiBundeslaenderImport.get_for_one_day(my_date_reported):
+            for result_item in RkiLandkreiseImport.get_for_one_day(my_date_reported):
                 my_country = RkiCountry.find_by_country_code(result_item.country_code)
-                o = RkiBundeslaender(
+                o = RkiLandkreise(
                     cases_new=int(result_item.new_cases),
                     cases_cumulative=int(result_item.cumulative_cases),
                     deaths_new=int(result_item.new_deaths),
