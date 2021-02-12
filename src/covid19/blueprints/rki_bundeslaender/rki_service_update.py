@@ -1,8 +1,8 @@
 from database import db, app
 
 from covid19.blueprints.rki.rki_model import RkiRegion, RkiDateReported, RkiCountry
-from covid19.blueprints.rki.rki_bundeslaender.rki_model import RkiBundeslaender
-from covid19.blueprints.rki.rki_bundeslaender.rki_model_import import RkiBundeslaenderImport
+from covid19.blueprints.rki_bundeslaender.rki_model import RkiBundeslaender
+from covid19.blueprints.rki_bundeslaender.rki_model_import import RkiBundeslaenderImport
 
 rki_service_update = None
 

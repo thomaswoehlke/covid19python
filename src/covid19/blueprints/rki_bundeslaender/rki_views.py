@@ -4,11 +4,11 @@ from sqlalchemy.exc import OperationalError
 from database import app
 
 from covid19.blueprints.rki.rki_model import RkiDateReported, RkiRegion, RkiCountry
-from covid19.blueprints.rki.rki_landkreise.rki_model import RkiLandkreise
-from covid19.blueprints.rki.rki_landkreise.rki_model_import import RkiBundeslaenderImport
+from covid19.blueprints.rki_landkreise.rki_model import RkiLandkreise
+from covid19.blueprints.rki_landkreise.rki_model_import import RkiLandkreiseImport
 
-from covid19.blueprints.rki.rki_bundeslaender.rki_model import RkiBundeslaender
-from covid19.blueprints.rki.rki_bundeslaender.rki_model_import import RkiLandkreiseImport
+from covid19.blueprints.rki_bundeslaender.rki_model import RkiBundeslaender
+from covid19.blueprints.rki_bundeslaender.rki_model_import import RkiBundeslaenderImport
 
 
 from covid19.blueprints.common.common_model_transient import ApplicationPage
@@ -16,7 +16,7 @@ from covid19.blueprints.common.common_model_transient import ApplicationPage
 drop_and_create_data_again = True
 
 
-app_rki = Blueprint('rki', __name__, template_folder='templates')
+app_rki_bundeslaender = Blueprint('rki/bundeslaender', __name__, template_folder='templates')
 
 
 ##################################################################################################################
