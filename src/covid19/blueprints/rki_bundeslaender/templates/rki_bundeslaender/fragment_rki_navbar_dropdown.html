@@ -5,10 +5,13 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <!-- TODO: change URL to for_url() -->
-                        <a class="dropdown-item" href="/rki/bundeslaender/info">RKI</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for('rki_bundeslaender.url_rki_info') }}">RKI Info</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/rki/bundeslaender/imported">RKI imported</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for('rki_bundeslaender.url_rki_bundeslaender_imported') }}">RKI imported</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/rki/bundeslaender/tasks">RKI Tasks</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for('rki_bundeslaender.url_rki_tasks') }}">RKI Tasks</a>
                     </div>
                 </li>
