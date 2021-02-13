@@ -1,7 +1,7 @@
 from database import app
 
 
-class CommonService:
+class ApplicationService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Common Service [init]")

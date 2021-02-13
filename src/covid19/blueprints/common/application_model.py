@@ -4,10 +4,10 @@ from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload
 
 
-class CommonDateReported(db.Model):
-    __tablename__ = 'common_date_reported'
+class ApplicationDateReported(db.Model):
+    __tablename__ = 'application_date_reported'
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_common_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_application_date_reported"),
     )
     #
     id = db.Column(db.Integer, primary_key=True)
@@ -53,7 +53,7 @@ class CommonDateReported(db.Model):
         else:
             my_year_week += "-"
         my_year_week += str(week_number)
-        return CommonDateReported(
+        return ApplicationDateReported(
             date_reported=my_date_rep,
             datum=my_datum,
             year=my_datum.year,
@@ -124,10 +124,11 @@ class CommonDateReported(db.Model):
             .filter(cls.year_week == year_week)\
             .one_or_none()
 
-class CommonRegion(db.Model):
-    __tablename__ = 'common_region'
+
+class ApplicationRegion(db.Model):
+    __tablename__ = 'application_region'
     __table_args__ = (
-        db.UniqueConstraint('region', name='uix_common_region_reported'),
+        db.UniqueConstraint('region', name='uix_application_region_reported'),
     )
     id = db.Column(db.Integer, primary_key=True)
     region = db.Column(db.String(255), nullable=False, unique=True)
@@ -185,7 +186,7 @@ class CommonRegion(db.Model):
             .one_or_none()
 
 
-class RkiDateReported(CommonDateReported):
+class RkiDateReported(ApplicationDateReported):
     __tablename__ = 'rki_date_reported'
     __mapper_args__ = {
         'concrete': True
@@ -226,7 +227,7 @@ class RkiDateReported(CommonDateReported):
         )
 
 
-class RkiRegion(CommonRegion):
+class RkiRegion(ApplicationRegion):
     __tablename__ = 'rki_region'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
