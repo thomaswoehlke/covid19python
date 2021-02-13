@@ -12,7 +12,10 @@ drop_and_create_data_again = True
 
 
 app_rki_landkreise = Blueprint(
-    'rki_landkreise', __name__, template_folder='templates', url_prefix='/rki/landkreise')
+    'rki_landkreise', __name__,
+    template_folder='templates',
+    url_prefix='/rki/landkreise'
+)
 
 
 ##################################################################################################################

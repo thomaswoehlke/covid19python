@@ -22,7 +22,7 @@ app_rki_bundeslaender = Blueprint(
 def url_rki_info():
     page_info = ApplicationPage('RKI', "Info")
     return render_template(
-        'rki_bundeslaender/rki_info.html',
+        'rki_bundeslaender/rki_bundeslaender_info.html',
         page_info=page_info)
 
 
@@ -30,7 +30,7 @@ def url_rki_info():
 def url_rki_tasks():
     page_info = ApplicationPage('RKI', "Tasks")
     return render_template(
-        'rki_bundeslaender/rki_tasks.html',
+        'rki_bundeslaender/rki_bundeslaender_tasks.html',
         page_info=page_info)
 
 

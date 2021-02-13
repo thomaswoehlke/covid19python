@@ -11,14 +11,14 @@ import covid19.blueprints.admin.admin_views
 
 from covid19.blueprints.who.who_views import app_who
 from covid19.blueprints.europe.europe_views import app_europe
-from covid19.blueprints.rki_vaccination.vaccination_views import app_vaccination
+from covid19.blueprints.rki_vaccination.vaccination_views import app_rki_vaccination
 from covid19.blueprints.rki_landkreise.rki_views import app_rki_landkreise
 from covid19.blueprints.rki_bundeslaender.rki_views import app_rki_bundeslaender
 from covid19.blueprints.admin.admin_views import app_admin
 
 app.register_blueprint(app_who, url_prefix='/who')
 app.register_blueprint(app_europe, url_prefix='/europe')
-app.register_blueprint(app_vaccination, url_prefix='/vaccination')
+app.register_blueprint(app_rki_vaccination, url_prefix='/rki/vaccination')
 app.register_blueprint(app_rki_bundeslaender, url_prefix='/rki/bundeslaender')
 app.register_blueprint(app_rki_landkreise, url_prefix='/rki/landkreise')
 app.register_blueprint(app_admin, url_prefix='/admin')

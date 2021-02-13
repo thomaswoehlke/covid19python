@@ -19,29 +19,29 @@
         <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">
                 <a class="btn btn-primary btn-lg btn-block text-left"
-                   href="/rki/bundeslaender/task/update/star_schema/initial"
+                   href="{{ url_for('rki_bundeslaender.url_rki_bundeslaender_task_update_starschema_initial') }}"
                    role="button">RKI :: Bundeslaender :: Task :: update :: star_schema :: initial</a>
                 <a class="btn btn-primary btn-lg btn-block text-left"
-                   href="/rki/bundeslaender/task/update/star_schema/incremental"
+                   href="{{ url_for('rki_bundeslaender.url_rki_bundeslaender_task_update_starschema_incremental') }}"
                    role="button">RKI :: Bundeslaender :: Task :: update :: star_schema :: incremental</a>
             </div>
         </div>
         <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/rki/bundeslaender/task/download/only"
+                   href="{{ url_for('rki_bundeslaender.url_rki_bundeslaender_task_download_only') }}"
                    role="button">RKI :: Bundeslaender :: Task :: download :: only</a>
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/rki/bundeslaender/task/import/only"
+                   href="{{ url_for('rki_bundeslaender.url_rki_bundeslaender_task_import_only') }}"
                    role="button">RKI :: Bundeslaender :: Task :: import :: only</a>
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/rki/bundeslaender/task/update/dimension-tables/only"
+                   href="{{ url_for('rki_bundeslaender.url_rki_bundeslaender_task_update_dimensiontables_only') }}"
                    role="button">RKI :: Bundeslaender :: Task :: update :: dimension-tables : only</a>
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/rki/bundeslaender/task/update/fact-table/incremental/only"
+                   href="{{ url_for('rki_bundeslaender.url_rki_bundeslaender_task_update_facttable_incremental_only') }}"
                    role="button">RKI :: Bundeslaender :: Task :: update :: fact-table :: only :: incremental</a>
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/rki/bundeslaender/task/update/fact-table/initial/only"
+                   href="{{ url_for('rki_bundeslaender.url_rki_bundeslaender_task_update_facttable_initial_only') }}"
                    role="button">RKI :: Bundeslaender :: Task :: update :: fact-table :: only :: initial</a>
             </div>
         </div>
