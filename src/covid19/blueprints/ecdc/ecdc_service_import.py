@@ -10,19 +10,18 @@ from covid19.blueprints.ecdc.ecdc_service_config import EcdcServiceConfig
 class EcdcServiceImport:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" Europe Service Import [init]")
+        app.logger.debug(" ECDC Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = EcdcServiceConfig()
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" Europe Service Import [ready] ")
+        app.logger.debug(" ECDC Service Import [ready] ")
 
     def import_datafile_to_db(self):
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
-        app.logger.info(" import Europa [begin]")
+        app.logger.info(" import ECDC [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  " + src_cvsfile_name)
-        app.logger.info(" TABLE: europe_data_import")
+        app.logger.info(" TABLE: ecdc_data_import   <-- " + src_cvsfile_name)
         app.logger.info("------------------------------------------------------------")
         k = 0
         try:
@@ -47,20 +46,20 @@ class EcdcServiceImport:
                     k = k + 1
                     if (k % 100) == 0:
                         db.session.commit()
-                        app.logger.info("  import Europa  ...  " + str(k) + " rows")
+                        app.logger.info("  import ECDC  ...  " + str(k) + " rows")
             db.session.commit()
-            app.logger.info("  import Europa  ...  " + str(k) + " rows total")
+            app.logger.info("  import ECDC  ...  " + str(k) + " rows total")
         except KeyError as error:
-            app.logger.warning("KeyError: import Europa [begin]")
+            app.logger.warning("KeyError: import ECDC [begin]")
             app.logger.warning(":::" + str(error) + ":::")
             for item_key, item_value in row.items():
                 app.logger.warning(item_key + " : " + item_value)
-            app.logger.warning("KeyError: import Europa [end]")
+            app.logger.warning("KeyError: import ECDC [end]")
         except (Exception, psycopg2.DatabaseError) as error:
-            app.logger.warning("WARN: import Europa [begin]")
+            app.logger.warning("WARN: import ECDC [begin]")
             app.logger.warning(error)
-            app.logger.warning("WARN: import Europa [end]")
+            app.logger.warning("WARN: import ECDC [end]")
         finally:
             app.logger.info("------------------------------------------------------------")
-            app.logger.info(" import Europa [done]")
+            app.logger.info(" import ECDC [done]")
         return self

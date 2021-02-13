@@ -24,8 +24,7 @@ class EcdcImport(db.Model):
         return None
 
     @classmethod
-    def get_all_as_page(cls, page):
-        #TODO: #51 order_by: year_week, country
+    def get_all_as_page(cls, page: int):
         return db.session.query(cls).order_by(
             cls.year_week,
             cls.countries_and_territories
@@ -39,55 +38,69 @@ class EcdcImport(db.Model):
         ).all()
 
     @classmethod
-    def get_by_id(cls, other_id):
+    def get_by_id(cls, other_id: int):
         return db.session.query(cls).filter(cls.id == other_id).one()
 
     @classmethod
     def get_date_rep(cls):
         # TODO: #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
-        sql = "select distinct date_rep, year_week from edcd_import order by year_week desc"
+        # sql = "select distinct date_rep, year_week from edcd_import order by year_week desc"
         #return db.session.execute(sql).fetchall()
-        return db.session.query(cls.date_rep, cls.year_week)\
-            .order_by(cls.date_rep.desc(), cls.year_week.desc())\
+        return db.session.query(cls.date_rep)\
+            .order_by(cls.date_rep.desc())\
             .distinct().all()
 
     @classmethod
     def get_continent(cls):
         # TODO: #110 SQLalchemy instead of SQL in: EcdcImport.get_continent
-        sql = "select distinct continent_exp from edcd_import order by continent_exp asc"
+        # sql = "select distinct continent_exp from edcd_import order by continent_exp asc"
         #return db.session.execute(sql).fetchall()
         return db.session.query(cls.continent_exp) \
-            .order_by(cls.continent_exp.desc()) \
+            .order_by(cls.continent_exp.asc()) \
             .distinct().all()
 
     @classmethod
-    def get_countries_of_continent(cls, my_continent):
+    def get_countries_of_continent(cls, my_continent: str):
         my_continent_exp = my_continent.region
         my_params = {}
         my_params['my_continent_param'] = my_continent_exp
         #TODO: #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
         #TODO: #108 BUG: change to ORM ClassHierarchy in: EcdcImport.get_countries_of_continent
-        sql = """
-        select distinct
-            countries_and_territories,
-            geo_id,
-            country_territory_code,
-            pop_data_2019,
-            continent_exp
-        from
-            ecdc_import
-        group by
-            countries_and_territories,
-            geo_id,
-            country_territory_code,
-            pop_data_2019,
-            continent_exp
-        having
-            continent_exp = :my_continent_param
-        order by
-            countries_and_territories
-        """
-        return db.session.execute(sql, my_params).fetchall()
+        return db.session.query(
+            cls.countries_and_territories,
+            cls.geo_id,
+            cls.country_territory_code,
+            cls.pop_data_2019,
+            cls.continent_exp
+        ).filter(
+            cls.continent_exp == my_continent
+        ).group_by(
+            cls.countries_and_sterritories,
+            cls.geo_id,
+            cls.country_territory_code,
+            cls.pop_data_2019,
+            cls.continent_exp
+        ).order_by(cls.countries_and_territories.asc()).distinct().all()
+        #sql = """
+        #select distinct
+        #    countries_and_territories,
+        #    geo_id,
+        #     pop_data_2019,
+        #    continent_exp
+        #from
+        #    ecdc_import
+        #group by
+        #    countries_and_territories,
+        #    geo_id,
+        #    country_territory_code,
+        #    pop_data_2019,
+        #    continent_exp
+        #having
+        #    continent_exp = :my_continent_param
+        #order by
+        #    countries_and_territories
+        #"""
+        #return db.session.execute(sql, my_params).fetchall()
 
     @classmethod
     def find_by_date_reported(cls, europe_date_reported):

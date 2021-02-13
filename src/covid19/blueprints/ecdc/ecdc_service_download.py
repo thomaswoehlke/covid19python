@@ -8,17 +8,17 @@ from covid19.blueprints.ecdc.ecdc_service_config import EcdcServiceConfig
 class EcdcServiceDownload:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" Europe Service Download [init]")
+        app.logger.debug(" ECDC Service Download [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = EcdcServiceConfig()
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" Europe Service Download [ready] ")
+        app.logger.debug(" ECDC Service Download [ready] ")
 
     def download(self):
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" download Europa [begin]")
+        app.logger.info(" download ECDC [begin]")
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" FILE: "+self.cfg.cvsfile_name+" <- "+self.cfg.url_src_data)
         app.logger.info("------------------------------------------------------------")
@@ -44,7 +44,7 @@ class EcdcServiceDownload:
             app.logger.info("############################################################")
             flash(message="error after downloading: " + src_cvsfile_name, category='error')
         finally:
-            app.logger.info(" download Europa [done]")
+            app.logger.info(" download ECDC [done]")
             msg = "downloaded: " + src_cvsfile_name + " "
             flash(msg)
         return self
