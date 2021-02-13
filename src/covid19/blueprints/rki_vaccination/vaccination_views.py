@@ -116,7 +116,7 @@ def task_vaccination_task_update_starschema_initial(self):
 def url_vaccination_info():
     page_info = ApplicationPage('Vaccination', "Info")
     return render_template(
-        'vaccination/vaccination_info.html',
+        'rki_vaccination/vaccination_info.html',
         page_info=page_info)
 
 
@@ -124,7 +124,7 @@ def url_vaccination_info():
 def url_vaccination_tasks():
     page_info = ApplicationPage('Vaccination', "Tasks")
     return render_template(
-        'vaccination/vaccination_tasks.html',
+        'rki_vaccination/vaccination_tasks.html',
         page_info=page_info)
 
 
@@ -134,7 +134,7 @@ def url_vaccination_imported(page=1):
     page_info = ApplicationPage('Vaccination', "Data: Germany Timeline imported")
     page_data = VaccinationImport.get_all_as_page(page)
     return render_template(
-        'vaccination/vaccination_imported.html',
+        'rki_vaccination/vaccination_imported.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -145,7 +145,7 @@ def url_vaccination_data(page=1):
     page_info = ApplicationPage('Vaccination', "Data: Germany Timeline")
     page_data = VaccinationData.get_all_as_page(page)
     return render_template(
-        'vaccination/vaccination_data.html',
+        'rki_vaccination/vaccination_data.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -156,7 +156,7 @@ def url_vaccination_datereported_all(page=1):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
     page_data = VaccinationDateReported.get_all_as_page(page)
     return render_template(
-        'vaccination/vaccination_timeline_germany.html',
+        'rki_vaccination/vaccination_timeline_germany.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -168,7 +168,7 @@ def url_vaccination_datereported_one(page=1, vaccination_date_reported_id=0):
     datereported = VaccinationDateReported.find_by_id(vaccination_date_reported_id)
     page_data = VaccinationData.find_by_datum(page, datereported)
     return render_template(
-        'vaccination/vaccination_timeline_germany.html',
+        'rki_vaccination/vaccination_timeline_germany.html',
         datereported=datereported,
         page_data=page_data,
         page_info=page_info)
