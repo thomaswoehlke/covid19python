@@ -4,31 +4,33 @@
                         ECDC
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!-- TODO: change URL to for_url() -->
                         <a class="dropdown-item"
-                           href="/europe/date_reported/all">Europe</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_date_reported_all') }}">ECDC</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item"
-                           href="/europe/country/germany">Europe Germany</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_country_germany') }}">ECDC Germany</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'ecdc.url_ecdc_date_reported_all') }}">ECDC date_reported</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'ecdc.url_ecdc_continent_all') }}">ECDC continent</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'ecdc.url_ecdc_country_all') }}">ECDC country</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item"
-                           href="/europe/date_reported/all">Europe date_reported</a>
-                        <a class="dropdown-item"
-                           href="/europe/continent/all">Europe continent</a>
-                        <a class="dropdown-item"
-                           href="/europe/country/all">Europe country</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_data_imported') }}">ECDC imported</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item"
-                           href="/europe/update/initial">Task: Europe :: update :: initial</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_task_update_star_schema_initial') }}">
+                            Task: ECDC :: update :: initial
+                        </a>
                         <a class="dropdown-item"
-                           href="/europe/update/short">Task: Europe :: update :: short</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_task_update_starschema_incremental') }}">
+                            Task: ECDC :: update :: incremental
+                        </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item"
-                           href="/europe/imported">Europe imported</a>
-                        <div class="dropdown-divider"></div>
+                           href="{{ url_for( 'ecd.curl_ecdc_info') }}">ECDC Info</a>
                         <a class="dropdown-item"
-                           href="/europe/info">Europe Info</a>
-                        <a class="dropdown-item"
-                           href="/europe/tasks">Europe Tasks</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_tasks') }}">ECDC Tasks</a>
                     </div>
                 </li>

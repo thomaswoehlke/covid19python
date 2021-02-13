@@ -10,7 +10,11 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link"
+                       href="/">
+                        Home
+                        <span class="sr-only">(current)</span>
+                    </a>
                 </li>
 
                 {% include 'who/fragments/fragment_who_navbar_dropdown.html' %}
@@ -25,15 +29,6 @@
 
                 {% include 'admin/fragments/fragment_admin_navbar_dropdown.html' %}
 
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-                -->
             </ul>
         </div>
     </nav>
