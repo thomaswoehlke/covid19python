@@ -1,7 +1,7 @@
 from database import db, app
-from covid19.blueprints.europe.europe_service_config import EuropeServiceConfig
-from covid19.blueprints.europe.europe_model_import import EuropeImport
-from covid19.blueprints.europe.europe_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
+from covid19.blueprints.ecdc.europe_service_config import EuropeServiceConfig
+from covid19.blueprints.ecdc.europe_model_import import EuropeImport
+from covid19.blueprints.ecdc.europe_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
 
 
 # TODO: #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021

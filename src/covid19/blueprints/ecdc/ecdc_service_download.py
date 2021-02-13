@@ -2,7 +2,7 @@ import os
 import wget
 from flask import flash
 from database import app
-from covid19.blueprints.europe.europe_service_config import EuropeServiceConfig
+from covid19.blueprints.ecdc.europe_service_config import EuropeServiceConfig
 
 
 class EuropeServiceDownload:

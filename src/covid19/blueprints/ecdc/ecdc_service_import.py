@@ -3,8 +3,8 @@ import csv
 import psycopg2
 
 from database import db, app
-from covid19.blueprints.europe.europe_model_import import EuropeImport
-from covid19.blueprints.europe.europe_service_config import EuropeServiceConfig
+from covid19.blueprints.ecdc.europe_model_import import EuropeImport
+from covid19.blueprints.ecdc.europe_service_config import EuropeServiceConfig
 
 
 class EuropeServiceImport:

@@ -1,9 +1,9 @@
 from flask import flash
 
 from database import app
-from covid19.blueprints.europe.europe_service_download import EuropeServiceDownload
-from covid19.blueprints.europe.europe_service_import import EuropeServiceImport
-from covid19.blueprints.europe.europe_service_update import EuropeServiceUpdate
+from covid19.blueprints.ecdc.europe_service_download import EuropeServiceDownload
+from covid19.blueprints.ecdc.europe_service_import import EuropeServiceImport
+from covid19.blueprints.ecdc.europe_service_update import EuropeServiceUpdate
 
 
 # TODO: #111 refactor to new method scheme itroduced 07.02.2021

@@ -2,27 +2,27 @@ from flask import render_template, redirect, url_for
 from database import app
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
-import covid19.blueprints.who.who_views
-import covid19.blueprints.europe.europe_views
-import covid19.blueprints.rki_vaccination.vaccination_views
-import covid19.blueprints.rki_landkreise.rki_views
-import covid19.blueprints.rki_bundeslaender.rki_views
 import covid19.blueprints.admin.admin_views
+import covid19.blueprints.ecdc.europe_views
+import covid19.blueprints.rki_bundeslaender.rki_views
+import covid19.blueprints.rki_landkreise.rki_views
+import covid19.blueprints.rki_vaccination.rki_vaccination_views
+import covid19.blueprints.who.who_views
 
-from covid19.blueprints.who.who_views import app_who
-from covid19.blueprints.europe.europe_views import app_europe
-from covid19.blueprints.rki_vaccination.vaccination_views import app_rki_vaccination
-from covid19.blueprints.rki_landkreise.rki_views import app_rki_landkreise
-from covid19.blueprints.rki_bundeslaender.rki_views import app_rki_bundeslaender
+
 from covid19.blueprints.admin.admin_views import app_admin
+from covid19.blueprints.ecdc.ecdc_views import app_ecdc
+from covid19.blueprints.rki_bundeslaender.rki_views import app_rki_bundeslaender
+from covid19.blueprints.rki_landkreise.rki_views import app_rki_landkreise
+from covid19.blueprints.rki_vaccination.rki_vaccination_views import app_rki_vaccination
+from covid19.blueprints.who.who_views import app_who
 
-app.register_blueprint(app_who, url_prefix='/who')
-app.register_blueprint(app_europe, url_prefix='/europe')
-app.register_blueprint(app_rki_vaccination, url_prefix='/rki/vaccination')
+app.register_blueprint(app_admin, url_prefix='/admin')
+app.register_blueprint(app_ecdc, url_prefix='/ecdc')
 app.register_blueprint(app_rki_bundeslaender, url_prefix='/rki/bundeslaender')
 app.register_blueprint(app_rki_landkreise, url_prefix='/rki/landkreise')
-app.register_blueprint(app_admin, url_prefix='/admin')
-
+app.register_blueprint(app_rki_vaccination, url_prefix='/rki/vaccination')
+app.register_blueprint(app_who, url_prefix='/who')
 
 ############################################################################################
 #

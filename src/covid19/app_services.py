@@ -2,7 +2,7 @@ from database import db
 
 from covid19.blueprints.common.common_service import CommonService
 from covid19.blueprints.who.who_service import WhoService
-from covid19.blueprints.europe.europe_service import EuropeService
+from covid19.blueprints.ecdc.europe_service import EuropeService
 from covid19.blueprints.rki_bundeslaender.rki_service import RkiBundeslaenderService
 from covid19.blueprints.rki_landkreise.rki_service import RkiLandkreiseService
 from covid19.blueprints.rki_vaccination.vaccination_service import VaccinationService
