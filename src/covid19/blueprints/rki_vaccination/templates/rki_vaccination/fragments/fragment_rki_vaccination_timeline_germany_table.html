@@ -2,12 +2,11 @@
 <div class="table-responsive">
     <table class="table table-hover table-striped table-sm table-bordered">
         <thead>
-        {% include 'vaccination/fragments/fragment_vaccination_timeline_germany_table_head.html' %}
+        {% include 'rki_vaccination/fragments/fragment_vaccination_timeline_germany_table_head.html' %}
         </thead>
         <tbody>
         {% for vaccination_germany_timeline in page_data.items %}
             <tr>
-                <!-- TODO: change URL to for_url() -->
                 <td class="text-center table-dark" nowrap>{{ vaccination_germany_timeline.datum }}</td>
 
                 <td class="text-right table-secondary">{{ vaccination_germany_timeline.dosen_differenz_zum_vortag }}</td>
@@ -41,7 +40,7 @@
         {% endfor %}
         </tbody>
         <tfoot>
-        {% include 'vaccination/fragments/fragment_vaccination_timeline_germany_table_head.html' %}
+        {% include 'rki_vaccination/fragments/fragment_vaccination_timeline_germany_table_head.html' %}
         </tfoot>
     </table>
 </div>
