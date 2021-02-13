@@ -10,7 +10,7 @@ class EcdcDateReported(ApplicationDateReported):
         'concrete': True
     }
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_europe_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_ecdc_date_reported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -53,7 +53,7 @@ class EcdcContinent(ApplicationRegion):
     __tablename__ = 'ecdc_continent'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('region', name="uix_europe_continent"),
+        db.UniqueConstraint('region', name="uix_ecdc_continent"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -63,7 +63,7 @@ class EcdcContinent(ApplicationRegion):
 class EcdcCountry(db.Model):
     __tablename__ = 'ecdc_country'
     __table_args__ = (
-        db.UniqueConstraint('countries_and_territories', 'geo_id', 'country_territory_code', name="uix_europe_country"),
+        db.UniqueConstraint('countries_and_territories', 'geo_id', 'country_territory_code', name="uix_ecdc_country"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -132,11 +132,11 @@ class EcdcData(db.Model):
     cases_weekly = db.Column(db.Integer, nullable=False)
     notification_rate_per_100000_population_14days = db.Column(db.Float, nullable=False)
 
-    europe_country_id = db.Column(db.Integer, db.ForeignKey('ecdc_country.id'), nullable=False)
-    europe_country = db.relationship('EcdcCountry', lazy='joined', cascade="all, delete")
+    ecdc_country_id = db.Column(db.Integer, db.ForeignKey('ecdc_country.id'), nullable=False)
+    ecdc_country = db.relationship('EcdcCountry', lazy='joined', cascade="all, delete")
 
-    europe_date_reported_id = db.Column(db.Integer, db.ForeignKey('ecdc_date_reported.id'), nullable=False)
-    europe_date_reported = db.relationship(
+    ecdc_date_reported_id = db.Column(db.Integer, db.ForeignKey('ecdc_date_reported.id'), nullable=False)
+    ecdc_date_reported = db.relationship(
         'EcdcDateReported',
         lazy='joined',
         cascade='all, delete',
