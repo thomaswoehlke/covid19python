@@ -2,7 +2,7 @@ from database import db, app
 
 from covid19.blueprints.rki_vaccination.rki_vaccination_service_config import RkiVaccinationServiceConfig
 from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import RkiVaccinationImport
-from covid19.blueprints.rki_vaccination.rki_vaccination_model import VaccinationDateReported, VaccinationData
+from covid19.blueprints.rki_vaccination.rki_vaccination_model import RkiVaccinationDateReported, RkiVaccinationData
 
 
 class RkiVaccinationServiceUpdate:
@@ -18,14 +18,14 @@ class RkiVaccinationServiceUpdate:
     def __update_date_reported(self):
         app.logger.info(" __update_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
-        VaccinationData.remove_all()
-        VaccinationDateReported.remove_all()
+        RkiVaccinationData.remove_all()
+        RkiVaccinationDateReported.remove_all()
         date_reported_list = RkiVaccinationImport.get_date_reported_as_array()
         i = 0
         for one_date_reported in date_reported_list:
             i += 1
             output = " [ " + str(i) + " ] " + one_date_reported + " added"
-            o = VaccinationDateReported.create_new_object_factory(one_date_reported)
+            o = RkiVaccinationDateReported.create_new_object_factory(one_date_reported)
             db.session.add(o)
             app.logger.info(output)
         db.session.commit()
@@ -36,20 +36,20 @@ class RkiVaccinationServiceUpdate:
     def __update_data_initial(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        VaccinationData.remove_all()
+        RkiVaccinationData.remove_all()
         result_date_rep = RkiVaccinationImport.get_date_rep()
         i = 0
         for item_date_rep, in result_date_rep:
             #dt = item_date_rep['date_rep']
-            europe_date_reported = VaccinationDateReported.find_by_date_reported(
+            europe_date_reported = RkiVaccinationDateReported.find_by_date_reported(
                 i_date_reported=item_date_rep
             )
             if europe_date_reported is None:
-                o = VaccinationDateReported.create_new_object_factory(item_date_rep)
+                o = RkiVaccinationDateReported.create_new_object_factory(item_date_rep)
                 europe_date_reported = o
             result_europe_data_import = RkiVaccinationImport.find_by_datum(europe_date_reported.date_reported)
             for item_europe_data_import in result_europe_data_import:
-                o = VaccinationData(
+                o = RkiVaccinationData(
                     date_reported=europe_date_reported,
                     dosen_kumulativ=item_europe_data_import.dosen_kumulativ,
                     dosen_differenz_zum_vortag=item_europe_data_import.dosen_differenz_zum_vortag,
@@ -91,10 +91,10 @@ class RkiVaccinationServiceUpdate:
         result_date_rep = RkiVaccinationImport.get_daterep_missing_in_vaccination_data()
         i = 0
         for item_date_rep in result_date_rep:
-            europe_date_reported = VaccinationDateReported.create_new_object_factory(item_date_rep)
+            europe_date_reported = RkiVaccinationDateReported.create_new_object_factory(item_date_rep)
             result_europe_data_import = RkiVaccinationImport.find_by_datum(europe_date_reported)
             for item_europe_data_import in result_europe_data_import:
-                o = VaccinationData(
+                o = RkiVaccinationData(
                     date_reported=europe_date_reported,
                     dosen_kumulativ=item_europe_data_import.dosen_kumulativ,
                     dosen_differenz_zum_vortag=item_europe_data_import.dosen_differenz_zum_vortag,
@@ -143,8 +143,8 @@ class RkiVaccinationServiceUpdate:
     #def update_db_initial_DEPRECATED(self):
     #    app.logger.info(" update_db_initial [begin]")
     #    app.logger.info("------------------------------------------------------------")
-    #    VaccinationDateReported.remove_all()
-    #    VaccinationData.remove_all()
+    #    RkiVaccinationDateReported.remove_all()
+    #    RkiVaccinationData.remove_all()
     #    self.__update_date_reported()
     #    self.__update_data_initial()
     #    app.logger.info(" update_db_initial [done]")
@@ -155,8 +155,8 @@ class RkiVaccinationServiceUpdate:
     #def update_db_short_DEPRECATED(self):
     #    app.logger.info(" update_db_short [begin]")
     #    app.logger.info("------------------------------------------------------------")
-    #    VaccinationDateReported.remove_all()
-    #    VaccinationData.remove_all()
+    #    RkiVaccinationDateReported.remove_all()
+    #    RkiVaccinationData.remove_all()
     #    self.__update_date_reported()
     #    self.__update_data_short_DEPRECATED()
     #    app.logger.info(" update_db_short [done]")
@@ -186,8 +186,8 @@ class RkiVaccinationServiceUpdate:
         return self
 
     def update_star_schema_initial(self):
-        VaccinationData.remove_all()
-        VaccinationDateReported.remove_all()
+        RkiVaccinationData.remove_all()
+        RkiVaccinationDateReported.remove_all()
         self.__update_dimension_table_date_reported()
         self.__update_data_initial()
         return self

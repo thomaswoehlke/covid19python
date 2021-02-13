@@ -5,8 +5,8 @@ from celery.utils.log import get_task_logger
 from database import app
 from covid19.app_services import who_service, ecdc_service, vaccination_service, admin_service
 from covid19.app_services import rki_service_bundeslaender
-from covid19.app_workers import celery
-from covid19.blueprints.common.common_model_transient import ApplicationPage
+from covid19.blueprints.common.application_workers import celery
+from covid19.blueprints.common.application_model_transient import ApplicationPage
 
 drop_and_create_data_again = True
 

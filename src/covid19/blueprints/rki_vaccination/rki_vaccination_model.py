@@ -1,16 +1,16 @@
 from datetime import date
 
 from database import db, ITEMS_PER_PAGE
-from covid19.blueprints.common.common_model import CommonDateReported
+from covid19.blueprints.common.application_model import ApplicationDateReported
 
 
-class VaccinationDateReported(CommonDateReported):
-    __tablename__ = 'vaccination_date_reported'
+class RkiVaccinationDateReported(ApplicationDateReported):
+    __tablename__ = 'rki_vaccination_date_reported'
     __mapper_args__ = {
         'concrete': True
     }
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_vaccination_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_rki_vaccination_date_reported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -33,7 +33,7 @@ class VaccinationDateReported(CommonDateReported):
         else:
             my_year_week += "-"
         my_year_week += str(week_number)
-        return VaccinationDateReported(
+        return RkiVaccinationDateReported(
             date_reported=my_date_rep,
             datum=my_datum,
             year=my_datum.year,
@@ -45,16 +45,16 @@ class VaccinationDateReported(CommonDateReported):
         )
 
 
-class VaccinationData(db.Model):
-    __tablename__ = 'vaccination_data'
+class RkiVaccinationData(db.Model):
+    __tablename__ = 'rki_vaccination_data'
 
     id = db.Column(db.Integer, primary_key=True)
-    date_reported_id = db.Column(db.Integer, db.ForeignKey('vaccination_date_reported.id'), nullable=False)
+    date_reported_id = db.Column(db.Integer, db.ForeignKey('rki_vaccination_date_reported.id'), nullable=False)
     date_reported = db.relationship(
-        'VaccinationDateReported',
+        'RkiVaccinationDateReported',
         lazy='joined',
         cascade='all, delete',
-        order_by='desc(VaccinationDateReported.date_reported)')
+        order_by='desc(RkiVaccinationDateReported.date_reported)')
     dosen_kumulativ = db.Column(db.Integer, nullable=False)
     dosen_differenz_zum_vortag = db.Column(db.Integer, nullable=False)
     dosen_biontech_kumulativ = db.Column(db.Integer, nullable=False)

@@ -113,7 +113,7 @@
 * Fixed #81 change tablename from who_global_data_import to who_import
 * Fixed #84 rename tablename from who_global_data to who_data
 * Fixed #85 rename WhoData to WhoData
-* Fixed #86 rename VaccinationDataXY to VaccinationData
+* Fixed #86 rename VaccinationDataXY to RkiVaccinationData
 * Fixed #89 change tablename from vaccination_germany_timeline_import to vaccination_import
 * Fixed #75 add Tasks to Europe Tasks Html 
 * Fixed #76 add Tasks to Vaccination Tasks Html 
@@ -127,7 +127,7 @@
 * -------------------------------------
 * Fixed #88 rename RkiVaccinationImport to RkiVaccinationImport
 * Fixed #89 change tablename from vaccination_germany_timeline_import to vaccination_import
-* Fixed #86 rename VaccinationData to VaccinationData
+* Fixed #86 rename RkiVaccinationData to RkiVaccinationData
 * Fixed #162 rename table vaccination_germany_timeline into vaccination_data
 * -------------------------------------
 * Fixed #170 implement url_vaccination_task_update_star_schema_initial in vaccination_views.py
@@ -156,7 +156,7 @@
 * Fixed #99 refactor RkiVaccinationServiceImport to new method scheme introduced 07.02.2021
 * Fixed #100 refactor RkiVaccinationServiceUpdate to new method scheme introduced 07.02.2021
 * -------------------------------------
-* Fixed #87 change to: Vaccination.datum many to one VaccinationDateReported
+* Fixed #87 change to: Vaccination.datum many to one RkiVaccinationDateReported
 * Fixed #106 add Tasks and URLs for starting Tasks to vaccination_views
 * -------------------------------------  
 

@@ -3,12 +3,12 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from covid19.app_services import rki_vaccination_service
-from covid19.app_workers import celery
+from covid19.blueprints.common.application_services import rki_vaccination_service
+from covid19.blueprints.common.application_workers import celery
 
-from covid19.blueprints.rki_vaccination.rki_vaccination_model import VaccinationData, VaccinationDateReported
+from covid19.blueprints.rki_vaccination.rki_vaccination_model import RkiVaccinationData, RkiVaccinationDateReported
 from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import RkiVaccinationImport
-from covid19.blueprints.common.common_model_transient import ApplicationPage
+from covid19.blueprints.common.application_model_transient import ApplicationPage
 
 
 app_rki_vaccination = Blueprint('rki_vaccination', __name__, template_folder='templates', url_prefix='/rki/vaccination')
@@ -143,7 +143,7 @@ def url_vaccination_imported(page=1):
 @app_rki_vaccination.route('/data')
 def url_vaccination_data(page=1):
     page_info = ApplicationPage('Vaccination', "Data: Germany Timeline")
-    page_data = VaccinationData.get_all_as_page(page)
+    page_data = RkiVaccinationData.get_all_as_page(page)
     return render_template(
         'rki_vaccination/vaccination_data.html',
         page_data=page_data,
@@ -154,7 +154,7 @@ def url_vaccination_data(page=1):
 @app_rki_vaccination.route('/date-reported/all')
 def url_vaccination_datereported_all(page=1):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
-    page_data = VaccinationDateReported.get_all_as_page(page)
+    page_data = RkiVaccinationDateReported.get_all_as_page(page)
     return render_template(
         'rki_vaccination/vaccination_timeline_germany.html',
         page_data=page_data,
@@ -165,8 +165,8 @@ def url_vaccination_datereported_all(page=1):
 @app_rki_vaccination.route('/date-reported/<int:vaccination_date_reported_id>')
 def url_vaccination_datereported_one(page=1, vaccination_date_reported_id=0):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
-    datereported = VaccinationDateReported.find_by_id(vaccination_date_reported_id)
-    page_data = VaccinationData.find_by_datum(page, datereported)
+    datereported = RkiVaccinationDateReported.find_by_id(vaccination_date_reported_id)
+    page_data = RkiVaccinationData.find_by_datum(page, datereported)
     return render_template(
         'rki_vaccination/vaccination_timeline_germany.html',
         datereported=datereported,
