@@ -22,7 +22,8 @@ class EcdcServiceUpdate:
         k = 0
         for result_item in result_date_rep:
             k += 1
-            my_date_rep = result_item['date_rep']
+            #my_date_rep = result_item['date_rep']
+            my_date_rep = result_item
             o = EcdcDateReported.create_new_object_factory(
                 my_date_rep=my_date_rep
             )

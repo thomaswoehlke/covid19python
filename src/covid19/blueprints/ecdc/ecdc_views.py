@@ -56,7 +56,7 @@ def task_ecdc_download_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_download_only [OK] ")
     logger.info("------------------------------------------------------------")
-    ecdc_service.task_download_only() # TODO
+    ecdc_service.run_download_only()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_download_only)"
     return result
@@ -69,7 +69,7 @@ def task_ecdc_import_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_import_only [OK] ")
     logger.info("------------------------------------------------------------")
-    ecdc_service.task_import_only() # TODO
+    ecdc_service.run_import_only()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_import_only)"
     return result
@@ -82,7 +82,7 @@ def task_ecdc_update_dimension_tables_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_dimension_tables_only [OK] ")
     logger.info("------------------------------------------------------------")
-    ecdc_service.task_update_dimension_tables_only() # TODO
+    ecdc_service.run_update_dimension_tables_only()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_dimension_tables_only)"
     return result
@@ -95,7 +95,20 @@ def task_ecdc_update_fact_table_incremental_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_fact_table_incremental_only [OK] ")
     logger.info("------------------------------------------------------------")
-    ecdc_service.task_update_fact_table_incremental_only() # TODO
+    ecdc_service.run_update_fact_table_incremental_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_ecdc_update_fact_table_incremental_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_ecdc_update_fact_table_incremental_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_ecdc_update_fact_table_incremental_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    ecdc_service.run_update_fact_table_incremental_only()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_fact_table_incremental_only)"
     return result
@@ -108,20 +121,7 @@ def task_ecdc_update_fact_table_initial_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_fact_table_initial_only [OK] ")
     logger.info("------------------------------------------------------------")
-    ecdc_service.task_update_fact_table_initial_only() # TODO
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_update_fact_table_initial_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_ecdc_update_fact_table_initial_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_update_fact_table_initial_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.task_update_fact_table_initial_only() # TODO
+    ecdc_service.run_update_fact_table_initial_only()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_fact_table_initial_only)"
     return result
@@ -134,7 +134,7 @@ def task_ecdc_update_star_schema_incremental(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_star_schema_incremental [OK] ")
     logger.info("------------------------------------------------------------")
-    ecdc_service.task_update_star_schema_incremental() # TODO
+    ecdc_service.run_update_star_schema_incremental()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_star_schema_incremental)"
     return result
@@ -147,7 +147,7 @@ def task_ecdc_update_star_schema_initial(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_star_schema_initial [OK] ")
     logger.info("------------------------------------------------------------")
-    ecdc_service.task_update_star_schema_initial()  # TODO
+    ecdc_service.run_update_star_schema_initial()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_star_schema_initial)"
     return result
@@ -320,6 +320,8 @@ def url_ecdc_task_update_data_short_DEPRECATED():
 @app_ecdc.route('/task/update/star_schema/initial')
 def url_ecdc_task_update_star_schema_initial():
     flash("url_ecdc_task_update_star_schema_initial started")
+    ecdc_service.run_download_only()
+    task_ecdc_update_star_schema_initial.apply_async()
     return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
@@ -327,6 +329,8 @@ def url_ecdc_task_update_star_schema_initial():
 @app_ecdc.route('/task/update/star_schema/incremental')
 def url_ecdc_task_update_starschema_incremental():
     flash("url_ecdc_task_update_starschema_incremental started")
+    ecdc_service.run_download_only()
+    task_ecdc_update_star_schema_incremental.apply_async()
     return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
@@ -334,6 +338,7 @@ def url_ecdc_task_update_starschema_incremental():
 @app_ecdc.route('/task/download/only')
 def url_ecdc_task_download_only():
     flash("url_ecdc_task_download_only started")
+    ecdc_service.run_download_only()
     return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
@@ -341,6 +346,7 @@ def url_ecdc_task_download_only():
 @app_ecdc.route('/task/import/only')
 def url_ecdc_task_import_only():
     flash("url_ecdc_task_import_only started")
+    task_ecdc_import_only.apply_async()
     return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
@@ -348,6 +354,7 @@ def url_ecdc_task_import_only():
 @app_ecdc.route('/task/update/dimension-tables/only')
 def url_ecdc_task_update_dimensiontables_only():
     flash("url_ecdc_task_update_dimensiontables_only started")
+    task_ecdc_update_dimension_tables_only.apply_async()
     return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
@@ -355,6 +362,7 @@ def url_ecdc_task_update_dimensiontables_only():
 @app_ecdc.route('/task/update/fact-table/incremental/only')
 def url_ecdc_task_update_facttable_incremental_only():
     flash("url_ecdc_task_update_facttable_incremental_only started")
+    task_ecdc_update_fact_table_incremental_only.apply_async()
     return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
@@ -362,4 +370,5 @@ def url_ecdc_task_update_facttable_incremental_only():
 @app_ecdc.route('/task/update/fact-table/initial/only')
 def url_ecdc_task_update_facttable_initial_only():
     flash("url_ecdc_task_update_facttable_initial_only started")
+    task_ecdc_update_fact_table_initial_only.apply_async()
     return redirect(url_for('ecdc.url_ecdc_tasks'))
