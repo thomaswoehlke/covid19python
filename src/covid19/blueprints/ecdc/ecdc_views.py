@@ -3,11 +3,11 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from covid19.app_services import europe_service
+from covid19.app_services import ecdc_service
 from covid19.app_workers import celery
 
-from covid19.blueprints.ecdc.ecdc_model_import import EuropeImport
-from covid19.blueprints.ecdc.ecdc_model import EuropeDateReported, EuropeContinent, EuropeCountry, EuropeData
+from covid19.blueprints.ecdc.ecdc_model_import import EcdcImport
+from covid19.blueprints.ecdc.ecdc_model import EcdcDateReported, EcdcContinent, EcdcCountry, EcdcData
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 
@@ -29,7 +29,7 @@ def task_ecdc_update_initial_DEPRECATED(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_initial [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.run_update_initial_DEPRECATED()
+    ecdc_service.run_update_initial_DEPRECATED()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_initial)"
     return result
@@ -43,7 +43,7 @@ def task_ecdc_update_short_DEPRECATED(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_short [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.run_update_short_DEPRECATED()
+    ecdc_service.run_update_short_DEPRECATED()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_short)"
     return result
@@ -56,7 +56,7 @@ def task_ecdc_download_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_download_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_download_only() # TODO
+    ecdc_service.task_download_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_download_only)"
     return result
@@ -69,7 +69,7 @@ def task_ecdc_import_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_import_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_import_only() # TODO
+    ecdc_service.task_import_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_import_only)"
     return result
@@ -82,7 +82,7 @@ def task_ecdc_update_dimension_tables_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_dimension_tables_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_update_dimension_tables_only() # TODO
+    ecdc_service.task_update_dimension_tables_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_dimension_tables_only)"
     return result
@@ -95,7 +95,7 @@ def task_ecdc_update_fact_table_incremental_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_fact_table_incremental_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_update_fact_table_incremental_only() # TODO
+    ecdc_service.task_update_fact_table_incremental_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_fact_table_incremental_only)"
     return result
@@ -108,7 +108,7 @@ def task_ecdc_update_fact_table_initial_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_fact_table_initial_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_update_fact_table_initial_only() # TODO
+    ecdc_service.task_update_fact_table_initial_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_fact_table_initial_only)"
     return result
@@ -121,7 +121,7 @@ def task_ecdc_update_fact_table_initial_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_fact_table_initial_only [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_update_fact_table_initial_only() # TODO
+    ecdc_service.task_update_fact_table_initial_only() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_fact_table_initial_only)"
     return result
@@ -134,7 +134,7 @@ def task_ecdc_update_star_schema_incremental(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_star_schema_incremental [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_update_star_schema_incremental() # TODO
+    ecdc_service.task_update_star_schema_incremental() # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_star_schema_incremental)"
     return result
@@ -147,7 +147,7 @@ def task_ecdc_update_star_schema_initial(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_ecdc_update_star_schema_initial [OK] ")
     logger.info("------------------------------------------------------------")
-    europe_service.task_update_star_schema_initial()  # TODO
+    ecdc_service.task_update_star_schema_initial()  # TODO
     self.update_state(state=states.SUCCESS)
     result = "OK (task_ecdc_update_star_schema_initial)"
     return result
@@ -175,7 +175,7 @@ def url_ecdc_tasks():
 @app_ecdc.route('/imported')
 def url_ecdc_data_imported(page=1):
     page_info = ApplicationPage('Europe', "Last Import")
-    page_data = EuropeImport.get_all_as_page(page)
+    page_data = EcdcImport.get_all_as_page(page)
     return render_template(
         'ecdc/europe_imported.html',
         page_data=page_data,
@@ -186,7 +186,7 @@ def url_ecdc_data_imported(page=1):
 @app_ecdc.route('/date_reported/all')
 def url_ecdc_date_reported_all(page=1):
     page_info = ApplicationPage('Europe', "date_reported")
-    page_data = EuropeDateReported.get_all_as_page(page)
+    page_data = EcdcDateReported.get_all_as_page(page)
     return render_template(
         'ecdc/date_reported/europe_date_reported_all.html',
         page_data=page_data,
@@ -199,8 +199,8 @@ def url_ecdc_date_reported_all(page=1):
 @app_ecdc.route('/date_reported/notification_rate/<int:europe_date_reported_id>')
 def url_ecdc_date_reported_one_notification_rate(europe_date_reported_id, page=1):
     page_info = ApplicationPage('Europe', "date_reported")
-    europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
-    page_data = EuropeData.find_by_date_reported_notification_rate(europe_date_reported, page)
+    europe_date_reported = EcdcDateReported.get_by_id(europe_date_reported_id)
+    page_data = EcdcData.find_by_date_reported_notification_rate(europe_date_reported, page)
     return render_template(
         'ecdc/date_reported/europe_date_reported_one_notification_rate.html',
         europe_date_reported=europe_date_reported,
@@ -212,8 +212,8 @@ def url_ecdc_date_reported_one_notification_rate(europe_date_reported_id, page=1
 @app_ecdc.route('/date_reported/deaths_weekly/<int:europe_date_reported_id>')
 def url_ecdc_date_reported_one_deaths_weekly(europe_date_reported_id, page=1):
     page_info = ApplicationPage('Europe', "date_reported")
-    europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
-    page_data = EuropeData.find_by_date_reported_deaths_weekly(europe_date_reported, page)
+    europe_date_reported = EcdcDateReported.get_by_id(europe_date_reported_id)
+    page_data = EcdcData.find_by_date_reported_deaths_weekly(europe_date_reported, page)
     return render_template(
         'ecdc/date_reported/europe_date_reported_one_deaths_weekly.html',
         europe_date_reported=europe_date_reported,
@@ -225,8 +225,8 @@ def url_ecdc_date_reported_one_deaths_weekly(europe_date_reported_id, page=1):
 @app_ecdc.route('/date_reported/cases_weekly/<int:europe_date_reported_id>')
 def url_ecdc_date_reported_one_cases_weekly(europe_date_reported_id, page=1):
     page_info = ApplicationPage('Europe', "date_reported")
-    europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
-    page_data = EuropeData.find_by_date_reported_cases_weekly(europe_date_reported, page)
+    europe_date_reported = EcdcDateReported.get_by_id(europe_date_reported_id)
+    page_data = EcdcData.find_by_date_reported_cases_weekly(europe_date_reported, page)
     return render_template(
         'ecdc/date_reported/europe_date_reported_one_cases_weekly.html',
         europe_date_reported=europe_date_reported,
@@ -238,7 +238,7 @@ def url_ecdc_date_reported_one_cases_weekly(europe_date_reported_id, page=1):
 @app_ecdc.route('/continent/all')
 def url_ecdc_continent_all(page=1):
     page_info = ApplicationPage('Europe', "continent")
-    page_data = EuropeContinent.get_all_as_page(page)
+    page_data = EcdcContinent.get_all_as_page(page)
     return render_template(
         'ecdc/continent/europe_continent_all.html',
         page_data=page_data,
@@ -249,8 +249,8 @@ def url_ecdc_continent_all(page=1):
 @app_ecdc.route('/continent/<int:continent_id>')
 def url_ecdc_continent_one(continent_id, page=1):
     page_info = ApplicationPage('Europe', "continent")
-    continent = EuropeContinent.get_by_id(continent_id)
-    page_data = EuropeCountry.find_by_continent(continent, page)
+    continent = EcdcContinent.get_by_id(continent_id)
+    page_data = EcdcCountry.find_by_continent(continent, page)
     return render_template(
         'ecdc/continent/europe_continent_one.html',
         continent=continent,
@@ -262,7 +262,7 @@ def url_ecdc_continent_one(continent_id, page=1):
 @app_ecdc.route('/country/all')
 def url_ecdc_country_all(page=1):
     page_info = ApplicationPage('Europe', "country")
-    page_data = EuropeCountry.get_all_as_page(page)
+    page_data = EcdcCountry.get_all_as_page(page)
     return render_template(
         'ecdc/country/europe_country_all.html',
         page_data=page_data,
@@ -273,8 +273,8 @@ def url_ecdc_country_all(page=1):
 @app_ecdc.route('/country/<int:country_id>')
 def url_ecdc_country_one(country_id, page=1):
     page_info = ApplicationPage('Europe', "country")
-    europe_country = EuropeCountry.get_by_id(country_id)
-    page_data = EuropeData.find_by_country(europe_country, page)
+    europe_country = EcdcCountry.get_by_id(country_id)
+    page_data = EcdcData.find_by_country(europe_country, page)
     return render_template(
         'ecdc/country/europe_country_one.html',
         europe_country=europe_country,
@@ -286,11 +286,11 @@ def url_ecdc_country_one(country_id, page=1):
 @app_ecdc.route('/country/germany')
 def url_ecdc_country_germany(page=1):
     page_info = ApplicationPage('Europe', "country: Germany")
-    europe_country = EuropeCountry.get_germany()
+    europe_country = EcdcCountry.get_germany()
     if europe_country is None:
         flash('country: Germany not found in Database', category='error')
         return redirect(url_for('url_ecdc_tasks'))
-    page_data = EuropeData.find_by_country(europe_country, page)
+    page_data = EcdcData.find_by_country(europe_country, page)
     return render_template(
         'ecdc/country/europe_country_germany.html',
         europe_country=europe_country,
@@ -301,7 +301,7 @@ def url_ecdc_country_germany(page=1):
 # TODO remove DEPRECATED
 @app_ecdc.route('/update/initial')
 def url_ecdc_task_update_data_DEPRECATED():
-    europe_service.download_DEPRECATED()
+    ecdc_service.download_DEPRECATED()
     task_ecdc_update_initial_DEPRECATED.apply_async()
     flash("task_ecdc_update_initial started")
     return redirect(url_for('url_ecdc_tasks'))
@@ -310,7 +310,7 @@ def url_ecdc_task_update_data_DEPRECATED():
 # TODO remove DEPRECATED
 @app_ecdc.route('/update/short')
 def url_ecdc_task_update_data_short_DEPRECATED():
-    europe_service.download_DEPRECATED()
+    ecdc_service.download_DEPRECATED()
     task_ecdc_update_short_DEPRECATED.apply_async()
     flash("task_ecdc_update_short started")
     return redirect(url_for('url_ecdc_tasks'))

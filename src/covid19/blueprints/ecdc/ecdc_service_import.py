@@ -3,17 +3,17 @@ import csv
 import psycopg2
 
 from database import db, app
-from covid19.blueprints.ecdc.europe_model_import import EuropeImport
-from covid19.blueprints.ecdc.europe_service_config import EuropeServiceConfig
+from covid19.blueprints.ecdc.ecdc_model_import import EcdcImport
+from covid19.blueprints.ecdc.ecdc_service_config import EcdcServiceConfig
 
 
-class EuropeServiceImport:
+class EcdcServiceImport:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = EuropeServiceConfig()
+        self.cfg = EcdcServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Import [ready] ")
 
@@ -26,11 +26,11 @@ class EuropeServiceImport:
         app.logger.info("------------------------------------------------------------")
         k = 0
         try:
-            EuropeImport.remove_all()
+            EcdcImport.remove_all()
             with open(src_cvsfile_name, newline='') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 for row in file_reader:
-                    o = EuropeImport(
+                    o = EcdcImport(
                         date_rep=row['dateRep'],
                         year_week=row['year_week'],
                         cases_weekly=row['cases_weekly'],

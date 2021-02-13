@@ -86,7 +86,7 @@
 * Fixed #56 /vaccination/info
 
 ### 0.0.13 Release
-* Fixed #49 EuropeServiceUpdate.__update_data_short() (wontfix)
+* Fixed #49 EcdcServiceUpdate.__update_data_short() (wontfix)
 * Fixed #52 download vaccination timeline data file
 * Fixed #53 import vaccination timeline data file into db
 * Fixed #54 /vaccination/imported
@@ -163,22 +163,22 @@
 ### 0.0.16 Release
 * -------------------------------------   
 * Issue #82 change to ORM ClassHierarchy
-* Issue #108 change to ORM ClassHierarchy in: EuropeImport.get_countries_of_continent  
+* Issue #108 change to ORM ClassHierarchy in: EcdcImport.get_countries_of_continent  
 * Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
 * Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
 * -------------------------------------   
 * Issue #111 refactor to new method scheme itroduced 07.02.2021
-* Issue #117 refactor EuropeServiceUpdate to new method scheme introduced 07.02.2021 
-* Issue #112 implement EuropeService.run_update_dimension_tables_only
-* Issue #113 implement EuropeService.run_update_fact_table_incremental_only
-* Issue #114 implement EuropeService.run_update_fact_table_initial_only
-* Issue #115 implement EuropeService.run_update_star_schema_incremental
-* Issue #116 implement EuropeService.run_update_star_schema_initial
-* Issue #118 implement EuropeServiceUpdate.update_dimension_tables_only
-* Issue #119 implement EuropeServiceUpdate.update_fact_table_incremental_only
-* Issue #120 implement EuropeServiceUpdate.update_fact_table_initial_only
-* Issue #121 implement EuropeServiceUpdate.update_star_schema_incremental
-* Issue #122 implement EuropeServiceUpdate.update_star_schema_initial
+* Issue #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021 
+* Issue #112 implement EcdcService.run_update_dimension_tables_only
+* Issue #113 implement EcdcService.run_update_fact_table_incremental_only
+* Issue #114 implement EcdcService.run_update_fact_table_initial_only
+* Issue #115 implement EcdcService.run_update_star_schema_incremental
+* Issue #116 implement EcdcService.run_update_star_schema_initial
+* Issue #118 implement EcdcServiceUpdate.update_dimension_tables_only
+* Issue #119 implement EcdcServiceUpdate.update_fact_table_incremental_only
+* Issue #120 implement EcdcServiceUpdate.update_fact_table_initial_only
+* Issue #121 implement EcdcServiceUpdate.update_star_schema_incremental
+* Issue #122 implement EcdcServiceUpdate.update_star_schema_initial
 * -------------------------------------
 * Issue #163 implement url_europe_task_update_star_schema_initial in europe_views.py
 * Issue #164 implement url_europe_task_update_starschema_incremental in europe_views.py
@@ -222,13 +222,13 @@
 
 ### 0.0.18 Release
 * Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
-* Issue #40 SQLalchemy instead of SQL: EuropeImport.get_date_rep()
-* Issue #41 SQLalchemy instead of SQL: EuropeImport.get_countries_of_continent()
+* Issue #40 SQLalchemy instead of SQL: EcdcImport.get_date_rep()
+* Issue #41 SQLalchemy instead of SQL: EcdcImport.get_countries_of_continent()
 * Issue #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
 * Issue #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
-* Issue #107 SQLalchemy instead of SQL in: EuropeImport.get_countries_of_continent
-* Issue #109 SQLalchemy instead of SQL in: EuropeImport.get_date_rep
-* Issue #110 SQLalchemy instead of SQL in: EuropeImport.get_continent
+* Issue #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
+* Issue #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
+* Issue #110 SQLalchemy instead of SQL in: EcdcImport.get_continent
 
 ### 0.0.198 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date

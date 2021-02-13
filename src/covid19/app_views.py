@@ -3,7 +3,7 @@ from database import app
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 import covid19.blueprints.admin.admin_views
-import covid19.blueprints.ecdc.europe_views
+import covid19.blueprints.ecdc.ecdc_views
 import covid19.blueprints.rki_bundeslaender.rki_views
 import covid19.blueprints.rki_landkreise.rki_views
 import covid19.blueprints.rki_vaccination.rki_vaccination_views

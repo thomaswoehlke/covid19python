@@ -1,26 +1,26 @@
 from flask import flash
 
 from database import app
-from covid19.blueprints.ecdc.europe_service_download import EuropeServiceDownload
-from covid19.blueprints.ecdc.europe_service_import import EuropeServiceImport
-from covid19.blueprints.ecdc.europe_service_update import EuropeServiceUpdate
+from covid19.blueprints.ecdc.ecdc_service_download import EcdcServiceDownload
+from covid19.blueprints.ecdc.ecdc_service_import import EcdcServiceImport
+from covid19.blueprints.ecdc.ecdc_service_update import EcdcServiceUpdate
 
 
-# TODO: #111 refactor to new method scheme itroduced 07.02.2021
-class EuropeService:
+# TODO: #111 refactor to new method scheme introduced 07.02.2021
+class EcdcService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.europe_service_download = EuropeServiceDownload(database)
-        self.europe_service_import = EuropeServiceImport(database)
-        self.europe_service_update = EuropeServiceUpdate(database)
+        self.europe_service_download = EcdcServiceDownload(database)
+        self.europe_service_import = EcdcServiceImport(database)
+        self.europe_service_update = EcdcServiceUpdate(database)
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" Europe Service [ready] ")
 
     def pretask_database_drop_create(self):
-        flash("europe_service.download started")
+        flash("ecdc_service.download started")
         self.europe_service_download.download()
         return self
 
@@ -37,29 +37,29 @@ class EuropeService:
         self.europe_service_import.import_datafile_to_db()
         return self
 
-    # TODO: #112 implement EuropeService.run_update_dimension_tables_only
+    # TODO: #112 implement EcdcService.run_update_dimension_tables_only
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def run_update_dimension_tables_only(self):
         return self
 
-    # TODO: #113 implement EuropeService.run_update_fact_table_incremental_only
+    # TODO: #113 implement EcdcService.run_update_fact_table_incremental_only
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def run_update_fact_table_incremental_only(self):
         return self
 
 
-    # TODO: #114 implement EuropeService.run_update_fact_table_initial_only
+    # TODO: #114 implement EcdcService.run_update_fact_table_initial_only
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def run_update_fact_table_initial_only(self):
         return self
 
-    # TODO: #115 implement EuropeService.run_update_star_schema_incremental
+    # TODO: #115 implement EcdcService.run_update_star_schema_incremental
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def run_update_star_schema_incremental(self):
         return self
 
 
-    # TODO: #116 implement EuropeService.run_update_star_schema_initial
+    # TODO: #116 implement EcdcService.run_update_star_schema_initial
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def run_update_star_schema_initial(self):
         return self

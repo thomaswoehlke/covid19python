@@ -4,8 +4,8 @@ from database import db, ITEMS_PER_PAGE
 from covid19.blueprints.common.common_model import CommonDateReported, CommonRegion
 
 
-class EuropeDateReported(CommonDateReported):
-    __tablename__ = 'europe_date_reported'
+class EcdcDateReported(CommonDateReported):
+    __tablename__ = 'ecdc_date_reported'
     __mapper_args__ = {
         'concrete': True
     }
@@ -37,7 +37,7 @@ class EuropeDateReported(CommonDateReported):
         else:
             my_year_week += "-"
         my_year_week += str(week_number)
-        return EuropeDateReported(
+        return EcdcDateReported(
             date_reported=my_date_rep,
             datum=my_datum,
             year=my_datum.year,
@@ -49,8 +49,8 @@ class EuropeDateReported(CommonDateReported):
         )
 
 
-class EuropeContinent(CommonRegion):
-    __tablename__ = 'europe_continent'
+class EcdcContinent(CommonRegion):
+    __tablename__ = 'ecdc_continent'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
         db.UniqueConstraint('region', name="uix_europe_continent"),
@@ -60,8 +60,8 @@ class EuropeContinent(CommonRegion):
     region = db.Column(db.String(255), nullable=False, unique=True)
 
 
-class EuropeCountry(db.Model):
-    __tablename__ = 'europe_country'
+class EcdcCountry(db.Model):
+    __tablename__ = 'ecdc_country'
     __table_args__ = (
         db.UniqueConstraint('countries_and_territories', 'geo_id', 'country_territory_code', name="uix_europe_country"),
     )
@@ -72,11 +72,11 @@ class EuropeCountry(db.Model):
     geo_id = db.Column(db.String(255), nullable=False)
     country_territory_code = db.Column(db.String(255), nullable=False)
 
-    continent_id = db.Column(db.Integer, db.ForeignKey('europe_continent.id'), nullable=False)
+    continent_id = db.Column(db.Integer, db.ForeignKey('ecdc_continent.id'), nullable=False)
     continent = db.relationship(
-        'EuropeContinent',
+        'EcdcContinent',
         lazy='subquery',
-        order_by='EuropeContinent.region',
+        order_by='EcdcContinent.region',
         cascade="all, delete"
     )
 
@@ -124,23 +124,23 @@ class EuropeCountry(db.Model):
             .one_or_none()
 
 
-class EuropeData(db.Model):
-    __tablename__ = 'europe_data'
+class EcdcData(db.Model):
+    __tablename__ = 'ecdc_data'
 
     id = db.Column(db.Integer, primary_key=True)
     deaths_weekly = db.Column(db.Integer, nullable=False)
     cases_weekly = db.Column(db.Integer, nullable=False)
     notification_rate_per_100000_population_14days = db.Column(db.Float, nullable=False)
 
-    europe_country_id = db.Column(db.Integer, db.ForeignKey('europe_country.id'), nullable=False)
-    europe_country = db.relationship('EuropeCountry', lazy='joined', cascade="all, delete")
+    europe_country_id = db.Column(db.Integer, db.ForeignKey('ecdc_country.id'), nullable=False)
+    europe_country = db.relationship('EcdcCountry', lazy='joined', cascade="all, delete")
 
-    europe_date_reported_id = db.Column(db.Integer, db.ForeignKey('europe_date_reported.id'), nullable=False)
+    europe_date_reported_id = db.Column(db.Integer, db.ForeignKey('ecdc_date_reported.id'), nullable=False)
     europe_date_reported = db.relationship(
-        'EuropeDateReported',
+        'EcdcDateReported',
         lazy='joined',
         cascade='all, delete',
-        order_by='desc(EuropeDateReported.date_reported)')
+        order_by='desc(EcdcDateReported.date_reported)')
 
     @classmethod
     def remove_all(cls):

@@ -4,15 +4,15 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from covid19.services import who_service
-from covid19.workers import celery
+from covid19.app_services import who_service
+from covid19.app_workers import celery
 
 from covid19.blueprints.who.who_model_import import WhoImport
 from covid19.blueprints.who.who_model import WhoRegion, WhoCountry, WhoDateReported, WhoData
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 
-app_who = Blueprint('who', __name__, template_folder='templates')
+app_who = Blueprint('who', __name__, template_folder='templates', url_prefix='/who')
 
 
 ##################################################################################################################

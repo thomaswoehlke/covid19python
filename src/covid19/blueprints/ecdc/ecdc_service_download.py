@@ -2,16 +2,16 @@ import os
 import wget
 from flask import flash
 from database import app
-from covid19.blueprints.ecdc.europe_service_config import EuropeServiceConfig
+from covid19.blueprints.ecdc.ecdc_service_config import EcdcServiceConfig
 
 
-class EuropeServiceDownload:
+class EcdcServiceDownload:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Download [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = EuropeServiceConfig()
+        self.cfg = EcdcServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Download [ready] ")
 

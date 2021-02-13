@@ -1,7 +1,7 @@
 import os
 
 
-class EuropeServiceConfig:
+class EcdcServiceConfig:
     def __init__(self):
         self.limit_nr = 20
         self.data_path = ".."+os.sep+".."+os.sep+"data"
