@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, Blueprint
 from database import app
-from covid19.blueprints.common.application_model_transient import ApplicationPage
+from covid19.blueprints.application.application_model_transient import ApplicationPage
 
 import covid19.blueprints.admin.admin_views
 import covid19.blueprints.ecdc.ecdc_views
@@ -37,7 +37,7 @@ app.register_blueprint(app_who, url_prefix='/who')
 def url_home():
     page_info = ApplicationPage('Home', "Covid19 Data")
     return render_template(
-        'common/page_home.html',
+        'application/page_home.html',
         page_info=page_info)
 
 

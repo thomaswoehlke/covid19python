@@ -3,10 +3,10 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from covid19.blueprints.common.application_services import who_service, ecdc_service, rki_vaccination_service
-from covid19.blueprints.common.application_services import rki_service_bundeslaender, admin_service
-from covid19.blueprints.common.application_workers import celery
-from covid19.blueprints.common.application_model_transient import ApplicationPage
+from covid19.blueprints.application.application_services import who_service, ecdc_service, rki_vaccination_service
+from covid19.blueprints.application.application_services import rki_service_bundeslaender, admin_service
+from covid19.blueprints.application.application_workers import celery
+from covid19.blueprints.application.application_model_transient import ApplicationPage
 
 drop_and_create_data_again = True
 

@@ -1,7 +1,7 @@
 from database import db
 
 from covid19.blueprints.admin.admin_service import AdminService
-from covid19.blueprints.common.application_service import ApplicationService
+from covid19.blueprints.application.application_service import ApplicationService
 from covid19.blueprints.ecdc.ecdc_service import EcdcService
 from covid19.blueprints.rki_bundeslaender.rki_service import RkiBundeslaenderService
 from covid19.blueprints.rki_landkreise.rki_service import RkiLandkreiseService

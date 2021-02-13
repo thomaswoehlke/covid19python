@@ -3,11 +3,11 @@ from sqlalchemy.exc import OperationalError
 
 from database import app
 
-from covid19.blueprints.common.application_workers import celery
-from covid19.blueprints.common.application_model import RkiDateReported, RkiRegion, RkiCountry
+from covid19.blueprints.application.application_workers import celery
+from covid19.blueprints.application.application_model import RkiDateReported, RkiRegion, RkiCountry
 from covid19.blueprints.rki_landkreise.rki_model import RkiLandkreise
 from covid19.blueprints.rki_landkreise.rki_model_import import RkiLandkreiseImport
-from covid19.blueprints.common.application_model_transient import ApplicationPage
+from covid19.blueprints.application.application_model_transient import ApplicationPage
 
 drop_and_create_data_again = True
 

@@ -1,6 +1,6 @@
 from database import app, run_run_with_debug, port
 
-import covid19.blueprints.common.application_views
+import covid19.blueprints.application.application_views
 
 #################################################################################################################
 #

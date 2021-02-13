@@ -3,12 +3,12 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from covid19.blueprints.common.application_services import ecdc_service
-from covid19.blueprints.common.application_workers import celery
+from covid19.blueprints.application.application_services import ecdc_service
+from covid19.blueprints.application.application_workers import celery
 
 from covid19.blueprints.ecdc.ecdc_model_import import EcdcImport
 from covid19.blueprints.ecdc.ecdc_model import EcdcDateReported, EcdcContinent, EcdcCountry, EcdcData
-from covid19.blueprints.common.application_model_transient import ApplicationPage
+from covid19.blueprints.application.application_model_transient import ApplicationPage
 
 
 app_ecdc = Blueprint('ecdc', __name__, template_folder='templates', url_prefix='/ecdc')

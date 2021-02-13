@@ -1,7 +1,7 @@
 from sqlalchemy import and_
 from datetime import date
 from database import db, ITEMS_PER_PAGE
-from covid19.blueprints.common.application_model import ApplicationDateReported, ApplicationRegion
+from covid19.blueprints.application.application_model import ApplicationDateReported, ApplicationRegion
 
 
 class EcdcDateReported(ApplicationDateReported):
