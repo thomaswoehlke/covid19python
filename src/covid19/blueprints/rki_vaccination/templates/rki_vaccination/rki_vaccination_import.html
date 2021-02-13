@@ -1,6 +1,6 @@
-{% extends 'common/page_layout.html' %}
+{% extends 'application/page_layout.html' %}
 
-{% include 'common/fragment_pagination.html' %}
+{% include 'application/fragment_pagination.html' %}
 
 {% block navigation_breadcrumb %}
     <!-- TODO: implement navigation_breadcrumb in .html -->
@@ -8,7 +8,7 @@
 
 
 {% block navigation_navtabs %}
-  {% include 'vaccination/fragments/fragment_vaccination_navtabs.html' %}
+  {% include 'rki_vaccination/fragments/fragment_vaccination_navtabs.html' %}
 {% endblock %}
 
 
@@ -19,7 +19,10 @@
         <ul class="pagination">
         {% if page_data.has_prev %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('vaccination.url_vaccination_timeline_germany', page=page_data.prev_num) }}">Previous</a>
+            <a class="page-link"
+               href="{{ url_for('rki_vaccination.url_vaccination_timeline_germany', page=page_data.prev_num) }}">
+                Previous
+            </a>
         </li>
         {% endif %}
         <!-- all page numbers -->
@@ -27,7 +30,9 @@
             {% if page_num %}
                 {% if page_num != page_data.page %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('vaccination.url_vaccination_timeline_germany', page=page_num) }}">{{ page_num }}</a>
+                        <a class="page-link" href="{{ url_for('rki_vaccination.url_vaccination_timeline_germany', page=page_num) }}">
+                            {{ page_num }}
+                        </a>
                     </li>
                 {% else %}
                     <li class="page-item active">
@@ -43,13 +48,16 @@
         <!-- next page -->
         {% if page_data.has_next %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('vaccination.url_vaccination_timeline_germany', page=page_data.next_num) }}">Next</a>
+            <a class="page-link"
+               href="{{ url_for('rki_vaccination.url_vaccination_timeline_germany', page=page_data.next_num) }}">
+                Next
+            </a>
         </li>
         {% endif %}
         </ul>
     {% endif %}
 
-    {% include 'vaccination/fragments/fragment_vaccination_timeline_germany_table.html' %}
+    {% include 'rki_vaccination/fragments/fragment_vaccination_timeline_germany_table.html' %}
 
 {% endblock %}
 

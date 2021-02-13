@@ -1,9 +1,8 @@
     <table class="table table-hover table-striped table-dark">
         <thead class="table-secondary">
             <tr>
-                <!-- TODO: change URL to for_url() -->
                 <th scope="col">
-                    <a href="/who/date_reported/all">
+                    <a href="{{ url_for( 'who.url_who_date_reported_all') }}">
                         date reported
                     </a>
                 </th>
@@ -20,17 +19,17 @@
                     cases cumulative
                 </th>
                 <th scope="col">
-                    <a href="/who/country/all">
+                    <a href="{{ url_for( 'who.url_who_country_all') }}">
                         country code
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/who/country/all">
+                    <a href="{{ url_for( 'who.url_who_country_all') }}">
                         country
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/who/region/all">
+                    <a href="{{ url_for( 'who.url_who_region_all') }}">
                         region
                     </a>
                 </th>

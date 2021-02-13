@@ -116,7 +116,7 @@ def task_vaccination_task_update_starschema_initial(self):
 def url_vaccination_info():
     page_info = ApplicationPage('Vaccination', "Info")
     return render_template(
-        'rki_vaccination/vaccination_info.html',
+        'rki_vaccination/rki_vaccination_info.html',
         page_info=page_info)
 
 
@@ -124,7 +124,7 @@ def url_vaccination_info():
 def url_vaccination_tasks():
     page_info = ApplicationPage('Vaccination', "Tasks")
     return render_template(
-        'rki_vaccination/vaccination_tasks.html',
+        'rki_vaccination/rki_vaccination_tasks.html',
         page_info=page_info)
 
 
@@ -134,7 +134,7 @@ def url_vaccination_imported(page=1):
     page_info = ApplicationPage('Vaccination', "Data: Germany Timeline imported")
     page_data = RkiVaccinationImport.get_all_as_page(page)
     return render_template(
-        'rki_vaccination/vaccination_imported.html',
+        'rki_vaccination/rki_vaccination_imported.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -145,7 +145,7 @@ def url_vaccination_data(page=1):
     page_info = ApplicationPage('Vaccination', "Data: Germany Timeline")
     page_data = RkiVaccinationData.get_all_as_page(page)
     return render_template(
-        'rki_vaccination/vaccination_data.html',
+        'rki_vaccination/rki_vaccination_data.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -156,7 +156,7 @@ def url_vaccination_datereported_all(page=1):
     page_info = ApplicationPage('Vaccination', "Germany Timeline")
     page_data = RkiVaccinationDateReported.get_all_as_page(page)
     return render_template(
-        'rki_vaccination/vaccination_timeline_germany.html',
+        'rki_vaccination/rki_vaccination_timeline_germany.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -168,7 +168,7 @@ def url_vaccination_datereported_one(page=1, vaccination_date_reported_id=0):
     datereported = RkiVaccinationDateReported.find_by_id(vaccination_date_reported_id)
     page_data = RkiVaccinationData.find_by_datum(page, datereported)
     return render_template(
-        'rki_vaccination/vaccination_timeline_germany.html',
+        'rki_vaccination/rki_vaccination_timeline_germany.html',
         datereported=datereported,
         page_data=page_data,
         page_info=page_info)
@@ -178,35 +178,35 @@ def url_vaccination_datereported_one(page=1, vaccination_date_reported_id=0):
 def url_vaccination_task_download_only():
     flash("url_vaccination_task_download_only started")
     rki_vaccination_service.run_download_only()
-    return redirect(url_for('vaccination.url_vaccination_tasks'))
+    return redirect(url_for('rki_vaccination.url_vaccination_tasks'))
 
 
 @app_rki_vaccination.route('/task/import/only')
 def url_vaccination_task_import_only():
     flash("url_vaccination_task_import_only started")
     task_vaccination_import_only.apply_async()
-    return redirect(url_for('vaccination.url_vaccination_tasks'))
+    return redirect(url_for('rki_vaccination.url_vaccination_tasks'))
 
 
 @app_rki_vaccination.route('/task/update/dimension-tables/only')
 def url_vaccination_task_update_dimensiontables_only():
     flash("url_vaccination_task_update_dimensiontables_only started")
     task_vaccination_update_dimension_tables_only.apply_async()
-    return redirect(url_for('vaccination.url_vaccination_tasks'))
+    return redirect(url_for('rki_vaccination.url_vaccination_tasks'))
 
 
 @app_rki_vaccination.route('/task/update/fact-table/incremental/only')
 def url_vaccination_task_update_facttable_incremental_only():
     flash("url_vaccination_task_update_facttable_incremental_only started")
     task_vaccination_update_facttable_incremental_only.apply_async()
-    return redirect(url_for('vaccination.url_vaccination_tasks'))
+    return redirect(url_for('rki_vaccination.url_vaccination_tasks'))
 
 
 @app_rki_vaccination.route('/task/update/fact-table/initial/only')
 def url_vaccination_task_update_facttable_initial_only():
     flash("url_vaccination_task_update_facttable_initial_only started")
     task_vaccination_update_facttable_initial_only.apply_async()
-    return redirect(url_for('vaccination.url_vaccination_tasks'))
+    return redirect(url_for('rki_vaccination.url_vaccination_tasks'))
 
 
 @app_rki_vaccination.route('/task/update/star_schema/initial')
@@ -214,7 +214,7 @@ def url_vaccination_task_update_starschema_initial():
     flash("url_vaccination_task_update_star_schemainitial started")
     rki_vaccination_service.run_download_only()
     task_vaccination_task_update_starschema_initial.apply_async()
-    return redirect(url_for('vaccination.url_vaccination_tasks'))
+    return redirect(url_for('rki_vaccination.url_vaccination_tasks'))
 
 
 @app_rki_vaccination.route('/task/update/star_schema/incremental')
@@ -222,4 +222,4 @@ def url_vaccination_task_update_starschema_incremental():
     flash("url_vaccination_task_update_starschema_incremental started")
     rki_vaccination_service.run_download_only()
     task_vaccination_update_starschema_incremental.apply_async()
-    return redirect(url_for('vaccination.url_vaccination_tasks'))
+    return redirect(url_for('rki_vaccination.url_vaccination_tasks'))

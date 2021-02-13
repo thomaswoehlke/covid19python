@@ -1,4 +1,4 @@
-{% extends 'common/page_layout.html' %}
+{% extends 'application/page_layout.html' %}
 
 {% block navigation_breadcrumb %}
     <!-- TODO: implement navigation_breadcrumb in .html -->
@@ -18,33 +18,33 @@
         <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">
                 <a class="btn btn-primary btn-lg btn-block text-left"
-                   href="{{ url_for( 'vaccination.url_vaccination_task_update_starschema_initial') }}"
+                   href="{{ url_for( 'rki_vaccination.url_vaccination_task_update_starschema_initial') }}"
                    role="button">Vaccination :: Task :: update :: star_schema :: initial</a>
                 <a class="btn btn-primary btn-lg btn-block text-left"
-                   href="{{ url_for( 'vaccination.url_vaccination_task_update_starschema_incremental') }}"
+                   href="{{ url_for( 'rki_vaccination.url_vaccination_task_update_starschema_incremental') }}"
                    role="button">Vaccination :: Task :: update :: star_schema :: incremental</a>
             </div>
         </div>
         <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="{{ url_for( 'vaccination.url_vaccination_task_download_only') }}"
+                   href="{{ url_for( 'rki_vaccination.url_vaccination_task_download_only') }}"
                    role="button">Vaccination :: Task :: download :: only</a>
 
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="{{ url_for( 'vaccination.url_vaccination_task_import_only') }}"
+                   href="{{ url_for( 'rki_vaccination.url_vaccination_task_import_only') }}"
                    role="button">Vaccination :: Task :: import :: only</a>
 
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="{{ url_for( 'vaccination.url_vaccination_task_update_dimensiontables_only') }}"
+                   href="{{ url_for( 'rki_vaccination.url_vaccination_task_update_dimensiontables_only') }}"
                    role="button">Vaccination :: Task :: update :: dimension-tables : only</a>
 
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="{{ url_for( 'vaccination.url_vaccination_task_update_facttable_incremental_only') }}"
+                   href="{{ url_for( 'rki_vaccination.url_vaccination_task_update_facttable_incremental_only') }}"
                    role="button">Vaccination :: Task :: update :: fact-table :: only :: incremental</a>
 
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="{{ url_for( 'vaccination.url_vaccination_task_update_facttable_initial_only') }}"
+                   href="{{ url_for( 'rki_vaccination.url_vaccination_task_update_facttable_initial_only') }}"
                    role="button">Vaccination :: Task :: update :: fact-table :: only :: initial</a>
             </div>
         </div>

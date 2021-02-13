@@ -1,34 +1,33 @@
             <br/>
             <nav>
                 <ul class="nav nav-tabs">
-                    <!-- TODO: change URL to for_url() -->
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/who/info">WHO Info</a>
+                           href="{{ url_for( 'who.url_who_info') }}">WHO Info</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/who/tasks">WHO tasks</a>
+                           href="{{ url_for( 'who.url_who_tasks') }}">WHO tasks</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/who/date_reported/all">WHO Date Reported</a>
+                           href="{{ url_for( 'who.url_who_date_reported_all') }}">WHO Date Reported</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/who/germany">WHO Germany</a>
+                           href="{{ url_for( 'who.url_who_germany') }}">WHO Germany</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/who/region/all">WHO Regions</a>
+                           href="{{ url_for( 'who.url_who_region_all') }}">WHO Regions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/who/country/all">WHO Countries</a>
+                           href="{{ url_for( 'who.url_who_country_all') }}">WHO Countries</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/who/imported">WHO imported</a>
+                           href="{{ url_for( 'who.url_who_imported') }}">WHO imported</a>
                     </li>
                 </ul>
             </nav>

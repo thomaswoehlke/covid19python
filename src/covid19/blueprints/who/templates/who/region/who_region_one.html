@@ -1,4 +1,4 @@
-{% extends 'common/page_layout.html' %}
+{% extends 'application/page_layout.html' %}
 
 {% block navigation_jumbotron %}{% endblock %}
 
@@ -24,7 +24,8 @@
         <ul class="pagination">
         {% if page_data.has_prev %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('who.url_who_region', region_id=who_region.id , page=page_data.prev_num) }}">Previous</a>
+            <a class="page-link" href="{{ url_for('who.url_who_region',
+            region_id=who_region.id , page=page_data.prev_num) }}">Previous</a>
         </li>
         {% endif %}
         <!-- all page numbers -->
@@ -32,7 +33,8 @@
             {% if page_num %}
                 {% if page_num != page_data.page %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('who.url_who_region', region_id=who_region.id ,page=page_num) }}">{{ page_num }}</a>
+                        <a class="page-link" href="{{ url_for('who.url_who_region',
+                        region_id=who_region.id ,page=page_num) }}">{{ page_num }}</a>
                     </li>
                 {% else %}
                     <li class="page-item active">
@@ -48,7 +50,8 @@
         <!-- next page -->
         {% if page_data.has_next %}
         <li class="page-item">
-            <a class="page-link" href="{{ url_for('who.url_who_region', region_id=who_region.id , page=page_data.next_num) }}">Next</a>
+            <a class="page-link" href="{{ url_for('who.url_who_region',
+            region_id=who_region.id , page=page_data.next_num) }}">Next</a>
         </li>
     {% endif %}
     </ul>

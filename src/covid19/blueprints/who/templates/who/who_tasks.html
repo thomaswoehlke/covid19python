@@ -1,4 +1,4 @@
-{% extends 'common/page_layout.html' %}
+{% extends 'application/page_layout.html' %}
 
 {% block navigation_breadcrumb %}
     <!-- TODO: implement navigation_breadcrumb in .html -->
@@ -13,29 +13,29 @@
         <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">
                 <a class="btn btn-primary btn-lg btn-block text-left"
-                   href="/who/task/update/star_schema/initial"
+                   href="{{ url_for( 'who.url_task_who_update_star_schema_initial') }}"
                    role="button">WHO :: Task :: update :: star_schema :: initial</a>
                 <a class="btn btn-primary btn-lg btn-block text-left"
-                   href="/who/task/update/star_schema/incremental"
+                   href="{{ url_for( 'who.url_task_who_update_star_schema_incremental') }}"
                    role="button">WHO :: Task :: update :: star_schema :: incremental</a>
             </div>
         </div>
         <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/who/task/download/only"
+                   href="{{ url_for( 'who.url_task_who_download_only') }}"
                    role="button">WHO :: Task :: download :: only</a>
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/who/task/import/only"
+                   href="{{ url_for( 'who.url_task_who_import_only') }}"
                    role="button">WHO :: Task :: import :: only</a>
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/who/task/update/dimension-tables/only"
+                   href="{{ url_for( 'who.url_task_who_update_dimension_tables_only') }}"
                    role="button">WHO :: Task :: update :: dimension-tables : only</a>
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/who/task/update/fact-table/incremental/only"
+                   href="{{ url_for( 'who.url_task_who_update_fact_table_incremental_only') }}"
                    role="button">WHO :: Task :: update :: fact-table :: only :: incremental</a>
                 <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="/who/task/update/fact-table/initial/only"
+                   href="{{ url_for( 'who.url_task_who_update_fact_table_initial_only') }}"
                    role="button">WHO :: Task :: update :: fact-table :: only :: initial</a>
             </div>
         </div>

@@ -4,16 +4,65 @@
                         Vaccination
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                         <!-- TODO: change URL to for_url() -->
-                        <a class="dropdown-item" href="/vaccination/timeline/germany">Vaccination</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_info') }}">
+                            Vaccination
+                        </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/vaccination/tasks">Vaccination tasks</a>
-                        <a class="dropdown-item" href="/vaccination/info">Vaccination Info</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_tasks') }}">
+                            Vaccination tasks
+                        </a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_info') }}">
+                            Vaccination Info
+                        </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/vaccination/update/initial">Task: Vaccination :: update :: initial</a>
-                        <a class="dropdown-item" href="/vaccination/update/short">Task: Vaccination :: update :: short</a>
+
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_datereported_all') }}">
+                            Vaccination :: url_vaccination_datereported_all
+                        </a>
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_task_download_only') }}">
+                            Vaccination :: TASK:: url_vaccination_task_download_only
+                        </a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_task_import_only') }}">
+                            Vaccination :: TASK:: url_vaccination_task_download_only
+                        </a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_task_update_dimensiontables_only') }}">
+                            Vaccination :: TASK:: url_vaccination_task_update_dimensiontables_only
+                        </a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_task_update_facttable_incremental_only') }}">
+                            Vaccination :: TASK:: url_vaccination_task_update_facttable_incremental_only
+                        </a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_task_update_facttable_initial_only') }}">
+                            Vaccination :: TASK:: url_vaccination_task_update_facttable_initial_only
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_task_update_starschema_initial') }}">
+                            Vaccination :: TASK:: url_vaccination_task_update_starschema_initial
+                        </a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_task_update_starschema_incremental') }}">
+                            Vaccination :: TASK:: url_vaccination_task_update_starschema_incremental
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_data') }}">
+                            Vaccination Timeline Germany Data
+                        </a>
                         <!-- Tasks -->
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/vaccination/timeline/germany">Vaccination Timeline Germany</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_vaccination.url_vaccination_imported') }}">
+                            Vaccination Timeline Germany imported
+                        </a>
                     </div>
                 </li>
