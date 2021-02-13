@@ -157,7 +157,7 @@ def task_ecdc_update_star_schema_initial(self):
 def url_ecdc_info():
     page_info = ApplicationPage('Europe', "Info")
     return render_template(
-        'europe/europe_info.html',
+        'ecdc/europe_info.html',
         title='Europe',
         page_info=page_info)
 
@@ -166,7 +166,7 @@ def url_ecdc_info():
 def url_ecdc_tasks():
     page_info = ApplicationPage('Europe', "Tasks")
     return render_template(
-        'europe/europe_tasks.html',
+        'ecdc/europe_tasks.html',
         title='Europe Tasks',
         page_info=page_info)
 
@@ -177,7 +177,7 @@ def url_ecdc_data_imported(page=1):
     page_info = ApplicationPage('Europe', "Last Import")
     page_data = EuropeImport.get_all_as_page(page)
     return render_template(
-        'europe/europe_imported.html',
+        'ecdc/europe_imported.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -188,7 +188,7 @@ def url_ecdc_date_reported_all(page=1):
     page_info = ApplicationPage('Europe', "date_reported")
     page_data = EuropeDateReported.get_all_as_page(page)
     return render_template(
-        'europe/date_reported/europe_date_reported_all.html',
+        'ecdc/date_reported/europe_date_reported_all.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -202,7 +202,7 @@ def url_ecdc_date_reported_one_notification_rate(europe_date_reported_id, page=1
     europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
     page_data = EuropeData.find_by_date_reported_notification_rate(europe_date_reported, page)
     return render_template(
-        'europe/date_reported/europe_date_reported_one_notification_rate.html',
+        'ecdc/date_reported/europe_date_reported_one_notification_rate.html',
         europe_date_reported=europe_date_reported,
         page_data=page_data,
         page_info=page_info)
@@ -215,7 +215,7 @@ def url_ecdc_date_reported_one_deaths_weekly(europe_date_reported_id, page=1):
     europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
     page_data = EuropeData.find_by_date_reported_deaths_weekly(europe_date_reported, page)
     return render_template(
-        'europe/date_reported/europe_date_reported_one_deaths_weekly.html',
+        'ecdc/date_reported/europe_date_reported_one_deaths_weekly.html',
         europe_date_reported=europe_date_reported,
         page_data=page_data,
         page_info=page_info)
@@ -228,7 +228,7 @@ def url_ecdc_date_reported_one_cases_weekly(europe_date_reported_id, page=1):
     europe_date_reported = EuropeDateReported.get_by_id(europe_date_reported_id)
     page_data = EuropeData.find_by_date_reported_cases_weekly(europe_date_reported, page)
     return render_template(
-        'europe/date_reported/europe_date_reported_one_cases_weekly.html',
+        'ecdc/date_reported/europe_date_reported_one_cases_weekly.html',
         europe_date_reported=europe_date_reported,
         page_data=page_data,
         page_info=page_info)
@@ -240,7 +240,7 @@ def url_ecdc_continent_all(page=1):
     page_info = ApplicationPage('Europe', "continent")
     page_data = EuropeContinent.get_all_as_page(page)
     return render_template(
-        'europe/continent/europe_continent_all.html',
+        'ecdc/continent/europe_continent_all.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -252,7 +252,7 @@ def url_ecdc_continent_one(continent_id, page=1):
     continent = EuropeContinent.get_by_id(continent_id)
     page_data = EuropeCountry.find_by_continent(continent, page)
     return render_template(
-        'europe/continent/europe_continent_one.html',
+        'ecdc/continent/europe_continent_one.html',
         continent=continent,
         page_data=page_data,
         page_info=page_info)
@@ -264,7 +264,7 @@ def url_ecdc_country_all(page=1):
     page_info = ApplicationPage('Europe', "country")
     page_data = EuropeCountry.get_all_as_page(page)
     return render_template(
-        'europe/country/europe_country_all.html',
+        'ecdc/country/europe_country_all.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -276,7 +276,7 @@ def url_ecdc_country_one(country_id, page=1):
     europe_country = EuropeCountry.get_by_id(country_id)
     page_data = EuropeData.find_by_country(europe_country, page)
     return render_template(
-        'europe/country/europe_country_one.html',
+        'ecdc/country/europe_country_one.html',
         europe_country=europe_country,
         page_data=page_data,
         page_info=page_info)
@@ -292,7 +292,7 @@ def url_ecdc_country_germany(page=1):
         return redirect(url_for('url_ecdc_tasks'))
     page_data = EuropeData.find_by_country(europe_country, page)
     return render_template(
-        'europe/country/europe_country_germany.html',
+        'ecdc/country/europe_country_germany.html',
         europe_country=europe_country,
         page_data=page_data,
         page_info=page_info)
