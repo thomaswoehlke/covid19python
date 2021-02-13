@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for
 from database import app
-from covid19.blueprints.common.common_model_transient import ApplicationPage
+from covid19.blueprints.common.application_model_transient import ApplicationPage
 
 import covid19.blueprints.admin.admin_views
 import covid19.blueprints.ecdc.ecdc_views
