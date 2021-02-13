@@ -1,6 +1,6 @@
 {% extends 'application/page_layout.html' %}
 
-{% include 'application/fragments/fragment_pagination.html' %}
+{% include 'application/fragments/rki_fragment_pagination.html' %}
 
 {% block navigation_breadcrumb %}
     <!-- TODO: implement navigation_breadcrumb in .html -->
@@ -8,7 +8,7 @@
 
 
 {% block navigation_navtabs %}
-  {% include 'rki_vaccination/fragments/fragment_vaccination_navtabs.html' %}
+  {% include 'rki_vaccination/fragments/rki_fragment_vaccination_navtabs.html' %}
 {% endblock %}
 
 
@@ -58,7 +58,7 @@
         </ul>
     {% endif %}
 
-    {% include 'rki_vaccination/fragments/fragment_vaccination_timeline_germany_table.html' %}
+    {% include 'rki_vaccination/fragments/fragment_rki_vaccination_timeline_germany_table.html' %}
 
 {% endblock %}
 
