@@ -3,7 +3,7 @@
             <tr>
                 <!-- TODO: change URL to for_url() -->
                 <th scope="col">
-                    <a href="/europe/date_reported/all">date rep</a>
+                    <a href="/ecdc/date_reported/all">date rep</a>
                 </th>
                 <th scope="col">year_week</th>
                 <th scope="col">
@@ -42,23 +42,23 @@
                         notification rate per 100000 population 14days
                     {% endif %}
                 </th>
-                <th scope="col"><a href="/europe/country/all">countries and territories</a></th>
+                <th scope="col"><a href="/ecdc/country/all">countries and territories</a></th>
                 <th scope="col">population data 2019</th>
-                <th scope="col"><a href="/europe/country/all">geo id</a></th>
-                <th scope="col"><a href="/europe/country/all">country territory code</a></th>
-                <th scope="col"><a href="/europe/continent/all">continent</a></th>
+                <th scope="col"><a href="/ecdc/country/all">geo id</a></th>
+                <th scope="col"><a href="/ecdc/country/all">country territory code</a></th>
+                <th scope="col"><a href="/ecdc/continent/all">continent</a></th>
             </tr>
         </thead>
         <tbody>
         {% for europe_data in page_data.items %}
             <tr>
                 <td>
-                    <a href="/europe/date_reported/{{ europe_data.europe_date_reported.id }}">
+                    <a href="/ecdc/date_reported/{{ europe_data.europe_date_reported.id }}">
                         {{ europe_data.europe_date_reported.get_name_for_datum() }}
                     </a>
                 </td>
                 <td>
-                    <a href="/europe/date_reported/{{ europe_data.europe_date_reported.id }}">
+                    <a href="/ecdc/date_reported/{{ europe_data.europe_date_reported.id }}">
                         {{ europe_data.europe_date_reported.year_week }}
                     </a>
                 </td>
@@ -66,23 +66,23 @@
                 <td>{{ europe_data.cases_weekly }}</td>
                 <td>{{ europe_data.notification_rate_per_100000_population_14days }}</td>
                 <td>
-                    <a href="/europe/country/{{ europe_data.europe_country.id }}">
+                    <a href="/ecdc/country/{{ europe_data.europe_country.id }}">
                         {{ europe_data.europe_country.countries_and_territories }}
                     </a>
                 </td>
                 <td>{{ europe_data.europe_country.pop_data_2019 }}</td>
                 <td>
-                    <a href="/europe/country/{{ europe_data.europe_country.id }}">
+                    <a href="/ecdc/country/{{ europe_data.europe_country.id }}">
                         {{ europe_data.europe_country.geo_id }}
                     </a>
                 </td>
                 <td>
-                    <a href="/europe/country/{{ europe_data.europe_country.id }}">
+                    <a href="/ecdc/country/{{ europe_data.europe_country.id }}">
                         {{ europe_data.europe_country.country_territory_code }}
                     </a>
                 </td>
                 <td>
-                    <a href="/europe/continent/{{ europe_data.europe_country.continent.id }}">
+                    <a href="/ecdc/continent/{{ europe_data.europe_country.continent.id }}">
                         {{ europe_data.europe_country.continent.continent_exp }}
                     </a>
                 </td>
