@@ -74,15 +74,15 @@ class EcdcImport(db.Model):
             cls.country_territory_code,
             cls.pop_data_2019,
             cls.continent_exp
-        ).filter(
-            cls.continent_exp == my_continent
         ).group_by(
             cls.countries_and_sterritories,
             cls.geo_id,
             cls.country_territory_code,
             cls.pop_data_2019,
             cls.continent_exp
-        ).order_by(cls.countries_and_territories.asc()).distinct().all()
+        ).order_by(cls.countries_and_territories.asc()).filter(
+            cls.continent_exp == my_continent
+        ).distinct().all()
         #sql = """
         #select distinct
         #    countries_and_territories,
