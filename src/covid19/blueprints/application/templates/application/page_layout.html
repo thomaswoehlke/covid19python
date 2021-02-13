@@ -13,13 +13,13 @@
 
     <header>
         <div class="container tw_padding">
-            {% include 'common/fragment_navbar.html' %}
+            {% include 'application/fragment_navbar.html' %}
         </div>
     </header>
 
     <section>
         <div class="container tw_padding">
-            {% include 'common/fragment_navtabs.html' %}
+            {% include 'application/fragment_navtabs.html' %}
         </div>
         <div class="container">
             {% block navigation_navtabs %}{% endblock %}
@@ -31,7 +31,7 @@
 
     <main>
         <div class="container tw_padding">
-            {% include 'common/fragment_flashed_messages.html' %}
+            {% include 'application/fragment_flashed_messages.html' %}
         </div>
         <div class="container tw_padding">
             {% block main_container %}{% endblock %}
