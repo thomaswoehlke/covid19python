@@ -3,7 +3,7 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from covid19.app_services import ecdc_service
+from covid19.blueprints.common.application_services import ecdc_service
 from covid19.blueprints.common.application_workers import celery
 
 from covid19.blueprints.ecdc.ecdc_model_import import EcdcImport
