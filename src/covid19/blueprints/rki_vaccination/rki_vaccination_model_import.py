@@ -1,8 +1,8 @@
 from database import db, ITEMS_PER_PAGE
 
 
-class VaccinationImport(db.Model):
-    __tablename__ = 'vaccination_import'
+class RkiVaccinationImport(db.Model):
+    __tablename__ = 'rki_vaccination_import'
 
     id = db.Column(db.Integer, primary_key=True)
     datum = db.Column(db.String(255), nullable=False)
@@ -89,30 +89,30 @@ class VaccinationImport(db.Model):
         sql_query = """
             select
                 distinct 
-                    vaccination_import.datum
+                    rki_vaccination_import.datum
                 from
-                    vaccination_import
+                    rki_vaccination_import
                 where
                     datum
                 not in (
                     select
                         distinct
-                            vaccination_import.datum
+                            rki_vaccination_import.datum
                         from
-                            vaccination_data
+                            rki_vaccination_data
                         left join
-                            vaccination_date_reported
+                            rki_vaccination_date_reported
                         on
-                            vaccination_data.date_reported_id=vaccination_date_reported.id
+                            rki_vaccination_data.date_reported_id=rki_vaccination_date_reported.id
                         group by 
-                            vaccination_import.datum
+                            rki_vaccination_import.datum
                         order by
-                            vaccination_import.datum desc
+                            rki_vaccination_import.datum desc
                 )
                 group by
-                    vaccination_import.datum
+                    rki_vaccination_import.datum
                 order by 
-                    vaccination_import.datum desc
+                    rki_vaccination_import.datum desc
             """
         new_dates = []
         for item, in db.session.execute(sql_query):

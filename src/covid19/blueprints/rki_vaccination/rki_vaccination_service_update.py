@@ -1,7 +1,7 @@
 from database import db, app
 
 from covid19.blueprints.rki_vaccination.rki_vaccination_service_config import RkiVaccinationServiceConfig
-from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import VaccinationImport
+from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import RkiVaccinationImport
 from covid19.blueprints.rki_vaccination.rki_vaccination_model import VaccinationDateReported, VaccinationData
 
 
@@ -20,7 +20,7 @@ class RkiVaccinationServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         VaccinationData.remove_all()
         VaccinationDateReported.remove_all()
-        date_reported_list = VaccinationImport.get_date_reported_as_array()
+        date_reported_list = RkiVaccinationImport.get_date_reported_as_array()
         i = 0
         for one_date_reported in date_reported_list:
             i += 1
@@ -37,7 +37,7 @@ class RkiVaccinationServiceUpdate:
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
         VaccinationData.remove_all()
-        result_date_rep = VaccinationImport.get_date_rep()
+        result_date_rep = RkiVaccinationImport.get_date_rep()
         i = 0
         for item_date_rep, in result_date_rep:
             #dt = item_date_rep['date_rep']
@@ -47,7 +47,7 @@ class RkiVaccinationServiceUpdate:
             if europe_date_reported is None:
                 o = VaccinationDateReported.create_new_object_factory(item_date_rep)
                 europe_date_reported = o
-            result_europe_data_import = VaccinationImport.find_by_datum(europe_date_reported.date_reported)
+            result_europe_data_import = RkiVaccinationImport.find_by_datum(europe_date_reported.date_reported)
             for item_europe_data_import in result_europe_data_import:
                 o = VaccinationData(
                     date_reported=europe_date_reported,
@@ -88,11 +88,11 @@ class RkiVaccinationServiceUpdate:
     def __update_data_incremental(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        result_date_rep = VaccinationImport.get_daterep_missing_in_vaccination_data()
+        result_date_rep = RkiVaccinationImport.get_daterep_missing_in_vaccination_data()
         i = 0
         for item_date_rep in result_date_rep:
             europe_date_reported = VaccinationDateReported.create_new_object_factory(item_date_rep)
-            result_europe_data_import = VaccinationImport.find_by_datum(europe_date_reported)
+            result_europe_data_import = RkiVaccinationImport.find_by_datum(europe_date_reported)
             for item_europe_data_import in result_europe_data_import:
                 o = VaccinationData(
                     date_reported=europe_date_reported,

@@ -3,7 +3,7 @@ import csv
 import psycopg2
 
 from database import db, app
-from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import VaccinationImport
+from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import RkiVaccinationImport
 from covid19.blueprints.rki_vaccination.rki_vaccination_service_config import RkiVaccinationServiceConfig
 
 
@@ -25,12 +25,12 @@ class RkiVaccinationServiceImport:
         app.logger.info(" TABLE: who_global_data_import")
         app.logger.info("------------------------------------------------------------")
         try:
-            VaccinationImport.remove_all()
+            RkiVaccinationImport.remove_all()
             k = 0
             with open(src_cvsfile_name, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter='\t', quotechar='"')
                 for row in file_reader:
-                    o = VaccinationImport(
+                    o = RkiVaccinationImport(
                         datum=row['date'],
                         dosen_kumulativ=int(row['dosen_kumulativ']),
                         dosen_differenz_zum_vortag=int(row['dosen_differenz_zum_vortag']),

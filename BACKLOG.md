@@ -125,7 +125,7 @@
 
 ### 0.0.15 Release
 * -------------------------------------
-* Fixed #88 rename VaccinationImport to VaccinationImport
+* Fixed #88 rename RkiVaccinationImport to RkiVaccinationImport
 * Fixed #89 change tablename from vaccination_germany_timeline_import to vaccination_import
 * Fixed #86 rename VaccinationData to VaccinationData
 * Fixed #162 rename table vaccination_germany_timeline into vaccination_data

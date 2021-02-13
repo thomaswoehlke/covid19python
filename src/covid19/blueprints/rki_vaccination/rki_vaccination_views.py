@@ -7,7 +7,7 @@ from covid19.app_services import rki_vaccination_service
 from covid19.app_workers import celery
 
 from covid19.blueprints.rki_vaccination.rki_vaccination_model import VaccinationData, VaccinationDateReported
-from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import VaccinationImport
+from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import RkiVaccinationImport
 from covid19.blueprints.common.common_model_transient import ApplicationPage
 
 
@@ -132,7 +132,7 @@ def url_vaccination_tasks():
 @app_rki_vaccination.route('/imported')
 def url_vaccination_imported(page=1):
     page_info = ApplicationPage('Vaccination', "Data: Germany Timeline imported")
-    page_data = VaccinationImport.get_all_as_page(page)
+    page_data = RkiVaccinationImport.get_all_as_page(page)
     return render_template(
         'rki_vaccination/vaccination_imported.html',
         page_data=page_data,
