@@ -25,7 +25,7 @@ app_rki_landkreise = Blueprint(
 #
 ##################################################################################################################
 @app_rki_landkreise.route('/info')
-def url_rki_info():
+def url_rki_landkreise_info():
     page_info = ApplicationPage('RKI', "Info")
     return render_template(
         'rki_landkreise/rki_landkreise_info.html',
@@ -33,7 +33,7 @@ def url_rki_info():
 
 
 @app_rki_landkreise.route('/tasks')
-def url_rki_tasks():
+def url_rki_landkreise_tasks():
     page_info = ApplicationPage('RKI', "Tasks")
     return render_template(
         'rki_landkreise/rki_landkreise_tasks.html',

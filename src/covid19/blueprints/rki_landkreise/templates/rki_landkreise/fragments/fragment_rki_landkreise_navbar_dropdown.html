@@ -4,10 +4,19 @@
                         RKI Landkreise
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/rki/landkreise/info">RKI Landkreise</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_landkreise.url_rki_landkreise_info') }}">
+                            RKI Landkreise
+                        </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/rki/landkreise/imported">RKI Landkreise imported</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_landkreise.url_rki_landkreise_imported') }}">
+                            RKI Landkreise imported
+                        </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/rki/landkreise/tasks">RKI Landkreise Tasks</a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'rki_landkreise.url_rki_landkreise_tasks') }}">
+                            RKI Landkreise Tasks
+                        </a>
                     </div>
                 </li>
