@@ -162,39 +162,39 @@ class EcdcData(db.Model):
         return db.session.query(cls).filter(cls.id == other_id).one()
 
     @classmethod
-    def find_by_date_reported(cls, europe_date_reported, page):
-        #TODO: * Issue #43 /europe/date_reported
+    def find_by_date_reported(cls, ecdc_date_reported, page):
+        #TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
-            cls.europe_date_reported_id == europe_date_reported.id)\
+            cls.ecdc_date_reported_id == ecdc_date_reported.id)\
             .order_by(cls.notification_rate_per_100000_population_14days.desc())\
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_notification_rate(cls, europe_date_reported, page):
-        # TODO: * Issue #43 /europe/date_reported
+    def find_by_date_reported_notification_rate(cls, ecdc_date_reported, page):
+        # TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
-            cls.europe_date_reported_id == europe_date_reported.id) \
+            cls.ecdc_date_reported_id == ecdc_date_reported.id) \
             .order_by(cls.notification_rate_per_100000_population_14days.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_deaths_weekly(cls, europe_date_reported, page):
-        # TODO: * Issue #43 /europe/date_reported
+    def find_by_date_reported_deaths_weekly(cls, ecdc_date_reported, page):
+        # TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
-            cls.europe_date_reported_id == europe_date_reported.id) \
+            cls.ecdc_date_reported_id == ecdc_date_reported.id) \
             .order_by(cls.deaths_weekly.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_cases_weekly(cls, europe_date_reported, page):
-        # TODO: * Issue #43 /europe/date_reported
+    def find_by_date_reported_cases_weekly(cls, ecdc_date_reported, page):
+        # TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
-            cls.europe_date_reported_id == europe_date_reported.id) \
+            cls.ecdc_date_reported_id == ecdc_date_reported.id) \
             .order_by(cls.cases_weekly.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_country(cls, europe_country, page):
+    def find_by_country(cls, ecdc_country, page):
         return db.session.query(cls).filter(
-            cls.europe_country_id == europe_country.id)\
+            cls.ecdc_country_id == ecdc_country.id)\
             .paginate(page, per_page=ITEMS_PER_PAGE)
