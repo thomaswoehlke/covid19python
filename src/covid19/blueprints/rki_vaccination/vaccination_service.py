@@ -1,10 +1,10 @@
 from flask import flash
 
 from database import app
-from covid19.blueprints.vaccination.vaccination_service_download import VaccinationServiceDownload
-from covid19.blueprints.vaccination.vaccination_service_import import VaccinationServiceImport
-from covid19.blueprints.vaccination.vaccination_service_config import VaccinationServiceConfig
-from covid19.blueprints.vaccination.vaccination_service_update import VaccinationServiceUpdate
+from covid19.blueprints.rki_vaccination.vaccination_service_download import VaccinationServiceDownload
+from covid19.blueprints.rki_vaccination.vaccination_service_import import VaccinationServiceImport
+from covid19.blueprints.rki_vaccination.vaccination_service_config import VaccinationServiceConfig
+from covid19.blueprints.rki_vaccination.vaccination_service_update import VaccinationServiceUpdate
 
 
 class VaccinationService:

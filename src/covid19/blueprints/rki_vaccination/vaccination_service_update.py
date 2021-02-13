@@ -1,8 +1,8 @@
 from database import db, app
 
-from covid19.blueprints.vaccination.vaccination_service_config import VaccinationServiceConfig
-from covid19.blueprints.vaccination.vaccination_model_import import VaccinationImport
-from covid19.blueprints.vaccination.vaccination_model import VaccinationDateReported, VaccinationData
+from covid19.blueprints.rki_vaccination.vaccination_service_config import VaccinationServiceConfig
+from covid19.blueprints.rki_vaccination.vaccination_model_import import VaccinationImport
+from covid19.blueprints.rki_vaccination.vaccination_model import VaccinationDateReported, VaccinationData
 
 
 class VaccinationServiceUpdate:

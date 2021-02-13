@@ -5,7 +5,7 @@ from covid19.blueprints.who.who_service import WhoService
 from covid19.blueprints.europe.europe_service import EuropeService
 from covid19.blueprints.rki_bundeslaender.rki_service import RkiBundeslaenderService
 from covid19.blueprints.rki_landkreise.rki_service import RkiLandkreiseService
-from covid19.blueprints.vaccination.vaccination_service import VaccinationService
+from covid19.blueprints.rki_vaccination.vaccination_service import VaccinationService
 from covid19.blueprints.admin.admin_service import AdminService
 
 ############################################################################################
