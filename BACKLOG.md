@@ -167,7 +167,7 @@
 * Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
 * Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
 * -------------------------------------   
-* Issue #111 refactor to new method scheme itroduced 07.02.2021
+* Issue #111 refactor to new method scheme introduced 07.02.2021
 * Issue #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021 
 * Issue #112 implement EcdcService.run_update_dimension_tables_only
 * Issue #113 implement EcdcService.run_update_fact_table_incremental_only
