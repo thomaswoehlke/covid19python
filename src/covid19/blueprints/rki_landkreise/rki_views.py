@@ -28,7 +28,7 @@ app_rki_landkreise = Blueprint(
 def url_rki_info():
     page_info = ApplicationPage('RKI', "Info")
     return render_template(
-        'rki_landkreise/rki_info.html',
+        'rki_landkreise/rki_landkreise_info.html',
         page_info=page_info)
 
 
@@ -36,7 +36,7 @@ def url_rki_info():
 def url_rki_tasks():
     page_info = ApplicationPage('RKI', "Tasks")
     return render_template(
-        'rki_landkreise/rki_tasks.html',
+        'rki_landkreise/rki_landkreise_tasks.html',
         page_info=page_info)
 
 
