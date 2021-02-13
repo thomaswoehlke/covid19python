@@ -29,6 +29,7 @@ class WhoServiceUpdate:
                 output += " added"
             else:
                 output += " NOT added "+str(c.id)
+            app.logger.info(output)
         app.logger.info("")
         app.logger.info(" __update_who_date_reported [done]")
         app.logger.info("------------------------------------------------------------")
@@ -49,6 +50,7 @@ class WhoServiceUpdate:
                 output += " added"
             else:
                 output += " NOT added ( " + str(c.id) + " ) "
+            app.logger.info(output)
         app.logger.info("")
         app.logger.info(" __update_who_region [done]")
         app.logger.info("------------------------------------------------------------")
@@ -117,7 +119,7 @@ class WhoServiceUpdate:
                 i += 1
                 k += 1
                 if i % 500 == 0:
-                    app.logger.debug(" update WHO incremental ... "+str(i)+" rows")
+                    app.logger.info(" update WHO incremental ... "+str(i)+" rows")
             db.session.commit()
             app.logger.info(" update WHO incremental ... " + str(i) + " rows [" + str(my_date) + "] (" + str(k) + ")")
         app.logger.info(" update WHO incremental :  "+str(i)+" rows total")

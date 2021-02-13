@@ -45,14 +45,20 @@ class EcdcImport(db.Model):
     @classmethod
     def get_date_rep(cls):
         # TODO: #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
-        sql = "select distinct date_rep, year_week from europe_import order by year_week desc"
-        return db.session.execute(sql).fetchall()
+        sql = "select distinct date_rep, year_week from edcd_import order by year_week desc"
+        #return db.session.execute(sql).fetchall()
+        return db.session.query(cls.date_rep, cls.year_week)\
+            .order_by(cls.date_rep.desc(), cls.year_week.desc())\
+            .distinct().all()
 
     @classmethod
     def get_continent(cls):
         # TODO: #110 SQLalchemy instead of SQL in: EcdcImport.get_continent
-        sql = "select distinct continent_exp from europe_import order by continent_exp asc"
-        return db.session.execute(sql).fetchall()
+        sql = "select distinct continent_exp from edcd_import order by continent_exp asc"
+        #return db.session.execute(sql).fetchall()
+        return db.session.query(cls.continent_exp) \
+            .order_by(cls.continent_exp.desc()) \
+            .distinct().all()
 
     @classmethod
     def get_countries_of_continent(cls, my_continent):
