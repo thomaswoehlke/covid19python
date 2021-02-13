@@ -46,7 +46,8 @@ class EcdcImport(db.Model):
         # TODO: #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
         # sql = "select distinct date_rep, year_week from edcd_import order by year_week desc"
         #return db.session.execute(sql).fetchall()
-        return db.session.query(cls.date_rep)\
+        return db.session.query(cls.date_rep) \
+            .group_by(cls.date_rep) \
             .order_by(cls.date_rep.desc())\
             .distinct().all()
 
@@ -56,6 +57,7 @@ class EcdcImport(db.Model):
         # sql = "select distinct continent_exp from edcd_import order by continent_exp asc"
         #return db.session.execute(sql).fetchall()
         return db.session.query(cls.continent_exp) \
+            .group_by(cls.continent_exp) \
             .order_by(cls.continent_exp.asc()) \
             .distinct().all()
 

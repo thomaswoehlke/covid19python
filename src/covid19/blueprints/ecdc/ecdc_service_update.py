@@ -23,7 +23,7 @@ class EcdcServiceUpdate:
         for result_item in result_date_rep:
             k += 1
             #my_date_rep = result_item['date_rep']
-            my_date_rep = result_item
+            my_date_rep = result_item[0]
             o = EcdcDateReported.create_new_object_factory(
                 my_date_rep=my_date_rep
             )
@@ -39,7 +39,8 @@ class EcdcServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         result_continent = EcdcImport.get_continent()
         for result_item in result_continent:
-            my_continent_exp = result_item['continent_exp']
+            #my_continent_exp = result_item['continent_exp']
+            my_continent_exp = result_item[0]
             o = EcdcContinent(
                 region=my_continent_exp
             )
