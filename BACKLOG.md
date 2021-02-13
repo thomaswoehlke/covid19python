@@ -138,23 +138,23 @@
 * Fixed #175 implement url_vaccination_task_update_facttable_incremental_only in vaccination_views.py
 * Fixed #176 implement url_vaccination_task_update_facttable_initial_only in vaccination_views.py
 * -------------------------------------
-* Fixed #91 implement VaccinationService.run_download_only
-* Fixed #92 implement VaccinationService.run_import_only
-* Fixed #93 implement VaccinationService.run_update_dimension_tables_only
-* Fixed #94 implement VaccinationService.run_update_fact_table_incremental_only
-* Fixed #95 implement VaccinationService.run_update_fact_table_initial_only
-* Fixed #96 implement VaccinationService.run_update_star_schema_incremental
-* Fixed #97 implement VaccinationService.run_update_star_schema_initial
-* Fixed #101 implement VaccinationServiceUpdate.update_dimension_tables_only
-* Fixed #102 implement VaccinationServiceUpdate.update_fact_table_incremental_only
-* Fixed #103 implement VaccinationServiceUpdate.update_fact_table_initial_only
-* Fixed #104 implement VaccinationServiceUpdate.update_star_schema_incremental
-* Fixed #105 implement VaccinationServiceUpdate.update_star_schema_initial
+* Fixed #91 implement RkiVaccinationService.run_download_only
+* Fixed #92 implement RkiVaccinationService.run_import_only
+* Fixed #93 implement RkiVaccinationService.run_update_dimension_tables_only
+* Fixed #94 implement RkiVaccinationService.run_update_fact_table_incremental_only
+* Fixed #95 implement RkiVaccinationService.run_update_fact_table_initial_only
+* Fixed #96 implement RkiVaccinationService.run_update_star_schema_incremental
+* Fixed #97 implement RkiVaccinationService.run_update_star_schema_initial
+* Fixed #101 implement RkiVaccinationServiceUpdate.update_dimension_tables_only
+* Fixed #102 implement RkiVaccinationServiceUpdate.update_fact_table_incremental_only
+* Fixed #103 implement RkiVaccinationServiceUpdate.update_fact_table_initial_only
+* Fixed #104 implement RkiVaccinationServiceUpdate.update_star_schema_incremental
+* Fixed #105 implement RkiVaccinationServiceUpdate.update_star_schema_initial
 * -------------------------------------
-* Fixed #90 refactor VaccinationService to new method scheme introduced 07.02.2021
-* Fixed #98 refactor VaccinationServiceDownload to new method scheme introduced 07.02.2021
-* Fixed #99 refactor VaccinationServiceImport to new method scheme introduced 07.02.2021
-* Fixed #100 refactor VaccinationServiceUpdate to new method scheme introduced 07.02.2021
+* Fixed #90 refactor RkiVaccinationService to new method scheme introduced 07.02.2021
+* Fixed #98 refactor RkiVaccinationServiceDownload to new method scheme introduced 07.02.2021
+* Fixed #99 refactor RkiVaccinationServiceImport to new method scheme introduced 07.02.2021
+* Fixed #100 refactor RkiVaccinationServiceUpdate to new method scheme introduced 07.02.2021
 * -------------------------------------
 * Fixed #87 change to: Vaccination.datum many to one VaccinationDateReported
 * Fixed #106 add Tasks and URLs for starting Tasks to vaccination_views

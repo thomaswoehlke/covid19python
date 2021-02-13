@@ -1,22 +1,22 @@
 from flask import flash
 
 from database import app
-from covid19.blueprints.rki_vaccination.vaccination_service_download import VaccinationServiceDownload
-from covid19.blueprints.rki_vaccination.vaccination_service_import import VaccinationServiceImport
-from covid19.blueprints.rki_vaccination.vaccination_service_config import VaccinationServiceConfig
-from covid19.blueprints.rki_vaccination.vaccination_service_update import VaccinationServiceUpdate
+from covid19.blueprints.rki_vaccination.rki_vaccination_service_download import RkiVaccinationServiceDownload
+from covid19.blueprints.rki_vaccination.rki_vaccination_service_import import RkiVaccinationServiceImport
+from covid19.blueprints.rki_vaccination.rki_vaccination_service_config import RkiVaccinationServiceConfig
+from covid19.blueprints.rki_vaccination.rki_vaccination_service_update import RkiVaccinationServiceUpdate
 
 
-class VaccinationService:
+class RkiVaccinationService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = VaccinationServiceConfig()
-        self.vaccination_service_download = VaccinationServiceDownload(database)
-        self.vaccination_service_import = VaccinationServiceImport(database)
-        self.vaccination_service_udpate = VaccinationServiceUpdate(database)
+        self.cfg = RkiVaccinationServiceConfig()
+        self.vaccination_service_download = RkiVaccinationServiceDownload(database)
+        self.vaccination_service_import = RkiVaccinationServiceImport(database)
+        self.vaccination_service_udpate = RkiVaccinationServiceUpdate(database)
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" Vaccination Service [ready]")
 

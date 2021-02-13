@@ -1,17 +1,17 @@
 from database import db, app
 
-from covid19.blueprints.rki_vaccination.vaccination_service_config import VaccinationServiceConfig
-from covid19.blueprints.rki_vaccination.vaccination_model_import import VaccinationImport
-from covid19.blueprints.rki_vaccination.vaccination_model import VaccinationDateReported, VaccinationData
+from covid19.blueprints.rki_vaccination.rki_vaccination_service_config import RkiVaccinationServiceConfig
+from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import VaccinationImport
+from covid19.blueprints.rki_vaccination.rki_vaccination_model import VaccinationDateReported, VaccinationData
 
 
-class VaccinationServiceUpdate:
+class RkiVaccinationServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Update [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = VaccinationServiceConfig()
+        self.cfg = RkiVaccinationServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Update [ready] ")
 

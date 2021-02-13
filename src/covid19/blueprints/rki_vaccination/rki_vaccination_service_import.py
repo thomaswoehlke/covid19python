@@ -3,17 +3,17 @@ import csv
 import psycopg2
 
 from database import db, app
-from covid19.blueprints.rki_vaccination.vaccination_model_import import VaccinationImport
-from covid19.blueprints.rki_vaccination.vaccination_service_config import VaccinationServiceConfig
+from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import VaccinationImport
+from covid19.blueprints.rki_vaccination.rki_vaccination_service_config import RkiVaccinationServiceConfig
 
 
-class VaccinationServiceImport:
+class RkiVaccinationServiceImport:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = VaccinationServiceConfig()
+        self.cfg = RkiVaccinationServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Import [ready]")
 

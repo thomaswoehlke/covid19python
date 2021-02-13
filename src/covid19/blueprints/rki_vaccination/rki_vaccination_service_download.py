@@ -2,16 +2,16 @@ import os
 import wget
 from flask import flash
 from database import app
-from covid19.blueprints.rki_vaccination.vaccination_service_config import VaccinationServiceConfig
+from covid19.blueprints.rki_vaccination.rki_vaccination_service_config import RkiVaccinationServiceConfig
 
 
-class VaccinationServiceDownload:
+class RkiVaccinationServiceDownload:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Download [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = VaccinationServiceConfig()
+        self.cfg = RkiVaccinationServiceConfig()
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Download [ready]")
 
