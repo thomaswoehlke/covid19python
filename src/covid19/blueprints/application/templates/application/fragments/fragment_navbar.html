@@ -10,7 +10,11 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link"
+                       href="/">
+                        Home
+                        <span class="sr-only">(current)</span>
+                    </a>
                 </li>
 
                 {% include 'who/fragments/fragment_who_navbar_dropdown.html' %}
@@ -19,21 +23,12 @@
 
                 {% include 'rki_vaccination/fragments/fragment_rki_vaccination_navbar_dropdown.html' %}
 
-                {% include 'rki_bundeslaender/fragments/fragment_rki_navbar_dropdown.html' %}
+                {% include 'rki_bundeslaender/fragments/fragment_rki_bundeslaender_navbar_dropdown.html' %}
 
-                {% include 'rki_landkreise/fragments/fragment_rki_navbar_dropdown.html' %}
+                {% include 'rki_landkreise/fragments/fragment_rki_landkreise_navbar_dropdown.html' %}
 
                 {% include 'admin/fragments/fragment_admin_navbar_dropdown.html' %}
 
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-                -->
             </ul>
         </div>
     </nav>

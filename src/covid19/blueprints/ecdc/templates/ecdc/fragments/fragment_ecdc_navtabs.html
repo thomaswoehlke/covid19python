@@ -1,33 +1,34 @@
             <nav>
                 <ul class="nav nav-tabs">
-                    <!-- TODO: change URL to for_url() -->
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/europe/info">Europe Info</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_info') }}">ECDC Info</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/europe/tasks">Europe tasks</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_tasks') }}">ECDC tasks</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/europe/date_reported/all">Europe date_reported</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_date_reported_all') }}">
+                            ECDC date_reported
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/europe/country/germany">Europe Germany</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_country_germany') }}">ECDC Germany</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/europe/continent/all">Europe continent</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_continent_all') }}">ECDC continent</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/europe/country/all">Europe country</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_country_all') }}">ECDC country</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/europe/imported">Europe imported</a>
+                           href="{{ url_for( 'ecdc.url_ecdc_data_imported') }}">ECDC imported</a>
                     </li>
                 </ul>
             </nav>
