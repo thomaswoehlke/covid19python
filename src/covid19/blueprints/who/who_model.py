@@ -2,10 +2,10 @@ from sqlalchemy import and_, func
 from datetime import date
 from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload
-from covid19.blueprints.common.common_model import CommonDateReported, CommonRegion
+from covid19.blueprints.common.application_model import ApplicationDateReported, ApplicationRegion
 
 
-class WhoDateReported(CommonDateReported):
+class WhoDateReported(ApplicationDateReported):
     __tablename__ = 'who_date_reported'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
@@ -44,7 +44,7 @@ class WhoDateReported(CommonDateReported):
         )
 
 
-class WhoRegion(CommonRegion):
+class WhoRegion(ApplicationRegion):
     __tablename__ = 'who_region'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (

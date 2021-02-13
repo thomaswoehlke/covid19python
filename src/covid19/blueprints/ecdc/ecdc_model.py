@@ -1,10 +1,10 @@
 from sqlalchemy import and_
 from datetime import date
 from database import db, ITEMS_PER_PAGE
-from covid19.blueprints.common.common_model import CommonDateReported, CommonRegion
+from covid19.blueprints.common.application_model import ApplicationDateReported, ApplicationRegion
 
 
-class EcdcDateReported(CommonDateReported):
+class EcdcDateReported(ApplicationDateReported):
     __tablename__ = 'ecdc_date_reported'
     __mapper_args__ = {
         'concrete': True
@@ -49,7 +49,7 @@ class EcdcDateReported(CommonDateReported):
         )
 
 
-class EcdcContinent(CommonRegion):
+class EcdcContinent(ApplicationRegion):
     __tablename__ = 'ecdc_continent'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (

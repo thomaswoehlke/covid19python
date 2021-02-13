@@ -1,6 +1,6 @@
 from database import db, app
 
-from covid19.blueprints.common.common_model import RkiRegion, RkiDateReported, RkiCountry
+from covid19.blueprints.common.application_model import RkiRegion, RkiDateReported, RkiCountry
 from covid19.blueprints.rki_bundeslaender.rki_model import RkiBundeslaender
 from covid19.blueprints.rki_bundeslaender.rki_model_import import RkiBundeslaenderImport
 

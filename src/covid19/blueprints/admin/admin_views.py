@@ -3,8 +3,8 @@ from celery import states
 from celery.utils.log import get_task_logger
 
 from database import app
-from covid19.app_services import who_service, ecdc_service, vaccination_service, admin_service
-from covid19.app_services import rki_service_bundeslaender
+from covid19.blueprints.common.application_services import who_service, ecdc_service, rki_vaccination_service
+from covid19.blueprints.common.application_services import rki_service_bundeslaender, admin_service
 from covid19.blueprints.common.application_workers import celery
 from covid19.blueprints.common.application_model_transient import ApplicationPage
 
@@ -41,7 +41,7 @@ def task_admin_database_drop_create(self):
     logger.info("------------------------------------------------------------")
     who_service.task_database_drop_create()
     ecdc_service.task_database_drop_create()
-    vaccination_service.task_database_drop_create()
+    rki_vaccination_service.task_database_drop_create()
     admin_service.task_database_drop_create()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_admin_database_drop_create)"
@@ -106,7 +106,7 @@ def url_admin_database_drop():
     if drop_and_create_data_again:
         who_service.pretask_database_drop_create()
         ecdc_service.pretask_database_drop_create()
-        vaccination_service.pretask_database_drop_create()
+        rki_vaccination_service.pretask_database_drop_create()
         rki_service_bundeslaender.pretask_database_drop_create()
         flash("task_admin_database_drop_create async started")
         task_admin_database_drop_create.apply_async()
