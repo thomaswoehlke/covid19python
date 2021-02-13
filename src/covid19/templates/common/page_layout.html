@@ -3,27 +3,28 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/static/styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico" />
+    <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/vendor/fontawesome/svg-core/styles.css" />
+    <link rel="stylesheet" href="/static/css/covid19python.css" />
     <title>{{page_info.title}}</title>
 </head>
 <body>
-<div class="container">
 
     <header>
-        <div class="tw_padding">
+        <div class="container tw_padding">
             {% include 'common/fragment_navbar.html' %}
         </div>
     </header>
 
     <section>
-        <div class="tw_padding">
+        <div class="container tw_padding">
             {% include 'common/fragment_navtabs.html' %}
         </div>
-        <div class="">
+        <div class="container">
             {% block navigation_navtabs %}{% endblock %}
         </div>
-        <div class="">
+        <div class="container">
             {% block navigation_breadcrumb %}{% endblock %}
         </div>
     </section>
@@ -35,13 +36,13 @@
         <div class="container tw_padding">
             {% block main_container %}{% endblock %}
         </div>
-        <div class="tw_padding">
+        <div class="container-fluid tw_padding">
             {% block main_container_fluid %}{% endblock %}
         </div>
     </main>
 
     <section>
-        <div class="tw_padding">
+        <div class="container tw_padding">
             {% for error in errors %}
                 <h4>{{ error }}</h4>
             {% endfor %}
@@ -49,12 +50,15 @@
     </section>
 
     <footer>
-        <div class="">
+        <div class="container-fluid">
         {% block footer_container %}{% endblock %}
         </div>
     </footer>
 
-</div>
-    <script src="/static/index.js"></script>
+    <script src="/static/vendor/jquery/jquery.js"></script>
+    <script src="/static/vendor/popper.js/popper.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/fontawesome/svg-core/index.js"></script>
+    <script src="/static/js/covid19python.js"></script>
 </body>
 </html>
