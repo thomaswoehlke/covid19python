@@ -1,5 +1,5 @@
 from covid19 import app
-from covid19.covid19_workers import celery
+from covid19.blueprints.application.application_workers import celery
 
 #################################################################################################################
 #
