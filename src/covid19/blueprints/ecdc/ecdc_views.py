@@ -289,7 +289,7 @@ def url_ecdc_country_germany(page=1):
     europe_country = EcdcCountry.get_germany()
     if europe_country is None:
         flash('country: Germany not found in Database', category='error')
-        return redirect(url_for('url_ecdc_tasks'))
+        return redirect(url_for('ecdc.url_ecdc_tasks'))
     page_data = EcdcData.find_by_country(europe_country, page)
     return render_template(
         'ecdc/country/ecdc_country_germany.html',
@@ -304,7 +304,7 @@ def url_ecdc_task_update_data_DEPRECATED():
     ecdc_service.download_DEPRECATED()
     task_ecdc_update_initial_DEPRECATED.apply_async()
     flash("task_ecdc_update_initial started")
-    return redirect(url_for('url_ecdc_tasks'))
+    return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
 # TODO remove DEPRECATED
@@ -313,53 +313,53 @@ def url_ecdc_task_update_data_short_DEPRECATED():
     ecdc_service.download_DEPRECATED()
     task_ecdc_update_short_DEPRECATED.apply_async()
     flash("task_ecdc_update_short started")
-    return redirect(url_for('url_ecdc_tasks'))
+    return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
 # TODO: #163 implement url_ecdc_task_update_star_schema_initial in europe_views.py
 @app_ecdc.route('/task/update/star_schema/initial')
 def url_ecdc_task_update_star_schema_initial():
     flash("url_ecdc_task_update_star_schema_initial started")
-    return redirect(url_for('url_ecdc_tasks'))
+    return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
 # TODO: #164 implement url_ecdc_task_update_starschema_incremental in europe_views.py
 @app_ecdc.route('/task/update/star_schema/incremental')
 def url_ecdc_task_update_starschema_incremental():
     flash("url_ecdc_task_update_starschema_incremental started")
-    return redirect(url_for('url_ecdc_tasks'))
+    return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
 # TODO: #165 implement url_ecdc_task_download_only in europe_views.py
 @app_ecdc.route('/task/download/only')
 def url_ecdc_task_download_only():
     flash("url_ecdc_task_download_only started")
-    return redirect(url_for('url_ecdc_tasks'))
+    return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
 # TODO: #166 implement url_ecdc_task_import_only in europe_views.py
 @app_ecdc.route('/task/import/only')
 def url_ecdc_task_import_only():
     flash("url_ecdc_task_import_only started")
-    return redirect(url_for('url_ecdc_tasks'))
+    return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
 # TODO: #167 implement url_ecdc_task_update_dimensiontables_only in europe_views.py
 @app_ecdc.route('/task/update/dimension-tables/only')
 def url_ecdc_task_update_dimensiontables_only():
     flash("url_ecdc_task_update_dimensiontables_only started")
-    return redirect(url_for('url_ecdc_tasks'))
+    return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
 # TODO: #168 implement url_ecdc_task_update_facttable_incremental_only in europe_views.py
 @app_ecdc.route('/task/update/fact-table/incremental/only')
 def url_ecdc_task_update_facttable_incremental_only():
     flash("url_ecdc_task_update_facttable_incremental_only started")
-    return redirect(url_for('url_ecdc_tasks'))
+    return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
 # TODO: #169 implement url_ecdc_task_update_facttable_initial_only in europe_views.py
 @app_ecdc.route('/task/update/fact-table/initial/only')
 def url_ecdc_task_update_facttable_initial_only():
     flash("url_ecdc_task_update_facttable_initial_only started")
-    return redirect(url_for('url_ecdc_tasks'))
+    return redirect(url_for('ecdc.url_ecdc_tasks'))
