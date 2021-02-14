@@ -90,7 +90,7 @@ class EcdcServiceUpdate:
         ecdc_continent = EcdcContinent.find_by_region(my_a)
         return ecdc_continent
 
-    def __get_country_from_import(self, ecdc_import : EcdcImport):
+    def __get_country_from_import(self, ecdc_import: EcdcImport):
         my_countries_and_territories = ecdc_import.countries_and_territories
         my_geo_id = ecdc_import.geo_id
         my_country_territory_code = ecdc_import.country_territory_code
@@ -143,10 +143,9 @@ class EcdcServiceUpdate:
         EcdcData.remove_all()
         i = 0
         for (my_date_reported, my_ecdc_date_reported) in self.__get_date_reported_from_import():
-            ecdc_country = self.__get_country_from_import(item_ecdc_data_import)
-            result_ecdc_data_import = EcdcImport.find_by_date_reported(my_ecdc_date_reported)
+            result_ecdc_data_import = EcdcImport.find_by_date_reported(my_date_reported)
             for item_ecdc_data_import in result_ecdc_data_import:
-                ecdc_country = self.__get_country_from_import(item_ecdc_data_import)
+                my_ecdc_country = self.__get_country_from_import(item_ecdc_data_import)
                 my_deaths_weekly = int(item_ecdc_data_import.deaths_weekly)
                 my_cases_weekly = int(item_ecdc_data_import.cases_weekly)
                 if item_ecdc_data_import.notification_rate_per_100000_population_14days == '':
@@ -155,7 +154,7 @@ class EcdcServiceUpdate:
                     my_notification_rate_per_100000_population_14days = \
                         float(item_ecdc_data_import.notification_rate_per_100000_population_14days)
                 o = EcdcData(
-                    ecdc_country=ecdc_country,
+                    ecdc_country=my_ecdc_country,
                     ecdc_date_reported=my_ecdc_date_reported,
                     deaths_weekly=my_deaths_weekly,
                     cases_weekly=my_cases_weekly,
