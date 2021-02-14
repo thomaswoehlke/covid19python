@@ -24,7 +24,7 @@ class RkiVaccinationDateReported(ApplicationDateReported):
     week_of_year = db.Column(db.Integer, nullable=False)
 
     @classmethod
-    def create_new_object_factory(cls, my_date_rep):
+    def create_new_object_factory(cls, my_date_rep: str):
         my_datum = date.fromisoformat(my_date_rep)
         (my_iso_year, week_number, weekday) = my_datum.isocalendar()
         my_year_week = "" + str(my_iso_year)
@@ -84,7 +84,7 @@ class RkiVaccinationData(db.Model):
         return None
 
     @classmethod
-    def get_all_as_page(cls, page):
+    def get_all_as_page(cls, page: int):
         return db.session.query(cls)\
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
@@ -93,19 +93,19 @@ class RkiVaccinationData(db.Model):
         return db.session.query(cls).all()
 
     @classmethod
-    def get_by_id(cls, other_id):
+    def get_by_id(cls, other_id: int):
         return db.session.query(cls)\
             .filter(cls.id == other_id)\
             .one()
 
     @classmethod
-    def find_by_id(cls, other_id):
+    def find_by_id(cls, other_id: int):
         return db.session.query(cls) \
             .filter(cls.id == other_id) \
             .one_or_none()
 
     @classmethod
-    def find_by_datum(cls, other_datum):
+    def find_by_datum(cls, other_datum: RkiVaccinationDateReported):
         return db.session.query(cls) \
             .filter(cls.date_reported_id == other_datum.id) \
             .one_or_none()

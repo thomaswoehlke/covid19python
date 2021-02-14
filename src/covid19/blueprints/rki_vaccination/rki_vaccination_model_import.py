@@ -35,7 +35,7 @@ class RkiVaccinationImport(db.Model):
         return None
 
     @classmethod
-    def get_all_as_page(cls, page):
+    def get_all_as_page(cls, page: int):
         return db.session.query(cls)\
             .order_by(cls.datum.desc())\
             .paginate(page, per_page=ITEMS_PER_PAGE)
@@ -47,19 +47,19 @@ class RkiVaccinationImport(db.Model):
             .all()
 
     @classmethod
-    def get_by_id(cls, other_id):
+    def get_by_id(cls, other_id: int):
         return db.session.query(cls)\
             .filter(cls.id == other_id)\
             .one()
 
     @classmethod
-    def find_by_id(cls, other_id):
+    def find_by_id(cls, other_id: int):
         return db.session.query(cls) \
             .filter(cls.id == other_id) \
             .one_or_none()
 
     @classmethod
-    def find_by_datum(cls, other_datum):
+    def find_by_datum(cls, other_datum: str):
         return db.session.query(cls) \
             .filter(cls.datum == other_datum) \
             .all()

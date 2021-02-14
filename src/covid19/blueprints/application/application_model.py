@@ -183,7 +183,7 @@ class ApplicationRegion(db.Model):
         return db.session.query(cls).all()
 
     @classmethod
-    def get_all_as_page(cls, page):
+    def get_all_as_page(cls, page: int):
         return db.session.query(cls)\
             .order_by(cls.region)\
             .paginate(page, per_page=ITEMS_PER_PAGE)
@@ -196,25 +196,25 @@ class ApplicationRegion(db.Model):
         return regions
 
     @classmethod
-    def get_by_id(cls, other_id):
+    def get_by_id(cls, other_id: int):
         return db.session.query(cls)\
             .filter(cls.id == other_id)\
             .one()
 
     @classmethod
-    def find_by_id(cls, other_id):
+    def find_by_id(cls, other_id: int):
         return db.session.query(cls)\
             .filter(cls.id == other_id)\
             .one_or_none()
 
     @classmethod
-    def get_by_region(cls, i_region):
+    def get_by_region(cls, i_region: str):
         return db.session.query(cls)\
             .filter(cls.region == i_region)\
             .one()
 
     @classmethod
-    def find_by_region(cls, i_region):
+    def find_by_region(cls, i_region: str):
         return db.session.query(cls)\
             .filter(cls.region == i_region)\
             .one_or_none()
@@ -240,7 +240,7 @@ class RkiDateReported(ApplicationDateReported):
     week_of_year = db.Column(db.Integer, nullable=False)
 
     @classmethod
-    def create_new_object_factory(cls, my_date_rep):
+    def create_new_object_factory(cls, my_date_rep: str):
         my_datum = date.fromisoformat(my_date_rep)
         (my_iso_year, week_number, weekday) = my_datum.isocalendar()
         my_year_week = "" + str(my_iso_year)
@@ -292,12 +292,16 @@ class RkiCountry(db.Model):
         return None
 
     @classmethod
-    def get_all_as_page(cls, page):
-        return db.session.query(cls).order_by(cls.country).paginate(page, per_page=ITEMS_PER_PAGE)
+    def get_all_as_page(cls, page: int):
+        return db.session.query(cls)\
+            .order_by(cls.country)\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).order_by(cls.country).all()
+        return db.session.query(cls)\
+            .order_by(cls.country)\
+            .all()
 
     @classmethod
     def get_all_as_dict(cls):
@@ -307,15 +311,20 @@ class RkiCountry(db.Model):
         return countries
 
     @classmethod
-    def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
+    def get_by_id(cls, other_id: int):
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
 
     @classmethod
     def get_germany(cls):
-        return db.session.query(cls).filter(cls.country_code == 'DE').one()
+        return db.session.query(cls)\
+            .filter(cls.country_code == 'DE')\
+            .one()
 
     @classmethod
-    def find_by_country_code_and_country_and_who_region_id(cls, i_country_code, i_country, my_region):
+    def find_by_country_code_and_country_and_who_region_id(cls,
+       i_country_code: str, i_country: str, my_region: RkiRegion):
         return db.session.query(cls).filter(
             and_(
                 cls.country_code == i_country_code,
@@ -325,13 +334,14 @@ class RkiCountry(db.Model):
         ).one_or_none()
 
     @classmethod
-    def find_by_country_code(cls, i_country_code):
+    def find_by_country_code(cls, i_country_code: str):
         return db.session.query(cls).filter(
-                cls.country_code == i_country_code
+            cls.country_code == i_country_code
         ).one_or_none()
 
     @classmethod
-    def get_who_countries_for_region(cls, region, page):
+    def get_who_countries_for_region(cls, region: str, page: int):
         return db.session.query(cls).filter(
             cls.region == region
-        ).order_by(cls.country).paginate(page, per_page=ITEMS_PER_PAGE)
+        ).order_by(cls.country)\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
