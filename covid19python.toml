@@ -1,3 +1,17 @@
 [build-system]
-requires = ["setuptools>=53", "pip>=21", "wheel>=0.36.2", "pip-licenses==3.3.0"]
+requires = [
+    "setuptools>=53",
+    "pip>=21",
+    "wheel>=0.36.2",
+    "pip-licenses==3.3.0",
+    "pip-tools==5.5.0",
+    "packaging==20.0",
+    "npmdownloader>=1.2.1",
+    "py2puml==0.3.1",
+    "plantuml-creator==1.0.7",
+    "plantuml-markdown==3.4.2",
+    "plantuml-wrapper==0.1.0",
+    "plantuml-gentools==0.1.2",
+    "plantuml2freemind==0.8.2"
+]
 build-backend = "setuptools.build_meta"

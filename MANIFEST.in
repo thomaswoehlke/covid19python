@@ -2,9 +2,8 @@ graft src/covid19/static
 graft src/covid19/templates
 global-exclude *.pyc
 
-include CHANGES.md
+include BACKLOG.md
 include LICENSE.md
-include tox.ini
 include requirements/*.txt
 graft artwork
 graft docs

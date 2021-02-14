@@ -83,8 +83,8 @@ py2puml==0.3.1
 plantuml-creator==1.0.7
 plantuml-markdown==3.4.2
 plantuml-wrapper==0.1.0
-plantuml2freemind==0.8.2
 plantuml-gentools==0.1.2
+plantuml2freemind==0.8.2
 #
 #-----------------------------------------------------------------
 #
