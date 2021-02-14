@@ -6,9 +6,7 @@ from covid19.blueprints.application.application_model import ApplicationDateRepo
 
 class EcdcDateReported(ApplicationDateReported):
     __tablename__ = 'ecdc_date_reported'
-    __mapper_args__ = {
-        'concrete': True
-    }
+    __mapper_args__ = { 'concrete': True }
     __table_args__ = (
         db.UniqueConstraint('date_reported', 'datum', name="uix_ecdc_date_reported"),
     )
@@ -48,10 +46,10 @@ class EcdcDateReported(ApplicationDateReported):
 
     @classmethod
     def get_datum_parts(cls, my_date_rep: str):
-        my_date_parts = my_date_rep.split("/")
-        my_year = int(my_date_parts[2])
-        my_month = int(my_date_parts[1])
+        my_date_parts = my_date_rep.split('/')
         my_day = int(my_date_parts[0])
+        my_month = int(my_date_parts[1])
+        my_year = int(my_date_parts[2])
         datum_parts = (my_year, my_month, my_day)
         return datum_parts
 

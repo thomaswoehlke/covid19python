@@ -135,7 +135,7 @@ class EcdcServiceUpdate:
             )
             if my_ecdc_date_reported_obj is None:
                 my_ecdc_date_reported_obj = EcdcDateReported.create_new_object_factory(
-                    my_date_rep=my_date_reported_search_str
+                    my_date_rep=item_date_str_from_ecdc_import_str
                 )
                 db.session.add(my_ecdc_date_reported_obj)
                 db.session.commit()
