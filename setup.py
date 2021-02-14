@@ -29,16 +29,12 @@ requires_setup = [
     "setuptools==53.0.0",
     "pip-licenses==3.3.0",
     "wheel==0.36.2",
-    "npmdownloader>=1.2.1",
-    "py2puml==0.3.1",
-    "plantuml-creator == 1.0.7",
-    "plantuml-markdown == 3.4.2",
-    "plantuml-wrapper == 0.1.0",
-    "plantuml2freemind == 0.8.2",
-    "plantuml-gentools == 0.1.2",
+    "flask-resources==0.6.0",
+    "speaklater==1.3",
     "Flask-PluginKit>=3.6.0",
     "Flask-ResponseBuilder>=2.0.12",
-    "Flask-Babel>=2"
+    "Flask-Babel>=2",
+    "npmdownloader>=1.2.1"
 ]
 
 requires_test = [
@@ -54,6 +50,12 @@ requires_docs = [
     "pallets-sphinx-themes==1.2.3",
     "sphinxcontrib-plantuml==0.19",
     "sphinxcontrib-gravizo==0.0.4"
+    "py2puml==0.3.1",
+    "plantuml-creator == 1.0.7",
+    "plantuml-markdown == 3.4.2",
+    "plantuml-wrapper == 0.1.0",
+    "plantuml2freemind == 0.8.2",
+    "plantuml-gentools == 0.1.2"
 ]
 
 dotenv_require = [
