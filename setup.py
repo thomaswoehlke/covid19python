@@ -29,8 +29,8 @@ requires_setup = [
     "setuptools==53.0.0",
     "pip-licenses==3.3.0",
     "wheel==0.36.2",
+    "tokenize-rt>=4.1.0",
     "flask-resources==0.6.0",
-    "speaklater==1.3",
     "Flask-PluginKit>=3.6.0",
     "Flask-ResponseBuilder>=2.0.12",
     "Flask-Babel>=2",
@@ -55,7 +55,8 @@ requires_docs = [
     "plantuml-markdown == 3.4.2",
     "plantuml-wrapper == 0.1.0",
     "plantuml2freemind == 0.8.2",
-    "plantuml-gentools == 0.1.2"
+    "plantuml-gentools == 0.1.2",
+    "speaklater==1.3"
 ]
 
 dotenv_require = [
@@ -115,7 +116,6 @@ require_install_data_processing = [
     "pyecharts-extras>=0.0.5",
     "reactive-pyecharts>=1.0.0",
     "visdom>=0.1.8.9",
-    "tokenize-rt>=4.1.0",
     "pynndescent>=0.5.1",
     "torch>=1.7.1",
     "numpy>=1.20.1",
