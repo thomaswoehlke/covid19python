@@ -27,8 +27,10 @@ keywords_list = [
 
 requires_setup = [
     "setuptools==53.0.0",
-    "pip-licenses==3.3.0",
     "wheel==0.36.2",
+    "pip-licenses==3.3.0",
+    "pip-tools==5.5.0",
+    "packaging==20.0",
     "tokenize-rt>=4.1.0",
     "flask-resources==0.6.0",
     "Flask-PluginKit>=3.6.0",
@@ -124,20 +126,22 @@ require_install_data_processing = [
     "StatisticalDiagrams>=20.5",
 ]
 
-requires_install = {
-    "requires_install_minimum": requires_install_minimum,
-    "requires_install_user_security": requires_install_user_security,
-    "requires_install_operating": requires_install_operating,
-    "requires_install_nore_flask": requires_install_nore_flask,
-    "require_install_data_processing": require_install_data_processing,
-    "all": []
-}
+requires_install = []
+
+requires_install_groups = [
+    requires_install_minimum,
+    requires_install_user_security,
+    requires_install_operating,
+    requires_install_nore_flask,
+    require_install_data_processing,
+]
 
 for reqs in requires_extras.values():
     requires_extras["all"].extend(reqs)
 
-for reqs in requires_install.values():
-    requires_install["all"].extend(reqs)
+for my_group in requires_install_groups:
+    for my_item in my_group:
+        requires_install.append(my_item)
 
 keywords = ""
 for kw in keywords_list:
@@ -145,15 +149,9 @@ for kw in keywords_list:
 
 packages = find_packages()
 
-# Get the version string. Cannot be done with import!
-g = {}
-with open(os.path.join("flask_resources", "version.py"), "rt") as fp:
-    exec(fp.read(), g)
-    version = g["__version__"]
-
 setup(
     name='thomaswoehlke-covid19python',
-    version=version,
+    version='0.0.16',
     url='ttps://github.com/thomaswoehlke/covid19python.git',
     license='GNU General Public License v3 (GPLv3)',
     author='Thomas Woehlke',
