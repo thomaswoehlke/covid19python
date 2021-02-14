@@ -106,7 +106,7 @@ class ApplicationDateReported(db.Model):
         return None
 
     @classmethod
-    def get_all_as_page(cls, page):
+    def get_all_as_page(cls, page: int):
         return db.session.query(cls)\
             .order_by(cls.date_reported.desc())\
             .paginate(page, per_page=ITEMS_PER_PAGE)
@@ -123,37 +123,37 @@ class ApplicationDateReported(db.Model):
         return dates_reported
 
     @classmethod
-    def get_by_id(cls, other_id):
+    def get_by_id(cls, other_id: int):
         return db.session.query(cls)\
             .filter(cls.id == other_id)\
             .one()
 
     @classmethod
-    def find_by_id(cls, other_id):
+    def find_by_id(cls, other_id: int):
         return db.session.query(cls)\
             .filter(cls.id == other_id)\
             .one_or_none()
 
     @classmethod
-    def get_by_date_reported(cls, i_date_reported):
+    def get_by_date_reported(cls, p_date_reported: str):
         return db.session.query(cls)\
-            .filter(cls.date_reported == i_date_reported)\
+            .filter(cls.date_reported == p_date_reported)\
             .one()
 
     @classmethod
-    def find_by_date_reported(cls, i_date_reported):
+    def find_by_date_reported(cls, p_date_reported: str):
         return db.session.query(cls)\
-            .filter(cls.date_reported == i_date_reported)\
+            .filter(cls.date_reported == p_date_reported)\
             .one_or_none()
 
     @classmethod
-    def get_by_year_week(cls, year_week):
+    def get_by_year_week(cls, year_week: str):
         return db.session.query(cls)\
             .filter(cls.year_week == year_week)\
             .one()
 
     @classmethod
-    def find_by_year_week(cls, year_week):
+    def find_by_year_week(cls, year_week: str):
         return db.session.query(cls)\
             .filter(cls.year_week == year_week)\
             .one_or_none()
@@ -208,15 +208,15 @@ class ApplicationRegion(db.Model):
             .one_or_none()
 
     @classmethod
-    def get_by_region(cls, i_who_region):
+    def get_by_region(cls, i_region):
         return db.session.query(cls)\
-            .filter(cls.region == i_who_region)\
+            .filter(cls.region == i_region)\
             .one()
 
     @classmethod
-    def find_by_region(cls, i_who_region):
+    def find_by_region(cls, i_region):
         return db.session.query(cls)\
-            .filter(cls.region == i_who_region)\
+            .filter(cls.region == i_region)\
             .one_or_none()
 
 

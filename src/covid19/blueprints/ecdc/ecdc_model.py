@@ -23,7 +23,7 @@ class EcdcDateReported(ApplicationDateReported):
     day_of_week = db.Column(db.Integer, nullable=False)
     week_of_year = db.Column(db.Integer, nullable=False)
 
-    def get_date_rep_as_str(self):
+    def get_date_import_format_from_date_reported(self):
         my_date_parts = self.date_reported.split("-")
         my_year = my_date_parts[0]
         my_month = my_date_parts[1]
@@ -31,8 +31,16 @@ class EcdcDateReported(ApplicationDateReported):
         return my_day + '/' + my_month + '/' + my_year
 
     @classmethod
-    def get_my_date_rep_as_str(cls, date_reported):
-        my_date_parts = date_reported.split("/")
+    def get_date_import_format_from_date_reported_str(cls, date_reported_str: str):
+        my_date_parts = date_reported_str.split("-")
+        my_year = my_date_parts[0]
+        my_month = my_date_parts[1]
+        my_day = my_date_parts[2]
+        return my_day + '/' + my_month + '/' + my_year
+
+    @classmethod
+    def get_date_format_from_ecdc_import_fomat(cls, date_reported_ecdc_import_fomat: str):
+        my_date_parts = date_reported_ecdc_import_fomat.split("/")
         my_year = my_date_parts[2]
         my_month = my_date_parts[1]
         my_day = my_date_parts[0]
@@ -92,14 +100,15 @@ class EcdcCountry(db.Model):
     continent_id = db.Column(db.Integer, db.ForeignKey('ecdc_continent.id'), nullable=False)
     continent = db.relationship(
         'EcdcContinent',
-        lazy='subquery',
-        order_by='EcdcContinent.region',
-        cascade="all, delete"
+        lazy='subquery', cascade="all, delete",
+        order_by='asc(EcdcContinent.region)'
     )
 
     def __str__(self):
-        result = " " + self.geo_id + " " + self.country_territory_code + " " + self.countries_and_territories + " "
-        return result
+        return " " + self.geo_id \
+             + " " + self.country_territory_code \
+             + " " + self.countries_and_territories \
+             + " "
 
     @classmethod
     def remove_all(cls):
@@ -110,19 +119,27 @@ class EcdcCountry(db.Model):
 
     @classmethod
     def get_all_as_page(cls, page):
-        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
+        return db.session.query(cls)\
+            .order_by(cls.countries_and_territories.asc())\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all(cls):
-        return db.session.query(cls).all()
+        return db.session.query(cls)\
+            .order_by(cls.countries_and_territories.asc())\
+            .all()
 
     @classmethod
     def get_by_id(cls, other_id: int):
-        return db.session.query(cls).filter(cls.id == other_id).one()
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
 
     @classmethod
     def find_by_id(cls, other_id: int):
-        return db.session.query(cls).filter(cls.id == other_id).one_or_none()
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one_or_none()
 
     @classmethod
     def get_by(cls, countries_and_territories: str, geo_id: str, country_territory_code: str):
@@ -141,13 +158,19 @@ class EcdcCountry(db.Model):
         )).one_or_none()
 
     @classmethod
-    def find_by_continent(cls, continent, page):
+    def find_by_continent(cls, continent: EcdcContinent, page: int):
         return db.session.query(cls)\
             .filter(cls.continent_id == continent.id)\
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_germany(cls):
+        return db.session.query(cls) \
+            .filter(cls.country_territory_code == 'DEU') \
+            .one()
+
+    @classmethod
+    def find_germany(cls):
         return db.session.query(cls) \
             .filter(cls.country_territory_code == 'DEU') \
             .one_or_none()
@@ -162,14 +185,18 @@ class EcdcData(db.Model):
     notification_rate_per_100000_population_14days = db.Column(db.Float, nullable=False)
 
     ecdc_country_id = db.Column(db.Integer, db.ForeignKey('ecdc_country.id'), nullable=False)
-    ecdc_country = db.relationship('EcdcCountry', lazy='joined', cascade="all, delete")
+    ecdc_country = db.relationship(
+        'EcdcCountry',
+        lazy='joined', cascade="all, delete",
+        order_by='asc(EcdcCountry.countries_and_territories)'
+    )
 
     ecdc_date_reported_id = db.Column(db.Integer, db.ForeignKey('ecdc_date_reported.id'), nullable=False)
     ecdc_date_reported = db.relationship(
         'EcdcDateReported',
-        lazy='joined',
-        cascade='all, delete',
-        order_by='desc(EcdcDateReported.date_reported)')
+        lazy='joined', cascade='all, delete',
+        order_by='desc(EcdcDateReported.date_reported)'
+    )
 
     @classmethod
     def remove_all(cls):

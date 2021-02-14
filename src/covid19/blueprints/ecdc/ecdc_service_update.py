@@ -80,44 +80,86 @@ class EcdcServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    def __get_continent_from_import(self, ecdc_import: EcdcImport):
+        my_a = ecdc_import.continent_exp
+        ecdc_continent = EcdcContinent.find_by_region(my_a)
+        if ecdc_continent in None:
+            ecdc_continent = EcdcContinent(region=my_a)
+            db.session.add(ecdc_continent)
+            db.session.commit()
+        ecdc_continent = EcdcContinent.find_by_region(my_a)
+        return ecdc_continent
+
+    def __get_country_from_import(self, ecdc_import : EcdcImport):
+        my_countries_and_territories = ecdc_import.countries_and_territories
+        my_geo_id = ecdc_import.geo_id
+        my_country_territory_code = ecdc_import.country_territory_code
+        my_pop_data_2019 = ecdc_import.pop_data_2019
+        ecdc_country = EcdcCountry.find_by(
+            countries_and_territories=my_countries_and_territories,
+            geo_id=my_geo_id,
+            country_territory_code=my_country_territory_code
+        )
+        if ecdc_country in None:
+            my_continent = self.__get_continent_from_import(ecdc_import)
+            ecdc_country = EcdcCountry(
+                countries_and_territories=my_countries_and_territories,
+                pop_data_2019=my_pop_data_2019,
+                geo_id=my_geo_id,
+                country_territory_code=my_country_territory_code,
+                continent=my_continent
+            )
+            db.session.add(ecdc_country)
+            db.session.commit()
+        ecdc_country = EcdcCountry.get_by(
+            countries_and_territories=my_countries_and_territories,
+            geo_id=my_geo_id,
+            country_territory_code=my_country_territory_code
+        )
+        return ecdc_country
+
+    def __get_country_from_import(self, ecdc_import: EcdcImport):
+        ecdc_date_reported = None
+        return ecdc_date_reported
+
+    def __get_date_reported_from_import(self):
+        dict_date_reported_from_import = {}
+        result_date_str_from_ecdc_import = EcdcImport.get_date_rep()
+        for item_date_str_from_ecdc_import in result_date_str_from_ecdc_import:
+            my_date_reported_str = item_date_str_from_ecdc_import[0]
+            my_date_reported_search = EcdcDateReported.get_date_format_from_ecdc_import_fomat(my_date_reported_str)
+            my_ecdc_date_reported = EcdcDateReported.find_by_date_reported(p_date_reported=my_date_reported_search)
+            if my_ecdc_date_reported is None:
+                my_ecdc_date_reported = EcdcDateReported.create_new_object_factory(my_date_reported_search)
+                db.session.add(my_ecdc_date_reported)
+                db.session.commit()
+            my_ecdc_date_reported = EcdcDateReported.get_by_date_reported(my_date_reported_search)
+            dict_date_reported_from_import[my_date_reported_str] = my_ecdc_date_reported
+        return dict_date_reported_from_import
+
     def __update_data_initial(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
         EcdcData.remove_all()
-        result_date_rep = EcdcImport.get_date_rep()
         i = 0
-        for item_date_rep in result_date_rep:
-            my_date_reported = item_date_rep[0]
-            my_date_reported_search = EcdcDateReported.get_my_date_rep_as_str(my_date_reported)
-            ecdc_date_reported = EcdcDateReported.find_by_date_reported(
-                i_date_reported=my_date_reported_search
-            )
-            if ecdc_date_reported is None:
-                ecdc_date_reported = EcdcDateReported.create_new_object_factory(my_date_reported)
-                db.session.add(ecdc_date_reported)
-                db.session.commit()
-            result_ecdc_data_import = EcdcImport.find_by_date_reported(ecdc_date_reported)
+        for (my_date_reported, my_ecdc_date_reported) in self.__get_date_reported_from_import():
+            ecdc_country = self.__get_country_from_import(item_ecdc_data_import)
+            result_ecdc_data_import = EcdcImport.find_by_date_reported(my_ecdc_date_reported)
             for item_ecdc_data_import in result_ecdc_data_import:
-                my_a = item_ecdc_data_import.countries_and_territories
-                my_b = item_ecdc_data_import.geo_id
-                my_c = item_ecdc_data_import.country_territory_code
-                ecdc_country = EcdcCountry.find_by(
-                    countries_and_territories=my_a,
-                    geo_id=my_b,
-                    country_territory_code=my_c
-                )
-                my_d = int(item_ecdc_data_import.deaths_weekly)
-                my_e = int(item_ecdc_data_import.cases_weekly)
+                ecdc_country = self.__get_country_from_import(item_ecdc_data_import)
+                my_deaths_weekly = int(item_ecdc_data_import.deaths_weekly)
+                my_cases_weekly = int(item_ecdc_data_import.cases_weekly)
                 if item_ecdc_data_import.notification_rate_per_100000_population_14days == '':
-                    my_f = 0.0
+                    my_notification_rate_per_100000_population_14days = 0.0
                 else:
-                    my_f = float(item_ecdc_data_import.notification_rate_per_100000_population_14days)
+                    my_notification_rate_per_100000_population_14days = \
+                        float(item_ecdc_data_import.notification_rate_per_100000_population_14days)
                 o = EcdcData(
                     ecdc_country=ecdc_country,
-                    ecdc_date_reported=ecdc_date_reported,
-                    deaths_weekly=my_d,
-                    cases_weekly=my_e,
-                    notification_rate_per_100000_population_14days=my_f
+                    ecdc_date_reported=my_ecdc_date_reported,
+                    deaths_weekly=my_deaths_weekly,
+                    cases_weekly=my_cases_weekly,
+                    notification_rate_per_100000_population_14days=my_notification_rate_per_100000_population_14days
                 )
                 db.session.add(o)
                 i += 1
