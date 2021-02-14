@@ -6,7 +6,6 @@ from covid19.blueprints.ecdc.ecdc_service_import import EcdcServiceImport
 from covid19.blueprints.ecdc.ecdc_service_update import EcdcServiceUpdate
 
 
-# TODO: #111 refactor to new method scheme introduced 07.02.2021
 class EcdcService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -49,7 +48,6 @@ class EcdcService:
         self.ecdc_service_update.update_fact_table_incremental_only()
         return self
 
-
     # TODO: #114 implement EcdcService.run_update_fact_table_initial_only
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def run_update_fact_table_initial_only(self):
@@ -59,44 +57,13 @@ class EcdcService:
     # TODO: #115 implement EcdcService.run_update_star_schema_incremental
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def run_update_star_schema_incremental(self):
+        self.ecdc_service_import.import_datafile_to_db()
         self.ecdc_service_update.update_star_schema_incremental()
         return self
-
 
     # TODO: #116 implement EcdcService.run_update_star_schema_initial
     # TODO: #111 refactor to new method scheme itroduced 07.02.2021
     def run_update_star_schema_initial(self):
+        self.ecdc_service_import.import_datafile_to_db()
         self.ecdc_service_update.update_star_schema_initial()
-        return self
-
-    # TODO remove DEPRECATED
-    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-    def download_DEPRECATED(self):
-        app.logger.info(" download [begin]")
-        app.logger.info("------------------------------------------------------------")
-        self.ecdc_service_download.download()
-        app.logger.info(" download [done]")
-        app.logger.info("------------------------------------------------------------")
-        return self
-
-    # TODO remove DEPRECATED
-    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-    def run_update_initial_DEPRECATED(self):
-        app.logger.info(" run update [begin]")
-        app.logger.info("------------------------------------------------------------")
-        self.ecdc_service_import.import_datafile_to_db()
-        self.ecdc_service_update.update_db_initial()
-        app.logger.info(" run update [done]")
-        app.logger.info("------------------------------------------------------------")
-        return self
-
-    # TODO remove DEPRECATED
-    # TODO: #111 refactor to new method scheme itroduced 07.02.2021
-    def run_update_short_DEPRECATED(self):
-        app.logger.info(" run update short [begin]")
-        app.logger.info("------------------------------------------------------------")
-        self.ecdc_service_import.import_datafile_to_db()
-        self.ecdc_service_update.update_db_short()
-        app.logger.info(" run update short [done]")
-        app.logger.info("------------------------------------------------------------")
         return self

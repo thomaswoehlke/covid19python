@@ -163,30 +163,28 @@
 ### 0.0.16 Release
 * -------------------------------------   
 * Issue #82 change to ORM ClassHierarchy
-* Issue #108 change to ORM ClassHierarchy in: EcdcImport.get_countries_of_continent  
-* Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
-* Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
+* Issue #108 change to ORM ClassHierarchy in: EcdcImport.get_countries_of_continent
 * -------------------------------------   
-* Issue #111 refactor to new method scheme introduced 07.02.2021
-* Issue #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021 
-* Issue #112 implement EcdcService.run_update_dimension_tables_only
-* Issue #113 implement EcdcService.run_update_fact_table_incremental_only
-* Issue #114 implement EcdcService.run_update_fact_table_initial_only
-* Issue #115 implement EcdcService.run_update_star_schema_incremental
-* Issue #116 implement EcdcService.run_update_star_schema_initial
-* Issue #118 implement EcdcServiceUpdate.update_dimension_tables_only
-* Issue #119 implement EcdcServiceUpdate.update_fact_table_incremental_only
-* Issue #120 implement EcdcServiceUpdate.update_fact_table_initial_only
-* Issue #121 implement EcdcServiceUpdate.update_star_schema_incremental
-* Issue #122 implement EcdcServiceUpdate.update_star_schema_initial
+* Fixed #111 refactor to new method scheme introduced 07.02.2021
+* Fixed #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021 
+* Fixed #112 implement EcdcService.run_update_dimension_tables_only
+* Fixed #113 implement EcdcService.run_update_fact_table_incremental_only
+* Fixed #114 implement EcdcService.run_update_fact_table_initial_only
+* Fixed #115 implement EcdcService.run_update_star_schema_incremental
+* Fixed #116 implement EcdcService.run_update_star_schema_initial
+* Fixed #118 implement EcdcServiceUpdate.update_dimension_tables_only
+* Fixed #119 implement EcdcServiceUpdate.update_fact_table_incremental_only
+* Fixed #120 implement EcdcServiceUpdate.update_fact_table_initial_only
+* Fixed #121 implement EcdcServiceUpdate.update_star_schema_incremental
+* Fixed #122 implement EcdcServiceUpdate.update_star_schema_initial
 * -------------------------------------
-* Issue #163 implement url_europe_task_update_star_schema_initial in europe_views.py
-* Issue #164 implement url_europe_task_update_starschema_incremental in europe_views.py
-* Issue #165 implement url_europe_task_download_only in europe_views.py
-* Issue #166 implement url_europe_task_import_only in europe_views.py
-* Issue #167 implement url_europe_task_update_dimensiontables_only in europe_views.py
-* Issue #168 implement url_europe_task_update_facttable_incremental_only in europe_views.py
-* Issue #169 implement url_europe_task_update_facttable_initial_only in europe_views.py
+* Fixed #163 implement url_europe_task_update_star_schema_initial in europe_views.py
+* Fixed #164 implement url_europe_task_update_starschema_incremental in europe_views.py
+* Fixed #165 implement url_europe_task_download_only in europe_views.py
+* Fixed #166 implement url_europe_task_import_only in europe_views.py
+* Fixed #167 implement url_europe_task_update_dimensiontables_only in europe_views.py
+* Fixed #168 implement url_europe_task_update_facttable_incremental_only in europe_views.py
+* Fixed #169 implement url_europe_task_update_facttable_initial_only in europe_views.py
 
 
 ### 0.0.17 Release
@@ -196,6 +194,8 @@
 * Fixed #140 move WhoImport to RKI in: rk_service_import.py
 * Fixed #125 implement RkiLandkreise
 * Fixed #126 implement RkiBundeslaenderImport
+* Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
+* Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
 * Issue #146 add Tasks and URLs for starting Tasks to rki_views  
 * Issue #127 implement RkiBundeslaenderImport.get_dates_reported
 * Issue #132 refactor RkiBundeslaenderService to new method scheme introduced 07.02.2021

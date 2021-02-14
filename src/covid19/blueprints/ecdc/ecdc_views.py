@@ -21,34 +21,6 @@ app_ecdc = Blueprint('ecdc', __name__, template_folder='templates', url_prefix='
 ##################################################################################################################
 
 
-# TODO remove DEPRECATED
-@celery.task(bind=True)
-def task_ecdc_update_initial_DEPRECATED(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_update_initial [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.run_update_initial_DEPRECATED()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_update_initial)"
-    return result
-
-
-# TODO remove DEPRECATED
-@celery.task(bind=True)
-def task_ecdc_update_short_DEPRECATED(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_update_short [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.run_update_short_DEPRECATED()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_update_short)"
-    return result
-
-
 @celery.task(bind=True)
 def task_ecdc_download_only(self):
     logger = get_task_logger(__name__)
@@ -296,24 +268,6 @@ def url_ecdc_country_germany(page=1):
         europe_country=europe_country,
         page_data=page_data,
         page_info=page_info)
-
-
-# TODO remove DEPRECATED
-@app_ecdc.route('/update/initial')
-def url_ecdc_task_update_data_DEPRECATED():
-    ecdc_service.download_DEPRECATED()
-    task_ecdc_update_initial_DEPRECATED.apply_async()
-    flash("task_ecdc_update_initial started")
-    return redirect(url_for('ecdc.url_ecdc_tasks'))
-
-
-# TODO remove DEPRECATED
-@app_ecdc.route('/update/short')
-def url_ecdc_task_update_data_short_DEPRECATED():
-    ecdc_service.download_DEPRECATED()
-    task_ecdc_update_short_DEPRECATED.apply_async()
-    flash("task_ecdc_update_short started")
-    return redirect(url_for('ecdc.url_ecdc_tasks'))
 
 
 # TODO: #163 implement url_ecdc_task_update_star_schema_initial in europe_views.py
