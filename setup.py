@@ -2,6 +2,8 @@ import sys
 
 from setuptools import find_packages, setup
 
+version = '0.0.17'
+
 needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
 pytest_runner = ['pytest-runner'] if needs_pytest else []
 
@@ -459,7 +461,7 @@ packages = find_packages()
 
 setup(
     name='thomaswoehlke-covid19python',
-    version='0.0.16',
+    version=version,
     url='ttps://github.com/thomaswoehlke/covid19python.git',
     license='GNU General Public License v3 (GPLv3)',
     author='Thomas Woehlke',

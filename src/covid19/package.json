@@ -1,6 +1,6 @@
 {
-    "name": "covid19static",
-    "version": "0.0.16",
+    "name": "covid19python-thomaswoehlke-static",
+    "version": "0.0.17",
     "description": "Covid19 Data Aggregation - also a Project to learn Python Flask, SQLAlchemy, Celery et al.",
     "main": "index.js",
     "repository": {
