@@ -76,6 +76,7 @@ class EcdcServiceUpdate:
     def __update_data_initial(self):
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
+        EcdcData.remove_all()
         result_date_rep = EcdcImport.get_date_rep()
         i = 0
         for item_date_rep in result_date_rep:
@@ -126,6 +127,7 @@ class EcdcServiceUpdate:
         app.logger.info(" __update_data_initial [begin]")
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" ... ")
+        self.__update_data_initial()
         app.logger.info(" __update_data_initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -176,14 +178,12 @@ class EcdcServiceUpdate:
     def update_fact_table_incremental_only(self):
         # TODO: #119 implement EcdcServiceUpdate.update_fact_table_incremental_only
         # TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
-        EcdcDateReported.remove_all()
         self.__update_data_short()
         return self
 
     def update_fact_table_initial_only(self):
         # TODO: #120 implement EcdcServiceUpdate.update_fact_table_initial_only
         # TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
-        EcdcDateReported.remove_all()
         self.__update_data_initial()
         return self
 
