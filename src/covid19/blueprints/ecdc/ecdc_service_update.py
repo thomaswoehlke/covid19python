@@ -125,7 +125,7 @@ class EcdcServiceUpdate:
         for item_date_str_from_ecdc_import in result_date_str_from_ecdc_import:
             item_date_str_from_ecdc_import_str = str(item_date_str_from_ecdc_import[0])
             app.logger.info(item_date_str_from_ecdc_import_str)
-            my_date_reported_search_str = EcdcDateReported.get_date_format_from_ecdc_import_fomat(
+            my_date_reported_search_str = EcdcDateReported.get_date_format_from_ecdc_import_format(
                 date_reported_ecdc_import_fomat=item_date_str_from_ecdc_import_str
             )
             app.logger.info(my_date_reported_search_str)

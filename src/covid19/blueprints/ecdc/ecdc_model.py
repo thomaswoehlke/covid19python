@@ -37,7 +37,7 @@ class EcdcDateReported(ApplicationDateReported):
         return my_day + '/' + my_month + '/' + my_year
 
     @classmethod
-    def get_date_format_from_ecdc_import_fomat(cls, date_reported_ecdc_import_fomat: str):
+    def get_date_format_from_ecdc_import_format(cls, date_reported_ecdc_import_fomat: str):
         my_date_parts = date_reported_ecdc_import_fomat.split("/")
         my_year = my_date_parts[2]
         my_month = my_date_parts[1]
