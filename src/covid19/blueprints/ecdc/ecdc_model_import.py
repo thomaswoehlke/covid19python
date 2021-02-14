@@ -110,4 +110,7 @@ class EcdcImport(db.Model):
 
     @classmethod
     def find_by_date_reported(cls, europe_date_reported):
-        return db.session.query(cls).filter(cls.year_week == europe_date_reported.year_week).all()
+        return db.session.query(cls)\
+            .filter(cls.date_rep == europe_date_reported.get_date_rep_as_str()) \
+            .order_by(cls.countries_and_territories)\
+            .all()

@@ -18,6 +18,8 @@ class EcdcServiceUpdate:
     def __update_date_reported(self):
         app.logger.info(" __update_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
+        EcdcData.remove_all()
+        EcdcDateReported.remove_all()
         result_date_rep = EcdcImport.get_date_rep()
         k = 0
         for result_item in result_date_rep:
@@ -39,6 +41,9 @@ class EcdcServiceUpdate:
     def __update_continent(self):
         app.logger.info(" __update_continent [begin]")
         app.logger.info("------------------------------------------------------------")
+        EcdcData.remove_all()
+        EcdcCountry.remove_all()
+        EcdcContinent.remove_all()
         result_continent = EcdcImport.get_continent()
         for result_item in result_continent:
             #my_continent_exp = result_item['continent_exp']
@@ -56,6 +61,8 @@ class EcdcServiceUpdate:
     def __update_country(self):
         app.logger.info(" __update_country [begin]")
         app.logger.info("------------------------------------------------------------")
+        EcdcData.remove_all()
+        EcdcCountry.remove_all()
         all_continents = EcdcContinent.get_all()
         for my_continent in all_continents:
             result_countries_of_continent = EcdcImport.get_countries_of_continent(my_continent)
@@ -81,11 +88,14 @@ class EcdcServiceUpdate:
         i = 0
         for item_date_rep in result_date_rep:
             my_date_reported = item_date_rep[0]
+            my_date_reported_search = EcdcDateReported.get_my_date_rep_as_str(my_date_reported)
             ecdc_date_reported = EcdcDateReported.find_by_date_reported(
-                i_date_reported=my_date_reported
+                i_date_reported=my_date_reported_search
             )
             if ecdc_date_reported is None:
                 ecdc_date_reported = EcdcDateReported.create_new_object_factory(my_date_reported)
+                db.session.add(ecdc_date_reported)
+                db.session.commit()
             result_ecdc_data_import = EcdcImport.find_by_date_reported(ecdc_date_reported)
             for item_ecdc_data_import in result_ecdc_data_import:
                 my_a = item_ecdc_data_import.countries_and_territories
@@ -110,8 +120,6 @@ class EcdcServiceUpdate:
                     notification_rate_per_100000_population_14days=my_f
                 )
                 db.session.add(o)
-                item_ecdc_data_import.row_imported = True
-                db.session.add(item_ecdc_data_import)
                 i += 1
                 if i % 500 == 0:
                     app.logger.info(" update EDCD initial ... " + str(i) + " rows")

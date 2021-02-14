@@ -23,6 +23,21 @@ class EcdcDateReported(ApplicationDateReported):
     day_of_week = db.Column(db.Integer, nullable=False)
     week_of_year = db.Column(db.Integer, nullable=False)
 
+    def get_date_rep_as_str(self):
+        my_date_parts = self.date_reported.split("-")
+        my_year = my_date_parts[0]
+        my_month = my_date_parts[1]
+        my_day = my_date_parts[2]
+        return my_day + '/' + my_month + '/' + my_year
+
+    @classmethod
+    def get_my_date_rep_as_str(cls, date_reported):
+        my_date_parts = date_reported.split("/")
+        my_year = my_date_parts[2]
+        my_month = my_date_parts[1]
+        my_day = my_date_parts[0]
+        return my_year + '-' + my_month + '-' + my_day
+
     @classmethod
     def get_datum_parts(cls, my_date_rep: str):
         my_date_parts = my_date_rep.split("/")
@@ -102,16 +117,28 @@ class EcdcCountry(db.Model):
         return db.session.query(cls).all()
 
     @classmethod
-    def get_by_id(cls, other_id):
+    def get_by_id(cls, other_id: int):
         return db.session.query(cls).filter(cls.id == other_id).one()
 
     @classmethod
-    def find_by(cls, countries_and_territories, geo_id, country_territory_code):
+    def find_by_id(cls, other_id: int):
+        return db.session.query(cls).filter(cls.id == other_id).one_or_none()
+
+    @classmethod
+    def get_by(cls, countries_and_territories: str, geo_id: str, country_territory_code: str):
         return db.session.query(cls).filter(and_(
             (cls.countries_and_territories == countries_and_territories),
             (cls.geo_id == geo_id),
             (cls.country_territory_code == country_territory_code)
         )).one()
+
+    @classmethod
+    def find_by(cls, countries_and_territories: str, geo_id: str, country_territory_code: str):
+        return db.session.query(cls).filter(and_(
+            (cls.countries_and_territories == countries_and_territories),
+            (cls.geo_id == geo_id),
+            (cls.country_territory_code == country_territory_code)
+        )).one_or_none()
 
     @classmethod
     def find_by_continent(cls, continent, page):
@@ -160,11 +187,15 @@ class EcdcData(db.Model):
         return db.session.query(cls).all()
 
     @classmethod
-    def get_by_id(cls, other_id):
+    def get_by_id(cls, other_id: int):
         return db.session.query(cls).filter(cls.id == other_id).one()
 
     @classmethod
-    def find_by_date_reported(cls, ecdc_date_reported, page):
+    def find_by_id(cls, other_id: int):
+        return db.session.query(cls).filter(cls.id == other_id).one_or_none()
+
+    @classmethod
+    def find_by_date_reported(cls, ecdc_date_reported, page: int):
         #TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
             cls.ecdc_date_reported_id == ecdc_date_reported.id)\
@@ -172,7 +203,7 @@ class EcdcData(db.Model):
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_notification_rate(cls, ecdc_date_reported, page):
+    def find_by_date_reported_notification_rate(cls, ecdc_date_reported, page: int):
         # TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
             cls.ecdc_date_reported_id == ecdc_date_reported.id) \
@@ -180,7 +211,7 @@ class EcdcData(db.Model):
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_deaths_weekly(cls, ecdc_date_reported, page):
+    def find_by_date_reported_deaths_weekly(cls, ecdc_date_reported, page: int):
         # TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
             cls.ecdc_date_reported_id == ecdc_date_reported.id) \
@@ -188,7 +219,7 @@ class EcdcData(db.Model):
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_cases_weekly(cls, ecdc_date_reported, page):
+    def find_by_date_reported_cases_weekly(cls, ecdc_date_reported, page: int):
         # TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
             cls.ecdc_date_reported_id == ecdc_date_reported.id) \
@@ -196,7 +227,7 @@ class EcdcData(db.Model):
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_country(cls, ecdc_country, page):
+    def find_by_country(cls, ecdc_country, page: int):
         return db.session.query(cls).filter(
-            cls.ecdc_country_id == ecdc_country.id)\
+            cls.ecdc_country_id == ecdc_country.id) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
