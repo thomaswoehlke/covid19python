@@ -126,15 +126,23 @@ class EcdcServiceUpdate:
         dict_date_reported_from_import = {}
         result_date_str_from_ecdc_import = EcdcImport.get_date_rep()
         for item_date_str_from_ecdc_import in result_date_str_from_ecdc_import:
-            my_date_reported_str = item_date_str_from_ecdc_import[0]
-            my_date_reported_search = EcdcDateReported.get_date_format_from_ecdc_import_fomat(my_date_reported_str)
-            my_ecdc_date_reported = EcdcDateReported.find_by_date_reported(p_date_reported=my_date_reported_search)
-            if my_ecdc_date_reported is None:
-                my_ecdc_date_reported = EcdcDateReported.create_new_object_factory(my_date_reported_search)
-                db.session.add(my_ecdc_date_reported)
+            item_date_str_from_ecdc_import_str = str(item_date_str_from_ecdc_import)
+            my_date_reported_search_str = EcdcDateReported.get_date_format_from_ecdc_import_fomat(
+                date_reported_ecdc_import_fomat=item_date_str_from_ecdc_import_str
+            )
+            my_ecdc_date_reported_obj = EcdcDateReported.find_by_date_reported(
+                p_date_reported=my_date_reported_search_str
+            )
+            if my_ecdc_date_reported_obj is None:
+                my_ecdc_date_reported_obj = EcdcDateReported.create_new_object_factory(
+                    my_date_rep=my_date_reported_search_str
+                )
+                db.session.add(my_ecdc_date_reported_obj)
                 db.session.commit()
-            my_ecdc_date_reported = EcdcDateReported.get_by_date_reported(my_date_reported_search)
-            dict_date_reported_from_import[my_date_reported_str] = my_ecdc_date_reported
+            my_ecdc_date_reported_obj = EcdcDateReported.get_by_date_reported(
+                p_date_reported=my_date_reported_search_str
+            )
+            dict_date_reported_from_import[item_date_str_from_ecdc_import_str] = my_ecdc_date_reported_obj
         return dict_date_reported_from_import
 
     def __update_data_initial(self):
