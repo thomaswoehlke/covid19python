@@ -23,7 +23,8 @@ class EcdcDateReported(ApplicationDateReported):
     day_of_week = db.Column(db.Integer, nullable=False)
     week_of_year = db.Column(db.Integer, nullable=False)
 
-    def __get_datum_parts(cls, my_date_rep: str):
+    @classmethod
+    def get_datum_parts(cls, my_date_rep: str):
         my_date_parts = my_date_rep.split("/")
         my_year = int(my_date_parts[2])
         my_month = int(my_date_parts[1])
@@ -33,11 +34,11 @@ class EcdcDateReported(ApplicationDateReported):
 
     @classmethod
     def create_new_object_factory(cls, my_date_rep: str):
-        (my_year, my_month, my_day) = cls.__get_datum_parts(my_date_rep)
-        date_reported = cls.__get_datum_as_str(my_year, my_month, my_day)
-        my_datum = cls.__get_datum(my_year, my_month, my_day)
+        (my_year, my_month, my_day) = cls.get_datum_parts(my_date_rep)
+        date_reported = super().get_datum_as_str(my_year, my_month, my_day)
+        my_datum = super().get_datum(my_year, my_month, my_day)
         (my_iso_year, week_number, weekday) = my_datum.isocalendar()
-        my_year_week = cls.__my_year_week(my_iso_year, week_number)
+        my_year_week = super().my_year_week(my_iso_year, week_number)
         return EcdcDateReported(
             date_reported=date_reported,
             datum=my_datum,

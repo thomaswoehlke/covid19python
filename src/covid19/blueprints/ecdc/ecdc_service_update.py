@@ -24,12 +24,14 @@ class EcdcServiceUpdate:
             k += 1
             #my_date_rep = result_item['date_rep']
             my_date_rep = result_item[0]
-            o = EcdcDateReported.create_new_object_factory(
-                my_date_rep=my_date_rep
-            )
-            db.session.add(o)
+            oo = EcdcDateReported.find_by_date_reported(my_date_rep)
+            if oo is None:
+                o = EcdcDateReported.create_new_object_factory(
+                    my_date_rep=my_date_rep
+                )
+                db.session.add(o)
+                db.session.commit()
             app.logger.info("| " + my_date_rep + " | " + str(k) + " rows ")
-        db.session.commit()
         app.logger.info(" __update_date_reported [done]")
         app.logger.info("------------------------------------------------------------")
         return self
