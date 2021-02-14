@@ -33,15 +33,16 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.2",
         "bootstrap": "^4.6.0",
+        "jquery": "^3.5.1",
+        "popper.js": "^1.16.1"
+    },
+    "devDependencies": {
         "browser-sync": "^2.26.14",
         "del": "^6.0.0",
         "gulp": "^4.0.2",
         "gulp-cli": "^2.3.0",
-        "jquery": "^3.5.1",
-        "merge-stream": "^2.0.0",
-        "popper.js": "^1.16.1"
+        "merge-stream": "^2.0.0"
     },
-    "devDependencies": {},
     "engines": {
         "node": ">=v12.18.2"
     }
