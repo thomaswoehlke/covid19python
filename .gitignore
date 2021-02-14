@@ -1138,3 +1138,6 @@ Debug*/Debug*\ Libs
 /src/covid19/RKI_COVID19__2021-02-06__bundeslaender.csv
 /src/covid19/RKI_COVID19__2021-02-06__landkreise.csv
 /node_modules
+/req_dev.py
+/req_docs.py
+/req_tests.py
