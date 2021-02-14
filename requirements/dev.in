@@ -2,4 +2,11 @@
 -r tests.in
 pip-tools
 pre-commit
-tox
+dash
+dash-extensions
+flask
+Flask-PluginKit
+Flask-ResponseBuilder
+plantuml-creator
+plantuml-markdown
+Flask-Babel

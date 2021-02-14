@@ -36,7 +36,7 @@ requires_setup = [
     "Flask-PluginKit>=3.6.0",
     "Flask-ResponseBuilder>=2.0.12",
     "Flask-Babel>=2",
-    "npmdownloader>=1.2.1",
+    "npmdownloader>=1.2.1"
 ]
 
 requires_test = [
