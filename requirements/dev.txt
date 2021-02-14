@@ -4,15 +4,32 @@
 #
 #    pip-compile requirements/dev.in
 #
+aiocronjob==0.2.6
+    # via -r requirements/dev.in
+aiofiles==0.5.0
+    # via
+    #   aiocronjob
+    #   npmdownloader
+aiohttp==3.7.3
+    # via npmdownloader
 alabaster==0.7.12
     # via sphinx
+alembic==1.5.4
+    # via flask-db
 amqp==5.0.5
     # via kombu
 appdirs==1.4.4
     # via virtualenv
+apscheduler==3.7.0
+    # via flask-monitoring
+async-timeout==3.0.1
+    # via aiohttp
 attrs==19.3.0
     # via
+    #   aiohttp
+    #   jsonschema
     #   plantuml-creator
+    #   plantuml2freemind
     #   pytest
 babel==2.9.0
     # via
@@ -21,7 +38,9 @@ babel==2.9.0
 billiard==3.6.3.0
     # via celery
 blinker==1.4
-    # via -r requirements/tests.in
+    # via
+    #   -r requirements/tests.in
+    #   flask-whooshalchemy3
 brotli==1.0.9
     # via flask-compress
 celery[redis]==5.0.5
@@ -30,8 +49,12 @@ certifi==2020.12.5
     # via requests
 cfgv==3.2.0
     # via pre-commit
-chardet==4.0.0
-    # via requests
+chardet==3.0.4
+    # via
+    #   aiohttp
+    #   requests
+cleo==0.8.1
+    # via plantuml2freemind
 click-didyoumean==0.0.3
     # via celery
 click-plugins==1.1.1
@@ -45,7 +68,22 @@ click==7.1.2
     #   click-plugins
     #   click-repl
     #   flask
+    #   flask-monitoring
+    #   manual-sitemap
     #   pip-tools
+    #   uvicorn
+clikit==0.6.2
+    # via cleo
+colorhash==1.0.3
+    # via flask-monitoring
+configparser==5.0.1
+    # via flask-monitoring
+crashtest==0.3.1
+    # via clikit
+crontab==0.22.9
+    # via aiocronjob
+cycler==0.10.0
+    # via matplotlib
 dash-bootstrap-components==0.11.3
     # via dtale
 dash-colorscales==0.0.4
@@ -81,27 +119,72 @@ dtale==1.34.0
     # via -r requirements/dev.in
 et-xmlfile==1.0.1
     # via openpyxl
+fastapi==0.55.1
+    # via aiocronjob
+fasteners==0.16
+    # via npmdownloader
 filelock==3.0.12
     # via virtualenv
-flask-babel==2.0.0
+flask-admin==1.5.7
     # via -r requirements/dev.in
+flask-babel==2.0.0
+    # via
+    #   -r requirements/dev.in
+    #   -r requirements/docs.in
 flask-bs4==4.5.3.0
     # via -r requirements/dev.in
 flask-caching==1.9.0
-    # via dash-extensions
+    # via
+    #   -r requirements/dev.in
+    #   dash-extensions
+flask-checkr==0.1.2
+    # via -r requirements/dev.in
+flask-ckeditor==0.4.4.1
+    # via -r requirements/dev.in
 flask-compress==1.8.0
     # via
     #   dash
     #   dtale
 flask-cors==3.0.10
     # via -r requirements/dev.in
+flask-db==0.3.0
+    # via -r requirements/dev.in
+flask-graphql==2.0.1
+    # via -r requirements/dev.in
+flask-healthz==0.0.2
+    # via -r requirements/dev.in
+flask-hintful==0.0.7
+    # via -r requirements/dev.in
+flask-moment==0.11.0
+    # via -r requirements/dev.in
+flask-monitoring==1.1.2
+    # via -r requirements/dev.in
 flask-ngrok==0.0.25
     # via dtale
 flask-pluginkit==3.6.0
+    # via
+    #   -r requirements/dev.in
+    #   -r requirements/docs.in
+flask-pwa==0.1.0
     # via -r requirements/dev.in
+flask-redisboard==0.2.0
+    # via -r requirements/dev.in
+flask-resources==0.6.0
+    # via
+    #   -r requirements/dev.in
+    #   -r requirements/docs.in
 flask-responsebuilder==2.0.13
-    # via -r requirements/dev.in
+    # via
+    #   -r requirements/dev.in
+    #   -r requirements/docs.in
 flask-sqlalchemy==2.4.4
+    # via
+    #   -r requirements/dev.in
+    #   flask-db
+    #   flask-whooshalchemy3
+flask-was==0.1.0
+    # via -r requirements/dev.in
+flask-whooshalchemy3==0.2.0
     # via -r requirements/dev.in
 flask-wtf==0.14.3
     # via flask-bs4
@@ -110,29 +193,55 @@ flask==1.1.2
     #   -r requirements/dev.in
     #   dash
     #   dtale
+    #   flask-admin
     #   flask-babel
     #   flask-bs4
     #   flask-caching
+    #   flask-checkr
+    #   flask-ckeditor
     #   flask-compress
     #   flask-cors
+    #   flask-db
+    #   flask-graphql
+    #   flask-healthz
+    #   flask-hintful
+    #   flask-moment
+    #   flask-monitoring
     #   flask-ngrok
     #   flask-pluginkit
+    #   flask-pwa
+    #   flask-redisboard
+    #   flask-resources
     #   flask-responsebuilder
     #   flask-sqlalchemy
+    #   flask-was
+    #   flask-whooshalchemy3
     #   flask-wtf
     #   pytest-flask
 future==0.18.2
     # via
     #   dash
     #   dtale
+graphql-core==2.3.2
+    # via
+    #   flask-graphql
+    #   graphql-server-core
+graphql-server-core==1.2.0
+    # via flask-graphql
 greenlet==1.0.0
     # via -r requirements/tests.in
+h11==0.9.0
+    # via uvicorn
 httplib2==0.19.0
     # via plantuml
+httptools==0.1.1
+    # via uvicorn
 identify==1.5.13
     # via pre-commit
 idna==2.10
-    # via requests
+    # via
+    #   requests
+    #   yarl
 imagesize==1.2.0
     # via sphinx
 importlib-metadata==1.3.0
@@ -148,46 +257,94 @@ jinja2==2.11.3
     # via
     #   flask
     #   flask-babel
+    #   pyecharts
+    #   reactive-pyecharts
     #   sphinx
 joblib==1.0.1
-    # via scikit-learn
+    # via
+    #   pynndescent
+    #   scikit-learn
 json2html==1.3.0
     # via flask-responsebuilder
+jsonpatch==1.28
+    # via visdom
+jsonpointer==2.0
+    # via jsonpatch
+jsonschema==3.2.0
+    # via flask-checkr
 kaleido==0.1.0
     # via dtale
+kiwisolver==1.3.1
+    # via matplotlib
 kombu==5.0.2
     # via celery
+llvmlite==0.35.0
+    # via
+    #   numba
+    #   pynndescent
 lz4==3.1.3
     # via dtale
+mako==1.1.4
+    # via alembic
+manual-sitemap==19.6.0
+    # via -r requirements/docs.in
 markdown==3.3.3
     # via plantuml-markdown
 markupsafe==1.1.1
     # via
     #   jinja2
+    #   mako
     #   wtforms
+marshmallow==3.10.0
+    # via
+    #   flask-hintful
+    #   flask-resources
+    #   openapi-specgen
+matplotlib==3.3.4
+    # via statisticaldiagrams
 more-itertools==8.0.2
     # via
     #   dash-extensions
     #   plantuml-creator
     #   pytest
     #   zipp
+multidict==5.1.0
+    # via
+    #   aiohttp
+    #   yarl
 networkx==2.5
     # via dtale
+node-semver==0.8.0
+    # via npmdownloader
 nodeenv==1.5.0
     # via pre-commit
+npmdownloader==1.2.1
+    # via
+    #   -r requirements/dev.in
+    #   -r requirements/docs.in
+numba==0.52.0
+    # via pynndescent
 numpy==1.20.1
     # via
+    #   -r requirements/dev.in
+    #   flask-monitoring
+    #   matplotlib
+    #   numba
     #   pandas
     #   patsy
     #   scikit-learn
     #   scipy
+    #   statisticaldiagrams
     #   statsmodels
+    #   torch
+    #   visdom
     #   xarray
+openapi-specgen==0.0.6
+    # via flask-hintful
 openpyxl==3.0.6
     # via dtale
 packaging==20.0
     # via
-    #   -r requirements/docs.in
     #   pallets-sphinx-themes
     #   plantuml-creator
     #   pytest
@@ -196,18 +353,43 @@ pallets-sphinx-themes==1.2.3
     # via -r requirements/docs.in
 pandas==1.2.2
     # via
+    #   -r requirements/dev.in
     #   dtale
     #   ppscore
     #   statsmodels
     #   xarray
+pastel==0.2.1
+    # via clikit
 patsy==0.5.1
     # via statsmodels
+pbr==3.1.1
+    # via
+    #   flask-whooshalchemy3
+    #   sphinxcontrib-gravizo
+pillow==8.1.0
+    # via
+    #   matplotlib
+    #   visdom
+pip-licenses==3.3.0
+    # via -r requirements/docs.in
 pip-tools==5.5.0
-    # via -r requirements/dev.in
+    # via
+    #   -r requirements/dev.in
+    #   -r requirements/docs.in
 plantuml-creator==1.0.7
-    # via -r requirements/dev.in
+    # via
+    #   -r requirements/dev.in
+    #   -r requirements/docs.in
+plantuml-gentools==0.1.2
+    # via -r requirements/docs.in
 plantuml-markdown==3.4.2
-    # via -r requirements/dev.in
+    # via
+    #   -r requirements/dev.in
+    #   -r requirements/docs.in
+plantuml-wrapper==0.1.0
+    # via -r requirements/docs.in
+plantuml2freemind==0.8.2
+    # via -r requirements/docs.in
 plantuml==0.3.0
     # via plantuml-markdown
 plotly==4.14.3
@@ -222,23 +404,52 @@ ppscore==1.2.0
     # via dtale
 pre-commit==2.10.1
     # via -r requirements/dev.in
+prettytable==2.0.0
+    # via
+    #   pyecharts
+    #   reactive-pyecharts
+promise==2.3
+    # via
+    #   graphql-core
+    #   graphql-server-core
 prompt-toolkit==3.0.16
     # via click-repl
+psutil==5.8.0
+    # via flask-monitoring
 psycopg2==2.8.6
     # via -r requirements/dev.in
+ptable==0.9.2
+    # via pip-licenses
+py2puml==0.3.1
+    # via -r requirements/docs.in
 py==1.8.1
     # via
     #   plantuml-creator
     #   pytest
+pydantic==1.7.3
+    # via fastapi
+pyecharts-extras==0.0.5
+    # via -r requirements/dev.in
+pyecharts==1.9.0
+    # via
+    #   -r requirements/dev.in
+    #   pyecharts-extras
 pygments==2.8.0
     # via
     #   sphinx
     #   sphinx-tabs
+pylev==1.3.0
+    # via clikit
+pynndescent==0.5.2
+    # via -r requirements/dev.in
 pyparsing==2.4.6
     # via
     #   httplib2
+    #   matplotlib
     #   packaging
     #   plantuml-creator
+pyrsistent==0.17.3
+    # via jsonschema
 pytest-flask==1.1.0
     # via -r requirements/tests.in
 pytest==5.3.2
@@ -247,53 +458,92 @@ pytest==5.3.2
     #   plantuml-creator
     #   pytest-flask
 python-dateutil==2.8.1
-    # via pandas
+    # via
+    #   alembic
+    #   matplotlib
+    #   pandas
 python-dotenv==0.15.0
     # via -r requirements/tests.in
-pytz==2021.1
+python-editor==1.0.4
+    # via alembic
+pytz==2020.5
     # via
+    #   aiocronjob
+    #   apscheduler
     #   babel
     #   celery
     #   flask-babel
+    #   flask-monitoring
     #   pandas
+    #   tzlocal
 pyyaml==5.4.1
     # via
     #   flask-responsebuilder
+    #   plantuml2freemind
     #   pre-commit
+pyzmq==22.0.3
+    # via visdom
+reactive-pyecharts==1.0.0
+    # via -r requirements/dev.in
 redis==3.5.3
-    # via celery
+    # via
+    #   celery
+    #   flask-redisboard
 requests==2.25.1
     # via
     #   dtale
     #   flask-ngrok
     #   sphinx
+    #   visdom
 retrying==1.3.3
     # via plotly
+rx==1.6.1
+    # via graphql-core
 scikit-learn==0.24.1
     # via
     #   dtale
     #   ppscore
+    #   pynndescent
 scipy==1.6.0
     # via
+    #   -r requirements/dev.in
     #   dtale
+    #   pynndescent
     #   scikit-learn
+    #   statisticaldiagrams
     #   statsmodels
+    #   visdom
 semver==2.13.0
     # via flask-pluginkit
+simplejson==3.17.2
+    # via pyecharts
 six==1.13.0
     # via
+    #   apscheduler
     #   click-repl
+    #   cycler
     #   dtale
+    #   fasteners
     #   flask-cors
+    #   graphql-core
+    #   jsonschema
     #   packaging
     #   patsy
     #   plantuml-creator
     #   plotly
+    #   promise
     #   python-dateutil
     #   retrying
+    #   sqlalchemy-utils
     #   virtualenv
+    #   visdom
+    #   websocket-client
 snowballstemmer==2.1.0
     # via sphinx
+speaklater==1.3
+    # via
+    #   -r requirements/docs.in
+    #   flask-resources
 sphinx-issues==1.2.0
     # via -r requirements/docs.in
 sphinx-tabs==2.0.1
@@ -305,26 +555,42 @@ sphinx==3.4.3
     #   sphinx-issues
     #   sphinx-tabs
     #   sphinxcontrib-log-cabinet
+    #   sphinxcontrib-plantuml
 sphinxcontrib-applehelp==1.0.2
     # via sphinx
 sphinxcontrib-devhelp==1.0.2
     # via sphinx
+sphinxcontrib-gravizo==0.0.4
+    # via -r requirements/docs.in
 sphinxcontrib-htmlhelp==1.0.3
     # via sphinx
 sphinxcontrib-jsmath==1.0.1
     # via sphinx
 sphinxcontrib-log-cabinet==1.0.1
     # via -r requirements/docs.in
+sphinxcontrib-plantuml==0.19
+    # via -r requirements/docs.in
 sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.4
     # via sphinx
+sqlalchemy-utils==0.36.8
+    # via flask-db
 sqlalchemy==1.3.23
     # via
     #   -r requirements/dev.in
+    #   alembic
+    #   flask-db
+    #   flask-monitoring
     #   flask-sqlalchemy
+    #   flask-whooshalchemy3
+    #   sqlalchemy-utils
 squarify==0.4.3
     # via dtale
+starlette==0.13.2
+    # via fastapi
+statisticaldiagrams==20.5
+    # via -r requirements/dev.in
 statsmodels==0.12.2
     # via dtale
 str2bool==1.1
@@ -337,31 +603,64 @@ test-flask==0.2.0
     # via -r requirements/tests.in
 threadpoolctl==2.1.0
     # via scikit-learn
+tokenize-rt==4.1.0
+    # via -r requirements/docs.in
 toml==0.10.2
     # via pre-commit
+torch==1.7.1
+    # via -r requirements/dev.in
+torchfile==0.1.0
+    # via visdom
+tornado==6.1
+    # via visdom
+typing-extensions==3.7.4.3
+    # via
+    #   aiohttp
+    #   plantuml2freemind
+    #   torch
+tzlocal==2.1
+    # via
+    #   apscheduler
+    #   flask-monitoring
 urllib3==1.26.3
     # via requests
+uvicorn==0.11.8
+    # via aiocronjob
+uvloop==0.15.0
+    # via uvicorn
 vine==5.0.0
     # via
     #   amqp
     #   celery
 virtualenv==20.4.2
     # via pre-commit
+visdom==0.1.8.9
+    # via -r requirements/dev.in
 visitor==0.1.3
     # via flask-bs4
 wcwidth==0.1.8
     # via
     #   plantuml-creator
+    #   prettytable
     #   prompt-toolkit
     #   pytest
+websocket-client==0.57.0
+    # via visdom
+websockets==8.1
+    # via uvicorn
 werkzeug==1.0.1
     # via
     #   flask
     #   pytest-flask
 wget==3.2
     # via -r requirements/dev.in
+wheel==0.36.2
+    # via -r requirements/docs.in
+whoosh==2.7.4
+    # via flask-whooshalchemy3
 wtforms==2.3.3
     # via
+    #   flask-admin
     #   flask-bs4
     #   flask-wtf
 xarray==0.16.2
@@ -370,6 +669,8 @@ xlrd==2.0.1
     # via dtale
 xmltodict==0.12.0
     # via flask-responsebuilder
+yarl==1.6.3
+    # via aiohttp
 zipp==0.6.0
     # via
     #   importlib-metadata
