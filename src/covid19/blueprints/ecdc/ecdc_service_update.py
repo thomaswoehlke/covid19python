@@ -61,10 +61,10 @@ class EcdcServiceUpdate:
             result_countries_of_continent = EcdcImport.get_countries_of_continent(my_continent)
             for c in result_countries_of_continent:
                 o = EcdcCountry(
-                    countries_and_territories=c['countries_and_territories'],
-                    pop_data_2019=c['pop_data_2019'],
-                    geo_id=c['geo_id'],
-                    country_territory_code=c['country_territory_code'],
+                    countries_and_territories=c[0],
+                    pop_data_2019=c[1],
+                    geo_id=c[2],
+                    country_territory_code=c[3],
                     continent=my_continent)
                 app.logger.info("| " + str(o) + " |")
                 db.session.add(o)
@@ -79,12 +79,12 @@ class EcdcServiceUpdate:
         result_date_rep = EcdcImport.get_date_rep()
         i = 0
         for item_date_rep in result_date_rep:
+            my_date_reported = item_date_rep[0]
             ecdc_date_reported = EcdcDateReported.find_by_date_reported(
-                i_date_reported=item_date_rep['date_rep']
+                i_date_reported=my_date_reported
             )
             if ecdc_date_reported is None:
-                o = EcdcDateReported.create_new_object_factory(item_date_rep['date_rep'])
-                ecdc_date_reported = o
+                ecdc_date_reported = EcdcDateReported.create_new_object_factory(my_date_reported)
             result_ecdc_data_import = EcdcImport.find_by_date_reported(ecdc_date_reported)
             for item_ecdc_data_import in result_ecdc_data_import:
                 my_a = item_ecdc_data_import.countries_and_territories
