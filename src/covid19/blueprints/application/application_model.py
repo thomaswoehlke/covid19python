@@ -162,7 +162,7 @@ class ApplicationDateReported(db.Model):
 class ApplicationRegion(db.Model):
     __tablename__ = 'application_region'
     __table_args__ = (
-        db.UniqueConstraint('region', name='uix_application_region_reported'),
+        db.UniqueConstraint('region', name='uix_application_region'),
     )
     id = db.Column(db.Integer, primary_key=True)
     region = db.Column(db.String(255), nullable=False, unique=True)

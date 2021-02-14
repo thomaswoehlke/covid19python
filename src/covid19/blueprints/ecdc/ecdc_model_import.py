@@ -109,8 +109,7 @@ class EcdcImport(db.Model):
         #return db.session.execute(sql, my_params).fetchall()
 
     @classmethod
-    def find_by_date_reported(cls, p_edcd_date_reported_str: str):
+    def find_by_date_reported(cls, p_edcd_date_reported_str: str = ''):
         return db.session.query(cls)\
             .filter(cls.date_rep == p_edcd_date_reported_str) \
-            .order_by(cls.countries_and_territories)\
             .all()

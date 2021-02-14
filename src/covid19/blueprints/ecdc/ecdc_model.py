@@ -148,7 +148,7 @@ class EcdcCountry(db.Model):
         )).one()
 
     @classmethod
-    def find_by(cls, countries_and_territories: str, geo_id: str, country_territory_code: str):
+    def find_by(cls, countries_and_territories: str = '', geo_id: str = '', country_territory_code: str = ''):
         return db.session.query(cls).filter(and_(
             (cls.countries_and_territories == countries_and_territories),
             (cls.geo_id == geo_id),
@@ -185,7 +185,7 @@ class EcdcData(db.Model):
     ecdc_country_id = db.Column(db.Integer, db.ForeignKey('ecdc_country.id'), nullable=False)
     ecdc_country = db.relationship(
         'EcdcCountry',
-        lazy='joined', cascade="all, delete",
+        lazy='subquery', cascade="all, delete",
         order_by='asc(EcdcCountry.countries_and_territories)'
     )
 

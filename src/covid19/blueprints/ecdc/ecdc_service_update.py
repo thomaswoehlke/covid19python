@@ -100,36 +100,35 @@ class EcdcServiceUpdate:
             geo_id=my_geo_id,
             country_territory_code=my_country_territory_code
         )
-        if ecdc_country in None:
+        if ecdc_country is None:
             my_continent = self.__get_continent_from_import(ecdc_import)
-            ecdc_country = EcdcCountry(
+            app.logger.info(my_continent.id + " "+my_continent.region)
+            o = EcdcCountry(
                 countries_and_territories=my_countries_and_territories,
                 pop_data_2019=my_pop_data_2019,
                 geo_id=my_geo_id,
                 country_territory_code=my_country_territory_code,
                 continent=my_continent
             )
-            db.session.add(ecdc_country)
+            db.session.add(o)
             db.session.commit()
-        ecdc_country = EcdcCountry.get_by(
-            countries_and_territories=my_countries_and_territories,
-            geo_id=my_geo_id,
-            country_territory_code=my_country_territory_code
-        )
+            ecdc_country = EcdcCountry.get_by(
+                countries_and_territories=my_countries_and_territories,
+                geo_id=my_geo_id,
+                country_territory_code=my_country_territory_code
+            )
         return ecdc_country
-
-    def __get_country_from_import(self, ecdc_import: EcdcImport):
-        ecdc_date_reported = None
-        return ecdc_date_reported
 
     def __get_date_reported_from_import(self):
         dict_date_reported_from_import = {}
         result_date_str_from_ecdc_import = EcdcImport.get_date_rep()
         for item_date_str_from_ecdc_import in result_date_str_from_ecdc_import:
-            item_date_str_from_ecdc_import_str = str(item_date_str_from_ecdc_import)
+            item_date_str_from_ecdc_import_str = str(item_date_str_from_ecdc_import[0])
+            app.logger.info(item_date_str_from_ecdc_import_str)
             my_date_reported_search_str = EcdcDateReported.get_date_format_from_ecdc_import_fomat(
                 date_reported_ecdc_import_fomat=item_date_str_from_ecdc_import_str
             )
+            app.logger.info(my_date_reported_search_str)
             my_ecdc_date_reported_obj = EcdcDateReported.find_by_date_reported(
                 p_date_reported=my_date_reported_search_str
             )
@@ -150,9 +149,10 @@ class EcdcServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         EcdcData.remove_all()
         i = 0
-        for (my_date_reported, my_ecdc_date_reported) in self.__get_date_reported_from_import():
-            result_ecdc_data_import = EcdcImport.find_by_date_reported(my_date_reported)
-            for item_ecdc_data_import in result_ecdc_data_import:
+        dict_date_reported_from_import = self.__get_date_reported_from_import()
+        for my_date_reported in dict_date_reported_from_import.keys():
+            my_ecdc_date_reported = dict_date_reported_from_import[my_date_reported]
+            for item_ecdc_data_import in EcdcImport.find_by_date_reported(my_date_reported):
                 my_ecdc_country = self.__get_country_from_import(item_ecdc_data_import)
                 my_deaths_weekly = int(item_ecdc_data_import.deaths_weekly)
                 my_cases_weekly = int(item_ecdc_data_import.cases_weekly)
