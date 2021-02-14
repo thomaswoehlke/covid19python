@@ -31,3 +31,19 @@
 
 ### packaging
 * https://packaging.python.org/
+
+### 0.0.17 Release
+* Fixed #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
+* Fixed #128 add fields from csv to RkiLandkreiseImport
+* Fixed #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
+* Fixed #140 move WhoImport to RKI in: rk_service_import.py
+* Fixed #125 implement RkiLandkreise
+* Fixed #126 implement RkiBundeslaenderImport
+
+### 0.0.18 Release
+* Fixed #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
+* Fixed #40 SQLalchemy instead of SQL: EcdcImport.get_date_rep()
+* Fixed #41 SQLalchemy instead of SQL: EcdcImport.get_countries_of_continent()
+* Fixed #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
+* Fixed #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
+* Fixed #110 SQLalchemy instead of SQL in: EcdcImport.get_continent

@@ -221,14 +221,14 @@
 * Issue #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
 
 ### 0.0.18 Release
-* Issue #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
-* Issue #40 SQLalchemy instead of SQL: EcdcImport.get_date_rep()
-* Issue #41 SQLalchemy instead of SQL: EcdcImport.get_countries_of_continent()
+* Fixed #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
+* Fixed #40 SQLalchemy instead of SQL: EcdcImport.get_date_rep()
+* Fixed #41 SQLalchemy instead of SQL: EcdcImport.get_countries_of_continent()
+* Fixed #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
+* Fixed #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
+* Fixed #110 SQLalchemy instead of SQL in: EcdcImport.get_continent
 * Issue #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
 * Issue #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
-* Issue #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
-* Issue #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
-* Issue #110 SQLalchemy instead of SQL in: EcdcImport.get_continent
 
 ### 0.0.198 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date

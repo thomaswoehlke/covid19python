@@ -27,3 +27,4 @@
 * http://www.leeladharan.com/sqlalchemy-query-with-or-and-like-common-filters
 * https://riptutorial.com/flask/example/22201/pagination-route-example-with-flask-sqlalchemy-paginate
 
+
