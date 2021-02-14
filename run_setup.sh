@@ -37,3 +37,7 @@ echo "--------------------------------------------------"
 pip-compile requirements/docs.in
 pip-compile requirements/tests.in
 pip-compile requirements/dev.in
+cat requirements/docs.txt | grep -v '#' | sed 's/^/\t"/g' | sed 's/$/",/g' > requirements/req_docs.py
+cat requirements/tests.txt | grep -v '#' | sed 's/^/\t"/g' | sed 's/$/",/g' > requirements/req_tests.py
+cat requirements/dev.txt | grep -v '#' | sed 's/^/\t"/g' | sed 's/$/",/g' > requirements/req_dev.py
+pip install -e . --compile --progress-bar pretty

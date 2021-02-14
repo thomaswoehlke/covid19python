@@ -1141,3 +1141,6 @@ Debug*/Debug*\ Libs
 /req_dev.py
 /req_docs.py
 /req_tests.py
+/requirements/req_dev.py
+/requirements/req_docs.py
+/requirements/req_tests.py
