@@ -34,3 +34,6 @@ pip install -e .
 echo "--------------------------------------------------"
 echo " DONE"
 echo "--------------------------------------------------"
+pip-compile requirements/docs.in
+pip-compile requirements/tests.in
+pip-compile requirements/dev.in

@@ -36,13 +36,16 @@ requires_setup = [
     "Flask-PluginKit>=3.6.0",
     "Flask-ResponseBuilder>=2.0.12",
     "Flask-Babel>=2",
-    "npmdownloader>=1.2.1"
+    "npmdownloader>=1.2.1",
 ]
 
 requires_test = [
+    "pytest>=5.3.2",
+    "greenlet==1.0.0",
+    "python-dotenv==0.15.0",
+    "blinker==1.4",
     "test-flask>=0.2.0",
-    "pytest>=6,<7",
-    "pytest-flask>=1.1.0"
+    "pytest-flask>=1.1.0",
 ]
 
 requires_docs = [
@@ -53,11 +56,11 @@ requires_docs = [
     "sphinxcontrib-plantuml==0.19",
     "sphinxcontrib-gravizo==0.0.4"
     "py2puml==0.3.1",
-    "plantuml-creator == 1.0.7",
-    "plantuml-markdown == 3.4.2",
-    "plantuml-wrapper == 0.1.0",
-    "plantuml2freemind == 0.8.2",
-    "plantuml-gentools == 0.1.2",
+    "plantuml-creator==1.0.7",
+    "plantuml-markdown==3.4.2",
+    "plantuml-wrapper==0.1.0",
+    "plantuml2freemind==0.8.2",
+    "plantuml-gentools==0.1.2",
     "speaklater==1.3"
 ]
 
