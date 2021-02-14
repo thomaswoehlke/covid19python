@@ -39,6 +39,9 @@ function modules() {
   var popper_js = gulp.src([
       './node_modules/popper.js/dist/**/*'
     ]).pipe(gulp.dest('./static/vendor/popper.js'));
+  var popper_js = gulp.src([
+      './node_modules/@fortawesome/fontawesome-free/**/*'
+    ]).pipe(gulp.dest('./static/vendor/fontawesome-free'));
   return merge(
       bootstrap, jquery, popper_js
   );
