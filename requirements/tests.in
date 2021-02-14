@@ -1,4 +1,4 @@
-pytest
+pytest==5.3.2
 blinker
 greenlet
 python-dotenv
