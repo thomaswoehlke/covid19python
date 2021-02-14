@@ -47,7 +47,8 @@ class EcdcImport(db.Model):
         # sql = "select distinct date_rep, year_week from edcd_import order by year_week desc"
         #return db.session.execute(sql).fetchall()
         return db.session.query(cls.date_rep) \
-            .group_by(cls.date_rep).distinct() \
+            .group_by(cls.date_rep)\
+            .distinct() \
             .order_by(cls.date_rep.desc())\
             .all()
 
