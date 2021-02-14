@@ -1,6 +1,9 @@
-import os
+import sys
 
 from setuptools import find_packages, setup
+
+needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
+pytest_runner = ['pytest-runner'] if needs_pytest else []
 
 readme = open("README.md").read()
 history = open("BACKLOG.md").read()
@@ -431,7 +434,7 @@ requires_install = [
     "xmltodict==0.12.0",
     "yarl==1.6.3",
     "zipp==0.6.0"
-]
+] + pytest_runner
 
 requires_install_groups = [
     requires_install_minimum,
