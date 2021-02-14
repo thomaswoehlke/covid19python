@@ -47,9 +47,9 @@ class EcdcImport(db.Model):
         # sql = "select distinct date_rep, year_week from edcd_import order by year_week desc"
         #return db.session.execute(sql).fetchall()
         return db.session.query(cls.date_rep) \
-            .group_by(cls.date_rep) \
+            .group_by(cls.date_rep).distinct() \
             .order_by(cls.date_rep.desc())\
-            .distinct().all()
+            .all()
 
     @classmethod
     def get_continent(cls):
@@ -57,52 +57,55 @@ class EcdcImport(db.Model):
         # sql = "select distinct continent_exp from edcd_import order by continent_exp asc"
         #return db.session.execute(sql).fetchall()
         return db.session.query(cls.continent_exp) \
-            .group_by(cls.continent_exp) \
+            .group_by(cls.continent_exp)\
+            .distinct() \
             .order_by(cls.continent_exp.asc()) \
-            .distinct().all()
+            .all()
 
     @classmethod
-    def get_countries_of_continent(cls, my_continent: str):
+    def get_countries_of_continent(cls, my_continent):
         my_continent_exp = my_continent.region
         my_params = {}
         my_params['my_continent_param'] = my_continent_exp
         #TODO: #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
         #TODO: #108 BUG: change to ORM ClassHierarchy in: EcdcImport.get_countries_of_continent
-        #return db.session.query(
-        #    cls.countries_and_territories,
-        #    cls.geo_id,
-        #    cls.country_territory_code,
-        #    cls.pop_data_2019,
-        #    cls.continent_exp
-        #).group_by(
-        #    cls.countries_and_sterritories,
-        #    cls.geo_id,
-        #    cls.country_territory_code,
-        #    cls.pop_data_2019,
-        #    cls.continent_exp
-        #).order_by(cls.countries_and_territories.asc()).filter(
-        #    cls.continent_exp == my_continent
-        #).distinct().all()
-        sql = """
-        select distinct
-            countries_and_territories,
-            geo_id,
-             pop_data_2019,
-            continent_exp
-        from
-            ecdc_import
-        group by
-            countries_and_territories,
-            geo_id,
-            country_territory_code,
-            pop_data_2019,
-            continent_exp
-        having
-            continent_exp = :my_continent_param
-        order by
-            countries_and_territories
-        """
-        return db.session.execute(sql, my_params).fetchall()
+        return db.session.query(
+            cls.countries_and_territories,
+            cls.pop_data_2019,
+            cls.geo_id,
+            cls.country_territory_code,
+            cls.continent_exp,
+        ).distinct().group_by(
+            cls.countries_and_territories,
+            cls.pop_data_2019,
+            cls.geo_id,
+            cls.country_territory_code,
+            cls.continent_exp
+        ).order_by(cls.countries_and_territories.asc()).filter(
+            cls.continent_exp == my_continent
+        ).all()
+        #sql = """
+        #select distinct
+        #    countries_and_territories,
+        #    geo_id,
+        #    pop_data_2019,
+        #    continent_exp,
+        #    country_territory_code
+        #from
+        #    ecdc_import
+        #group by
+        #    countries_and_territories,
+        #    geo_id,
+        #    country_territory_code,
+        #    pop_data_2019,
+        #    continent_exp,
+        #    country_territory_code
+        #having
+        #    continent_exp = :my_continent_param
+        #order by
+        #    countries_and_territories
+        #"""
+        #return db.session.execute(sql, my_params).fetchall()
 
     @classmethod
     def find_by_date_reported(cls, europe_date_reported):

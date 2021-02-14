@@ -60,9 +60,9 @@ class EcdcServiceUpdate:
             for c in result_countries_of_continent:
                 o = EcdcCountry(
                     countries_and_territories=c['countries_and_territories'],
+                    pop_data_2019=c['pop_data_2019'],
                     geo_id=c['geo_id'],
                     country_territory_code=c['country_territory_code'],
-                    pop_data_2019=c['pop_data_2019'],
                     continent=my_continent)
                 app.logger.info("| " + str(o) + " |")
                 db.session.add(o)

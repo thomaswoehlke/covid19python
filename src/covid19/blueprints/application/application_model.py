@@ -43,18 +43,48 @@ class ApplicationDateReported(db.Model):
         return {1: "Montag", 2: "Dienstag", 3: "Mittwoch", 4: "Donnerstag", 5: "Freitag", 6: "Samstag",
                              7: "Sonntag"}
 
-    @classmethod
-    def create_new_object_factory(cls, my_date_rep):
-        my_datum = date.fromisoformat(my_date_rep)
-        (my_iso_year, week_number, weekday) = my_datum.isocalendar()
+    def __get_datum_parts(cls, my_date_rep: str):
+        my_date_parts = my_date_rep.split("-")
+        my_year = int(my_date_parts[0])
+        my_month = int(my_date_parts[1])
+        my_day = int(my_date_parts[2])
+        datum_parts = (my_year, my_month, my_day)
+        return datum_parts
+
+    def __get_datum(cls, my_year: int, my_month: int, my_day: int):
+        my_datum = date(my_year, my_month, my_day)
+        return my_datum
+
+    def __get_datum_as_str(cls, my_year: int, my_month: int, my_day: int):
+        my_datum_tp_be_stored = str(my_year)
+        my_datum_tp_be_stored += "-"
+        if my_month < 10:
+            my_datum_tp_be_stored += "0"
+        my_datum_tp_be_stored += str(my_month)
+        my_datum_tp_be_stored += "-"
+        if my_day < 10:
+            my_datum_tp_be_stored += "0"
+        my_datum_tp_be_stored += str(my_day)
+        return my_datum_tp_be_stored
+
+    def __my_year_week(cls, my_iso_year: int, week_number: int):
         my_year_week = "" + str(my_iso_year)
         if week_number < 10:
             my_year_week += "-0"
         else:
             my_year_week += "-"
         my_year_week += str(week_number)
+        return my_year_week
+
+    @classmethod
+    def create_new_object_factory(cls, my_date_rep: str):
+        (my_year, my_month, my_day) = cls.__get_datum_parts(my_date_rep)
+        date_reported = cls.__get_datum_as_str(my_year, my_month, my_day)
+        my_datum = cls.__get_datum(my_year, my_month, my_day)
+        (my_iso_year, week_number, weekday) = my_datum.isocalendar()
+        my_year_week = cls.__my_year_week(my_iso_year, week_number)
         return ApplicationDateReported(
-            date_reported=my_date_rep,
+            date_reported=date_reported,
             datum=my_datum,
             year=my_datum.year,
             month=my_datum.month,
