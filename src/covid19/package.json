@@ -27,7 +27,7 @@
         "build:version": "node scripts/version.js",
         "docker:build": "node scripts/docker/docker-build.js",
         "docker:run": "node scripts/docker/docker-run.js",
-        "dddd____postinstall": "./node_modules/.bin/gulp"
+        "postinstall": "./node_modules/.bin/gulp"
     },
     "private": true,
     "dependencies": {
