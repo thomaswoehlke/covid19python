@@ -17,6 +17,12 @@ class RkiVaccinationServiceImport:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Import [ready]")
 
+    def __int(self, input_string: str):
+        if input_string == '#REF!':
+            return 0
+        else:
+            return int(input_string)
+
     def import_file(self):
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info(" import Vaccination [begin]")
@@ -32,26 +38,26 @@ class RkiVaccinationServiceImport:
                 for row in file_reader:
                     o = RkiVaccinationImport(
                         datum=row['date'],
-                        dosen_kumulativ=int(row['dosen_kumulativ']),
-                        dosen_differenz_zum_vortag=int(row['dosen_differenz_zum_vortag']),
-                        dosen_biontech_kumulativ=int(row['dosen_biontech_kumulativ']),
-                        dosen_moderna_kumulativ=int(row['dosen_moderna_kumulativ']),
-                        personen_erst_kumulativ=int(row['personen_erst_kumulativ']),
-                        personen_voll_kumulativ=int(row['personen_voll_kumulativ']),
+                        dosen_kumulativ=self.__int(row['dosen_kumulativ']),
+                        dosen_differenz_zum_vortag=self.__int(row['dosen_differenz_zum_vortag']),
+                        dosen_biontech_kumulativ=self.__int(row['dosen_biontech_kumulativ']),
+                        dosen_moderna_kumulativ=self.__int(row['dosen_moderna_kumulativ']),
+                        personen_erst_kumulativ=self.__int(row['personen_erst_kumulativ']),
+                        personen_voll_kumulativ=self.__int(row['personen_voll_kumulativ']),
                         impf_quote_erst=float(row['impf_quote_erst']),
                         impf_quote_voll=float(row['impf_quote_voll']),
-                        indikation_alter_dosen=int(row['indikation_alter_dosen']),
-                        indikation_beruf_dosen=int(row['indikation_beruf_dosen']),
-                        indikation_medizinisch_dosen=int(row['indikation_medizinisch_dosen']),
-                        indikation_pflegeheim_dosen=int(row['indikation_pflegeheim_dosen']),
-                        indikation_alter_erst=int(row['indikation_alter_erst']),
-                        indikation_beruf_erst=int(row['indikation_beruf_erst']),
-                        indikation_medizinisch_erst=int(row['indikation_medizinisch_erst']),
-                        indikation_pflegeheim_erst=int(row['indikation_pflegeheim_erst']),
-                        indikation_alter_voll=int(row['indikation_alter_voll']),
-                        indikation_beruf_voll=int(row['indikation_beruf_voll']),
-                        indikation_medizinisch_voll=int(row['indikation_medizinisch_voll']),
-                        indikation_pflegeheim_voll=int(row['indikation_pflegeheim_voll'])
+                        indikation_alter_dosen=self.__int(row['indikation_alter_dosen']),
+                        indikation_beruf_dosen=self.__int(row['indikation_beruf_dosen']),
+                        indikation_medizinisch_dosen=self.__int(row['indikation_medizinisch_dosen']),
+                        indikation_pflegeheim_dosen=self.__int(row['indikation_pflegeheim_dosen']),
+                        indikation_alter_erst=self.__int(row['indikation_alter_erst']),
+                        indikation_beruf_erst=self.__int(row['indikation_beruf_erst']),
+                        indikation_medizinisch_erst=self.__int(row['indikation_medizinisch_erst']),
+                        indikation_pflegeheim_erst=self.__int(row['indikation_pflegeheim_erst']),
+                        indikation_alter_voll=self.__int(row['indikation_alter_voll']),
+                        indikation_beruf_voll=self.__int(row['indikation_beruf_voll']),
+                        indikation_medizinisch_voll=self.__int(row['indikation_medizinisch_voll']),
+                        indikation_pflegeheim_voll=self.__int(row['indikation_pflegeheim_voll'])
                     )
                     db.session.add(o)
                     k += 1
