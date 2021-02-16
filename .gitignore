@@ -1144,3 +1144,4 @@ Debug*/Debug*\ Libs
 /requirements/req_dev.py
 /requirements/req_docs.py
 /requirements/req_tests.py
+/dump.rdb
