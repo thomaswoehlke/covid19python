@@ -418,7 +418,6 @@ requires_install = [
     "tzlocal==2.1",
     "urllib3==1.26.3",
     "uvicorn==0.11.8",
-    "uvloop==0.15.0",
     "vine==5.0.0",
     "virtualenv==20.4.2",
     "visdom==0.1.8.9",
