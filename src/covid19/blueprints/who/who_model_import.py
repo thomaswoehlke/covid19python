@@ -1,8 +1,6 @@
 from database import db, ITEMS_PER_PAGE
 
 
-# TODO: #80 rename WhoImport to WhoImport
-# TODO: #81 change tablename from who_global_data_import to who_import
 class WhoImport(db.Model):
     __tablename__ = 'who_import'
 
