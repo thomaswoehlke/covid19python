@@ -24,17 +24,12 @@ class RkiLandkreiseServiceImport:
         app.logger.info(" import into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
         app.logger.info("------------------------------------------------------------")
         row = None
-        if sys.platform == 'linux':
-            keyDate_reported ='\ufeffDate_reported'
-        else:
-            keyDate_reported = 'ï»¿Date_reported'
         try:
             RkiLandkreiseImport.remove_all()
-            with open(self.cfg.cvsfile_name, newline='\n') as csv_file:
+            with open(self.cfg.cvsfile_path, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:
-                    # TODO: #140 move WhoImport to RKI in: rk_service_import.py
                     o = RkiLandkreiseImport(
                         OBJECTID=row['OBJECTID'],
                         ADE=row['ADE'],

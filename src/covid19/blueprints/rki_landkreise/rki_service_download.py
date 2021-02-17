@@ -29,17 +29,17 @@ class RkiLandkreiseServiceDownload:
             app.logger.info(" " + data_file + " ")
         except RuntimeError as runtimeError:
             app.logger.error("############################################################")
-            app.logger.error(" " + runtimeError + " ")
+            app.logger.error(" runtimeError   " + runtimeError + " ")
             app.logger.error("############################################################")
             flash(message="error while downloading: " + self.cfg.cvsfile_path, category='error')
         except AttributeError as attributeError:
             app.logger.error("############################################################")
-            app.logger.error(attributeError)
+            app.logger.error(" attributeError " + attributeError + " ")
             app.logger.error("############################################################")
             flash(message="error after downloading: " + self.cfg.cvsfile_path, category='error')
         except Exception as exception:
             app.logger.error("############################################################")
-            app.logger.error(exception)
+            app.logger.error(" exception      " + exception + " ")
             app.logger.error("############################################################")
             flash(message="error while downloading: " + self.cfg.cvsfile_path, category='error')
         finally:
