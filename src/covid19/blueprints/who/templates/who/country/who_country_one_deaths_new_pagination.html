@@ -1,12 +1,3 @@
-{% extends 'application/page_layout.html' %}
-
-{% block content %}
-    {{super()}}
-    {% include 'who/fragments/fragment_who_navtabs.html' %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
                 {% if page_data.pages > 1 %}
                 <ul class="pagination">
                     {% if page_data.has_prev %}
@@ -47,13 +38,4 @@
                     {% endif %}
                 </ul>
                 {% endif %}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                {% include 'who/country/who_country_one_table.html' %}
-            </div>
-        </div>
-    </div>
 
-{% endblock %}

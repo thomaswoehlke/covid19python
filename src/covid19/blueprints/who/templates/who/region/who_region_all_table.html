@@ -1,0 +1,19 @@
+
+                <table class="table table-hover table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">who_region</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for who_region in page_data.items %}
+                        <tr>
+                            <td>
+                                <a href="/who/region/{{ who_region.id }}">
+                                    {{ who_region.region }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>

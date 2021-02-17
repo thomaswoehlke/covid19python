@@ -232,7 +232,7 @@ def url_who_imported(page=1):
 
 @app_who.route('/date_reported/all/page/<int:page>')
 @app_who.route('/date_reported/all')
-def url_who_date_reported_all(page=1):
+def url_who_date_reported_all(page: int = 1):
     page_info = ApplicationPage('WHO', "Date Reported", "All")
     try:
         page_data = WhoDateReported.get_all_as_page(page)
@@ -247,7 +247,7 @@ def url_who_date_reported_all(page=1):
 
 @app_who.route('/date_reported/<int:date_reported_id>/page/<int:page>')
 @app_who.route('/date_reported/<int:date_reported_id>')
-def url_who_date_reported(date_reported_id, page=1):
+def url_who_date_reported(date_reported_id: int, page: int = 1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
@@ -268,7 +268,7 @@ def url_who_date_reported(date_reported_id, page=1):
 
 @app_who.route('/date_reported/<int:date_reported_id>/cases_new/page/<int:page>')
 @app_who.route('/date_reported/<int:date_reported_id>/cases_new')
-def url_who_date_reported_cases_new(date_reported_id, page=1):
+def url_who_date_reported_cases_new(date_reported_id: int, page: int = 1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
@@ -289,7 +289,7 @@ def url_who_date_reported_cases_new(date_reported_id, page=1):
 
 @app_who.route('/date_reported/<int:date_reported_id>/cases_cumulative/page/<int:page>')
 @app_who.route('/date_reported/<int:date_reported_id>/cases_cumulative')
-def url_who_date_reported_cases_cumulative(date_reported_id, page=1):
+def url_who_date_reported_cases_cumulative(date_reported_id: int, page: int = 1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
@@ -310,7 +310,7 @@ def url_who_date_reported_cases_cumulative(date_reported_id, page=1):
 
 @app_who.route('/date_reported/<int:date_reported_id>/deaths_new/page/<int:page>')
 @app_who.route('/date_reported/<int:date_reported_id>/deaths_new')
-def url_who_date_reported_deaths_new(date_reported_id, page=1):
+def url_who_date_reported_deaths_new(date_reported_id: int, page: int = 1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
@@ -331,7 +331,7 @@ def url_who_date_reported_deaths_new(date_reported_id, page=1):
 
 @app_who.route('/date_reported/<int:date_reported_id>/deaths_cumulative/page/<int:page>')
 @app_who.route('/date_reported/<int:date_reported_id>/deaths_cumulative')
-def url_who_date_reported_deaths_cumulative(date_reported_id, page=1):
+def url_who_date_reported_deaths_cumulative(date_reported_id: int, page: int = 1):
     date_reported = WhoDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
@@ -352,7 +352,7 @@ def url_who_date_reported_deaths_cumulative(date_reported_id, page=1):
 
 @app_who.route('/region/all/page/<int:page>')
 @app_who.route('/region/all')
-def url_who_region_all(page=1):
+def url_who_region_all(page: int = 1):
     page_info = ApplicationPage('WHO', "Region", "All")
     try:
         page_data = WhoRegion.get_all_as_page(page)
@@ -367,7 +367,7 @@ def url_who_region_all(page=1):
 
 @app_who.route('/region/<int:region_id>/page/<int:page>')
 @app_who.route('/region/<int:region_id>')
-def url_who_region(region_id, page=1):
+def url_who_region(region_id: int, page: int = 1):
     who_region = None
     page_info = ApplicationPage("Countries", "WHO Region")
     try:
@@ -388,7 +388,7 @@ def url_who_region(region_id, page=1):
 
 @app_who.route('/country/all/page/<int:page>')
 @app_who.route('/country/all')
-def url_who_country_all(page=1):
+def url_who_country_all(page: int = 1):
     page_info = ApplicationPage('WHO', "Countries", "All")
     try:
         page_data = WhoCountry.get_all_as_page(page)
@@ -403,7 +403,7 @@ def url_who_country_all(page=1):
 
 @app_who.route('/country/<int:country_id>/page/<int:page>')
 @app_who.route('/country/<int:country_id>')
-def url_who_country(country_id, page=1):
+def url_who_country(country_id: int, page: int = 1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoData.get_data_for_country(who_country, page)
     page_info = ApplicationPage(who_country.country,
@@ -418,7 +418,7 @@ def url_who_country(country_id, page=1):
 
 @app_who.route('/country/<int:country_id>/cases_new/page/<int:page>')
 @app_who.route('/country/<int:country_id>/cases_new')
-def url_who_country_cases_new(country_id, page=1):
+def url_who_country_cases_new(country_id: int, page: int = 1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoData.get_data_for_country_order_by_cases_new(who_country, page)
     page_info = ApplicationPage(who_country.country,
@@ -433,7 +433,7 @@ def url_who_country_cases_new(country_id, page=1):
 
 @app_who.route('/country/<int:country_id>/cases_cumulative/page/<int:page>')
 @app_who.route('/country/<int:country_id>/cases_cumulative')
-def url_who_country_cases_cumulative(country_id, page=1):
+def url_who_country_cases_cumulative(country_id: int, page: int = 1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoData.get_data_for_country_order_by_cases_cumulative(who_country, page)
     page_info = ApplicationPage(who_country.country,
@@ -448,7 +448,7 @@ def url_who_country_cases_cumulative(country_id, page=1):
 
 @app_who.route('/country/<int:country_id>/deaths_new/page/<int:page>')
 @app_who.route('/country/<int:country_id>/deaths_new')
-def url_who_country_deaths_new(country_id, page=1):
+def url_who_country_deaths_new(country_id: int, page: int = 1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoData.get_data_for_country_order_by_deaths_new(who_country, page)
     page_info = ApplicationPage(who_country.country,
@@ -463,7 +463,7 @@ def url_who_country_deaths_new(country_id, page=1):
 
 @app_who.route('/country/<int:country_id>/deaths_cumulative/page/<int:page>')
 @app_who.route('/country/<int:country_id>/deaths_cumulative')
-def url_who_country_deaths_cumulative(country_id, page=1):
+def url_who_country_deaths_cumulative(country_id: int, page: int = 1):
     who_country = WhoCountry.get_by_id(country_id)
     page_data = WhoData.get_data_for_country_order_by_deaths_cumulative(who_country, page)
     page_info = ApplicationPage(who_country.country,
@@ -478,7 +478,7 @@ def url_who_country_deaths_cumulative(country_id, page=1):
 
 @app_who.route('/germany/page/<int:page>')
 @app_who.route('/germany')
-def url_who_germany(page=1):
+def url_who_germany(page: int = 1):
     page_info = ApplicationPage('WHO', "Germany")
     who_country_germany = WhoCountry.get_germany()
     if who_country_germany is None:

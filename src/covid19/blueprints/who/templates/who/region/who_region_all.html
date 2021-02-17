@@ -7,69 +7,17 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                {% if page_data.pages > 1 %}
-                    <!-- previous page -->
-                    <ul class="pagination">
-                    <!-- previous page -->
-                    {% if page_data.has_prev %}
-                    <li>
-                        <a href="{{ url_for('who.url_who_region_all', page=page_data.prev_num) }}">
-                            Previous
-                        </a>
-                    </li>
-                    {% endif %}
-                    <!-- all page numbers -->
-                    {% for page_num in page_data.iter_pages() %}
-                        {% if page_num %}
-                            {% if page_num != page_data.page %}
-                                <li>
-                                    <a href="{{ url_for('who.url_who_region_all', page=page_num) }}">
-                                        {{ page_num }}
-                                    </a>
-                                </li>
-                            {% else %}
-                                <li class="active">
-                                    <a href="#">{{ page_num }}</a>
-                                </li>
-                            {% endif %}
-                       {% else %}
-                           <li>
-                               <span class="ellipsis page-link my-page-item-ellipsis-page-link">…</span>
-                           </li>
-                       {% endif %}
-                    {% endfor %}
-                    <!-- next page -->
-                    {% if page_data.has_next %}
-                    <li>
-                        <a href="{{ url_for('who.url_who_region_all', page=page_data.next_num) }}">
-                            Next
-                        </a>
-                    </li>
-                    {% endif %}
-                    </ul>
-                {% endif %}
+                {% include 'who/region/who_region_all_pagination.html' %}
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <table class="table table-hover table-striped table-dark">
-                    <thead>
-                        <tr>
-                            <th scope="col">who_region</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for who_region in page_data.items %}
-                        <tr>
-                            <td>
-                                <a href="/who/region/{{ who_region.id }}">
-                                    {{ who_region.region }}
-                                </a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                {% include 'who/region/who_region_all_table.html' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {% include 'who/region/who_region_all_pagination.html' %}
             </div>
         </div>
     </div>
