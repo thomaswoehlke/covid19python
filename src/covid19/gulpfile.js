@@ -42,6 +42,9 @@ function modules() {
   var popper_js = gulp.src([
       './node_modules/@fortawesome/fontawesome-free/**/*'
     ]).pipe(gulp.dest('./static/vendor/fontawesome-free'));
+    var popper_js = gulp.src([
+      './node_modules/bootswatch/dist/**/*'
+    ]).pipe(gulp.dest('./static/vendor/bootswatch'));
   return merge(
       bootstrap, jquery, popper_js
   );

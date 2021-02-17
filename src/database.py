@@ -17,7 +17,7 @@ DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation warning
 run_run_with_debug = app.config['APP_DEBUGGER_ACTIVE']
-app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
+app.config['FLASK_ADMIN_SWATCH'] = 'superhero'
 admin = Admin(app, name='covid19admin', template_mode='bootstrap4')
 db = SQLAlchemy(app)
 db.create_all()
