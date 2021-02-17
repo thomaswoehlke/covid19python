@@ -2,8 +2,9 @@ from flask import render_template, redirect, url_for, flash, Blueprint
 from sqlalchemy.exc import OperationalError
 from celery import states
 from celery.utils.log import get_task_logger
+from flask_admin.contrib.sqla import ModelView
 
-from database import app
+from database import app, admin, db
 from covid19.blueprints.application.application_services import who_service
 from covid19.blueprints.application.application_workers import celery
 
@@ -14,6 +15,10 @@ from covid19.blueprints.application.application_model_transient import Applicati
 
 app_who = Blueprint('who', __name__, template_folder='templates', url_prefix='/who')
 
+admin.add_view(ModelView(WhoDateReported, db.session))
+admin.add_view(ModelView(WhoRegion, db.session))
+admin.add_view(ModelView(WhoCountry, db.session))
+admin.add_view(ModelView(WhoData, db.session))
 
 ##################################################################################################################
 #

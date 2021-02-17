@@ -1,8 +1,9 @@
 from flask import render_template, redirect, url_for, flash, Blueprint
 from celery import states
 from celery.utils.log import get_task_logger
+from flask_admin.contrib.sqla import ModelView
 
-from database import app
+from database import app, admin, db
 from covid19.blueprints.application.application_services import ecdc_service
 from covid19.blueprints.application.application_workers import celery
 
@@ -12,6 +13,11 @@ from covid19.blueprints.application.application_model_transient import Applicati
 
 
 app_ecdc = Blueprint('ecdc', __name__, template_folder='templates', url_prefix='/ecdc')
+
+admin.add_view(ModelView(EcdcDateReported, db.session))
+admin.add_view(ModelView(EcdcContinent, db.session))
+admin.add_view(ModelView(EcdcCountry, db.session))
+admin.add_view(ModelView(EcdcData, db.session))
 
 
 ##################################################################################################################

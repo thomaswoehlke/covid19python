@@ -1,5 +1,7 @@
 from flask import render_template, redirect, url_for, Blueprint
-from database import app
+from flask_admin.contrib.sqla import ModelView
+
+from database import app, admin, db
 from covid19.blueprints.application.application_model_transient import ApplicationPage
 
 import covid19.blueprints.admin.admin_views

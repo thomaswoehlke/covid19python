@@ -1,7 +1,8 @@
 from flask import render_template, redirect, url_for, flash, Blueprint
 from sqlalchemy.exc import OperationalError
+from flask_admin.contrib.sqla import ModelView
 
-from database import app
+from database import app, admin, db
 from covid19.blueprints.application.application_workers import celery
 from covid19.blueprints.application.application_model import RkiDateReported, RkiRegion, RkiCountry
 from covid19.blueprints.rki_bundeslaender.rki_model import RkiBundeslaender
@@ -12,6 +13,9 @@ drop_and_create_data_again = True
 
 app_rki_bundeslaender = Blueprint(
     'rki_bundeslaender', __name__, template_folder='templates', url_prefix='/rki/bundeslaender')
+
+admin.add_view(ModelView(RkiBundeslaender, db.session))
+admin.add_view(ModelView(RkiBundeslaenderImport, db.session))
 
 
 ##################################################################################################################

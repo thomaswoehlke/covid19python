@@ -1,8 +1,9 @@
 from flask import render_template, redirect, url_for, flash, Blueprint
 from celery import states
 from celery.utils.log import get_task_logger
+from flask_admin.contrib.sqla import ModelView
 
-from database import app
+from database import app, admin, db
 from covid19.blueprints.application.application_services import who_service, ecdc_service, rki_vaccination_service
 from covid19.blueprints.application.application_services import rki_service_bundeslaender, admin_service
 from covid19.blueprints.application.application_workers import celery
@@ -11,7 +12,6 @@ from covid19.blueprints.application.application_model_transient import Applicati
 drop_and_create_data_again = True
 
 app_admin = Blueprint('admin', __name__, template_folder='templates', url_prefix='/admin')
-
 
 #################################################################################################################
 #

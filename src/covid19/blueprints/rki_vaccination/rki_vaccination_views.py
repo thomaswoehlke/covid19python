@@ -1,8 +1,9 @@
 from flask import render_template, redirect, url_for, flash, Blueprint
 from celery import states
 from celery.utils.log import get_task_logger
+from flask_admin.contrib.sqla import ModelView
 
-from database import app
+from database import app, admin, db
 from covid19.blueprints.application.application_services import rki_vaccination_service
 from covid19.blueprints.application.application_workers import celery
 
@@ -12,6 +13,9 @@ from covid19.blueprints.application.application_model_transient import Applicati
 
 
 app_rki_vaccination = Blueprint('rki_vaccination', __name__, template_folder='templates', url_prefix='/rki/vaccination')
+
+admin.add_view(ModelView(RkiVaccinationDateReported, db.session))
+admin.add_view(ModelView(RkiVaccinationData, db.session))
 
 
 ##################################################################################################################
