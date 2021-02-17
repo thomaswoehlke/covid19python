@@ -180,7 +180,7 @@ class EcdcData(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     deaths = db.Column(db.Integer, nullable=False)
     cases = db.Column(db.Integer, nullable=False)
-    notification_rate_per_100000_population_14days = db.Column(db.Float, nullable=False)
+    cumulative_number_for_14_days_of_covid19_cases_per_100000 = db.Column(db.Float, nullable=False)
 
     ecdc_country_id = db.Column(db.Integer, db.ForeignKey('ecdc_country.id'), nullable=False)
     ecdc_country = db.relationship(
@@ -221,34 +221,30 @@ class EcdcData(db.Model):
 
     @classmethod
     def find_by_date_reported(cls, ecdc_date_reported, page: int):
-        #TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
             cls.ecdc_date_reported_id == ecdc_date_reported.id)\
-            .order_by(cls.notification_rate_per_100000_population_14days.desc())\
+            .order_by(cls.cumulative_number_for_14_days_of_covid19_cases_per_100000.desc())\
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def find_by_date_reported_notification_rate(cls, ecdc_date_reported, page: int):
-        # TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
             cls.ecdc_date_reported_id == ecdc_date_reported.id) \
-            .order_by(cls.notification_rate_per_100000_population_14days.desc()) \
+            .order_by(cls.cumulative_number_for_14_days_of_covid19_cases_per_100000.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def find_by_date_reported_deaths_weekly(cls, ecdc_date_reported, page: int):
-        # TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
             cls.ecdc_date_reported_id == ecdc_date_reported.id) \
-            .order_by(cls.deaths_weekly.desc()) \
+            .order_by(cls.deaths.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def find_by_date_reported_cases_weekly(cls, ecdc_date_reported, page: int):
-        # TODO: * Issue #43 /ecdc/date_reported
         return db.session.query(cls).filter(
             cls.ecdc_date_reported_id == ecdc_date_reported.id) \
-            .order_by(cls.cases_weekly.desc()) \
+            .order_by(cls.cases.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod

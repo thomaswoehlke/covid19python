@@ -4,7 +4,6 @@ from covid19.blueprints.ecdc.ecdc_model_import import EcdcImport
 from covid19.blueprints.ecdc.ecdc_model import EcdcDateReported, EcdcContinent, EcdcCountry, EcdcData
 
 
-# TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
 class EcdcServiceUpdate:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")
@@ -24,7 +23,6 @@ class EcdcServiceUpdate:
         k = 0
         for result_item in result_date_rep:
             k += 1
-            #my_date_rep = result_item['date_rep']
             my_date_rep = result_item[0]
             oo = EcdcDateReported.find_by_date_reported(my_date_rep)
             if oo is None:
@@ -46,7 +44,6 @@ class EcdcServiceUpdate:
         EcdcContinent.remove_all()
         result_continent = EcdcImport.get_continent()
         for result_item in result_continent:
-            #my_continent_exp = result_item['continent_exp']
             my_continent_exp = result_item[0]
             o = EcdcContinent(
                 region=my_continent_exp
@@ -154,19 +151,19 @@ class EcdcServiceUpdate:
             my_ecdc_date_reported = dict_date_reported_from_import[my_date_reported]
             for item_ecdc_data_import in EcdcImport.find_by_date_reported(my_date_reported):
                 my_ecdc_country = self.__get_country_from_import(item_ecdc_data_import)
-                my_deaths_weekly = int(item_ecdc_data_import.deaths_weekly)
-                my_cases_weekly = int(item_ecdc_data_import.cases_weekly)
-                if item_ecdc_data_import.notification_rate_per_100000_population_14days == '':
-                    my_notification_rate_per_100000_population_14days = 0.0
+                my_deaths = int(item_ecdc_data_import.deaths)
+                my_cases = int(item_ecdc_data_import.cases)
+                if item_ecdc_data_import.my_cumulative_number_for_14_days_of_covid19_cases_per_100000 == '':
+                    my_cumulative_number_for_14_days_of_covid19_cases_per_100000 = 0.0
                 else:
-                    my_notification_rate_per_100000_population_14days = \
-                        float(item_ecdc_data_import.notification_rate_per_100000_population_14days)
+                    my_cumulative_number_for_14_days_of_covid19_cases_per_100000 = \
+                        float(item_ecdc_data_import.cumulative_number_for_14_days_of_covid19_cases_per_100000)
                 o = EcdcData(
                     ecdc_country=my_ecdc_country,
                     ecdc_date_reported=my_ecdc_date_reported,
-                    deaths_weekly=my_deaths_weekly,
-                    cases_weekly=my_cases_weekly,
-                    notification_rate_per_100000_population_14days=my_notification_rate_per_100000_population_14days
+                    deaths=my_deaths,
+                    cases=my_cases,
+                    cumulative_number_for_14_days_of_covid19_cases_per_100000=my_cumulative_number_for_14_days_of_covid19_cases_per_100000
                 )
                 db.session.add(o)
                 i += 1
@@ -179,51 +176,7 @@ class EcdcServiceUpdate:
         app.logger.info("------------------------------------------------------------")
         return self
 
-    # TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
-    def __update_data_short(self):
-        app.logger.info(" __update_data_initial [begin]")
-        app.logger.info("------------------------------------------------------------")
-        app.logger.info(" ... ")
-        self.__update_data_initial()
-        app.logger.info(" __update_data_initial [done]")
-        app.logger.info("------------------------------------------------------------")
-        return self
-
-    # TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
-    def update_db_initial(self):
-        app.logger.info(" update_db_initial [begin]")
-        app.logger.info("------------------------------------------------------------")
-        EcdcData.remove_all()
-        EcdcCountry.remove_all()
-        EcdcContinent.remove_all()
-        EcdcDateReported.remove_all()
-        self.__update_date_reported()
-        self.__update_continent()
-        self.__update_country()
-        self.__update_data_initial()
-        app.logger.info(" update_db_initial [done]")
-        app.logger.info("------------------------------------------------------------")
-        return self
-
-    # TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
-    def update_db_short(self):
-        app.logger.info(" update_db_short [begin]")
-        app.logger.info("------------------------------------------------------------")
-        EcdcData.remove_all()
-        EcdcCountry.remove_all()
-        EcdcContinent.remove_all()
-        EcdcDateReported.remove_all()
-        self.__update_date_reported()
-        self.__update_continent()
-        self.__update_country()
-        self.__update_data_short()
-        app.logger.info(" update_db_short [done]")
-        app.logger.info("------------------------------------------------------------")
-        return self
-
     def update_dimension_tables_only(self):
-        # TODO: #118 implement EcdcServiceUpdate.update_dimension_tables_only
-        # TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
         EcdcData.remove_all()
         EcdcCountry.remove_all()
         EcdcContinent.remove_all()
@@ -233,20 +186,14 @@ class EcdcServiceUpdate:
         return self
 
     def update_fact_table_incremental_only(self):
-        # TODO: #119 implement EcdcServiceUpdate.update_fact_table_incremental_only
-        # TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
-        self.__update_data_short()
+        self.__update_data_initial()
         return self
 
     def update_fact_table_initial_only(self):
-        # TODO: #120 implement EcdcServiceUpdate.update_fact_table_initial_only
-        # TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
         self.__update_data_initial()
         return self
 
     def update_star_schema_incremental(self):
-        # TODO: #121 implement EcdcServiceUpdate.update_star_schema_incremental
-        # TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
         EcdcData.remove_all()
         EcdcCountry.remove_all()
         EcdcContinent.remove_all()
@@ -254,12 +201,10 @@ class EcdcServiceUpdate:
         self.__update_date_reported()
         self.__update_continent()
         self.__update_country()
-        self.__update_data_short()
+        self.__update_data_initial()
         return self
 
     def update_star_schema_initial(self):
-        # TODO: #122 implement EcdcServiceUpdate.update_star_schema_initial
-        # TODO: #117 refactor EcdcServiceUpdate to new method scheme introduced 07.02.2021
         EcdcData.remove_all()
         EcdcCountry.remove_all()
         EcdcContinent.remove_all()

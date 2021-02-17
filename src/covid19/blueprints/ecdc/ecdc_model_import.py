@@ -29,14 +29,18 @@ class EcdcImport(db.Model):
     @classmethod
     def get_all_as_page(cls, page: int):
         return db.session.query(cls).order_by(
-            #cls.year_week,
+            cls.year,
+            cls.month,
+            cls.day,
             cls.countries_and_territories
         ).paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all(cls):
         return db.session.query(cls).order_by(
-            #cls.year_week,
+            cls.year,
+            cls.month,
+            cls.day,
             cls.countries_and_territories
         ).all()
 
