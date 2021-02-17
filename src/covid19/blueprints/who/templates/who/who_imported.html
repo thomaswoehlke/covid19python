@@ -1,21 +1,8 @@
 {% extends 'application/page_layout.html' %}
 
-{% include 'application/fragments/fragment_pagination.html' %}
-
-{% block navigation_jumbotron %}{% endblock %}
-
-{% block navigation_breadcrumb %}
-    <!-- TODO: implement navigation_breadcrumb in .html -->
-
-{% endblock %}
-
-
-{% block navigation_navtabs %}
-  {% include 'who/fragments/fragment_who_navtabs.html' %}
-{% endblock %}
-
-
-{% block main_container %}
+{% block content %}
+    {{super()}}
+    {% include 'who/fragments/fragment_who_navtabs.html' %}
 
     {% if page_data.pages > 1 %}
     <!-- previous page -->

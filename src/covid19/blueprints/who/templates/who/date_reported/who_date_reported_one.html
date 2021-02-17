@@ -1,26 +1,8 @@
 {% extends 'application/page_layout.html' %}
 
-{% include 'application/fragments/fragment_pagination.html' %}
-
-{% block navigation_jumbotron %}{% endblock %}
-
-{% block navigation_breadcrumb %}
-    <!-- TODO: implement navigation_breadcrumb in .html -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/who/region/all">Regions</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Countries</li>
-        </ol>
-    </nav>
-{% endblock %}
-
-{% block navigation_navtabs %}
-  {% include 'who/fragments/fragment_who_navtabs.html' %}
-{% endblock %}
-
-
-{% block main_container %}
+{% block content %}
+    {{super()}}
+    {% include 'who/fragments/fragment_who_navtabs.html' %}
 
     {% if page_data.pages > 1 %}
     <!-- previous page -->
