@@ -18,15 +18,14 @@ class EcdcServiceImport:
         app.logger.debug(" ECDC Service Import [ready] ")
 
     def import_file(self):
-        src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info(" import ECDC [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" TABLE: ecdc_data_import   <-- " + src_cvsfile_name)
+        app.logger.info(" TABLE: ecdc_data_import   <-- " + self.cfg.cvsfile_name)
         app.logger.info("------------------------------------------------------------")
         k = 0
         try:
             EcdcImport.remove_all()
-            with open(src_cvsfile_name, newline='') as csv_file:
+            with open(self.cfg.cvsfile_name, newline='') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 for row in file_reader:
                     o = EcdcImport(
