@@ -15,7 +15,7 @@ class EcdcServiceDownload:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" ECDC Service Download [ready] ")
 
-    def download(self):
+    def download_file(self):
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" download ECDC [begin]")

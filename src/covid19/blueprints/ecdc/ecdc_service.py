@@ -20,7 +20,7 @@ class EcdcService:
 
     def pretask_database_drop_create(self):
         flash("ecdc_service.download started")
-        self.service_download.download()
+        self.service_download.download_file()
         return self
 
     def task_database_drop_create(self):
@@ -29,7 +29,7 @@ class EcdcService:
         return self
 
     def run_download_only(self):
-        self.service_download.download()
+        self.service_download.download_file()
         return self
 
     def run_import_only(self):
