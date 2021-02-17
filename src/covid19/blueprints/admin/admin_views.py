@@ -78,7 +78,7 @@ def url_alive_message_start():
     task_admin_alive_message.apply_async()
     flash("alive_message_task started")
     app.logger.info("url_alive_message_start [done]")
-    return redirect(url_for('admin.url_admin_tasks'))
+    return redirect(url_for('app_admin.url_admin_tasks'))
 
 
 @app_admin.route('/database/dump')
@@ -87,7 +87,7 @@ def url_admin_database_dump():
     admin_service.run_admin_database_dump()
     flash("admin_service.run_admin_database_dump started")
     app.logger.info("url_admin_database_dump [done]")
-    return redirect(url_for('admin.url_admin_tasks'))
+    return redirect(url_for('app_admin.url_admin_tasks'))
 
 
 @app_admin.route('/database/import')
@@ -96,7 +96,7 @@ def url_admin_database_import():
     admin_service.run_admin_database_import()
     flash("admin_service.run_admin_database_import started")
     app.logger.info("url_admin_database_import [done]")
-    return redirect(url_for('admin.url_admin_tasks'))
+    return redirect(url_for('app_admin.url_admin_tasks'))
 
 @app_admin.route('/database/dropcreate/only')
 def url_admin_database_dropcreate_only():
@@ -104,7 +104,7 @@ def url_admin_database_dropcreate_only():
     flash("admin_service.run_admin_database_drop started")
     admin_service.run_admin_database_drop()
     app.logger.info("url_admin_database_drop [done]")
-    return redirect(url_for('admin.url_admin_tasks'))
+    return redirect(url_for('app_admin.url_admin_tasks'))
 
 @app_admin.route('/database/drop')
 def url_admin_database_drop():
@@ -119,4 +119,4 @@ def url_admin_database_drop():
         flash("task_admin_database_drop_create async started")
         task_admin_database_drop_create.apply_async()
     app.logger.info("url_admin_database_drop [done]")
-    return redirect(url_for('admin.url_admin_tasks'))
+    return redirect(url_for('app_admin.url_admin_tasks'))
