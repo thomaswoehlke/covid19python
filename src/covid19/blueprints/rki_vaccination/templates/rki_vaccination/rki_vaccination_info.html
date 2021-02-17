@@ -1,16 +1,9 @@
 {% extends 'application/page_layout.html' %}
 
-{% block navigation_breadcrumb %}
-    <!-- TODO: implement navigation_breadcrumb in .html -->
-{% endblock %}
+{% block content %}
+    {{super()}}
+    {% include 'rki_vaccination/fragments/fragment_rki_vaccination_navtabs.html' %}
 
-
-{% block navigation_navtabs %}
-  {% include 'rki_vaccination/fragments/fragment_rki_vaccination_navtabs.html' %}
-{% endblock %}
-
-
-{% block main_container %}
     <div>
         <h3>Impfdashboard</h3>
         <p>
@@ -27,11 +20,6 @@
             </a>
         </p>
     </div>
-{% endblock %}
-
-
-{% block footer_container %}
-
 {% endblock %}
 
 

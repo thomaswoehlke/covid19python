@@ -1,15 +1,9 @@
 {% extends 'application/page_layout.html' %}
 
-{% block navigation_breadcrumb %}
-    <!-- TODO: implement navigation_breadcrumb in .html -->
+{% block content %}
+    {{super()}}
+    {% include 'rki_landkreise/fragments/fragment_rki_landkreise_navtabs.html' %}
 
-{% endblock %}
-
-{% block navigation_navtabs %}
-  {% include 'rki_landkreise/fragments/fragment_rki_landkreise_navtabs.html' %}
-{% endblock %}
-
-{% block main_container %}
     <div class="row">
         <div class="col">
             <h3>RKI Landkreise</h3>

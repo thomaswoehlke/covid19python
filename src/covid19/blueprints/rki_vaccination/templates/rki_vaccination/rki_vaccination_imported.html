@@ -1,18 +1,9 @@
 {% extends 'application/page_layout.html' %}
 
-{% include 'application/fragments/fragment_pagination.html' %}
+{% block content %}
+    {{super()}}
+    {% include 'rki_vaccination/fragments/fragment_rki_vaccination_navtabs.html' %}
 
-{% block navigation_breadcrumb %}
-    <!-- TODO: implement navigation_breadcrumb in .html -->
-{% endblock %}
-
-
-{% block navigation_navtabs %}
-  {% include 'rki_vaccination/fragments/fragment_rki_vaccination_navtabs.html' %}
-{% endblock %}
-
-
-{% block main_container %}
 
     {% if page_data.pages > 1 %}
     <!-- previous page -->
@@ -62,10 +53,6 @@
 
 {% endblock %}
 
-
-{% block footer_container %}
-
-{% endblock %}
 
 
 
