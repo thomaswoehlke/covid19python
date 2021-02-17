@@ -7,12 +7,12 @@ from covid19.blueprints.rki_landkreise.rki_service_config import RkiLandkreiseSe
 
 
 class RkiLandkreiseServiceDownload:
-    def __init__(self, database):
+    def __init__(self, database, config: RkiLandkreiseServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Landkreise Service Download [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = RkiLandkreiseServiceConfig()
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Landkreise Service Download [ready]")
 

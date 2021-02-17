@@ -7,12 +7,12 @@ from covid19.blueprints.who.who_service_download import WhoServiceConfig
 
 
 class WhoServiceImport:
-    def __init__(self, database):
+    def __init__(self, database, config: WhoServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" WHO Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = WhoServiceConfig()
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" WHO Service Import [ready]")
 
@@ -61,7 +61,8 @@ class WhoServiceImport:
             app.logger.warning("WARN: import WHO [end]")
         finally:
             app.logger.info("")
-            app.logger.info(" imported into TABLE: " + self.cfg.tablename + " from " + self.cfg.cvsfile_path)
+            app.logger.info("------------------------------------------------------------")
+            app.logger.info(" imported into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" import WHO [done]")
         return self

@@ -3,22 +3,19 @@ from database import db, app
 from covid19.blueprints.application.application_model import RkiRegion, RkiDateReported, RkiCountry
 from covid19.blueprints.rki_bundeslaender.rki_model import RkiBundeslaender
 from covid19.blueprints.rki_bundeslaender.rki_model_import import RkiBundeslaenderImport
+from covid19.blueprints.rki_bundeslaender.rki_service_config import RkiBundeslaenderServiceConfig
 
-rki_service_update = None
 
-
-# TODO: #123 split RkiService into two Services: RkiBundeslaenderService and RkiLandkreiseService
 class RkiBundeslaenderServiceUpdate:
-    def __init__(self, database):
+    def __init__(self, database, config: RkiBundeslaenderServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Update [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Update [ready]")
 
-    # TODO: #147 refactor RkiBundeslaenderServiceUpdate.__update_who_date_reported
     def __update_who_date_reported(self):
         app.logger.info(" update who_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")

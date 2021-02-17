@@ -6,12 +6,12 @@ from covid19.blueprints.rki_vaccination.rki_vaccination_service_config import Rk
 
 
 class RkiVaccinationServiceDownload:
-    def __init__(self, database):
+    def __init__(self, database, config: RkiVaccinationServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Download [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = RkiVaccinationServiceConfig()
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Download [ready]")
 

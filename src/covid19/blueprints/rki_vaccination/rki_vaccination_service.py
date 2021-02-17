@@ -14,9 +14,9 @@ class RkiVaccinationService:
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = RkiVaccinationServiceConfig()
-        self.service_download = RkiVaccinationServiceDownload(database)
-        self.service_import = RkiVaccinationServiceImport(database)
-        self.service_update = RkiVaccinationServiceUpdate(database)
+        self.service_download = RkiVaccinationServiceDownload(database, self.cfg)
+        self.service_import = RkiVaccinationServiceImport(database, self.cfg)
+        self.service_update = RkiVaccinationServiceUpdate(database, self.cfg)
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" Vaccination Service [ready]")
 

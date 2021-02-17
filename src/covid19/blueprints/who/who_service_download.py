@@ -6,12 +6,12 @@ from covid19.blueprints.who.who_service_config import WhoServiceConfig
 
 
 class WhoServiceDownload:
-    def __init__(self, database):
+    def __init__(self, database, config: WhoServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" WHO Service Download [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = WhoServiceConfig()
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" WHO Service Download [ready]")
 

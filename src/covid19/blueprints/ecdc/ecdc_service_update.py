@@ -5,12 +5,12 @@ from covid19.blueprints.ecdc.ecdc_model import EcdcDateReported, EcdcContinent, 
 
 
 class EcdcServiceUpdate:
-    def __init__(self, database):
+    def __init__(self, database, config: EcdcServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" ECDC Service Update [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = EcdcServiceConfig()
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" ECDC Service Update [ready] ")
 

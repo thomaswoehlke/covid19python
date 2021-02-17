@@ -1,6 +1,7 @@
 from flask import flash
 
 from database import app
+from covid19.blueprints.who.who_service_config import WhoServiceConfig
 from covid19.blueprints.who.who_service_download import WhoServiceDownload
 from covid19.blueprints.who.who_service_import import WhoServiceImport
 from covid19.blueprints.who.who_service_update import WhoServiceUpdate
@@ -12,9 +13,10 @@ class WhoService:
         app.logger.debug(" WHO Service [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.service_download = WhoServiceDownload(database)
-        self.service_import = WhoServiceImport(database)
-        self.service_update = WhoServiceUpdate(database)
+        self.cfg = WhoServiceConfig()
+        self.service_download = WhoServiceDownload(database, self.cfg)
+        self.service_import = WhoServiceImport(database, self.cfg)
+        self.service_update = WhoServiceUpdate(database, self.cfg)
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" WHO Service [ready]")
 

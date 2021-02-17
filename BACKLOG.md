@@ -219,7 +219,7 @@
 * Issue #143 implement RkiBundeslaenderServiceUpdate.update_fact_table_initial_only
 * Issue #144 implement RkiBundeslaenderServiceUpdate.update_star_schema_incremental
 * Issue #145 implement RkiBundeslaenderServiceUpdate.update_star_schema_initial
-* Issue #147 refactor RkiBundeslaenderServiceUpdate.__update_who_date_reported 
+* Fixed #147 refactor RkiBundeslaenderServiceUpdate.__update_who_date_reported 
 * Issue #148 refactor RkiBundeslaenderServiceUpdate.__update_who_region
 * Issue #149 refactor RkiBundeslaenderServiceUpdate.__update_who_country
 * Issue #150 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data

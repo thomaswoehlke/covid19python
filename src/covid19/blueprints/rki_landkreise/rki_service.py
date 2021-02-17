@@ -1,6 +1,7 @@
 from flask import flash
 
 from database import app
+from covid19.blueprints.rki_landkreise.rki_service_config import RkiLandkreiseServiceConfig
 from covid19.blueprints.rki_landkreise.rki_service_download import RkiLandkreiseServiceDownload
 from covid19.blueprints.rki_landkreise.rki_service_import import RkiLandkreiseServiceImport
 from covid19.blueprints.rki_landkreise.rki_service_update import RkiLandkreiseServiceUpdate
@@ -13,9 +14,10 @@ class RkiLandkreiseService:
         app.logger.debug(" RkiLandkreiseService [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.service_download = RkiLandkreiseServiceDownload(database)
-        self.service_import = RkiLandkreiseServiceImport(database)
-        self.service_update = RkiLandkreiseServiceUpdate(database)
+        self.cfg = RkiLandkreiseServiceConfig()
+        self.service_download = RkiLandkreiseServiceDownload(database, self.cfg)
+        self.service_import = RkiLandkreiseServiceImport(database, self.cfg)
+        self.service_update = RkiLandkreiseServiceUpdate(database, self.cfg)
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" RkiLandkreiseService [ready]")
 

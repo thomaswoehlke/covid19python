@@ -8,12 +8,12 @@ from covid19.blueprints.rki_vaccination.rki_vaccination_service_config import Rk
 
 
 class RkiVaccinationServiceImport:
-    def __init__(self, database):
+    def __init__(self, database, config: RkiVaccinationServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = RkiVaccinationServiceConfig()
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Import [ready]")
 
@@ -77,6 +77,8 @@ class RkiVaccinationServiceImport:
             app.logger.warning("WARN: import Vaccination [end]")
         finally:
             app.logger.info("")
+            app.logger.info("------------------------------------------------------------")
+            app.logger.info(" imported into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" import Vaccination [done]")
         return self

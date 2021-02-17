@@ -9,12 +9,12 @@ from covid19.blueprints.rki_landkreise.rki_service_config import RkiLandkreiseSe
 
 
 class RkiLandkreiseServiceImport:
-    def __init__(self, database):
+    def __init__(self, database, config: RkiLandkreiseServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Landkreise Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = RkiLandkreiseServiceConfig()
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Landkreise Service Import [ready]")
 
@@ -103,6 +103,8 @@ class RkiLandkreiseServiceImport:
             app.logger.warning("WARN: RKI Landkreise Service Import - import_file [end]")
         finally:
             app.logger.info("")
+            app.logger.info("------------------------------------------------------------")
+            app.logger.info(" imported into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" RKI Landkreise Service Import - import_file [done]")
         return self

@@ -7,12 +7,12 @@ from covid19.blueprints.ecdc.ecdc_service_config import EcdcServiceConfig
 
 
 class EcdcServiceImport:
-    def __init__(self, database):
+    def __init__(self, database, config: EcdcServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" ECDC Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = EcdcServiceConfig()
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" ECDC Service Import [ready] ")
 
@@ -60,6 +60,9 @@ class EcdcServiceImport:
             app.logger.warning(error)
             app.logger.warning("WARN: import ECDC [end]")
         finally:
+            app.logger.info("")
+            app.logger.info("------------------------------------------------------------")
+            app.logger.info(" imported into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" import ECDC [done]")
         return self

@@ -1,5 +1,3 @@
-import os
-import sys
 import csv
 import psycopg2
 
@@ -9,12 +7,12 @@ from covid19.blueprints.rki_bundeslaender.rki_service_config import RkiBundeslae
 
 
 class RkiBundeslaenderServiceImport:
-    def __init__(self, database):
+    def __init__(self, database, config: RkiBundeslaenderServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Import [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = RkiBundeslaenderServiceConfig()
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Import [ready]")
 
@@ -26,7 +24,7 @@ class RkiBundeslaenderServiceImport:
         row = None
         try:
             RkiBundeslaenderImport.remove_all()
-            with open(self.cfg.src_cvsfile_path, newline='\n') as csv_file:
+            with open(self.cfg.cvsfile_path, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:
@@ -70,6 +68,8 @@ class RkiBundeslaenderServiceImport:
             app.logger.warning("WARN: import RKI [end]")
         finally:
             app.logger.info("")
+            app.logger.info("------------------------------------------------------------")
+            app.logger.info(" imported into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" import RKI [done]")
         return self

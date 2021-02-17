@@ -6,12 +6,12 @@ from covid19.blueprints.rki_vaccination.rki_vaccination_model import RkiVaccinat
 
 
 class RkiVaccinationServiceUpdate:
-    def __init__(self, database):
+    def __init__(self, database, config: RkiVaccinationServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Update [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = RkiVaccinationServiceConfig()
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Europe Service Update [ready] ")
 
@@ -40,7 +40,6 @@ class RkiVaccinationServiceUpdate:
         result_date_rep = RkiVaccinationImport.get_date_rep()
         i = 0
         for item_date_rep, in result_date_rep:
-            #dt = item_date_rep['date_rep']
             date_reported = RkiVaccinationDateReported.find_by_date_reported(
                 p_date_reported=item_date_rep
             )

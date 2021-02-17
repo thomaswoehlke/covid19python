@@ -3,17 +3,16 @@ from database import db, app
 from covid19.blueprints.application.application_model import RkiRegion, RkiDateReported, RkiCountry
 from covid19.blueprints.rki_landkreise.rki_model import RkiLandkreise
 from covid19.blueprints.rki_landkreise.rki_model_import import RkiLandkreiseImport
-
-rki_service_update = None
+from covid19.blueprints.rki_landkreise.rki_service_config import RkiLandkreiseServiceConfig
 
 
 class RkiLandkreiseServiceUpdate:
-    def __init__(self, database):
+    def __init__(self, database, config: RkiLandkreiseServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Update [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.limit_nr = 20
+        self.cfg = config
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Update [ready]")
 
