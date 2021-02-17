@@ -62,10 +62,12 @@ def task_admin_import_all_files(self):
     who_service.task_import_all_files()
     ecdc_service.task_import_all_files()
     rki_vaccination_service.task_import_all_files()
-    self.update_state(state=states.SUCCESS)
+    rki_service_bundeslaender.task_import_all_files()
+    rki_service_landkreise.task_import_all_files()
     logger.info("------------------------------------------------------------")
     logger.info(" task_admin_import_all_files [done] ")
     logger.info("------------------------------------------------------------")
+    self.update_state(state=states.SUCCESS)
     result = "OK (task_admin_import_all_files)"
     return result
 

@@ -114,4 +114,5 @@ class RkiBundeslaenderService:
         return self
 
     def task_import_all_files(self):
+        self.service_import.import_file()
         return self
