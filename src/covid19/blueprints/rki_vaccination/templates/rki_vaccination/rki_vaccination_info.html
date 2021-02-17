@@ -4,21 +4,29 @@
     {{super()}}
     {% include 'rki_vaccination/fragments/fragment_rki_vaccination_navtabs.html' %}
 
-    <div>
-        <h3>Impfdashboard</h3>
-        <p>
-            <a href="https://impfdashboard.de/">
-                https://impfdashboard.de/
-            </a>
-        </p>
-    </div>
-    <div>
-        <h3>Impfdashboard Datensatz</h3>
-        <p>
-            <a href="https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv">
-                https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv
-            </a>
-        </p>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div>
+                    <h3>Impfdashboard</h3>
+                    <p>
+                        <a href="https://impfdashboard.de/">
+                            https://impfdashboard.de/
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    <h3>Impfdashboard Datensatz</h3>
+                    <p>
+                        <a href="https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv">
+                            https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
