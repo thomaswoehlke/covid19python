@@ -1,14 +1,8 @@
 {% extends 'application/page_layout.html' %}
 
-{% block navigation_breadcrumb %}
-    <!-- TODO: implement navigation_breadcrumb in .html -->
-{% endblock %}
-
-{% block navigation_navtabs %}
-  {% include 'who/fragments/fragment_who_navtabs.html' %}
-{% endblock %}
-
-{% block main_container %}
+{% block content %}
+    {{super()}}
+    {% include 'who/fragments/fragment_who_navtabs.html' %}
     <div class="row">
         <div class="col">
             <div class="btn-group-vertical" role="group" aria-label="Views">

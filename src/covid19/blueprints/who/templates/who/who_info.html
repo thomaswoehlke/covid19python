@@ -1,17 +1,8 @@
 {% extends 'application/page_layout.html' %}
 
-{% block navigation_breadcrumb %}
-    <!-- TODO: implement navigation_breadcrumb in .html -->
-
-{% endblock %}
-
-
-{% block navigation_navtabs %}
+{% block content %}
+    {{super()}}
   {% include 'who/fragments/fragment_who_navtabs.html' %}
-{% endblock %}
-
-
-{% block main_container %}
     <div>
         <h3>WHO Coronavirus Disease (COVID-19) Dashboard</h3>
         <p>
@@ -28,10 +19,6 @@
     </div>
 {% endblock %}
 
-
-{% block footer_container %}
-
-{% endblock %}
 
 
 

@@ -8,16 +8,17 @@
 {% block content %}
     {{super()}}
     {% include 'application/fragments/fragment_flashed_messages.html' %}
+    {% include 'application/fragments/fragment_navtabs.html' %}
 {% endblock %}
 
 {% block styles %}
 {{super()}}
 <link rel="stylesheet"
-      href="{{url_for('.static', filename='styles.css')}}">
+      href="{{url_for('.static', filename='/styles.css')}}">
 {% endblock %}
 
 {% block scripts %}
-<script src="{{url_for('.static', filename='index.js')}}"></script>
+<script src="{{url_for('.static', filename='/index.js')}}"></script>
 {{super()}}
 {% endblock %}
 
