@@ -21,8 +21,8 @@ class RkiBundeslaenderServiceImport:
     def import_file(self):
         app.logger.info(" import RKI [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  "+self.__src_who_cvsfile_name)
-        app.logger.info(" TABLE: who_global_data_import")
+        app.logger.info(" FILE:  " + self.cfg.cvsfile_name)
+        app.logger.info(" TABLE: " + RkiBundeslaenderImport.__tablename__)
         app.logger.info("------------------------------------------------------------")
         row = None
         if sys.platform == 'linux':
@@ -31,7 +31,7 @@ class RkiBundeslaenderServiceImport:
             keyDate_reported = 'ï»¿Date_reported'
         try:
             RkiBundeslaenderImport.remove_all()
-            with open(self.__src_who_cvsfile_name, newline='\n') as csv_file:
+            with open(self.cfg.src_cvsfile_path, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:
