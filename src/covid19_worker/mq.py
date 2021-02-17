@@ -1,3 +1,4 @@
+import sys
 import subprocess
 from covid19 import app
 from covid19.blueprints.application.application_workers import celery
@@ -13,7 +14,8 @@ if __name__ == '__main__':
     app.logger.info("#                Covid19 Data - WORKER                      #")
     app.logger.info("#############################################################")
     app.logger.info(" ")
-    redis_cmd = ['redis-server']
-    subprocess.Popen(redis_cmd, shell=True)
+    if sys.platform != 'linux':
+        redis_cmd = ['redis-server']
+        subprocess.Popen(redis_cmd, shell=True)
     args = ['worker', '-l', 'INFO']
     celery.start(args)
