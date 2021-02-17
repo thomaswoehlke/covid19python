@@ -6,7 +6,9 @@ class EcdcImport(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     date_rep = db.Column(db.String(255), nullable=False)
-    year_week = db.Column(db.String(255), nullable=False)
+    day = db.Column(db.String(255), nullable=False)
+    month = db.Column(db.String(255), nullable=False)
+    year = db.Column(db.String(255), nullable=False)
     cases_weekly = db.Column(db.String(255), nullable=False)
     deaths_weekly = db.Column(db.String(255), nullable=False)
     pop_data_2019 = db.Column(db.String(255), nullable=False)
@@ -26,14 +28,14 @@ class EcdcImport(db.Model):
     @classmethod
     def get_all_as_page(cls, page: int):
         return db.session.query(cls).order_by(
-            cls.year_week,
+            #cls.year_week,
             cls.countries_and_territories
         ).paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
     def get_all(cls):
         return db.session.query(cls).order_by(
-            cls.year_week,
+            #cls.year_week,
             cls.countries_and_territories
         ).all()
 
@@ -43,7 +45,6 @@ class EcdcImport(db.Model):
 
     @classmethod
     def get_date_rep(cls):
-        # TODO: #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
         # sql = "select distinct date_rep, year_week from edcd_import order by year_week desc"
         #return db.session.execute(sql).fetchall()
         return db.session.query(cls.date_rep) \
@@ -54,7 +55,6 @@ class EcdcImport(db.Model):
 
     @classmethod
     def get_continent(cls):
-        # TODO: #110 SQLalchemy instead of SQL in: EcdcImport.get_continent
         # sql = "select distinct continent_exp from edcd_import order by continent_exp asc"
         #return db.session.execute(sql).fetchall()
         return db.session.query(cls.continent_exp) \
@@ -68,8 +68,6 @@ class EcdcImport(db.Model):
         my_continent_exp = my_continent.region
         my_params = {}
         my_params['my_continent_param'] = my_continent_exp
-        #TODO: #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
-        #TODO: #108 BUG: change to ORM ClassHierarchy in: EcdcImport.get_countries_of_continent
         return db.session.query(
             cls.countries_and_territories,
             cls.pop_data_2019,

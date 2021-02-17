@@ -31,7 +31,9 @@ class EcdcServiceImport:
                 for row in file_reader:
                     o = EcdcImport(
                         date_rep=row['dateRep'],
-                        year_week=row['year_week'],
+                        day=row['day'],
+                        month=row['month'],
+                        year=row['year'],
                         cases_weekly=row['cases_weekly'],
                         deaths_weekly=row['deaths_weekly'],
                         countries_and_territories=row['countriesAndTerritories'],

@@ -186,7 +186,13 @@
 ### 0.0.17 Release
 * -------------------------------------   
 * Issue #82 change to ORM ClassHierarchy
-* Issue #108 change to ORM ClassHierarchy in: EcdcImport.get_countries_of_continent
+* Fixed #108 change to ORM ClassHierarchy in: EcdcImport.get_countries_of_continent
+* Fixed #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
+* Fixed #40 SQLalchemy instead of SQL: EcdcImport.get_date_rep()
+* Fixed #41 SQLalchemy instead of SQL: EcdcImport.get_countries_of_continent()
+* Fixed #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
+* Fixed #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
+* Fixed #110 SQLalchemy instead of SQL in: EcdcImport.get_continent
 * -------------------------------------   
 * Fixed #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
 * Fixed #128 add fields from csv to RkiLandkreiseImport
@@ -221,12 +227,6 @@
 * Issue #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
 
 ### 0.0.18 Release
-* Fixed #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
-* Fixed #40 SQLalchemy instead of SQL: EcdcImport.get_date_rep()
-* Fixed #41 SQLalchemy instead of SQL: EcdcImport.get_countries_of_continent()
-* Fixed #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
-* Fixed #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
-* Fixed #110 SQLalchemy instead of SQL in: EcdcImport.get_continent
 * Issue #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
 * Issue #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
 
