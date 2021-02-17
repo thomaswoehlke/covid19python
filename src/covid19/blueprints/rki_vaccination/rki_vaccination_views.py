@@ -154,30 +154,6 @@ def url_vaccination_data(page=1):
         page_info=page_info)
 
 
-@app_rki_vaccination.route('/date-reported/all/page/<int:page>')
-@app_rki_vaccination.route('/date-reported/all')
-def url_vaccination_datereported_all(page=1):
-    page_info = ApplicationPage('Vaccination', "Germany Timeline")
-    page_data = RkiVaccinationDateReported.get_all_as_page(page)
-    return render_template(
-        'rki_vaccination/rki_vaccination_timeline_germany.html',
-        page_data=page_data,
-        page_info=page_info)
-
-
-@app_rki_vaccination.route('/date-reported/<int:vaccination_date_reported_id>/page/<int:page>')
-@app_rki_vaccination.route('/date-reported/<int:vaccination_date_reported_id>')
-def url_vaccination_datereported_one(page=1, vaccination_date_reported_id=0):
-    page_info = ApplicationPage('Vaccination', "Germany Timeline")
-    datereported = RkiVaccinationDateReported.find_by_id(vaccination_date_reported_id)
-    page_data = RkiVaccinationData.find_by_datum(page, datereported)
-    return render_template(
-        'rki_vaccination/rki_vaccination_timeline_germany.html',
-        datereported=datereported,
-        page_data=page_data,
-        page_info=page_info)
-
-
 @app_rki_vaccination.route('/task/download/only')
 def url_vaccination_task_download_only():
     flash("url_vaccination_task_download_only started")
