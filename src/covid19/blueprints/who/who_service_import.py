@@ -1,4 +1,3 @@
-import os
 import sys
 import csv
 import psycopg2
@@ -18,11 +17,10 @@ class WhoServiceImport:
         app.logger.debug(" WHO Service Import [ready]")
 
     def import_file(self):
-        src_cvsfile_name = self.cfg.data_path + os.sep + self.cfg.cvsfile_name
         app.logger.info(" import WHO [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  "+src_cvsfile_name)
-        app.logger.info(" TABLE: who_global_data_import")
+        app.logger.info(" FILE:  "+self.cfg.cvsfile_path)
+        app.logger.info(" TABLE: "+WhoImport.__tablename__)
         app.logger.info("------------------------------------------------------------")
         row = None
         if sys.platform == 'linux':
@@ -31,7 +29,7 @@ class WhoServiceImport:
             keyDate_reported = 'ï»¿Date_reported'
         try:
             WhoImport.remove_all()
-            with open(src_cvsfile_name, newline='\n') as csv_file:
+            with open(self.cfg.cvsfile_path, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:

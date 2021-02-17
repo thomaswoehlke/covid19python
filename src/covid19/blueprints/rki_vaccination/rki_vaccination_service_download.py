@@ -18,32 +18,32 @@ class RkiVaccinationServiceDownload:
     def download_file(self):
         app.logger.info(" download - Vaccination [begin] ")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" <- "+self.cfg.url_src_data)
+        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" <- "+self.cfg.url_src)
         app.logger.info("------------------------------------------------------------")
         try:
             os.makedirs(self.cfg.data_path, exist_ok=True)
             if os.path.isfile(self.cfg.cvsfile_path):
                 os.remove(self.cfg.cvsfile_path)
-            data_file = wget.download(self.cfg.url_src_data, self.cfg.cvsfile_path)
+            data_file = wget.download(self.cfg.url_src, self.cfg.cvsfile_path)
             app.logger.info(" " + data_file + " ")
-        except RuntimeError as error:
+        except RuntimeError as runtimeError:
             app.logger.error("############################################################")
-            app.logger.error(" " + error + " ")
+            app.logger.error(" " + runtimeError + " ")
             app.logger.error("############################################################")
             flash(message="error while downloading: " + self.cfg.cvsfile_path, category='error')
-        except AttributeError as attribute_error:
+        except AttributeError as attributeError:
             app.logger.error("############################################################")
-            app.logger.error(attribute_error)
-            app.logger.error("############################################################")
-            flash(message="error after downloading: " + self.cfg.cvsfile_path, category='error')
-        except Exception as error:
-            app.logger.error("############################################################")
-            app.logger.error(error)
+            app.logger.error(attributeError)
             app.logger.error("############################################################")
             flash(message="error after downloading: " + self.cfg.cvsfile_path, category='error')
+        except Exception as exception:
+            app.logger.error("############################################################")
+            app.logger.error(exception)
+            app.logger.error("############################################################")
+            flash(message="error while downloading: " + self.cfg.cvsfile_path, category='error')
         finally:
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" download - Vaccination [done] ")
-            msg = "downloaded: " + self.cfg.cvsfile_path + " "
+            msg = "downloaded: " + self.cfg.cvsfile_path+" from "+self.cfg.url_src
             flash(msg)
         return self
