@@ -184,8 +184,9 @@
 
 
 ### 0.0.17 Release
-* -------------------------------------   
-* Issue #82 change to ORM ClassHierarchy
+* Fixed #82 change to ORM ClassHierarchy
+* Fixed #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
+* Fixed #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
 * Fixed #108 change to ORM ClassHierarchy in: EcdcImport.get_countries_of_continent
 * Fixed #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Fixed #40 SQLalchemy instead of SQL: EcdcImport.get_date_rep()
@@ -193,13 +194,15 @@
 * Fixed #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
 * Fixed #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
 * Fixed #110 SQLalchemy instead of SQL in: EcdcImport.get_continent
-* -------------------------------------   
 * Fixed #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
 * Fixed #128 add fields from csv to RkiLandkreiseImport
 * Fixed #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
 * Fixed #140 move WhoImport to RKI in: rk_service_import.py
 * Fixed #125 implement RkiLandkreise
 * Fixed #126 implement RkiBundeslaenderImport
+
+
+### 0.0.18 Release
 * Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
 * Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
 * Issue #146 add Tasks and URLs for starting Tasks to rki_views  
@@ -225,10 +228,6 @@
 * Issue #153 refactor RkiBundeslaenderServiceUpdate.update_db
 * Issue #154 refactor RkiBundeslaenderServiceUpdate.update_db_short
 * Issue #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
-
-### 0.0.18 Release
-* Issue #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
-* Issue #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
 
 
 ### 0.0.198 Release
