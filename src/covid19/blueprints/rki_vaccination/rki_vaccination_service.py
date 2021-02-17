@@ -58,23 +58,3 @@ class RkiVaccinationService:
         self.run_import_only()
         self.vaccination_service_udpate.update_star_schema_initial()
         return self
-
-    # TODO remove DEPRECATED
-    #def run_download_DEPRECATED(self):
-    #    app.logger.info(" run update [begin]")
-    #    app.logger.info("------------------------------------------------------------")
-    #    success = self.vaccination_service_download.download_file()
-    #    app.logger.info("")
-    #    app.logger.info(" run update [done]")
-    #    app.logger.info("------------------------------------------------------------")
-    #    return success
-
-    # TODO remove DEPRECATED
-    #def run_update_initial_DEPRECATED(self):
-    #    app.logger.info(" run update initial [begin]")
-    #    app.logger.info("------------------------------------------------------------")
-    #    self.vaccination_service_import.import_file()
-    #    app.logger.info("")
-    #    app.logger.info(" run update initial [done]")
-    #    app.logger.info("------------------------------------------------------------")
-    #    return self
