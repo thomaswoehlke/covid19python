@@ -19,11 +19,8 @@ app_rki_landkreise = Blueprint(
     url_prefix='/rki/landkreise'
 )
 
-admin.add_view(ModelView(RkiDateReported, db.session, category="RKI Cases and Deaths"))
-admin.add_view(ModelView(RkiRegion, db.session, category="RKI Cases and Deaths"))
-admin.add_view(ModelView(RkiCountry, db.session, category="RKI Cases and Deaths"))
-admin.add_view(ModelView(RkiLandkreise, db.session, category="RKI Cases and Deaths"))
 admin.add_view(ModelView(RkiLandkreiseImport, db.session, category="RKI Cases and Deaths"))
+admin.add_view(ModelView(RkiLandkreise, db.session, category="RKI Cases and Deaths"))
 
 
 ##################################################################################################################

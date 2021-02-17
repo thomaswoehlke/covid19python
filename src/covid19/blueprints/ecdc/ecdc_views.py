@@ -14,6 +14,7 @@ from covid19.blueprints.application.application_model_transient import Applicati
 
 app_ecdc = Blueprint('ecdc', __name__, template_folder='templates', url_prefix='/ecdc')
 
+admin.add_view(ModelView(EcdcImport, db.session, category="ECDC"))
 admin.add_view(ModelView(EcdcDateReported, db.session, category="ECDC"))
 admin.add_view(ModelView(EcdcContinent, db.session, category="ECDC"))
 admin.add_view(ModelView(EcdcCountry, db.session, category="ECDC"))

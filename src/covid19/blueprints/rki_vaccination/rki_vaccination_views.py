@@ -14,6 +14,7 @@ from covid19.blueprints.application.application_model_transient import Applicati
 
 app_rki_vaccination = Blueprint('rki_vaccination', __name__, template_folder='templates', url_prefix='/rki/vaccination')
 
+admin.add_view(ModelView(RkiVaccinationImport, db.session, category="RKI Vaccination"))
 admin.add_view(ModelView(RkiVaccinationDateReported, db.session, category="RKI Vaccination"))
 admin.add_view(ModelView(RkiVaccinationData, db.session, category="RKI Vaccination"))
 

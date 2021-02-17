@@ -14,8 +14,9 @@ drop_and_create_data_again = True
 app_rki_bundeslaender = Blueprint(
     'rki_bundeslaender', __name__, template_folder='templates', url_prefix='/rki/bundeslaender')
 
-admin.add_view(ModelView(RkiBundeslaender, db.session, category="RKI Cases and Deaths"))
+
 admin.add_view(ModelView(RkiBundeslaenderImport, db.session, category="RKI Cases and Deaths"))
+admin.add_view(ModelView(RkiBundeslaender, db.session, category="RKI Cases and Deaths"))
 
 
 ##################################################################################################################
