@@ -4,39 +4,36 @@
     {{super()}}
     {% include 'ecdc/fragments/fragment_ecdc_navtabs.html' %}
 
-    <div class="row">
-        <div class="col">
-            <h3>ECDC</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="btn-group-vertical" role="group" aria-label="Views">
-                <a class="btn btn-primary btn-lg btn-block text-left"
-                   href="{{ url_for( 'ecdc.url_ecdc_task_update_star_schema_initial') }}"
-                   role="button">ECDC :: Task :: update :: star_schema :: initial</a>
-                <a class="btn btn-primary btn-lg btn-block text-left"
-                   href="{{ url_for( 'ecdc.url_ecdc_task_update_starschema_incremental') }}"
-                   role="button">ECDC :: Task :: update :: star_schema :: incremental</a>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="btn-group-vertical" role="group" aria-label="Views">
+                    <a class="btn btn-primary btn-lg btn-block text-left"
+                       href="{{ url_for( 'ecdc.url_ecdc_task_update_star_schema_initial') }}"
+                       role="button">ECDC :: Task :: update :: star_schema :: initial</a>
+                    <a class="btn btn-primary btn-lg btn-block text-left"
+                       href="{{ url_for( 'ecdc.url_ecdc_task_update_starschema_incremental') }}"
+                       role="button">ECDC :: Task :: update :: star_schema :: incremental</a>
+                </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="btn-group-vertical" role="group" aria-label="Views">
-                <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="{{ url_for( 'ecdc.url_ecdc_task_download_only') }}"
-                   role="button">ECDC :: Task :: download :: only</a>
-                <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="{{ url_for( 'ecdc.url_ecdc_task_import_only') }}"
-                   role="button">ECDC :: Task :: import :: only</a>
-                <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="{{ url_for( 'ecdc.url_ecdc_task_update_dimensiontables_only') }}"
-                   role="button">ECDC :: Task :: update :: dimension-tables : only</a>
-                <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="{{ url_for( 'ecdc.url_ecdc_task_update_facttable_incremental_only') }}"
-                   role="button">ECDC :: Task :: update :: fact-table :: only :: incremental</a>
-                <a class="btn btn-secondary btn-lg btn-block text-left"
-                   href="{{ url_for( 'ecdc.url_ecdc_task_update_facttable_initial_only') }}"
-                   role="button">ECDC :: Task :: update :: fact-table :: only :: initial</a>
+            <div class="col">
+                <div class="btn-group-vertical" role="group" aria-label="Views">
+                    <a class="btn btn-secondary btn-lg btn-block text-left"
+                       href="{{ url_for( 'ecdc.url_ecdc_task_download_only') }}"
+                       role="button">ECDC :: Task :: download :: only</a>
+                    <a class="btn btn-secondary btn-lg btn-block text-left"
+                       href="{{ url_for( 'ecdc.url_ecdc_task_import_only') }}"
+                       role="button">ECDC :: Task :: import :: only</a>
+                    <a class="btn btn-secondary btn-lg btn-block text-left"
+                       href="{{ url_for( 'ecdc.url_ecdc_task_update_dimensiontables_only') }}"
+                       role="button">ECDC :: Task :: update :: dimension-tables : only</a>
+                    <a class="btn btn-secondary btn-lg btn-block text-left"
+                       href="{{ url_for( 'ecdc.url_ecdc_task_update_facttable_incremental_only') }}"
+                       role="button">ECDC :: Task :: update :: fact-table :: only :: incremental</a>
+                    <a class="btn btn-secondary btn-lg btn-block text-left"
+                       href="{{ url_for( 'ecdc.url_ecdc_task_update_facttable_initial_only') }}"
+                       role="button">ECDC :: Task :: update :: fact-table :: only :: initial</a>
+                </div>
             </div>
         </div>
     </div>
