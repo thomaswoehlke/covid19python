@@ -27,7 +27,7 @@ class EcdcService:
 
     def task_database_drop_create(self):
         self.service_import.import_file()
-        self.service_update.update_db_short()
+        self.service_update.update_star_schema_initial()
         return self
 
     def run_download_only(self):

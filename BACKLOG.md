@@ -203,31 +203,34 @@
 
 
 ### 0.0.18 Release
+* Fixed #133 implement RkiBundeslaenderService.task_database_drop_create
+* Fixed #134 implement RkiBundeslaenderService.run_update_dimension_tables_only
+* Fixed #135 implement RkiBundeslaenderService.run_update_fact_table_incremental_only
+* Fixed #136 implement RkiBundeslaenderService.run_update_fact_table_initial_only
+* Fixed #137 implement RkiBundeslaenderService.run_update_star_schema_incremental
+* Fixed #138 implement RkiBundeslaenderService.run_update_star_schema_initial
+* Fixed #132 refactor RkiBundeslaenderService to new method scheme introduced 07.02.2021
+* -------------------------------------
+* Fixed #147 refactor RkiBundeslaenderServiceUpdate.__update_who_date_reported 
+* Fixed #148 refactor RkiBundeslaenderServiceUpdate.__update_who_region
+* Fixed #149 refactor RkiBundeslaenderServiceUpdate.__update_who_country
+* Fixed #150 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data
+* Fixed #151 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data_short
+* Fixed #152 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data_initial
+* Fixed #153 refactor RkiBundeslaenderServiceUpdate.update_db
+* Fixed #154 refactor RkiBundeslaenderServiceUpdate.update_db_short
+* Fixed #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
+* -------------------------------------
+* Fixed #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
 * Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
-* Issue #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
 * Issue #146 add Tasks and URLs for starting Tasks to rki_views  
 * Issue #127 implement RkiBundeslaenderImport.get_dates_reported
-* Issue #132 refactor RkiBundeslaenderService to new method scheme introduced 07.02.2021
-* Issue #133 implement RkiBundeslaenderService.task_database_drop_create
-* Issue #134 implement RkiBundeslaenderService.run_update_dimension_tables_only
-* Issue #135 implement RkiBundeslaenderService.run_update_fact_table_incremental_only
-* Issue #136 implement RkiBundeslaenderService.run_update_fact_table_initial_only
-* Issue #137 implement RkiBundeslaenderService.run_update_star_schema_incremental
-* Issue #138 implement RkiBundeslaenderService.run_update_star_schema_initial
+* -------------------------------------
 * Issue #141 implement RkiBundeslaenderServiceUpdate.update_dimension_tables_only
 * Issue #142 implement RkiBundeslaenderServiceUpdate.update_fact_table_incremental_only
 * Issue #143 implement RkiBundeslaenderServiceUpdate.update_fact_table_initial_only
 * Issue #144 implement RkiBundeslaenderServiceUpdate.update_star_schema_incremental
 * Issue #145 implement RkiBundeslaenderServiceUpdate.update_star_schema_initial
-* Fixed #147 refactor RkiBundeslaenderServiceUpdate.__update_who_date_reported 
-* Issue #148 refactor RkiBundeslaenderServiceUpdate.__update_who_region
-* Issue #149 refactor RkiBundeslaenderServiceUpdate.__update_who_country
-* Issue #150 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data
-* Issue #151 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data_short
-* Issue #152 refactor RkiBundeslaenderServiceUpdate.__update_who_global_data_initial
-* Issue #153 refactor RkiBundeslaenderServiceUpdate.update_db
-* Issue #154 refactor RkiBundeslaenderServiceUpdate.update_db_short
-* Issue #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
 
 
 ### 0.0.198 Release
