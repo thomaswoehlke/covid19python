@@ -116,7 +116,10 @@ class RkiLandkreiseService:
         self.service_import.import_file()
         return self
 
-    def task_update_all_blueprints(self):
+    def update_dimension_tables_only(self):
         self.service_update.update_dimension_tables_only()
         return self
 
+    def update_fact_table_initial_only(self):
+        self.service_update.update_fact_table_initial_only()
+        return self
