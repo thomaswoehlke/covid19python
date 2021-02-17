@@ -7,7 +7,7 @@ from covid19.blueprints.rki_landkreise.rki_model_import import RkiLandkreiseImpo
 class RkiLandkreiseServiceConfig:
     def __init__(self):
         self.limit_nr = 20
-        self.data_path = ".."+os.sep+".."+os.sep+"data"
+        self.data_path = ".." + os.sep + ".." + os.sep + "data"
         self.category = 'RKI'
         self.sub_category = 'Landkreise'
         self.tablename = RkiLandkreiseImport.__tablename__

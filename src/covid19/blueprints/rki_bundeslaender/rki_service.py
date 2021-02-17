@@ -7,7 +7,6 @@ from covid19.blueprints.rki_bundeslaender.rki_service_import import RkiBundeslae
 from covid19.blueprints.rki_bundeslaender.rki_service_update import RkiBundeslaenderServiceUpdate
 
 
-# TODO: #132 refactor RkiBundeslaenderService to new method scheme introduced 07.02.2021
 class RkiBundeslaenderService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")

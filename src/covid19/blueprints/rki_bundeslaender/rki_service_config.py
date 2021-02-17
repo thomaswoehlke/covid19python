@@ -6,7 +6,7 @@ from covid19.blueprints.rki_bundeslaender.rki_model_import import RkiBundeslaend
 class RkiBundeslaenderServiceConfig:
     def __init__(self):
         self.limit_nr = 20
-        self.data_path = ".."+os.sep+".."+os.sep+"data"
+        self.data_path = ".." + os.sep + ".." + os.sep + "data"
         self.category = 'RKI'
         self.sub_category = 'Bundeslaender'
         self.tablename = RkiBundeslaenderImport.__tablename__
