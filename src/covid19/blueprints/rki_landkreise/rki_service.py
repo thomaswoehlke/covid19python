@@ -112,3 +112,6 @@ class RkiLandkreiseService:
         self.service_download.download_file()
         return self
 
+    def task_import_all_files(self):
+        return self
+

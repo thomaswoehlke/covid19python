@@ -26,7 +26,7 @@ def task_admin_alive_message(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_admin_alive_message [OK] ")
+    logger.info(" task_admin_alive_message [received] ")
     logger.info("------------------------------------------------------------")
     self.update_state(state=states.SUCCESS)
     result = "OK (task_admin_alive_message)"
@@ -38,14 +38,35 @@ def task_admin_database_drop_create(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_admin_database_drop_create [OK] ")
+    logger.info(" task_admin_database_drop_create [start] ")
     logger.info("------------------------------------------------------------")
     who_service.task_database_drop_create()
     ecdc_service.task_database_drop_create()
     rki_vaccination_service.task_database_drop_create()
     admin_service.task_database_drop_create()
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_database_drop_create [done] ")
+    logger.info("------------------------------------------------------------")
     self.update_state(state=states.SUCCESS)
     result = "OK (task_admin_database_drop_create)"
+    return result
+
+
+@celery.task(bind=True)
+def task_admin_import_all_files(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_import_all_files [start] ")
+    logger.info("------------------------------------------------------------")
+    who_service.task_import_all_files()
+    ecdc_service.task_import_all_files()
+    rki_vaccination_service.task_import_all_files()
+    self.update_state(state=states.SUCCESS)
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_import_all_files [done] ")
+    logger.info("------------------------------------------------------------")
+    result = "OK (task_admin_import_all_files)"
     return result
 
 
@@ -143,15 +164,9 @@ def url_admin_download_all_files():
 
 @app_admin.route('/import/all')
 def url_admin_import_all_files():
-    who_service.download_all_files()
-    flash("who_service.download_all_files Done")
-    ecdc_service.download_all_files()
-    flash("who_service.download_all_files Done")
-    rki_vaccination_service.download_all_files()
-    flash("who_service.download_all_files Done")
-    rki_service_bundeslaender.download_all_files()
-    flash("who_service.download_all_files Done")
-    rki_service_landkreise.download_all_files()
-    flash("who_service.download_all_files Done")
-    app.logger.info("url_admin_download_all_files [done]")
+    app.logger.info("url_admin_import_all_files [start]")
+    flash("task_admin_import_all_files async started")
+    task_admin_import_all_files.apply_async()
+    app.logger.info("task_admin_import_all_files async started")
+    app.logger.info("url_admin_import_all_files [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))

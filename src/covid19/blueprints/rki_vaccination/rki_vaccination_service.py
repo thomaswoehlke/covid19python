@@ -62,3 +62,7 @@ class RkiVaccinationService:
     def download_all_files(self):
         self.service_download.download_file()
         return self
+
+    def task_import_all_files(self):
+        self.service_import.import_file()
+        return self

@@ -17,7 +17,7 @@ class EcdcServiceImport:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" ECDC Service Import [ready] ")
 
-    def import_datafile_to_db(self):
+    def import_file(self):
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info(" import ECDC [begin]")
         app.logger.info("------------------------------------------------------------")
