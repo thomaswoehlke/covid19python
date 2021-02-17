@@ -230,6 +230,7 @@
 * Issue #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
 * Issue #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
 
+
 ### 0.0.198 Release
 * Issue #5 Visual Graphs for Data per Countries order by Date
 * Issue #59 frontend: add correct breadcrumb to every page
