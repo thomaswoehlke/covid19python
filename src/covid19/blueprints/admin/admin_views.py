@@ -48,6 +48,14 @@ def task_admin_database_drop_create(self):
     return result
 
 
+@app.route('/')
+def url_admin_index():
+    page_info = ApplicationPage('Admin', "Covid19 Admin")
+    return render_template(
+        'admin/index.html',
+        page_info=page_info)
+
+
 @app_admin.route('/tasks')
 def url_admin_tasks():
     page_info = ApplicationPage('Admin', "Tasks")
