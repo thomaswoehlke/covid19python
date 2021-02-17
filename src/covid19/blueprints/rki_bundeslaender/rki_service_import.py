@@ -25,26 +25,32 @@ class RkiBundeslaenderServiceImport:
         app.logger.info(" TABLE: " + RkiBundeslaenderImport.__tablename__)
         app.logger.info("------------------------------------------------------------")
         row = None
-        if sys.platform == 'linux':
-            keyDate_reported ='\ufeffDate_reported'
-        else:
-            keyDate_reported = 'ï»¿Date_reported'
         try:
             RkiBundeslaenderImport.remove_all()
             with open(self.cfg.src_cvsfile_path, newline='\n') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:
-                    # TODO: #140 move WhoImport to RKI in: rk_service_import.py
                     o = RkiBundeslaenderImport(
-                        date_reported=row[keyDate_reported],
-                        country_code=row['Country_code'],
-                        country=row['Country'],
-                        who_region=row['WHO_region'],
-                        new_cases=row['New_cases'],
-                        cumulative_cases=row['Cumulative_cases'],
-                        new_deaths=row['New_deaths'],
-                        cumulative_deaths=row['Cumulative_deaths']
+                        OBJECTID_1=row['OBJECTID_1'],
+                        LAN_ew_AGS=row['LAN_ew_AGS'],
+                        LAN_ew_GEN=row['LAN_ew_GEN'],
+                        LAN_ew_BEZ=row['LAN_ew_BEZ'],
+                        LAN_ew_EWZ=row['LAN_ew_EWZ'],
+                        OBJECTID=row['OBJECTID'],
+                        Fallzahl=row['Fallzahl'],
+                        Aktualisierung=row['Aktualisierung'],
+                        AGS_TXT=row['AGS_TXT'],
+                        GlobalID=row['GlobalID'],
+                        faelle_100000_EW=row['faelle_100000_EW'],
+                        Death=row['Death'],
+                        cases7_bl_per_100k=row['cases7_bl_per_100k'],
+                        cases7_bl=row['cases7_bl'],
+                        death7_bl=row['death7_bl'],
+                        cases7_bl_per_100k_txt=row['cases7_bl_per_100k_txt'],
+                        AdmUnitId=row['AdmUnitId'],
+                        SHAPE_Length=row['SHAPE_Length'],
+                        SHAPE_Area=row['SHAPE_Area'],
                     )
                     db.session.add(o)
                     if (k % 2000) == 0:
