@@ -31,13 +31,13 @@ class RkiLandkreiseServiceImport:
                 k = 0
                 for row in file_reader:
                     o = RkiLandkreiseImport(
-                        objectid=row['OBJECTID'],
-                        ade=row['ADE'],
-                        gf=row['GF'],
-                        bsg=row['BSG'],
-                        rs=row['RS'],
-                        ags=row['AGS'],
-                        sdv_rs=row['SDV_RS'],
+                        OBJECTID=row['OBJECTID'],
+                        ADE=row['ADE'],
+                        GF=row['GF'],
+                        BSG=row['BSG'],
+                        RS=row['RS'],
+                        AGS=row['AGS'],
+                        SDV_RS=row['SDV_RS'],
                         GEN=row['GEN'],
                         BEZ=row['BEZ'],
                         IBZ=row['IBZ'],
