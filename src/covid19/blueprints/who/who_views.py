@@ -15,10 +15,10 @@ from covid19.blueprints.application.application_model_transient import Applicati
 
 app_who = Blueprint('who', __name__, template_folder='templates', url_prefix='/who')
 
-admin.add_view(ModelView(WhoDateReported, db.session))
-admin.add_view(ModelView(WhoRegion, db.session))
-admin.add_view(ModelView(WhoCountry, db.session))
-admin.add_view(ModelView(WhoData, db.session))
+admin.add_view(ModelView(WhoDateReported, db.session, category="WHO"))
+admin.add_view(ModelView(WhoRegion, db.session, category="WHO"))
+admin.add_view(ModelView(WhoCountry, db.session, category="WHO"))
+admin.add_view(ModelView(WhoData, db.session, category="WHO"))
 
 ##################################################################################################################
 #
