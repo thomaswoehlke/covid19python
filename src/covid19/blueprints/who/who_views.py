@@ -179,7 +179,7 @@ def url_task_who_update_fact_table_initial_only():
 def url_task_who_update_star_schema_initial():
     app.logger.info("url_who_task_update_full [start]")
     who_service.run_download_only()
-    flash("who_service.who_service_download.download_file ok")
+    flash("who_service.service_download.download_file ok")
     task_who_update_star_schema_initial.apply_async()
     flash("task_who_update_star_schema_initial started")
     flash(message="long running background task started", category="warning")
@@ -191,7 +191,7 @@ def url_task_who_update_star_schema_initial():
 def url_task_who_update_star_schema_incremental():
     app.logger.info("url_task_who_update_star_schema_incremental [start]")
     who_service.run_download_only()
-    flash("who_service.who_service_download.download_file ok")
+    flash("who_service.service_download.download_file ok")
     task_who_update_star_schema_incremental.apply_async()
     flash("task_who_run_update_full started")
     flash(message="long running background task started", category="warning")
