@@ -102,3 +102,7 @@ class WhoService:
         app.logger.info("------------------------------------------------------------")
         return self
 
+    def download_all_files(self):
+        self.who_service_download.download_file()
+        return self
+

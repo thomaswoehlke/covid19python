@@ -58,3 +58,7 @@ class RkiVaccinationService:
         self.run_import_only()
         self.vaccination_service_udpate.update_star_schema_initial()
         return self
+
+    def download_all_files(self):
+        self.vaccination_service_download.download_file()
+        return self

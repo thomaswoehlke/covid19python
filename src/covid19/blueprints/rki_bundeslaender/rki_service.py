@@ -108,3 +108,7 @@ class RkiBundeslaenderService:
         app.logger.info(" run update initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self
+
+    def download_all_files(self):
+        self.service_download.download_file()
+        return self

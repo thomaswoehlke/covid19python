@@ -5,7 +5,8 @@ from flask_admin.contrib.sqla import ModelView
 
 from database import app, admin, db
 from covid19.blueprints.application.application_services import who_service, ecdc_service, rki_vaccination_service
-from covid19.blueprints.application.application_services import rki_service_bundeslaender, admin_service
+from covid19.blueprints.application.application_services import rki_service_bundeslaender, rki_service_landkreise
+from covid19.blueprints.application.application_services import admin_service
 from covid19.blueprints.application.application_workers import celery
 from covid19.blueprints.application.application_model_transient import ApplicationPage
 
@@ -98,6 +99,7 @@ def url_admin_database_import():
     app.logger.info("url_admin_database_import [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))
 
+
 @app_admin.route('/database/dropcreate/only')
 def url_admin_database_dropcreate_only():
     app.logger.info("url_admin_database_drop [start]")
@@ -105,6 +107,7 @@ def url_admin_database_dropcreate_only():
     admin_service.run_admin_database_drop()
     app.logger.info("url_admin_database_drop [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))
+
 
 @app_admin.route('/database/drop')
 def url_admin_database_drop():
@@ -119,4 +122,20 @@ def url_admin_database_drop():
         flash("task_admin_database_drop_create async started")
         task_admin_database_drop_create.apply_async()
     app.logger.info("url_admin_database_drop [done]")
+    return redirect(url_for('app_admin.url_admin_tasks'))
+
+
+@app_admin.route('/download/all')
+def url_admin_download_all_files():
+    who_service.download_all_files()
+    flash("who_service.download_all_files Done")
+    ecdc_service.download_all_files()
+    flash("who_service.download_all_files Done")
+    rki_vaccination_service.download_all_files()
+    flash("who_service.download_all_files Done")
+    rki_service_bundeslaender.download_all_files()
+    flash("who_service.download_all_files Done")
+    rki_service_landkreise.download_all_files()
+    flash("who_service.download_all_files Done")
+    app.logger.info("url_admin_download_all_files [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))

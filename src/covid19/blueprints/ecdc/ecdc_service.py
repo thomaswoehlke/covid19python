@@ -67,3 +67,7 @@ class EcdcService:
         self.ecdc_service_import.import_datafile_to_db()
         self.ecdc_service_update.update_star_schema_initial()
         return self
+
+    def download_all_files(self):
+        self.service_download.download_file()
+        return self
