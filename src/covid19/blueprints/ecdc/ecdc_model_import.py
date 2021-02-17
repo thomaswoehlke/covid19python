@@ -1,6 +1,7 @@
 from database import db, ITEMS_PER_PAGE
 
 
+#dateRep,day,month,year,cases,deaths,countriesAndTerritories,geoId,countryterritoryCode,popData2019,continentExp,Cumulative_number_for_14_days_of_COVID-19_cases_per_100000
 class EcdcImport(db.Model):
     __tablename__ = 'ecdc_import'
 
@@ -9,14 +10,14 @@ class EcdcImport(db.Model):
     day = db.Column(db.String(255), nullable=False)
     month = db.Column(db.String(255), nullable=False)
     year = db.Column(db.String(255), nullable=False)
-    cases_weekly = db.Column(db.String(255), nullable=False)
-    deaths_weekly = db.Column(db.String(255), nullable=False)
+    cases = db.Column(db.String(255), nullable=False)
+    deaths = db.Column(db.String(255), nullable=False)
     pop_data_2019 = db.Column(db.String(255), nullable=False)
     countries_and_territories = db.Column(db.String(255), nullable=False)
     geo_id = db.Column(db.String(255), nullable=False)
     country_territory_code = db.Column(db.String(255), nullable=False)
     continent_exp = db.Column(db.String(255), nullable=False)
-    notification_rate_per_100000_population_14days = db.Column(db.String(255), nullable=False)
+    cumulative_number_for_14_days_of_covid19_cases_per_100000 = db.Column(db.String(255), nullable=False)
 
     @classmethod
     def remove_all(cls):

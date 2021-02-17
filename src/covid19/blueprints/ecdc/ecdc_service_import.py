@@ -34,15 +34,15 @@ class EcdcServiceImport:
                         day=row['day'],
                         month=row['month'],
                         year=row['year'],
-                        cases_weekly=row['cases_weekly'],
-                        deaths_weekly=row['deaths_weekly'],
+                        cases=row['cases'],
+                        deaths=row['deaths'],
                         countries_and_territories=row['countriesAndTerritories'],
                         geo_id=row['geoId'],
                         country_territory_code=row['countryterritoryCode'],
                         pop_data_2019=row['popData2019'],
                         continent_exp=row['continentExp'],
-                        notification_rate_per_100000_population_14days
-                        =row['notification_rate_per_100000_population_14-days']
+                        cumulative_number_for_14_days_of_covid19_cases_per_100000
+                        =row['Cumulative_number_for_14_days_of_COVID-19_cases_per_100000']
                     )
                     db.session.add(o)
                     k = k + 1

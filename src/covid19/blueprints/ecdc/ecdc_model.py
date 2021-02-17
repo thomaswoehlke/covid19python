@@ -178,8 +178,8 @@ class EcdcData(db.Model):
     __tablename__ = 'ecdc_data'
 
     id = db.Column(db.Integer, primary_key=True)
-    deaths_weekly = db.Column(db.Integer, nullable=False)
-    cases_weekly = db.Column(db.Integer, nullable=False)
+    deaths = db.Column(db.Integer, nullable=False)
+    cases = db.Column(db.Integer, nullable=False)
     notification_rate_per_100000_population_14days = db.Column(db.Float, nullable=False)
 
     ecdc_country_id = db.Column(db.Integer, db.ForeignKey('ecdc_country.id'), nullable=False)
