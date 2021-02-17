@@ -110,3 +110,6 @@ class WhoService:
         self.service_import.import_file()
         return self
 
+    def task_update_all_blueprints(self):
+        self.service_update.update_dimension_tables_only()
+        return self

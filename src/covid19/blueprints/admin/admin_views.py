@@ -59,16 +59,36 @@ def task_admin_import_all_files(self):
     logger.info("------------------------------------------------------------")
     logger.info(" task_admin_import_all_files [start] ")
     logger.info("------------------------------------------------------------")
-    #who_service.task_import_all_files()
+    who_service.task_import_all_files()
     ecdc_service.task_import_all_files()
     rki_vaccination_service.task_import_all_files()
-    #rki_service_bundeslaender.task_import_all_files()
-    #rki_service_landkreise.task_import_all_files()
+    rki_service_bundeslaender.task_import_all_files()
+    rki_service_landkreise.task_import_all_files()
     logger.info("------------------------------------------------------------")
     logger.info(" task_admin_import_all_files [done] ")
     logger.info("------------------------------------------------------------")
     self.update_state(state=states.SUCCESS)
     result = "OK (task_admin_import_all_files)"
+    return result
+
+
+@celery.task(bind=True)
+def task_admin_update_all_blueprints(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_update_all_blueprints [start] ")
+    logger.info("------------------------------------------------------------")
+    who_service.task_update_all_blueprints()
+    ecdc_service.task_update_all_blueprints()
+    rki_vaccination_service.task_update_all_blueprints()
+    rki_service_bundeslaender.task_update_all_blueprints()
+    rki_service_landkreise.task_update_all_blueprints()
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_update_all_blueprints [done] ")
+    logger.info("------------------------------------------------------------")
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_admin_update_all_blueprints)"
     return result
 
 
@@ -171,4 +191,14 @@ def url_admin_import_all_files():
     task_admin_import_all_files.apply_async()
     app.logger.info("task_admin_import_all_files async started")
     app.logger.info("url_admin_import_all_files [done]")
+    return redirect(url_for('app_admin.url_admin_tasks'))
+
+
+@app_admin.route('/update/all')
+def url_admin_update_all_groups():
+    app.logger.info("url_admin_update_all_groups [start]")
+    flash("task_admin_import_all_files async started")
+    task_admin_update_all_blueprints.apply_async()
+    app.logger.info("task_admin_update_all_blueprints async started")
+    app.logger.info("url_admin_update_all_groups [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))
