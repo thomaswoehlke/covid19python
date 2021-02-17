@@ -1,21 +1,9 @@
 {% extends 'application/page_layout.html' %}
 
-{% block navigation_breadcrumb %}
-    <!-- TODO: implement navigation_breadcrumb in .html -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/who/region/all">Regions</a></li>
-            <li class="breadcrumb-item active" aria-current="page">TBD</li>
-        </ol>
-    </nav>
-{% endblock %}
+{% block content %}
+    {{super()}}
+    {% include 'ecdc/fragments/fragment_ecdc_navtabs.html' %}
 
-{% block navigation_navtabs %}
-  {% include 'ecdc/fragments/fragment_ecdc_navtabs.html' %}
-{% endblock %}
-
-{% block main_container %}
 
     {% if page_data.pages > 1 %}
     <ul class="pagination">

@@ -1,11 +1,9 @@
 {% extends 'application/page_layout.html' %}
 
-{% block navigation_navtabs %}
-    <!-- TODO: implement navigation_breadcrumb in .html -->
-  {% include 'ecdc/fragments/fragment_ecdc_navtabs.html' %}
-{% endblock %}
+{% block content %}
+    {{super()}}
+    {% include 'ecdc/fragments/fragment_ecdc_navtabs.html' %}
 
-{% block main_container %}
 
     {% if page_data.pages > 1 %}
     <ul class="pagination">
