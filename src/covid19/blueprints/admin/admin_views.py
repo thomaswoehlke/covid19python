@@ -11,7 +11,7 @@ from covid19.blueprints.application.application_model_transient import Applicati
 
 drop_and_create_data_again = True
 
-app_admin = Blueprint('admin', __name__, template_folder='templates', url_prefix='/admin')
+app_admin = Blueprint('app_admin', __name__, template_folder='templates', url_prefix='/admin')
 
 #################################################################################################################
 #
