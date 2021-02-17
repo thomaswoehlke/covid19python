@@ -19,7 +19,7 @@ class RkiBundeslaenderServiceDownload:
     def download_file(self):
         app.logger.info(" download - RKI [begin] ")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" <- "+self.cfg.url_src)
+        app.logger.info(" download FILE: "+self.cfg.cvsfile_name+" from "+self.cfg.url_src)
         app.logger.info("------------------------------------------------------------")
         try:
             os.makedirs(self.cfg.data_path, exist_ok=True)
@@ -43,6 +43,9 @@ class RkiBundeslaenderServiceDownload:
             app.logger.error("############################################################")
             flash(message="error while downloading: " + self.cfg.cvsfile_path, category='error')
         finally:
+            app.logger.info("")
+            app.logger.info("------------------------------------------------------------")
+            app.logger.info(" downloaded FILE: "+self.cfg.cvsfile_name+" from "+self.cfg.url_src)
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" download - RKI [done] ")
             msg = "downloaded: " + self.cfg.cvsfile_path+" from "+self.cfg.url_src

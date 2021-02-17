@@ -21,8 +21,7 @@ class RkiLandkreiseServiceImport:
     def import_file(self):
         app.logger.info(" RKI Landkreise Service Import - import_file [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  "+self.cfg.cvsfile_name)
-        app.logger.info(" TABLE: who_global_data_import")
+        app.logger.info(" import into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
         app.logger.info("------------------------------------------------------------")
         row = None
         if sys.platform == 'linux':

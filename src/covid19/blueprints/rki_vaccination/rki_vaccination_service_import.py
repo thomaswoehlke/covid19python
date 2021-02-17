@@ -27,8 +27,7 @@ class RkiVaccinationServiceImport:
         src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
         app.logger.info(" import Vaccination [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.cfg.cvsfile_name+" ")
-        app.logger.info(" TABLE: who_global_data_import")
+        app.logger.info(" import into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
         app.logger.info("------------------------------------------------------------")
         try:
             RkiVaccinationImport.remove_all()

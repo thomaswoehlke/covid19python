@@ -19,7 +19,7 @@ class RkiLandkreiseServiceDownload:
     def download_file(self):
         app.logger.info(" RKI Landkreise Service Download - download_file begin] ")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE: "+self.cfg.cvsfile_path+" <- "+self.cfg.url_src)
+        app.logger.info(" download FILE: "+self.cfg.cvsfile_name+" from "+self.cfg.url_src)
         app.logger.info("------------------------------------------------------------")
         try:
             os.makedirs(self.cfg.data_path, exist_ok=True)

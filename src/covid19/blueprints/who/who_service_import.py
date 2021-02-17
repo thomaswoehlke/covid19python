@@ -19,8 +19,7 @@ class WhoServiceImport:
     def import_file(self):
         app.logger.info(" import WHO [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  "+self.cfg.cvsfile_path)
-        app.logger.info(" TABLE: "+WhoImport.__tablename__)
+        app.logger.info(" import into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
         app.logger.info("------------------------------------------------------------")
         row = None
         if sys.platform == 'linux':
@@ -62,6 +61,7 @@ class WhoServiceImport:
             app.logger.warning("WARN: import WHO [end]")
         finally:
             app.logger.info("")
+            app.logger.info(" imported into TABLE: " + self.cfg.tablename + " from " + self.cfg.cvsfile_path)
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" import WHO [done]")
         return self

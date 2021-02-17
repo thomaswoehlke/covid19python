@@ -1,4 +1,3 @@
-import os
 import csv
 import psycopg2
 
@@ -20,12 +19,12 @@ class EcdcServiceImport:
     def import_file(self):
         app.logger.info(" import ECDC [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" TABLE: ecdc_data_import   <-- " + self.cfg.cvsfile_name)
+        app.logger.info(" import into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
         app.logger.info("------------------------------------------------------------")
         k = 0
         try:
             EcdcImport.remove_all()
-            with open(self.cfg.cvsfile_name, newline='') as csv_file:
+            with open(self.cfg.cvsfile_path, newline='') as csv_file:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 for row in file_reader:
                     o = EcdcImport(

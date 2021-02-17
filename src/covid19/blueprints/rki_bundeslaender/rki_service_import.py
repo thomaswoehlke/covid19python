@@ -21,8 +21,7 @@ class RkiBundeslaenderServiceImport:
     def import_file(self):
         app.logger.info(" import RKI [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info(" FILE:  " + self.cfg.cvsfile_name)
-        app.logger.info(" TABLE: " + RkiBundeslaenderImport.__tablename__)
+        app.logger.info(" import into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
         app.logger.info("------------------------------------------------------------")
         row = None
         try:
