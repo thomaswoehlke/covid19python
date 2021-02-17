@@ -44,7 +44,7 @@ class EcdcServiceImport:
                     )
                     db.session.add(o)
                     k = k + 1
-                    if (k % 100) == 0:
+                    if (k % 500) == 0:
                         db.session.commit()
                         app.logger.info("  import ECDC  ...  " + str(k) + " rows")
             db.session.commit()
