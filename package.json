@@ -1,6 +1,6 @@
 {
   "name": "covid19python-thomaswoehlke",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Covid19 Data Aggregation - also a Project to learn Python Flask, SQLAlchemy, Celery et al.",
   "main": "index.js",
   "dependencies": {},
