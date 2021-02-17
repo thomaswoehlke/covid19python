@@ -139,3 +139,19 @@ def url_admin_download_all_files():
     flash("who_service.download_all_files Done")
     app.logger.info("url_admin_download_all_files [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))
+
+
+@app_admin.route('/import/all')
+def url_admin_import_all_files():
+    who_service.download_all_files()
+    flash("who_service.download_all_files Done")
+    ecdc_service.download_all_files()
+    flash("who_service.download_all_files Done")
+    rki_vaccination_service.download_all_files()
+    flash("who_service.download_all_files Done")
+    rki_service_bundeslaender.download_all_files()
+    flash("who_service.download_all_files Done")
+    rki_service_landkreise.download_all_files()
+    flash("who_service.download_all_files Done")
+    app.logger.info("url_admin_download_all_files [done]")
+    return redirect(url_for('app_admin.url_admin_tasks'))
