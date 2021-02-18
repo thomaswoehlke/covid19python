@@ -1,45 +1,26 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        WHO
+                        OWID
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <!-- TODO: change URL to for_url() -->
                         <a class="dropdown-item"
-                           href="{{ url_for( 'who.url_who_date_reported_all') }}">
-                            WHO
+                           href="{{ url_for( 'owid.url_owid_date_reported_all') }}">
+                            OWID Date Reported
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item"
-                           href="{{ url_for( 'who.url_who_germany') }}">
-                            WHO Germany
+                           href="{{ url_for( 'owid.url_owid_imported') }}">
+                            OWID imported
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item"
-                           href="{{ url_for( 'who.url_who_region_all') }}">
-                            WHO Regions
+                           href="{{ url_for( 'owid.url_owid_info') }}">
+                            OWID Info
                         </a>
                         <a class="dropdown-item"
-                           href="{{ url_for( 'who.url_who_date_reported_all') }}">
-                            WHO Date Reported
-                        </a>
-                        <a class="dropdown-item"
-                           href="{{ url_for( 'who.url_who_country_all') }}">
-                            WHO Countries
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item"
-                           href="{{ url_for( 'who.url_who_imported') }}">
-                            WHO imported
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item"
-                           href="{{ url_for( 'who.url_who_info') }}">
-                            WHO Info
-                        </a>
-                        <a class="dropdown-item"
-                           href="{{ url_for( 'who.url_who_tasks') }}">
-                            WHO Tasks
+                           href="{{ url_for( 'owid.url_owid_tasks') }}">
+                            OWID Tasks
                         </a>
                     </div>
                 </li>

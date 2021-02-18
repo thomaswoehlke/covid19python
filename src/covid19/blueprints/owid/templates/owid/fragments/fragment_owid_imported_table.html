@@ -12,16 +12,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for who_global_data_import in page_data.items %}
+                    {% for owid_import in page_data.items %}
                         <tr>
-                            <td>{{ who_global_data_import.date_reported }}</td>
-                            <td>{{ who_global_data_import.country }}</td>
-                            <td>{{ who_global_data_import.country_code }}</td>
-                            <td>{{ who_global_data_import.who_region }}</td>
-                            <td>{{ who_global_data_import.new_cases }}</td>
-                            <td>{{ who_global_data_import.cumulative_cases }}</td>
-                            <td>{{ who_global_data_import.new_deaths }}</td>
-                            <td>{{ who_global_data_import.cumulative_deaths }}</td>
+                            <td>{{ owid_import.date_reported }}</td>
+                            <td>{{ owid_import.country }}</td>
+                            <td>{{ owid_import.country_code }}</td>
+                            <td>{{ owid_import.who_region }}</td>
+                            <td>{{ owid_import.new_cases }}</td>
+                            <td>{{ owid_import.cumulative_cases }}</td>
+                            <td>{{ owid_import.new_deaths }}</td>
+                            <td>{{ owid_import.cumulative_deaths }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

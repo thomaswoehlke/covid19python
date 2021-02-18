@@ -2,7 +2,7 @@
 
 {% block content %}
     {{super()}}
-    {% include 'who/fragments/fragment_who_navtabs.html' %}
+    {% include 'owid/fragments/fragment_owid_navtabs.html' %}
 
     <div class="container">
         <div class="row">
@@ -12,8 +12,8 @@
                     <ul class="pagination">
                     {% if page_data.has_prev %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('who.url_who_date_reported',
-                        date_reported_id=who_date_reported.id, page=page_data.prev_num) }}">Previous</a>
+                        <a class="page-link" href="{{ url_for('owid.url_owid_date_reported',
+                        date_reported_id=owid_date_reported.id, page=page_data.prev_num) }}">Previous</a>
                     </li>
                     {% endif %}
                     <!-- all page numbers -->
@@ -21,8 +21,8 @@
                         {% if page_num %}
                             {% if page_num != page_data.page %}
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url_for('who.url_who_date_reported',
-                                    date_reported_id=who_date_reported.id, page=page_num) }}">{{ page_num }}</a>
+                                    <a class="page-link" href="{{ url_for('owid.url_owid_date_reported',
+                                    date_reported_id=owid_date_reported.id, page=page_num) }}">{{ page_num }}</a>
                                 </li>
                             {% else %}
                                 <li class="page-item active">
@@ -38,8 +38,8 @@
                     <!-- next page -->
                     {% if page_data.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('who.url_who_date_reported',
-                        date_reported_id=who_date_reported.id, page=page_data.next_num) }}">Next</a>
+                        <a class="page-link" href="{{ url_for('owid.url_owid_date_reported',
+                        date_reported_id=owid_date_reported.id, page=page_data.next_num) }}">Next</a>
                     </li>
                     {% endif %}
                     </ul>
@@ -48,7 +48,7 @@
         </div>
         <div class="row">
             <div class="col">
-                {% include 'who/fragments/fragment_who_table_global_data_date_reported.html' %}
+                {% include 'owid/fragments/fragment_owid_table_global_data_date_reported.html' %}
             </div>
         </div>
     </div>

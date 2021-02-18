@@ -2,7 +2,7 @@
 
 {% block content %}
     {{super()}}
-    {% include 'who/fragments/fragment_who_navtabs.html' %}
+    {% include 'owid/fragments/fragment_owid_navtabs.html' %}
 
     <div class="container">
         <div class="row">
@@ -12,7 +12,7 @@
                     <ul class="pagination">
                     {% if page_data.has_prev %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('who.url_who_date_reported_all', page=page_data.prev_num) }}">Previous</a>
+                        <a class="page-link" href="{{ url_for('owid.url_owid_date_reported_all', page=page_data.prev_num) }}">Previous</a>
                     </li>
                     {% endif %}
                     <!-- all page numbers -->
@@ -20,7 +20,7 @@
                         {% if page_num %}
                             {% if page_num != page_data.page %}
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url_for('who.url_who_date_reported_all', page=page_num) }}">{{ page_num }}</a>
+                                    <a class="page-link" href="{{ url_for('owid.url_owid_date_reported_all', page=page_num) }}">{{ page_num }}</a>
                                 </li>
                             {% else %}
                                 <li class="page-item active">
@@ -36,7 +36,7 @@
                     <!-- next page -->
                     {% if page_data.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('who.url_who_date_reported_all', page=page_data.next_num) }}">Next</a>
+                        <a class="page-link" href="{{ url_for('owid.url_owid_date_reported_all', page=page_data.next_num) }}">Next</a>
                     </li>
                     {% endif %}
                     </ul>
@@ -55,21 +55,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for who_date_reported in page_data.items %}
+                    {% for owid_date_reported in page_data.items %}
                         <tr>
                             <td class="text-right">
-                                {{ who_date_reported.get_name_for_weekday() }}
+                                {{ owid_date_reported.get_name_for_weekday() }}
                             </td>
                             <td class="text-left">
-                                <a href="/who/date_reported/{{ who_date_reported.id }}">
-                                    {{ who_date_reported }}
+                                <a href="/owid/date_reported/{{ owid_date_reported.id }}">
+                                    {{ owid_date_reported }}
                                 </a>
                             </td>
                             <td class="text-right">
-                                {{ who_date_reported.week_of_year }}
+                                {{ owid_date_reported.week_of_year }}
                             </td>
                             <td class="text-left">
-                                {{ who_date_reported.year }}
+                                {{ owid_date_reported.year }}
                             </td>
                         </tr>
                     {% endfor %}
