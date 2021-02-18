@@ -30,24 +30,16 @@ function clean() {
 
 // Bring third party dependencies from node_modules into vendor directory
 function modules() {
-  var bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*')
-    .pipe(gulp.dest('./static/vendor/bootstrap'));
-  var jquery = gulp.src([
-      './node_modules/jquery/dist/*',
-      '!./node_modules/jquery/dist/core.js'
-    ]).pipe(gulp.dest('./static/vendor/jquery'));
-  var popper_js = gulp.src([
-      './node_modules/popper.js/dist/**/*'
-    ]).pipe(gulp.dest('./static/vendor/popper.js'));
-  var popper_js = gulp.src([
-      './node_modules/@fortawesome/fontawesome-free/**/*'
-    ]).pipe(gulp.dest('./static/vendor/fontawesome-free'));
-    var popper_js = gulp.src([
-      './node_modules/bootswatch/dist/**/*'
-    ]).pipe(gulp.dest('./static/vendor/bootswatch'));
-  return merge(
-      bootstrap, jquery, popper_js
-  );
+    var bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*').pipe(gulp.dest('./static/vendor/bootstrap'));
+    var jquery = gulp.src(['./node_modules/jquery/dist/*','!./node_modules/jquery/dist/core.js'])
+        .pipe(gulp.dest('./static/vendor/jquery'));
+    var popper_js = gulp.src(['./node_modules/popper.js/dist/**/*']).pipe(gulp.dest('./static/vendor/popper.js'));
+    var fontawesome = gulp.src(['./node_modules/@fortawesome/fontawesome-free/**/*'])
+        .pipe(gulp.dest('./static/vendor/fontawesome-free'));
+    var bootswatch = gulp.src(['./node_modules/bootswatch/dist/**/*']).pipe(gulp.dest('./static/vendor/bootswatch'));
+    return merge(
+        bootstrap, jquery, popper_js, fontawesome, bootswatch
+    );
 }
 
 // Watch files
