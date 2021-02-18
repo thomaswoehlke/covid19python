@@ -153,17 +153,17 @@ class EcdcServiceUpdate:
                 my_ecdc_country = self.__get_country_from_import(item_ecdc_data_import)
                 my_deaths = int(item_ecdc_data_import.deaths)
                 my_cases = int(item_ecdc_data_import.cases)
-                if item_ecdc_data_import.my_cumulative_number_for_14_days_of_covid19_cases_per_100000 == '':
-                    my_cumulative_number_for_14_days_of_covid19_cases_per_100000 = 0.0
+                if item_ecdc_data_import.cumulative_number_for_14_days_of_covid19_cases_per_100000 == '':
+                    my_cumulative_number = 0.0
                 else:
-                    my_cumulative_number_for_14_days_of_covid19_cases_per_100000 = \
+                    my_cumulative_number = \
                         float(item_ecdc_data_import.cumulative_number_for_14_days_of_covid19_cases_per_100000)
                 o = EcdcData(
                     ecdc_country=my_ecdc_country,
                     ecdc_date_reported=my_ecdc_date_reported,
                     deaths=my_deaths,
                     cases=my_cases,
-                    cumulative_number_for_14_days_of_covid19_cases_per_100000=my_cumulative_number_for_14_days_of_covid19_cases_per_100000
+                    cumulative_number_for_14_days_of_covid19_cases_per_100000=my_cumulative_number
                 )
                 db.session.add(o)
                 i += 1
