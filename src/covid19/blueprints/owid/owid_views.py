@@ -5,14 +5,10 @@ from celery.utils.log import get_task_logger
 from flask_admin.contrib.sqla import ModelView
 
 from database import app, admin, db
-from covid19.blueprints.application.application_services import who_service
+from covid19.blueprints.application.application_services import owid_service
 from covid19.blueprints.application.application_workers import celery
-
-
 from covid19.blueprints.owid.owid_model import OwidDateReported, OwidData
 from covid19.blueprints.owid.owid_model_import import OwidImport
-
-
 from covid19.blueprints.application.application_model_transient import ApplicationPage
 
 
@@ -45,7 +41,7 @@ def task_owid_download_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_owid_download_only [OK] ")
     logger.info("------------------------------------------------------------")
-    who_service.run_download_only()
+    owid_service.run_download_only()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_owid_download_only)"
     return result
@@ -58,7 +54,7 @@ def task_owid_import_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_owid_import_only [OK] ")
     logger.info("------------------------------------------------------------")
-    who_service.run_import_only()
+    owid_service.run_import_only()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_owid_import_only)"
     return result
@@ -71,7 +67,7 @@ def task_owid_update_dimension_tables_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_owid_update_dimension_tables_only [OK] ")
     logger.info("------------------------------------------------------------")
-    who_service.run_update_dimension_tables_only()
+    owid_service.run_update_dimension_tables_only()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_owid_update_dimension_tables_only)"
     return result
@@ -84,7 +80,7 @@ def task_owid_update_fact_table_incremental_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_owid_update_fact_table_incremental_only [OK] ")
     logger.info("------------------------------------------------------------")
-    who_service.run_update_fact_table_incremental_only()
+    owid_service.run_update_fact_table_incremental_only()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_owid_update_dimension_tables_only)"
     return result
@@ -97,7 +93,7 @@ def task_owid_update_fact_table_initial_only(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_owid_update_fact_table_initial_only [OK] ")
     logger.info("------------------------------------------------------------")
-    who_service.run_update_fact_table_initial_only()
+    owid_service.run_update_fact_table_initial_only()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_owid_update_fact_table_initial_only)"
     return result
@@ -110,7 +106,7 @@ def task_owid_update_star_schema_incremental(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_owid_update_star_schema_incremental [OK] ")
     logger.info("------------------------------------------------------------")
-    who_service.run_update_star_schema_incremental()
+    owid_service.run_update_star_schema_incremental()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_owid_update_star_schema_incremental)"
     return result
@@ -123,7 +119,7 @@ def task_owid_update_star_schema_initial(self):
     logger.info("------------------------------------------------------------")
     logger.info(" Received: task_owid_update_star_schema_initial [OK] ")
     logger.info("------------------------------------------------------------")
-    who_service.run_update_star_schema_initial()
+    owid_service.run_update_star_schema_initial()
     self.update_state(state=states.SUCCESS)
     result = "OK (task_owid_update_star_schema_incremental)"
     return result
@@ -131,20 +127,20 @@ def task_owid_update_star_schema_initial(self):
 
 @app_owid.route('/task/download/only')
 def url_task_owid_download_only():
-    app.logger.info("url_who_task_download_only [start]")
-    who_service.run_download_only()
-    flash("who_service.run_download_only ok")
-    app.logger.info("url_who_task_download_only [done]")
+    app.logger.info("url_owid_task_download_only [start]")
+    owid_service.run_download_only()
+    flash("owid_service.run_download_only ok")
+    app.logger.info("url_owid_task_download_only [done]")
     return redirect(url_for('owid.url_owid_tasks'))
 
 
 @app_owid.route('/task/import/only')
 def url_task_owid_import_only():
-    app.logger.info("url_who_update_run [start]")
+    app.logger.info("url_owid_update_run [start]")
     task_owid_import_only.apply_async()
-    flash("who_service.run_update started")
+    flash("owid_service.run_update started")
     flash(message="long running background task started", category="warning")
-    app.logger.info("url_who_update_run [done]")
+    app.logger.info("url_owid_update_run [done]")
     return redirect(url_for('owid.url_owid_tasks'))
 
 
@@ -174,27 +170,27 @@ def url_task_owid_update_fact_table_initial_only():
     task_owid_update_fact_table_initial_only.apply_async()
     flash("task_owid_update_fact_table_initial_only started")
     flash(message="long running background task started", category="warning")
-    app.logger.info("url_who_task_update_full [done]")
+    app.logger.info("url_owid_task_update_full [done]")
     return redirect(url_for('owid.url_owid_tasks'))
 
 
 @app_owid.route('/task/update/star_schema/initial')
 def url_task_owid_update_star_schema_initial():
-    app.logger.info("url_who_task_update_full [start]")
-    who_service.run_download_only()
-    flash("who_service.service_download.download_file ok")
+    app.logger.info("url_owid_task_update_full [start]")
+    owid_service.run_download_only()
+    flash("owid_service.service_download.download_file ok")
     task_owid_update_star_schema_initial.apply_async()
     flash("task_owid_update_star_schema_initial started")
     flash(message="long running background task started", category="warning")
-    app.logger.info("url_who_task_update_full [done]")
+    app.logger.info("url_owid_task_update_full [done]")
     return redirect(url_for('owid.url_owid_tasks'))
 
 
 @app_owid.route('/task/update/star_schema/incremental')
 def url_task_owid_update_star_schema_incremental():
     app.logger.info("url_task_owid_update_star_schema_incremental [start]")
-    who_service.run_download_only()
-    flash("who_service.service_download.download_file ok")
+    owid_service.run_download_only()
+    flash("owid_service.service_download.download_file ok")
     task_owid_update_star_schema_incremental.apply_async()
     flash("task_owid_run_update_full started")
     flash(message="long running background task started", category="warning")
