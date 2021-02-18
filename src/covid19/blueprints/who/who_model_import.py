@@ -74,7 +74,7 @@ class WhoImport(db.Model):
     @classmethod
     def get_new_dates_as_array(cls):
         # TODO: #82 BUG: change to ORM ClassHierarchy
-        # TODO: #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
+        # TODO: #83 SQLalchemy instead of SQL in OwidImport.get_new_dates_as_array
         sql_query = """
             select
                 distinct 

@@ -1,0 +1,97 @@
+{% extends 'application/page_layout.html' %}
+
+{% block content %}
+    {{super()}}
+    {% include 'who/fragments/fragment_who_navtabs.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% if page_data.pages > 1 %}
+                    <!-- previous page -->
+                    <ul class="pagination">
+                    {% if page_data.has_prev %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('who.url_who_date_reported_all', page=page_data.prev_num) }}">Previous</a>
+                    </li>
+                    {% endif %}
+                    <!-- all page numbers -->
+                    {% for page_num in page_data.iter_pages() %}
+                        {% if page_num %}
+                            {% if page_num != page_data.page %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ url_for('who.url_who_date_reported_all', page=page_num) }}">{{ page_num }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">{{ page_num }}</a>
+                                </li>
+                            {% endif %}
+                       {% else %}
+                           <li class="page-item">
+                               <span class="ellipsis page-link my-page-item-ellipsis-page-link">…</span>
+                           </li>
+                       {% endif %}
+                    {% endfor %}
+                    <!-- next page -->
+                    {% if page_data.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('who.url_who_date_reported_all', page=page_data.next_num) }}">Next</a>
+                    </li>
+                    {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover table-striped table-dark">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th scope="col" class="text-right">day of week</th>
+                            <th scope="col" class="text-left">date reported</th>
+                            <th scope="col" class="text-right">week of year</th>
+                            <th scope="col" class="text-left">year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for who_date_reported in page_data.items %}
+                        <tr>
+                            <td class="text-right">
+                                {{ who_date_reported.get_name_for_weekday() }}
+                            </td>
+                            <td class="text-left">
+                                <a href="/who/date_reported/{{ who_date_reported.id }}">
+                                    {{ who_date_reported }}
+                                </a>
+                            </td>
+                            <td class="text-right">
+                                {{ who_date_reported.week_of_year }}
+                            </td>
+                            <td class="text-left">
+                                {{ who_date_reported.year }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot class="table-secondary">
+                        <tr>
+                            <th scope="col" class="text-right">day of week</th>
+                            <th scope="col" class="text-left">date reported</th>
+                            <th scope="col" class="text-right">week of year</th>
+                            <th scope="col" class="text-left">year</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_container %}
+    <div>
+        {% for error in errors %}
+            <h4>{{ error }}</h4>
+        {% endfor %}
+    </div>
+{% endblock %}

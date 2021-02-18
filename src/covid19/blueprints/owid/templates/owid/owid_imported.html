@@ -1,0 +1,27 @@
+{% extends 'application/page_layout.html' %}
+
+{% block content %}
+    {{super()}}
+    {% include 'who/fragments/fragment_who_navtabs.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% include 'who/fragments/fragment_who_imported_pagination.html' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {% include 'who/fragments/fragment_who_imported_table.html' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer_container %}
+
+{% endblock %}
+
+
+

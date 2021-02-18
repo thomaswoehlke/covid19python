@@ -336,7 +336,7 @@
 </Class>
 <Class id="c6bfca9c-67bd-11eb-9897-e5e5c434bbb8">
 <name>
-<val>WhoImport</val>
+<val>OwidImport</val>
 </name>
 <package>
 <ref refid="05e1daa8-67be-11eb-9897-e5e5c434bbb8"/>

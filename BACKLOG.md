@@ -109,7 +109,7 @@
 * Fixed #74 add Tasks to WHO Tasks Html
 * Fixed #78 add PlantUML
 * Fixed #79 add Gaphor UML (wonfix)
-* Fixed #80 rename WhoXYImport to WhoImport
+* Fixed #80 rename WhoXYImport to OwidImport
 * Fixed #81 change tablename from who_global_data_import to who_import
 * Fixed #84 rename tablename from who_global_data to who_data
 * Fixed #85 rename WhoData to WhoData
@@ -185,8 +185,8 @@
 
 ### 0.0.17 Release
 * Fixed #82 change to ORM ClassHierarchy
-* Fixed #42 SQLalchemy instead of SQL: WhoImport.get_new_dates_as_array()
-* Fixed #83 SQLalchemy instead of SQL in WhoImport.get_new_dates_as_array
+* Fixed #42 SQLalchemy instead of SQL: OwidImport.get_new_dates_as_array()
+* Fixed #83 SQLalchemy instead of SQL in OwidImport.get_new_dates_as_array
 * Fixed #108 change to ORM ClassHierarchy in: EcdcImport.get_countries_of_continent
 * Fixed #39 SQLalchemy instead of SQL: AllModelClasses.remove_all()
 * Fixed #40 SQLalchemy instead of SQL: EcdcImport.get_date_rep()
@@ -197,7 +197,7 @@
 * Fixed #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
 * Fixed #128 add fields from csv to RkiLandkreiseImport
 * Fixed #139 refactor RkiBundeslaenderServiceDownload to new method scheme introduced 07.02.2021
-* Fixed #140 move WhoImport to RKI in: rk_service_import.py
+* Fixed #140 move OwidImport to RKI in: rk_service_import.py
 * Fixed #125 implement RkiLandkreise
 * Fixed #126 implement RkiBundeslaenderImport
 

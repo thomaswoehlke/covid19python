@@ -1146,3 +1146,6 @@ Debug*/Debug*\ Libs
 /requirements/req_tests.py
 /dump.rdb
 /1.0.0
+/src/covid19/blueprints/owid/x.py
+/src/covid19/blueprints/owid/x2.py
+/src/covid19/blueprints/owid/x3.py
