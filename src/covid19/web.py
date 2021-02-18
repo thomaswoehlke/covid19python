@@ -1,8 +1,9 @@
-import sys
-import subprocess
-from covid19 import app
-from covid19.blueprints.application.application_workers import celery
-from covid19_worker import run_mq
+from database import app, run_run_with_debug, port
+
+import covid19.blueprints.application.application_views
+
+from covid19 import run_web
+
 
 #################################################################################################################
 #
@@ -10,4 +11,4 @@ from covid19_worker import run_mq
 #
 #################################################################################################################
 if __name__ == '__main__':
-    run_mq()
+    run_web()
