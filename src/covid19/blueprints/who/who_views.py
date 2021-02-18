@@ -36,6 +36,7 @@ admin.add_view(ModelView(WhoData, db.session, category="WHO"))
 # def task_who_update_star_schema_incremental(self):
 # def task_who_update_star_schema_initial(self):
 
+
 @celery.task(bind=True)
 def task_who_download_only(self):
     logger = get_task_logger(__name__)
