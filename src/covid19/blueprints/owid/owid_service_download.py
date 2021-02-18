@@ -1,5 +1,6 @@
 import os
 import wget
+import subprocess
 from flask import flash
 from database import app
 from covid19.blueprints.owid.owid_service_config import OwidServiceConfig
@@ -24,8 +25,13 @@ class OwidServiceDownload:
             os.makedirs(self.cfg.data_path, exist_ok=True)
             if os.path.isfile(self.cfg.cvsfile_path):
                 os.remove(self.cfg.cvsfile_path)
-            data_file = wget.download(self.cfg.url_src, self.cfg.cvsfile_path)
-            app.logger.info(" " + data_file + " ")
+            orig_workdir = os.getcwd()
+            os.chdir(self.cfg.data_path)
+            my_cmd = ['wget '+self.cfg.url_src]
+            subprocess.Popen(my_cmd, shell=True)
+            os.chdir(orig_workdir)
+            #data_file = wget.download(self.cfg.url_src, self.cfg.cvsfile_path)
+            #app.logger.info(" " + data_file + " ")
         except RuntimeError as runtimeError:
             app.logger.error("############################################################")
             app.logger.error(" " + runtimeError + " ")
