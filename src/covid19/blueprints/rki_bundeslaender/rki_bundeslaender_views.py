@@ -56,50 +56,80 @@ def url_rki_bundeslaender_imported(page=1):
 # TODO #146 add Tasks and URLs for starting Tasks to rki_views
 
 
+@celery.task(bind=True)
+def task_rki_bundeslaender_task_update_starschema_initial():
+    pass
+
+
+@celery.task(bind=True)
+def task_rki_bundeslaender_task_update_starschema_incremental():
+    pass
+
+
+@celery.task(bind=True)
+def task_rki_bundeslaender_task_download_only():
+    pass
+
+
+@celery.task(bind=True)
+def task_rki_bundeslaender_task_import_only():
+    pass
+
+
+@celery.task(bind=True)
+def task_rki_bundeslaender_task_update_facttable_incremental_only():
+    pass
+
+
+@celery.task(bind=True)
+def task_rki_bundeslaender_task_update_facttable_initial_only():
+    pass
+
+
 @app_rki_bundeslaender.route('/task/update/star_schema/initial')
 def url_rki_bundeslaender_task_update_starschema_initial():
     app.logger.info("url_rki_bundeslaender_task_update_starschema_initial [start]")
-    # TODO: implement url_rki_bundeslaender_task_update_starschema_initial in rki_views.py
+    task_rki_bundeslaender_task_update_starschema_initial.apply_async()
     return redirect(url_for('rki_bundeslaender.url_rki_tasks'))
 
 
 @app_rki_bundeslaender.route('/task/update/star_schema/incremental')
 def url_rki_bundeslaender_task_update_starschema_incremental():
     app.logger.info("url_rki_bundeslaender_task_update_starschema_incremental [start]")
-    # TODO: implement url_rki_bundeslaender_task_update_starschema_incremental in rki_views.py
+    task_rki_bundeslaender_task_update_starschema_incremental.apply_async()
     return redirect(url_for('rki_bundeslaender.url_rki_tasks'))
 
 
 @app_rki_bundeslaender.route('/task/download/only')
 def url_rki_bundeslaender_task_download_only():
     app.logger.info("url_rki_bundeslaender_task_download_only [start]")
-    # TODO: implement url_rki_bundeslaender_task_download_only in rki_views.py
+    task_rki_bundeslaender_task_download_only.apply_async()
     return redirect(url_for('rki_bundeslaender.url_rki_tasks'))
 
 
 @app_rki_bundeslaender.route('/task/import/only')
 def url_rki_bundeslaender_task_import_only():
     app.logger.info("url_rki_bundeslaender_task_import_only [start]")
-    # TODO: implement url_rki_bundeslaender_task_import_only in rki_views.py
+    task_rki_bundeslaender_task_import_only.apply_async()
     return redirect(url_for('rki_bundeslaender.url_rki_tasks'))
 
 
 @app_rki_bundeslaender.route('/task/update/dimension-tables/only')
 def url_rki_bundeslaender_task_update_dimensiontables_only():
     app.logger.info("url_rki_bundeslaender_task_update_dimensiontables_only [start]")
-    # TODO: implement in rki_views.py
+    task_rki_bundeslaender_task_import_only.apply_async()
     return redirect(url_for('rki_bundeslaender.url_rki_tasks'))
 
 
 @app_rki_bundeslaender.route('/task/update/fact-table/incremental/only')
 def url_rki_bundeslaender_task_update_facttable_incremental_only():
     app.logger.info("url_rki_bundeslaender_task_update_facttable_incremental_only [start]")
-    # TODO: implement in rki_views.py
+    task_rki_bundeslaender_task_update_facttable_incremental_only.apply_async()
     return redirect(url_for('rki_bundeslaender.url_rki_tasks'))
 
 
 @app_rki_bundeslaender.route('/task/update/fact-table/initial/only')
 def url_rki_bundeslaender_task_update_facttable_initial_only():
     app.logger.info("url_rki_bundeslaender_task_update_facttable_initial_only [start]")
-    # TODO: implement in rki_views.py
+    task_rki_bundeslaender_task_update_facttable_initial_only.apply_async()
     return redirect(url_for('rki_bundeslaender.url_rki_tasks'))
