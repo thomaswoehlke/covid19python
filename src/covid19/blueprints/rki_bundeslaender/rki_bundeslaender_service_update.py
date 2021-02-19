@@ -68,11 +68,9 @@ class RkiBundeslaenderServiceUpdate:
                     shape_area=float(result_item.SHAPE_Area),
                 )
                 db.session.add(o)
-                result_item.row_imported = True
-                db.session.add(result_item)
                 i += 1
                 if i % 500 == 0:
-                    app.logger.info(" update WHO short ... "+str(i)+" rows")
+                    app.logger.info(" update RkiBundeslaender short ... "+str(i)+" rows")
                     db.session.commit()
             db.session.commit()
         app.logger.info(" update RkiBundeslaender short :  "+str(i)+" total rows")

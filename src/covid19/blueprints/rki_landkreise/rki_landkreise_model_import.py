@@ -77,3 +77,15 @@ class RkiLandkreiseImport(db.Model):
     @classmethod
     def find_by_id(cls, other_id):
         return db.session.query(cls).filter(cls.id == other_id).one_or_none()
+
+    @classmethod
+    def find_by_last_update(cls, last_update_from_import: str):
+        return []
+
+    @classmethod
+    def get_last_updates(cls):
+        return []
+
+    @classmethod
+    def get_new_last_update_as_array(cls):
+        return []
