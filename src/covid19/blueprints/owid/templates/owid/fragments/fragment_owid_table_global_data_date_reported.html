@@ -1,54 +1,129 @@
     <table class="table table-hover table-striped table-dark">
         <thead class="table-secondary">
             <tr>
-                <!-- TODO: change URL to for_url() -->
-                <th scope="col">
-                    <a href="/owid/date_reported/all">
-                        date reported
-                    </a>
-                </th>
-                <th scope="col">
-                    <a href="/owid/date_reported/{{ owid_date_reported.id }}/deaths_new">
-                    deaths new
-                    </a>
-                </th>
-                <th scope="col">
-                    <a href="/owid/date_reported/{{ owid_date_reported.id }}/cases_new">
-                    cases new
-                    </a>
-                </th>
-                <th scope="col">
-                    <a href="/owid/date_reported/{{ owid_date_reported.id }}/deaths_cumulative">
-                    deaths cumulative
-                    </a>
-                </th>
-                <th scope="col">
-                    <a href="/owid/date_reported/{{ owid_date_reported.id }}/cases_cumulative">
-                    cases cumulative
-                    </a>
-                </th>
+                <th scope="col">iso_code</th>
+                <th scope="col">continent</th>
+                <th scope="col">location</th>
+                <th scope="col">date</th>
+                <th scope="col">total_cases</th>
+                <th scope="col">new_cases</th>
+                <th scope="col">new_cases_smoothed</th>
+                <th scope="col">total_deaths</th>
+                <th scope="col">new_deaths</th>
+                <th scope="col">new_deaths_smoothed</th>
+                <th scope="col">total_cases_per_million</th>
+                <th scope="col">new_cases_per_million</th>
+                <th scope="col">new_cases_smoothed_per_million</th>
+                <th scope="col">total_deaths_per_million</th>
+                <th scope="col">new_deaths_per_million</th>
+                <th scope="col">new_deaths_smoothed_per_million</th>
+                <th scope="col">reproduction_rate</th>
+                <th scope="col">icu_patients</th>
+                <th scope="col">icu_patients_per_million</th>
+                <th scope="col">hosp_patients</th>
+                <th scope="col">hosp_patients_per_million</th>
+                <th scope="col">weekly_icu_admissions</th>
+                <th scope="col">weekly_icu_admissions_per_million</th>
+                <th scope="col">weekly_hosp_admissions</th>
+                <th scope="col">weekly_hosp_admissions_per_million</th>
+                <th scope="col">new_tests</th>
+                <th scope="col">total_tests</th>
+                <th scope="col">total_tests_per_thousand</th>
+                <th scope="col">new_tests_per_thousand</th>
+                <th scope="col">new_tests_smoothed</th>
+                <th scope="col">new_tests_smoothed_per_thousand</th>
+                <th scope="col">positive_rate</th>
+                <th scope="col">tests_per_case</th>
+                <th scope="col">tests_units</th>
+                <th scope="col">total_vaccinations</th>
+                <th scope="col">people_vaccinated</th>
+                <th scope="col">people_fully_vaccinated</th>
+                <th scope="col">new_vaccinations</th>
+                <th scope="col">new_vaccinations_smoothed</th>
+                <th scope="col">total_vaccinations_per_hundred</th>
+                <th scope="col">people_vaccinated_per_hundred</th>
+                <th scope="col">people_fully_vaccinated_per_hundred</th>
+                <th scope="col">new_vaccinations_smoothed_per_million</th>
+                <th scope="col">stringency_index</th>
+                <th scope="col">population</th>
+                <th scope="col">population_density</th>
+                <th scope="col">median_age</th>
+                <th scope="col">aged_65_older</th>
+                <th scope="col">aged_70_older</th>
+                <th scope="col">gdp_per_capita</th>
+                <th scope="col">extreme_poverty</th>
+                <th scope="col">cardiovasc_death_rate</th>
+                <th scope="col">diabetes_prevalence</th>
+                <th scope="col">female_smokers</th>
+                <th scope="col">male_smokers</th>
+                <th scope="col">handwashing_facilities</th>
+                <th scope="col">hospital_beds_per_thousand</th>
+                <th scope="col">life_expectancy</th>
+                <th scope="col">human_development_index</th>
             </tr>
         </thead>
         <tbody>
         {% for owid_data in page_data.items %}
             <tr>
-                <th>
-                    <a href="/owid/date_reported/{{ owid_data.date_reported.id }}">
-                        {{ owid_data.date_reported }}
-                    </a>
-                </th>
-                <td>
-                    {{ owid_data.deaths_new }}
-                </td>
-                <td>
-                    {{ owid_data.cases_new }}
-                </td>
-                <td>
-                    {{ owid_data.deaths_cumulative }}
-                </td>
-                <td>
-                    {{ owid_data.cases_cumulative }}
-                </td>
+                <td>{{ owid_data.iso_code }}</td>
+                <td>{{ owid_data.continent }}</td>
+                <td>{{ owid_data.location }}</td>
+                <td>{{ owid_data.date_reported.date_reported }}</td>
+                <td>{{ owid_data.total_cases }}</td>
+                <td>{{ owid_data.new_cases }}</td>
+                <td>{{ owid_data.new_cases_smoothed }}</td>
+                <td>{{ owid_data.total_deaths }}</td>
+                <td>{{ owid_data.new_deaths }}</td>
+                <td>{{ owid_data.new_deaths_smoothed }}</td>
+                <td>{{ owid_data.total_cases_per_million }}</td>
+                <td>{{ owid_data.new_cases_per_million }}</td>
+                <td>{{ owid_data.new_cases_smoothed_per_million }}</td>
+                <td>{{ owid_data.total_deaths_per_million }}</td>
+                <td>{{ owid_data.new_deaths_per_million }}</td>
+                <td>{{ owid_data.new_deaths_smoothed_per_million }}</td>
+                <td>{{ owid_data.reproduction_rate }}</td>
+                <td>{{ owid_data.icu_patients }}</td>
+                <td>{{ owid_data.icu_patients_per_million }}</td>
+                <td>{{ owid_data.hosp_patients }}</td>
+                <td>{{ owid_data.hosp_patients_per_million }}</td>
+                <td>{{ owid_data.weekly_icu_admissions }}</td>
+                <td>{{ owid_data.weekly_icu_admissions_per_million }}</td>
+                <td>{{ owid_data.weekly_hosp_admissions }}</td>
+                <td>{{ owid_data.weekly_hosp_admissions_per_million }}</td>
+                <td>{{ owid_data.new_tests }}</td>
+                <td>{{ owid_data.total_tests }}</td>
+                <td>{{ owid_data.total_tests_per_thousand }}</td>
+                <td>{{ owid_data.new_tests_per_thousand }}</td>
+                <td>{{ owid_data.new_tests_smoothed }}</td>
+                <td>{{ owid_data.new_tests_smoothed_per_thousand }}</td>
+                <td>{{ owid_data.positive_rate }}</td>
+                <td>{{ owid_data.tests_per_case }}</td>
+                <td>{{ owid_data.tests_units }}</td>
+                <td>{{ owid_data.total_vaccinations }}</td>
+                <td>{{ owid_data.people_vaccinated }}</td>
+                <td>{{ owid_data.people_fully_vaccinated }}</td>
+                <td>{{ owid_data.new_vaccinations }}</td>
+                <td>{{ owid_data.new_vaccinations_smoothed }}</td>
+                <td>{{ owid_data.total_vaccinations_per_hundred }}</td>
+                <td>{{ owid_data.people_vaccinated_per_hundred }}</td>
+                <td>{{ owid_data.people_fully_vaccinated_per_hundred }}</td>
+                <td>{{ owid_data.new_vaccinations_smoothed_per_million }}</td>
+                <td>{{ owid_data.stringency_index }}</td>
+                <td>{{ owid_data.population }}</td>
+                <td>{{ owid_data.population_density }}</td>
+                <td>{{ owid_data.median_age }}</td>
+                <td>{{ owid_data.aged_65_older }}</td>
+                <td>{{ owid_data.aged_70_older }}</td>
+                <td>{{ owid_data.gdp_per_capita }}</td>
+                <td>{{ owid_data.extreme_poverty }}</td>
+                <td>{{ owid_data.cardiovasc_death_rate }}</td>
+                <td>{{ owid_data.diabetes_prevalence }}</td>
+                <td>{{ owid_data.female_smokers }}</td>
+                <td>{{ owid_data.male_smokers }}</td>
+                <td>{{ owid_data.handwashing_facilities }}</td>
+                <td>{{ owid_data.hospital_beds_per_thousand }}</td>
+                <td>{{ owid_data.life_expectancy }}</td>
+                <td>{{ owid_data.human_development_index }}</td>
             </tr>
         {% endfor %}
         </tbody>
