@@ -6,16 +6,16 @@ from covid19.blueprints.application.application_model_transient import Applicati
 
 import covid19.blueprints.admin.admin_views
 import covid19.blueprints.ecdc.ecdc_views
-import covid19.blueprints.rki_bundeslaender.rki_views
-import covid19.blueprints.rki_landkreise.rki_views
+import covid19.blueprints.rki_bundeslaender.rki_bundeslaender_views
+import covid19.blueprints.rki_landkreise.rki_landkreise_views
 import covid19.blueprints.rki_vaccination.rki_vaccination_views
 import covid19.blueprints.who.who_views
 
 
 from covid19.blueprints.admin.admin_views import app_admin
 from covid19.blueprints.ecdc.ecdc_views import app_ecdc
-from covid19.blueprints.rki_bundeslaender.rki_views import app_rki_bundeslaender
-from covid19.blueprints.rki_landkreise.rki_views import app_rki_landkreise
+from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_views import app_rki_bundeslaender
+from covid19.blueprints.rki_landkreise.rki_landkreise_views import app_rki_landkreise
 from covid19.blueprints.rki_vaccination.rki_vaccination_views import app_rki_vaccination
 from covid19.blueprints.who.who_views import app_who
 from covid19.blueprints.owid.owid_views import app_owid
