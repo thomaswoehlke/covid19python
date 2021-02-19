@@ -7,7 +7,6 @@ class RkiLandkreiseImport(db.Model):
     __tablename__ = 'rki_landkreise_import'
 
     id = db.Column(db.Integer, primary_key=True)
-
     OBJECTID = db.Column(db.String(255), nullable=False)
     ADE = db.Column(db.String(255), nullable=False)
     GF = db.Column(db.String(255), nullable=False)

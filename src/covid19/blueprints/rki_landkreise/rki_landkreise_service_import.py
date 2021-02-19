@@ -30,6 +30,7 @@ class RkiLandkreiseServiceImport:
                 file_reader = csv.DictReader(csv_file, delimiter=',', quotechar='"')
                 k = 0
                 for row in file_reader:
+                    k += 1
                     o = RkiLandkreiseImport(
                         OBJECTID=row['OBJECTID'],
                         ADE=row['ADE'],
@@ -83,7 +84,6 @@ class RkiLandkreiseServiceImport:
                     if (k % 2000) == 0:
                         db.session.commit()
                         app.logger.info(" import import_file  ... " + str(k) + " rows")
-                    k = k + 1
                 db.session.commit()
                 app.logger.info(" import import_file  ... " + str(k) + " rows total")
         except KeyError as error:

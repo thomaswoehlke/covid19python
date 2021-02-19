@@ -27,9 +27,7 @@ class RkiLandkreiseService:
 
     def task_database_drop_create(self):
         self.service_import.import_file()
-        self.service_update.update_dimension_tables_only()
-        self.service_update.update_fact_table_incremental_only()
-        # TODO: #133 implement RkiBundeslaenderService.task_database_drop_create
+        self.service_update.update_star_schema_initial()
         return self
 
     def run_download_only(self):
@@ -42,29 +40,24 @@ class RkiLandkreiseService:
 
     def run_update_dimension_tables_only(self):
         self.service_update.update_dimension_tables_only()
-        # TODO: #134 implement RkiBundeslaenderService.run_update_dimension_tables_only
         return self
 
     def run_update_fact_table_incremental_only(self):
         self.service_update.update_fact_table_incremental_only()
-        # TODO: #135 implement RkiBundeslaenderService.run_update_fact_table_incremental_only
         return self
 
     def run_update_fact_table_initial_only(self):
         self.service_update.update_fact_table_initial_only()
-        # TODO: #136 implement RkiBundeslaenderService.run_update_fact_table_initial_only
         return self
 
     def run_update_star_schema_incremental(self):
         self.service_import.import_file()
         self.service_update.update_star_schema_incremental()
-        # TODO: #137 implement RkiBundeslaenderService.run_update_star_schema_incremental
         return self
 
     def run_update_star_schema_initial(self):
         self.service_import.import_file()
         self.service_update.update_star_schema_initial()
-        # TODO: #138 implement RkiBundeslaenderService.run_update_star_schema_initial
         return self
 
     def download_all_files(self):

@@ -3,7 +3,7 @@ import wget
 from flask import flash
 
 from database import app
-from covid19.blueprints.rki_landkreise.rki_service_config import RkiLandkreiseServiceConfig
+from covid19.blueprints.rki_landkreise.rki_landkreise_service_config import RkiLandkreiseServiceConfig
 
 
 class RkiLandkreiseServiceDownload:
@@ -22,7 +22,6 @@ class RkiLandkreiseServiceDownload:
         app.logger.info(" download FILE: "+self.cfg.cvsfile_name+" from "+self.cfg.url_src)
         app.logger.info("------------------------------------------------------------")
         try:
-            os.makedirs(self.cfg.data_path, exist_ok=True)
             if os.path.isfile(self.cfg.cvsfile_path):
                 os.remove(self.cfg.cvsfile_path)
             data_file = wget.download(self.cfg.url_src, self.cfg.cvsfile_path)
