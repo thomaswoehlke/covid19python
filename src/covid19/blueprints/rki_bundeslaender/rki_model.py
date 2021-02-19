@@ -1,38 +1,29 @@
-from sqlalchemy import and_
-from datetime import date
-from sqlalchemy.orm import joinedload
-
 from database import db, ITEMS_PER_PAGE
 
-# OBJECTID_1,LAN_ew_AGS,LAN_ew_GEN,LAN_ew_BEZ,LAN_ew_EWZ,OBJECTID,Fallzahl,Aktualisierung,AGS_TXT,GlobalID,faelle_100000_EW,Death,cases7_bl_per_100k,cases7_bl,death7_bl,cases7_bl_per_100k_txt,AdmUnitId,SHAPE_Length,SHAPE_Area
 
-
-# TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
-# TODO: #124 rename RkiBundeslaender to RkiBundeslaender
 class RkiBundeslaender(db.Model):
     __tablename__ = 'rki_bundeslaender'
 
     id = db.Column(db.Integer, primary_key=True)
-
-    OBJECTID_1 = db.Column(db.String(255), nullable=False)
-    LAN_ew_AGS = db.Column(db.String(255), nullable=False)
-    LAN_ew_GEN = db.Column(db.String(255), nullable=False)
-    LAN_ew_BEZ = db.Column(db.String(255), nullable=False)
-    LAN_ew_EWZ = db.Column(db.String(255), nullable=False)
-    OBJECTID = db.Column(db.String(255), nullable=False)
-    Fallzahl = db.Column(db.String(255), nullable=False)
-    Aktualisierung = db.Column(db.String(255), nullable=False)
-    AGS_TXT = db.Column(db.String(255), nullable=False)
-    GlobalID = db.Column(db.String(255), nullable=False)
-    faelle_100000_EW = db.Column(db.String(255), nullable=False)
-    Death = db.Column(db.String(255), nullable=False)
-    cases7_bl_per_100k = db.Column(db.String(255), nullable=False)
-    cases7_bl = db.Column(db.String(255), nullable=False)
-    death7_bl = db.Column(db.String(255), nullable=False)
+    object_id_1 = db.Column(db.Integer, nullable=False)
+    lan_ew_ags = db.Column(db.Integer, nullable=False)
+    lan_ew_gen = db.Column(db.String(255), nullable=False)
+    lan_ew_bez = db.Column(db.String(255), nullable=False)
+    lan_ew_ewz = db.Column(db.Integer, nullable=False)
+    object_id = db.Column(db.Integer, nullable=False)
+    fallzahl = db.Column(db.Integer, nullable=False)
+    aktualisierung = db.Column(db.String(255), nullable=False)
+    ags_txt = db.Column(db.Integer, nullable=False)
+    global_id = db.Column(db.String(255), nullable=False)
+    faelle_100000_ew = db.Column(db.Float, nullable=False)
+    death = db.Column(db.Integer, nullable=False)
+    cases7_bl_per_100k = db.Column(db.Float, nullable=False)
+    cases7_bl = db.Column(db.Integer, nullable=False)
+    death7_bl = db.Column(db.Integer, nullable=False)
     cases7_bl_per_100k_txt = db.Column(db.String(255), nullable=False)
-    AdmUnitId = db.Column(db.String(255), nullable=False)
-    SHAPE_Length = db.Column(db.String(255), nullable=False)
-    SHAPE_Area = db.Column(db.String(255), nullable=False)
+    adm_unit_id = db.Column(db.Integer, nullable=False)
+    shape_length = db.Column(db.Float, nullable=False)
+    shape_area = db.Column(db.Float, nullable=False)
 
     @classmethod
     def remove_all(cls):

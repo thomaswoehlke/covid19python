@@ -7,15 +7,15 @@ from covid19.blueprints.who.who_service_download import WhoServiceConfig
 class WhoServiceUpdate:
     def __init__(self, database, config: WhoServiceConfig):
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" WHO Service Update [init]")
+        app.logger.debug(" WhoServiceUpdate [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = config
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" WHO Service Update [ready]")
+        app.logger.debug(" WhoServiceUpdate [ready]")
 
-    def __update_who_date_reported(self):
-        app.logger.info(" __update_who_date_reported [begin]")
+    def __update_date_reported(self):
+        app.logger.info(" WhoServiceUpdate.__update_date_reported [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
         for i_date_reported, in WhoImport.get_dates_reported():
@@ -31,12 +31,12 @@ class WhoServiceUpdate:
                 output += " NOT added "+str(c.id)
             app.logger.info(output)
         app.logger.info("")
-        app.logger.info(" __update_who_date_reported [done]")
+        app.logger.info(" WhoServiceUpdate.__update_date_reported [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def __update_who_region(self):
-        app.logger.info(" __update_who_region [begin]")
+    def __update_region(self):
+        app.logger.info(" WhoServiceUpdate.__update_who_region [begin]")
         app.logger.info("------------------------------------------------------------")
         i = 0
         for i_who_region, in WhoImport.get_regions():
@@ -52,12 +52,12 @@ class WhoServiceUpdate:
                 output += " NOT added ( " + str(c.id) + " ) "
             app.logger.info(output)
         app.logger.info("")
-        app.logger.info(" __update_who_region [done]")
+        app.logger.info(" WhoServiceUpdate.__update_who_region [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def __update_who_country(self):
-        app.logger.info(" __update_who_country [begin]")
+    def __update_country(self):
+        app.logger.info(" WhoServiceUpdate.__update_who_country [begin]")
         app.logger.info("------------------------------------------------------------")
         result = WhoImport.countries()
         i = 0
@@ -85,12 +85,12 @@ class WhoServiceUpdate:
             app.logger.info(output)
         db.session.commit()
         app.logger.info("")
-        app.logger.info(" __update_who_country [done]")
+        app.logger.info(" WhoServiceUpdate.__update_who_country [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def __update_fact_table_incremental(self):
-        app.logger.info(" __update_fact_tables_incremental [begin]")
+    def __update_data_incremental(self):
+        app.logger.info(" WhoServiceUpdate.__update_fact_tables_incremental [begin]")
         app.logger.info("------------------------------------------------------------")
         new_dates_reported_from_import = WhoImport.get_new_dates_as_array()
         i = 0
@@ -123,12 +123,12 @@ class WhoServiceUpdate:
             db.session.commit()
             app.logger.info(" update WHO incremental ... " + str(i) + " rows [" + str(my_date) + "] (" + str(k) + ")")
         app.logger.info(" update WHO incremental :  "+str(i)+" rows total")
-        app.logger.info(" __update_fact_tables_incremental [done]")
+        app.logger.info(" WhoServiceUpdate.__update_fact_tables_incremental [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def __update_fact_table_initial(self):
-        app.logger.info(" __update_fact_table_initial [begin]")
+    def __update_data_initial(self):
+        app.logger.info(" WhoServiceUpdate.__update_fact_table_initial [begin]")
         app.logger.info("------------------------------------------------------------")
         WhoData.remove_all()
         new_dates_reported_from_import = WhoImport.get_new_dates_as_array()
@@ -158,14 +158,14 @@ class WhoServiceUpdate:
                     db.session.commit()
             db.session.commit()
         app.logger.info(" update WHO initial :  "+str(i)+" total rows")
-        app.logger.info(" __update_fact_table_initial [done]")
+        app.logger.info(" WhoServiceUpdate.__update_fact_table_initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
     def __update_dimension_tables(self):
-        self.__update_who_date_reported()
-        self.__update_who_region()
-        self.__update_who_country()
+        self.__update_date_reported()
+        self.__update_region()
+        self.__update_country()
         return self
 
     def update_dimension_tables_only(self):
@@ -179,7 +179,7 @@ class WhoServiceUpdate:
     def update_fact_table_incremental_only(self):
         app.logger.info(" update_fact_tables_incremental_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__update_fact_table_incremental()
+        self.__update_data_incremental()
         app.logger.info(" update_fact_tables_incremental_only [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -187,7 +187,7 @@ class WhoServiceUpdate:
     def update_fact_table_initial_only(self):
         app.logger.info(" update_fact_tables_initial_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__update_fact_table_initial()
+        self.__update_data_initial()
         app.logger.info(" update_fact_tables_initial_only [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -196,7 +196,7 @@ class WhoServiceUpdate:
         app.logger.info(" update_star_schema_incremental [begin]")
         app.logger.info("------------------------------------------------------------")
         self.__update_dimension_tables()
-        self.__update_fact_table_incremental()
+        self.__update_data_incremental()
         app.logger.info(" update_star_schema_incremental [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -205,7 +205,7 @@ class WhoServiceUpdate:
         app.logger.info(" update_star_schema_initial [begin]")
         app.logger.info("------------------------------------------------------------")
         self.__update_dimension_tables()
-        self.__update_fact_table_initial()
+        self.__update_data_initial()
         app.logger.info(" update_star_schema_initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self

@@ -1,15 +1,11 @@
 from database import db, ITEMS_PER_PAGE
 
-# OBJECTID_1,LAN_ew_AGS,LAN_ew_GEN,LAN_ew_BEZ,LAN_ew_EWZ,OBJECTID,Fallzahl,Aktualisierung,AGS_TXT,GlobalID,faelle_100000_EW,Death,cases7_bl_per_100k,cases7_bl,death7_bl,cases7_bl_per_100k_txt,AdmUnitId,SHAPE_Length,SHAPE_Area
 
-
-# TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
 # TODO: #126 implement RkiBundeslaenderImport
 class RkiBundeslaenderImport(db.Model):
     __tablename__ = 'rki_bundeslsaender_import'
 
     id = db.Column(db.Integer, primary_key=True)
-
     OBJECTID_1 = db.Column(db.String(255), nullable=False)
     LAN_ew_AGS = db.Column(db.String(255), nullable=False)
     LAN_ew_GEN = db.Column(db.String(255), nullable=False)
@@ -38,7 +34,7 @@ class RkiBundeslaenderImport(db.Model):
         return None
 
     @classmethod
-    def get_all_as_page(cls, page):
+    def get_all_as_page(cls, page: int):
         return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
@@ -46,10 +42,17 @@ class RkiBundeslaenderImport(db.Model):
         return db.session.query(cls).all()
 
     @classmethod
-    def get_by_id(cls, other_id):
+    def get_by_id(cls, other_id: int):
         return db.session.query(cls).filter(cls.id == other_id).one()
 
     @classmethod
-    def get_dates_reported(self):
-        # TODO: #127 implement RkiBundeslaenderImport.get_dates_reported
-        return self
+    def get_aktualisierungen_as_array(cls):
+        return []
+
+    @classmethod
+    def find_by_aktualisierung(cls, aktualisierung_from_import: str):
+        return []
+
+    @classmethod
+    def get_new_aktualisierungen_as_array(cls):
+        return []

@@ -22,11 +22,10 @@ class RkiBundeslaenderServiceDownload:
         app.logger.info(" download FILE: "+self.cfg.cvsfile_path+" from "+self.cfg.url_src)
         app.logger.info("------------------------------------------------------------")
         try:
-            os.makedirs(self.cfg.data_path, exist_ok=True)
             if os.path.isfile(self.cfg.cvsfile_path):
                 os.remove(self.cfg.cvsfile_path)
             data_file = wget.download(self.cfg.url_src, self.cfg.cvsfile_path)
-            app.logger.info(" " + data_file + " ")
+            app.logger.info("download success: " + data_file + " ")
         except RuntimeError as runtimeError:
             app.logger.error("############################################################")
             app.logger.error(" " + runtimeError + " ")
