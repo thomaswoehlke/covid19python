@@ -1,7 +1,7 @@
 from datetime import date
 import os
 
-from covid19.blueprints.rki_landkreise.rki_model_import import RkiLandkreiseImport
+from covid19.blueprints.rki_landkreise.rki_landkreise_model_import import RkiLandkreiseImport
 
 
 class RkiLandkreiseServiceConfig:

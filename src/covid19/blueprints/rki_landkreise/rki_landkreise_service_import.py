@@ -4,8 +4,8 @@ import psycopg2
 
 from database import db, app
 
-from covid19.blueprints.rki_landkreise.rki_model_import import RkiLandkreiseImport
-from covid19.blueprints.rki_landkreise.rki_service_config import RkiLandkreiseServiceConfig
+from covid19.blueprints.rki_landkreise.rki_landkreise_model_import import RkiLandkreiseImport
+from covid19.blueprints.rki_landkreise.rki_landkreise_service_config import RkiLandkreiseServiceConfig
 
 
 class RkiLandkreiseServiceImport:

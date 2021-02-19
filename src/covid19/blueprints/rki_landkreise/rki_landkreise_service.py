@@ -1,10 +1,10 @@
 from flask import flash
 
 from database import app
-from covid19.blueprints.rki_landkreise.rki_service_config import RkiLandkreiseServiceConfig
-from covid19.blueprints.rki_landkreise.rki_service_download import RkiLandkreiseServiceDownload
-from covid19.blueprints.rki_landkreise.rki_service_import import RkiLandkreiseServiceImport
-from covid19.blueprints.rki_landkreise.rki_service_update import RkiLandkreiseServiceUpdate
+from covid19.blueprints.rki_landkreise.rki_landkreise_service_config import RkiLandkreiseServiceConfig
+from covid19.blueprints.rki_landkreise.rki_landkreise_service_download import RkiLandkreiseServiceDownload
+from covid19.blueprints.rki_landkreise.rki_landkreise_service_import import RkiLandkreiseServiceImport
+from covid19.blueprints.rki_landkreise.rki_landkreise_service_update import RkiLandkreiseServiceUpdate
 
 
 class RkiLandkreiseService:

@@ -5,8 +5,6 @@ from sqlalchemy.orm import joinedload
 from database import db, ITEMS_PER_PAGE
 
 
-# TODO: #123 split RkiBundeslaenderService into two Services, one for bundeslaender and one for landkreise
-# TODO: #125 implement RkiLandkreise
 class RkiLandkreise(db.Model):
     __tablename__ = 'rki_landkreise'
 
