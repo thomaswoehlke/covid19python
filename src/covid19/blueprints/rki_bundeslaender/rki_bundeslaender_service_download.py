@@ -3,7 +3,7 @@ import wget
 from flask import flash
 
 from database import app
-from covid19.blueprints.rki_bundeslaender.rki_service_config import RkiBundeslaenderServiceConfig
+from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_service_config import RkiBundeslaenderServiceConfig
 
 
 class RkiBundeslaenderServiceDownload:

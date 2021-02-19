@@ -1,6 +1,6 @@
 from datetime import date
 import os
-from covid19.blueprints.rki_bundeslaender.rki_model_import import RkiBundeslaenderImport
+from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_model_import import RkiBundeslaenderImport
 
 
 class RkiBundeslaenderServiceConfig:

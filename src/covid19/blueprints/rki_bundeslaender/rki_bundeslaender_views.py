@@ -3,8 +3,8 @@ from sqlalchemy.exc import OperationalError
 from flask_admin.contrib.sqla import ModelView
 
 from database import app, admin, db
-from covid19.blueprints.rki_bundeslaender.rki_model import RkiBundeslaender
-from covid19.blueprints.rki_bundeslaender.rki_model_import import RkiBundeslaenderImport
+from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_model import RkiBundeslaender
+from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_model_import import RkiBundeslaenderImport
 from covid19.blueprints.application.application_model_transient import ApplicationPage
 
 drop_and_create_data_again = True
