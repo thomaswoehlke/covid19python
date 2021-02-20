@@ -463,7 +463,7 @@ for kw in keywords_list:
 packages = find_packages()
 
 setup(
-    name='thomaswoehlke-covid19python',
+    name='covid19python-thomaswoehlke',
     version=version,
     url='ttps://github.com/thomaswoehlke/covid19python.git',
     license='GNU General Public License v3 (GPLv3)',
