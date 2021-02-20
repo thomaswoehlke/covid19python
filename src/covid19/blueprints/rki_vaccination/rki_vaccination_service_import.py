@@ -4,11 +4,11 @@ import psycopg2
 
 from database import db, app
 from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import RkiVaccinationImport
-from covid19.blueprints.rki_vaccination.rki_vaccination_service_config import RkiVaccinationServiceConfig
+from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
 
 
 class RkiVaccinationServiceImport:
-    def __init__(self, database, config: RkiVaccinationServiceConfig):
+    def __init__(self, database, config: ApplicationServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" Vaccination Service Import [init]")
         app.logger.debug("------------------------------------------------------------")

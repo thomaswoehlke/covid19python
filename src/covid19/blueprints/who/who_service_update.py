@@ -1,11 +1,11 @@
 from database import db, app
 from covid19.blueprints.who.who_model import WhoRegion, WhoDateReported, WhoCountry, WhoData
 from covid19.blueprints.who.who_model_import import WhoImport
-from covid19.blueprints.who.who_service_download import WhoServiceConfig
+from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
 
 
 class WhoServiceUpdate:
-    def __init__(self, database, config: WhoServiceConfig):
+    def __init__(self, database, config: ApplicationServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" WhoServiceUpdate [init]")
         app.logger.debug("------------------------------------------------------------")

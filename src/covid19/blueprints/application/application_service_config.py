@@ -9,7 +9,7 @@ from covid19.blueprints.rki_landkreise.rki_landkreise_model_import import RkiLan
 
 
 class ApplicationServiceConfig:
-    def __init__(self, slug, category, sub_category, tablename, cvsfile_name, url_src):
+    def __init__(self, slug: str, category: str, sub_category: str, tablename: str, cvsfile_name: str, url_src: str):
         self.limit_nr = 20
         self.data_path = ".." + os.sep + ".." + os.sep + "data"
         self.slug = slug,
@@ -28,7 +28,7 @@ class ApplicationServiceConfig:
         return ApplicationServiceConfig(
             slug='who',
             category='WHO',
-            sub_castegory='Cases and Deaths',
+            sub_category='Cases and Deaths',
             tablename=WhoImport.__tablename__,
             cvsfile_name="WHO-COVID-19-global-data.csv",
             url_src="https://covid19.who.int/WHO-COVID-19-global-data.csv",

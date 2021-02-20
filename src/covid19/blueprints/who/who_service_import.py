@@ -3,11 +3,11 @@ import csv
 import psycopg2
 from database import db, app
 from covid19.blueprints.who.who_model_import import WhoImport
-from covid19.blueprints.who.who_service_download import WhoServiceConfig
+from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
 
 
 class WhoServiceImport:
-    def __init__(self, database, config: WhoServiceConfig):
+    def __init__(self, database, config: ApplicationServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" WHO Service Import [init]")
         app.logger.debug("------------------------------------------------------------")

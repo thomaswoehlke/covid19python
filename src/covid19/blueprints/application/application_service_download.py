@@ -9,12 +9,12 @@ from covid19.blueprints.application.application_service_config import Applicatio
 class ApplicationServiceDownload:
     def __init__(self, database, config: ApplicationServiceConfig):
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" "+self.cfg.slug+" Download Service [init]")
+        app.logger.debug(" ApplicationServiceDownload [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.cfg = config
         app.logger.debug("------------------------------------------------------------")
-        app.logger.debug(" "+self.cfg.slug+" Download Service [ready]")
+        app.logger.debug(" ApplicationServiceDownload [ready]")
 
     def __log_error(self, error_msg: str):
         flash_msg = self.cfg.msg_error + error_msg
@@ -24,7 +24,7 @@ class ApplicationServiceDownload:
         app.logger.error(self.cfg.slug+"############################################################")
         return self
 
-    def __log_success(self, data_file):
+    def __log_success(self, data_file: str):
         app.logger.info(self.cfg.slug+" download success: " + data_file + " ")
         app.logger.info(self.cfg.slug+self.cfg.msg_ok)
         flash(self.cfg.msg_ok)
