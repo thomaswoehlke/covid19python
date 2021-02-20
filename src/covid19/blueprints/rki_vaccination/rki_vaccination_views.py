@@ -19,11 +19,51 @@ admin.add_view(ModelView(RkiVaccinationDateReported, db.session, category="RKI V
 admin.add_view(ModelView(RkiVaccinationData, db.session, category="RKI Vaccination"))
 
 
-##################################################################################################################
-#
-# Vaccination
-#
-##################################################################################################################
+# ---------------------------------------------------------------------------------------------------------------
+#  Url Routes Frontend
+# ---------------------------------------------------------------------------------------------------------------
+
+@app_rki_vaccination.route('/info')
+def url_vaccination_info():
+    page_info = ApplicationPage('Vaccination', "Info")
+    return render_template(
+        'rki_vaccination/rki_vaccination_info.html',
+        page_info=page_info)
+
+
+@app_rki_vaccination.route('/tasks')
+def url_vaccination_tasks():
+    page_info = ApplicationPage('Vaccination', "Tasks")
+    return render_template(
+        'rki_vaccination/rki_vaccination_tasks.html',
+        page_info=page_info)
+
+
+@app_rki_vaccination.route('/imported/page/<int:page>')
+@app_rki_vaccination.route('/imported')
+def url_vaccination_imported(page=1):
+    page_info = ApplicationPage('Vaccination', "Data: Germany Timeline imported")
+    page_data = RkiVaccinationImport.get_all_as_page(page)
+    return render_template(
+        'rki_vaccination/rki_vaccination_imported.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app_rki_vaccination.route('/data/page/<int:page>')
+@app_rki_vaccination.route('/data')
+def url_vaccination_data(page=1):
+    page_info = ApplicationPage('Vaccination', "Data: Germany Timeline")
+    page_data = RkiVaccinationData.get_all_as_page(page)
+    return render_template(
+        'rki_vaccination/rki_vaccination_data.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
+# ----------------------------------------------------------------------------------------------------------------
+#  Celery TASKS
+# ----------------------------------------------------------------------------------------------------------------
 
 
 @celery.task(bind=True)
@@ -117,42 +157,9 @@ def task_vaccination_task_update_starschema_initial(self):
     return result
 
 
-@app_rki_vaccination.route('/info')
-def url_vaccination_info():
-    page_info = ApplicationPage('Vaccination', "Info")
-    return render_template(
-        'rki_vaccination/rki_vaccination_info.html',
-        page_info=page_info)
-
-
-@app_rki_vaccination.route('/tasks')
-def url_vaccination_tasks():
-    page_info = ApplicationPage('Vaccination', "Tasks")
-    return render_template(
-        'rki_vaccination/rki_vaccination_tasks.html',
-        page_info=page_info)
-
-
-@app_rki_vaccination.route('/imported/page/<int:page>')
-@app_rki_vaccination.route('/imported')
-def url_vaccination_imported(page=1):
-    page_info = ApplicationPage('Vaccination', "Data: Germany Timeline imported")
-    page_data = RkiVaccinationImport.get_all_as_page(page)
-    return render_template(
-        'rki_vaccination/rki_vaccination_imported.html',
-        page_data=page_data,
-        page_info=page_info)
-
-
-@app_rki_vaccination.route('/data/page/<int:page>')
-@app_rki_vaccination.route('/data')
-def url_vaccination_data(page=1):
-    page_info = ApplicationPage('Vaccination', "Data: Germany Timeline")
-    page_data = RkiVaccinationData.get_all_as_page(page)
-    return render_template(
-        'rki_vaccination/rki_vaccination_data.html',
-        page_data=page_data,
-        page_info=page_info)
+# ----------------------------------------------------------------------------------------------------------------
+# URL Routes for Celery TASKS
+# ----------------------------------------------------------------------------------------------------------------
 
 
 @app_rki_vaccination.route('/task/download/only')

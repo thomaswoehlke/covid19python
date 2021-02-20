@@ -20,11 +20,11 @@ admin.add_view(ModelView(RkiBundeslaenderImport, db.session, category="RKI Cases
 admin.add_view(ModelView(RkiBundeslaender, db.session, category="RKI Cases and Deaths"))
 
 
-##################################################################################################################
-#
-# RKI
-#
-##################################################################################################################
+# ---------------------------------------------------------------------------------------------------------------
+#  Url Routes Frontend
+# ---------------------------------------------------------------------------------------------------------------
+
+
 @app_rki_bundeslaender.route('/info')
 def url_rki_info():
     page_info = ApplicationPage('RKI', "Info")
@@ -56,7 +56,9 @@ def url_rki_bundeslaender_imported(page=1):
         page_info=page_info)
 
 
-# TODO #146 add Tasks and URLs for starting Tasks to rki_views
+# ------------------------------------------------------------------------
+#  Celery TASKS
+# ------------------------------------------------------------------------
 
 
 @celery.task(bind=True)
@@ -102,6 +104,10 @@ def task_rki_bundeslaender_task_update_facttable_initial_only(self):
     self.update_state(state=states.SUCCESS)
     result = "OK (task_rki_bundeslaender_task_update_facttable_initial_only)"
     return result
+
+# ------------------------------------------------------------------------
+#  URL Routes for Celery TASKS
+# ------------------------------------------------------------------------
 
 
 @app_rki_bundeslaender.route('/task/update/star_schema/initial')

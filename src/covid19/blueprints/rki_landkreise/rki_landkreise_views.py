@@ -25,11 +25,10 @@ admin.add_view(ModelView(RkiLandkreiseImport, db.session, category="RKI Cases an
 admin.add_view(ModelView(RkiLandkreise, db.session, category="RKI Cases and Deaths"))
 
 
-##################################################################################################################
-#
-# RKI
-#
-##################################################################################################################
+# ---------------------------------------------------------------------------------------------------------------
+#  Url Routes Frontend
+# ---------------------------------------------------------------------------------------------------------------
+
 @app_rki_landkreise.route('/info')
 def url_rki_landkreise_info():
     page_info = ApplicationPage('RKI', "Info")

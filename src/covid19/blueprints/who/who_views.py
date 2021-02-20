@@ -21,184 +21,10 @@ admin.add_view(ModelView(WhoRegion, db.session, category="WHO"))
 admin.add_view(ModelView(WhoCountry, db.session, category="WHO"))
 admin.add_view(ModelView(WhoData, db.session, category="WHO"))
 
-##################################################################################################################
-#
-# WHO
-#
-##################################################################################################################
 
-# def task_who_download_only(self):
-# def task_who_import_only(self):
-# def task_who_update_dimension_tables_only(self):
-# def task_who_update_fact_table_incremental_only(self):
-# def task_who_update_fact_table_initial_only(self):
-# def task_who_update_fact_table_initial_only(self):
-# def task_who_update_star_schema_incremental(self):
-# def task_who_update_star_schema_initial(self):
-
-
-@celery.task(bind=True)
-def task_who_download_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_who_download_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_download_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_who_download_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_who_import_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_who_import_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_import_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_who_import_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_who_update_dimension_tables_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_who_update_dimension_tables_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_update_dimension_tables_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_who_update_dimension_tables_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_who_update_fact_table_incremental_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_who_update_fact_table_incremental_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_update_fact_table_incremental_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_who_update_dimension_tables_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_who_update_fact_table_initial_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_who_update_fact_table_initial_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_update_fact_table_initial_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_who_update_fact_table_initial_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_who_update_star_schema_incremental(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_who_update_star_schema_incremental [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_update_star_schema_incremental()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_who_update_star_schema_incremental)"
-    return result
-
-
-@celery.task(bind=True)
-def task_who_update_star_schema_initial(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_who_update_star_schema_initial [OK] ")
-    logger.info("------------------------------------------------------------")
-    who_service.run_update_star_schema_initial()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_who_update_star_schema_incremental)"
-    return result
-
-
-@app_who.route('/task/download/only')
-def url_task_who_download_only():
-    app.logger.info("url_who_task_download_only [start]")
-    who_service.run_download_only()
-    flash("who_service.run_download_only ok")
-    app.logger.info("url_who_task_download_only [done]")
-    return redirect(url_for('who.url_who_tasks'))
-
-
-@app_who.route('/task/import/only')
-def url_task_who_import_only():
-    app.logger.info("url_who_update_run [start]")
-    task_who_import_only.apply_async()
-    flash("who_service.run_update started")
-    flash(message="long running background task started", category="warning")
-    app.logger.info("url_who_update_run [done]")
-    return redirect(url_for('who.url_who_tasks'))
-
-
-@app_who.route('/task/update/dimension-tables/only')
-def url_task_who_update_dimension_tables_only():
-    app.logger.info("url_task_who_update_dimension_tables_only [start]")
-    task_who_update_dimension_tables_only.apply_async()
-    flash("task_who_update_dimension_tables_only started")
-    flash(message="long running background task started", category="warning")
-    app.logger.info("url_task_who_update_dimension_tables_only [done]")
-    return redirect(url_for('who.url_who_tasks'))
-
-
-@app_who.route('/task/update/fact-table/incremental/only')
-def url_task_who_update_fact_table_incremental_only():
-    app.logger.info("url_task_who_update_fact_table_incremental_only [start]")
-    task_who_update_fact_table_incremental_only.apply_async()
-    flash("task_who_update_fact_table_incremental_only started")
-    flash(message="long running background task started", category="warning")
-    app.logger.info("url_task_who_update_fact_table_incremental_only [done]")
-    return redirect(url_for('who.url_who_tasks'))
-
-
-@app_who.route('/task/update/fact-table/initial/only')
-def url_task_who_update_fact_table_initial_only():
-    app.logger.info("url_task_who_update_fact_table_initial_only [start]")
-    task_who_update_fact_table_initial_only.apply_async()
-    flash("task_who_update_fact_table_initial_only started")
-    flash(message="long running background task started", category="warning")
-    app.logger.info("url_who_task_update_full [done]")
-    return redirect(url_for('who.url_who_tasks'))
-
-
-@app_who.route('/task/update/star_schema/initial')
-def url_task_who_update_star_schema_initial():
-    app.logger.info("url_who_task_update_full [start]")
-    who_service.run_download_only()
-    flash("who_service.service_download.download_file ok")
-    task_who_update_star_schema_initial.apply_async()
-    flash("task_who_update_star_schema_initial started")
-    flash(message="long running background task started", category="warning")
-    app.logger.info("url_who_task_update_full [done]")
-    return redirect(url_for('who.url_who_tasks'))
-
-
-@app_who.route('/task/update/star_schema/incremental')
-def url_task_who_update_star_schema_incremental():
-    app.logger.info("url_task_who_update_star_schema_incremental [start]")
-    who_service.run_download_only()
-    flash("who_service.service_download.download_file ok")
-    task_who_update_star_schema_incremental.apply_async()
-    flash("task_who_run_update_full started")
-    flash(message="long running background task started", category="warning")
-    app.logger.info("url_task_who_update_star_schema_incremental [done]")
-    return redirect(url_for('who.url_who_tasks'))
+# ---------------------------------------------------------------------------------------------------------------
+#  Url Routes Frontend
+# ---------------------------------------------------------------------------------------------------------------
 
 
 @app_who.route('/info')
@@ -492,3 +318,175 @@ def url_who_germany(page: int = 1):
         who_country=who_country_germany,
         page_data=page_data,
         page_info=page_info)
+
+
+# ----------------------------------------------------------------------------------------------------------------
+#  Celery TASKS
+# ----------------------------------------------------------------------------------------------------------------
+
+@celery.task(bind=True)
+def task_who_download_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_download_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_download_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_download_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_who_import_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_import_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_import_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_import_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_who_update_dimension_tables_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_update_dimension_tables_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_dimension_tables_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_update_dimension_tables_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_who_update_fact_table_incremental_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_update_fact_table_incremental_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_fact_table_incremental_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_update_dimension_tables_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_who_update_fact_table_initial_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_update_fact_table_initial_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_fact_table_initial_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_update_fact_table_initial_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_who_update_star_schema_incremental(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_update_star_schema_incremental [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_star_schema_incremental()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_update_star_schema_incremental)"
+    return result
+
+
+@celery.task(bind=True)
+def task_who_update_star_schema_initial(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_who_update_star_schema_initial [OK] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_star_schema_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_who_update_star_schema_incremental)"
+    return result
+
+# ----------------------------------------------------------------------------------------------------------------
+#  URL Routes for Celery TASKS
+# ----------------------------------------------------------------------------------------------------------------
+
+
+@app_who.route('/task/download/only')
+def url_task_who_download_only():
+    app.logger.info("url_who_task_download_only [start]")
+    who_service.run_download_only()
+    flash("who_service.run_download_only ok")
+    app.logger.info("url_who_task_download_only [done]")
+    return redirect(url_for('who.url_who_tasks'))
+
+
+@app_who.route('/task/import/only')
+def url_task_who_import_only():
+    app.logger.info("url_who_update_run [start]")
+    task_who_import_only.apply_async()
+    flash("who_service.run_update started")
+    flash(message="long running background task started", category="warning")
+    app.logger.info("url_who_update_run [done]")
+    return redirect(url_for('who.url_who_tasks'))
+
+
+@app_who.route('/task/update/dimension-tables/only')
+def url_task_who_update_dimension_tables_only():
+    app.logger.info("url_task_who_update_dimension_tables_only [start]")
+    task_who_update_dimension_tables_only.apply_async()
+    flash("task_who_update_dimension_tables_only started")
+    flash(message="long running background task started", category="warning")
+    app.logger.info("url_task_who_update_dimension_tables_only [done]")
+    return redirect(url_for('who.url_who_tasks'))
+
+
+@app_who.route('/task/update/fact-table/incremental/only')
+def url_task_who_update_fact_table_incremental_only():
+    app.logger.info("url_task_who_update_fact_table_incremental_only [start]")
+    task_who_update_fact_table_incremental_only.apply_async()
+    flash("task_who_update_fact_table_incremental_only started")
+    flash(message="long running background task started", category="warning")
+    app.logger.info("url_task_who_update_fact_table_incremental_only [done]")
+    return redirect(url_for('who.url_who_tasks'))
+
+
+@app_who.route('/task/update/fact-table/initial/only')
+def url_task_who_update_fact_table_initial_only():
+    app.logger.info("url_task_who_update_fact_table_initial_only [start]")
+    task_who_update_fact_table_initial_only.apply_async()
+    flash("task_who_update_fact_table_initial_only started")
+    flash(message="long running background task started", category="warning")
+    app.logger.info("url_who_task_update_full [done]")
+    return redirect(url_for('who.url_who_tasks'))
+
+
+@app_who.route('/task/update/star_schema/initial')
+def url_task_who_update_star_schema_initial():
+    app.logger.info("url_who_task_update_full [start]")
+    who_service.run_download_only()
+    flash("who_service.service_download.download_file ok")
+    task_who_update_star_schema_initial.apply_async()
+    flash("task_who_update_star_schema_initial started")
+    flash(message="long running background task started", category="warning")
+    app.logger.info("url_who_task_update_full [done]")
+    return redirect(url_for('who.url_who_tasks'))
+
+
+@app_who.route('/task/update/star_schema/incremental')
+def url_task_who_update_star_schema_incremental():
+    app.logger.info("url_task_who_update_star_schema_incremental [start]")
+    who_service.run_download_only()
+    flash("who_service.service_download.download_file ok")
+    task_who_update_star_schema_incremental.apply_async()
+    flash("task_who_run_update_full started")
+    flash(message="long running background task started", category="warning")
+    app.logger.info("url_task_who_update_star_schema_incremental [done]")
+    return redirect(url_for('who.url_who_tasks'))
