@@ -111,7 +111,7 @@ def url_rki_landkreise_task_update_facttable_initial_only():
 
 
 @app_rki_landkreise.route('/task/update/dimension-tables/only')
-def url_task_who_update_dimension_tables_only():
+def url_rki_landkreise_task_update_dimension_tables_only():
     app.logger.info("url_task_who_update_dimension_tables_only [start]")
     # TODO: implement in rki_views.py
     return redirect(url_for('rki_landkreise.url_rki_tasks'))
