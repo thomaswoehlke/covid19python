@@ -116,3 +116,10 @@ class OwidImport(db.Model):
     @classmethod
     def get_new_dates_reported_as_array(cls):
         return cls.get_dates_reported_as_array()
+
+    @classmethod
+    def get_continents(cls):
+        return db.session.query(cls.continent)\
+            .order_by(cls.date.desc()) \
+            .group_by(cls.date) \
+            .distinct()
