@@ -18,6 +18,7 @@ class RkiLandkreiseServiceImport:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Landkreise Service Import [ready]")
 
+    # TODO: BUG: RkiLandkreiseServiceImport.import_file #178
     def import_file(self):
         app.logger.info(" RKI Landkreise Service Import - import_file [begin]")
         app.logger.info("------------------------------------------------------------")

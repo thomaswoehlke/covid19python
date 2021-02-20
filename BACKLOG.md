@@ -222,18 +222,20 @@
 * Fixed #155 refactor RkiBundeslaenderServiceUpdate.update_db_initial
 * -------------------------------------
 * Fixed #131 change to ORM ClassHierarchy in: RkiGermanyDataImportTable.get_new_dates_as_array
-* Issue #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
-* Issue #146 add Tasks and URLs for starting Tasks to rki_views  
-* Issue #127 implement RkiBundeslaenderImport.get_dates_reported
+* Fixed #129 change to ORM ClassHierarchy in: RkiLandkreiseImport.get_new_dates_as_array
+* Fixed #146 add Tasks and URLs for starting Tasks to rki_views  
+* Fixed #127 implement RkiBundeslaenderImport.get_dates_reported
 * -------------------------------------
-* Issue #141 implement RkiBundeslaenderServiceUpdate.update_dimension_tables_only
-* Issue #142 implement RkiBundeslaenderServiceUpdate.update_fact_table_incremental_only
-* Issue #143 implement RkiBundeslaenderServiceUpdate.update_fact_table_initial_only
-* Issue #144 implement RkiBundeslaenderServiceUpdate.update_star_schema_incremental
-* Issue #145 implement RkiBundeslaenderServiceUpdate.update_star_schema_initial
+* Fixed #141 implement RkiBundeslaenderServiceUpdate.update_dimension_tables_only
+* Fixed #142 implement RkiBundeslaenderServiceUpdate.update_fact_table_incremental_only
+* Fixed #143 implement RkiBundeslaenderServiceUpdate.update_fact_table_initial_only
+* Fixed #144 implement RkiBundeslaenderServiceUpdate.update_star_schema_incremental
+* Fixed #145 implement RkiBundeslaenderServiceUpdate.update_star_schema_initial
 
 
-### 0.0.198 Release
+### 0.0.19 Release
+* Issue #177 BUG: RkiBundeslaenderServiceImport.import_file 
+* Issue #178 BUG: RkiLandkreiseServiceImport.import_file
 * Issue #5 Visual Graphs for Data per Countries order by Date
 * Issue #59 frontend: add correct breadcrumb to every page
 * Issue #60 frontend: better design for tables

@@ -16,6 +16,7 @@ class RkiBundeslaenderServiceImport:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Service Import [ready]")
 
+    # TODO: BUG: RkiBundeslaenderServiceImport.import_file #177
     def import_file(self):
         app.logger.info(" import RKI [begin]")
         app.logger.info("------------------------------------------------------------")
