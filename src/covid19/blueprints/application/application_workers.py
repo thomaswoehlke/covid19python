@@ -32,7 +32,7 @@ def run_app(my_app):
     my_app.logger.info("#                Covid19 Data - WORKER                      #")
     my_app.logger.info("#############################################################")
     my_app.logger.info(" ")
-    celery_cmd = ['celery', 'worker', '-l', 'INFO']
+    celery_cmd = ['celery', '-A', 'app.celery', 'worker', '-l', 'INFO']
     subprocess.Popen(celery_cmd, shell=True)
     my_app.logger.info(" ")
     my_app.logger.info("#############################################################")
