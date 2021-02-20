@@ -16,18 +16,19 @@ class ApplicationServiceDownload:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" ApplicationServiceDownload [ready]")
 
-    def __log_error(self, error_msg: str):
-        flash_msg = self.cfg.msg_error + error_msg
-        flash(message=flash_msg, category='error')
-        app.logger.error(self.cfg.slug+"############################################################")
-        app.logger.error(self.cfg.slug+flash_msg)
-        app.logger.error(self.cfg.slug+"############################################################")
+    def __log_error(self, error_msg: str, error_obj):
+        log_msg = self.cfg.slug[0] + " " + self.cfg.msg_error() + " " + error_msg + " "
+        app.logger.error(log_msg)
+        flash(message=log_msg, category='error')
         return self
 
-    def __log_success(self, data_file: str):
-        app.logger.info(self.cfg.slug+" download success: " + data_file + " ")
-        app.logger.info(self.cfg.slug+self.cfg.msg_ok)
-        flash(self.cfg.msg_ok)
+    def __log_success(self, data_file):
+        slug = self.cfg.slug[0]
+        log_msg1 = " " + slug + " | download success: " + data_file + " "
+        log_msg2 = " " + slug + " | " + self.cfg.msg_ok
+        app.logger.info(log_msg1)
+        app.logger.info(log_msg2)
+        flash(log_msg1)
         return self
 
     def __prepare_download(self):
@@ -51,7 +52,7 @@ class ApplicationServiceDownload:
         return self
 
     def download_file(self):
-        app.logger.info(" download_file - "+self.cfg.slug+" [begin] ")
+        app.logger.info(" download_file - [begin] ")
         app.logger.info("------------------------------------------------------------")
         app.logger.info(self.cfg.msg_job)
         app.logger.info("------------------------------------------------------------")
@@ -62,14 +63,14 @@ class ApplicationServiceDownload:
             else:
                 self.__download_with_wget()
         except RuntimeError as runtimeError:
-            self.__log_error(" RuntimeError: " + runtimeError + " ")
+            self.__log_error(" RuntimeError: ", runtimeError)
         except OSError as osError:
-            self.__log_error(" OSError: " + osError + " ")
+            self.__log_error(" OSError: ", osError)
         except AttributeError as attributeError:
-            self.__log_error(" AttributeError: " + attributeError + " ")
+            self.__log_error(" AttributeError: ", attributeError)
         except Exception as exception:
-            self.__log_error(" Exception: " + exception)
+            self.__log_error(" Exception: ", exception)
         finally:
             app.logger.info("------------------------------------------------------------")
-            app.logger.info(" download_file - "+self.cfg.slug+" [done] ")
+            app.logger.info(" download_file - [done] ")
         return self
