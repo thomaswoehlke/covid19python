@@ -2,7 +2,7 @@ import sys
 
 from setuptools import find_packages, setup
 
-version = '0.0.18'
+version = '0.0.19'
 
 needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
 pytest_runner = ['pytest-runner'] if needs_pytest else []
