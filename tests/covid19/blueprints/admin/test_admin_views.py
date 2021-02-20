@@ -1,15 +1,23 @@
-#from flask import render_template, redirect, url_for, flash, Blueprint
-#from celery import states
-#from celery.utils.log import get_task_logger
 import pytest
 from flask import url_for
-import tests.conftest
+from unittest import TestCase
+from conftest import app, client
 
 
-def test_url_admin_tasks(client):
-    assert client.get(url_for('admin.url_admin_tasks')).status_code == 200
+class Test(TestCase):
+    def __init__(self, client):
+        self.client = client
+        self.url_admin_tasks = url_for('admin.url_admin_tasks', _external=True)
+        self.url_admin_info = url_for('admin.url_admin_info', _external=True)
 
+    def test_run_test_01(self):
+        self.assertTrue(True)
 
-def test_url_admin_info(client):
-    assert client.get(url_for('admin.url_admin_info')).status_code == 200
+    def test_run_test_02(self):
+        self.assertTrue(True)
 
+    def test_url_admin_tasks(self):
+        assert self.client.get(self.url_admin_tasks).status_code == 200
+
+    def test_url_admin_info(self):
+        assert self.client.get(self.url_admin_info).status_code == 200

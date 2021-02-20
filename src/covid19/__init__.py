@@ -9,7 +9,5 @@ def run_web():
     app.logger.info("#                Covid19 Data - WEB                         #")
     app.logger.info("#############################################################")
     app.logger.info(" ")
-    app.run(
-        debug=run_run_with_debug,
-        port=port
-    )
+    app.run(debug=run_run_with_debug, port=port)
+
