@@ -1,5 +1,5 @@
 from unittest import TestCase
-from conftest import app, db
+from conftest import app
 
 from src.covid19.blueprints.owid.owid_model_import import OwidImport
 

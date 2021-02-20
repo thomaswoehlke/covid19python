@@ -1,9 +1,7 @@
 import os
 import tempfile
 import pytest
-from flask import Flask
-from database import run_run_with_debug, port, create_app, create_celery, create_db
-import covid19.blueprints.application.application_views
+from database import create_app, create_db
 
 
 @pytest.fixture
