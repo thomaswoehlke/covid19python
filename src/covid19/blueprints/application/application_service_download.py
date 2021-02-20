@@ -58,7 +58,7 @@ class ApplicationServiceDownload:
         app.logger.info("------------------------------------------------------------")
         try:
             self.__prepare_download()
-            if self.cfg.slug == 'owid':
+            if self.cfg.slug[0] == 'owid':
                 self.__download_with_subprocess_and_os_native_wget()
             else:
                 self.__download_with_wget()
