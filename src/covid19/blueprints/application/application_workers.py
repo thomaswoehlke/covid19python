@@ -1,13 +1,23 @@
-from database import app
-from celery import Celery
+import sys
+import subprocess
+from covid19 import app
+from database import create_celery
 
-############################################################################################
-#
-# Celery
-#
-celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
-celery.conf.update(app.config)
-celery.conf.result_backend = app.config['CELERY_BROKER_URL']
-celery.conf.broker_transport_options = {'visibility_timeout': 18000, 'max_retries': 5}
-celery.conf.worker_send_task_events = app.config['CELERY_CONF_WORKER_SEND_TASK_EVENTS']
-celery.conf.task_send_sent_event = app.config['CELERY_CONF_TASK_SEND_SENT_EVENT']
+
+def run_mq(my_app, my_celery):
+    if sys.platform != 'linux':
+        my_app.logger.info("-------------------------------------------------------------")
+        my_app.logger.info("#                start REDIS-Server                         #")
+        my_app.logger.info("-------------------------------------------------------------")
+        redis_cmd = ['redis-server']
+        subprocess.Popen(redis_cmd, shell=True)
+    my_app.logger.info(" ")
+    my_app.logger.info("#############################################################")
+    my_app.logger.info("#                Covid19 Data - WORKER                      #")
+    my_app.logger.info("#############################################################")
+    my_app.logger.info(" ")
+    args = ['worker', '-l', 'INFO']
+    my_celery.start(args)
+
+
+celery = create_celery(app)

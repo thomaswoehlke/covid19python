@@ -4,32 +4,69 @@ from flask_bs4 import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from logging.config import dictConfig
 from flask_admin import Admin
+from celery import Celery
 
 
 def create_app():
-    app = Flask('app')
-    CORS(app)
-    Bootstrap(app)
-    app.config.from_object("config")
-    DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
-        user=app.config['POSTGRES_USER'],
-        pw=app.config['POSTGRES_PW'],
-        url=app.config['POSTGRES_URL'],
-        db=app.config['POSTGRES_DB'])
-    app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation warning
-    app.config['FLASK_ADMIN_SWATCH'] = 'superhero'
-    return app
+    my_app = Flask('app')
+    CORS(my_app)
+    Bootstrap(my_app)
+    my_app.config.from_object("config")
+    db_url = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
+        user=app.config['SQLALCHEMY_POSTGRES_USER'],
+        pw=app.config['SQLALCHEMY_POSTGRES_PW'],
+        url=app.config['SQLALCHEMY_POSTGRES_URL'],
+        db=app.config['SQLALCHEMY_POSTGRES_DB'])
+    my_app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+    my_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation warning
+    my_app.config['FLASK_ADMIN_SWATCH'] = 'superhero'
+    return my_app
+
+
+def create_celery(my_app):
+    celery = Celery(
+        my_app.import_name,
+        backend=my_app.config['CELERY_RESULT_BACKEND'],
+        broker=my_app.config['CELERY_BROKER_URL'],
+        worker_send_task_events=my_app.config['CELERY_CONF_WORKER_SEND_TASK_EVENTS'],
+        task_send_sent_event=my_app.config['CELERY_CONF_TASK_SEND_SENT_EVENT'],
+        broker_transport_options={'visibility_timeout': 18000, 'max_retries': 5}
+    )
+    celery.conf.update(my_app.config)
+
+    class ContextTask(celery.Task):
+        def __call__(self, *args, **kwargs):
+            with my_app.app_context():
+                return self.run(*args, **kwargs)
+
+    celery.Task = ContextTask
+    return celery
+
+
+def create_admin(my_app):
+    my_admin = Admin(
+        my_app,
+        name='covid19 | admin',
+        template_mode='bootstrap4')
+    return my_admin
+
+
+def create_db(my_app):
+    my_db = SQLAlchemy(my_app)
+    my_db.create_all()
+    return my_db
 
 
 app = create_app()
-admin = Admin(app, name='covid19admin', template_mode='bootstrap4')
-db = SQLAlchemy(app)
-db.create_all()
+db = create_db(app)
+admin = create_admin
 
+# TODO: deprecated
 port = app.config['PORT']
-run_run_with_debug = app.config['APP_DEBUGGER_ACTIVE']
-ITEMS_PER_PAGE = app.config['ITEMS_PER_PAGE']
+# TODO: deprecated
+run_run_with_debug = app.config['FLASK_APP_DEBUGGER_ACTIVE']
+# TODO: deprecated
+ITEMS_PER_PAGE = app.config['SQLALCHEMY_ITEMS_PER_PAGE']
 
 my_logging_config = {
         'version': 1,
