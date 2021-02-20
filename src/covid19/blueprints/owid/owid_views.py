@@ -178,9 +178,6 @@ def url_task_owid_update_fact_table_initial_only():
 def url_task_owid_update_star_schema_initial():
     app.logger.info("url_owid_task_update_full [start]")
     owid_service.run_download_only()
-    flash("owid_service.service_download.download_file ok")
-    task_owid_update_star_schema_initial.apply_async()
-    flash("task_owid_update_star_schema_initial started")
     flash(message="long running background task started", category="warning")
     app.logger.info("url_owid_task_update_full [done]")
     return redirect(url_for('owid.url_owid_tasks'))

@@ -46,7 +46,8 @@ class ApplicationServiceDownload:
         orig_workdir = os.getcwd()
         os.chdir(self.cfg.data_path)
         my_cmd = ['wget ' + self.cfg.url_src]
-        subprocess.Popen(my_cmd, shell=True)
+        #subprocess.Popen(my_cmd, shell=True)
+        retcode = subprocess.call(my_cmd, shell=True)
         os.chdir(orig_workdir)
         self.__log_success(my_cmd[0])
         return self
