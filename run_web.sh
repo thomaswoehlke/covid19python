@@ -10,7 +10,4 @@ export FLASK_ENV=development
 export FLASK_APP=covid19
 pip install -e .
 flask run
-
-
-#python covid19.__init__
-
+# python covid19.run_web
