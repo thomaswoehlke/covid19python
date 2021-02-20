@@ -52,13 +52,11 @@ class RkiBundeslaenderService:
         return self
 
     def run_update_star_schema_incremental(self):
-        self.service_download.download_file()
         self.service_import.import_file()
         self.service_update.update_star_schema_incremental()
         return self
 
     def run_update_star_schema_initial(self):
-        self.service_download.download_file()
         self.service_import.import_file()
         self.service_update.update_star_schema_initial()
         return self
