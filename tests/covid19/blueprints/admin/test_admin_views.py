@@ -1,7 +1,9 @@
-from flask import render_template, redirect, url_for, flash, Blueprint
-from celery import states
-from celery.utils.log import get_task_logger
-import conftest
+#from flask import render_template, redirect, url_for, flash, Blueprint
+#from celery import states
+#from celery.utils.log import get_task_logger
+import pytest
+from flask import url_for
+import tests.conftest
 
 
 def test_url_admin_tasks(client):
