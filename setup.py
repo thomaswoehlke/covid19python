@@ -64,7 +64,10 @@ requires_test = [
     "python-dotenv==0.15.0",
     "test-flask==0.2.0",
     "wcwidth==0.2.5",
-    "werkzeug==1.0.1"
+    "werkzeug==1.0.1",
+    "pytest_celery>=0.0.0a1",
+    "pytest-flask-sqlalchemy-1.0.2",
+    "pytest-mock-3.5.1"
 ]
 
 requires_docs = [

@@ -3,6 +3,8 @@ import tempfile
 import pytest
 from database import create_app, create_db_test, create_admin
 
+pytest_plugins = ("celery.contrib.pytest", )
+
 
 @pytest.fixture
 def app():
