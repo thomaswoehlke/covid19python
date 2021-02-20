@@ -1,10 +1,12 @@
-from flask import Flask
+import logging
+from flask import Flask, logging
 from flask_cors import CORS
 from flask_bs4 import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from logging.config import dictConfig
 from flask_admin import Admin
 from celery import Celery
+from celery.utils.log import LoggingProxy
 
 
 def create_app():
@@ -42,7 +44,9 @@ def create_celery(my_app):
         broker=my_app.config['CELERY_BROKER_URL'],
         worker_send_task_events=my_app.config['CELERY_CONF_WORKER_SEND_TASK_EVENTS'],
         task_send_sent_event=my_app.config['CELERY_CONF_TASK_SEND_SENT_EVENT'],
-        broker_transport_options={'visibility_timeout': 18000, 'max_retries': 5}
+        broker_transport_options={'visibility_timeout': 18000, 'max_retries': 5},
+        set_as_current=False,
+        standalone_mode=True
     )
     celery.conf.update(my_app.config)
 
