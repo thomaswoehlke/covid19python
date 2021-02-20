@@ -24,7 +24,8 @@ class WhoServiceDownload:
             if os.path.isfile(self.cfg.cvsfile_path):
                 os.remove(self.cfg.cvsfile_path)
             data_file = wget.download(self.cfg.url_src, self.cfg.cvsfile_path)
-            app.logger.info(" " + data_file + " ")
+            app.logger.info(" download success: " + data_file + " ")
+            flash(self.cfg.msg_ok)
         except RuntimeError as runtimeError:
             app.logger.error("############################################################")
             app.logger.error(" " + runtimeError + " ")
@@ -43,7 +44,5 @@ class WhoServiceDownload:
         finally:
             app.logger.info("------------------------------------------------------------")
             app.logger.info(" download - [done] ")
-            msg = "downloaded: " + self.cfg.cvsfile_path+" from "+self.cfg.url_src
-            flash(msg)
         return self
 

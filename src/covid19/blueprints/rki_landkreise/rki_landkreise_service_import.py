@@ -4,12 +4,12 @@ import psycopg2
 
 from database import db, app
 
+from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
 from covid19.blueprints.rki_landkreise.rki_landkreise_model_import import RkiLandkreiseImport
-from covid19.blueprints.rki_landkreise.rki_landkreise_service_config import RkiLandkreiseServiceConfig
 
 
 class RkiLandkreiseServiceImport:
-    def __init__(self, database, config: RkiLandkreiseServiceConfig):
+    def __init__(self, database, config: ApplicationServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" RKI Landkreise Service Import [init]")
         app.logger.debug("------------------------------------------------------------")

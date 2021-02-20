@@ -13,3 +13,6 @@ class RkiVaccinationServiceConfig:
         self.url_src = "https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv"
         self.cvsfile_name = "germany_vaccinations_timeseries_v2.tsv"
         self.cvsfile_path = self.data_path + os.sep + self.cvsfile_name
+        self.msg_job = "download FILE: "+self.cfg.cvsfile_name+" from "+self.cfg.url_src
+        self.msg_ok = "downloaded FILE: " + self.cfg.cvsfile_path + " from " + self.cfg.url_src
+        self.msg_error = "while downloading: " + self.cfg.cvsfile_path + " from " + self.cfg.url_src

@@ -13,3 +13,5 @@ class EcdcServiceConfig:
         self.cvsfile_name = "ecdc_europa_data.csv"
         self.url_src = "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv/"
         self.cvsfile_path = self.data_path + os.sep + self.cvsfile_name
+        self.msg_ok = "downloaded: " + self.cfg.cvsfile_path + " from " + self.cfg.url_src
+        self.msg_error = "while downloading: " + self.cfg.cvsfile_path + " from " + self.cfg.url_src

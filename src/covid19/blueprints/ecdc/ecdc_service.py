@@ -1,8 +1,8 @@
 from flask import flash
 
 from database import app
-from covid19.blueprints.ecdc.ecdc_service_config import EcdcServiceConfig
-from covid19.blueprints.ecdc.ecdc_service_download import EcdcServiceDownload
+from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
+from covid19.blueprints.application.application_service_download import ApplicationServiceDownload
 from covid19.blueprints.ecdc.ecdc_service_import import EcdcServiceImport
 from covid19.blueprints.ecdc.ecdc_service_update import EcdcServiceUpdate
 
@@ -13,8 +13,8 @@ class EcdcService:
         app.logger.debug(" ECDC Service [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = EcdcServiceConfig()
-        self.service_download = EcdcServiceDownload(database, self.cfg)
+        self.cfg = ApplicationServiceConfig.create_config_for_ecdc()
+        self.service_download = ApplicationServiceDownload(database, self.cfg)
         self.service_import = EcdcServiceImport(database, self.cfg)
         self.service_update = EcdcServiceUpdate(database, self.cfg)
         app.logger.debug("------------------------------------------------------------")

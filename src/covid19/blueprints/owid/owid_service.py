@@ -2,8 +2,8 @@ from flask import flash
 
 from database import app
 
-from covid19.blueprints.owid.owid_service_config import OwidServiceConfig
-from covid19.blueprints.owid.owid_service_download import OwidServiceDownload
+from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
+from covid19.blueprints.application.application_service_download import ApplicationServiceDownload
 from covid19.blueprints.owid.owid_service_import import OwidServiceImport
 from covid19.blueprints.owid.owid_service_update import OwidServiceUpdate
 
@@ -14,8 +14,8 @@ class OwidService:
         app.logger.debug(" OWID Service [init]")
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
-        self.cfg = OwidServiceConfig()
-        self.service_download = OwidServiceDownload(database, self.cfg)
+        self.cfg = ApplicationServiceConfig.create_config_for_owid()
+        self.service_download = ApplicationServiceDownload(database, self.cfg)
         self.service_import = OwidServiceImport(database, self.cfg)
         self.service_update = OwidServiceUpdate(database, self.cfg)
         app.logger.debug("------------------------------------------------------------")

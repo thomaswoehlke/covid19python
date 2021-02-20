@@ -1,11 +1,11 @@
 from database import db, app
-from covid19.blueprints.ecdc.ecdc_service_config import EcdcServiceConfig
+from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
 from covid19.blueprints.ecdc.ecdc_model_import import EcdcImport
 from covid19.blueprints.ecdc.ecdc_model import EcdcDateReported, EcdcContinent, EcdcCountry, EcdcData
 
 
 class EcdcServiceUpdate:
-    def __init__(self, database, config: EcdcServiceConfig):
+    def __init__(self, database, config: ApplicationServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" ECDC Service Update [init]")
         app.logger.debug("------------------------------------------------------------")

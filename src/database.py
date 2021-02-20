@@ -13,10 +13,10 @@ def create_app():
     Bootstrap(my_app)
     my_app.config.from_object("config")
     db_url = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
-        user=app.config['SQLALCHEMY_POSTGRES_USER'],
-        pw=app.config['SQLALCHEMY_POSTGRES_PW'],
-        url=app.config['SQLALCHEMY_POSTGRES_URL'],
-        db=app.config['SQLALCHEMY_POSTGRES_DB'])
+        user=my_app.config['SQLALCHEMY_POSTGRES_USER'],
+        pw=my_app.config['SQLALCHEMY_POSTGRES_PW'],
+        url=my_app.config['SQLALCHEMY_POSTGRES_URL'],
+        db=my_app.config['SQLALCHEMY_POSTGRES_DB'])
     my_app.config['SQLALCHEMY_DATABASE_URI'] = db_url
     my_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation warning
     my_app.config['FLASK_ADMIN_SWATCH'] = 'superhero'
@@ -26,7 +26,8 @@ def create_app():
 def create_celery(my_app):
     celery = Celery(
         my_app.import_name,
-        backend=my_app.config['CELERY_RESULT_BACKEND'],
+        #namespace="covid19",
+        backend=my_app.config['MY_CELERY_RESULT_BACKEND'],
         broker=my_app.config['CELERY_BROKER_URL'],
         worker_send_task_events=my_app.config['CELERY_CONF_WORKER_SEND_TASK_EVENTS'],
         task_send_sent_event=my_app.config['CELERY_CONF_TASK_SEND_SENT_EVENT'],
@@ -59,7 +60,7 @@ def create_db(my_app):
 
 app = create_app()
 db = create_db(app)
-admin = create_admin
+admin = create_admin(app)
 
 # TODO: deprecated
 port = app.config['PORT']

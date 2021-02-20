@@ -15,6 +15,7 @@ from covid19.blueprints.who.who_service import WhoService
 # Services
 #
 admin_service = AdminService(db)
+#TODO: deprecated
 application_service = ApplicationService(db)
 ecdc_service = EcdcService(db)
 owid_service = OwidService(db)

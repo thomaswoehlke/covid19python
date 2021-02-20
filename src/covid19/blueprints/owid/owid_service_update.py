@@ -1,11 +1,11 @@
 from database import db, app
+from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
 from covid19.blueprints.owid.owid_model import OwidDateReported, OwidData
 from covid19.blueprints.owid.owid_model_import import OwidImport
-from covid19.blueprints.owid.owid_service_config import OwidServiceConfig
 
 
 class OwidServiceUpdate:
-    def __init__(self, database, config: OwidServiceConfig):
+    def __init__(self, database, config: ApplicationServiceConfig):
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" OWID Service Update [init]")
         app.logger.debug("------------------------------------------------------------")

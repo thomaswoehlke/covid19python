@@ -16,20 +16,23 @@ class OwidServiceDownload:
         app.logger.debug("------------------------------------------------------------")
         app.logger.debug(" OWID Service Download [ready]")
 
+    def __download_with_subprocess_and_os_native_wget(self):
+        orig_workdir = os.getcwd()
+        os.chdir(self.cfg.data_path)
+        my_cmd = ['wget ' + self.cfg.url_src]
+        subprocess.Popen(my_cmd, shell=True)
+        os.chdir(orig_workdir)
+        return self
+
     def download_file(self):
         app.logger.info(" download - [begin] ")
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" download FILE: "+self.cfg.cvsfile_name+" from "+self.cfg.url_src)
         app.logger.info("------------------------------------------------------------")
         try:
-            os.makedirs(self.cfg.data_path, exist_ok=True)
             if os.path.isfile(self.cfg.cvsfile_path):
                 os.remove(self.cfg.cvsfile_path)
-            orig_workdir = os.getcwd()
-            os.chdir(self.cfg.data_path)
-            my_cmd = ['wget '+self.cfg.url_src]
-            subprocess.Popen(my_cmd, shell=True)
-            os.chdir(orig_workdir)
+            self.__download_with_subprocess_and_os_native_wget()
             #data_file = wget.download(self.cfg.url_src, self.cfg.cvsfile_path)
             #app.logger.info(" " + data_file + " ")
         except RuntimeError as runtimeError:
