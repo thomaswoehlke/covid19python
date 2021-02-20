@@ -1,7 +1,7 @@
 import os
 import tempfile
 import pytest
-from database import create_app, create_db, create_admin
+from database import create_app, create_db_test, create_admin
 
 
 @pytest.fixture
@@ -18,8 +18,8 @@ def client():
 
     with app.test_client() as client:
         with app.app_context():
-            db = create_db(app)
-            admin = create_admin(app)
+            create_db_test(app)
+            create_admin(app)
         yield client
 
     os.close(db_fd)

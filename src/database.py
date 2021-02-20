@@ -29,6 +29,12 @@ def create_db(my_app):
     return my_db
 
 
+def create_db_test(my_app):
+    my_db = SQLAlchemy(my_app)
+    my_db.create_all()
+    return my_db
+
+
 def create_celery(my_app):
     celery = Celery(
         my_app.import_name,
