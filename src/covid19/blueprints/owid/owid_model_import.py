@@ -120,6 +120,7 @@ class OwidImport(db.Model):
     @classmethod
     def get_continents(cls):
         return db.session.query(cls.continent)\
-            .order_by(cls.date.desc()) \
-            .group_by(cls.date) \
-            .distinct()
+            .group_by(cls.continent) \
+            .distinct()\
+            .order_by(cls.continent.asc())\
+            .paginate(page, per_page=ITEMS_PER_PAGE)
