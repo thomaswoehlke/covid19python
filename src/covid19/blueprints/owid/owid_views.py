@@ -34,7 +34,7 @@ admin.add_view(ModelView(OwidData, db.session, category="OWID"))
 
 @app_owid.route('/info')
 def url_owid_info():
-    page_info = ApplicationPage('OWID',"Info")
+    page_info = ApplicationPage('OWID', "Info")
     return render_template(
         'owid/owid_info.html',
         page_info=page_info)
@@ -42,16 +42,31 @@ def url_owid_info():
 
 @app_owid.route('/tasks')
 def url_owid_tasks():
-    page_info = ApplicationPage('OWID',"Tasks")
+    page_info = ApplicationPage('OWID', "Tasks")
     return render_template(
         'owid/owid_tasks.html',
+        page_info=page_info)
+
+
+@app_owid.route('/test/page/<int:page>')
+@app_owid.route('/test')
+def url_owid_test(page=1):
+    page_info = ApplicationPage('OWID', "Test")
+    try:
+        page_data = OwidImport.get_all_as_page(page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'owid/owid_test.html',
+        page_data=page_data,
         page_info=page_info)
 
 
 @app_owid.route('/imported/page/<int:page>')
 @app_owid.route('/imported')
 def url_owid_imported(page=1):
-    page_info = ApplicationPage('OWID',"Last Import")
+    page_info = ApplicationPage('OWID', "Last Import")
     try:
         page_data = OwidImport.get_all_as_page(page)
     except OperationalError:
@@ -66,7 +81,7 @@ def url_owid_imported(page=1):
 @app_owid.route('/date_reported/all/page/<int:page>')
 @app_owid.route('/date_reported/all')
 def url_owid_date_reported_all(page: int = 1):
-    page_info = ApplicationPage('OWID',"Date Reported", "All")
+    page_info = ApplicationPage('OWID', "Date Reported", "All")
     try:
         page_data = OwidDateReported.get_all_as_page(page)
     except OperationalError:

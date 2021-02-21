@@ -56,6 +56,21 @@ def url_rki_bundeslaender_imported(page=1):
         page_info=page_info)
 
 
+@app_rki_bundeslaender.route('/test/page/<int:page>')
+@app_rki_bundeslaender.route('/test')
+def url_rki_bundeslaender_test(page=1):
+    page_info = ApplicationPage('RKI', "TEST")
+    try:
+        page_data = RkiBundeslaenderImport.get_all_as_page(page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'rki_bundeslaender/rki_bundeslaender_test.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
 # ------------------------------------------------------------------------
 #  Celery TASKS
 # ------------------------------------------------------------------------
