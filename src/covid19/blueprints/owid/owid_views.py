@@ -53,9 +53,9 @@ def url_owid_tasks():
 def url_owid_test(page=1):
     page_info = ApplicationPage('OWID', "Test")
     try:
-        page_data = OwidImport.get_continents()
+        page_data = OwidImport.get_continents(page)
     except OperationalError:
-        flash("No data in the database.")
+        flash(message="No data in the database.", category="error")
         page_data = None
     return render_template(
         'owid/owid_test.html',
