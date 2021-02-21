@@ -135,53 +135,53 @@ def task_url_rki_landkreise_task_update_dimension_tables_only(self):
 def url_rki_landkreise_task_update_starschema_initial():
     app.logger.info("url_rki_landkreise_task_update_starschema_initial [start]")
     task_rki_landkreise_task_update_starschema_initial.apply_async()
-    return redirect(url_for('rki_landkreise.url_rki_tasks'))
+    return redirect(url_for('rki_landkreise.url_rki_landkreise_tasks'))
 
 
 @app_rki_landkreise.route('/landkreise/task/update/star_schema/incremental')
 def url_rki_landkreise_task_update_starschema_incremental():
     app.logger.info("url_rki_landkreise_task_update_starschema_incremental [start]")
     task_rki_landkreise_task_update_starschema_incremental.apply_async()
-    return redirect(url_for('rki_landkreise.url_rki_tasks'))
+    return redirect(url_for('rki_landkreise.url_rki_landkreise_tasks'))
 
 
 @app_rki_landkreise.route('/landkreise/task/download/only')
 def url_rki_landkreise_task_download_only():
     app.logger.info("url_rki_landkreise_task_download_only [start]")
     rki_service_landkreise.run_download_only()
-    return redirect(url_for('rki_landkreise.url_rki_tasks'))
+    return redirect(url_for('rki_landkreise.url_rki_landkreise_tasks'))
 
 
 @app_rki_landkreise.route('/landkreise/task/import/only')
 def url_rki_landkreise_task_import_only():
     app.logger.info("url_rki_landkreise_task_import_only [start]")
     task_rki_landkreise_task_import_only.apply_async()
-    return redirect(url_for('rki_landkreise.url_rki_tasks'))
+    return redirect(url_for('rki_landkreise.url_rki_landkreise_tasks'))
 
 
 @app_rki_landkreise.route('/landkreise/task/update/dimension-tables/only')
 def url_rki_landkreise_task_update_dimensiontables_only():
     app.logger.info("url_rki_landkreise_task_update_dimensiontables_only [start]")
     task_rki_landkreise_task_update_dimensiontables_only.apply_async()
-    return redirect(url_for('rki_landkreise.url_rki_tasks'))
+    return redirect(url_for('rki_landkreise.url_rki_landkreise_tasks'))
 
 
 @app_rki_landkreise.route('/landkreise/task/update/fact-table/incremental/only')
 def url_rki_landkreise_task_update_facttable_incremental_only():
     app.logger.info("url_rki_landkreise_task_update_facttable_incremental_only [start]")
     task_rki_landkreise_task_update_facttable_incremental_only.apply_async()
-    return redirect(url_for('rki_landkreise.url_rki_tasks'))
+    return redirect(url_for('rki_landkreise.url_rki_landkreise_tasks'))
 
 
 @app_rki_landkreise.route('/landkreise/task/update/fact-table/initial/only')
 def url_rki_landkreise_task_update_facttable_initial_only():
     app.logger.info("url_rki_landkreise_task_update_facttable_initial_only [start]")
     task_rki_landkreise_task_update_facttable_initial_only.apply_async()
-    return redirect(url_for('rki_landkreise.url_rki_tasks'))
+    return redirect(url_for('rki_landkreise.url_rki_landkreise_tasks'))
 
 
 @app_rki_landkreise.route('/task/update/dimension-tables/only')
 def url_rki_landkreise_task_update_dimension_tables_only():
     app.logger.info("url_task_who_update_dimension_tables_only [start]")
     task_url_rki_landkreise_task_update_dimension_tables_only.apply_async()
-    return redirect(url_for('rki_landkreise.url_rki_tasks'))
+    return redirect(url_for('rki_landkreise.url_rki_landkreise_tasks'))

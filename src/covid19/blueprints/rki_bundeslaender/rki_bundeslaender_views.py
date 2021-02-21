@@ -26,7 +26,7 @@ admin.add_view(ModelView(RkiBundeslaender, db.session, category="RKI Cases and D
 
 
 @app_rki_bundeslaender.route('/info')
-def url_rki_info():
+def url_rki_bundeslaender_info():
     page_info = ApplicationPage('RKI', "Info")
     return render_template(
         'rki_bundeslaender/rki_bundeslaender_info.html',
@@ -34,7 +34,7 @@ def url_rki_info():
 
 
 @app_rki_bundeslaender.route('/tasks')
-def url_rki_tasks():
+def url_rki_bundeslaender_tasks():
     page_info = ApplicationPage('RKI', "Tasks")
     return render_template(
         'rki_bundeslaender/rki_bundeslaender_tasks.html',
