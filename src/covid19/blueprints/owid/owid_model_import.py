@@ -118,7 +118,7 @@ class OwidImport(db.Model):
         return cls.get_dates_reported_as_array()
 
     @classmethod
-    def get_continents(cls):
+    def get_continents(cls, page):
         return db.session.query(cls.continent)\
             .group_by(cls.continent) \
             .distinct()\

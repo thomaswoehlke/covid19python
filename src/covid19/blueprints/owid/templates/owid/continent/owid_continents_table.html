@@ -1,0 +1,15 @@
+                <table class="table table-hover table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">continent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for data_item in page_data.items %}
+                        <tr>
+                            <td>{{ data_item.continent }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
