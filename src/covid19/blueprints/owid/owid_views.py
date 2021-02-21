@@ -53,7 +53,7 @@ def url_owid_tasks():
 def url_owid_test(page=1):
     page_info = ApplicationPage('OWID', "Test")
     try:
-        page_data = OwidImport.get_all_as_page(page)
+        page_data = OwidImport.get_continents()
     except OperationalError:
         flash("No data in the database.")
         page_data = None
