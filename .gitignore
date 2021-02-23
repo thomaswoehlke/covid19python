@@ -1143,3 +1143,6 @@ Debug*/Debug*\ Libs
 /lsp/
 dump.rdb
 !scripts
+/logfile1.txt
+/logfile2.txt
+/logfile3.txt
