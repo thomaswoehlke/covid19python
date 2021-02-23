@@ -57,3 +57,11 @@ requires = [
 	"zipp==0.6.0",
 ]
 build-backend = "setuptools.build_meta"
+
+[tool.tox]
+envlist = 'py38'
+
+[testenv]
+deps = 'pytest'
+commands = 'pytest'
+
