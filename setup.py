@@ -486,6 +486,8 @@ setup(
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware",
         "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Database :: Frontends",
+        "Framework :: Flask",
     ],
     long_description=readme + "\n\n" + history,
     long_description_content_type="text/markdown",
@@ -498,5 +500,10 @@ setup(
     install_requires=requires_install,
     setup_requires=requires_setup,
     tests_require=requires_test,
+    scripts=[
+        'scripts/script_setup_requirements',
+        'scripts/script_npm_install'
+        'scripts/script_get_python_requirements_from_txt'
+    ],
     python_requires=">= 3.8"
 )

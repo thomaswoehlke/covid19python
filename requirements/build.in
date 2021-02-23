@@ -1,0 +1,17 @@
+setuptools
+packaging
+wheel>=0.36.2
+pip-licenses==3.3.0
+pip-tools>=5.5.0
+pipenv>=2020.11.15
+virtualenv>=20.4.2
+pytoolbox>=14.0.0
+pytoml==0.1.21
+py2puml==0.3.1
+plantuml-creator==1.0.7
+plantuml-markdown==3.4.2
+plantuml-wrapper==0.1.0
+plantuml-gentools==0.1.2
+plantuml2freemind==0.8.2
+ruamel-yaml==0.15.87
+venv-run>=0.1.0
