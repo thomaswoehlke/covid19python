@@ -502,9 +502,9 @@ setup(
     setup_requires=requires_setup,
     tests_require=requires_test,
     scripts=[
-        'scripts' + os.sep + 'script_setup_requirements',
-        'scripts' + os.sep + 'script_npm_install'
-        'scripts' + os.sep + 'script_get_python_requirements_from_txt'
+        'scripts/script_setup_requirements',
+        'scripts/script_npm_install'
+        'scripts/script_get_python_requirements_from_txt'
     ],
     python_requires=">= 3.8"
 )
