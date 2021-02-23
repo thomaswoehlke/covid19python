@@ -14,5 +14,5 @@ plantuml-markdown==3.4.2
 plantuml-wrapper==0.1.0
 plantuml-gentools==0.1.2
 plantuml2freemind==0.8.2
-ruamel-yaml==0.15.87
+ruamel-yaml==0.16.12
 venv-run>=0.1.0
