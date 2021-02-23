@@ -6,7 +6,6 @@ pipenv>=2020.11.15
 virtualenv>=20.4.2
 pytoolbox>=14.0.0
 Flask-Babel>=2
-pytoml==0.1.21
 flask-resources>=0.6.0
 Flask-PluginKit>=3.6.0
 Flask-ResponseBuilder>=2.0.12
