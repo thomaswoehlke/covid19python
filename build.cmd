@@ -1,5 +1,6 @@
-pip install -e . --progress-bar pretty
-pip install -q build
+pip install -r requirements\dev.in --user --force-reinstall --use-pep517 --no-cache-dir --compile --progress-bar pretty --log logfile1.txt
+pip install -e . --implementation py --python-version 3.8 --user --force-reinstall --use-pep517 --no-cache-dir --compile --progress-bar pretty --log logfile2.txt
+rem pip install -q build --implementation py  --python-version 3.8 --user --force-reinstall --use-pep517 --compile --progress-bar pretty
 python -m build
-pip install -e . --compile --progress-bar pretty
-pip install dist/artefact_content-0.0.18.whl
+rem pip install -e . --compile --progress-bar pretty
+pip install dist/covid19python-0.0.19.whl --progress-bar pretty --log logfile3.txt
