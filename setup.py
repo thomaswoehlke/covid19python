@@ -68,7 +68,7 @@ requires_test = [
     "pytest_celery>=0.0.0a1",
     "pytest-flask-sqlalchemy-1.0.2",
     "pytest-mock-3.5.1"
-]
+] + pytest_runner
 
 requires_docs = [
     "aiofiles==0.6.0",
@@ -439,7 +439,7 @@ requires_install = [
     "xmltodict==0.12.0",
     "yarl==1.6.3",
     "zipp==0.6.0"
-] + pytest_runner
+]
 
 requires_install_groups = [
     requires_install_minimum,
