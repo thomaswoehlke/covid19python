@@ -64,4 +64,3 @@ envlist = 'py38'
 [testenv]
 deps = 'pytest'
 commands = 'pytest'
-
