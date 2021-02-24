@@ -23,7 +23,6 @@ flask-whooshalchemy3>=0.2.0
 flask-was>=0.1.0
 Flask-GraphQL>=2.0.1
 flask-hintful>=0.0.7
-flask-resources>=0.6.0
 Flask-PluginKit>=3.6.0
 Flask-ResponseBuilder>=2.0.12
 flask-filealchemy>=0.6.1
