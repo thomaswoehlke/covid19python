@@ -8,4 +8,3 @@ pytest-flask-sqlalchemy>=1.0.2
 pytest-enabler>=1.2.0
 flask-unittest>=0.1.1
 Flask-Fixtures>=0.3.8
-
