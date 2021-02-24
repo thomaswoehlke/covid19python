@@ -426,9 +426,9 @@ setup(
     setup_requires=requires_build,
     tests_require=requires_test,
     scripts=[
-        'scripts'+os.sep+'script_setup_requirements',
-        'scripts'+os.sep+'script_npm_install',
-        'scripts'+os.sep+'script_get_python_requirements_from_txt',
+        'scripts'+os.sep+'script_setup_requirements.py',
+        'scripts'+os.sep+'script_npm_install.py',
+        'scripts'+os.sep+'script_get_python_requirements_from_txt.py',
     ],
     python_requires=">= 3.8"
 )
