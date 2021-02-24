@@ -32,7 +32,6 @@ keywords_list = [
 ]
 
 requires_setup = [
-    "setuptools==53.0.0",
     "wheel==0.36.2",
     "pip-licenses==3.3.0",
     "pip-tools==5.5.0",

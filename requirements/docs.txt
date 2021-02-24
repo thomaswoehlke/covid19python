@@ -6,10 +6,6 @@
 #
 alabaster==0.7.12
     # via sphinx
-appdirs==1.4.4
-    # via virtualenv
-argparse==1.4.0
-    # via pytoolbox
 atomicwrites==1.4.0
     # via pytest
 attrs==19.3.0
@@ -18,22 +14,15 @@ attrs==19.3.0
     #   plantuml2freemind
     #   pytest
 babel==2.9.0
-    # via
-    #   flask-babel
-    #   sphinx
+    # via sphinx
 certifi==2020.12.5
-    # via
-    #   pipenv
-    #   requests
+    # via requests
 chardet==3.0.4
     # via requests
 cleo==0.8.1
     # via plantuml2freemind
 click==7.1.2
-    # via
-    #   flask
-    #   manual-sitemap
-    #   pip-tools
+    # via manual-sitemap
 clikit==0.6.2
     # via cleo
 colorama==0.4.4
@@ -42,32 +31,8 @@ colorama==0.4.4
     #   sphinx
 crashtest==0.3.1
     # via clikit
-distlib==0.3.1
-    # via virtualenv
 docutils==0.16
     # via sphinx
-filelock==3.0.12
-    # via virtualenv
-flask-babel==2.0.0
-    # via -r requirements\docs.in
-flask-filealchemy==0.6.1
-    # via -r requirements\docs.in
-flask-pluginkit==3.6.0
-    # via -r requirements\docs.in
-flask-resources==0.6.0
-    # via -r requirements\docs.in
-flask-responsebuilder==2.0.13
-    # via -r requirements\docs.in
-flask-sqlalchemy==2.4.4
-    # via flask-filealchemy
-flask==1.1.2
-    # via
-    #   flask-babel
-    #   flask-filealchemy
-    #   flask-pluginkit
-    #   flask-resources
-    #   flask-responsebuilder
-    #   flask-sqlalchemy
 httplib2==0.19.0
     # via plantuml
 idna==2.10
@@ -76,23 +41,14 @@ imagesize==1.2.0
     # via sphinx
 importlib-metadata==1.3.0
     # via plantuml-creator
-itsdangerous==1.1.0
-    # via flask
 jinja2==2.11.3
-    # via
-    #   flask
-    #   flask-babel
-    #   sphinx
-json2html==1.3.0
-    # via flask-responsebuilder
+    # via sphinx
 manual-sitemap==19.6.0
     # via -r requirements\docs.in
 markdown==3.3.3
     # via plantuml-markdown
 markupsafe==1.1.1
     # via jinja2
-marshmallow==3.10.0
-    # via flask-resources
 more-itertools==8.0.2
     # via
     #   plantuml-creator
@@ -100,7 +56,6 @@ more-itertools==8.0.2
     #   zipp
 packaging==20.0
     # via
-    #   -r requirements\docs.in
     #   pallets-sphinx-themes
     #   plantuml-creator
     #   pytest
@@ -111,12 +66,6 @@ pastel==0.2.1
     # via clikit
 pbr==5.5.1
     # via sphinxcontrib-gravizo
-pip-licenses==3.3.0
-    # via -r requirements\docs.in
-pip-tools==5.5.0
-    # via -r requirements\docs.in
-pipenv==2020.11.15
-    # via -r requirements\docs.in
 plantuml-creator==1.0.7
     # via -r requirements\docs.in
 plantuml-gentools==0.1.2
@@ -133,16 +82,12 @@ pluggy==0.13.1
     # via
     #   plantuml-creator
     #   pytest
-ptable==0.9.2
-    # via pip-licenses
 py2puml==0.3.1
     # via -r requirements\docs.in
 py==1.8.1
     # via
     #   plantuml-creator
     #   pytest
-pyaml==20.4.0
-    # via pytoolbox
 pygments==2.8.0
     # via
     #   sphinx
@@ -156,45 +101,20 @@ pyparsing==2.4.6
     #   plantuml-creator
 pytest==5.3.2
     # via plantuml-creator
-python-frontmatter==0.5.0
-    # via flask-filealchemy
-python-magic==0.4.22
-    # via pytoolbox
-pytoolbox==14.0.0
-    # via -r requirements\docs.in
 pytz==2021.1
-    # via
-    #   babel
-    #   flask-babel
-    #   pytoolbox
+    # via babel
 pyyaml==5.4.1
-    # via
-    #   flask-responsebuilder
-    #   plantuml2freemind
-    #   pyaml
-    #   python-frontmatter
+    # via plantuml2freemind
 requests==2.25.1
-    # via
-    #   pytoolbox
-    #   sphinx
-ruamel-yaml==0.16.12
-    # via flask-filealchemy
-ruamel.yaml.clib==0.2.2
-    # via ruamel-yaml
-semver==2.13.0
-    # via flask-pluginkit
+    # via sphinx
 six==1.13.0
     # via
     #   packaging
     #   plantuml-creator
-    #   python-frontmatter
-    #   virtualenv
 snowballstemmer==2.1.0
     # via sphinx
 speaklater==1.3
-    # via
-    #   -r requirements\docs.in
-    #   flask-resources
+    # via -r requirements\docs.in
 sphinx-issues==1.2.0
     # via -r requirements\docs.in
 sphinx-tabs==2.0.1
@@ -225,8 +145,6 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.4
     # via sphinx
-sqlalchemy==1.3.23
-    # via flask-sqlalchemy
 str2bool==1.1
     # via plantuml-creator
 stringcase==1.2.0
@@ -237,27 +155,14 @@ typing-extensions==3.7.4.3
     # via plantuml2freemind
 urllib3==1.26.3
     # via requests
-virtualenv-clone==0.5.4
-    # via pipenv
-virtualenv==20.4.2
-    # via
-    #   -r requirements\docs.in
-    #   pipenv
 wcwidth==0.1.8
     # via
     #   plantuml-creator
     #   pytest
-werkzeug==1.0.1
-    # via flask
-wheel==0.36.2
-    # via -r requirements\docs.in
-xmltodict==0.12.0
-    # via flask-responsebuilder
 zipp==0.6.0
     # via
     #   importlib-metadata
     #   plantuml-creator
 
 # The following packages are considered to be unsafe in a requirements file:
-# pip
 # setuptools
