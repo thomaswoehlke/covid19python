@@ -9,7 +9,6 @@ needs_pytest = {"pytest", "test", "ptr"}.intersection(sys.argv)
 pytest_runner = ["pytest-runner"] if needs_pytest else []
 
 readme = open("README.md").read()
-history = open("BACKLOG.md").read()
 
 keywords_list = [
     "virus",
@@ -452,10 +451,6 @@ requires_install_groups = [
 
 for reqs in requires_extras.values():
     requires_extras["all"].extend(reqs)
-
-# for my_group in requires_install_groups:
-#    for my_item in my_group:
-#        requires_install.append(my_item)
 
 keywords = ""
 for kw in keywords_list:
