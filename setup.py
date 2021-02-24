@@ -3,12 +3,13 @@ import sys
 
 from setuptools import find_packages, setup
 
-version = "0.0.19"
+version = '0.0.19'
 
-needs_pytest = {"pytest", "test", "ptr"}.intersection(sys.argv)
+needs_pytest = {'pytest', '"test', '"ptr'}.intersection(sys.argv)
 pytest_runner = ["pytest-runner"] if needs_pytest else []
 
 readme = open("README.md").read()
+history = open("BACKLOG.md").read()
 
 keywords_list = [
     "virus",
@@ -459,13 +460,13 @@ for kw in keywords_list:
 packages = find_packages()
 
 setup(
-    name="covid19python",
+    name='covid19python',
     version=version,
-    url="ttps://github.com/thomaswoehlke/covid19python.git",
-    license="GNU General Public License v3 (GPLv3)",
-    author="Thomas Woehlke",
-    author_email="thomas.woehlke@gmail.com",
-    description="Covid19 Data Aggregation - also a Project to learn Python Flask, SQLAlchemy, Celery et al.",
+    url='ttps://github.com/thomaswoehlke/covid19python.git',
+    license='GNU General Public License v3 (GPLv3)',
+    author='Thomas Woehlke',
+    author_email='thomas.woehlke@gmail.com',
+    description='Covid19 Data Aggregation - also a Project to learn Python Flask, SQLAlchemy, Celery et al.',
     classifiers=[
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
@@ -497,9 +498,9 @@ setup(
     setup_requires=requires_setup,
     tests_require=requires_test,
     scripts=[
-        "scripts/script_setup_requirements",
-        "scripts/script_npm_install",
-        "scripts/script_get_python_requirements_from_txt",
+        'scripts'+os.sep+'script_setup_requirements',
+        'scripts'+os.sep+'script_npm_install',
+        'scripts'+os.sep+'script_get_python_requirements_from_txt',
     ],
     python_requires=">= 3.8"
 )
