@@ -2,11 +2,15 @@ from sqlalchemy import and_
 from datetime import date
 from sqlalchemy.orm import joinedload
 
+from whoosh.analysis import StemmingAnalyzer
+
 from database import db, ITEMS_PER_PAGE
 
 
 class RkiLandkreise(db.Model):
     __tablename__ = 'rki_landkreise'
+    __searchable__ = ['county']  # indexed fields
+    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
 

@@ -2,6 +2,7 @@ from sqlalchemy import and_, func
 from datetime import date, datetime, time
 from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload
+from whoosh.analysis import StemmingAnalyzer
 
 
 class ApplicationDateReported(db.Model):
@@ -228,6 +229,8 @@ class RkiDateReported(ApplicationDateReported):
     __table_args__ = (
         db.UniqueConstraint('date_reported', 'datum', name="uix_rki_date_reported"),
     )
+    __searchable__ = ['date_reported', 'year_week', 'year', 'datum']  # indexed fields
+    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False)
