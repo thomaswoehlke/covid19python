@@ -490,7 +490,7 @@ setup(
         "Topic :: Database :: Frontends",
         "Framework :: Flask",
     ],
-    long_description=readme + os.linesep + os.linesep + history,
+    long_description=readme,
     long_description_content_type="text/markdown",
     keywords=keywords,
     packages=packages,
