@@ -36,5 +36,5 @@ StatisticalDiagrams>=20.5
 #chardet==3.0.4
 chardet==4.0.0
 pytz==2021.1
-ruaml-yaml==0.1.6.12
+ruamel.yaml==0.1.6.12
 identify==1.5.14
