@@ -45,7 +45,7 @@ cfgv==3.2.0
     # via pre-commit
 chardet==3.0.4
     # via
-    #   -r requirements\dev.in
+    #   -r requirements\build.in
     #   requests
 cleo==0.8.1
     # via plantuml2freemind
@@ -380,7 +380,6 @@ pytoolbox==14.0.0
     # via -r requirements\build.in
 pytz==2020.5
     # via
-    #   -r requirements\dev.in
     #   aiocronjob
     #   apscheduler
     #   babel
