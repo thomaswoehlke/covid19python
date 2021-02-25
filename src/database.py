@@ -14,7 +14,6 @@ board = RedisBoardExtension()
 
 def create_app():
     my_app = Flask('covid19')
-    dashboard.bind(my_app)
     CORS(my_app)
     Bootstrap(my_app)
     my_app.config.from_object("config")
@@ -26,6 +25,7 @@ def create_app():
     my_app.config['SQLALCHEMY_DATABASE_URI'] = db_url
     my_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation warning
     my_app.config['FLASK_ADMIN_SWATCH'] = 'superhero'
+    #dashboard.bind(my_app)
     board.init_app(my_app)
     return my_app
 
