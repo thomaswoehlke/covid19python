@@ -21,8 +21,6 @@ chardet==3.0.4
     # via requests
 cleo==0.8.1
     # via plantuml2freemind
-click==7.1.2
-    # via manual-sitemap
 clikit==0.6.2
     # via cleo
 colorama==0.4.4
@@ -43,8 +41,6 @@ importlib-metadata==1.3.0
     # via plantuml-creator
 jinja2==2.11.3
     # via sphinx
-manual-sitemap==19.6.0
-    # via -r requirements\docs.in
 markdown==3.3.3
     # via plantuml-markdown
 markupsafe==1.1.1
@@ -56,12 +52,9 @@ more-itertools==8.0.2
     #   zipp
 packaging==20.0
     # via
-    #   pallets-sphinx-themes
     #   plantuml-creator
     #   pytest
     #   sphinx
-pallets-sphinx-themes==1.2.3
-    # via -r requirements\docs.in
 pastel==0.2.1
     # via clikit
 pbr==5.5.1
@@ -89,9 +82,7 @@ py==1.8.1
     #   plantuml-creator
     #   pytest
 pygments==2.8.0
-    # via
-    #   sphinx
-    #   sphinx-tabs
+    # via sphinx
 pylev==1.3.0
     # via clikit
 pyparsing==2.4.6
@@ -115,16 +106,9 @@ snowballstemmer==2.1.0
     # via sphinx
 speaklater==1.3
     # via -r requirements\docs.in
-sphinx-issues==1.2.0
-    # via -r requirements\docs.in
-sphinx-tabs==2.0.1
-    # via -r requirements\docs.in
 sphinx==3.4.3
     # via
     #   -r requirements\docs.in
-    #   pallets-sphinx-themes
-    #   sphinx-issues
-    #   sphinx-tabs
     #   sphinxcontrib-log-cabinet
     #   sphinxcontrib-plantuml
 sphinxcontrib-applehelp==1.0.2

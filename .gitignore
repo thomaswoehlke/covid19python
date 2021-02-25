@@ -1148,3 +1148,4 @@ dump.rdb
 /logfile3.txt
 /logfile4.txt
 /logfile5.txt
+/logfile*.txt

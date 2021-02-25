@@ -50,6 +50,8 @@ pyparsing==2.4.6
     # via
     #   -r requirements\build.in
     #   packaging
+python-dotenv==0.15.0
+    # via -r requirements\build.in
 python-magic==0.4.22
     # via pytoolbox
 pytoml==0.1.21
