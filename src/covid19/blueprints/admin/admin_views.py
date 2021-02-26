@@ -182,7 +182,7 @@ def url_admin_database_dump():
 @app_admin.route('/database/reimport')
 def url_admin_database_dump_reimport():
     app.logger.info("url_admin_database_dump_reimport [start]")
-    admin_service.run_admin_database_import()
+    admin_service.run_admin_database_dump_reimport()
     flash("admin_service.run_admin_database_import started")
     app.logger.info("url_admin_database_dump_reimport [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))
