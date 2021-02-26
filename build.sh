@@ -33,7 +33,7 @@ function build_wheel() {
 }
 
 function main() {
-  setup_venv
+  #setup_venv
   pip_compile
   pip_install
   pip_install_via_setup_py
