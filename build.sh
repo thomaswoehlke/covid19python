@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 function setup_venv() {
+    conda deactivate
     deactivate
     rm -rf venv
-    py -3 -m venv venv
-    venv/Scripts/activate
+    python -m venv venv
+    venv/bin/activate
 }
 
 function pip_compile() {
@@ -32,7 +33,7 @@ function build_wheel() {
 }
 
 function main() {
-  #setup_venv
+  setup_venv
   pip_compile
   pip_install
   pip_install_via_setup_py
