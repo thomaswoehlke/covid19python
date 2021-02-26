@@ -54,6 +54,9 @@
                 </div>
                 <p></p>
                 <div class="btn-group-vertical" role="group" aria-label="Views">
+                    <a class="btn btn-success btn-lg btn-block text-left"
+                       href="{{ url_for( 'app_admin.url_admin_download_all_files') }}"
+                       role="button">Admin :: all_files :: download</a>
                     <a class="btn btn-danger btn-lg btn-block text-left"
                        href="{{ url_for( 'app_admin.run_update_star_schema_incremental') }}"
                        role="button">Admin :: all_files :: update star_schema :: incremental</a>
