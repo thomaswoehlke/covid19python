@@ -358,7 +358,7 @@ for kw in keywords_list:
 packages = find_packages()
 
 setup(
-    name='covid19python',
+    name='flask-covid19',
     version=version,
     url='https://github.com/thomaswoehlke/covid19python.git',
     license='GNU General Public License v3 (GPLv3)',

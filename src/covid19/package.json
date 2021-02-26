@@ -1,5 +1,5 @@
 {
-    "name": "covid19",
+    "name": "flask-covid19-static",
     "version": "0.0.19",
     "description": "Covid19 Data Aggregation - also a Project to learn Python Flask, SQLAlchemy, Celery et al.",
     "main": "index.js",
