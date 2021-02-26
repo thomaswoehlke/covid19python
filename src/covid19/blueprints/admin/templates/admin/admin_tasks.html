@@ -66,9 +66,15 @@
                 </div>
                 <p></p>
                 <div class="btn-group-vertical" role="group" aria-label="Views">
-                     <a class="btn btn-primary btn-lg btn-block text-left"
+                     <a class="btn btn-success btn-lg btn-block text-left"
                        href="{{ url_for( 'app_admin.url_admin_database_drop') }}"
                        role="button">Admin :: database :: drop_create (import all in one)</a>
+                </div>
+                <p></p>
+                <div class="btn-group-vertical" role="group" aria-label="Views">
+                    <a class="btn btn-primary btn-lg btn-block text-left"
+                       href="{{ url_for( 'app_admin.url_admin_database_dump') }}"
+                       role="button">Admin :: database :: dump</a>
                 </div>
             </div>
         </div>
