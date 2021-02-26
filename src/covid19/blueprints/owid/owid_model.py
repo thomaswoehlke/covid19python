@@ -1,5 +1,4 @@
 from sqlalchemy import and_, func
-from whoosh.analysis import StemmingAnalyzer
 from datetime import date
 from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload
@@ -12,8 +11,6 @@ class OwidDateReported(ApplicationDateReported):
     __table_args__ = (
         db.UniqueConstraint('date_reported', 'datum', name="uix_owid_date_reported"),
     )
-    __searchable__ = ['year', 'year_week', 'date_reported']  # indexed fields
-    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)
@@ -49,8 +46,6 @@ class OwidDateReported(ApplicationDateReported):
 
 class OwidData(db.Model):
     __tablename__ = 'owid_data'
-    __searchable__ = ['continent', 'location', 'iso_code']  # indexed fields
-    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported_id = db.Column(db.Integer,

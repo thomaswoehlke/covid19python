@@ -1,8 +1,5 @@
 from sqlalchemy import and_, func
 from datetime import date
-
-from whoosh.analysis import StemmingAnalyzer
-
 from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload
 from covid19.blueprints.application.application_model import ApplicationDateReported, ApplicationRegion
@@ -14,8 +11,6 @@ class WhoDateReported(ApplicationDateReported):
     __table_args__ = (
         db.UniqueConstraint('date_reported', 'datum', name="uix_who_date_reported"),
     )
-    __searchable__ = ['year', 'date_reported', 'year_week']  # indexed fields
-    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)
@@ -55,8 +50,6 @@ class WhoRegion(ApplicationRegion):
     __table_args__ = (
         db.UniqueConstraint('region', name="uix_who_region"),
     )
-    __searchable__ = ['region']  # indexed fields
-    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
     region = db.Column(db.String(255), nullable=False, unique=True)
@@ -67,8 +60,6 @@ class WhoCountry(db.Model):
     __table_args__ = (
         db.UniqueConstraint('country_code', 'country', name="uix_who_country"),
     )
-    __searchable__ = ['country_code','country']  # indexed fields
-    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
     country_code = db.Column(db.String(255), unique=True, nullable=False)

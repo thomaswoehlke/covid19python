@@ -1,7 +1,5 @@
 from datetime import date
 
-from whoosh.analysis import StemmingAnalyzer
-
 from database import db, ITEMS_PER_PAGE
 from covid19.blueprints.application.application_model import ApplicationDateReported
 
@@ -14,8 +12,6 @@ class RkiVaccinationDateReported(ApplicationDateReported):
     __table_args__ = (
         db.UniqueConstraint('date_reported', 'datum', name="uix_rki_vaccination_date_reported"),
     )
-    __searchable__ = ['year', 'date_reported', 'year_week']  # indexed fields
-    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False, unique=True)

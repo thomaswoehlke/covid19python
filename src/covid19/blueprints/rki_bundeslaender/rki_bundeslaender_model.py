@@ -1,12 +1,8 @@
-from whoosh.analysis import StemmingAnalyzer
-
 from database import db, ITEMS_PER_PAGE
 
 
 class RkiBundeslaender(db.Model):
     __tablename__ = 'rki_bundeslaender'
-    __searchable__ = ['county']  # indexed fields
-    __analyzer__ = StemmingAnalyzer()
 
     id = db.Column(db.Integer, primary_key=True)
     object_id_1 = db.Column(db.Integer, nullable=False)

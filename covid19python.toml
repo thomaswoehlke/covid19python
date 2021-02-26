@@ -36,10 +36,3 @@ requires = [
 	"wheel==0.36.2",
 ]
 build-backend = "setuptools.build_meta"
-
-[tool.tox]
-envlist = 'py38'
-
-[testenv]
-deps = 'pytest'
-commands = 'pytest'

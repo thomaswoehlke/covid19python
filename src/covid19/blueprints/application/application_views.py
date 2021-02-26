@@ -1,6 +1,5 @@
 from flask import render_template, redirect, url_for, Blueprint
 from flask_admin.contrib.sqla import ModelView
-from flask_healthz import healthz
 
 from database import app, admin, db
 from covid19.blueprints.application.application_model_transient import ApplicationPage
@@ -31,7 +30,6 @@ app.register_blueprint(app_rki_landkreise, url_prefix='/rki/landkreise')
 app.register_blueprint(app_rki_vaccination, url_prefix='/rki/vaccination')
 app.register_blueprint(app_who, url_prefix='/who')
 app.register_blueprint(app_owid, url_prefix='/owid')
-app.register_blueprint(healthz, url_prefix="/healthz")
 
 ############################################################################################
 #
