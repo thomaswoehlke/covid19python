@@ -179,12 +179,12 @@ def url_admin_database_dump():
     return redirect(url_for('app_admin.url_admin_tasks'))
 
 
-@app_admin.route('/database/import')
-def url_admin_database_import():
-    app.logger.info("url_admin_database_import [start]")
+@app_admin.route('/database/reimport')
+def url_admin_database_dump_reimport():
+    app.logger.info("url_admin_database_dump_reimport [start]")
     admin_service.run_admin_database_import()
     flash("admin_service.run_admin_database_import started")
-    app.logger.info("url_admin_database_import [done]")
+    app.logger.info("url_admin_database_dump_reimport [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))
 
 

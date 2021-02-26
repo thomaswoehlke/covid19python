@@ -24,27 +24,50 @@ class AdminService:
         user = app.config['SQLALCHEMY_POSTGRES_USER']
         url = app.config['SQLALCHEMY_POSTGRES_URL']
         db = app.config['SQLALCHEMY_POSTGRES_DB']
-        cmd = 'pg_dump -U '+user+' -h '+url+' '+db+' --inserts > ..'+os.sep+'..'+os.sep+'data'+os.sep+'covid19data.sql'
-        args = [cmd]
+        cmd = 'pg_dump -U '+user+' -h '+url+' '+db\
+              +' --compress=9 --clean --if-exists --no-tablespaces '\
+              +' --on-conflict-do-nothing --rows-per-insert=200 --column-inserts '\
+              +' --quote-all-identifiers --no-privileges > '\
+              + '..'+os.sep+'..'+os.sep+'data'+os.sep+'db'+os.sep+'covid19data.sql.gz'
         app.logger.info(" start: "+str(cmd))
-        returncode = 0
-        try:
-            result = subprocess.run(args, shell=True, check=True, capture_output=True, encoding='UTF-8')
-            returncode = result.returncode
-        except subprocess.CalledProcessError as error:
-            app.logger.warning("WARN: run_admin_database_dump [begin]")
-            app.logger.warning(":::"+str(error)+":::")
-            app.logger.warning("WARN: run_admin_database_dump [end]")
+        returncode = self.__run_ome_shell_command(cmd)
         app.logger.info(" result: " + str(returncode))
         app.logger.info(" run database dump [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 
-    def run_admin_database_import(self):
-        app.logger.info(" run database import [begin]")
+    @classmethod
+    def __run_ome_shell_command(cls, cmd):
+        args = [cmd]
+        app.logger.info(" start: " + str(cmd))
+        returncode = 0
+        try:
+            result = subprocess.run(args, shell=True, check=True, capture_output=True, encoding='UTF-8')
+            returncode = result.returncode
+        except subprocess.CalledProcessError as error:
+            app.logger.warning("WARN: AdminService.__run_ome_shell_command")
+            app.logger.warning("cmd    :::" + cmd + ":::")
+            app.logger.warning("error  :::" + str(error) + ":::")
+            app.logger.warning("WARN: AdminService.__run_ome_shell_command")
+        return returncode
+
+    def run_admin_database_dump_reimport(self):
+        app.logger.info(" run database dump reimport [begin]")
         app.logger.info("------------------------------------------------------------")
-        app.logger.info("... TBD")
-        app.logger.info(" run database import [done]")
+        user = app.config['SQLALCHEMY_POSTGRES_USER']
+        url = app.config['SQLALCHEMY_POSTGRES_URL']
+        db = app.config['SQLALCHEMY_POSTGRES_DB']
+        file_path = '..' + os.sep + '..' + os.sep + 'data' + os.sep + 'db' + os.sep + 'covid19data.sql'
+        cmd_list = [
+            'gunzip ' + file_path + '.gz',
+            'pgsql -U ' + user + ' -h ' + url + ' ' + db + ' < ' + file_path,
+            'gzip ' + file_path
+        ]
+        for cmd in cmd_list:
+            returncode = self.__run_ome_shell_command(cmd)
+            msg = '[ returncode: ' + str(returncode) + '] ' + cmd
+            app.logger.info(msg)
+        app.logger.info(" run database dump reimport [done]")
         app.logger.info("------------------------------------------------------------")
         return self
 

@@ -11,15 +11,21 @@
                     <a class="btn btn-secondary btn-lg btn-block text-left"
                        href="{{ url_for( 'app_admin.url_alive_message_start') }}"
                        role="button">Admin :: alive message</a>
+                </div>
+                <p></p>
+                <div class="btn-group-vertical" role="group" aria-label="Views">
                     <a class="btn btn-primary btn-lg btn-block text-left"
                        href="{{ url_for( 'app_admin.url_admin_database_dropcreate_only') }}"
                        role="button">Admin :: database :: drop_create :: only</a>
-                    <a class="btn btn-secondary btn-lg btn-block text-left"
-                       href="{{ url_for( 'app_admin.url_admin_database_import') }}"
-                       role="button">Admin :: database :: import</a>
+                </div>
+                <p></p>
+                <div class="btn-group-vertical" role="group" aria-label="Views">
                     <a class="btn btn-primary btn-lg btn-block text-left"
                        href="{{ url_for( 'app_admin.url_admin_database_dump') }}"
                        role="button">Admin :: database :: dump</a>
+                    <a class="btn btn-primary btn-lg btn-block text-left"
+                       href="{{ url_for( 'app_admin.url_admin_database_dump_reimport') }}"
+                       role="button">Admin :: database :: dump :: reimport</a>
                 </div>
             </div>
             <div class="col">
@@ -39,12 +45,6 @@
                     <a class="btn btn-secondary btn-lg btn-block text-left"
                        href="{{ url_for( 'app_admin.url_admin_update_fact_table_initial_only') }}"
                        role="button">Admin :: all_files :: update fact_table :: initial</a>
-                </div>
-                <p></p>
-                <div class="btn-group-vertical" role="group" aria-label="Views">
-                    <a class="btn btn-primary btn-lg btn-block text-left"
-                       href="{{ url_for( 'app_admin.url_admin_database_dump') }}"
-                       role="button">Admin :: database :: dump</a>
                 </div>
                 <p></p>
                 <div class="btn-group-vertical" role="group" aria-label="Views">
