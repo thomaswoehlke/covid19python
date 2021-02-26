@@ -17,7 +17,6 @@ from celery.utils.log import LoggingProxy
 # cache = Cache(config={"CACHE_TYPE": "simple"})
 app_cors = CORS()
 app_bootstrap = Bootstrap()
-db = SQLAlchemy()
 
 
 def create_app():
@@ -41,15 +40,15 @@ def create_app():
 
 
 def create_db(my_app):
-    db.init_app(my_app)
-    db.create_all()
-    return db
+    my_db = SQLAlchemy(my_app)
+    my_db.create_all()
+    return my_db
 
 
 def create_db_test(my_app):
-    db.init_app(my_app)
-    db.create_all()
-    return db
+    my_db = SQLAlchemy(my_app)
+    my_db.create_all()
+    return my_db
 
 
 def create_celery(my_app):
