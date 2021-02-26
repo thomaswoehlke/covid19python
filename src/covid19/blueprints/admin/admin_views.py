@@ -116,6 +116,27 @@ def task_admin_update_fact_table_initial_only(self):
     return result
 
 
+@celery.task(bind=True)
+def task_admin_update_fact_table_incremental_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_update_all_blueprints [start] ")
+    logger.info("------------------------------------------------------------")
+    who_service.update_fact_table_incremental_only()
+    ecdc_service.update_fact_table_incremental_only()
+    owid_service.update_fact_table_incremental_only()
+    rki_vaccination_service.update_fact_table_incremental_only()
+    rki_service_bundeslaender.update_fact_table_incremental_only()
+    rki_service_landkreise.update_fact_table_incremental_only()
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_update_all_blueprints [done] ")
+    logger.info("------------------------------------------------------------")
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_admin_update_all_blueprints)"
+    return result
+
+
 @app_admin.route('/')
 def url_admin_index():
     page_info = ApplicationPage('Admin', "Covid19 Admin")
@@ -224,11 +245,21 @@ def url_admin_update_dimension_tables_only():
     return redirect(url_for('app_admin.url_admin_tasks'))
 
 
-@app_admin.route('/update/fact_tables/all')
+@app_admin.route('/update/fact_tables/initial/all')
 def url_admin_update_fact_table_initial_only():
     app.logger.info("url_admin_update_fact_table_initial_only [start]")
     task_admin_update_fact_table_initial_only.apply_async()
     flash("task_admin_update_fact_table_initial_only async started")
     app.logger.info("task_admin_update_fact_table_initial_only async started")
     app.logger.info("url_admin_update_fact_table_initial_only [done]")
+    return redirect(url_for('app_admin.url_admin_tasks'))
+
+
+@app_admin.route('/update/fact_tables/incremental/all')
+def url_admin_update_fact_table_incremental_only():
+    app.logger.info("url_admin_update_fact_table_incremental_only [start]")
+    task_admin_update_fact_table_incremental_only.apply_async()
+    flash("task_admin_update_fact_table_incremental_only async started")
+    app.logger.info("task_admin_update_fact_table_incremental_only async started")
+    app.logger.info("url_admin_update_fact_table_incremental_only [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))

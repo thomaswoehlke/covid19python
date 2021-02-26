@@ -85,3 +85,8 @@ class OwidService:
     def update_fact_table_initial_only(self):
         self.service_update.update_fact_table_initial_only()
         return self
+
+    def update_fact_table_incremental_only(self):
+        self.service_update.update_fact_table_incremental_only()
+        return self
+
