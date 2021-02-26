@@ -23,8 +23,8 @@ function pip_install() {
 }
 
 function pip_install_via_setup_py() {
-  # pip install -e . --compile --force-reinstall --progress-bar pretty --log logfile5.txt
-  pip install -e . --compile --progress-bar pretty --log logfile5.txt
+  pip install -e . --compile --force-reinstall --progress-bar pretty --log logfile5.txt
+  # pip install -e . --compile --progress-bar pretty --log logfile5.txt
 }
 
 function build_wheel() {
@@ -36,7 +36,7 @@ function main() {
   pip_compile
   pip_install
   pip_install_via_setup_py
-  #build_wheel
+  build_wheel
 }
 
 main
