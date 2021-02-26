@@ -79,7 +79,7 @@ def task_admin_update_dimension_tables_only(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
-    logger.info(" task_admin_update_all_blueprints [start] ")
+    logger.info(" task_admin_update_dimension_tables_only [start] ")
     logger.info("------------------------------------------------------------")
     who_service.update_dimension_tables_only()
     ecdc_service.update_dimension_tables_only()
@@ -88,10 +88,10 @@ def task_admin_update_dimension_tables_only(self):
     rki_service_bundeslaender.update_dimension_tables_only()
     rki_service_landkreise.update_dimension_tables_only()
     logger.info("------------------------------------------------------------")
-    logger.info(" task_admin_update_all_blueprints [done] ")
+    logger.info(" task_admin_update_dimension_tables_only [done] ")
     logger.info("------------------------------------------------------------")
     self.update_state(state=states.SUCCESS)
-    result = "OK (task_admin_update_all_blueprints)"
+    result = "OK (task_admin_update_dimension_tables_only)"
     return result
 
 
@@ -100,7 +100,7 @@ def task_admin_update_fact_table_initial_only(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
-    logger.info(" task_admin_update_all_blueprints [start] ")
+    logger.info(" task_admin_update_fact_table_initial_only [start] ")
     logger.info("------------------------------------------------------------")
     who_service.update_fact_table_initial_only()
     ecdc_service.update_fact_table_initial_only()
@@ -109,10 +109,10 @@ def task_admin_update_fact_table_initial_only(self):
     rki_service_bundeslaender.update_fact_table_initial_only()
     rki_service_landkreise.update_fact_table_initial_only()
     logger.info("------------------------------------------------------------")
-    logger.info(" task_admin_update_all_blueprints [done] ")
+    logger.info(" task_admin_update_fact_table_initial_only [done] ")
     logger.info("------------------------------------------------------------")
     self.update_state(state=states.SUCCESS)
-    result = "OK (task_admin_update_all_blueprints)"
+    result = "OK (task_admin_update_fact_table_initial_only)"
     return result
 
 
@@ -121,7 +121,7 @@ def task_admin_update_fact_table_incremental_only(self):
     logger = get_task_logger(__name__)
     self.update_state(state=states.STARTED)
     logger.info("------------------------------------------------------------")
-    logger.info(" task_admin_update_all_blueprints [start] ")
+    logger.info(" task_admin_update_fact_table_incremental_only [start] ")
     logger.info("------------------------------------------------------------")
     who_service.update_fact_table_incremental_only()
     ecdc_service.update_fact_table_incremental_only()
@@ -130,10 +130,52 @@ def task_admin_update_fact_table_incremental_only(self):
     rki_service_bundeslaender.update_fact_table_incremental_only()
     rki_service_landkreise.update_fact_table_incremental_only()
     logger.info("------------------------------------------------------------")
-    logger.info(" task_admin_update_all_blueprints [done] ")
+    logger.info(" task_admin_update_fact_table_incremental_only [done] ")
     logger.info("------------------------------------------------------------")
     self.update_state(state=states.SUCCESS)
-    result = "OK (task_admin_update_all_blueprints)"
+    result = "OK (task_admin_update_fact_table_incremental_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_admin_update_star_schema_initial(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_update_star_schema_initial [start] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_star_schema_initial()
+    ecdc_service.run_update_star_schema_initial()
+    owid_service.run_update_star_schema_initial()
+    rki_vaccination_service.run_update_star_schema_initial()
+    rki_service_bundeslaender.run_update_star_schema_initial()
+    rki_service_landkreise.run_update_star_schema_initial()
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_update_star_schema_initial [done] ")
+    logger.info("------------------------------------------------------------")
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_admin_update_star_schema_initial)"
+    return result
+
+
+@celery.task(bind=True)
+def task_admin_update_star_schema_incremental(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_update_star_schema_incremental [start] ")
+    logger.info("------------------------------------------------------------")
+    who_service.run_update_star_schema_incremental()
+    ecdc_service.run_update_star_schema_incremental()
+    owid_service.run_update_star_schema_incremental()
+    rki_vaccination_service.run_update_star_schema_incremental()
+    rki_service_bundeslaender.run_update_star_schema_incremental()
+    rki_service_landkreise.run_update_star_schema_incremental()
+    logger.info("------------------------------------------------------------")
+    logger.info(" task_admin_update_star_schema_incremental [done] ")
+    logger.info("------------------------------------------------------------")
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_admin_update_star_schema_incremental)"
     return result
 
 
@@ -228,8 +270,8 @@ def url_admin_download_all_files():
 @app_admin.route('/import/all')
 def url_admin_import_all_files():
     app.logger.info("url_admin_import_all_files [start]")
-    flash("task_admin_import_all_files async started")
     task_admin_import_all_files.apply_async()
+    flash("task_admin_import_all_files async started")
     app.logger.info("task_admin_import_all_files async started")
     app.logger.info("url_admin_import_all_files [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))
@@ -262,4 +304,24 @@ def url_admin_update_fact_table_incremental_only():
     flash("task_admin_update_fact_table_incremental_only async started")
     app.logger.info("task_admin_update_fact_table_incremental_only async started")
     app.logger.info("url_admin_update_fact_table_incremental_only [done]")
+    return redirect(url_for('app_admin.url_admin_tasks'))
+
+
+@app_admin.route('/update/star_schema/initial/all')
+def url_admin_update_star_schema_initial():
+    app.logger.info("url_admin_update_star_schema_initial [start]")
+    task_admin_update_star_schema_initial.apply_async()
+    flash("task_admin_update_fact_table_incremental_only async started")
+    app.logger.info("task_admin_update_fact_table_incremental_only async started")
+    app.logger.info("url_admin_update_star_schema_initial [done]")
+    return redirect(url_for('app_admin.url_admin_tasks'))
+
+
+@app_admin.route('/update/star_schema/incremental/all')
+def run_update_star_schema_incremental():
+    app.logger.info("run_update_star_schema_incremental [start]")
+    task_admin_update_star_schema_incremental.apply_async()
+    flash("task_admin_update_fact_table_incremental_only async started")
+    app.logger.info("task_admin_update_fact_table_incremental_only async started")
+    app.logger.info("run_update_star_schema_incremental [done]")
     return redirect(url_for('app_admin.url_admin_tasks'))
