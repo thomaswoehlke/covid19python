@@ -1,12 +1,9 @@
 graft src/covid19/static
-graft src/covid19/templates
 global-exclude *.pyc
 
 include BACKLOG.md
 include LICENSE.md
 include requirements/*.txt
-graft artwork
 graft docs
-prune docs/_build
-graft tests
+graft src/tests
 global-exclude *.pyc
