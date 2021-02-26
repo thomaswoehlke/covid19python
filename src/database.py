@@ -15,19 +15,22 @@ from celery.utils.log import LoggingProxy
 # board = RedisBoardExtension()
 # pm = PluginManager()
 # cache = Cache(config={"CACHE_TYPE": "simple"})
+app_cors = CORS()
+app_bootstrap = Bootstrap()
+db = SQLAlchemy()
 
 
 def create_app():
     my_app = Flask('covid19')
-    CORS(my_app)
-    Bootstrap(my_app)
+    app_cors.init_app(my_app)
+    app_bootstrap.init_app(my_app)
     my_app.config.from_object("config")
-    db_url = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
+    my_db_url = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
         user=my_app.config['SQLALCHEMY_POSTGRES_USER'],
         pw=my_app.config['SQLALCHEMY_POSTGRES_PW'],
         url=my_app.config['SQLALCHEMY_POSTGRES_URL'],
         db=my_app.config['SQLALCHEMY_POSTGRES_DB'])
-    my_app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+    my_app.config['SQLALCHEMY_DATABASE_URI'] = my_db_url
     my_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation warning
     my_app.config['FLASK_ADMIN_SWATCH'] = 'superhero'
     # pm.init_app(app)
@@ -38,15 +41,15 @@ def create_app():
 
 
 def create_db(my_app):
-    my_db = SQLAlchemy(my_app)
-    my_db.create_all()
-    return my_db
+    db.init_app(my_app)
+    db.create_all()
+    return db
 
 
 def create_db_test(my_app):
-    my_db = SQLAlchemy(my_app)
-    my_db.create_all()
-    return my_db
+    db.init_app(my_app)
+    db.create_all()
+    return db
 
 
 def create_celery(my_app):
