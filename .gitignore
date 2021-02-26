@@ -1138,7 +1138,6 @@ Debug*/Debug*\ Libs
 /src/covid19/blueprints/owid/x.py
 /src/covid19/blueprints/owid/x2.py
 /src/covid19/blueprints/owid/x3.py
-/.run/
 /.checkmate/
 /lsp/
 dump.rdb
