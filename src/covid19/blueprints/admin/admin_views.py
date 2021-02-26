@@ -6,7 +6,7 @@ from flask_admin.contrib.sqla import ModelView
 from database import app, admin, db
 from covid19.blueprints.application.application_services import who_service, ecdc_service, rki_vaccination_service
 from covid19.blueprints.application.application_services import rki_service_bundeslaender, rki_service_landkreise
-from covid19.blueprints.application.application_services import admin_service
+from covid19.blueprints.application.application_services import admin_service, owid_service
 from covid19.blueprints.application.application_workers import celery
 from covid19.blueprints.application.application_model_transient import ApplicationPage
 
@@ -44,6 +44,7 @@ def task_admin_database_drop_create(self):
     ecdc_service.task_database_drop_create()
     rki_vaccination_service.task_database_drop_create()
     admin_service.task_database_drop_create()
+    owid_service.task_database_drop_create()
     logger.info("------------------------------------------------------------")
     logger.info(" task_admin_database_drop_create [done] ")
     logger.info("------------------------------------------------------------")
@@ -64,6 +65,7 @@ def task_admin_import_all_files(self):
     rki_vaccination_service.task_import_all_files()
     rki_service_bundeslaender.task_import_all_files()
     rki_service_landkreise.task_import_all_files()
+    owid_service.task_import_all_files()
     logger.info("------------------------------------------------------------")
     logger.info(" task_admin_import_all_files [done] ")
     logger.info("------------------------------------------------------------")
@@ -81,6 +83,7 @@ def task_admin_update_dimension_tables_only(self):
     logger.info("------------------------------------------------------------")
     who_service.update_dimension_tables_only()
     ecdc_service.update_dimension_tables_only()
+    owid_service.update_dimension_tables_only()
     rki_vaccination_service.update_dimension_tables_only()
     rki_service_bundeslaender.update_dimension_tables_only()
     rki_service_landkreise.update_dimension_tables_only()
@@ -101,6 +104,7 @@ def task_admin_update_fact_table_initial_only(self):
     logger.info("------------------------------------------------------------")
     who_service.update_fact_table_initial_only()
     ecdc_service.update_fact_table_initial_only()
+    owid_service.update_fact_table_initial_only()
     rki_vaccination_service.update_fact_table_initial_only()
     rki_service_bundeslaender.update_fact_table_initial_only()
     rki_service_landkreise.update_fact_table_initial_only()
