@@ -47,3 +47,12 @@
 * Fixed #107 SQLalchemy instead of SQL in: EcdcImport.get_countries_of_continent
 * Fixed #109 SQLalchemy instead of SQL in: EcdcImport.get_date_rep
 * Fixed #110 SQLalchemy instead of SQL in: EcdcImport.get_continent
+
+### Research
+* add Flask-Caching https://pypi.org/project/Flask-Caching/
+* add Flask-Monitoring https://pypi.org/project/Flask-Monitoring/
+* add Flask-Redisboard https://pypi.org/project/Flask-Redisboard/
+* add Flask-Babel https://pypi.org/project/Flask-Babel/
+* add flask-resources https://pypi.org/project/flask-resources/
+* add flask-whooshalchemy3 https://pypi.org/project/flask-whooshalchemy3/ https://github.com/blakev/Flask-WhooshAlchemy3
+* add flask-filealchemy https://pypi.org/project/flask-filealchemy/
