@@ -1127,20 +1127,9 @@ Debug*/Debug*\ Libs
 .idea/misc.xml
 .idea/*.iml
 /download.wget
-/WHO-COVID-19-global-data.csv
-/download *.wget
-/WHO-COVID-19-global-data *.csv
-/data/WHO-COVID-19-global-data *.csv
-/data/ecdc_europa_data (1).csv
-/data/RKI_COVID19.csv
 /covid19/static/node_modules
-/src/covid19/RKI_COVID19__2021-02-06__landkreise.csv
-/src/covid19/RKI_COVID19__2021-02-06__bundeslaender.csv
-/src/covid19/RKI_COVID19__2021-02-06__landkreise.csv
 /node_modules
-/req_dev.py
-/req_docs.py
-/req_tests.py
+/requirements/req_build.py
 /requirements/req_dev.py
 /requirements/req_docs.py
 /requirements/req_tests.py
@@ -1151,6 +1140,12 @@ Debug*/Debug*\ Libs
 /src/covid19/blueprints/owid/x3.py
 /.run/
 /.checkmate/
-/.run/
 /lsp/
-/src/covid19_worker/dump.rdb
+dump.rdb
+!scripts
+/logfile1.txt
+/logfile2.txt
+/logfile3.txt
+/logfile4.txt
+/logfile5.txt
+/logfile*.txt
