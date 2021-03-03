@@ -270,7 +270,7 @@ requires_install = [
 	"prettytable==2.0.0",
 	"prompt-toolkit==3.0.16",
 	"psutil==5.8.0",
-	"psycopg2==2.8.6",
+	"psycopg2-binary==2.8.6",
 	"ptable==0.9.2",
 	"py2puml==0.3.1",
 	"py==1.8.1",

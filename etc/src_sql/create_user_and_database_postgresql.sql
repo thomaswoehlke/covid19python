@@ -20,3 +20,12 @@ CREATE DATABASE covid19data
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 
+CREATE DATABASE covid19data
+    WITH
+    OWNER = covid19data
+    TEMPLATE = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'de_DE.UTF-8'
+    LC_CTYPE = 'de_DE.UTF-8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;

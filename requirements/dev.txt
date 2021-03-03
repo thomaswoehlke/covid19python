@@ -59,6 +59,8 @@ clikit==0.6.2
     # via cleo
 crashtest==0.3.1
     # via clikit
+cx-oracle==8.1.0
+    # via -r requirements/dev.in
 cycler==0.10.0
     # via matplotlib
 distlib==0.3.1
@@ -238,7 +240,7 @@ prompt-toolkit==3.0.16
     # via click-repl
 psutil==5.8.0
     # via mirakuru
-psycopg2==2.8.6
+psycopg2-binary==2.8.6
     # via -r requirements/dev.in
 ptable==0.9.2
     # via pip-licenses
