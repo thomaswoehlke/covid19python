@@ -27,6 +27,8 @@ billiard==3.6.3.0
     # via celery
 blinker==1.4
     # via flask-whooshalchemy3
+build==0.3.0
+    # via -r requirements/build.in
 celery[redis]==5.0.5
     # via -r requirements/dev.in
 certifi==2020.12.5
@@ -191,6 +193,7 @@ numpy==1.20.1
 packaging==20.0
     # via
     #   -r requirements/build.in
+    #   build
     #   plantuml-creator
     #   pytest
     #   pytest-flask-sqlalchemy
@@ -204,6 +207,8 @@ pbr==3.1.1
     #   -r requirements/build.in
     #   flask-whooshalchemy3
     #   sphinxcontrib-gravizo
+pep517==0.9.1
+    # via build
 pillow==8.1.0
     # via
     #   matplotlib
@@ -409,6 +414,8 @@ tokenize-rt==4.1.0
     # via -r requirements/docs.in
 toml==0.10.2
     # via
+    #   build
+    #   pep517
     #   pre-commit
     #   pytest-enabler
 torch==1.7.1
