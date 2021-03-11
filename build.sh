@@ -32,8 +32,7 @@ function pip_install_via_setup_py() {
 }
 
 function build_wheel() {
-  pip install -q build
-  python -m build --wheel
+  #python -m build --wheel
   pip check
 }
 
