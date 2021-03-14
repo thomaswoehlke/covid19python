@@ -1,18 +1,52 @@
 @startuml
 left to right direction
-actor Guest as g
-package Professional {
-  actor Chef as c
-  actor "Food Critic" as fc
+actor Visitor as vu
+package user {
+	actor SysAdmin as su
+	actor Admin as au
 }
-package Restaurant {
+package admin {
   usecase "Eat Food" as UC1
   usecase "Pay for Food" as UC2
   usecase "Drink" as UC3
   usecase "Review" as UC4
 }
-fc --> UC4
-g --> UC1
-g --> UC2
-g --> UC3
+package admin_admin_web {
+  usecase "Eat Food" as UC1
+  usecase "Pay for Food" as UC2
+  usecase "Drink" as UC3
+  usecase "Review" as UC4
+}
+package admin_tasks {
+  usecase "Eat Food" as UC1
+  usecase "Pay for Food" as UC2
+  usecase "Drink" as UC3
+  usecase "Review" as UC4
+}
+vu --> UC1
+vu --> UC2
+vu --> UC3
+vu --> UC4
+vu --> UC5
+vu --> UC6
+vu --> UC7
+vu --> UC8
+vu --> UC9
+vu --> UC10
+vu --> UC11
+vu --> UC12
+au --> UC50
+au --> UC51
+au --> UC52
+au --> UC53
+au --> UC54
+au --> UC55
+au --> UC56
+UC50 --> UC100
+UC51 --> UC101
+UC52 --> UC102
+UC53 --> UC103
+UC54 --> UC104
+UC55 --> UC105
+UC56 --> UC106
 @enduml

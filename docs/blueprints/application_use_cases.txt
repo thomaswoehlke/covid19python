@@ -1,18 +1,15 @@
 @startuml
 left to right direction
-actor Guest as g
-package Professional {
-  actor Chef as c
-  actor "Food Critic" as fc
+left to right direction
+actor Visitor as vu
+package user {
+	actor SysAdmin as su
+	actor Admin as au
 }
-package Restaurant {
-  usecase "Eat Food" as UC1
-  usecase "Pay for Food" as UC2
-  usecase "Drink" as UC3
-  usecase "Review" as UC4
+package application {
+  usecase url_home as UC1
+  usecase url_root as UC2
 }
-fc --> UC4
-g --> UC1
-g --> UC2
-g --> UC3
+vu --> UC1
+vu --> UC2
 @enduml
