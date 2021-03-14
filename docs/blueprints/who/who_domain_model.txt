@@ -1,109 +1,81 @@
 @startuml
-entity Course {
+entity WhoDateReported {
     id: Integer
-    dateiname: String
-    parent_dir: String
-    title: String
-    path_relative: String
-    get_absolute_path()
-    get_relative_path()
+	date_reported: String
+    year_week: String
+    datum: Date
+    year: Integer
+    month: Integer
+    day_of_month: Integer
+    day_of_week: Integer
+    week_of_year: Integer
+    {classifier} create_new_object_factory(my_date_rep)
+}
+entity WhoRegion {
+    id: Integer
+    region: String
+}
+entity WhoCountry {
+    id: Integer
+	country_code: String
+    country: String
     {classifier} remove_all()
     {classifier} get_all_as_page(page: Integer)
     {classifier} get_all()
     {classifier} get_all_as_dict()
     {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
-    {classifier} get_kurse_all()
+    {classifier} get_germany()
+    {classifier} find_by_country_code_and_country_and_who_region_id(i_country_code, i_country, my_region)
+    {classifier} find_by_country_code(i_country_code)
+    {classifier} find_by_country(i_country)
+    {classifier} get_by_country_code(i_country_code)
+    {classifier} get_by_country(i_country)
+    {classifier} get_who_countries_for_region(region, page)
 }
-entity Workflow {
+entity WhoData {
     id: Integer
-    dateiname: String
-    parent_dir: String
-    get_absolute_path()
-    get_relative_path()
+	cases_new: Integer
+    cases_cumulative: Integer
+    deaths_new: Integer
+    deaths_cumulative: Integer
     {classifier} remove_all()
     {classifier} get_all_as_page(page: Integer)
     {classifier} get_all()
-    {classifier} get_all_as_dict()
     {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
-    {classifier} get_workflow_for_id(workflow_id: Integer)
+    {classifier} find_one_or_none_by_date_and_country(my_date_reported, my_country)
+    {classifier} get_data_for_country(who_country, page)
+    {classifier} get_data_for_day(date_reported, page)
+    {classifier} get_data_for_day_order_by_cases_new(date_reported, page)
+    {classifier} get_data_for_day_order_by_cases_cumulative(date_reported, page)
+    {classifier} get_data_for_day_order_by_deaths_new(date_reported, page)
+    {classifier} get_data_for_day_order_by_deaths_cumulative(date_reported, page)
+    {classifier} get_data_for_country_order_by_cases_new(who_country, page)
+    {classifier} get_data_for_country_order_by_cases_cumulative(who_country, page)
+    {classifier} get_data_for_country_order_by_deaths_new(who_country, page)
+    {classifier} get_data_for_country_order_by_deaths_cumulative(who_country, page)
 }
-entity Lektion {
+entity WhoImport {
     id: Integer
-    dateiname: String
-    parent_dir: String
-    title: String
-    lektion_nr: Integer
-    verified: Boolean
-    get_absolute_path()
-    get_relative_path()
+    date_reported: String
+    country_code: String
+    country: String
+    who_region: String
+    new_cases: String
+    cumulative_cases: String
+    new_deaths: String
+    cumulative_deaths: String
     {classifier} remove_all()
     {classifier} get_all_as_page(page: Integer)
     {classifier} get_all()
-    {classifier} get_all_as_dict()
     {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
-    {classifier} get_lektionen_for_workflow(workflow: Workflow)
-    {classifier} get_lektion_for_id(lektion_id: Integer)
-    {classifier} get_folien_for_lektion_id(lektion_id: Integer)
-    {classifier} get_all_verified()
+    {classifier} get_regions()
+    {classifier} get_dates_reported()
+    {classifier} get_for_one_day(day: String)
+    {classifier} get_dates_reported_as_array()
+    {classifier} get_new_dates_as_array()
+    {classifier} countries()
 }
-entity FolienSatz {
-    id: Integer
-    dateiname: String
-    parent_dir: String
-    title: String
-    lektion_nr: Integer
-    foliensatz_nr_in_lektion: Integer
-    get_absolute_path()
-    get_relative_path()
-    {classifier} get_foliensaetze_for_lektion(lektion: Lektion)
-    {classifier} remove_all()
-    {classifier} get_all_as_page(page: Integer)
-    {classifier} get_all()
-    {classifier} get_all_as_dict()
-    {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
-}
-entity Folie {
-    id: Integer
-    title: String
-    lektion_nr: Integer
-    folien_nr_in_lektion: Integer
-    folien_nr_in_foliensatz: Integer
-    foliensatz_nr_in_lektion: Integer
-    {classifier} get_folien_for_foliensatz(lektion: FolienSatz)
-    {classifier} getFolienKey(lektion_nr: Integer, folien_nr_in_lektion: Integer)
-    {classifier} remove_all()
-    {classifier} get_all_as_page(page: Integer)
-    {classifier} get_all()
-    {classifier} get_all_as_dict()
-    {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
-    {classifier} get_folien_for_lektion(lektion: Lektion)
-}
-entity Abbildung {
-    id: Integer
-    dateiname: String
-    parent_dir: String
-    title: String
-    abbildung_nr_in_lektion: Integer
-    abbildung_nr_in_foliensatz: Integer
-    folien_nr_in_lektion: Integer
-    folien_nr_in_foliensatz: Integer
-    folien_satz_nr: Integer
-    lektion_nr: Integer
-    bildnachweis: Integer
-    get_absolute_path()
-    get_relative_path()
-    {classifier} remove_all()
-    {classifier} get_all_as_page(page: Integer)
-    {classifier} get_all()
-    {classifier} get_all_as_dict()
-    {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
-}
+
 Course "1" *--> "*" Workflow: workflows
 Workflow "*" --> "1" Course:  course
 Workflow "1" *--> "*" Lektion: lektionen
@@ -118,22 +90,65 @@ Folie "*" --> "1" FolienSatz: foliensatz
 Folie "1" o--> "*" Abbildung: abbildungen
 Abbildung "*" --> "1" Folie: folie
 Abbildung "*" --> "1" FolienSatz: foliensatz
-class ArtefactContentService {
-    rename_src_files()
-    prepare_data_update()
-    run_data_update()
-    run_db_dump()
-    run_db_reimport()
-    parse_file_name(datei: String)
-    create_or_fetch_folie(file_name_dict, lektion: Lektion)
-    get_abbbildung_for_id(abbbildung_id: Integer)
+
+class WhoService {
+    pretask_database_drop_create()
+    task_database_drop_create()
+    run_download_only()
+    run_import_only()
+    run_update_dimension_tables_only()
+    run_update_fact_table_incremental_only()
+    run_update_fact_table_initial_only()
+    run_update_star_schema_incremental()
+    run_update_star_schema_initial()
+    download_all_files()
+    task_import_all_files()
+    update_dimension_tables_only()
+    update_fact_table_initial_only()
+    update_fact_table_incremental_only()
+}
+class WhoServiceImport {
+    import_file()
+}
+class WhoServiceUpdate {
+    __update_date_reported()
+    __update_region()
+    __update_country()
+    __update_data_incremental()
+    __update_data_initial()
+    __update_dimension_tables()
+    update_dimension_tables_only()
+    update_fact_table_incremental_only()
+    update_fact_table_initial_only()
+    update_star_schema_incremental()
+    update_star_schema_initial()
+}
+class ApplicationServiceConfig {
+	limit_nr: Integer
+    data_path: String
+    slug: String
+    category: String
+    sub_category: String
+    tablename: String
+    cvsfile_name: String
+    url_src: String
+    cvsfile_path: String
+    msg_job: String
+    msg_ok: String
+    msg_error: String
+	create_config_for_who()
+	create_config_for_rki_vaccination()
+	create_config_for_owid()
+	create_config_for_ecdc()
+	create_config_for_rki_bundeslaender()
+	create_config_for_rki_landkreise()
 }
 ArtefactContentService : SQLAlchemy database
 ArtefactContentService : String[] courses
 ArtefactContentService : String[] workflows
 ArtefactContentService : String[] lektionen
 ArtefactContentService : String[] course_names
-class artefact_content_views {
+class who_views {
     url_root()
     url_home()
     url_update_data()
