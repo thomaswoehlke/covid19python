@@ -14,11 +14,39 @@ drop_and_create_data_again = True
 
 app_admin = Blueprint('app_admin', __name__, template_folder='templates', url_prefix='/admin')
 
-#################################################################################################################
-#
-# Admin
-#
-#################################################################################################################
+
+
+# ---------------------------------------------------------------------------------------------------------------
+#  Url Routes Frontend
+# ---------------------------------------------------------------------------------------------------------------
+
+@app_admin.route('/')
+def url_admin_index():
+    page_info = ApplicationPage('Admin', "Covid19 Admin")
+    return render_template(
+        'admin/index.html',
+        page_info=page_info)
+
+
+@app_admin.route('/tasks')
+def url_admin_tasks():
+    page_info = ApplicationPage('Admin', "Tasks")
+    return render_template(
+        'admin/admin_tasks.html',
+        page_info=page_info)
+
+
+@app_admin.route('/info')
+def url_admin_info():
+    page_info = ApplicationPage('Admin', "Info")
+    return render_template(
+        'admin/admin_info.html',
+        page_info=page_info)
+
+
+# ----------------------------------------------------------------------------------------------------------------
+#  Celery TASKS
+# ----------------------------------------------------------------------------------------------------------------
 
 
 @celery.task(bind=True)
@@ -178,29 +206,9 @@ def task_admin_update_star_schema_incremental(self):
     result = "OK (task_admin_update_star_schema_incremental)"
     return result
 
-
-@app_admin.route('/')
-def url_admin_index():
-    page_info = ApplicationPage('Admin', "Covid19 Admin")
-    return render_template(
-        'admin/index.html',
-        page_info=page_info)
-
-
-@app_admin.route('/tasks')
-def url_admin_tasks():
-    page_info = ApplicationPage('Admin', "Tasks")
-    return render_template(
-        'admin/admin_tasks.html',
-        page_info=page_info)
-
-
-@app_admin.route('/info')
-def url_admin_info():
-    page_info = ApplicationPage('Admin', "Info")
-    return render_template(
-        'admin/admin_info.html',
-        page_info=page_info)
+# ----------------------------------------------------------------------------------------------------------------
+#  URL Routes for Celery TASKS
+# ----------------------------------------------------------------------------------------------------------------
 
 
 @app_admin.route('/alive_message')

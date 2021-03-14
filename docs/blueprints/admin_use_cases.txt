@@ -6,47 +6,59 @@ package user {
 	actor Admin as au
 }
 package admin {
-  usecase "Eat Food" as UC1
-  usecase "Pay for Food" as UC2
-  usecase "Drink" as UC3
-  usecase "Review" as UC4
+  usecase url_admin_index as UC1
+  usecase url_admin_tasks as UC2
+  usecase url_admin_info as UC3
 }
 package admin_admin_web {
-  usecase "Eat Food" as UC1
-  usecase "Pay for Food" as UC2
-  usecase "Drink" as UC3
-  usecase "Review" as UC4
+  usecase url_admin_database_dump as UC51
+  usecase url_admin_database_dump_reimport as UC52
+  usecase url_admin_database_drop as UC53
+  usecase url_admin_download_all_files as UC54
+
+  usecase url_alive_message_start as UC55
+  usecase url_admin_database_dropcreate_only as UC56
+
+  usecase url_admin_import_all_files as UC57
+  usecase url_admin_update_dimension_tables_only as UC58
+
+  usecase url_admin_update_fact_table_initial_only as UC59
+  usecase url_admin_update_fact_table_incremental_only as UC60
+
+  usecase url_admin_update_star_schema_initial as UC61
+  usecase       run_update_star_schema_incremental as UC62
 }
 package admin_tasks {
-  usecase "Eat Food" as UC1
-  usecase "Pay for Food" as UC2
-  usecase "Drink" as UC3
-  usecase "Review" as UC4
+  usecase task_admin_alive_message as UC105
+  usecase task_admin_database_drop_create as UC106
+  usecase task_admin_import_all_files as UC107
+  usecase task_admin_update_dimension_tables_only as UC108
+  usecase task_admin_update_fact_table_initial_only as UC109
+  usecase task_admin_update_fact_table_incremental_only as UC110
+  usecase task_admin_update_star_schema_initial as UC111
+  usecase task_admin_update_star_schema_incremental as UC112
 }
 vu --> UC1
 vu --> UC2
 vu --> UC3
-vu --> UC4
-vu --> UC5
-vu --> UC6
-vu --> UC7
-vu --> UC8
-vu --> UC9
-vu --> UC10
-vu --> UC11
-vu --> UC12
-au --> UC50
 au --> UC51
 au --> UC52
 au --> UC53
 au --> UC54
 au --> UC55
 au --> UC56
-UC50 --> UC100
-UC51 --> UC101
-UC52 --> UC102
-UC53 --> UC103
-UC54 --> UC104
+au --> UC57
+au --> UC58
+au --> UC59
+au --> UC60
+au --> UC61
+au --> UC62
 UC55 --> UC105
 UC56 --> UC106
+UC57 --> UC107
+UC58 --> UC108
+UC59 --> UC109
+UC60 --> UC110
+UC61 --> UC111
+UC62 --> UC112
 @enduml
