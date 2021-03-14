@@ -21,116 +21,9 @@ admin.add_view(ModelView(EcdcCountry, db.session, category="ECDC"))
 admin.add_view(ModelView(EcdcData, db.session, category="ECDC"))
 
 
-##################################################################################################################
-#
-# Europe
-#
-##################################################################################################################
-
-
-@celery.task(bind=True)
-def task_ecdc_download_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_download_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.run_download_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_download_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_ecdc_import_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_import_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.run_import_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_import_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_ecdc_update_dimension_tables_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_update_dimension_tables_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.run_update_dimension_tables_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_update_dimension_tables_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_ecdc_update_fact_table_incremental_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_update_fact_table_incremental_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.run_update_fact_table_incremental_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_update_fact_table_incremental_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_ecdc_update_fact_table_incremental_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_update_fact_table_incremental_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.run_update_fact_table_incremental_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_update_fact_table_incremental_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_ecdc_update_fact_table_initial_only(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_update_fact_table_initial_only [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.run_update_fact_table_initial_only()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_update_fact_table_initial_only)"
-    return result
-
-
-@celery.task(bind=True)
-def task_ecdc_update_star_schema_incremental(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_update_star_schema_incremental [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.run_update_star_schema_incremental()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_update_star_schema_incremental)"
-    return result
-
-
-@celery.task(bind=True)
-def task_ecdc_update_star_schema_initial(self):
-    logger = get_task_logger(__name__)
-    self.update_state(state=states.STARTED)
-    logger.info("------------------------------------------------------------")
-    logger.info(" Received: task_ecdc_update_star_schema_initial [OK] ")
-    logger.info("------------------------------------------------------------")
-    ecdc_service.run_update_star_schema_initial()
-    self.update_state(state=states.SUCCESS)
-    result = "OK (task_ecdc_update_star_schema_initial)"
-    return result
-
+# ---------------------------------------------------------------------------------------------------------------
+#  Url Routes Frontend
+# ---------------------------------------------------------------------------------------------------------------
 
 @app_ecdc.route('/info')
 def url_ecdc_info():
@@ -275,6 +168,119 @@ def url_ecdc_country_germany(page=1):
         europe_country=europe_country,
         page_data=page_data,
         page_info=page_info)
+
+
+# ----------------------------------------------------------------------------------------------------------------
+#  Celery TASKS
+# ----------------------------------------------------------------------------------------------------------------
+
+
+@celery.task(bind=True)
+def task_ecdc_download_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_ecdc_download_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    ecdc_service.run_download_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_ecdc_download_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_ecdc_import_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_ecdc_import_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    ecdc_service.run_import_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_ecdc_import_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_ecdc_update_dimension_tables_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_ecdc_update_dimension_tables_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    ecdc_service.run_update_dimension_tables_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_ecdc_update_dimension_tables_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_ecdc_update_fact_table_incremental_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_ecdc_update_fact_table_incremental_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    ecdc_service.run_update_fact_table_incremental_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_ecdc_update_fact_table_incremental_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_ecdc_update_fact_table_incremental_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_ecdc_update_fact_table_incremental_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    ecdc_service.run_update_fact_table_incremental_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_ecdc_update_fact_table_incremental_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_ecdc_update_fact_table_initial_only(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_ecdc_update_fact_table_initial_only [OK] ")
+    logger.info("------------------------------------------------------------")
+    ecdc_service.run_update_fact_table_initial_only()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_ecdc_update_fact_table_initial_only)"
+    return result
+
+
+@celery.task(bind=True)
+def task_ecdc_update_star_schema_incremental(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_ecdc_update_star_schema_incremental [OK] ")
+    logger.info("------------------------------------------------------------")
+    ecdc_service.run_update_star_schema_incremental()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_ecdc_update_star_schema_incremental)"
+    return result
+
+
+@celery.task(bind=True)
+def task_ecdc_update_star_schema_initial(self):
+    logger = get_task_logger(__name__)
+    self.update_state(state=states.STARTED)
+    logger.info("------------------------------------------------------------")
+    logger.info(" Received: task_ecdc_update_star_schema_initial [OK] ")
+    logger.info("------------------------------------------------------------")
+    ecdc_service.run_update_star_schema_initial()
+    self.update_state(state=states.SUCCESS)
+    result = "OK (task_ecdc_update_star_schema_initial)"
+    return result
+
+# ----------------------------------------------------------------------------------------------------------------
+#  URL Routes for Celery TASKS
+# ----------------------------------------------------------------------------------------------------------------
 
 
 # TODO: #163 implement url_ecdc_task_update_star_schema_initial in europe_views.py

@@ -1,0 +1,82 @@
+@startuml
+left to right direction
+actor Visitor as vu
+package user {
+  actor SysAdmin as su
+  actor Admin as au
+}
+package who {
+  usecase url_who_info as UC1
+  usecase url_who_tasks as UC2
+  usecase url_who_imported as UC3
+  usecase url_who_date_reported_all as UC4
+  usecase url_who_date_reported as UC5
+  usecase url_who_date_reported_cases_new as UC6
+  usecase url_who_date_reported_cases_cumulative as UC7
+  usecase url_who_date_reported_deaths_new as UC8
+  usecase url_who_date_reported_deaths_cumulative as UC9
+  usecase url_who_region_all as UC10
+  usecase url_who_region as UC11
+  usecase url_who_country_all as UC12
+  usecase url_who_country as UC13
+  usecase url_who_country_cases_new as UC14
+  usecase url_who_country_cases_cumulative as UC15
+  usecase url_who_country_deaths_new as UC16
+  usecase url_who_country_deaths_cumulative as UC17
+  usecase url_who_germany as UC18
+  usecase url_who_region_all as UC19
+  usecase url_who_region_all as UC20
+}
+package who_admin_web {
+	usecase url_task_who_download_only as UC50
+	usecase url_task_who_import_only as UC51
+	usecase url_task_who_update_dimension_tables_only as UC52
+	usecase url_task_who_update_fact_table_initial_only as UC53
+	usecase url_task_who_update_fact_table_incremental_only as UC54
+	usecase url_task_who_update_star_schema_initial as UC55
+	usecase url_task_who_update_star_schema_incremental as UC56
+}
+package who_tasks {
+  usecase task_who_download_only as UC100
+  usecase task_who_import_only as UC101
+  usecase task_who_update_dimension_tables_only as UC102
+  usecase task_who_update_fact_table_initial_only as UC103
+  usecase task_who_update_fact_table_incremental_only as UC104
+  usecase task_who_update_star_schema_initial as UC105
+  usecase task_who_update_star_schema_incremental as UC106
+}
+vu --> UC1
+vu --> UC2
+vu --> UC3
+vu --> UC4
+vu --> UC5
+vu --> UC6
+vu --> UC7
+vu --> UC8
+vu --> UC9
+vu --> UC10
+vu --> UC11
+vu --> UC12
+vu --> UC13
+vu --> UC14
+vu --> UC15
+vu --> UC16
+vu --> UC17
+vu --> UC18
+vu --> UC19
+vu --> UC20
+au --> UC50
+au --> UC51
+au --> UC52
+au --> UC53
+au --> UC54
+au --> UC55
+au --> UC56
+UC50 --> UC100
+UC51 --> UC101
+UC52 --> UC102
+UC53 --> UC103
+UC54 --> UC104
+UC55 --> UC105
+UC56 --> UC106
+@enduml

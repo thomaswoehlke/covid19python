@@ -1,0 +1,50 @@
+@startuml
+left to right direction
+actor Visitor as vu
+package user {
+	actor SysAdmin as su
+	actor Admin as au
+}
+package rki_vaccination {
+	usecase url_vaccination_info as UC1
+	usecase url_vaccination_tasks as UC2
+	usecase url_vaccination_imported as UC3
+	usecase url_vaccination_data as UC4
+}
+package rki_vaccination_admin_web {
+	usecase task_who_download_only as UC50
+	usecase task_who_import_only as UC51
+	usecase task_who_update_dimension_tables_only as UC52
+	usecase task_who_update_fact_table_initial_only as UC53
+	usecase task_who_update_fact_table_incremental_only as UC54
+	usecase task_who_update_star_schema_initial as UC55
+	usecase task_who_update_star_schema_incremental as UC56
+}
+package rki_vaccination_tasks {
+	usecase url_vaccination_task_download_only as UC100
+	usecase url_vaccination_task_import_only as UC101
+	usecase url_vaccination_task_update_dimensiontables_only as UC102
+	usecase url_vaccination_task_update_facttable_incremental_only as UC103
+	usecase url_vaccination_task_update_facttable_initial_only as UC104
+	usecase url_vaccination_task_update_starschema_initial as UC105
+	usecase url_vaccination_task_update_starschema_incremental as UC106
+}
+vu --> UC1
+vu --> UC2
+vu --> UC3
+vu --> UC4
+au --> UC50
+au --> UC51
+au --> UC52
+au --> UC53
+au --> UC54
+au --> UC55
+au --> UC56
+UC50 --> UC100
+UC51 --> UC101
+UC52 --> UC102
+UC53 --> UC103
+UC54 --> UC104
+UC55 --> UC105
+UC56 --> UC106
+@enduml

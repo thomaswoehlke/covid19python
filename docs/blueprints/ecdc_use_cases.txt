@@ -1,0 +1,66 @@
+@startuml
+left to right direction
+actor Visitor as vu
+package user {
+	actor SysAdmin as su
+	actor Admin as au
+}
+package ecdc {
+	usecase url_ecdc_info as UC1
+	usecase url_ecdc_tasks as UC2
+	usecase url_ecdc_data_imported as UC3
+	usecase url_ecdc_date_reported_all as UC4
+	usecase url_ecdc_date_reported_one_notification_rate as UC5
+	usecase url_ecdc_date_reported_one_deaths_weekly as UC6
+	usecase url_ecdc_date_reported_one_cases_weekly as UC7
+	usecase url_ecdc_continent_all as UC8
+	usecase url_ecdc_continent_one as UC9
+	usecase url_ecdc_country_all as UC10
+	usecase url_ecdc_country_one as UC11
+	usecase url_ecdc_country_germany as UC12
+}
+package ecdc_admin_web {
+	usecase task_ecdc_download_only as UC50
+	usecase task_who_import_only as UC51
+	usecase task_who_update_dimension_tables_only as UC52
+	usecase task_who_update_fact_table_initial_only as UC53
+	usecase task_who_update_fact_table_incremental_only as UC54
+	usecase task_who_update_star_schema_initial as UC55
+	usecase task_who_update_star_schema_incremental as UC56
+}
+package ecdc_tasks {
+	usecase task_ecdc_download_only as UC100
+	usecase task_ecdc_import_only as UC101
+	usecase task_ecdc_update_dimension_tables_only as UC102
+	usecase task_ecdc_update_fact_table_incremental_only as UC103
+	usecase task_ecdc_update_fact_table_incremental_only as UC104
+	usecase task_ecdc_update_fact_table_initial_only as UC105
+	usecase task_ecdc_update_star_schema_incremental as UC106
+}
+vu --> UC1
+vu --> UC2
+vu --> UC3
+vu --> UC4
+vu --> UC5
+vu --> UC6
+vu --> UC7
+vu --> UC8
+vu --> UC9
+vu --> UC10
+vu --> UC11
+vu --> UC12
+au --> UC50
+au --> UC51
+au --> UC52
+au --> UC53
+au --> UC54
+au --> UC55
+au --> UC56
+UC50 --> UC100
+UC51 --> UC101
+UC52 --> UC102
+UC53 --> UC103
+UC54 --> UC104
+UC55 --> UC105
+UC56 --> UC106
+@enduml
