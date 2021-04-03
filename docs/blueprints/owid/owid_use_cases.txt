@@ -11,6 +11,7 @@ package owid {
 	usecase owid_date_reported as UC3
 	usecase owid_date_continent as UC4
 	usecase owid_date_country as UC5
+	usecase owid_date_country_germany as UC6
 }
 package owid_admin_web {
 	usecase owid_tasks as UC57
@@ -36,6 +37,7 @@ vu --> UC2
 vu --> UC3
 vu --> UC4
 vu --> UC5
+vu --> UC6
 au --> UC50
 au --> UC51
 au --> UC52
