@@ -68,7 +68,6 @@ class OwidCountry(db.Model):
         order_by='desc(OwidContinent.region)')
     iso_code = db.Column(db.String(255), nullable=False)
     location = db.Column(db.String(255), nullable=False)
-    stringency_index = db.Column(db.String(255), nullable=False)
     population = db.Column(db.String(255), nullable=False)
     population_density = db.Column(db.String(255), nullable=False)
     median_age = db.Column(db.String(255), nullable=False)
