@@ -1,6 +1,6 @@
 from database import db, app
 from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
-from covid19.blueprints.owid.owid_model import OwidDateReported, OwidData
+from covid19.blueprints.owid.owid_model import OwidDateReported, OwidData, OwidContinent, OwidCountry
 from covid19.blueprints.owid.owid_model_import import OwidImport
 
 
@@ -41,19 +41,46 @@ class OwidServiceUpdate:
         new_dates_reported_from_import = OwidImport.get_new_dates_reported_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
-            my_date = OwidDateReported.find_by_date_reported(my_date_reported)
-            if my_date is None:
+            my_OwidDateReported = OwidDateReported.find_by_date_reported(my_date_reported)
+            if my_OwidDateReported is None:
                 myday = OwidDateReported.create_new_object_factory(my_date_reported)
                 db.session.add(myday)
                 db.session.commit()
-            my_date = OwidDateReported.get_by_date_reported(my_date_reported)
+            my_OwidDateReported = OwidDateReported.get_by_date_reported(my_date_reported)
             k = 0
             for oi in OwidImport.get_for_one_day(my_date_reported):
+                my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
+                if my_OwidContinent is None:
+                    my_OwidContinent = OwidContinent(region=oi.continent)
+                    db.session.add(my_OwidContinent)
+                    db.session.commit()
+                my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
+                my_OwidCountry = OwidCountry.find_by_iso_code_and_location(iso_code=oi.iso_code, location=oi.location)
+                if my_OwidCountry is None:
+                    my_OwidCountry = OwidCountry(
+                        continent=my_OwidContinent,
+                        population=oi.population,
+                        population_density=oi.population_density,
+                        median_age=oi.median_age,
+                        aged_65_older=oi.aged_65_older,
+                        aged_70_older=oi.aged_70_older,
+                        gdp_per_capita=oi.gdp_per_capita,
+                        extreme_poverty=oi.extreme_poverty,
+                        cardiovasc_death_rate=oi.cardiovasc_death_rate,
+                        diabetes_prevalence=oi.diabetes_prevalence,
+                        female_smokers=oi.female_smokers,
+                        male_smokers=oi.male_smokers,
+                        handwashing_facilities=oi.handwashing_facilities,
+                        hospital_beds_per_thousand=oi.hospital_beds_per_thousand,
+                        life_expectancy=oi.life_expectancy,
+                        human_development_index=oi.human_development_index,
+                    )
+                    db.session.add(my_OwidCountry)
+                    db.session.commit()
+                my_OwidCountry = OwidCountry.find_by_iso_code(iso_code=oi.iso_code, location=oi.location)
                 o = OwidData(
-                    iso_code=oi.iso_code,
-                    continent=oi.continent,
-                    location=oi.location,
-                    date_reported=my_date,
+                    date_reported=my_OwidDateReported,
+                    country=my_OwidCountry,
                     total_cases=oi.total_cases,
                     new_cases=oi.new_cases,
                     new_cases_smoothed=oi.new_cases_smoothed,
@@ -94,21 +121,6 @@ class OwidServiceUpdate:
                     people_fully_vaccinated_per_hundred=oi.people_fully_vaccinated_per_hundred,
                     new_vaccinations_smoothed_per_million=oi.new_vaccinations_smoothed_per_million,
                     stringency_index=oi.stringency_index,
-                    population=oi.population,
-                    population_density=oi.population_density,
-                    median_age=oi.median_age,
-                    aged_65_older=oi.aged_65_older,
-                    aged_70_older=oi.aged_70_older,
-                    gdp_per_capita=oi.gdp_per_capita,
-                    extreme_poverty=oi.extreme_poverty,
-                    cardiovasc_death_rate=oi.cardiovasc_death_rate,
-                    diabetes_prevalence=oi.diabetes_prevalence,
-                    female_smokers=oi.female_smokers,
-                    male_smokers=oi.male_smokers,
-                    handwashing_facilities=oi.handwashing_facilities,
-                    hospital_beds_per_thousand=oi.hospital_beds_per_thousand,
-                    life_expectancy=oi.life_expectancy,
-                    human_development_index=oi.human_development_index,
                 )
                 db.session.add(o)
                 i += 1
@@ -116,7 +128,7 @@ class OwidServiceUpdate:
                 if i % 500 == 0:
                     app.logger.info(" update OWID incremental ... "+str(i)+" rows")
             db.session.commit()
-            app.logger.info(" update OWID incremental ... " + str(i) + " rows [" + str(my_date) + "] (" + str(k) + ")")
+            app.logger.info(" update OWID incremental ... " + str(i) + " rows [" + str(my_OwidDateReported) + "] (" + str(k) + ")")
         app.logger.info(" update OWID incremental :  "+str(i)+" rows total")
         app.logger.info(" __update_fact_tables_incremental [done]")
         app.logger.info("------------------------------------------------------------")
@@ -232,7 +244,8 @@ class OwidServiceUpdate:
     def update_fact_table_initial_only(self):
         app.logger.info(" update_fact_tables_initial_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__update_fact_table_initial()
+        # TODO
+        # self.__update_fact_table_initial()
         app.logger.info(" update_fact_tables_initial_only [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -240,8 +253,9 @@ class OwidServiceUpdate:
     def update_star_schema_incremental(self):
         app.logger.info(" update_star_schema_incremental [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__update_dimension_tables()
-        self.__update_fact_table_incremental()
+        # TODO
+        # self.__update_dimension_tables()
+        # self.__update_fact_table_incremental()
         app.logger.info(" update_star_schema_incremental [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -249,8 +263,9 @@ class OwidServiceUpdate:
     def update_star_schema_initial(self):
         app.logger.info(" update_star_schema_initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__update_dimension_tables()
-        self.__update_fact_table_initial()
+        # TODO
+        # self.__update_dimension_tables()
+        # self.__update_fact_table_initial()
         app.logger.info(" update_star_schema_initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self

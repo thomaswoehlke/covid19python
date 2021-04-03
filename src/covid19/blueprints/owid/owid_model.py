@@ -54,25 +54,6 @@ class OwidContinent(ApplicationRegion):
     id = db.Column(db.Integer, primary_key=True)
     region = db.Column(db.String(255), nullable=False, unique=True)
 
-    @classmethod
-    def remove_all(cls):
-        for one in cls.get_all():
-            db.session.delete(one)
-        db.session.commit()
-        return None
-
-    @classmethod
-    def get_all_as_page(cls, page):
-        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
-
-    @classmethod
-    def get_all(cls):
-        return db.session.query(cls).all()
-
-    @classmethod
-    def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
-
 
 class OwidCountry(db.Model):
     __tablename__ = 'owid_country'
@@ -103,6 +84,10 @@ class OwidCountry(db.Model):
     hospital_beds_per_thousand = db.Column(db.String(255), nullable=False)
     life_expectancy = db.Column(db.String(255), nullable=False)
     human_development_index = db.Column(db.String(255), nullable=False)
+
+    @classmethod
+    def find_by_iso_code_and_location(cls, iso_code, location):
+        return db.session.query(cls).filter(and_((cls.iso_code == iso_code), (cls.location == location))).one_or_none()
 
     @classmethod
     def remove_all(cls):
