@@ -138,7 +138,7 @@ class OwidServiceUpdate:
         app.logger.info(" __update_fact_table_initial [begin]")
         app.logger.info("------------------------------------------------------------")
         OwidData.remove_all()
-        new_dates_reported_from_import = OwidImport.get_new_dates_reported_as_array()
+        new_dates_reported_from_import = OwidImport.get_dates_reported_as_array()
         i = 0
         for my_date_reported in new_dates_reported_from_import:
             my_OwidDateReported = OwidDateReported.find_by_date_reported(my_date_reported)
