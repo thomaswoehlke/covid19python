@@ -46,7 +46,8 @@ class OwidServiceUpdate:
                 myday = OwidDateReported.create_new_object_factory(my_date_reported)
                 db.session.add(myday)
                 db.session.commit()
-            my_OwidDateReported = OwidDateReported.get_by_date_reported(my_date_reported)
+                my_OwidDateReported = OwidDateReported.get_by_date_reported(my_date_reported)
+                app.logger.info(my_OwidDateReported)
             k = 0
             for oi in OwidImport.get_for_one_day(my_date_reported):
                 my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
@@ -54,7 +55,8 @@ class OwidServiceUpdate:
                     my_OwidContinent = OwidContinent(region=oi.continent)
                     db.session.add(my_OwidContinent)
                     db.session.commit()
-                my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
+                    my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
+                    app.logger.info(my_OwidContinent)
                 my_OwidCountry = OwidCountry.find_by_iso_code_and_location(iso_code=oi.iso_code, location=oi.location)
                 if my_OwidCountry is None:
                     my_OwidCountry = OwidCountry(
@@ -77,7 +79,8 @@ class OwidServiceUpdate:
                     )
                     db.session.add(my_OwidCountry)
                     db.session.commit()
-                my_OwidCountry = OwidCountry.find_by_iso_code_and_location(iso_code=oi.iso_code, location=oi.location)
+                    my_OwidCountry = OwidCountry.find_by_iso_code_and_location(iso_code=oi.iso_code, location=oi.location)
+                    app.logger.info(my_OwidCountry)
                 o = OwidData(
                     date_reported=my_OwidDateReported,
                     country=my_OwidCountry,
@@ -146,14 +149,16 @@ class OwidServiceUpdate:
                 myday = OwidDateReported.create_new_object_factory(my_date_reported)
                 db.session.add(myday)
                 db.session.commit()
-            my_OwidDateReported = OwidDateReported.get_by_date_reported(my_date_reported)
+                my_OwidDateReported = OwidDateReported.get_by_date_reported(my_date_reported)
+                app.logger.info(my_OwidDateReported)
             for oi in OwidImport.get_for_one_day(my_date_reported):
                 my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
                 if my_OwidContinent is None:
                     my_OwidContinent = OwidContinent(region=oi.continent)
                     db.session.add(my_OwidContinent)
                     db.session.commit()
-                my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
+                    my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
+                    app.logger.info(my_OwidContinent)
                 my_OwidCountry = OwidCountry.find_by_iso_code_and_location(
                     iso_code=oi.iso_code,
                     location=oi.location
@@ -181,10 +186,11 @@ class OwidServiceUpdate:
                     )
                     db.session.add(my_OwidCountry)
                     db.session.commit()
-                my_OwidCountry = OwidCountry.find_by_iso_code_and_location(
-                    iso_code=oi.iso_code,
-                    location=oi.location
-                )
+                    my_OwidCountry = OwidCountry.find_by_iso_code_and_location(
+                        iso_code=oi.iso_code,
+                        location=oi.location
+                    )
+                    app.logger.info(my_OwidCountry)
                 o = OwidData(
                     date_reported=my_OwidDateReported,
                     country=my_OwidCountry,
