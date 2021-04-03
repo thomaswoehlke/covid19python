@@ -77,7 +77,7 @@ class OwidServiceUpdate:
                     )
                     db.session.add(my_OwidCountry)
                     db.session.commit()
-                my_OwidCountry = OwidCountry.find_by_iso_code(iso_code=oi.iso_code, location=oi.location)
+                my_OwidCountry = OwidCountry.find_by_iso_code_and_location(iso_code=oi.iso_code, location=oi.location)
                 o = OwidData(
                     date_reported=my_OwidDateReported,
                     country=my_OwidCountry,
@@ -125,7 +125,7 @@ class OwidServiceUpdate:
                 db.session.add(o)
                 i += 1
                 k += 1
-                if i % 500 == 0:
+                if i % 1000 == 0:
                     app.logger.info(" update OWID incremental ... "+str(i)+" rows")
             db.session.commit()
             app.logger.info(" update OWID incremental ... " + str(i) + " rows [" + str(my_OwidDateReported) + "] (" + str(k) + ")")
@@ -231,7 +231,7 @@ class OwidServiceUpdate:
                 )
                 db.session.add(o)
                 i += 1
-                if i % 500 == 0:
+                if i % 1000 == 0:
                     app.logger.info(" update OWID initial ... "+str(i)+" rows")
                     db.session.commit()
             db.session.commit()
