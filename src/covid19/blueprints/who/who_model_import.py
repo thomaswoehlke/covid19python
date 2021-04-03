@@ -88,11 +88,11 @@ class WhoImport(db.Model):
                         distinct
                             who_date_reported.date_reported
                         from
-                            who_data
+                            who
                         left join
                             who_date_reported
                         on
-                            who_data.date_reported_id=who_date_reported.id
+                            who.date_reported_id=who_date_reported.id
                         group by 
                             who_date_reported.date_reported
                         order by
