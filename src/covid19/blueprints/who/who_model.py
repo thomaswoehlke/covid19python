@@ -71,6 +71,16 @@ class WhoCountry(db.Model):
         cascade='all, delete',
         order_by='WhoRegion.region')
 
+    def __str__(self):
+        result = ""
+        result += self.country_code
+        result += " "
+        result += self.country
+        result += " "
+        result += self.region.region
+        result += " "
+        return result
+
     @classmethod
     def remove_all(cls):
         for one in cls.get_all():

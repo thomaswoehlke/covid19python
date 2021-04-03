@@ -115,6 +115,7 @@ class EcdcCountry(db.Model):
         return " " + self.geo_id \
              + " " + self.country_territory_code \
              + " " + self.countries_and_territories \
+             + " " + self.continent.region \
              + " "
 
     @classmethod

@@ -84,6 +84,16 @@ class OwidCountry(db.Model):
     life_expectancy = db.Column(db.String(255), nullable=False)
     human_development_index = db.Column(db.String(255), nullable=False)
 
+    def __str__(self):
+        result = ""
+        result += self.iso_code
+        result += " "
+        result += self.location
+        result += " "
+        result += self.continent.region
+        result += " "
+        return result
+
     @classmethod
     def find_by_iso_code_and_location(cls, iso_code, location):
         return db.session.query(cls).filter(and_((cls.iso_code == iso_code), (cls.location == location))).one_or_none()
