@@ -11,7 +11,7 @@ from covid19.blueprints.rki_landkreise.rki_landkreise_model_import import RkiLan
 class ApplicationServiceConfig:
     def __init__(self, slug: str, category: str, sub_category: str, tablename: str, cvsfile_name: str, url_src: str):
         self.limit_nr = 20
-        self.data_path = ".." + os.sep + ".." + os.sep + "data"
+        self.data_path = ".." + os.sep + "data"
         self.slug = slug,
         self.category = category
         self.sub_category = sub_category
