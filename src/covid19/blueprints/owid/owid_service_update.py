@@ -181,7 +181,7 @@ class OwidServiceUpdate:
                     )
                     db.session.add(my_OwidCountry)
                     db.session.commit()
-                my_OwidCountry = OwidCountry.find_by_iso_code(
+                my_OwidCountry = OwidCountry.find_by_iso_code_and_location(
                     iso_code=oi.iso_code,
                     location=oi.location
                 )
@@ -285,8 +285,8 @@ class OwidServiceUpdate:
         app.logger.info(" update_star_schema_initial [begin]")
         app.logger.info("------------------------------------------------------------")
         # TODO
-        # self.__update_dimension_tables()
-        # self.__update_fact_table_initial()
+        self.__update_dimension_tables()
+        self.__update_fact_table_initial()
         app.logger.info(" update_star_schema_initial [done]")
         app.logger.info("------------------------------------------------------------")
         return self
