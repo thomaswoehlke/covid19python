@@ -28,6 +28,7 @@ class OwidService:
 
     def task_database_drop_create(self):
         self.service_import.import_file()
+        # TODO
         self.service_update.update_dimension_tables_only()
         self.service_update.update_fact_table_incremental_only()
         return self

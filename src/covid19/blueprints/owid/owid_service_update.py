@@ -214,7 +214,8 @@ class OwidServiceUpdate:
     def update_dimension_tables_only(self):
         app.logger.info(" update_dimension_tables_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__update_dimension_tables()
+        # TODO
+        # self.__update_dimension_tables()
         app.logger.info(" update_dimension_tables_only [done]")
         app.logger.info("------------------------------------------------------------")
         return self
@@ -222,7 +223,8 @@ class OwidServiceUpdate:
     def update_fact_table_incremental_only(self):
         app.logger.info(" update_fact_tables_incremental_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        self.__update_fact_table_incremental()
+        # TODO
+        # self.__update_fact_table_incremental()
         app.logger.info(" update_fact_tables_incremental_only [done]")
         app.logger.info("------------------------------------------------------------")
         return self
