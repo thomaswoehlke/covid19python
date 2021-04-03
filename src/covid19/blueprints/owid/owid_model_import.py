@@ -91,6 +91,12 @@ class OwidImport(db.Model):
             .one()
 
     @classmethod
+    def find_by_id(cls, other_id):
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
+
+    @classmethod
     def get_dates(cls):
         return db.session.query(cls.date)\
             .order_by(cls.date.desc())\
