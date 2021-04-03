@@ -5,7 +5,7 @@ from covid19.blueprints.application.application_model import ApplicationDateRepo
 
 
 class RkiVaccinationDateReported(ApplicationDateReported):
-    __tablename__ = 'rki_vaccination_date_reported'
+    __tablename__ = 'rki_vaccination_data_date_reported'
     __mapper_args__ = {
         'concrete': True
     }
@@ -49,7 +49,7 @@ class RkiVaccinationData(db.Model):
     __tablename__ = 'rki_vaccination_data'
 
     id = db.Column(db.Integer, primary_key=True)
-    date_reported_id = db.Column(db.Integer, db.ForeignKey('rki_vaccination_date_reported.id'), nullable=False)
+    date_reported_id = db.Column(db.Integer, db.ForeignKey('rki_vaccination_data_date_reported.id'), nullable=False)
     date_reported = db.relationship(
         'RkiVaccinationDateReported',
         lazy='joined',

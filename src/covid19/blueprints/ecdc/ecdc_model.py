@@ -5,10 +5,10 @@ from covid19.blueprints.application.application_model import ApplicationDateRepo
 
 
 class EcdcDateReported(ApplicationDateReported):
-    __tablename__ = 'ecdc_date_reported'
+    __tablename__ = 'ecdc_data_date_reported'
     __mapper_args__ = { 'concrete': True }
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_ecdc_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_ecdc_data_date_reported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -76,10 +76,10 @@ class EcdcDateReported(ApplicationDateReported):
 
 
 class EcdcContinent(ApplicationRegion):
-    __tablename__ = 'ecdc_continent'
+    __tablename__ = 'ecdc_data_country_continent'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('region', name="uix_ecdc_continent"),
+        db.UniqueConstraint('region', name="uix_ecdc_data_country_continent"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -87,9 +87,15 @@ class EcdcContinent(ApplicationRegion):
 
 
 class EcdcCountry(db.Model):
-    __tablename__ = 'ecdc_country'
+    __tablename__ = 'ecdc_data_country'
+    __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('countries_and_territories', 'geo_id', 'country_territory_code', name="uix_ecdc_country"),
+        db.UniqueConstraint(
+            'countries_and_territories',
+            'geo_id',
+            'country_territory_code',
+            name="uix_ecdc_data_country"
+        ),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -98,7 +104,7 @@ class EcdcCountry(db.Model):
     geo_id = db.Column(db.String(255), nullable=False)
     country_territory_code = db.Column(db.String(255), nullable=False)
 
-    continent_id = db.Column(db.Integer, db.ForeignKey('ecdc_continent.id'), nullable=False)
+    continent_id = db.Column(db.Integer, db.ForeignKey('ecdc_data_country_continent.id'), nullable=False)
     continent = db.relationship(
         'EcdcContinent',
         lazy='subquery', cascade="all, delete",
@@ -185,14 +191,14 @@ class EcdcData(db.Model):
     cases = db.Column(db.Integer, nullable=False)
     cumulative_number_for_14_days_of_covid19_cases_per_100000 = db.Column(db.Float, nullable=False)
 
-    ecdc_country_id = db.Column(db.Integer, db.ForeignKey('ecdc_country.id'), nullable=False)
+    ecdc_country_id = db.Column(db.Integer, db.ForeignKey('ecdc_data_country.id'), nullable=False)
     ecdc_country = db.relationship(
         'EcdcCountry',
         lazy='subquery', cascade="all, delete",
         order_by='asc(EcdcCountry.countries_and_territories)'
     )
 
-    ecdc_date_reported_id = db.Column(db.Integer, db.ForeignKey('ecdc_date_reported.id'), nullable=False)
+    ecdc_date_reported_id = db.Column(db.Integer, db.ForeignKey('ecdc_data_date_reported.id'), nullable=False)
     ecdc_date_reported = db.relationship(
         'EcdcDateReported',
         lazy='joined', cascade='all, delete',
