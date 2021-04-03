@@ -44,6 +44,82 @@ class OwidDateReported(ApplicationDateReported):
         )
 
 
+class OwidContinent(db.Model):
+    __tablename__ = 'owid_country_continent'
+
+    id = db.Column(db.Integer, primary_key=True)
+    continent = db.Column(db.String(255), nullable=False, unique=True)
+
+    @classmethod
+    def remove_all(cls):
+        for one in cls.get_all():
+            db.session.delete(one)
+        db.session.commit()
+        return None
+
+    @classmethod
+    def get_all_as_page(cls, page):
+        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def get_all(cls):
+        return db.session.query(cls).all()
+
+    @classmethod
+    def get_by_id(cls, other_id):
+        return db.session.query(cls).filter(cls.id == other_id).one()
+
+
+class OwidCountry(db.Model):
+    __tablename__ = 'owid_country'
+
+    id = db.Column(db.Integer, primary_key=True)
+    continent_id = db.Column(db.Integer,
+        db.ForeignKey('owid_country_continent.id'), nullable=False)
+    continent = db.relationship(
+        'OwidContinent',
+        lazy='joined',
+        cascade='all, delete',
+        order_by='desc(OwidContinent.continent)')
+    iso_code = db.Column(db.String(255), nullable=False)
+    location = db.Column(db.String(255), nullable=False)
+    stringency_index = db.Column(db.String(255), nullable=False)
+    population = db.Column(db.String(255), nullable=False)
+    population_density = db.Column(db.String(255), nullable=False)
+    median_age = db.Column(db.String(255), nullable=False)
+    aged_65_older = db.Column(db.String(255), nullable=False)
+    aged_70_older = db.Column(db.String(255), nullable=False)
+    gdp_per_capita = db.Column(db.String(255), nullable=False)
+    extreme_poverty = db.Column(db.String(255), nullable=False)
+    cardiovasc_death_rate = db.Column(db.String(255), nullable=False)
+    diabetes_prevalence = db.Column(db.String(255), nullable=False)
+    female_smokers = db.Column(db.String(255), nullable=False)
+    male_smokers = db.Column(db.String(255), nullable=False)
+    handwashing_facilities = db.Column(db.String(255), nullable=False)
+    hospital_beds_per_thousand = db.Column(db.String(255), nullable=False)
+    life_expectancy = db.Column(db.String(255), nullable=False)
+    human_development_index = db.Column(db.String(255), nullable=False)
+
+    @classmethod
+    def remove_all(cls):
+        for one in cls.get_all():
+            db.session.delete(one)
+        db.session.commit()
+        return None
+
+    @classmethod
+    def get_all_as_page(cls, page):
+        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def get_all(cls):
+        return db.session.query(cls).all()
+
+    @classmethod
+    def get_by_id(cls, other_id):
+        return db.session.query(cls).filter(cls.id == other_id).one()
+
+
 class OwidData(db.Model):
     __tablename__ = 'owid_data'
 
@@ -55,9 +131,13 @@ class OwidData(db.Model):
         lazy='joined',
         cascade='all, delete',
         order_by='desc(OwidDateReported.date_reported)')
-    iso_code = db.Column(db.String(255), nullable=False)
-    continent = db.Column(db.String(255), nullable=False)
-    location = db.Column(db.String(255), nullable=False)
+    country_id = db.Column(db.Integer,
+        db.ForeignKey('owid_country.id'), nullable=False)
+    country = db.relationship(
+        'OwidCountry',
+        lazy='joined',
+        cascade='all, delete',
+        order_by='desc(OwidCountry.location)')
     total_cases = db.Column(db.String(255), nullable=False)
     new_cases = db.Column(db.String(255), nullable=False)
     new_cases_smoothed = db.Column(db.String(255), nullable=False)
@@ -98,21 +178,6 @@ class OwidData(db.Model):
     people_fully_vaccinated_per_hundred = db.Column(db.String(255), nullable=False)
     new_vaccinations_smoothed_per_million = db.Column(db.String(255), nullable=False)
     stringency_index = db.Column(db.String(255), nullable=False)
-    population = db.Column(db.String(255), nullable=False)
-    population_density = db.Column(db.String(255), nullable=False)
-    median_age = db.Column(db.String(255), nullable=False)
-    aged_65_older = db.Column(db.String(255), nullable=False)
-    aged_70_older = db.Column(db.String(255), nullable=False)
-    gdp_per_capita = db.Column(db.String(255), nullable=False)
-    extreme_poverty = db.Column(db.String(255), nullable=False)
-    cardiovasc_death_rate = db.Column(db.String(255), nullable=False)
-    diabetes_prevalence = db.Column(db.String(255), nullable=False)
-    female_smokers = db.Column(db.String(255), nullable=False)
-    male_smokers = db.Column(db.String(255), nullable=False)
-    handwashing_facilities = db.Column(db.String(255), nullable=False)
-    hospital_beds_per_thousand = db.Column(db.String(255), nullable=False)
-    life_expectancy = db.Column(db.String(255), nullable=False)
-    human_development_index = db.Column(db.String(255), nullable=False)
 
     @classmethod
     def remove_all(cls):
