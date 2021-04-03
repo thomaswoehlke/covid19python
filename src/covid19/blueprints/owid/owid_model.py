@@ -75,7 +75,7 @@ class OwidCountry(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     continent_id = db.Column(db.Integer,
-        db.ForeignKey('owid_country_continent.id'), nullable=False)
+        db.ForeignKey('owid_data_country_continent.id'), nullable=False)
     continent = db.relationship(
         'OwidContinent',
         lazy='joined',
