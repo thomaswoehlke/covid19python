@@ -84,7 +84,7 @@ class OwidCountry(db.Model):
         'OwidContinent',
         lazy='joined',
         cascade='all, delete',
-        order_by='desc(OwidContinent.continent)')
+        order_by='desc(OwidContinent.region)')
     iso_code = db.Column(db.String(255), nullable=False)
     location = db.Column(db.String(255), nullable=False)
     stringency_index = db.Column(db.String(255), nullable=False)
