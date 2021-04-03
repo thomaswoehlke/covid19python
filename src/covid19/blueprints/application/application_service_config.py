@@ -9,7 +9,13 @@ from covid19.blueprints.rki.rki_landkreise.rki_landkreise_model_import import Rk
 
 
 class ApplicationServiceConfig:
-    def __init__(self, slug: str, category: str, sub_category: str, tablename: str, cvsfile_name: str, url_src: str):
+    def __init__(self, slug: str,
+                 category: str,
+                 cvsfile_subpath: str,
+                 sub_category: str,
+                 tablename: str,
+                 cvsfile_name: str,
+                 url_src: str):
         self.limit_nr = 20
         self.data_path = ".." + os.sep + "data"
         self.slug = slug,
@@ -18,7 +24,8 @@ class ApplicationServiceConfig:
         self.tablename = tablename
         self.cvsfile_name = cvsfile_name
         self.url_src = url_src
-        self.cvsfile_path = self.data_path + os.sep + self.cvsfile_name
+        self.cvsfile_subpath = cvsfile_subpath
+        self.cvsfile_path = self.data_path + os.sep + cvsfile_subpath + os.sep + self.cvsfile_name
         self.msg_job = "download FILE: "+self.cvsfile_name+" from "+self.url_src
         self.msg_ok = "downloaded FILE: " + self.cvsfile_path + " from " + self.url_src
         self.msg_error = "Error while downloading: " + self.cvsfile_path + " from " + self.url_src
@@ -28,6 +35,7 @@ class ApplicationServiceConfig:
         return ApplicationServiceConfig(
             slug='who',
             category='WHO',
+            cvsfile_subpath='who',
             sub_category='Cases and Deaths',
             tablename=WhoImport.__tablename__,
             cvsfile_name="WHO-COVID-19-global-data.csv",
@@ -39,6 +47,7 @@ class ApplicationServiceConfig:
         return ApplicationServiceConfig(
             slug='rki_vaccination',
             category='RKI',
+            cvsfile_subpath='rki' + os.sep + 'rki_vaccination',
             sub_category='Vaccination',
             tablename=RkiVaccinationImport.__tablename__,
             cvsfile_name="germany_vaccinations_timeseries_v2.tsv",
@@ -50,6 +59,7 @@ class ApplicationServiceConfig:
         return ApplicationServiceConfig(
             slug='owid',
             category='OWID',
+            cvsfile_subpath='owid',
             sub_category='Our World in Data',
             tablename=OwidImport.__tablename__,
             cvsfile_name="owid-covid-data.csv",
@@ -61,6 +71,7 @@ class ApplicationServiceConfig:
         return ApplicationServiceConfig(
             slug='ecdc',
             category='ECDC',
+            cvsfile_subpath='ecdc',
             sub_category='European Centre for Disease Prevention and Control',
             tablename=EcdcImport.__tablename__,
             cvsfile_name="ecdc_europa_data.csv",
@@ -72,6 +83,7 @@ class ApplicationServiceConfig:
         return ApplicationServiceConfig(
             slug='rki_bundeslaender',
             category='RKI',
+            cvsfile_subpath='rki' + os.sep + 'rki_bundeslaender',
             sub_category='Bundeslaender',
             tablename=RkiBundeslaenderImport.__tablename__,
             cvsfile_name="RKI_COVID19__" + date.today().isoformat() + "__bundeslaender.csv",
@@ -83,6 +95,7 @@ class ApplicationServiceConfig:
         return ApplicationServiceConfig(
             slug='rki_landkreise',
             category='RKI',
+            cvsfile_subpath='rki' + os.sep + 'rki_landkreise',
             sub_category='Landkreise',
             tablename=RkiLandkreiseImport.__tablename__,
             cvsfile_name="RKI_COVID19__" + date.today().isoformat() + "__landkreise.csv",
