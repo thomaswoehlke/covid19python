@@ -6,7 +6,7 @@ from covid19.blueprints.application.application_model import ApplicationDateRepo
 
 
 class OwidDateReported(ApplicationDateReported):
-    __tablename__ = 'owid_date_reported'
+    __tablename__ = 'owid_data_date_reported'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
         db.UniqueConstraint('date_reported', 'datum', name="uix_owid_date_reported"),
@@ -45,7 +45,7 @@ class OwidDateReported(ApplicationDateReported):
 
 
 class OwidContinent(db.Model):
-    __tablename__ = 'owid_country_continent'
+    __tablename__ = 'owid_data_country_continent'
 
     id = db.Column(db.Integer, primary_key=True)
     continent = db.Column(db.String(255), nullable=False, unique=True)
@@ -71,7 +71,7 @@ class OwidContinent(db.Model):
 
 
 class OwidCountry(db.Model):
-    __tablename__ = 'owid_country'
+    __tablename__ = 'owid_data_country'
 
     id = db.Column(db.Integer, primary_key=True)
     continent_id = db.Column(db.Integer,
@@ -125,14 +125,14 @@ class OwidData(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported_id = db.Column(db.Integer,
-        db.ForeignKey('owid_date_reported.id'), nullable=False)
+        db.ForeignKey('owid_data_date_reported.id'), nullable=False)
     date_reported = db.relationship(
         'OwidDateReported',
         lazy='joined',
         cascade='all, delete',
         order_by='desc(OwidDateReported.date_reported)')
     country_id = db.Column(db.Integer,
-        db.ForeignKey('owid_country.id'), nullable=False)
+        db.ForeignKey('owid_data_country.id'), nullable=False)
     country = db.relationship(
         'OwidCountry',
         lazy='joined',
