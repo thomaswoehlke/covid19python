@@ -53,7 +53,7 @@ class ApplicationServiceDownload:
         for my_cmd in my_cmds:
             retcode = subprocess.call(my_cmd, shell=True)
             app.logger.info(retcode)
-            app.logger.info(my_cmd[0])
+            app.logger.info(my_cmd)
         os.chdir(orig_workdir)
         return self
 
