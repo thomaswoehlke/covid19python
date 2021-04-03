@@ -21,6 +21,9 @@ class EcdcDateReported(ApplicationDateReported):
     day_of_week = db.Column(db.Integer, nullable=False)
     week_of_year = db.Column(db.Integer, nullable=False)
 
+    def get_name_for_datum(self):
+        return self.date_reported
+
     def get_date_import_format_from_date_reported(self):
         my_date_parts = self.date_reported.split("-")
         my_year = my_date_parts[0]
