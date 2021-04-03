@@ -148,7 +148,7 @@ class EcdcServiceUpdate:
         i = 0
         dict_date_reported_from_import = self.__get_date_reported_from_import()
         for my_date_reported in dict_date_reported_from_import.keys():
-            my_ecdc_date_reported = dict_date_reported_from_import[my_date_reported]
+            my_ecdc_datereported = dict_date_reported_from_import[my_date_reported]
             for item_ecdc_data_import in EcdcImport.find_by_date_reported(my_date_reported):
                 my_ecdc_country = self.__get_country_from_import(item_ecdc_data_import)
                 my_deaths = int(item_ecdc_data_import.deaths)
@@ -160,7 +160,7 @@ class EcdcServiceUpdate:
                         float(item_ecdc_data_import.cumulative_number_for_14_days_of_covid19_cases_per_100000)
                 o = EcdcData(
                     ecdc_country=my_ecdc_country,
-                    ecdc_date_reported=my_ecdc_date_reported,
+                    ecdc_datereported=my_ecdc_datereported,
                     deaths=my_deaths,
                     cases=my_cases,
                     cumulative_number_for_14_days_of_covid19_cases_per_100000=my_cumulative_number
