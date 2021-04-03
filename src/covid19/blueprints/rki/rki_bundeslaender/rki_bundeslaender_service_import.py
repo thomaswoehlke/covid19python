@@ -3,7 +3,7 @@ import psycopg2
 
 from database import db, app
 from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
-from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_model_import import RkiBundeslaenderImport
+from covid19.blueprints.rki.rki_bundeslaender.rki_bundeslaender_model_import import RkiBundeslaenderImport
 
 
 class RkiBundeslaenderServiceImport:

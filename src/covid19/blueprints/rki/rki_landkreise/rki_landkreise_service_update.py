@@ -2,8 +2,8 @@ from database import db, app
 
 from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
 from covid19.blueprints.application.application_model import RkiDateReported
-from covid19.blueprints.rki_landkreise.rki_landkreise_model import RkiLandkreise
-from covid19.blueprints.rki_landkreise.rki_landkreise_model_import import RkiLandkreiseImport
+from covid19.blueprints.rki.rki_landkreise.rki_landkreise_model import RkiLandkreise
+from covid19.blueprints.rki.rki_landkreise.rki_landkreise_model_import import RkiLandkreiseImport
 
 
 class RkiLandkreiseServiceUpdate:

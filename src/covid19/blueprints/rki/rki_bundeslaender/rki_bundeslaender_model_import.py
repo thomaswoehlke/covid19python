@@ -1,7 +1,6 @@
 from database import db, ITEMS_PER_PAGE
 
 
-# TODO: #126 implement RkiBundeslaenderImport
 class RkiBundeslaenderImport(db.Model):
     __tablename__ = 'import_rki_bundeslsaender'
 

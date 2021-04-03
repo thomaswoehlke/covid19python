@@ -8,8 +8,8 @@ from database import app, admin, db
 from covid19.blueprints.application.application_workers import celery
 from covid19.blueprints.application.application_services import rki_service_landkreise
 from covid19.blueprints.application.application_model import RkiDateReported
-from covid19.blueprints.rki_landkreise.rki_landkreise_model import RkiLandkreise
-from covid19.blueprints.rki_landkreise.rki_landkreise_model_import import RkiLandkreiseImport
+from covid19.blueprints.rki.rki_landkreise.rki_landkreise_model import RkiLandkreise
+from covid19.blueprints.rki.rki_landkreise.rki_landkreise_model_import import RkiLandkreiseImport
 from covid19.blueprints.application.application_model_transient import ApplicationPage
 
 drop_and_create_data_again = True

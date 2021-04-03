@@ -7,8 +7,8 @@ from database import app, admin, db
 from covid19.blueprints.application.application_services import rki_vaccination_service
 from covid19.blueprints.application.application_workers import celery
 
-from covid19.blueprints.rki_vaccination.rki_vaccination_model import RkiVaccinationData, RkiVaccinationDateReported
-from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import RkiVaccinationImport
+from covid19.blueprints.rki.rki_vaccination.rki_vaccination_model import RkiVaccinationData, RkiVaccinationDateReported
+from covid19.blueprints.rki.rki_vaccination.rki_vaccination_model_import import RkiVaccinationImport
 from covid19.blueprints.application.application_model_transient import ApplicationPage
 
 

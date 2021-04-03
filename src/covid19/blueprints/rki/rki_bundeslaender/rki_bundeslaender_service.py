@@ -3,8 +3,8 @@ from flask import flash
 from database import app
 from covid19.blueprints.application.application_service_config import ApplicationServiceConfig
 from covid19.blueprints.application.application_service_download import ApplicationServiceDownload
-from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_service_import import RkiBundeslaenderServiceImport
-from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_service_update import RkiBundeslaenderServiceUpdate
+from covid19.blueprints.rki.rki_bundeslaender.rki_bundeslaender_service_import import RkiBundeslaenderServiceImport
+from covid19.blueprints.rki.rki_bundeslaender.rki_bundeslaender_service_update import RkiBundeslaenderServiceUpdate
 
 
 class RkiBundeslaenderService:

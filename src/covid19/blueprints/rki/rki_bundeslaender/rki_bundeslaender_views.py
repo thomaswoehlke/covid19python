@@ -6,8 +6,8 @@ from celery import states
 from database import app, admin, db
 from covid19.blueprints.application.application_workers import celery
 from covid19.blueprints.application.application_services import rki_service_bundeslaender
-from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_model import RkiBundeslaender
-from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_model_import import RkiBundeslaenderImport
+from covid19.blueprints.rki.rki_bundeslaender.rki_bundeslaender_model import RkiBundeslaender
+from covid19.blueprints.rki.rki_bundeslaender.rki_bundeslaender_model_import import RkiBundeslaenderImport
 from covid19.blueprints.application.application_model_transient import ApplicationPage
 
 drop_and_create_data_again = True
