@@ -45,12 +45,16 @@ class ApplicationServiceDownload:
     def __download_with_subprocess_and_os_native_wget(self):
         orig_workdir = os.getcwd()
         os.chdir(self.cfg.data_path)
-        my_cmd = ['wget ' + self.cfg.url_src]
+        my_cmds = [
+            'wget ' + self.cfg.url_src,
+            'mv ' + self.cfg.cvsfile_name + ' ' + self.cfg.cvsfile_path,
+        ]
         # subprocess.Popen(my_cmd, shell=True)
-        retcode = subprocess.call(my_cmd, shell=True)
-        app.logger.info(retcode)
+        for my_cmd in my_cmds:
+            retcode = subprocess.call(my_cmd, shell=True)
+            app.logger.info(retcode)
+            app.logger.info(my_cmd[0])
         os.chdir(orig_workdir)
-        app.logger.info(my_cmd[0])
         return self
 
     def download_file(self):
