@@ -2,10 +2,10 @@ import os
 from datetime import date
 from covid19.blueprints.ecdc.ecdc_model_import import EcdcImport
 from covid19.blueprints.who.who_model_import import WhoImport
-from covid19.blueprints.rki_vaccination.rki_vaccination_model_import import RkiVaccinationImport
+from covid19.blueprints.rki.rki_vaccination.rki_vaccination_model_import import RkiVaccinationImport
 from covid19.blueprints.owid.owid_model_import import OwidImport
-from covid19.blueprints.rki_bundeslaender.rki_bundeslaender_model_import import RkiBundeslaenderImport
-from covid19.blueprints.rki_landkreise.rki_landkreise_model_import import RkiLandkreiseImport
+from covid19.blueprints.rki.rki_bundeslaender.rki_bundeslaender_model_import import RkiBundeslaenderImport
+from covid19.blueprints.rki.rki_landkreise.rki_landkreise_model_import import RkiLandkreiseImport
 
 
 class ApplicationServiceConfig:

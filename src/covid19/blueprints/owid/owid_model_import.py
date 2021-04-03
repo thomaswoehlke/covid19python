@@ -2,7 +2,7 @@ from database import db, ITEMS_PER_PAGE
 
 
 class OwidImport(db.Model):
-    __tablename__ = 'import_owid'
+    __tablename__ = 'application__import__owid'
 
     id = db.Column(db.Integer, primary_key=True)
     iso_code = db.Column(db.String(255), nullable=False)

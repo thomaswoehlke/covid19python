@@ -2,7 +2,7 @@ from sqlalchemy import and_, func
 from datetime import date
 from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload
-from covid19.blueprints.application.application_model import ApplicationDateReported
+from covid19.blueprints.application.application_model import ApplicationDateReported, ApplicationRegion
 
 
 class OwidDateReported(ApplicationDateReported):
@@ -44,11 +44,15 @@ class OwidDateReported(ApplicationDateReported):
         )
 
 
-class OwidContinent(db.Model):
+class OwidContinent(ApplicationRegion):
     __tablename__ = 'owid_country_continent'
+    __mapper_args__ = {'concrete': True}
+    __table_args__ = (
+        db.UniqueConstraint('region', name="uix_owid_country_continent"),
+    )
 
     id = db.Column(db.Integer, primary_key=True)
-    continent = db.Column(db.String(255), nullable=False, unique=True)
+    region = db.Column(db.String(255), nullable=False, unique=True)
 
     @classmethod
     def remove_all(cls):

@@ -2,7 +2,7 @@ from database import db, ITEMS_PER_PAGE
 
 
 class WhoImport(db.Model):
-    __tablename__ = 'import_who'
+    __tablename__ = 'application__import__who'
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False)

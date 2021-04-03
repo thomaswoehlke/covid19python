@@ -2,7 +2,7 @@ from database import db, ITEMS_PER_PAGE
 
 
 class RkiVaccinationImport(db.Model):
-    __tablename__ = 'import_rki_vaccination'
+    __tablename__ = 'application__import__rki_vaccination'
 
     id = db.Column(db.Integer, primary_key=True)
     datum = db.Column(db.String(255), nullable=False)
