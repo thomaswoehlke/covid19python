@@ -24,7 +24,7 @@ class RkiVaccinationServiceImport:
             return int(input_string)
 
     def import_file(self):
-        src_cvsfile_name = self.cfg.data_path+os.sep+self.cfg.cvsfile_name
+        src_cvsfile_name = self.cfg.cvsfile_path
         app.logger.info(" import Vaccination [begin]")
         app.logger.info("------------------------------------------------------------")
         app.logger.info(" import into TABLE: "+self.cfg.tablename+" from "+self.cfg.cvsfile_path)
