@@ -154,10 +154,15 @@ class OwidServiceUpdate:
                     db.session.add(my_OwidContinent)
                     db.session.commit()
                 my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
-                my_OwidCountry = OwidCountry.find_by_iso_code_and_location(iso_code=oi.iso_code, location=oi.location)
+                my_OwidCountry = OwidCountry.find_by_iso_code_and_location(
+                    iso_code=oi.iso_code,
+                    location=oi.location
+                )
                 if my_OwidCountry is None:
                     my_OwidCountry = OwidCountry(
                         continent=my_OwidContinent,
+                        iso_code=oi.iso_code,
+                        location=oi.location,
                         population=oi.population,
                         population_density=oi.population_density,
                         median_age=oi.median_age,
@@ -176,7 +181,10 @@ class OwidServiceUpdate:
                     )
                     db.session.add(my_OwidCountry)
                     db.session.commit()
-                my_OwidCountry = OwidCountry.find_by_iso_code(iso_code=oi.iso_code, location=oi.location)
+                my_OwidCountry = OwidCountry.find_by_iso_code(
+                    iso_code=oi.iso_code,
+                    location=oi.location
+                )
                 o = OwidData(
                     date_reported=my_OwidDateReported,
                     country=my_OwidCountry,
