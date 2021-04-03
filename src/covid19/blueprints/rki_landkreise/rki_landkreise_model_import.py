@@ -4,7 +4,7 @@ from database import db, ITEMS_PER_PAGE
 
 
 class RkiLandkreiseImport(db.Model):
-    __tablename__ = 'rki_landkreise_import'
+    __tablename__ = 'import_rki_landkreise'
 
     id = db.Column(db.Integer, primary_key=True)
     OBJECTID = db.Column(db.String(255), nullable=False)

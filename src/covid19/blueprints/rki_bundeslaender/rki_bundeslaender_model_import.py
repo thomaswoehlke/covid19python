@@ -3,7 +3,7 @@ from database import db, ITEMS_PER_PAGE
 
 # TODO: #126 implement RkiBundeslaenderImport
 class RkiBundeslaenderImport(db.Model):
-    __tablename__ = 'rki_bundeslsaender_import'
+    __tablename__ = 'import_rki_bundeslsaender'
 
     id = db.Column(db.Integer, primary_key=True)
     OBJECTID_1 = db.Column(db.String(255), nullable=False)
