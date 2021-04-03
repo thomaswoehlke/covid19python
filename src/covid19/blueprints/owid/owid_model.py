@@ -6,10 +6,10 @@ from covid19.blueprints.application.application_model import ApplicationDateRepo
 
 
 class OwidDateReported(ApplicationDateReported):
-    __tablename__ = 'owid_date_reported'
+    __tablename__ = 'owid_datereported'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_owid_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_owid_datereported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -129,7 +129,7 @@ class OwidData(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported_id = db.Column(db.Integer,
-        db.ForeignKey('owid_date_reported.id'), nullable=False)
+        db.ForeignKey('owid_datereported.id'), nullable=False)
     date_reported = db.relationship(
         'OwidDateReported',
         lazy='joined',

@@ -5,12 +5,12 @@ from covid19.blueprints.application.application_model import ApplicationDateRepo
 
 
 class RkiVaccinationDateReported(ApplicationDateReported):
-    __tablename__ = 'rki_vaccination_date_reported'
+    __tablename__ = 'rki_vaccination_datereported'
     __mapper_args__ = {
         'concrete': True
     }
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_rki_vaccination_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_rki_vaccination_datereported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -49,7 +49,7 @@ class RkiVaccinationData(db.Model):
     __tablename__ = 'rki_vaccination'
 
     id = db.Column(db.Integer, primary_key=True)
-    date_reported_id = db.Column(db.Integer, db.ForeignKey('rki_vaccination_date_reported.id'), nullable=False)
+    date_reported_id = db.Column(db.Integer, db.ForeignKey('rki_vaccination_datereported.id'), nullable=False)
     date_reported = db.relationship(
         'RkiVaccinationDateReported',
         lazy='joined',

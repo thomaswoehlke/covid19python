@@ -6,10 +6,10 @@ from covid19.blueprints.application.application_model import ApplicationDateRepo
 
 
 class WhoDateReported(ApplicationDateReported):
-    __tablename__ = 'who_date_reported'
+    __tablename__ = 'who_datereported'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_who_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_who_datereported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -159,7 +159,7 @@ class WhoData(db.Model):
     deaths_new = db.Column(db.Integer, nullable=False)
     deaths_cumulative = db.Column(db.Integer, nullable=False)
     date_reported_id = db.Column(db.Integer,
-        db.ForeignKey('who_date_reported.id'), nullable=False)
+        db.ForeignKey('who_datereported.id'), nullable=False)
     date_reported = db.relationship(
         'WhoDateReported',
         lazy='joined',

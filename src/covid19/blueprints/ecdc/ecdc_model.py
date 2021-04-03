@@ -5,10 +5,10 @@ from covid19.blueprints.application.application_model import ApplicationDateRepo
 
 
 class EcdcDateReported(ApplicationDateReported):
-    __tablename__ = 'ecdc_date_reported'
+    __tablename__ = 'ecdc_datereported'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_ecdc_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_ecdc_datereported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -198,8 +198,8 @@ class EcdcData(db.Model):
         order_by='asc(EcdcCountry.countries_and_territories)'
     )
 
-    ecdc_date_reported_id = db.Column(db.Integer, db.ForeignKey('ecdc_date_reported.id'), nullable=False)
-    ecdc_date_reported = db.relationship(
+    ecdc_datereported_id = db.Column(db.Integer, db.ForeignKey('ecdc_datereported.id'), nullable=False)
+    ecdc_datereported = db.relationship(
         'EcdcDateReported',
         lazy='joined', cascade='all, delete',
         order_by='desc(EcdcDateReported.date_reported)'
@@ -229,30 +229,30 @@ class EcdcData(db.Model):
         return db.session.query(cls).filter(cls.id == other_id).one_or_none()
 
     @classmethod
-    def find_by_date_reported(cls, ecdc_date_reported, page: int):
+    def find_by_date_reported(cls, ecdc_datereported, page: int):
         return db.session.query(cls).filter(
-            cls.ecdc_date_reported_id == ecdc_date_reported.id)\
+            cls.ecdc_datereported_id == ecdc_datereported.id)\
             .order_by(cls.cumulative_number_for_14_days_of_covid19_cases_per_100000.desc())\
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_notification_rate(cls, ecdc_date_reported, page: int):
+    def find_by_date_reported_notification_rate(cls, ecdc_datereported, page: int):
         return db.session.query(cls).filter(
-            cls.ecdc_date_reported_id == ecdc_date_reported.id) \
+            cls.ecdc_datereported_id == ecdc_datereported.id) \
             .order_by(cls.cumulative_number_for_14_days_of_covid19_cases_per_100000.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_deaths_weekly(cls, ecdc_date_reported, page: int):
+    def find_by_date_reported_deaths_weekly(cls, ecdc_datereported, page: int):
         return db.session.query(cls).filter(
-            cls.ecdc_date_reported_id == ecdc_date_reported.id) \
+            cls.ecdc_datereported_id == ecdc_datereported.id) \
             .order_by(cls.deaths.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_cases_weekly(cls, ecdc_date_reported, page: int):
+    def find_by_date_reported_cases_weekly(cls, ecdc_datereported, page: int):
         return db.session.query(cls).filter(
-            cls.ecdc_date_reported_id == ecdc_date_reported.id) \
+            cls.ecdc_datereported_id == ecdc_datereported.id) \
             .order_by(cls.cases.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
