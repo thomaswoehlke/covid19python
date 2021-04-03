@@ -78,9 +78,9 @@ class WhoImport(db.Model):
         sql_query = """
             select
                 distinct 
-                    who_import.date_reported
+                    application__import__who.date_reported
                 from
-                    who_import
+                    application__import__who
                 where
                     date_reported
                 not in (
@@ -99,9 +99,9 @@ class WhoImport(db.Model):
                             who_date_reported.date_reported desc
                 )
                 group by
-                    who_import.date_reported
+                    application__import__who.date_reported
                 order by 
-                    who_import.date_reported desc
+                    application__import__who.date_reported desc
             """
         new_dates = []
         for item in db.session.execute(sql_query):
@@ -112,9 +112,9 @@ class WhoImport(db.Model):
     def countries(cls):
         sql_query = """
             select distinct 
-                who_import.country_code,
-                who_import.country,
-                who_import.who_region
-                from who_import
+                application__import__who.country_code,
+                application__import__who.country,
+                application__import__who.who_region
+                from application__import__who
             """
         return db.session.execute(sql_query).fetchall()
