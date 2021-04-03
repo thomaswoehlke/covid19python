@@ -20,12 +20,12 @@ class ApplicationServiceConfig:
         self.data_path = ".." + os.sep + "data"
         self.slug = slug,
         self.category = category
+        self.cvsfile_subpath = cvsfile_subpath
         self.sub_category = sub_category
         self.tablename = tablename
         self.cvsfile_name = cvsfile_name
         self.url_src = url_src
-        self.cvsfile_subpath = cvsfile_subpath
-        self.cvsfile_path = self.data_path + os.sep + cvsfile_subpath + os.sep + self.cvsfile_name
+        self.cvsfile_path = self.data_path + os.sep + self.cvsfile_subpath + os.sep + self.cvsfile_name
         self.msg_job = "download FILE: "+self.cvsfile_name+" from "+self.url_src
         self.msg_ok = "downloaded FILE: " + self.cvsfile_path + " from " + self.url_src
         self.msg_error = "Error while downloading: " + self.cvsfile_path + " from " + self.url_src
