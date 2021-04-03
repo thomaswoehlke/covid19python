@@ -5,9 +5,9 @@ from sqlalchemy.orm import joinedload
 
 
 class ApplicationDateReported(db.Model):
-    __tablename__ = 'application_date_reported'
+    __tablename__ = 'application_datereported'
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_application_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_application_datereported"),
     )
     #
     id = db.Column(db.Integer, primary_key=True)
@@ -221,12 +221,12 @@ class ApplicationRegion(db.Model):
 
 
 class RkiDateReported(ApplicationDateReported):
-    __tablename__ = 'rki_date_reported'
+    __tablename__ = 'rki_datereported'
     __mapper_args__ = {
         'concrete': True
     }
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_rki_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_rki_datereported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
