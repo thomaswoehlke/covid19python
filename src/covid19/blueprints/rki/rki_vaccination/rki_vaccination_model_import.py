@@ -101,9 +101,9 @@ class RkiVaccinationImport(db.Model):
                         from
                             rki_vaccination_data
                         left join
-                            rki_vaccination_date_reported
+                            rki_vaccination_datereported
                         on
-                            rki_vaccination_data.date_reported_id=rki_vaccination_date_reported.id
+                            rki_vaccination_data.date_reported_id=rki_vaccination_datereported.id
                         group by 
                             rki_vaccination_import.datum
                         order by

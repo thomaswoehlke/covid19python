@@ -86,17 +86,17 @@ class WhoImport(db.Model):
                 not in (
                     select
                         distinct
-                            who_date_reported.date_reported
+                            who_datereported.date_reported
                         from
                             who
                         left join
-                            who_date_reported
+                            who_datereported
                         on
-                            who.date_reported_id=who_date_reported.id
+                            who.date_reported_id=who_datereported.id
                         group by 
-                            who_date_reported.date_reported
+                            who_datereported.date_reported
                         order by
-                            who_date_reported.date_reported desc
+                            who_datereported.date_reported desc
                 )
                 group by
                     application__import__who.date_reported
