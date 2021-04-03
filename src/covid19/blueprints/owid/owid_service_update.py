@@ -56,7 +56,9 @@ class OwidServiceUpdate:
                     db.session.add(my_OwidContinent)
                     db.session.commit()
                     my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
-                    app.logger.info(my_OwidContinent)
+                    app.logger.info(str(my_OwidContinent) + " added")
+                else:
+                    app.logger.info(str(my_OwidContinent) + " not added" + str(my_OwidContinent.id))
                 my_OwidCountry = OwidCountry.find_by_iso_code_and_location(iso_code=oi.iso_code, location=oi.location)
                 if my_OwidCountry is None:
                     my_OwidCountry = OwidCountry(
@@ -80,7 +82,9 @@ class OwidServiceUpdate:
                     db.session.add(my_OwidCountry)
                     db.session.commit()
                     my_OwidCountry = OwidCountry.find_by_iso_code_and_location(iso_code=oi.iso_code, location=oi.location)
-                    app.logger.info(my_OwidCountry)
+                    app.logger.info(str(my_OwidCountry) + " added")
+                else:
+                    app.logger.info(str(my_OwidCountry) + " not added" + str(my_OwidCountry.id))
                 o = OwidData(
                     date_reported=my_OwidDateReported,
                     country=my_OwidCountry,
@@ -150,7 +154,9 @@ class OwidServiceUpdate:
                 db.session.add(myday)
                 db.session.commit()
                 my_OwidDateReported = OwidDateReported.get_by_date_reported(my_date_reported)
-                app.logger.info(my_OwidDateReported)
+                app.logger.info(str(my_OwidDateReported) + " added")
+            else:
+                app.logger.info(str(my_OwidDateReported) + " not added" + str(my_OwidDateReported.id))
             for oi in OwidImport.get_for_one_day(my_date_reported):
                 my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
                 if my_OwidContinent is None:
@@ -158,7 +164,9 @@ class OwidServiceUpdate:
                     db.session.add(my_OwidContinent)
                     db.session.commit()
                     my_OwidContinent = OwidContinent.find_by_region(i_region=oi.continent)
-                    app.logger.info(my_OwidContinent)
+                    app.logger.info(str(my_OwidContinent) + " added")
+                else:
+                    app.logger.info(str(my_OwidContinent) + " not added" + str(my_OwidContinent.id))
                 my_OwidCountry = OwidCountry.find_by_iso_code_and_location(
                     iso_code=oi.iso_code,
                     location=oi.location
@@ -190,7 +198,9 @@ class OwidServiceUpdate:
                         iso_code=oi.iso_code,
                         location=oi.location
                     )
-                    app.logger.info(my_OwidCountry)
+                    app.logger.info(str(my_OwidCountry) + " added")
+                else:
+                    app.logger.info(str(my_OwidCountry) + " not added" + str(my_OwidCountry.id))
                 o = OwidData(
                     date_reported=my_OwidDateReported,
                     country=my_OwidCountry,
