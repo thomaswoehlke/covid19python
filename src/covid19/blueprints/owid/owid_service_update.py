@@ -128,7 +128,7 @@ class OwidServiceUpdate:
                 db.session.add(o)
                 i += 1
                 k += 1
-                if i % 1000 == 0:
+                if i % 2000 == 0:
                     app.logger.info(" update OWID incremental ... "+str(i)+" rows")
             db.session.commit()
             app.logger.info(" update OWID incremental ... " + str(i) + " rows [" + str(my_OwidDateReported) + "] (" + str(k) + ")")
@@ -237,7 +237,7 @@ class OwidServiceUpdate:
                 )
                 db.session.add(o)
                 i += 1
-                if i % 1000 == 0:
+                if i % 2000 == 0:
                     app.logger.info(" update OWID initial ... "+str(i)+" rows")
                     db.session.commit()
             db.session.commit()
