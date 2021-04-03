@@ -106,15 +106,46 @@ entity OwidDateReported {
     {classifier} get_all_as_dict()
     {classifier} get_by_id(other_id: Integer)
     {classifier} find_by_id(other_id: Integer)
-    {classifier} get_workflow_for_id(workflow_id: Integer)
+}
+entity OwidContinent {
+    id: Integer
+    continent:  String
+    {classifier} remove_all()
+    {classifier} get_all_as_page(page: Integer)
+    {classifier} get_all()
+    {classifier} get_all_as_dict()
+    {classifier} get_by_id(other_id: Integer)
+    {classifier} find_by_id(other_id: Integer)
+}
+entity OwidCountry {
+    id: Integer
+	iso_code:  String
+    location:  String
+    stringency_index:  String
+    population:  String
+    population_density:  String
+    median_age:  String
+    aged_65_older:  String
+    aged_70_older:  String
+    gdp_per_capita:  String
+    extreme_poverty:  String
+    cardiovasc_death_rate:  String
+    diabetes_prevalence:  String
+    female_smokers:  String
+    male_smokers:  String
+    handwashing_facilities:  String
+    hospital_beds_per_thousand:  String
+    life_expectancy:  String
+    human_development_index:  String
+    {classifier} remove_all()
+    {classifier} get_all_as_page(page: Integer)
+    {classifier} get_all()
+    {classifier} get_all_as_dict()
+    {classifier} get_by_id(other_id: Integer)
+    {classifier} find_by_id(other_id: Integer)
 }
 entity OwidData {
     id: Integer
-    id: Integer
-	iso_code:  String
-    continent:  String
-    location:  String
-    date:  String
     total_cases:  String
     new_cases:  String
     new_cases_smoothed:  String
@@ -155,36 +186,17 @@ entity OwidData {
     people_fully_vaccinated_per_hundred:  String
     new_vaccinations_smoothed_per_million:  String
     stringency_index:  String
-    population:  String
-    population_density:  String
-    median_age:  String
-    aged_65_older:  String
-    aged_70_older:  String
-    gdp_per_capita:  String
-    extreme_poverty:  String
-    cardiovasc_death_rate:  String
-    diabetes_prevalence:  String
-    female_smokers:  String
-    male_smokers:  String
-    handwashing_facilities:  String
-    hospital_beds_per_thousand:  String
-    life_expectancy:  String
-    human_development_index:  String
-    get_absolute_path()
-    get_relative_path()
     {classifier} remove_all()
     {classifier} get_all_as_page(page: Integer)
     {classifier} get_all()
     {classifier} get_all_as_dict()
     {classifier} get_by_id(other_id: Integer)
     {classifier} find_by_id(other_id: Integer)
-    {classifier} get_lektionen_for_workflow(workflow: Workflow)
-    {classifier} get_lektion_for_id(lektion_id: Integer)
-    {classifier} get_folien_for_lektion_id(lektion_id: Integer)
-    {classifier} get_all_verified()
 }
-OwidData "1" *--> "*" OwidDateReported: date_reported
 ApplicationDateReported <|-- OwidDateReported
+OwidCountry "1" *--> "*" OwidContinent: continent
+OwidData "1" *--> "*" OwidCountry: country
+OwidData "1" *--> "*" OwidDateReported: date_reported
 class OwidServiceImport {
 	import_file()
 }
