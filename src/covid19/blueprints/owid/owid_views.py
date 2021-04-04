@@ -404,11 +404,11 @@ def url_owid_continent_one(continent_id: int, page: int = 1):
 @app_owid.route('/country/all')
 def url_owid_country_all(page: int = 1):
     page_info = ApplicationPage(
-        "Continents "
+        "Countries "
         'OWID'
     )
     try:
-        page_data = OwidContinent.get_all_as_page(page)
+        page_data = OwidCountry.get_all_as_page(page)
     except OperationalError:
         flash("No data in the database.")
         page_data = None
@@ -423,9 +423,9 @@ def url_owid_country_all(page: int = 1):
 def url_owid_country_one(country_id: int, page: int = 1):
     owid_country_one = OwidCountry.get_by_id(country_id)
     page_info = ApplicationPage(
-        "continent: " + owid_country_one.location,
+        "country: " + owid_country_one.location,
         'OWID',
-        "countries for OWID continent " + owid_country_one.region + " "
+        "data for OWID continent " + owid_country_one.region + " "
     )
     try:
         page_data = OwidData.get_data_for_country(owid_country_one, page)
