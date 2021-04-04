@@ -1,4 +1,4 @@
-packaging==20.9
+packaging==20.0
 pyparsing==2.4.6
 wheel>=0.36.2
 pip-licenses==3.3.0
