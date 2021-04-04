@@ -175,10 +175,10 @@ entity OwidData {
     {classifier} get_by_id(other_id: Integer)
     {classifier} find_by_id(other_id: Integer)
 }
-class OwidServiceImport {
+class OwidServiceImport << (S,red) Service >> {
 	import_file()
 }
-class OwidServiceUpdate {
+class OwidServiceUpdate << (S,red) Service >> {
 	update_dimension_tables_only()
 	update_fact_table_incremental_only()
 	update_fact_table_initial_only()
@@ -189,7 +189,7 @@ class OwidServiceUpdate {
 	-update_fact_table_incremental()
 	-update_date_reported()
 }
-class OwidService {
+class OwidService << (S,red) Service >> {
     pretask_database_drop_create()
     task_database_drop_create()
     run_download_only()
@@ -233,7 +233,7 @@ entity ApplicationRegion {
     {classifier} get_by_id(other_id: Integer)
     {classifier} find_by_id(other_id: Integer)
 }
-class ApplicationServiceDownload {
+class ApplicationServiceDownload << (S,red) Service >> {
 	-log_error()
 	-log_success()
 	-prepare_download()
@@ -241,7 +241,7 @@ class ApplicationServiceDownload {
 	-download_with_subprocess_and_os_native_wget()
 	download_file()
 }
-class ApplicationServiceConfig {
+class ApplicationServiceConfig << (T,#FF7700) Transient >> {
 	limit_nr: Integer
     data_path: String
     slug: String
@@ -261,7 +261,7 @@ class ApplicationServiceConfig {
 	create_config_for_rki_bundeslaender()
 	create_config_for_rki_landkreise()
 }
-interface owid_views_frontend {
+class owid_views_frontend << (B,orchid) Boundary >> {
     url_owid_info()
     url_owid_tasks()
     url_owid_test()
@@ -273,7 +273,7 @@ interface owid_views_frontend {
     url_owid_date_reported_deaths_new()
     url_owid_date_reported_deaths_cumulative()
 }
-interface owid_views_for_tasks {
+class owid_views_for_tasks << (B,orchid) Boundary >> {
     url_task_owid_download_only()
     url_task_owid_import_only()
     url_task_owid_update_dimension_tables_only()
@@ -282,7 +282,7 @@ interface owid_views_for_tasks {
     url_task_owid_update_star_schema_initial()
     url_task_owid_update_star_schema_incremental()
 }
-interface owid_celery_tasks {
+class owid_celery_tasks << (B,orchid) Boundary >> {
     task_owid_download_only()
     task_owid_import_only()
     task_owid_update_dimension_tables_only()

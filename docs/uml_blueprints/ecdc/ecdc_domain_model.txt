@@ -112,7 +112,7 @@ entity ApplicationRegion {
     {classifier} get_by_id(other_id: Integer)
     {classifier} find_by_id(other_id: Integer)
 }
-class ApplicationServiceDownload {
+class ApplicationServiceDownload << (S,red) Service >> {
 	-log_error()
 	-log_success()
 	-prepare_download()
@@ -120,7 +120,7 @@ class ApplicationServiceDownload {
 	-download_with_subprocess_and_os_native_wget()
 	download_file()
 }
-class ApplicationServiceConfig {
+class ApplicationServiceConfig << (T,#FF7700) Transient >> {
 	limit_nr: Integer
     data_path: String
     slug: String
@@ -140,7 +140,7 @@ class ApplicationServiceConfig {
 	create_config_for_rki_bundeslaender()
 	create_config_for_rki_landkreise()
 }
-class EcdcService {
+class EcdcService << (S,red) Service >> {
 	pretask_database_drop_create()
 	task_database_drop_create()
 	run_download_only()
@@ -156,10 +156,10 @@ class EcdcService {
 	update_fact_table_initial_only()
 	update_fact_table_incremental_only()
 }
-class EcdcServiceImport {
+class EcdcServiceImport << (S,red) Service >> {
 	import_file()
 }
-class EcdcServiceUpdate {
+class EcdcServiceUpdate << (S,red) Service >> {
 	-update_date_reported()
 	-update_continent()
 	-update_country()
@@ -172,7 +172,7 @@ class EcdcServiceUpdate {
     update_star_schema_incremental()
 	update_star_schema_initial()
 }
-class ecdc_views_frontend {
+class ecdc_views_frontend << (B,orchid) Boundary >> {
 	url_ecdc_info()
 	url_ecdc_tasks()
 	url_ecdc_data_imported()
@@ -186,7 +186,7 @@ class ecdc_views_frontend {
 	url_ecdc_country_one()
 	url_ecdc_country_germany()
 }
-class ecdc_views_for_tasks {
+class ecdc_views_for_tasks << (B,orchid) Boundary >> {
 	task_ecdc_download_only()
 	task_who_import_only()
 	task_who_update_dimension_tables_only()
@@ -195,7 +195,7 @@ class ecdc_views_for_tasks {
 	task_who_update_star_schema_initial()
 	task_who_update_star_schema_incremental()
 }
-class ecdc_celery_tasks {
+class ecdc_celery_tasks << (B,orchid) Boundary >> {
 	task_ecdc_download_only()
 	task_ecdc_import_only()
 	task_ecdc_update_dimension_tables_only()
@@ -204,6 +204,7 @@ class ecdc_celery_tasks {
 	task_ecdc_update_star_schema_initial()
 	task_ecdc_update_star_schema_incremental()
 }
+ApplicationServiceDownload : SQLAlchemy database
 EcdcServiceImport : SQLAlchemy database
 EcdcServiceUpdate : SQLAlchemy database
 EcdcService : SQLAlchemy database

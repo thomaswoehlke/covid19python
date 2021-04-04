@@ -70,19 +70,13 @@ class ApplicationServiceConfig << (T,#FF7700) Transient >> {
 	create_config_for_rki_bundeslaender()
 	create_config_for_rki_landkreise()
 }
-class ApplicationServiceDownload << (S,#FF7700) Service >> {
+class ApplicationServiceDownload << (S,red) Service >> {
 	-log_error()
 	-log_success()
 	-prepare_download()
 	-download_with_wget()
 	-download_with_subprocess_and_os_native_wget()
 	download_file()
-}
-class ApplicationService << (S,#FF7700) Service >> {
-
-}
-class application_services << (P,#FF7700) Proxy >> {
-
 }
 class database << (S,#FF7700) Singleton >> {
 	{static} int port
@@ -99,16 +93,41 @@ class database << (S,#FF7700) Singleton >> {
 	create_celery(my_app)
 	create_admin(my_app)
 }
-class application_workers << (B,#FF7700) Boundary >> {
+class application_workers << (B,orchid) Boundary >> {
 	run_mq(my_app, my_celery)
 	run_app(my_app)
 }
-class application_views << (B,#FF7700) Boundary >> {
+class application_views << (B,orchid) Boundary >> {
 	url_home()
 	url_root()
 }
-ApplicationService : SQLAlchemy database
-ApplicationServiceDownload : SQLAlchemy database
+class application_services << (P,yellow) Proxy >> {
+
+}
+class ApplicationService << (S,red) Service >> {
+
+}
+class AdminService << (S,red) Service >> {
+
+}
+class WhoService << (S,red) Service >> {
+
+}
+class EcdcService << (S,red) Service >> {
+
+}
+class RkiVaccinationService << (S,red) Service >> {
+
+}
+class RkiBundeslaenderService << (S,red) Service >> {
+
+}
+class RkiLandkreiseService << (S,red) Service >> {
+
+}
+class OwidService << (S,red) Service >> {
+
+}
 ApplicationDateReported <|-- RkiDateReported
 ApplicationServiceDownload "*" --> "1"  ApplicationServiceConfig: cfg
 application_workers "1" --> "1" application_services: application_services
@@ -122,5 +141,22 @@ application_services "*" --> "1" RkiVaccinationService: rki_vaccination_service
 application_services "*" --> "1" RkiBundeslaenderService: rki_service_bundeslaender
 application_services "*" --> "1" RkiLandkreiseService: rki_service_landkreise
 application_services "*" --> "1" OwidService: owid_service
-
+ApplicationService "*" --> "1" database
+ApplicationServiceDownload "*" --> "1" database
+AdminService "*" --> "1" database
+WhoService "*" --> "1" database
+EcdcService "*" --> "1" database
+RkiBundeslaenderService "*" --> "1" database
+RkiLandkreiseService "*" --> "1" database
+RkiVaccinationService "*" --> "1" database
+OwidService "*" --> "1" database
+ApplicationService : SQLAlchemy database
+ApplicationServiceDownload : SQLAlchemy database
+AdminService : SQLAlchemy database
+WhoService : SQLAlchemy database
+EcdcService : SQLAlchemy database
+RkiBundeslaenderService : SQLAlchemy database
+RkiLandkreiseService : SQLAlchemy database
+RkiVaccinationService : SQLAlchemy database
+OwidService : SQLAlchemy database
 @enduml

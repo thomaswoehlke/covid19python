@@ -93,7 +93,7 @@ entity WhoImport {
     {classifier} get_new_dates_as_array()
     {classifier} countries()
 }
-class WhoService {
+class WhoService << (S,red) Service >> {
     pretask_database_drop_create()
     task_database_drop_create()
     run_download_only()
@@ -109,10 +109,10 @@ class WhoService {
     update_fact_table_initial_only()
     update_fact_table_incremental_only()
 }
-class WhoServiceImport {
+class WhoServiceImport << (S,red) Service >> {
     import_file()
 }
-class WhoServiceUpdate {
+class WhoServiceUpdate << (S,red) Service >> {
     -update_date_reported()
     -update_region()
     -update_country()
@@ -153,7 +153,7 @@ entity ApplicationRegion {
     {classifier} get_by_id(other_id: Integer)
     {classifier} find_by_id(other_id: Integer)
 }
-class ApplicationServiceDownload {
+class ApplicationServiceDownload << (S,red) Service >> {
 	-log_error()
 	-log_success()
 	-prepare_download()
@@ -161,7 +161,7 @@ class ApplicationServiceDownload {
 	-download_with_subprocess_and_os_native_wget()
 	download_file()
 }
-class ApplicationServiceConfig {
+class ApplicationServiceConfig << (T,#FF7700) Transient >> {
 	limit_nr: Integer
     data_path: String
     slug: String
@@ -181,7 +181,7 @@ class ApplicationServiceConfig {
 	create_config_for_rki_bundeslaender()
 	create_config_for_rki_landkreise()
 }
-class who_views_frontend {
+class who_views_frontend << (B,orchid) Boundary >> {
     url_root()
     url_home()
     url_update_data()
@@ -195,7 +195,7 @@ class who_views_frontend {
     task_data_update()
     task_rename_src_files()
 }
-class who_celery_tasks {
+class who_celery_tasks << (B,orchid) Boundary >> {
     url_root()
     url_home()
     url_update_data()
@@ -209,7 +209,7 @@ class who_celery_tasks {
     task_data_update()
     task_rename_src_files()
 }
-class who_views_for_tasks {
+class who_views_for_tasks << (B,orchid) Boundary >> {
     url_root()
     url_home()
     url_update_data()

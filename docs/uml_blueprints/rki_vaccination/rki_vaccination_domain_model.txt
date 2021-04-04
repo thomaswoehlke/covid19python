@@ -100,7 +100,7 @@ entity ApplicationDateReported {
 	{classifier} my_year_week(my_iso_year: Integer, week_number: Integer)
 	{classifier} create_new_object_factory(my_date_rep: String)
 }
-class ApplicationServiceDownload {
+class ApplicationServiceDownload << (S,red) Service >> {
 	-log_error()
 	-log_success()
 	-prepare_download()
@@ -108,7 +108,7 @@ class ApplicationServiceDownload {
 	-download_with_subprocess_and_os_native_wget()
 	download_file()
 }
-class ApplicationServiceConfig {
+class ApplicationServiceConfig << (T,#FF7700) Transient >> {
 	limit_nr: Integer
     data_path: String
     slug: String
@@ -128,7 +128,7 @@ class ApplicationServiceConfig {
 	create_config_for_rki_bundeslaender()
 	create_config_for_rki_landkreise()
 }
-class RkiVaccinationService {
+class RkiVaccinationService << (S,red) Service >> {
     pretask_database_drop_create()
     task_database_drop_create()
     run_download_only()
@@ -144,10 +144,10 @@ class RkiVaccinationService {
     update_fact_table_initial_only()
     update_fact_table_incremental_only()
 }
-class RkiVaccinationServiceImport {
+class RkiVaccinationServiceImport << (S,red) Service >> {
     import_file()
 }
-class RkiVaccinationServiceUpdate {
+class RkiVaccinationServiceUpdate << (S,red) Service >> {
     -update_date_reported()
     -update_region()
     -update_country()
@@ -160,13 +160,13 @@ class RkiVaccinationServiceUpdate {
     update_star_schema_incremental()
     update_star_schema_initial()
 }
-class rki_vaccination_views_frontend {
+class rki_vaccination_views_frontend << (B,orchid) Boundary >> {
 	url_vaccination_info()
 	url_vaccination_tasks()
 	url_vaccination_imported()
 	url_vaccination_data()
 }
-class rki_vaccination_views_for_tasks {
+class rki_vaccination_views_for_tasks << (B,orchid) Boundary >> {
 	task_who_download_only()
 	task_who_import_only()
 	task_who_update_dimension_tables_only()
@@ -175,7 +175,7 @@ class rki_vaccination_views_for_tasks {
 	task_who_update_star_schema_initial()
 	task_who_update_star_schema_incremental()
 }
-class rki_vaccination_celery_tasks {
+class rki_vaccination_celery_tasks << (B,orchid) Boundary >> {
 	url_vaccination_task_download_only()
 	url_vaccination_task_import_only()
 	url_vaccination_task_update_dimensiontables_only()
