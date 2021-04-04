@@ -142,7 +142,7 @@ requires_docs = [
 	"python-dateutil==2.8.1",
 	"pytz==2021.1",
 	"requests==2.25.1",
-	"six==1.13.0",
+	"six==1.15.0",
 	"snowballstemmer==2.1.0",
 	"speaklater==1.3",
 	"sphinx==3.4.3",
