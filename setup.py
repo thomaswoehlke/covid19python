@@ -65,7 +65,7 @@ requires_setup = [
 	"urllib3==1.26.3",
 	"venv-run==0.1.0",
 	"virtualenv-clone==0.5.4",
-	"virtualenv==20.4.2",
+	"virtualenv==20.4.3",
 	"wheel==0.36.2",
 ]
 
@@ -108,7 +108,7 @@ requires_test = [
 	"sqlalchemy-utils==0.36.8",
 	"sqlalchemy==1.4.5",
 	"toml==0.10.2",
-	"virtualenv==20.4.2",
+	"virtualenv==20.4.3",
 	"wcwidth==0.2.5",
 	"werkzeug==1.0.1",
 ]
@@ -315,7 +315,7 @@ requires_install = [
 	"venv-run==0.1.0",
 	"vine==5.0.0",
 	"virtualenv-clone==0.5.4",
-	"virtualenv==20.4.2",
+	"virtualenv==20.4.3",
 	"visdom==0.1.8.9",
 	"visitor==0.1.3",
 	"wcwidth==0.1.8",
