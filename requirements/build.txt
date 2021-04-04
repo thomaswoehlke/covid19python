@@ -39,12 +39,10 @@ packaging==20.0
 pbr==3.1.1
     # via -r requirements/build.in
 pep517==0.9.1
-    # via
-    #   build
-    #   pip-tools
+    # via build
 pip-licenses==3.3.0
     # via -r requirements/build.in
-pip-tools==6.0.1
+pip-tools==5.5.0
     # via -r requirements/build.in
 pipenv==2020.11.15
     # via -r requirements/build.in
@@ -72,7 +70,7 @@ pyyaml==5.4.1
     #   pyaml
 requests==2.25.1
     # via pytoolbox
-six==1.14.0
+six==1.13.0
     # via
     #   -r requirements/build.in
     #   packaging
@@ -89,7 +87,7 @@ venv-run==0.1.0
     # via -r requirements/build.in
 virtualenv-clone==0.5.4
     # via pipenv
-virtualenv==20.4.3
+virtualenv==20.4.2
     # via
     #   -r requirements/build.in
     #   pipenv
