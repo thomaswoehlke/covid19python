@@ -185,7 +185,7 @@ numpy==1.20.1
     #   statisticaldiagrams
     #   torch
     #   visdom
-packaging==20.0
+packaging==20.9
     # via
     #   -r requirements/build.in
     #   build
@@ -339,7 +339,6 @@ six==1.13.0
     #   cycler
     #   flask-cors
     #   flask-fixtures
-    #   packaging
     #   python-dateutil
     #   sqlalchemy-utils
     #   virtualenv
