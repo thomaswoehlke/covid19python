@@ -9,7 +9,7 @@ needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
 pytest_runner = ['pytest-runner'] if needs_pytest else []
 
 readme = open("README.md").read()
-history = open("BACKLOG.md").read()
+history = open("docs" + os.sep + "BACKLOG.md").read()
 
 keywords_list = [
     "virus",
