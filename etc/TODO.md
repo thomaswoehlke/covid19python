@@ -56,3 +56,6 @@
 * add flask-resources https://pypi.org/project/flask-resources/
 * add flask-whooshalchemy3 https://pypi.org/project/flask-whooshalchemy3/ https://github.com/blakev/Flask-WhooshAlchemy3
 * add flask-filealchemy https://pypi.org/project/flask-filealchemy/
+
+### user security
+* https://github.com/PrettyPrinted/flask_auth_scotch/
