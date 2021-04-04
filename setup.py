@@ -3,7 +3,7 @@ import sys
 
 from setuptools import find_packages, setup
 
-version = '0.0.19'
+version = '0.0.20'
 
 needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
 pytest_runner = ['pytest-runner'] if needs_pytest else []
@@ -254,7 +254,7 @@ requires_install = [
 	"pandas==1.2.2",
 	"pastel==0.2.1",
 	"pbr==3.1.1",
-	"pillow==8.1.0",
+	"pillow>=8.1.1",
 	"pip-licenses==3.3.0",
 	"pip-tools==5.5.0",
 	"pipenv==2020.11.15",
