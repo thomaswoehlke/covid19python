@@ -236,7 +236,7 @@ def url_owid_imported(page=1):
         flash("No data in the database.")
         page_data = None
     return render_template(
-        'owid/owid_imported/owid_imported.html',
+        'owid/imported/owid_imported.html',
         page_data=page_data,
         page_info=page_info)
 
