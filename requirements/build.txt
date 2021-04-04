@@ -72,7 +72,7 @@ pyyaml==5.4.1
     #   pyaml
 requests==2.25.1
     # via pytoolbox
-six==1.13.0
+six==1.14.0
     # via
     #   -r requirements/build.in
     #   packaging
