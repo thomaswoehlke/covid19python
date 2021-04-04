@@ -5,7 +5,7 @@ package user {
 	actor SysAdmin as su
 	actor Admin as au
 }
-package owid {
+package owid_views_frontend {
 	usecase owid_info as UC1
 	usecase owid_imported as UC2
 	usecase owid_date_reported as UC3
@@ -13,7 +13,7 @@ package owid {
 	usecase owid_date_country as UC5
 	usecase owid_date_country_germany as UC6
 }
-package owid_admin_web {
+package owid_views_for_tasks {
 	usecase owid_tasks as UC57
 	usecase task_owid_download_only as UC50
 	usecase task_owid_import_only as UC51
@@ -23,7 +23,7 @@ package owid_admin_web {
 	usecase task_owid_update_star_schema_initial as UC55
 	usecase task_owid_update_star_schema_incremental as UC56
 }
-package owid_tasks {
+package owid_celery_tasks {
 	usecase owid_task_download_only as UC100
 	usecase owid_task_import_only as UC101
 	usecase owid_task_update_dimensiontables_only as UC102

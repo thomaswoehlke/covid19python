@@ -5,13 +5,13 @@ package user {
 	actor SysAdmin as su
 	actor Admin as au
 }
-package rki_vaccination {
+package rki_views_frontend {
 	usecase url_vaccination_info as UC1
 	usecase url_vaccination_tasks as UC2
 	usecase url_vaccination_imported as UC3
 	usecase url_vaccination_data as UC4
 }
-package rki_vaccination_admin_web {
+package rki_vaccination_views_for_tasks {
 	usecase task_who_download_only as UC50
 	usecase task_who_import_only as UC51
 	usecase task_who_update_dimension_tables_only as UC52
@@ -20,7 +20,7 @@ package rki_vaccination_admin_web {
 	usecase task_who_update_star_schema_initial as UC55
 	usecase task_who_update_star_schema_incremental as UC56
 }
-package rki_vaccination_tasks {
+package rki_vaccination_celery_tasks {
 	usecase url_vaccination_task_download_only as UC100
 	usecase url_vaccination_task_import_only as UC101
 	usecase url_vaccination_task_update_dimensiontables_only as UC102

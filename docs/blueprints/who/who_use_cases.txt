@@ -5,7 +5,7 @@ package user {
   actor SysAdmin as su
   actor Admin as au
 }
-package who {
+package who_views_frontend {
   usecase url_who_info as UC1
   usecase url_who_tasks as UC2
   usecase url_who_imported as UC3
@@ -27,7 +27,7 @@ package who {
   usecase url_who_region_all as UC19
   usecase url_who_region_all as UC20
 }
-package who_admin_web {
+package who_views_for_tasks {
 	usecase url_task_who_download_only as UC50
 	usecase url_task_who_import_only as UC51
 	usecase url_task_who_update_dimension_tables_only as UC52
@@ -36,7 +36,7 @@ package who_admin_web {
 	usecase url_task_who_update_star_schema_initial as UC55
 	usecase url_task_who_update_star_schema_incremental as UC56
 }
-package who_tasks {
+package who_celery_tasks {
   usecase task_who_download_only as UC100
   usecase task_who_import_only as UC101
   usecase task_who_update_dimension_tables_only as UC102

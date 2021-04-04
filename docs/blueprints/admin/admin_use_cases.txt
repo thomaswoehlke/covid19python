@@ -5,30 +5,26 @@ package user {
 	actor SysAdmin as su
 	actor Admin as au
 }
-package admin {
+package admin_views_frontend {
   usecase url_admin_index as UC1
   usecase url_admin_tasks as UC2
   usecase url_admin_info as UC3
 }
-package admin_admin_web {
+package admin_views_for_tasks {
   usecase url_admin_database_dump as UC51
   usecase url_admin_database_dump_reimport as UC52
   usecase url_admin_database_drop as UC53
   usecase url_admin_download_all_files as UC54
-
   usecase url_alive_message_start as UC55
   usecase url_admin_database_dropcreate_only as UC56
-
   usecase url_admin_import_all_files as UC57
   usecase url_admin_update_dimension_tables_only as UC58
-
   usecase url_admin_update_fact_table_initial_only as UC59
   usecase url_admin_update_fact_table_incremental_only as UC60
-
   usecase url_admin_update_star_schema_initial as UC61
-  usecase       run_update_star_schema_incremental as UC62
+  usecase run_update_star_schema_incremental as UC62
 }
-package admin_tasks {
+package admin_celery_tasks {
   usecase task_admin_alive_message as UC105
   usecase task_admin_database_drop_create as UC106
   usecase task_admin_import_all_files as UC107

@@ -5,7 +5,7 @@ package user {
 	actor SysAdmin as su
 	actor Admin as au
 }
-package ecdc {
+package ecdc_views_frontend {
 	usecase url_ecdc_info as UC1
 	usecase url_ecdc_tasks as UC2
 	usecase url_ecdc_data_imported as UC3
@@ -19,7 +19,7 @@ package ecdc {
 	usecase url_ecdc_country_one as UC11
 	usecase url_ecdc_country_germany as UC12
 }
-package ecdc_admin_web {
+package ecdc_views_for_tasks {
 	usecase task_ecdc_download_only as UC50
 	usecase task_who_import_only as UC51
 	usecase task_who_update_dimension_tables_only as UC52
@@ -28,7 +28,7 @@ package ecdc_admin_web {
 	usecase task_who_update_star_schema_initial as UC55
 	usecase task_who_update_star_schema_incremental as UC56
 }
-package ecdc_tasks {
+package ecdc_celery_tasks {
 	usecase task_ecdc_download_only as UC100
 	usecase task_ecdc_import_only as UC101
 	usecase task_ecdc_update_dimension_tables_only as UC102

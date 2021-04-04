@@ -1,0 +1,62 @@
+@startuml
+class AdminService {
+    database: String
+    limit_nr: Integer
+    task_database_drop_create()
+    run_admin_database_dump()
+    {classifier} -run_ome_shell_command(cmd)
+    {classifier} run_admin_database_dump_reimport()
+    {classifier} run_admin_database_drop()
+}
+AdminService : SQLAlchemy database
+class admin_views_frontend {
+    url_admin_index()
+    url_admin_tasks()
+    url_admin_info()
+}
+class admin_celery_tasks {
+    task_admin_alive_message()
+    task_admin_database_drop_create()
+    task_admin_import_all_files()
+    task_admin_update_dimension_tables_only()
+    task_admin_update_fact_table_initial_only()
+    task_admin_update_fact_table_incremental_only()
+    task_admin_update_star_schema_initial()
+    task_admin_update_star_schema_incremental()
+}
+class admin_views_for_tasks {
+    url_alive_message_start()
+    url_admin_database_dump()
+    url_admin_database_dump_reimport()
+    url_admin_database_dropcreate_only()
+    url_admin_database_drop()
+    url_admin_download_all_files()
+    url_admin_import_all_files()
+    url_admin_update_dimension_tables_only()
+    url_admin_update_fact_table_initial_only()
+    url_admin_update_fact_table_incremental_only()
+    url_admin_update_star_schema_initial()
+    run_update_star_schema_incremental()
+}
+admin_views_frontend "*" --> "1" AdminService: admin_service
+admin_views_for_tasks "1" *--> "*" AdminService: admin_service
+admin_celery_tasks "*" *--> "1" AdminService: admin_service
+admin_views_frontend "*" --> "1" WhoService: who_service
+admin_views_for_tasks "*" --> "1" WhoService: who_service
+admin_celery_tasks "*" --> "1" WhoService: who_service
+admin_views_frontend "*" --> "1" EcdcService: ecdc_service
+admin_views_for_tasks "*" --> "1" EcdcService: ecdc_service
+admin_celery_tasks "*" --> "1" EcdcService: ecdc_service
+admin_views_frontend "*" --> "1" RkiVaccinationService: rki_vaccination_service
+admin_views_for_tasks "*" --> "1" RkiVaccinationService: rki_vaccination_service
+admin_celery_tasks "*" --> "1" RkiVaccinationService: rki_vaccination_service
+admin_views_frontend "*" --> "1" RkiBundeslaenderService: rki_service_bundeslaender
+admin_views_for_tasks "*" --> "1" RkiBundeslaenderService: rki_service_bundeslaender
+admin_celery_tasks "*" --> "1" RkiBundeslaenderService: rki_service_bundeslaender
+admin_views_frontend "*" --> "1" RkiLandkreiseService: rki_service_landkreise
+admin_views_for_tasks "*" --> "1" RkiLandkreiseService: rki_service_landkreise
+admin_celery_tasks "*" --> "1" RkiLandkreiseService: rki_service_landkreise
+admin_views_frontend "*" --> "1" OwidService: owid_service
+admin_views_for_tasks "*" --> "1" OwidService: owid_service
+admin_celery_tasks "*" --> "1" OwidService: owid_service
+@enduml
