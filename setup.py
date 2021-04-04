@@ -60,7 +60,7 @@ requires_setup = [
 	"pytz==2021.1",
 	"pyyaml==5.4.1",
 	"requests==2.25.1",
-	"six==1.13.0",
+	"six==1.15.0",
 	"toml==0.10.2",
 	"urllib3==1.26.3",
 	"venv-run==0.1.0",
@@ -104,7 +104,7 @@ requires_test = [
 	"pytest==5.3.2",
 	"python-dateutil==2.8.1",
 	"python-editor==1.0.4",
-	"six==1.15.0"
+	"six==1.15.0",
 	"sqlalchemy-utils==0.36.8",
 	"sqlalchemy==1.4.5",
 	"toml==0.10.2",
