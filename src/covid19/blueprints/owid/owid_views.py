@@ -369,7 +369,7 @@ def url_owid_continent_all(page: int = 1):
         'OWID'
     )
     try:
-        page_data = OwidContinent.get_all(page)
+        page_data = OwidContinent.get_all_as_page(page)
     except OperationalError:
         flash("No data in the database.")
         page_data = None
@@ -408,7 +408,7 @@ def url_owid_country_all(page: int = 1):
         'OWID'
     )
     try:
-        page_data = OwidContinent.get_all(page)
+        page_data = OwidContinent.get_all_as_page(page)
     except OperationalError:
         flash("No data in the database.")
         page_data = None
