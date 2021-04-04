@@ -9,12 +9,12 @@ class AdminService {
     {classifier} run_admin_database_drop()
 }
 AdminService : SQLAlchemy database
-class admin_views_frontend {
+interface admin_views_frontend {
     url_admin_index()
     url_admin_tasks()
     url_admin_info()
 }
-class admin_celery_tasks {
+interface admin_celery_tasks {
     task_admin_alive_message()
     task_admin_database_drop_create()
     task_admin_import_all_files()
@@ -24,7 +24,7 @@ class admin_celery_tasks {
     task_admin_update_star_schema_initial()
     task_admin_update_star_schema_incremental()
 }
-class admin_views_for_tasks {
+interface admin_views_for_tasks {
     url_alive_message_start()
     url_admin_database_dump()
     url_admin_database_dump_reimport()

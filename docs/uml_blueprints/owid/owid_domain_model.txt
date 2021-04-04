@@ -261,7 +261,7 @@ class ApplicationServiceConfig {
 	create_config_for_rki_bundeslaender()
 	create_config_for_rki_landkreise()
 }
-class owid_views_frontend {
+interface owid_views_frontend {
     url_owid_info()
     url_owid_tasks()
     url_owid_test()
@@ -273,7 +273,7 @@ class owid_views_frontend {
     url_owid_date_reported_deaths_new()
     url_owid_date_reported_deaths_cumulative()
 }
-class owid_views_for_tasks {
+interface owid_views_for_tasks {
     url_task_owid_download_only()
     url_task_owid_import_only()
     url_task_owid_update_dimension_tables_only()
@@ -282,7 +282,7 @@ class owid_views_for_tasks {
     url_task_owid_update_star_schema_initial()
     url_task_owid_update_star_schema_incremental()
 }
-class owid_celery_tasks {
+interface owid_celery_tasks {
     task_owid_download_only()
     task_owid_import_only()
     task_owid_update_dimension_tables_only()

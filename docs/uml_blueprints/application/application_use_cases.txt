@@ -10,12 +10,6 @@ package application_views_frontend {
   usecase url_home as UC1
   usecase url_root as UC2
 }
-package application_views_for_tasks {
-
-}
-package application_celery_tasks {
-
-}
 vu --> UC1
 vu --> UC2
 @enduml
