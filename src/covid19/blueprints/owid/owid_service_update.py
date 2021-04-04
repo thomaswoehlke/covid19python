@@ -63,6 +63,8 @@ class OwidServiceUpdate:
                 if my_OwidCountry is None:
                     my_OwidCountry = OwidCountry(
                         continent=my_OwidContinent,
+                        iso_code=oi.iso_code,
+                        location=oi.location,
                         population=oi.population,
                         population_density=oi.population_density,
                         median_age=oi.median_age,
