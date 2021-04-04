@@ -95,6 +95,10 @@ class OwidCountry(db.Model):
         return result
 
     @classmethod
+    def get_countries_for_continent(cls, owid_continent_one: OwidContinent, page: int):
+        return db.session.query(cls).filter(cls.continent == owid_continent_one).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
     def find_by_iso_code_and_location(cls, iso_code, location):
         return db.session.query(cls).filter(and_((cls.iso_code == iso_code), (cls.location == location))).one_or_none()
 
@@ -178,6 +182,17 @@ class OwidData(db.Model):
     stringency_index = db.Column(db.String(255), nullable=False)
 
     @classmethod
+    def get_data_for_country(cls, owid_country_one, page):
+        return db.session.query(cls).filter(
+            cls.country == owid_country_one
+        ).populate_existing().options(
+            joinedload(cls.country),
+            joinedload(cls.date_reported),
+        ).order_by(
+            cls.country.location
+        ).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
     def remove_all(cls):
         for one in cls.get_all():
             db.session.delete(one)
@@ -201,7 +216,8 @@ class OwidData(db.Model):
         return db.session.query(cls).filter(
                 cls.date_reported_id == date_reported.id
             ).populate_existing().options(
-                joinedload(cls.date_reported)
+                joinedload(cls.date_reported),
+                joinedload(cls.country),
             ).order_by(
                 cls.new_deaths.desc(),
                 cls.new_cases.desc(),

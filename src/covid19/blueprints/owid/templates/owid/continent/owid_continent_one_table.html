@@ -1,0 +1,48 @@
+    <table class="table table-hover table-striped table-dark">
+        <thead class="table-secondary">
+            <tr>
+                <th scope="col">iso_code</th>
+                <th scope="col">continent</th>
+                <th scope="col">location</th>
+                <th scope="col">population</th>
+                <th scope="col">population_density</th>
+                <th scope="col">median_age</th>
+                <th scope="col">aged_65_older</th>
+                <th scope="col">aged_70_older</th>
+                <th scope="col">gdp_per_capita</th>
+                <th scope="col">extreme_poverty</th>
+                <th scope="col">cardiovasc_death_rate</th>
+                <th scope="col">diabetes_prevalence</th>
+                <th scope="col">female_smokers</th>
+                <th scope="col">male_smokers</th>
+                <th scope="col">handwashing_facilities</th>
+                <th scope="col">hospital_beds_per_thousand</th>
+                <th scope="col">life_expectancy</th>
+                <th scope="col">human_development_index</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for owid_country in page_data.items %}
+            <tr>
+                <td>{{ owid_country.iso_code }}</td>
+                <td>{{ owid_country.continent.region }}</td>
+                <td>{{ owid_country.location }}</td>
+                <td>{{ owid_country.population }}</td>
+                <td>{{ owid_country.population_density }}</td>
+                <td>{{ owid_country.median_age }}</td>
+                <td>{{ owid_country.aged_65_older }}</td>
+                <td>{{ owid_country.aged_70_older }}</td>
+                <td>{{ owid_country.gdp_per_capita }}</td>
+                <td>{{ owid_country.extreme_poverty }}</td>
+                <td>{{ owid_country.cardiovasc_death_rate }}</td>
+                <td>{{ owid_country.diabetes_prevalence }}</td>
+                <td>{{ owid_country.female_smokers }}</td>
+                <td>{{ owid_country.male_smokers }}</td>
+                <td>{{ owid_country.handwashing_facilities }}</td>
+                <td>{{ owid_country.hospital_beds_per_thousand }}</td>
+                <td>{{ owid_country.life_expectancy }}</td>
+                <td>{{ owid_country.human_development_index }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

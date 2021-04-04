@@ -7,7 +7,11 @@
                     <tbody>
                     {% for data_item in page_data.items %}
                         <tr>
-                            <td>{{ data_item.continent }}</td>
+                            <td>
+                                <a href="{{ url_for('owid.url_owid_continent_one', continent_id=data_item.id) }}">
+                                    {{ data_item.continent }}
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

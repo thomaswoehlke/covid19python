@@ -7,7 +7,7 @@ from flask_admin.contrib.sqla import ModelView
 from database import app, admin, db
 from covid19.blueprints.application.application_services import owid_service
 from covid19.blueprints.application.application_workers import celery
-from covid19.blueprints.owid.owid_model import OwidDateReported, OwidData
+from covid19.blueprints.owid.owid_model import OwidDateReported, OwidData, OwidContinent, OwidCountry
 from covid19.blueprints.owid.owid_model_import import OwidImport
 from covid19.blueprints.application.application_model_transient import ApplicationPage
 
@@ -262,8 +262,8 @@ def url_owid_date_reported(date_reported_id: int, page: int = 1):
     date_reported = OwidDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
-        'WHO',
-        "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
+        'OWID',
+        "data of all reported countries for OWID date reported " + date_reported.date_reported + " "
     )
     try:
         page_data = OwidData.get_data_for_day(date_reported, page)
@@ -283,8 +283,8 @@ def url_owid_date_reported_cases_new(date_reported_id: int, page: int = 1):
     date_reported = OwidDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
-        'WHO',
-        "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
+        'OWID',
+        "data of all reported countries for OWID date reported " + date_reported.date_reported + " "
     )
     try:
         page_data = OwidData.get_data_for_day_order_by_cases_new(date_reported, page)
@@ -304,8 +304,8 @@ def url_owid_date_reported_cases_cumulative(date_reported_id: int, page: int = 1
     date_reported = OwidDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
-        'WHO',
-        "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
+        'OWID',
+        "data of all reported countries for OWID date reported " + date_reported.date_reported + " "
     )
     try:
         page_data = OwidData.get_data_for_day_order_by_cases_cumulative(date_reported, page)
@@ -325,8 +325,8 @@ def url_owid_date_reported_deaths_new(date_reported_id: int, page: int = 1):
     date_reported = OwidDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
-        'WHO',
-        "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
+        'OWID',
+        "data of all reported countries for OWID date reported " + date_reported.date_reported + " "
     )
     try:
         page_data = OwidData.get_data_for_day_order_by_deaths_new(date_reported, page)
@@ -346,8 +346,8 @@ def url_owid_date_reported_deaths_cumulative(date_reported_id: int, page: int = 
     date_reported = OwidDateReported.get_by_id(date_reported_id)
     page_info = ApplicationPage(
         "Date Reported: " + date_reported.date_reported,
-        'WHO',
-        "data of all reported countries for WHO date reported " + date_reported.date_reported + " "
+        'OWID',
+        "data of all reported countries for OWID date reported " + date_reported.date_reported + " "
     )
     try:
         page_data = OwidData.get_data_for_day_order_by_deaths_cumulative(date_reported, page)
@@ -357,6 +357,84 @@ def url_owid_date_reported_deaths_cumulative(date_reported_id: int, page: int = 
     return render_template(
         'owid/date_reported/owid_date_reported_one_deaths_cumulative.html',
         owid_date_reported=date_reported,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app_owid.route('/continent/all/page/<int:page>')
+@app_owid.route('/continent/all')
+def url_owid_continent_all(page: int = 1):
+    page_info = ApplicationPage(
+        "Continents "
+        'OWID'
+    )
+    try:
+        page_data = OwidContinent.get_all(page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'owid/continent/owid_continent_all.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app_owid.route('/continent/<int:continent_id>/page/<int:page>')
+@app_owid.route('/continent/<int:continent_id>')
+def url_owid_continent_one(continent_id: int, page: int = 1):
+    owid_continent_one = OwidContinent.get_by_id(continent_id)
+    page_info = ApplicationPage(
+        "continent: " + owid_continent_one.region,
+        'OWID',
+        "countries for OWID continent " + owid_continent_one.region + " "
+    )
+    try:
+        page_data = OwidCountry.get_countries_for_continent(owid_continent_one, page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'owid/continent/owid_continent_one.html',
+        owid_continent=owid_continent_one,
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app_owid.route('/country/all/page/<int:page>')
+@app_owid.route('/country/all')
+def url_owid_country_all(page: int = 1):
+    page_info = ApplicationPage(
+        "Continents "
+        'OWID'
+    )
+    try:
+        page_data = OwidContinent.get_all(page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'owid/country/owid_country_all.html',
+        page_data=page_data,
+        page_info=page_info)
+
+
+@app_owid.route('/country/<int:country_id>/page/<int:page>')
+@app_owid.route('/country/<int:country_id>')
+def url_owid_country_one(country_id: int, page: int = 1):
+    owid_country_one = OwidCountry.get_by_id(country_id)
+    page_info = ApplicationPage(
+        "continent: " + owid_country_one.location,
+        'OWID',
+        "countries for OWID continent " + owid_country_one.region + " "
+    )
+    try:
+        page_data = OwidData.get_data_for_country(owid_country_one, page)
+    except OperationalError:
+        flash("No data in the database.")
+        page_data = None
+    return render_template(
+        'owid/country/owid_country_one.html',
+        owid_country=owid_country_one,
         page_data=page_data,
         page_info=page_info)
 
