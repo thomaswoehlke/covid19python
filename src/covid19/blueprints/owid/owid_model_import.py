@@ -2,7 +2,7 @@ from database import db, ITEMS_PER_PAGE
 
 
 class OwidImport(db.Model):
-    __tablename__ = 'owid_import'
+    __tablename__ = 'application__import__owid'
 
     id = db.Column(db.Integer, primary_key=True)
     iso_code = db.Column(db.String(255), nullable=False)
@@ -86,6 +86,12 @@ class OwidImport(db.Model):
 
     @classmethod
     def get_by_id(cls, other_id):
+        return db.session.query(cls)\
+            .filter(cls.id == other_id)\
+            .one()
+
+    @classmethod
+    def find_by_id(cls, other_id):
         return db.session.query(cls)\
             .filter(cls.id == other_id)\
             .one()

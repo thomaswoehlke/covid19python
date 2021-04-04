@@ -6,10 +6,10 @@ from covid19.blueprints.application.application_model import ApplicationDateRepo
 
 
 class WhoDateReported(ApplicationDateReported):
-    __tablename__ = 'who_date_reported'
+    __tablename__ = 'who_datereported'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_who_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_who_datereported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -45,10 +45,10 @@ class WhoDateReported(ApplicationDateReported):
 
 
 class WhoRegion(ApplicationRegion):
-    __tablename__ = 'who_region'
+    __tablename__ = 'who_country_region'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('region', name="uix_who_region"),
+        db.UniqueConstraint('region', name="uix_who_country_region"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -64,12 +64,22 @@ class WhoCountry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     country_code = db.Column(db.String(255), unique=True, nullable=False)
     country = db.Column(db.String(255), unique=True, nullable=False)
-    region_id = db.Column(db.Integer, db.ForeignKey('who_region.id'), nullable=False)
+    region_id = db.Column(db.Integer, db.ForeignKey('who_country_region.id'), nullable=False)
     region = db.relationship(
         'WhoRegion',
         lazy='joined',
         cascade='all, delete',
         order_by='WhoRegion.region')
+
+    def __str__(self):
+        result = ""
+        result += self.country_code
+        result += " "
+        result += self.country
+        result += " "
+        result += self.region.region
+        result += " "
+        return result
 
     @classmethod
     def remove_all(cls):
@@ -150,10 +160,8 @@ class WhoCountry(db.Model):
         ).order_by(cls.country).paginate(page, per_page=ITEMS_PER_PAGE)
 
 
-# TODO: #85 rename WhoData to WhoData
-# TODO: #84 rename tablename from who_global_data to who_data
 class WhoData(db.Model):
-    __tablename__ = 'who_data'
+    __tablename__ = 'who'
 
     id = db.Column(db.Integer, primary_key=True)
     cases_new = db.Column(db.Integer, nullable=False)
@@ -161,7 +169,7 @@ class WhoData(db.Model):
     deaths_new = db.Column(db.Integer, nullable=False)
     deaths_cumulative = db.Column(db.Integer, nullable=False)
     date_reported_id = db.Column(db.Integer,
-        db.ForeignKey('who_date_reported.id'), nullable=False)
+        db.ForeignKey('who_datereported.id'), nullable=False)
     date_reported = db.relationship(
         'WhoDateReported',
         lazy='joined',

@@ -6,33 +6,38 @@ package user {
 	actor Admin as au
 }
 package owid {
-	usecase url_vaccination_info as UC1
-	usecase url_vaccination_tasks as UC2
-	usecase url_vaccination_imported as UC3
-	usecase url_vaccination_data as UC4
+	usecase owid_info as UC1
+	usecase owid_imported as UC2
+	usecase owid_date_reported as UC3
+	usecase owid_date_continent as UC4
+	usecase owid_date_country as UC5
+	usecase owid_date_country_germany as UC6
 }
 package owid_admin_web {
-	usecase task_who_download_only as UC50
-	usecase task_who_import_only as UC51
-	usecase task_who_update_dimension_tables_only as UC52
-	usecase task_who_update_fact_table_initial_only as UC53
-	usecase task_who_update_fact_table_incremental_only as UC54
-	usecase task_who_update_star_schema_initial as UC55
-	usecase task_who_update_star_schema_incremental as UC56
+	usecase owid_tasks as UC57
+	usecase task_owid_download_only as UC50
+	usecase task_owid_import_only as UC51
+	usecase task_owid_update_dimension_tables_only as UC52
+	usecase task_owid_update_fact_table_initial_only as UC53
+	usecase task_owid_update_fact_table_incremental_only as UC54
+	usecase task_owid_update_star_schema_initial as UC55
+	usecase task_owid_update_star_schema_incremental as UC56
 }
 package owid_tasks {
-	usecase url_vaccination_task_download_only as UC100
-	usecase url_vaccination_task_import_only as UC101
-	usecase url_vaccination_task_update_dimensiontables_only as UC102
-	usecase url_vaccination_task_update_facttable_incremental_only as UC103
-	usecase url_vaccination_task_update_facttable_initial_only as UC104
-	usecase url_vaccination_task_update_starschema_initial as UC105
-	usecase url_vaccination_task_update_starschema_incremental as UC106
+	usecase owid_task_download_only as UC100
+	usecase owid_task_import_only as UC101
+	usecase owid_task_update_dimensiontables_only as UC102
+	usecase owid_task_update_facttable_incremental_only as UC103
+	usecase owid_task_update_facttable_initial_only as UC104
+	usecase owid_task_update_starschema_initial as UC105
+	usecase owid_task_update_starschema_incremental as UC106
 }
 vu --> UC1
 vu --> UC2
 vu --> UC3
 vu --> UC4
+vu --> UC5
+vu --> UC6
 au --> UC50
 au --> UC51
 au --> UC52
@@ -40,6 +45,7 @@ au --> UC53
 au --> UC54
 au --> UC55
 au --> UC56
+au --> UC57
 UC50 --> UC100
 UC51 --> UC101
 UC52 --> UC102

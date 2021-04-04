@@ -28,7 +28,7 @@ class AdminService:
               +' --compress=9 --clean --if-exists --no-tablespaces '\
               +' --on-conflict-do-nothing --rows-per-insert=200 --column-inserts '\
               +' --quote-all-identifiers --no-privileges > '\
-              + '..'+os.sep+'..'+os.sep+'data'+os.sep+'db'+os.sep+'covid19data.sql.gz'
+              + '..'+os.sep+'data'+os.sep+'db'+os.sep+'covid19data.sql.gz'
         app.logger.info(" start: "+str(cmd))
         returncode = self.__run_ome_shell_command(cmd)
         app.logger.info(" result: " + str(returncode))

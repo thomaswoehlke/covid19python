@@ -8,9 +8,8 @@
         {% for europe_continent in page_data.items %}
             <tr>
                 <td>
-                    <!-- TODO: change URL to for_url() -->
-                    <a href="/ecdc/continent/{{ europe_continent.id }}">
-                        {{ europe_continent.continent_exp }}
+                    <a href="{{ url_for( 'ecdc.url_ecdc_continent_one', continent_id=europe_continent.id) }}">
+                        {{ europe_continent.region }}
                     </a>
                 </td>
             </tr>

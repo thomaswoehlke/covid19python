@@ -1,4 +1,22 @@
 @startuml
+entity ApplicationDateReported {
+    id: Integer
+	date_reported:  String
+    year_week:  String
+    datum: Date
+    year: Integer
+    month: Integer
+    day_of_month: Integer
+    day_of_week: Integer
+    week_of_year: Integer
+	get_name_for_weekday()
+	{classifier} get_names_for_weekday()
+	{classifier} get_datum_parts(my_date_rep: String)
+	{classifier} get_datum(my_year: Integer, my_month: Integer, my_day: Integer)
+	{classifier} get_datum_as_str(my_year: Integer, my_month: Integer, my_day: Integer)
+	{classifier} my_year_week(my_iso_year: Integer, week_number: Integer)
+	{classifier} create_new_object_factory(my_date_rep: String)
+}
 entity WhoDateReported {
     id: Integer
 	date_reported: String
@@ -76,21 +94,6 @@ entity WhoImport {
     {classifier} countries()
 }
 
-Course "1" *--> "*" Workflow: workflows
-Workflow "*" --> "1" Course:  course
-Workflow "1" *--> "*" Lektion: lektionen
-Lektion "*" --> "1" Workflow: course_workflow
-Lektion "1" o--> "*" Abbildung: abbildungen
-Abbildung "*" --> "1" Lektion: lektion
-Lektion "1" *--> "*" FolienSatz: foliensaetze
-FolienSatz "*" --> "1" Lektion: lektion
-FolienSatz "1" *--> "*" Folie: folien
-FolienSatz "1" *--> "*" Abbildung: abbildungen
-Folie "*" --> "1" FolienSatz: foliensatz
-Folie "1" o--> "*" Abbildung: abbildungen
-Abbildung "*" --> "1" Folie: folie
-Abbildung "*" --> "1" FolienSatz: foliensatz
-
 class WhoService {
     pretask_database_drop_create()
     task_database_drop_create()
@@ -111,17 +114,25 @@ class WhoServiceImport {
     import_file()
 }
 class WhoServiceUpdate {
-    __update_date_reported()
-    __update_region()
-    __update_country()
-    __update_data_incremental()
-    __update_data_initial()
-    __update_dimension_tables()
+    -update_date_reported()
+    -update_region()
+    -update_country()
+    -update_data_incremental()
+    -update_data_initial()
+    -update_dimension_tables()
     update_dimension_tables_only()
     update_fact_table_incremental_only()
     update_fact_table_initial_only()
     update_star_schema_incremental()
     update_star_schema_initial()
+}
+class ApplicationServiceDownload {
+	-log_error()
+	-log_success()
+	-prepare_download()
+	-download_with_wget()
+	-download_with_subprocess_and_os_native_wget()
+	download_file()
 }
 class ApplicationServiceConfig {
 	limit_nr: Integer
@@ -148,7 +159,35 @@ ArtefactContentService : String[] courses
 ArtefactContentService : String[] workflows
 ArtefactContentService : String[] lektionen
 ArtefactContentService : String[] course_names
-class who_views {
+class who_views_frontends {
+    url_root()
+    url_home()
+    url_update_data()
+    url_rename()
+    url_kurse_all()
+    url_kurse_workflow_lektionen(workflow_id: Integer)
+    url_kurse_workflow_lektion_folien(lektion_id: Integer)
+    url_abbbildung_id(abbildung_id: Integer)
+    url_db_dump()
+    url_db_reimport()
+    task_data_update()
+    task_rename_src_files()
+}
+class who_celery_tasks {
+    url_root()
+    url_home()
+    url_update_data()
+    url_rename()
+    url_kurse_all()
+    url_kurse_workflow_lektionen(workflow_id: Integer)
+    url_kurse_workflow_lektion_folien(lektion_id: Integer)
+    url_abbbildung_id(abbildung_id: Integer)
+    url_db_dump()
+    url_db_reimport()
+    task_data_update()
+    task_rename_src_files()
+}
+class who_views_tasks {
     url_root()
     url_home()
     url_update_data()

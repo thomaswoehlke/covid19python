@@ -5,10 +5,10 @@ from covid19.blueprints.application.application_model import ApplicationDateRepo
 
 
 class EcdcDateReported(ApplicationDateReported):
-    __tablename__ = 'ecdc_date_reported'
-    __mapper_args__ = { 'concrete': True }
+    __tablename__ = 'ecdc_datereported'
+    __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_ecdc_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_ecdc_datereported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -20,6 +20,9 @@ class EcdcDateReported(ApplicationDateReported):
     day_of_month = db.Column(db.Integer, nullable=False)
     day_of_week = db.Column(db.Integer, nullable=False)
     week_of_year = db.Column(db.Integer, nullable=False)
+
+    def get_name_for_datum(self):
+        return self.date_reported
 
     def get_date_import_format_from_date_reported(self):
         my_date_parts = self.date_reported.split("-")
@@ -73,10 +76,10 @@ class EcdcDateReported(ApplicationDateReported):
 
 
 class EcdcContinent(ApplicationRegion):
-    __tablename__ = 'ecdc_continent'
+    __tablename__ = 'ecdc_country_continent'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('region', name="uix_ecdc_continent"),
+        db.UniqueConstraint('region', name="uix_ecdc_country_continent"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -85,8 +88,14 @@ class EcdcContinent(ApplicationRegion):
 
 class EcdcCountry(db.Model):
     __tablename__ = 'ecdc_country'
+    __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('countries_and_territories', 'geo_id', 'country_territory_code', name="uix_ecdc_country"),
+        db.UniqueConstraint(
+            'countries_and_territories',
+            'geo_id',
+            'country_territory_code',
+            name="uix_ecdc_country"
+        ),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -95,7 +104,7 @@ class EcdcCountry(db.Model):
     geo_id = db.Column(db.String(255), nullable=False)
     country_territory_code = db.Column(db.String(255), nullable=False)
 
-    continent_id = db.Column(db.Integer, db.ForeignKey('ecdc_continent.id'), nullable=False)
+    continent_id = db.Column(db.Integer, db.ForeignKey('ecdc_country_continent.id'), nullable=False)
     continent = db.relationship(
         'EcdcContinent',
         lazy='subquery', cascade="all, delete",
@@ -106,6 +115,7 @@ class EcdcCountry(db.Model):
         return " " + self.geo_id \
              + " " + self.country_territory_code \
              + " " + self.countries_and_territories \
+             + " " + self.continent.region \
              + " "
 
     @classmethod
@@ -175,7 +185,7 @@ class EcdcCountry(db.Model):
 
 
 class EcdcData(db.Model):
-    __tablename__ = 'ecdc_data'
+    __tablename__ = 'ecdc'
 
     id = db.Column(db.Integer, primary_key=True)
     deaths = db.Column(db.Integer, nullable=False)
@@ -189,8 +199,8 @@ class EcdcData(db.Model):
         order_by='asc(EcdcCountry.countries_and_territories)'
     )
 
-    ecdc_date_reported_id = db.Column(db.Integer, db.ForeignKey('ecdc_date_reported.id'), nullable=False)
-    ecdc_date_reported = db.relationship(
+    ecdc_datereported_id = db.Column(db.Integer, db.ForeignKey('ecdc_datereported.id'), nullable=False)
+    ecdc_datereported = db.relationship(
         'EcdcDateReported',
         lazy='joined', cascade='all, delete',
         order_by='desc(EcdcDateReported.date_reported)'
@@ -220,30 +230,30 @@ class EcdcData(db.Model):
         return db.session.query(cls).filter(cls.id == other_id).one_or_none()
 
     @classmethod
-    def find_by_date_reported(cls, ecdc_date_reported, page: int):
+    def find_by_date_reported(cls, ecdc_datereported, page: int):
         return db.session.query(cls).filter(
-            cls.ecdc_date_reported_id == ecdc_date_reported.id)\
+            cls.ecdc_datereported_id == ecdc_datereported.id)\
             .order_by(cls.cumulative_number_for_14_days_of_covid19_cases_per_100000.desc())\
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_notification_rate(cls, ecdc_date_reported, page: int):
+    def find_by_date_reported_notification_rate(cls, ecdc_datereported, page: int):
         return db.session.query(cls).filter(
-            cls.ecdc_date_reported_id == ecdc_date_reported.id) \
+            cls.ecdc_datereported_id == ecdc_datereported.id) \
             .order_by(cls.cumulative_number_for_14_days_of_covid19_cases_per_100000.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_deaths_weekly(cls, ecdc_date_reported, page: int):
+    def find_by_date_reported_deaths_weekly(cls, ecdc_datereported, page: int):
         return db.session.query(cls).filter(
-            cls.ecdc_date_reported_id == ecdc_date_reported.id) \
+            cls.ecdc_datereported_id == ecdc_datereported.id) \
             .order_by(cls.deaths.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
-    def find_by_date_reported_cases_weekly(cls, ecdc_date_reported, page: int):
+    def find_by_date_reported_cases_weekly(cls, ecdc_datereported, page: int):
         return db.session.query(cls).filter(
-            cls.ecdc_date_reported_id == ecdc_date_reported.id) \
+            cls.ecdc_datereported_id == ecdc_datereported.id) \
             .order_by(cls.cases.desc()) \
             .paginate(page, per_page=ITEMS_PER_PAGE)
 

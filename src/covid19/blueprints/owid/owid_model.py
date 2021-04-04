@@ -2,14 +2,14 @@ from sqlalchemy import and_, func
 from datetime import date
 from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload
-from covid19.blueprints.application.application_model import ApplicationDateReported
+from covid19.blueprints.application.application_model import ApplicationDateReported, ApplicationRegion
 
 
 class OwidDateReported(ApplicationDateReported):
-    __tablename__ = 'owid_date_reported'
+    __tablename__ = 'owid_datereported'
     __mapper_args__ = {'concrete': True}
     __table_args__ = (
-        db.UniqueConstraint('date_reported', 'datum', name="uix_owid_date_reported"),
+        db.UniqueConstraint('date_reported', 'datum', name="uix_owid_datereported"),
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -44,20 +44,98 @@ class OwidDateReported(ApplicationDateReported):
         )
 
 
+class OwidContinent(ApplicationRegion):
+    __tablename__ = 'owid_country_continent'
+    __mapper_args__ = {'concrete': True}
+    __table_args__ = (
+        db.UniqueConstraint('region', name="uix_owid_country_continent"),
+    )
+
+    id = db.Column(db.Integer, primary_key=True)
+    region = db.Column(db.String(255), nullable=False, unique=True)
+
+
+class OwidCountry(db.Model):
+    __tablename__ = 'owid_country'
+
+    id = db.Column(db.Integer, primary_key=True)
+    continent_id = db.Column(db.Integer,
+        db.ForeignKey('owid_country_continent.id'), nullable=False)
+    continent = db.relationship(
+        'OwidContinent',
+        lazy='joined',
+        cascade='all, delete',
+        order_by='desc(OwidContinent.region)')
+    iso_code = db.Column(db.String(255), nullable=False)
+    location = db.Column(db.String(255), nullable=False)
+    population = db.Column(db.String(255), nullable=False)
+    population_density = db.Column(db.String(255), nullable=False)
+    median_age = db.Column(db.String(255), nullable=False)
+    aged_65_older = db.Column(db.String(255), nullable=False)
+    aged_70_older = db.Column(db.String(255), nullable=False)
+    gdp_per_capita = db.Column(db.String(255), nullable=False)
+    extreme_poverty = db.Column(db.String(255), nullable=False)
+    cardiovasc_death_rate = db.Column(db.String(255), nullable=False)
+    diabetes_prevalence = db.Column(db.String(255), nullable=False)
+    female_smokers = db.Column(db.String(255), nullable=False)
+    male_smokers = db.Column(db.String(255), nullable=False)
+    handwashing_facilities = db.Column(db.String(255), nullable=False)
+    hospital_beds_per_thousand = db.Column(db.String(255), nullable=False)
+    life_expectancy = db.Column(db.String(255), nullable=False)
+    human_development_index = db.Column(db.String(255), nullable=False)
+
+    def __str__(self):
+        result = ""
+        result += self.iso_code
+        result += " "
+        result += self.location
+        result += " "
+        result += self.continent.region
+        result += " "
+        return result
+
+    @classmethod
+    def find_by_iso_code_and_location(cls, iso_code, location):
+        return db.session.query(cls).filter(and_((cls.iso_code == iso_code), (cls.location == location))).one_or_none()
+
+    @classmethod
+    def remove_all(cls):
+        for one in cls.get_all():
+            db.session.delete(one)
+        db.session.commit()
+        return None
+
+    @classmethod
+    def get_all_as_page(cls, page):
+        return db.session.query(cls).paginate(page, per_page=ITEMS_PER_PAGE)
+
+    @classmethod
+    def get_all(cls):
+        return db.session.query(cls).all()
+
+    @classmethod
+    def get_by_id(cls, other_id):
+        return db.session.query(cls).filter(cls.id == other_id).one()
+
+
 class OwidData(db.Model):
-    __tablename__ = 'owid_data'
+    __tablename__ = 'owid'
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported_id = db.Column(db.Integer,
-        db.ForeignKey('owid_date_reported.id'), nullable=False)
+        db.ForeignKey('owid_datereported.id'), nullable=False)
     date_reported = db.relationship(
         'OwidDateReported',
         lazy='joined',
         cascade='all, delete',
         order_by='desc(OwidDateReported.date_reported)')
-    iso_code = db.Column(db.String(255), nullable=False)
-    continent = db.Column(db.String(255), nullable=False)
-    location = db.Column(db.String(255), nullable=False)
+    country_id = db.Column(db.Integer,
+        db.ForeignKey('owid_country.id'), nullable=False)
+    country = db.relationship(
+        'OwidCountry',
+        lazy='joined',
+        cascade='all, delete',
+        order_by='desc(OwidCountry.location)')
     total_cases = db.Column(db.String(255), nullable=False)
     new_cases = db.Column(db.String(255), nullable=False)
     new_cases_smoothed = db.Column(db.String(255), nullable=False)
@@ -98,21 +176,6 @@ class OwidData(db.Model):
     people_fully_vaccinated_per_hundred = db.Column(db.String(255), nullable=False)
     new_vaccinations_smoothed_per_million = db.Column(db.String(255), nullable=False)
     stringency_index = db.Column(db.String(255), nullable=False)
-    population = db.Column(db.String(255), nullable=False)
-    population_density = db.Column(db.String(255), nullable=False)
-    median_age = db.Column(db.String(255), nullable=False)
-    aged_65_older = db.Column(db.String(255), nullable=False)
-    aged_70_older = db.Column(db.String(255), nullable=False)
-    gdp_per_capita = db.Column(db.String(255), nullable=False)
-    extreme_poverty = db.Column(db.String(255), nullable=False)
-    cardiovasc_death_rate = db.Column(db.String(255), nullable=False)
-    diabetes_prevalence = db.Column(db.String(255), nullable=False)
-    female_smokers = db.Column(db.String(255), nullable=False)
-    male_smokers = db.Column(db.String(255), nullable=False)
-    handwashing_facilities = db.Column(db.String(255), nullable=False)
-    hospital_beds_per_thousand = db.Column(db.String(255), nullable=False)
-    life_expectancy = db.Column(db.String(255), nullable=False)
-    human_development_index = db.Column(db.String(255), nullable=False)
 
     @classmethod
     def remove_all(cls):

@@ -2,7 +2,7 @@ from database import db, ITEMS_PER_PAGE
 
 
 class EcdcImport(db.Model):
-    __tablename__ = 'ecdc_import'
+    __tablename__ = 'application__import__ecdc'
 
     id = db.Column(db.Integer, primary_key=True)
     date_rep = db.Column(db.String(255), nullable=False)

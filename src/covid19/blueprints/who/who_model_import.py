@@ -2,7 +2,7 @@ from database import db, ITEMS_PER_PAGE
 
 
 class WhoImport(db.Model):
-    __tablename__ = 'who_import'
+    __tablename__ = 'application__import__who'
 
     id = db.Column(db.Integer, primary_key=True)
     date_reported = db.Column(db.String(255), nullable=False)
@@ -78,30 +78,30 @@ class WhoImport(db.Model):
         sql_query = """
             select
                 distinct 
-                    who_import.date_reported
+                    application__import__who.date_reported
                 from
-                    who_import
+                    application__import__who
                 where
                     date_reported
                 not in (
                     select
                         distinct
-                            who_date_reported.date_reported
+                            who_datereported.date_reported
                         from
-                            who_data
+                            who
                         left join
-                            who_date_reported
+                            who_datereported
                         on
-                            who_data.date_reported_id=who_date_reported.id
+                            who.date_reported_id=who_datereported.id
                         group by 
-                            who_date_reported.date_reported
+                            who_datereported.date_reported
                         order by
-                            who_date_reported.date_reported desc
+                            who_datereported.date_reported desc
                 )
                 group by
-                    who_import.date_reported
+                    application__import__who.date_reported
                 order by 
-                    who_import.date_reported desc
+                    application__import__who.date_reported desc
             """
         new_dates = []
         for item in db.session.execute(sql_query):
@@ -112,9 +112,9 @@ class WhoImport(db.Model):
     def countries(cls):
         sql_query = """
             select distinct 
-                who_import.country_code,
-                who_import.country,
-                who_import.who_region
-                from who_import
+                application__import__who.country_code,
+                application__import__who.country,
+                application__import__who.who_region
+                from application__import__who
             """
         return db.session.execute(sql_query).fetchall()

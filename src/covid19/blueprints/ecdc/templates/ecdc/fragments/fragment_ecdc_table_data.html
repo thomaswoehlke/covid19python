@@ -80,9 +80,9 @@
                         {{ ecdc_data.ecdc_date_reported.year_week }}
                     </a>
                 </td>
-                <td>{{ ecdc_data.deaths_weekly }}</td>
-                <td>{{ ecdc_data.cases_weekly }}</td>
-                <td>{{ ecdc_data.notification_rate_per_100000_population_14days }}</td>
+                <td>{{ ecdc_data.deaths }}</td>
+                <td>{{ ecdc_data.cases }}</td>
+                <td>{{ ecdc_data.cumulative_number_for_14_days_of_covid19_cases_per_100000 }}</td>
                 <td>
                     <a href="/ecdc/country/{{ ecdc_data.ecdc_country.id }}">
                         {{ ecdc_data.ecdc_country.countries_and_territories }}
@@ -101,7 +101,7 @@
                 </td>
                 <td>
                     <a href="/ecdc/continent/{{ ecdc_data.ecdc_country.continent.id }}">
-                        {{ ecdc_data.ecdc_country.continent.continent_exp }}
+                        {{ ecdc_data.ecdc_country.continent.region }}
                     </a>
                 </td>
             </tr>
