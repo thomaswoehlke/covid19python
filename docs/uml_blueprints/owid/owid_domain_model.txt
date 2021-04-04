@@ -72,24 +72,6 @@ entity OwidImport {
     {classifier} get_continents(page: Integer)
     {classifier} get_all_continents()
 }
-entity ApplicationDateReported {
-    id: Integer
-	date_reported:  String
-    year_week:  String
-    datum: Date
-    year: Integer
-    month: Integer
-    day_of_month: Integer
-    day_of_week: Integer
-    week_of_year: Integer
-	get_name_for_weekday()
-	{classifier} get_names_for_weekday()
-	{classifier} get_datum_parts(my_date_rep: String)
-	{classifier} get_datum(my_year: Integer, my_month: Integer, my_day: Integer)
-	{classifier} get_datum_as_str(my_year: Integer, my_month: Integer, my_day: Integer)
-	{classifier} my_year_week(my_iso_year: Integer, week_number: Integer)
-	{classifier} create_new_object_factory(my_date_rep: String)
-}
 entity OwidDateReported {
     id: Integer
 	date_reported:  String
@@ -193,10 +175,6 @@ entity OwidData {
     {classifier} get_by_id(other_id: Integer)
     {classifier} find_by_id(other_id: Integer)
 }
-ApplicationDateReported <|-- OwidDateReported
-OwidCountry "1" *--> "*" OwidContinent: continent
-OwidData "1" *--> "*" OwidCountry: country
-OwidData "1" *--> "*" OwidDateReported: date_reported
 class OwidServiceImport {
 	import_file()
 }
@@ -227,6 +205,34 @@ class OwidService {
     update_fact_table_initial_only()
     update_fact_table_incremental_only()
 }
+entity ApplicationDateReported {
+    id: Integer
+	date_reported:  String
+    year_week:  String
+    datum: Date
+    year: Integer
+    month: Integer
+    day_of_month: Integer
+    day_of_week: Integer
+    week_of_year: Integer
+	get_name_for_weekday()
+	{classifier} get_names_for_weekday()
+	{classifier} get_datum_parts(my_date_rep: String)
+	{classifier} get_datum(my_year: Integer, my_month: Integer, my_day: Integer)
+	{classifier} get_datum_as_str(my_year: Integer, my_month: Integer, my_day: Integer)
+	{classifier} my_year_week(my_iso_year: Integer, week_number: Integer)
+	{classifier} create_new_object_factory(my_date_rep: String)
+}
+entity ApplicationRegion {
+    id: Integer
+    continent:  String
+    {classifier} remove_all()
+    {classifier} get_all_as_page(page: Integer)
+    {classifier} get_all()
+    {classifier} get_all_as_dict()
+    {classifier} get_by_id(other_id: Integer)
+    {classifier} find_by_id(other_id: Integer)
+}
 class ApplicationServiceDownload {
 	-log_error()
 	-log_success()
@@ -255,18 +261,6 @@ class ApplicationServiceConfig {
 	create_config_for_rki_bundeslaender()
 	create_config_for_rki_landkreise()
 }
-ApplicationServiceConfig : SQLAlchemy database
-ApplicationServiceDownload : ApplicationServiceConfig cfg
-ApplicationServiceDownload : SQLAlchemy database
-OwidServiceUpdate : ApplicationServiceConfig cfg
-OwidServiceUpdate : SQLAlchemy database
-OwidServiceImport : ApplicationServiceConfig cfg
-OwidServiceImport : SQLAlchemy database
-OwidService : ApplicationServiceConfig cfg
-OwidService : SQLAlchemy database
-OwidService : OwidServiceUpdate service_update
-OwidService : OwidServiceImport service_import
-OwidService : ApplicationServiceDownload service_download
 class owid_views_frontend {
     url_owid_info()
     url_owid_tasks()
@@ -297,7 +291,23 @@ class owid_celery_tasks {
     task_owid_update_star_schema_incremental()
     task_owid_update_star_schema_initial()
 }
-owid_views_frontend : OwidService owid_service
-owid_views_tasks : OwidService owid_service
-owid_celery_tasks : OwidService owid_service
+OwidServiceImport : SQLAlchemy database
+OwidServiceUpdate : SQLAlchemy database
+OwidService : SQLAlchemy database
+ApplicationServiceDownload : SQLAlchemy database
+ApplicationDateReported <|-- WhoDateReported
+ApplicationRegion <|-- OwidContinent
+OwidCountry "1" *--> "*" OwidContinent : region
+OwidData "1" *--> "*" OwidCountry : country
+OwidData "1" *--> "*" WhoDateReported : date_reported
+OwidService "*" *--> "1"  ApplicationServiceConfig : cfg
+OwidServiceImport "*" --> "1"  ApplicationServiceConfig : cfg
+OwidServiceUpdate "*" --> "1"  ApplicationServiceConfig : cfg
+ApplicationServiceDownload "*" --> "1"  ApplicationServiceConfig : cfg
+OwidService "1" *--> "1" OwidServiceImport : owid_service_import
+OwidService "1" *--> "1" OwidServiceUpdate : owid_service_update
+OwidService "1" *--> "1" ApplicationServiceDownload : service_download
+owid_views_frontend "1" --> "1" OwidService : owid_service
+owid_views_for_tasks "1" --> "1" OwidService : owid_service
+owid_celery_tasks "1" --> "1" OwidService : owid_service
 @enduml

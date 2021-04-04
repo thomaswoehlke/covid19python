@@ -1,4 +1,87 @@
 @startuml
+entity RkiVaccinationDateReported {
+    id: Integer
+	date_reported:  String
+    year_week:  String
+    datum: Date
+    year: Integer
+    month: Integer
+    day_of_month: Integer
+    day_of_week: Integer
+    week_of_year: Integer
+	get_name_for_weekday()
+	{classifier} get_names_for_weekday()
+	{classifier} get_datum_parts(my_date_rep: String)
+	{classifier} get_datum(my_year: Integer, my_month: Integer, my_day: Integer)
+	{classifier} get_datum_as_str(my_year: Integer, my_month: Integer, my_day: Integer)
+	{classifier} my_year_week(my_iso_year: Integer, week_number: Integer)
+	{classifier} create_new_object_factory(my_date_rep: String)
+}
+entity RkiVaccinationData {
+    id: Integer
+    dosen_kumulativ: Integer
+    dosen_differenz_zum_vortag: Integer
+    dosen_biontech_kumulativ: Integer
+    dosen_moderna_kumulativ: Integer
+    personen_erst_kumulativ: Integer
+    personen_voll_kumulativ: Integer
+    impf_quote_erst: Float
+    impf_quote_voll: Float
+    indikation_alter_dosen: Integer
+    indikation_beruf_dosen: Integer
+    indikation_medizinisch_dosen: Integer
+    indikation_pflegeheim_dosen: Integer
+    indikation_alter_erst: Integer
+    indikation_beruf_erst: Integer
+    indikation_medizinisch_erst: Integer
+    indikation_pflegeheim_erst: Integer
+    indikation_alter_voll: Integer
+    indikation_beruf_voll: Integer
+    indikation_medizinisch_voll: Integer
+    indikation_pflegeheim_voll: Integer
+    get_absolute_path()
+    get_relative_path()
+    {classifier} remove_all()
+    {classifier} get_all_as_page(page: Integer)
+    {classifier} get_all()
+    {classifier} get_all_as_dict()
+    {classifier} get_by_id(other_id: Integer)
+    {classifier} find_by_id(other_id: Integer)
+    {classifier} get_kurse_all()
+}
+entity RkiVaccinationImport {
+    datum:  String
+    dosen_kumulativ: Integer
+    dosen_differenz_zum_vortag: Integer
+    dosen_biontech_kumulativ: Integer
+    dosen_moderna_kumulativ: Integer
+    personen_erst_kumulativ: Integer
+    personen_voll_kumulativ: Integer
+    impf_quote_erst: Float
+    impf_quote_voll: Float
+    indikation_alter_dosen: Integer
+    indikation_beruf_dosen: Integer
+    indikation_medizinisch_dosen: Integer
+    indikation_pflegeheim_dosen: Integer
+    indikation_alter_erst: Integer
+    indikation_beruf_erst: Integer
+    indikation_medizinisch_erst: Integer
+    indikation_pflegeheim_erst: Integer
+    indikation_alter_voll: Integer
+    indikation_beruf_voll: Integer
+    indikation_medizinisch_voll: Integer
+    indikation_pflegeheim_voll: Integer
+
+    {classifier} remove_all()
+    {classifier} get_all_as_page(page: Integer)
+    {classifier} get_all()
+    {classifier} get_by_id(other_id: Integer)
+    {classifier} find_by_id(other_id: Integer)
+    {classifier} find_by_datum(other_datum: String)
+    {classifier} get_date_rep()
+    {classifier} get_date_reported_as_array()
+    {classifier} get_daterep_missing_in_vaccination_data()
+}
 entity ApplicationDateReported {
     id: Integer
 	date_reported:  String
@@ -17,152 +100,104 @@ entity ApplicationDateReported {
 	{classifier} my_year_week(my_iso_year: Integer, week_number: Integer)
 	{classifier} create_new_object_factory(my_date_rep: String)
 }
-entity Course {
-    id: Integer
-    dateiname: String
-    parent_dir: String
-    title: String
-    path_relative: String
-    get_absolute_path()
-    get_relative_path()
-    {classifier} remove_all()
-    {classifier} get_all_as_page(page: Integer)
-    {classifier} get_all()
-    {classifier} get_all_as_dict()
-    {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
-    {classifier} get_kurse_all()
+class ApplicationServiceDownload {
+	-log_error()
+	-log_success()
+	-prepare_download()
+	-download_with_wget()
+	-download_with_subprocess_and_os_native_wget()
+	download_file()
 }
-entity Workflow {
-    id: Integer
-    dateiname: String
-    parent_dir: String
-    get_absolute_path()
-    get_relative_path()
-    {classifier} remove_all()
-    {classifier} get_all_as_page(page: Integer)
-    {classifier} get_all()
-    {classifier} get_all_as_dict()
-    {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
-    {classifier} get_workflow_for_id(workflow_id: Integer)
+class ApplicationServiceConfig {
+	limit_nr: Integer
+    data_path: String
+    slug: String
+    category: String
+    sub_category: String
+    tablename: String
+    cvsfile_name: String
+    url_src: String
+    cvsfile_path: String
+    msg_job: String
+    msg_ok: String
+    msg_error: String
+	create_config_for_who()
+	create_config_for_rki_vaccination()
+	create_config_for_owid()
+	create_config_for_ecdc()
+	create_config_for_rki_bundeslaender()
+	create_config_for_rki_landkreise()
 }
-entity Lektion {
-    id: Integer
-    dateiname: String
-    parent_dir: String
-    title: String
-    lektion_nr: Integer
-    verified: Boolean
-    get_absolute_path()
-    get_relative_path()
-    {classifier} remove_all()
-    {classifier} get_all_as_page(page: Integer)
-    {classifier} get_all()
-    {classifier} get_all_as_dict()
-    {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
-    {classifier} get_lektionen_for_workflow(workflow: Workflow)
-    {classifier} get_lektion_for_id(lektion_id: Integer)
-    {classifier} get_folien_for_lektion_id(lektion_id: Integer)
-    {classifier} get_all_verified()
+class RkiVaccinationService {
+    pretask_database_drop_create()
+    task_database_drop_create()
+    run_download_only()
+    run_import_only()
+    run_update_dimension_tables_only()
+    run_update_fact_table_incremental_only()
+    run_update_fact_table_initial_only()
+    run_update_star_schema_incremental()
+    run_update_star_schema_initial()
+    download_all_files()
+    task_import_all_files()
+    update_dimension_tables_only()
+    update_fact_table_initial_only()
+    update_fact_table_incremental_only()
 }
-entity FolienSatz {
-    id: Integer
-    dateiname: String
-    parent_dir: String
-    title: String
-    lektion_nr: Integer
-    foliensatz_nr_in_lektion: Integer
-    get_absolute_path()
-    get_relative_path()
-    {classifier} get_foliensaetze_for_lektion(lektion: Lektion)
-    {classifier} remove_all()
-    {classifier} get_all_as_page(page: Integer)
-    {classifier} get_all()
-    {classifier} get_all_as_dict()
-    {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
+class RkiVaccinationServiceImport {
+    import_file()
 }
-entity Folie {
-    id: Integer
-    title: String
-    lektion_nr: Integer
-    folien_nr_in_lektion: Integer
-    folien_nr_in_foliensatz: Integer
-    foliensatz_nr_in_lektion: Integer
-    {classifier} get_folien_for_foliensatz(lektion: FolienSatz)
-    {classifier} getFolienKey(lektion_nr: Integer, folien_nr_in_lektion: Integer)
-    {classifier} remove_all()
-    {classifier} get_all_as_page(page: Integer)
-    {classifier} get_all()
-    {classifier} get_all_as_dict()
-    {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
-    {classifier} get_folien_for_lektion(lektion: Lektion)
+class RkiVaccinationServiceUpdate {
+    -update_date_reported()
+    -update_region()
+    -update_country()
+    -update_data_incremental()
+    -update_data_initial()
+    -update_dimension_tables()
+    update_dimension_tables_only()
+    update_fact_table_incremental_only()
+    update_fact_table_initial_only()
+    update_star_schema_incremental()
+    update_star_schema_initial()
 }
-entity Abbildung {
-    id: Integer
-    dateiname: String
-    parent_dir: String
-    title: String
-    abbildung_nr_in_lektion: Integer
-    abbildung_nr_in_foliensatz: Integer
-    folien_nr_in_lektion: Integer
-    folien_nr_in_foliensatz: Integer
-    folien_satz_nr: Integer
-    lektion_nr: Integer
-    bildnachweis: Integer
-    get_absolute_path()
-    get_relative_path()
-    {classifier} remove_all()
-    {classifier} get_all_as_page(page: Integer)
-    {classifier} get_all()
-    {classifier} get_all_as_dict()
-    {classifier} get_by_id(other_id: Integer)
-    {classifier} find_by_id(other_id: Integer)
+class rki_vaccination_views_frontend {
+	url_vaccination_info()
+	url_vaccination_tasks()
+	url_vaccination_imported()
+	url_vaccination_data()
 }
-Course "1" *--> "*" Workflow: workflows
-Workflow "*" --> "1" Course:  course
-Workflow "1" *--> "*" Lektion: lektionen
-Lektion "*" --> "1" Workflow: course_workflow
-Lektion "1" o--> "*" Abbildung: abbildungen
-Abbildung "*" --> "1" Lektion: lektion
-Lektion "1" *--> "*" FolienSatz: foliensaetze
-FolienSatz "*" --> "1" Lektion: lektion
-FolienSatz "1" *--> "*" Folie: folien
-FolienSatz "1" *--> "*" Abbildung: abbildungen
-Folie "*" --> "1" FolienSatz: foliensatz
-Folie "1" o--> "*" Abbildung: abbildungen
-Abbildung "*" --> "1" Folie: folie
-Abbildung "*" --> "1" FolienSatz: foliensatz
-class ArtefactContentService {
-    rename_src_files()
-    prepare_data_update()
-    run_data_update()
-    run_db_dump()
-    run_db_reimport()
-    parse_file_name(datei: String)
-    create_or_fetch_folie(file_name_dict, lektion: Lektion)
-    get_abbbildung_for_id(abbbildung_id: Integer)
+class rki_vaccination_views_for_tasks {
+	task_who_download_only()
+	task_who_import_only()
+	task_who_update_dimension_tables_only()
+	task_who_update_fact_table_initial_only()
+	task_who_update_fact_table_incremental_only()
+	task_who_update_star_schema_initial()
+	task_who_update_star_schema_incremental()
 }
-ArtefactContentService : SQLAlchemy database
-ArtefactContentService : String[] courses
-ArtefactContentService : String[] workflows
-ArtefactContentService : String[] lektionen
-ArtefactContentService : String[] course_names
-class artefact_content_views {
-    url_root()
-    url_home()
-    url_update_data()
-    url_rename()
-    url_kurse_all()
-    url_kurse_workflow_lektionen(workflow_id: Integer)
-    url_kurse_workflow_lektion_folien(lektion_id: Integer)
-    url_abbbildung_id(abbildung_id: Integer)
-    url_db_dump()
-    url_db_reimport()
-    task_data_update()
-    task_rename_src_files()
+class rki_vaccination_celery_tasks {
+	url_vaccination_task_download_only()
+	url_vaccination_task_import_only()
+	url_vaccination_task_update_dimensiontables_only()
+	url_vaccination_task_update_facttable_incremental_only()
+	url_vaccination_task_update_facttable_initial_only()
+	url_vaccination_task_update_starschema_initial()
+	url_vaccination_task_update_starschema_incremental()
 }
+RkiVaccinationServiceImport : SQLAlchemy database
+RkiVaccinationServiceUpdate : SQLAlchemy database
+RkiVaccinationService : SQLAlchemy database
+ApplicationServiceDownload : SQLAlchemy database
+ApplicationDateReported <|-- RkiVaccinationDateReported
+RkiVaccinationData "1" *--> "*" RkiVaccinationDateReported : date_reported
+RkiVaccinationService "*" *--> "1"  ApplicationServiceConfig : cfg
+RkiVaccinationServiceImport "*" --> "1"  ApplicationServiceConfig : cfg
+RkiVaccinationServiceUpdate "*" --> "1"  ApplicationServiceConfig : cfg
+ApplicationServiceDownload "*" --> "1"  ApplicationServiceConfig : cfg
+RkiVaccinationService "1" *--> "1" RkiVaccinationServiceImport : rki_vaccination_service_import
+RkiVaccinationService "1" *--> "1" RkiVaccinationServiceUpdate : rki_vaccination_service_update
+RkiVaccinationService "1" *--> "1" ApplicationServiceDownload : service_download
+rki_vaccination_views_frontend "1" --> "1" RkiVaccinationService : rki_vaccination_service
+rki_vaccination_views_for_tasks "1" --> "1" RkiVaccinationService : rki_vaccination_service
+rki_vaccination_celery_tasks "1" --> "1" RkiVaccinationService : rki_vaccination_service
 @enduml
