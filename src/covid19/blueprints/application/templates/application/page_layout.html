@@ -14,7 +14,7 @@
 
 
 {% block navbar %}
-  {% include 'application/fragments/fragment_navbar.html' %}
+  {% include 'application/navigation/navbar.html' %}
 {% endblock %}
 
 {% block content %}
@@ -27,7 +27,7 @@
                 {% include 'application/fragments/fragment_flashed_messages.html' %}
             </div>
             <div class="row-cols-1">
-                {% include 'application/fragments/fragment_navtabs.html' %}
+                {% include 'application/navigation/navtabs.html' %}
             </div>
     </div>
 {% endblock %}
