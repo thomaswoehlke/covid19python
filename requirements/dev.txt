@@ -203,17 +203,15 @@ pbr==3.1.1
     #   flask-whooshalchemy3
     #   sphinxcontrib-gravizo
 pep517==0.9.1
-    # via
-    #   build
-    #   pip-tools
+    # via build
 pillow==8.2.0
     # via
     #   -r requirements/dev.in
     #   matplotlib
     #   visdom
-pip-licenses==3.3.1
+pip-licenses==3.3.0
     # via -r requirements/build.in
-pip-tools==6.0.1
+pip-tools==5.5.0
     # via -r requirements/build.in
 pipenv==2020.11.15
     # via -r requirements/build.in
@@ -337,7 +335,7 @@ semver==2.13.0
     # via flask-pluginkit
 simplejson==3.17.2
     # via pyecharts
-six==1.15.0
+six==1.13.0
     # via
     #   -r requirements/build.in
     #   click-repl
@@ -424,7 +422,7 @@ vine==5.0.0
     #   celery
 virtualenv-clone==0.5.4
     # via pipenv
-virtualenv==20.4.3
+virtualenv==20.4.2
     # via
     #   -r requirements/build.in
     #   pipenv
