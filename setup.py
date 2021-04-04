@@ -78,7 +78,7 @@ requires_test = [
 	"filelock==3.0.12",
 	"flask-db==0.3.0",
 	"flask-fixtures==0.3.8",
-	"flask-sqlalchemy==2.4.4",
+	"flask-sqlalchemy==2.5.1",
 	"flask==1.1.2",
 	"itsdangerous==1.1.0",
 	"jaraco.context==4.0.0",
