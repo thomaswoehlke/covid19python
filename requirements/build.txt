@@ -8,12 +8,16 @@ appdirs==1.4.4
     # via virtualenv
 argparse==1.4.0
     # via pytoolbox
+bleach==3.3.0
+    # via readme-renderer
 build==0.3.1.post1
     # via -r requirements/build.in
 certifi==2020.12.5
     # via
     #   pipenv
     #   requests
+cffi==1.14.5
+    # via cryptography
 cfgv==3.2.0
     # via pre-commit
 chardet==3.0.4
@@ -22,19 +26,36 @@ chardet==3.0.4
     #   requests
 click==7.1.2
     # via pip-tools
+colorama==0.4.4
+    # via twine
+cryptography==3.4.7
+    # via secretstorage
 distlib==0.3.1
     # via virtualenv
+docutils==0.17
+    # via readme-renderer
 filelock==3.0.12
     # via virtualenv
 identify==1.5.14
     # via pre-commit
 idna==2.10
     # via requests
+importlib-metadata==3.10.0
+    # via
+    #   keyring
+    #   twine
+jeepney==0.6.0
+    # via
+    #   keyring
+    #   secretstorage
+keyring==23.0.1
+    # via twine
 nodeenv==1.5.0
     # via pre-commit
 packaging==20.9
     # via
     #   -r requirements/build.in
+    #   bleach
     #   build
 pbr==3.1.1
     # via -r requirements/build.in
@@ -46,12 +67,18 @@ pip-tools==5.5.0
     # via -r requirements/build.in
 pipenv==2020.11.15
     # via -r requirements/build.in
+pkginfo==1.7.0
+    # via twine
 pre-commit==2.10.1
     # via -r requirements/build.in
 ptable==0.9.2
     # via pip-licenses
 pyaml==20.4.0
     # via pytoolbox
+pycparser==2.20
+    # via cffi
+pygments==2.8.1
+    # via readme-renderer
 pyparsing==2.4.7
     # via
     #   -r requirements/build.in
@@ -68,11 +95,24 @@ pyyaml==5.4.1
     # via
     #   pre-commit
     #   pyaml
+readme-renderer==29.0
+    # via twine
+requests-toolbelt==0.9.1
+    # via twine
 requests==2.25.1
-    # via pytoolbox
+    # via
+    #   pytoolbox
+    #   requests-toolbelt
+    #   twine
+rfc3986==1.4.0
+    # via twine
+secretstorage==3.3.1
+    # via keyring
 six==1.13.0
     # via
     #   -r requirements/build.in
+    #   bleach
+    #   readme-renderer
     #   virtualenv
 toml==0.10.2
     # via
@@ -80,6 +120,10 @@ toml==0.10.2
     #   build
     #   pep517
     #   pre-commit
+tqdm==4.59.0
+    # via twine
+twine==3.4.1
+    # via -r requirements/build.in
 urllib3==1.26.3
     # via requests
 venv-run==0.1.0
@@ -91,8 +135,12 @@ virtualenv==20.4.2
     #   -r requirements/build.in
     #   pipenv
     #   pre-commit
+webencodings==0.5.1
+    # via bleach
 wheel==0.36.2
     # via -r requirements/build.in
+zipp==3.4.1
+    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

@@ -40,8 +40,8 @@ function main() {
   # setup_venv
   pip_compile
   pip_install
-  pip_install_via_setup_py
-  build_wheel
+  # pip_install_via_setup_py
+  # build_wheel
 }
 
 main
