@@ -1,8 +1,7 @@
 # covid19python
-* Version 0.0.14
+* Version 0.0.21
 
 ## git
-* gitlab: https://git.noc.ruhr-uni-bochum.de/learn_r_and_python/covid19python.git
 * github: https://github.com/thomaswoehlke/covid19python.git
 
 ## Data Sources:
