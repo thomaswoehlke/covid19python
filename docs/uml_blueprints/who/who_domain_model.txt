@@ -93,7 +93,6 @@ entity WhoImport {
     {classifier} get_new_dates_as_array()
     {classifier} countries()
 }
-
 class WhoService {
     pretask_database_drop_create()
     task_database_drop_create()
@@ -126,6 +125,27 @@ class WhoServiceUpdate {
     update_star_schema_incremental()
     update_star_schema_initial()
 }
+entity ApplicationRegion {
+    id: Integer
+    dateiname: String
+    parent_dir: String
+    title: String
+    abbildung_nr_in_lektion: Integer
+    abbildung_nr_in_foliensatz: Integer
+    folien_nr_in_lektion: Integer
+    folien_nr_in_foliensatz: Integer
+    folien_satz_nr: Integer
+    lektion_nr: Integer
+    bildnachweis: Integer
+    get_absolute_path()
+    get_relative_path()
+    {classifier} remove_all()
+    {classifier} get_all_as_page(page: Integer)
+    {classifier} get_all()
+    {classifier} get_all_as_dict()
+    {classifier} get_by_id(other_id: Integer)
+    {classifier} find_by_id(other_id: Integer)
+}
 class ApplicationServiceDownload {
 	-log_error()
 	-log_success()
@@ -154,12 +174,7 @@ class ApplicationServiceConfig {
 	create_config_for_rki_bundeslaender()
 	create_config_for_rki_landkreise()
 }
-ArtefactContentService : SQLAlchemy database
-ArtefactContentService : String[] courses
-ArtefactContentService : String[] workflows
-ArtefactContentService : String[] lektionen
-ArtefactContentService : String[] course_names
-class who_views_frontends {
+class who_views_frontend {
     url_root()
     url_home()
     url_update_data()
@@ -187,7 +202,7 @@ class who_celery_tasks {
     task_data_update()
     task_rename_src_files()
 }
-class who_views_tasks {
+class who_views_for_tasks {
     url_root()
     url_home()
     url_update_data()
@@ -201,4 +216,23 @@ class who_views_tasks {
     task_data_update()
     task_rename_src_files()
 }
+WhoServiceImport : SQLAlchemy database
+WhoServiceUpdate : SQLAlchemy database
+WhoService : SQLAlchemy database
+ApplicationServiceDownload : SQLAlchemy database
+ApplicationDateReported <|-- WhoDateReported
+ApplicationRegion <|-- WhoRegion
+WhoCountry "1" *--> "*" WhoRegion : region
+WhoData "1" *--> "*" WhoCountry : country
+WhoData "1" *--> "*" WhoDateReported : date_reported
+WhoService "*" *--> "1"  ApplicationServiceConfig : cfg
+WhoServiceImport "*" --> "1"  ApplicationServiceConfig : cfg
+WhoServiceUpdate "*" --> "1"  ApplicationServiceConfig : cfg
+ApplicationServiceDownload "*" --> "1"  ApplicationServiceConfig : cfg
+WhoService "1" *--> "1" WhoServiceImport : who_service_import
+WhoService "1" *--> "1" WhoServiceUpdate : who_service_update
+WhoService "1" *--> "1" ApplicationServiceDownload : service_download
+who_views_frontend "1" --> "1" WhoService : who_service
+who_views_for_tasks "1" --> "1" WhoService : who_service
+who_celery_tasks "1" --> "1" WhoService : who_service
 @enduml

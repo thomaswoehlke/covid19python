@@ -17,7 +17,7 @@ entity ApplicationDateReported {
 	{classifier} my_year_week(my_iso_year: Integer, week_number: Integer)
 	{classifier} create_new_object_factory(my_date_rep: String)
 }
-entity Course {
+entity EcdcDateReported {
     id: Integer
     dateiname: String
     parent_dir: String
@@ -33,7 +33,7 @@ entity Course {
     {classifier} find_by_id(other_id: Integer)
     {classifier} get_kurse_all()
 }
-entity Workflow {
+entity EcdcContinent {
     id: Integer
     dateiname: String
     parent_dir: String
@@ -47,7 +47,7 @@ entity Workflow {
     {classifier} find_by_id(other_id: Integer)
     {classifier} get_workflow_for_id(workflow_id: Integer)
 }
-entity Lektion {
+entity EcdcCountry {
     id: Integer
     dateiname: String
     parent_dir: String
@@ -67,7 +67,7 @@ entity Lektion {
     {classifier} get_folien_for_lektion_id(lektion_id: Integer)
     {classifier} get_all_verified()
 }
-entity FolienSatz {
+entity EcdcData {
     id: Integer
     dateiname: String
     parent_dir: String
@@ -84,7 +84,7 @@ entity FolienSatz {
     {classifier} get_by_id(other_id: Integer)
     {classifier} find_by_id(other_id: Integer)
 }
-entity Folie {
+entity ApplicationDateReported {
     id: Integer
     title: String
     lektion_nr: Integer
@@ -101,7 +101,7 @@ entity Folie {
     {classifier} find_by_id(other_id: Integer)
     {classifier} get_folien_for_lektion(lektion: Lektion)
 }
-entity Abbildung {
+entity ApplicationRegion {
     id: Integer
     dateiname: String
     parent_dir: String
@@ -122,47 +122,113 @@ entity Abbildung {
     {classifier} get_by_id(other_id: Integer)
     {classifier} find_by_id(other_id: Integer)
 }
-Course "1" *--> "*" Workflow: workflows
-Workflow "*" --> "1" Course:  course
-Workflow "1" *--> "*" Lektion: lektionen
-Lektion "*" --> "1" Workflow: course_workflow
-Lektion "1" o--> "*" Abbildung: abbildungen
-Abbildung "*" --> "1" Lektion: lektion
-Lektion "1" *--> "*" FolienSatz: foliensaetze
-FolienSatz "*" --> "1" Lektion: lektion
-FolienSatz "1" *--> "*" Folie: folien
-FolienSatz "1" *--> "*" Abbildung: abbildungen
-Folie "*" --> "1" FolienSatz: foliensatz
-Folie "1" o--> "*" Abbildung: abbildungen
-Abbildung "*" --> "1" Folie: folie
-Abbildung "*" --> "1" FolienSatz: foliensatz
-class ArtefactContentService {
-    rename_src_files()
-    prepare_data_update()
-    run_data_update()
-    run_db_dump()
-    run_db_reimport()
-    parse_file_name(datei: String)
-    create_or_fetch_folie(file_name_dict, lektion: Lektion)
-    get_abbbildung_for_id(abbbildung_id: Integer)
+class ApplicationServiceDownload {
+	-log_error()
+	-log_success()
+	-prepare_download()
+	-download_with_wget()
+	-download_with_subprocess_and_os_native_wget()
+	download_file()
 }
-ArtefactContentService : SQLAlchemy database
-ArtefactContentService : String[] courses
-ArtefactContentService : String[] workflows
-ArtefactContentService : String[] lektionen
-ArtefactContentService : String[] course_names
-class artefact_content_views {
-    url_root()
-    url_home()
-    url_update_data()
-    url_rename()
-    url_kurse_all()
-    url_kurse_workflow_lektionen(workflow_id: Integer)
-    url_kurse_workflow_lektion_folien(lektion_id: Integer)
-    url_abbbildung_id(abbildung_id: Integer)
-    url_db_dump()
-    url_db_reimport()
-    task_data_update()
-    task_rename_src_files()
+class ApplicationServiceConfig {
+	limit_nr: Integer
+    data_path: String
+    slug: String
+    category: String
+    sub_category: String
+    tablename: String
+    cvsfile_name: String
+    url_src: String
+    cvsfile_path: String
+    msg_job: String
+    msg_ok: String
+    msg_error: String
+	create_config_for_who()
+	create_config_for_rki_vaccination()
+	create_config_for_owid()
+	create_config_for_ecdc()
+	create_config_for_rki_bundeslaender()
+	create_config_for_rki_landkreise()
 }
+class EcdcService {
+	pretask_database_drop_create()
+	task_database_drop_create()
+	run_download_only()
+	run_import_only()
+	run_update_dimension_tables_only()
+	run_update_fact_table_incremental_only()
+	run_update_fact_table_initial_only()
+	run_update_star_schema_incremental()
+	run_update_star_schema_initial()
+	download_all_files()
+	task_import_all_files()
+	update_dimension_tables_only()
+	update_fact_table_initial_only()
+	update_fact_table_incremental_only()
+}
+class EcdcServiceImport {
+	import_file()
+}
+class EcdcServiceUpdate {
+	-update_date_reported()
+	-update_continent()
+	-update_country()
+	-get_continent_from_import(ecdc_import: EcdcImport):
+	-get_country_from_import(ecdc_import: EcdcImport):
+	-get_date_reported_from_import()
+	-update_data_initial()
+	update_dimension_tables_only()
+    update_fact_table_initial_only()
+    update_star_schema_incremental()
+	update_star_schema_initial()
+}
+class ecdc_views_frontend {
+	url_ecdc_info()
+	url_ecdc_tasks()
+	url_ecdc_data_imported()
+	url_ecdc_date_reported_all()
+	url_ecdc_date_reported_one_notification_rate()
+	url_ecdc_date_reported_one_deaths_weekly()
+	url_ecdc_date_reported_one_cases_weekly()
+	url_ecdc_continent_all()
+	url_ecdc_continent_one()
+	url_ecdc_country_all()
+	url_ecdc_country_one()
+	url_ecdc_country_germany()
+}
+class ecdc_views_for_tasks {
+	task_ecdc_download_only()
+	task_who_import_only()
+	task_who_update_dimension_tables_only()
+	task_who_update_fact_table_initial_only()
+	task_who_update_fact_table_incremental_only()
+	task_who_update_star_schema_initial()
+	task_who_update_star_schema_incremental()
+}
+class ecdc_celery_tasks {
+	task_ecdc_download_only()
+	task_ecdc_import_only()
+	task_ecdc_update_dimension_tables_only()
+	task_ecdc_update_fact_table_initial_only()
+	task_ecdc_update_fact_table_incremental_only()
+	task_ecdc_update_star_schema_initial()
+	task_ecdc_update_star_schema_incremental()
+}
+EcdcServiceImport : SQLAlchemy database
+EcdcServiceUpdate : SQLAlchemy database
+EcdcService : SQLAlchemy database
+ApplicationDateReported <|-- EcdcDateReported
+ApplicationRegion <|-- EcdcContinent
+EcdcCountry "1" *--> "*" EcdcContinent: continent
+EcdcData "1" *--> "*" EcdcCountry: country
+EcdcData "1" *--> "*" EcdcDateReported: date_reported
+EcdcService "*" *--> "1"  ApplicationServiceConfig: cfg
+EcdcServiceImport "*" --> "1"  ApplicationServiceConfig: cfg
+EcdcServiceUpdate "*" --> "1"  ApplicationServiceConfig: cfg
+EcdcService "1" *--> "1" EcdcServiceImport: ecdc_service_import
+EcdcService "1" *--> "1" EcdcServiceUpdate: ecdc_service_update
+EcdcService "1" *--> "1" ApplicationServiceDownload: service_download
+ecdc_views_frontend  "1" --> "1" EcdcService: ecdc_service
+ecdc_views_for_tasks  "1" --> "1" EcdcService: ecdc_service
+ecdc_celery_tasks  "1" --> "1" EcdcService: ecdc_service
 @enduml
