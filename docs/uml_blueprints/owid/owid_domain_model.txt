@@ -273,7 +273,7 @@ class owid_views_frontend {
     url_owid_date_reported_deaths_new()
     url_owid_date_reported_deaths_cumulative()
 }
-class owid_views_tasks {
+class owid_views_for_tasks {
     url_task_owid_download_only()
     url_task_owid_import_only()
     url_task_owid_update_dimension_tables_only()
@@ -295,11 +295,11 @@ OwidServiceImport : SQLAlchemy database
 OwidServiceUpdate : SQLAlchemy database
 OwidService : SQLAlchemy database
 ApplicationServiceDownload : SQLAlchemy database
-ApplicationDateReported <|-- WhoDateReported
+ApplicationDateReported <|-- OwidDateReported
 ApplicationRegion <|-- OwidContinent
 OwidCountry "1" *--> "*" OwidContinent : region
 OwidData "1" *--> "*" OwidCountry : country
-OwidData "1" *--> "*" WhoDateReported : date_reported
+OwidData "1" *--> "*" OwidDateReported : date_reported
 OwidService "*" *--> "1"  ApplicationServiceConfig : cfg
 OwidServiceImport "*" --> "1"  ApplicationServiceConfig : cfg
 OwidServiceUpdate "*" --> "1"  ApplicationServiceConfig : cfg
