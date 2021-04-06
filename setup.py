@@ -3,7 +3,7 @@ import sys
 
 from setuptools import find_packages, setup
 
-version = '0.0.23'
+version = '0.0.24'
 
 needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
 pytest_runner = ['pytest-runner'] if needs_pytest else []
