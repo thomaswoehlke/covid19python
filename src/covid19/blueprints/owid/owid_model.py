@@ -95,6 +95,12 @@ class OwidCountry(db.Model):
         return result
 
     @classmethod
+    def get_germany(cls):
+        iso_code = 'DEU'
+        location = 'Germany'
+        return db.session.query(cls).filter(and_((cls.iso_code == iso_code), (cls.location == location))).one_or_none()
+
+    @classmethod
     def get_countries_for_continent(cls, owid_continent_one: OwidContinent, page: int):
         return db.session.query(cls).filter(cls.continent == owid_continent_one).paginate(page, per_page=ITEMS_PER_PAGE)
 
