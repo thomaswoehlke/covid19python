@@ -49,7 +49,7 @@ def url_ecdc_data_imported(page=1):
     page_info = ApplicationPage('Europe', "Last Import")
     page_data = EcdcImport.get_all_as_page(page)
     return render_template(
-        'ecdc/ecdc_imported.html',
+        'ecdc/imported/ecdc_imported.html',
         page_data=page_data,
         page_info=page_info)
 
