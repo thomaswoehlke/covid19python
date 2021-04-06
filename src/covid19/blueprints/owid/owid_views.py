@@ -410,7 +410,7 @@ def url_owid_country_one(country_id: int, page: int = 1):
     page_info = ApplicationPage(
         "country: " + owid_country_one.location,
         'OWID',
-        "data for OWID continent " + owid_country_one.region + " "
+        "data for OWID continent " + owid_country_one.continent.region + " "
     )
     try:
         page_data = OwidData.get_data_for_country(owid_country_one, page)
@@ -431,7 +431,7 @@ def url_owid_country_one_germany(page: int = 1):
     page_info = ApplicationPage(
         "country: " + owid_country_one.location,
         'OWID',
-        "data for OWID continent " + owid_country_one.region + " "
+        "data for OWID continent " + owid_country_one.continent.region + " "
     )
     try:
         page_data = OwidData.get_data_for_country(owid_country_one, page)

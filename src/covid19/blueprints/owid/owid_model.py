@@ -194,8 +194,6 @@ class OwidData(db.Model):
         ).populate_existing().options(
             joinedload(cls.country),
             joinedload(cls.date_reported),
-        ).order_by(
-            cls.country.location
         ).paginate(page, per_page=ITEMS_PER_PAGE)
 
     @classmethod
