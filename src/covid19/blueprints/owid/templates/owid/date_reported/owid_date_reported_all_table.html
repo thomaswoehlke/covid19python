@@ -14,7 +14,7 @@
                                 {{ owid_date_reported.get_name_for_weekday() }}
                             </td>
                             <td class="text-left">
-                                <a href="/owid/date_reported/{{ owid_date_reported.id }}">
+                                <a href="{{ url_for( 'owid.url_owid_date_reported_one', date_reported_id=owid_date_reported.id) }}">
                                     {{ owid_date_reported }}
                                 </a>
                             </td>

@@ -65,10 +65,26 @@
         <tbody>
         {% for owid in page_data.items %}
             <tr>
-                <td>{{ owid.country.iso_code }}</td>
-                <td>{{ owid.country.continent.region }}</td>
-                <td>{{ owid.country.location }}</td>
-                <td>{{ owid.date_reported }}</td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.iso_code }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_continent_one', continent_id=owid.country.continent.id) }}">
+                        {{ owid.country.continent.region }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.location }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_date_reported_one', date_reported_id=owid.date_reported.id) }}">
+                    {{ owid.date_reported }}
+                    </a>
+                </td>
                 <td>{{ owid.total_cases }}</td>
                 <td>{{ owid.new_cases }}</td>
                 <td>{{ owid.new_cases_smoothed }}</td>
@@ -109,21 +125,81 @@
                 <td>{{ owid.people_fully_vaccinated_per_hundred }}</td>
                 <td>{{ owid.new_vaccinations_smoothed_per_million }}</td>
                 <td>{{ owid.stringency_index }}</td>
-                <td>{{ owid.country.population }}</td>
-                <td>{{ owid.country.population_density }}</td>
-                <td>{{ owid.country.median_age }}</td>
-                <td>{{ owid.country.aged_65_older }}</td>
-                <td>{{ owid.country.aged_70_older }}</td>
-                <td>{{ owid.country.gdp_per_capita }}</td>
-                <td>{{ owid.country.extreme_poverty }}</td>
-                <td>{{ owid.country.cardiovasc_death_rate }}</td>
-                <td>{{ owid.country.diabetes_prevalence }}</td>
-                <td>{{ owid.country.female_smokers }}</td>
-                <td>{{ owid.country.male_smokers }}</td>
-                <td>{{ owid.country.handwashing_facilities }}</td>
-                <td>{{ owid.country.hospital_beds_per_thousand }}</td>
-                <td>{{ owid.country.life_expectancy }}</td>
-                <td>{{ owid.country.human_development_index }}</td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.population }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.population_density }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.median_age }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.aged_65_older }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                        {{ owid.country.aged_70_older }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.gdp_per_capita }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                        {{ owid.country.extreme_poverty }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                        {{ owid.country.cardiovasc_death_rate }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.diabetes_prevalence }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.female_smokers }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                        {{ owid.country.male_smokers }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.handwashing_facilities }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                        {{ owid.country.hospital_beds_per_thousand }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.life_expectancy }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_country_one', country_id=owid.country.id) }}">
+                    {{ owid.country.human_development_index }}
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

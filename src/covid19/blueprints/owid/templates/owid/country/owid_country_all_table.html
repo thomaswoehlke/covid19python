@@ -25,7 +25,11 @@
         {% for owid_country in page_data.items %}
             <tr>
                 <td>{{ owid_country.iso_code }}</td>
-                <td>{{ owid_country.continent.region }}</td>
+                <td>
+                    <a href="{{ url_for( 'owid.url_owid_continent_one', continent_id=owid_country.continent.id) }}">
+                        {{ owid_country.continent.region }}
+                    </a>
+                </td>
                 <td>{{ owid_country.location }}</td>
                 <td>{{ owid_country.population }}</td>
                 <td>{{ owid_country.population_density }}</td>
