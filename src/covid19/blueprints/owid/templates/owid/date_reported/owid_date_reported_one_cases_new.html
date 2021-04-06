@@ -12,7 +12,7 @@
                     <ul class="pagination">
                     {% if page_data.has_prev %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('owid.url_owiddate_reported_cases_new',
+                        <a class="page-link" href="{{ url_for('owid.url_owid_date_reported_one_cases_new',
                         date_reported_id=owid_date_reported.id, page=page_data.prev_num) }}">
                             Previous
                         </a>
@@ -23,7 +23,7 @@
                         {% if page_num %}
                             {% if page_num != page_data.page %}
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url_for('owid.url_owiddate_reported_cases_new',
+                                    <a class="page-link" href="{{ url_for('owid.url_owid_date_reported_one_cases_new',
                                     date_reported_id=owid_date_reported.id, page=page_num) }}">{{ page_num }}</a>
                                 </li>
                             {% else %}
@@ -40,7 +40,7 @@
                     <!-- next page -->
                     {% if page_data.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('owid.url_owiddate_reported_cases_new',
+                        <a class="page-link" href="{{ url_for('owid.url_owid_date_reported_one_cases_new',
                         date_reported_id=owid_date_reported.id, page=page_data.next_num) }}">Next</a>
                     </li>
                     {% endif %}
@@ -50,7 +50,7 @@
         </div>
         <div class="row">
             <div class="col">
-                {% include 'owid/fragments/fragment_owid_table_global_data_date_reported.html' %}
+                {% include 'owid/date_reported/owid_date_reported_one_table.html' %}
             </div>
         </div>
     </div>

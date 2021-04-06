@@ -3,7 +3,7 @@
                     <ul class="pagination">
                     {% if page_data.has_prev %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('owid.url_owid_date_reported',
+                        <a class="page-link" href="{{ url_for('owid.url_owid_date_reported_one',
                         date_reported_id=owid_date_reported.id, page=page_data.prev_num) }}">Previous</a>
                     </li>
                     {% endif %}
@@ -12,7 +12,7 @@
                         {% if page_num %}
                             {% if page_num != page_data.page %}
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url_for('owid.url_owid_date_reported',
+                                    <a class="page-link" href="{{ url_for('owid.url_owid_date_reported_one',
                                     date_reported_id=owid_date_reported.id, page=page_num) }}">{{ page_num }}</a>
                                 </li>
                             {% else %}
@@ -29,7 +29,7 @@
                     <!-- next page -->
                     {% if page_data.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('owid.url_owid_date_reported',
+                        <a class="page-link" href="{{ url_for('owid.url_owid_date_reported_one',
                         date_reported_id=owid_date_reported.id, page=page_data.next_num) }}">Next</a>
                     </li>
                     {% endif %}
