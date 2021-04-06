@@ -45,7 +45,7 @@ def url_vaccination_imported(page=1):
     page_info = ApplicationPage('Vaccination', "Data: Germany Timeline imported")
     page_data = RkiVaccinationImport.get_all_as_page(page)
     return render_template(
-        'rki_vaccination/rki_vaccination_imported.html',
+        'rki_vaccination/imported/rki_vaccination_imported.html',
         page_data=page_data,
         page_info=page_info)
 
@@ -56,7 +56,7 @@ def url_vaccination_data(page=1):
     page_info = ApplicationPage('Vaccination', "Data: Germany Timeline")
     page_data = RkiVaccinationData.get_all_as_page(page)
     return render_template(
-        'rki_vaccination/rki_vaccination_data.html',
+        'rki_vaccination/data/rki_vaccination_data.html',
         page_data=page_data,
         page_info=page_info)
 
