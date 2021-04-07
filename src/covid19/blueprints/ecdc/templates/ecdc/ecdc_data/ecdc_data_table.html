@@ -1,7 +1,6 @@
     <table class="table table-hover table-striped table-dark">
         <thead class="table-secondary">
             <tr>
-                <!-- TODO: change URL to for_url() -->
                 <th scope="col">
                     <a href="{{ url_for('ecdc.url_ecdc_date_reported_all') }}">
                         date rep
@@ -71,13 +70,13 @@
         {% for ecdc_data in page_data.items %}
             <tr>
                 <td>
-                    <a href="/ecdc/date_reported/{{ ecdc_data.ecdc_date_reported.id }}">
-                        {{ ecdc_data.ecdc_date_reported.get_name_for_datum() }}
+                    <a href="/ecdc/date_reported/{{ ecdc_data.ecdc_datereported.id }}">
+                        {{ ecdc_data.ecdc_datereported.get_name_for_datum() }}
                     </a>
                 </td>
                 <td>
-                    <a href="/ecdc/date_reported/{{ ecdc_data.ecdc_date_reported.id }}">
-                        {{ ecdc_data.ecdc_date_reported.year_week }}
+                    <a href="/ecdc/date_reported/{{ ecdc_data.ecdc_datereported.id }}">
+                        {{ ecdc_data.ecdc_datereported.year_week }}
                     </a>
                 </td>
                 <td>{{ ecdc_data.deaths }}</td>
