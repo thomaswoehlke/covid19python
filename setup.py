@@ -32,6 +32,7 @@ keywords_list = [
 ]
 
 requires_setup = [
+	"greenlet>= 1.0.0",
     "appdirs==1.4.4",
 	"argparse==1.4.0",
 	"build==0.3.1.post1",
