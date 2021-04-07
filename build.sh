@@ -36,10 +36,18 @@ function build_wheel() {
   pip check
 }
 
+function xyz(){
+  python -m pip install --upgrade pip
+  pip install setuptools wheel twine
+  python setup.py sdist bdist_wheel
+  # twine upload dist/*
+}
+
 function main() {
   # setup_venv
   pip_compile
   pip_install
+  xyz
   # pip_install_via_setup_py
   # build_wheel
 }
