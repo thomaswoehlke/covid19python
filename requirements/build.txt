@@ -4,10 +4,14 @@
 #
 #    pip-compile requirements/build.in
 #
+alembic==1.5.5
+    # via -r requirements/build.in
 appdirs==1.4.4
     # via virtualenv
 argparse==1.4.0
     # via pytoolbox
+attrs==20.3.0
+    # via -r requirements/build.in
 bleach==3.3.0
     # via readme-renderer
 build==0.3.1.post1
@@ -33,11 +37,17 @@ cryptography==3.4.7
 distlib==0.3.1
     # via virtualenv
 docutils==0.17
-    # via readme-renderer
+    # via
+    #   -r requirements/build.in
+    #   readme-renderer
 filelock==3.0.12
     # via virtualenv
+greenlet==1.0.0
+    # via sqlalchemy
 identify==1.5.14
-    # via pre-commit
+    # via
+    #   -r requirements/build.in
+    #   pre-commit
 idna==2.10
     # via requests
 importlib-metadata==3.10.0
@@ -50,6 +60,10 @@ jeepney==0.6.0
     #   secretstorage
 keyring==23.0.1
     # via twine
+mako==1.1.4
+    # via alembic
+markupsafe==1.1.1
+    # via mako
 nodeenv==1.5.0
     # via pre-commit
 packaging==20.9
@@ -82,19 +96,27 @@ pyaml==20.4.0
 pycparser==2.20
     # via cffi
 pygments==2.8.1
-    # via readme-renderer
+    # via
+    #   -r requirements/build.in
+    #   readme-renderer
 pyparsing==2.4.7
     # via
     #   -r requirements/build.in
     #   packaging
+python-dateutil==2.8.1
+    # via alembic
 python-dotenv==0.15.0
     # via -r requirements/build.in
+python-editor==1.0.4
+    # via alembic
 python-magic==0.4.22
     # via pytoolbox
 pytoolbox==14.0.0
     # via -r requirements/build.in
 pytz==2021.1
-    # via pytoolbox
+    # via
+    #   -r requirements/build.in
+    #   pytoolbox
 pyyaml==5.4.1
     # via
     #   pre-commit
@@ -116,8 +138,11 @@ six==1.15.0
     # via
     #   -r requirements/build.in
     #   bleach
+    #   python-dateutil
     #   readme-renderer
     #   virtualenv
+sqlalchemy==1.4.6
+    # via alembic
 toml==0.10.2
     # via
     #   -r requirements/build.in
