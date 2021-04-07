@@ -112,6 +112,8 @@ toml==0.10.2
     # via
     #   pytest
     #   pytest-enabler
+urllib3==1.26.4
+    # via -r requirements/tests.in
 virtualenv==20.4.2
     # via pytest-venv
 werkzeug==1.0.1

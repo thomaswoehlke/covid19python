@@ -102,8 +102,10 @@ tokenize-rt==4.1.0
     # via -r requirements/docs.in
 uritemplate==3.0.1
     # via github3.py
-urllib3==1.26.3
-    # via requests
+urllib3==1.26.4
+    # via
+    #   -r requirements/docs.in
+    #   requests
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
