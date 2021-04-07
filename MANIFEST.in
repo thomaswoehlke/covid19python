@@ -1,7 +1,7 @@
 graft src/covid19/static
 global-exclude *.pyc
 
-include BACKLOG.md
+include docs/BACKLOG.md
 include LICENSE.md
 include requirements/*.txt
 graft docs
