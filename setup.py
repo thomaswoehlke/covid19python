@@ -31,7 +31,7 @@ keywords_list = [
     "postgresql"
 ]
 
-requires_setup = [
+requires_build = [
 	"greenlet>= 1.0.0",
     "appdirs==1.4.4",
 	"argparse==1.4.0",
@@ -167,7 +167,7 @@ requires_extras = {
     "all": []
 }
 
-requires_install = [
+requires_dev = [
 	"alabaster==0.7.12",
 	"amqp==5.0.5",
 	"appdirs==1.4.4",
@@ -364,8 +364,8 @@ setup(
     include_package_data=True,
     entry_points={},
     extras_require=requires_extras,
-    install_requires=requires_install,
-    setup_requires=requires_setup,
+    install_requires=requires_dev,
+    setup_requires=requires_build,
     tests_require=requires_test,
     scripts=[
         'scripts'+os.sep+'script_setup_requirements.py',
