@@ -7,3 +7,4 @@ pytest-flask-sqlalchemy>=1.0.2
 pytest-enabler>=1.2.0
 Flask-Fixtures>=0.3.8
 Flask-DB>=0.3.1
+urllib3>=1.26.4
