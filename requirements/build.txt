@@ -124,8 +124,10 @@ tqdm==4.59.0
     # via twine
 twine==3.4.1
     # via -r requirements/build.in
-urllib3==1.26.3
-    # via requests
+urllib3==1.26.4
+    # via
+    #   -r requirements/build.in
+    #   requests
 venv-run==0.1.0
     # via -r requirements/build.in
 virtualenv-clone==0.5.4

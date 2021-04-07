@@ -451,8 +451,10 @@ typing-extensions==3.7.4.3
     # via torch
 uritemplate==3.0.1
     # via github3.py
-urllib3==1.26.3
-    # via requests
+urllib3==1.26.4
+    # via
+    #   -r requirements/build.in
+    #   requests
 venv-run==0.1.0
     # via -r requirements/build.in
 vine==5.0.0

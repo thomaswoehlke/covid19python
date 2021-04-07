@@ -232,8 +232,34 @@
 * Fixed #144 implement RkiBundeslaenderServiceUpdate.update_star_schema_incremental
 * Fixed #145 implement RkiBundeslaenderServiceUpdate.update_star_schema_initial
 
-
 ### 0.0.19 Release
+* ------------------------------------- 
+
+### 0.0.20 Release
+* ------------------------------------- 
+
+### 0.0.21 Release
+* -------------------------------------  
+
+### 0.0.22 Release
+* -------------------------------------
+
+### 0.0.23 Release
+* -------------------------------------
+
+### 0.0.24 Release
+* -------------------------------------
+* Fixed #28 /admin/database/import
+* Fixed #66 frontend: migrate to Bootstrap Theme sb-admin-angular
+* Fixed #158 load Bootstrap-Template sb-admin-angular into static
+* Fixed #191 setup plantuml for engineering and docs 
+* Fixed #156 run_web.sh
+* Fixed #157 run_worker.sh
+* Fixed #62 frontend: better design for pages
+* Fixed #60 frontend: better design for tables
+
+### 0.0.25 Release
+* -------------------------------------  
 * Issue #177 BUG: RkiBundeslaenderServiceImport.import_file 
 * Issue #178 BUG: RkiLandkreiseServiceImport.import_file
 * Issue #5 Visual Graphs for Data per Countries order by Date
@@ -243,12 +269,6 @@
 * Issue #62 frontend: better design for pages
 * Issue #63 frontend: add footer design
 
-### 0.0.20 Release
-* Issue #28 /admin/database/import
-* Issue #66 frontend: migrate to Bootstrap Theme sb-admin-angular
-* Issue #158 load Bootstrap-Template sb-admin-angular into static
-
-### 0.0.21 Release
+### 0.0.26 Release
 * -------------------------------------  
-* Issue #156 run_web.sh
-* Issue #157 run_worker.sh
+
