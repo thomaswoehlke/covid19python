@@ -262,7 +262,7 @@
 * -------------------------------------  
 
 ### 0.0.26 Release
-* Issue #194 dependency is unsecure
+* Fixed #194 dependency is unsecure
 
 ### 0.0.27 Release
 * -------------------------------------  
