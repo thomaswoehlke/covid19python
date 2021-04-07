@@ -42,7 +42,6 @@ requires_setup = [
 	"click==7.1.2",
 	"distlib==0.3.1",
 	"filelock==3.0.12",
-	"identify==1.5.14",
 	"idna==2.10",
 	"nodeenv==1.5.0",
 	"packaging==20.9",
@@ -58,7 +57,6 @@ requires_setup = [
 	"python-dotenv==0.15.0",
 	"python-magic==0.4.22",
 	"pytoolbox==14.0.0",
-	"pytz==2021.1",
 	"pyyaml==5.4.1",
 	"requests==2.25.1",
 	"six==1.15.0",
@@ -72,9 +70,7 @@ requires_setup = [
 ]
 
 requires_test = [
-    "alembic==1.5.5",
 	"appdirs==1.4.4",
-	"attrs==20.3.0",
 	"click==7.1.2",
 	"distlib==0.3.1",
 	"filelock==3.0.12",
@@ -89,7 +85,6 @@ requires_test = [
 	"mako==1.1.4",
 	"markupsafe==1.1.1",
 	"mirakuru==2.3.0",
-	"more-itertools==8.7.0",
 	"packaging==20.9",
 	"pluggy==0.13.1",
 	"port-for==0.4",
@@ -111,7 +106,6 @@ requires_test = [
 	"sqlalchemy==1.4.5",
 	"toml==0.10.2",
 	"virtualenv==20.4.3",
-	"wcwidth==0.2.5",
 	"werkzeug==1.0.1",
 ]
 
@@ -142,7 +136,6 @@ requires_docs = [
 	"pygments==2.8.0",
 	"pyparsing==2.4.6",
 	"python-dateutil==2.8.1",
-	"pytz==2021.1",
 	"requests==2.25.1",
 	"six==1.15.0",
 	"snowballstemmer==2.1.0",
@@ -176,7 +169,6 @@ requires_extras = {
 
 requires_install = [
 	"alabaster==0.7.12",
-	"alembic==1.5.4",
 	"amqp==5.0.5",
 	"appdirs==1.4.4",
 	"argparse==1.4.0",
@@ -215,7 +207,6 @@ requires_install = [
 	"flask>=1.1.2",
 	"github3.py==2.0.0",
 	"httplib2==0.19.0",
-	"identify==1.5.13",
 	"idna==2.10",
 	"imagesize==1.2.0",
 	"itsdangerous==1.1.0",
@@ -279,7 +270,6 @@ requires_install = [
 	"python-editor==1.0.4",
 	"python-magic==0.4.22",
 	"pytoolbox==14.0.0",
-	"pytz==2020.5",
 	"pyyaml==5.4.1",
 	"pyzmq==22.0.3",
 	"redis==3.5.3",
