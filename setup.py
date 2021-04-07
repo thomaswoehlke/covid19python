@@ -62,7 +62,7 @@ requires_setup = [
 	"requests==2.25.1",
 	"six==1.15.0",
 	"toml==0.10.2",
-	"urllib3==1.26.3",
+	"urllib3>=1.26.4",
 	"venv-run==0.1.0",
 	"virtualenv-clone==0.5.4",
 	"virtualenv==20.4.3",
@@ -158,7 +158,7 @@ requires_docs = [
 	"sphinxcontrib-serializinghtml==1.1.4",
 	"tokenize-rt==4.1.0",
 	"uritemplate==3.0.1",
-	"urllib3==1.26.3",
+	"urllib3>=1.26.4",
 ]
 
 dotenv_require = [
@@ -311,7 +311,7 @@ requires_install = [
 	"tornado==6.1",
 	"typing-extensions==3.7.4.3",
 	"uritemplate==3.0.1",
-	"urllib3==1.26.3",
+	"urllib3>=1.26.4",
 	"venv-run==0.1.0",
 	"vine==5.0.0",
 	"virtualenv-clone==0.5.4",

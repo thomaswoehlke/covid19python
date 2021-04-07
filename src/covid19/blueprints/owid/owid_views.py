@@ -351,7 +351,7 @@ def url_owid_date_reported_one_deaths_cumulative(date_reported_id: int, page: in
 def url_owid_continent_all(page: int = 1):
     page_info = ApplicationPage(
         "Continents "
-        'OWID'
+        'OWID', 'all'
     )
     try:
         page_data = OwidContinent.get_all_as_page(page)
@@ -390,7 +390,7 @@ def url_owid_continent_one(continent_id: int, page: int = 1):
 def url_owid_country_all(page: int = 1):
     page_info = ApplicationPage(
         "Countries "
-        'OWID'
+        'OWID', 'all'
     )
     try:
         page_data = OwidCountry.get_all_as_page(page)
@@ -410,7 +410,7 @@ def url_owid_country_one(country_id: int, page: int = 1):
     page_info = ApplicationPage(
         "country: " + owid_country_one.location,
         'OWID',
-        "data for OWID continent " + owid_country_one.continent.region + " "
+        "on continent " + owid_country_one.continent.region + " "
     )
     try:
         page_data = OwidData.get_data_for_country(owid_country_one, page)
@@ -431,7 +431,7 @@ def url_owid_country_one_germany(page: int = 1):
     page_info = ApplicationPage(
         "country: " + owid_country_one.location,
         'OWID',
-        "data for OWID continent " + owid_country_one.continent.region + " "
+        "on continent " + owid_country_one.continent.region + " "
     )
     try:
         page_data = OwidData.get_data_for_country(owid_country_one, page)
