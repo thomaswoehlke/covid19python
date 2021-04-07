@@ -260,6 +260,12 @@
 
 ### 0.0.25 Release
 * -------------------------------------  
+
+### 0.0.26 Release
+* Issue #194 dependency is unsecure
+
+### 0.0.27 Release
+* -------------------------------------  
 * Issue #177 BUG: RkiBundeslaenderServiceImport.import_file 
 * Issue #178 BUG: RkiLandkreiseServiceImport.import_file
 * Issue #5 Visual Graphs for Data per Countries order by Date
@@ -268,7 +274,3 @@
 * Issue #61 frontend: better design for navtabs
 * Issue #62 frontend: better design for pages
 * Issue #63 frontend: add footer design
-
-### 0.0.26 Release
-* -------------------------------------  
-
