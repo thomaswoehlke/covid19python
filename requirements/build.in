@@ -18,9 +18,10 @@ build>=0.3.1.post1
 twine>=3.4.1
 urllib3>=1.26.4
 pep517==0.10.0
-docutils>=0.17
-identify>=1.5.14
-pygments==2.8.1
-pytz==2021.1
 alembic==1.5.5
 attrs==20.3.0
+docutils==0.17
+identify==2.2.2
+pygments==2.8.1
+pytz==2020.5
+
