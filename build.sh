@@ -36,7 +36,7 @@ function build_wheel() {
   pip check
 }
 
-function xyz(){
+function foo(){
   python -m pip install --upgrade pip
   pip install setuptools wheel twine
   python setup.py sdist bdist_wheel
@@ -47,7 +47,7 @@ function main() {
   # setup_venv
   pip_compile
   pip_install
-  xyz
+  foo
   # pip_install_via_setup_py
   # build_wheel
 }
