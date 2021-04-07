@@ -28,7 +28,7 @@ requires = [
 	"requests==2.25.1",
 	"six==1.15.0",
 	"toml==0.10.2",
-	"urllib3==1.26.3",
+	"urllib3>=1.26.4",
 	"venv-run==0.1.0",
 	"virtualenv-clone==0.5.4",
 	"virtualenv==20.4.3",
