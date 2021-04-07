@@ -219,8 +219,10 @@ pbr==3.1.1
     #   -r requirements/build.in
     #   flask-whooshalchemy3
     #   sphinxcontrib-gravizo
-pep517==0.9.1
-    # via build
+pep517==0.10.0
+    # via
+    #   -r requirements/build.in
+    #   build
 pillow==8.2.0
     # via
     #   -r requirements/dev.in
@@ -454,8 +456,6 @@ uritemplate==3.0.1
 urllib3==1.26.4
     # via
     #   -r requirements/build.in
-    #   -r requirements/docs.in
-    #   -r requirements/tests.in
     #   requests
 venv-run==0.1.0
     # via -r requirements/build.in

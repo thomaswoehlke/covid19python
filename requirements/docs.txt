@@ -6,38 +6,96 @@
 #
 alabaster==0.7.12
     # via sphinx
+appdirs==1.4.4
+    # via virtualenv
+argparse==1.4.0
+    # via pytoolbox
 babel==2.9.0
     # via sphinx
+bleach==3.3.0
+    # via readme-renderer
+build==0.3.1.post1
+    # via -r requirements/build.in
 certifi==2020.12.5
-    # via requests
+    # via
+    #   pipenv
+    #   requests
 cffi==1.14.5
     # via cryptography
+cfgv==3.2.0
+    # via pre-commit
 chardet==3.0.4
-    # via requests
+    # via
+    #   -r requirements/build.in
+    #   requests
+click==7.1.2
+    # via pip-tools
+colorama==0.4.4
+    # via twine
 cryptography==3.4.7
-    # via jwcrypto
+    # via
+    #   jwcrypto
+    #   secretstorage
+distlib==0.3.1
+    # via virtualenv
 docutils==0.16
-    # via sphinx
+    # via
+    #   readme-renderer
+    #   sphinx
+filelock==3.0.12
+    # via virtualenv
 github3.py==2.0.0
     # via sphinxcontrib-github
 httplib2==0.19.0
     # via plantuml
+identify==2.2.2
+    # via pre-commit
 idna==2.10
     # via requests
 imagesize==1.2.0
     # via sphinx
+importlib-metadata==3.10.0
+    # via
+    #   keyring
+    #   twine
+jeepney==0.6.0
+    # via
+    #   keyring
+    #   secretstorage
 jinja2==2.11.3
     # via sphinx
 jwcrypto==0.8
     # via github3.py
+keyring==23.0.1
+    # via twine
 markdown==3.3.3
     # via plantuml-markdown
 markupsafe==1.1.1
     # via jinja2
-packaging==20.0
-    # via sphinx
-pbr==5.5.1
-    # via sphinxcontrib-gravizo
+nodeenv==1.5.0
+    # via pre-commit
+packaging==20.9
+    # via
+    #   -r requirements/build.in
+    #   bleach
+    #   build
+    #   sphinx
+pbr==3.1.1
+    # via
+    #   -r requirements/build.in
+    #   sphinxcontrib-gravizo
+pep517==0.10.0
+    # via
+    #   -r requirements/build.in
+    #   build
+pip-licenses==3.3.0
+    # via -r requirements/build.in
+pip-tools==5.5.0
+    # via -r requirements/build.in
+pipenv==2020.11.15
+    # via -r requirements/build.in
+pkginfo==1.7.0
+    # via twine
 plantuml-gentools==0.1.2
     # via -r requirements/docs.in
 plantuml-markdown==3.4.2
@@ -46,28 +104,65 @@ plantuml-wrapper==0.1.0
     # via -r requirements/docs.in
 plantuml==0.3.0
     # via plantuml-markdown
+pre-commit==2.10.1
+    # via -r requirements/build.in
+ptable==0.9.2
+    # via pip-licenses
 py2puml==0.4.0
     # via -r requirements/docs.in
+py==1.10.0
+    # via -r requirements/build.in
+pyaml==20.4.0
+    # via pytoolbox
 pycparser==2.20
     # via cffi
 pygments==2.8.0
-    # via sphinx
-pyparsing==2.4.6
     # via
+    #   readme-renderer
+    #   sphinx
+pyparsing==2.4.7
+    # via
+    #   -r requirements/build.in
     #   httplib2
     #   packaging
 python-dateutil==2.8.1
     # via github3.py
+python-dotenv==0.17.0
+    # via -r requirements/build.in
+python-magic==0.4.22
+    # via pytoolbox
+pytoolbox==14.0.0
+    # via -r requirements/build.in
 pytz==2021.1
-    # via babel
+    # via
+    #   babel
+    #   pytoolbox
+pyyaml==5.4.1
+    # via
+    #   pre-commit
+    #   pyaml
+readme-renderer==29.0
+    # via twine
+requests-toolbelt==0.9.1
+    # via twine
 requests==2.25.1
     # via
     #   github3.py
+    #   pytoolbox
+    #   requests-toolbelt
     #   sphinx
-six==1.13.0
+    #   twine
+rfc3986==1.4.0
+    # via twine
+secretstorage==3.3.1
+    # via keyring
+six==1.15.0
     # via
-    #   packaging
+    #   -r requirements/build.in
+    #   bleach
     #   python-dateutil
+    #   readme-renderer
+    #   virtualenv
 snowballstemmer==2.1.0
     # via sphinx
 speaklater==1.3
@@ -100,12 +195,38 @@ sphinxcontrib-serializinghtml==1.1.4
     # via sphinx
 tokenize-rt==4.1.0
     # via -r requirements/docs.in
+toml==0.10.2
+    # via
+    #   -r requirements/build.in
+    #   build
+    #   pep517
+    #   pre-commit
+tqdm==4.60.0
+    # via twine
+twine==3.4.1
+    # via -r requirements/build.in
 uritemplate==3.0.1
     # via github3.py
 urllib3==1.26.4
     # via
-    #   -r requirements/docs.in
+    #   -r requirements/build.in
     #   requests
+venv-run==0.1.0
+    # via -r requirements/build.in
+virtualenv-clone==0.5.4
+    # via pipenv
+virtualenv==20.4.3
+    # via
+    #   -r requirements/build.in
+    #   pipenv
+    #   pre-commit
+webencodings==0.5.1
+    # via bleach
+wheel==0.36.2
+    # via -r requirements/build.in
+zipp==3.4.1
+    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
+# pip
 # setuptools

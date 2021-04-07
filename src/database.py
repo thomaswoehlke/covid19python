@@ -1,9 +1,5 @@
-import logging
 from flask import Flask, logging
-# import flask_monitoringdashboard as dashboard
 # from flask_caching import Cache
-# from flask_pluginkit import PluginManager
-# from flask_redisboard import RedisBoardExtension
 from flask_cors import CORS
 from flask_bs4 import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
@@ -12,8 +8,6 @@ from flask_admin import Admin
 from celery import Celery
 from celery.utils.log import LoggingProxy
 
-# board = RedisBoardExtension()
-# pm = PluginManager()
 # cache = Cache(config={"CACHE_TYPE": "simple"})
 app_cors = CORS()
 app_bootstrap = Bootstrap()
@@ -32,10 +26,7 @@ def create_app():
     my_app.config['SQLALCHEMY_DATABASE_URI'] = my_db_url
     my_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation warning
     my_app.config['FLASK_ADMIN_SWATCH'] = 'superhero'
-    # pm.init_app(app)
-    # board.init_app(my_app)
     # cache.init_app(app)
-    # dashboard.bind(my_app)
     return my_app
 
 

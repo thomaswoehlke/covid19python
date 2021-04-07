@@ -1,5 +1,7 @@
 import os
 import sys
+import logging
+import subprocess
 
 from setuptools import find_packages, setup
 
@@ -373,6 +375,47 @@ for kw in keywords_list:
     keywords += " " + kw
 
 packages = find_packages()
+
+
+def run_compile_requirements():
+    my_cmd_list = [
+        ['pip-compile', '-r', 'requirements' + os.sep + 'build.in'],
+        ['pip-compile', '-r', 'requirements' + os.sep + 'docs.in'],
+        ['pip-compile', '-r', 'requirements' + os.sep + 'tests.in'],
+        ['pip-compile', '-r', 'requirements' + os.sep + 'dev.in'],
+        ['pip', 'install', '-r', 'requirements' + os.sep + 'build.in'],
+        ['pip', 'install', '-r', 'requirements' + os.sep + 'docs.in'],
+        ['pip', 'install', '-r', 'requirements' + os.sep + 'tests.in'],
+        ['pip', 'install', '-r', 'requirements' + os.sep + 'dev.in'],
+    ]
+    for my_cmd in my_cmd_list:
+        returncode = subprocess.call(my_cmd, shell=True)
+        if returncode == 0:
+            logging.info("retcode: "+str(returncode))
+        else:
+            logging.error("retcode: " + str(returncode))
+    return None
+
+
+def run_npm_install():
+    my_cmd = ['npm', 'install']
+    returncode = subprocess.call(my_cmd, shell=True)
+    if returncode == 0:
+        logging.info("retcode: "+str(returncode))
+    else:
+        logging.error("retcode: " + str(returncode))
+    return None
+
+
+def get_python_requirements_from_txt():
+    my_cmd = ['bash', 'scripts'+os.sep+'script_get_python_requirements_from_txt.sh']
+    returncode = subprocess.call(my_cmd, shell=True)
+    if returncode == 0:
+        logging.info("retcode: "+str(returncode))
+    else:
+        logging.error("retcode: " + str(returncode))
+    return None
+
 
 setup(
     name='flask-covid19',
