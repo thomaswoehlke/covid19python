@@ -182,7 +182,7 @@ python-magic==0.4.22
     # via pytoolbox
 pytoolbox==14.0.0
     # via -r requirements/build.in
-pytz==2021.1
+pytz==2020.5
     # via
     #   -r requirements/build.in
     #   pytoolbox

@@ -26,13 +26,14 @@ function pip_install() {
 }
 
 function pip_install_via_setup_py() {
-  pip install -e . --compile --force-reinstall --progress-bar pretty --log logfile5.txt
+  pip install -e .
+  # pip install -e . --compile --force-reinstall --progress-bar pretty --log logfile5.txt
   # pip install -e . --compile --progress-bar pretty --log logfile5.txt
   pip check
 }
 
 function build_wheel() {
-  #python -m build --wheel
+  python -m build --wheel
   pip check
 }
 
@@ -47,9 +48,9 @@ function main() {
   # setup_venv
   pip_compile
   pip_install
+  pip_install_via_setup_py
   foo
-  # pip_install_via_setup_py
-  # build_wheel
+  build_wheel
 }
 
 main

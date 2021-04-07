@@ -44,7 +44,7 @@ filelock==3.0.12
     # via virtualenv
 greenlet==1.0.0
     # via sqlalchemy
-identify==1.5.14
+identify==2.2.2
     # via
     #   -r requirements/build.in
     #   pre-commit
@@ -113,7 +113,7 @@ python-magic==0.4.22
     # via pytoolbox
 pytoolbox==14.0.0
     # via -r requirements/build.in
-pytz==2021.1
+pytz==2020.5
     # via
     #   -r requirements/build.in
     #   pytoolbox
