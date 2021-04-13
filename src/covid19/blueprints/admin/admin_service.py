@@ -27,7 +27,7 @@ class AdminService:
         db = app.config['SQLALCHEMY_POSTGRES_DB']
         cmd = 'pg_dump -U '+user+' -h '+url+' '+db\
               +' --clean --if-exists --no-tablespaces '\
-              +' --on-conflict-do-nothing --rows-per-insert=200 --column-inserts '\
+              +' --on-conflict-do-nothing --rows-per-insert=1000 --column-inserts '\
               +' --quote-all-identifiers --no-privileges > '\
               + self.file_path
         app.logger.info(" start: "+str(cmd))
@@ -59,7 +59,7 @@ class AdminService:
         url = app.config['SQLALCHEMY_POSTGRES_URL']
         db = app.config['SQLALCHEMY_POSTGRES_DB']
         cmd_list = [
-            'pgsql -U ' + user + ' -h ' + url + ' ' + db + ' < ' + self.file_path
+            'psql -U ' + user + ' -h ' + url + ' ' + db + ' < ' + self.file_path
         ]
         for cmd in cmd_list:
             returncode = self.__run_ome_shell_command(cmd)
