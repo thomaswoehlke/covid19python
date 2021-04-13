@@ -1,5 +1,5 @@
 @startuml
-class AdminService << (S,red) Service >> {
+class UserService << (S,red) Service >> {
     database: String
     limit_nr: Integer
     task_database_drop_create()
@@ -56,40 +56,37 @@ class database << (S,#FF7700) Singleton >> {
 	create_celery(my_app)
 	create_admin(my_app)
 }
-class admin_views_frontend << (B,orchid) Boundary >> {
-	url_admin_index()
-    url_admin_tasks()
-    url_admin_info()
+class user_views_frontend << (B,orchid) Boundary >> {
+	url_user_index()
+    url_user_tasks()
+    url_user_info()
 }
-class admin_celery_tasks << (B,orchid) Boundary >> {
-    task_admin_alive_message()
-    task_admin_database_drop_create()
-    task_admin_import_all_files()
-    task_admin_update_dimension_tables_only()
-    task_admin_update_fact_table_initial_only()
-    task_admin_update_fact_table_incremental_only()
-    task_admin_update_star_schema_initial()
-    task_admin_update_star_schema_incremental()
+class user_celery_tasks << (B,orchid) Boundary >> {
+    task_user_alive_message()
+    task_user_database_drop_create()
+    task_user_import_all_files()
+    task_user_update_dimension_tables_only()
+    task_user_update_fact_table_initial_only()
+    task_user_update_fact_table_incremental_only()
+    task_user_update_star_schema_initial()
+    task_user_update_star_schema_incremental()
 }
-class admin_views_for_tasks << (B,orchid) Boundary >> {
-    url_alive_message_start()
-    url_admin_database_dump()
-    url_admin_database_dump_reimport()
-    url_admin_database_dropcreate_only()
-    url_admin_database_drop()
-    url_admin_download_all_files()
-    url_admin_import_all_files()
-    url_admin_update_dimension_tables_only()
-    url_admin_update_fact_table_initial_only()
-    url_admin_update_fact_table_incremental_only()
-    url_admin_update_star_schema_initial()
-    run_update_star_schema_incremental()
-}
-class application_workers << (B,orchid) Boundary >> {
-	run_mq(my_app, my_celery)
-	run_app(my_app)
+class user_views_for_tasks << (B,orchid) Boundary >> {
+    url_user_database_dump()
+    url_user_database_dump_reimport()
+    url_user_database_dropcreate_only()
+    url_user_database_drop()
+    url_user_download_all_files()
+    url_user_import_all_files()
+    url_user_update_dimension_tables_only()
+    url_user_update_fact_table_initial_only()
+    url_user_update_fact_table_incremental_only()
+    url_user_update_star_schema_initial()
 }
 class application_services << (P,yellow) Proxy >> {
+
+}
+class AdminService << (P,red) Service >> {
 
 }
 class ApplicationService << (S,red) Service >> {
@@ -113,16 +110,12 @@ class RkiLandkreiseService << (S,red) Service >> {
 class OwidService << (S,red) Service >> {
 
 }
-class UserService << (S,red) Service >> {
-
-}
 ApplicationServiceDownload "*" --> "1"  ApplicationServiceConfig: cfg
-application_workers "1" --> "1" application_services: application_services
-admin_views_frontend "1" --> "1" application_services: application_services
-admin_views_frontend "*" --> "1" ApplicationPage: page_info
-admin_celery_tasks "1" --> "1" application_services: application_services
-admin_views_for_tasks "1" --> "1" application_services: application_services
-admin_views_for_tasks "*" --> "1" ApplicationPage: page_info
+user_views_frontend "1" --> "1" application_services: application_services
+user_views_frontend "*" --> "1" ApplicationPage: page_info
+user_celery_tasks "1" --> "1" application_services: application_services
+user_views_for_tasks "1" --> "1" application_services: application_services
+user_views_for_tasks "*" --> "1" ApplicationPage: page_info
 application_services "*" --> "1" ApplicationService: application_service
 application_services "*" --> "1" AdminService: admin_service
 application_services "*" --> "1" WhoService: who_service

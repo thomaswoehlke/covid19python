@@ -267,20 +267,23 @@
 ### 0.0.27 Release
 * Fixed #60 frontend: better design for tables
 * Fixed #62 frontend: better design for pages
-* Fixed #197 UML use cases for OWID reports and Visaul Data  
+* Fixed #197 UML use cases for OWID reports and Visual Data  
 
 ### 0.0.28 Release
 * Fixed #199 Database export without gzip
 * Fixed #200 Database import without gzip
 
 ### 0.0.29 Release
-* ------------------------------------- 
+* Fixed #201 UML: blueprint user 
 
 ### 0.0.30 Release
 * ------------------------------------- 
 
 ### 00 Inbox
-* ------------------------------------- 
+* -------------------------------------
+* Issue #202 add blueprint user
+* Issue #203 find python module for blueprint user
+* Issue #204 add python module for blueprint user
 
 ### 01 Next
 * -------------------------------------
