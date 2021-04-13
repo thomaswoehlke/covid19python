@@ -265,15 +265,9 @@
 * Fixed #194 dependency is unsecure
 
 ### 0.0.27 Release
-* -------------------------------------  
-* Issue #177 BUG: RkiBundeslaenderServiceImport.import_file 
-* Issue #178 BUG: RkiLandkreiseServiceImport.import_file
-* Issue #5 Visual Graphs for Data per Countries order by Date
-* Issue #59 frontend: add correct breadcrumb to every page
-* Issue #60 frontend: better design for tables
-* Issue #61 frontend: better design for navtabs
-* Issue #62 frontend: better design for pages
-* Issue #63 frontend: add footer design
+* Fixed #60 frontend: better design for tables
+* Fixed #62 frontend: better design for pages
+* Fixed #197 UML use cases for OWID reports and Visaul Data  
 
 ### 0.0.28 Release
 * ------------------------------------- 
@@ -288,18 +282,41 @@
 * ------------------------------------- 
 
 ### 01 Next
-* ------------------------------------- 
+* -------------------------------------
+* Issue #198 UML: WHO Visual Graphs for Data per Countries order by Date
+* Issue #5 WHO Visual Graphs for Data per Countries order by Date
+* Issue #177 BUG: RkiBundeslaenderServiceImport.import_file 
+* Issue #178 BUG: RkiLandkreiseServiceImport.import_file
+* Issue #195 RkiVaccinationImport.get_daterep_missing_in_vaccination_data(): native SQL to SQLalechemy Query
+* Issue #196 OwidImport.get_new_dates_reported_as_array() needs implementation
 
 ### 02 Soon
 * -------------------------------------
+* Issue #189 setup unit tests
+* Issue #190 setup docs with sphinx
 
 ### 03 Nice to Have
 * -------------------------------------
+* Issue #59 frontend: add correct breadcrumb to every page
+* Issue #61 frontend: better design for navtabs
+* Issue #63 frontend: add footer design
 
 ### 04 Dropped
 * -------------------------------------
+* Issue #185 add Flask-Redisboard
+* Issue #186 add Flask-Monitoring
 
 ### 05 Later maybe
 * -------------------------------------
+* Issue #179 add Flask-Caching
+* Issue #180 add build.cmd script
+* Issue #181 add flask-filealchemy
+* Issue #182 add flask-whooshalchemy3
+* Issue #183 add flask-resources
+* Issue #184 add Flask-Babel
+* Issue #187 add Flask-Caching
+* Issue #188 add flask-healthz
+* Issue #192 flask-healthz
+* Issue #193 add Flask-Moment
 
 
