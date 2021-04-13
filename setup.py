@@ -189,7 +189,7 @@ requires_test = [
 ]
 
 requires_docs = [
-    "alabaster==0.7.12",
+	"alabaster==0.7.12",
 	"alembic==1.5.5",
 	"appdirs==1.4.4",
 	"argparse==1.4.0",
@@ -283,7 +283,8 @@ requires_docs = [
 ]
 
 dotenv_require = [
-    "python-dotenv==0.15.0"
+    "python-dotenv==0.17.0",
+	"tqdm==4.60.0"
 ]
 
 requires_extras = {
