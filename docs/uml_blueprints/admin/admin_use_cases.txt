@@ -34,12 +34,12 @@ package admin_celery_tasks {
   usecase task_admin_update_star_schema_initial as UC111
   usecase task_admin_update_star_schema_incremental as UC112
 }
-vu --> UC1
-vu --> UC2
-vu --> UC3
-au --> UC51
-au --> UC52
-au --> UC53
+au --> UC1
+au --> UC2
+au --> UC3
+su --> UC51
+su --> UC52
+su --> UC53
 au --> UC54
 au --> UC55
 au --> UC56
