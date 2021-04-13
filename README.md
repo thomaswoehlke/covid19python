@@ -50,9 +50,19 @@
 
 ### owid
 #### owid_domain_model
-![](docs/uml_blueprints/owid/owid_domain_model.png)
+![owid_domain_model](docs/uml_blueprints/owid/owid_domain_model.png)
 #### owid_use_cases
-![](docs/uml_blueprints/owid/owid_use_cases.png)
+![owid_use_cases](docs/uml_blueprints/owid/owid_use_cases.png)
+#### owid_use_cases_visual_data_1
+![owid_use_cases_visual_data_1](docs/uml_blueprints/owid/owid_use_cases_visual_data_1.png)
+#### owid_use_cases_visual_data_2
+![owid_use_cases_visual_data_2](docs/uml_blueprints/owid/owid_use_cases_visual_data_2.png)
+#### owid_use_cases_visual_data_3
+![owid_use_cases_visual_data_3](docs/uml_blueprints/owid/owid_use_cases_visual_data_3.png)
+#### owid_use_cases_visual_data_4
+![owid_use_cases_visual_data_4](docs/uml_blueprints/owid/owid_use_cases_visual_data_4.png)
+#### owid_use_cases_visual_data_5
+![owid_use_cases_visual_data_5](docs/uml_blueprints/owid/owid_use_cases_visual_data_5.png)
 
 ### rki_vaccination
 #### rki_vaccination_domain_model
