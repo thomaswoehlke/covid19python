@@ -278,6 +278,7 @@
 * Fixed #205 navbar is broken
 * Fixed #202 add blueprint user
 
+
 ### 0.0.30 Release
 * ------------------------------------- 
 
