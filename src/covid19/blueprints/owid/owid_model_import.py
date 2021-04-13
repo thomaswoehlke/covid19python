@@ -119,6 +119,7 @@ class OwidImport(db.Model):
             myresultarray.append(item)
         return myresultarray
 
+    # TODO: #196 OwidImport.get_new_dates_reported_as_array() needs implementation
     @classmethod
     def get_new_dates_reported_as_array(cls):
         return cls.get_dates_reported_as_array()

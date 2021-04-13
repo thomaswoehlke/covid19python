@@ -84,35 +84,36 @@ class RkiVaccinationImport(db.Model):
             resultarray.append(o)
         return resultarray
 
+    # TODO #195 RkiVaccinationImport.get_daterep_missing_in_vaccination_data(): native SQL to SQLalechemy Query
     @classmethod
     def get_daterep_missing_in_vaccination_data(cls):
         sql_query = """
             select
                 distinct 
-                    rki_vaccination_import.datum
+                    application__import__rki_vaccination.datum
                 from
-                    rki_vaccination_import
+                    application__import__rki_vaccination
                 where
                     datum
                 not in (
                     select
                         distinct
-                            rki_vaccination_import.datum
+                            application__import__rki_vaccination.datum
                         from
-                            rki_vaccination_data
+                            rki_vaccination
                         left join
                             rki_vaccination_datereported
                         on
-                            rki_vaccination_data.date_reported_id=rki_vaccination_datereported.id
+                            rki_vaccination.date_reported_id=rki_vaccination_datereported.id
                         group by 
-                            rki_vaccination_import.datum
+                            application__import__rki_vaccination.datum
                         order by
-                            rki_vaccination_import.datum desc
+                            application__import__rki_vaccination.datum desc
                 )
                 group by
-                    rki_vaccination_import.datum
+                    application__import__rki_vaccination.datum
                 order by 
-                    rki_vaccination_import.datum desc
+                    application__import__rki_vaccination.datum desc
             """
         new_dates = []
         for item, in db.session.execute(sql_query):
