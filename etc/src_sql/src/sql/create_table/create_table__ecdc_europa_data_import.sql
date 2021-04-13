@@ -1,15 +1,3 @@
-CREATE TABLE ecdc_europa_data_import (
-id SERIAL PRIMARY KEY,
-dateRep VARCHAR(255) NOT NULL,
-day VARCHAR(255) NOT NULL,
-month VARCHAR(255) NOT NULL,
-year VARCHAR(255) NOT NULL,
-cases VARCHAR(255) NOT NULL,
-deaths VARCHAR(255) NOT NULL,
-countriesAndTerritories VARCHAR(255) NOT NULL,
-geoId VARCHAR(255) NOT NULL,
-countryterritoryCode VARCHAR(255) NOT NULL,
-popData2019 VARCHAR(255) NOT NULL,
-continentExp VARCHAR(255) NOT NULL,
-Cumulative_number_for_14_days_of_COVID-19_cases_per_100000 VARCHAR(255) NOT NULL
-);
+version https://git-lfs.github.com/spec/v1
+oid sha256:2d411874c4d13a92e8afe729aeeb4f7de9a4b98cf2c568f27838cf74a5c41785
+size 511

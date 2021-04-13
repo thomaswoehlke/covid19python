@@ -1,11 +1,3 @@
-INSERT INTO who_global_data_import( 
-Date_reported, 
-Country_code, 
-Country, 
-WHO_region, 
-New_cases, 
-Cumulative_cases, 
-New_deaths, 
-Cumulative_deaths
-) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-RETURNING id
+version https://git-lfs.github.com/spec/v1
+oid sha256:974685ed873d2b3970868d47f4955c737fde2c4439cae937feb7a9b8f0e91c66
+size 207

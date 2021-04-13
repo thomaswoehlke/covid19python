@@ -1,9 +1,3 @@
-CREATE TABLE who_global_data (
-     id SERIAL PRIMARY KEY,
-     date_reported_id integer REFERENCES who_Date_reported,
-     country_id integer REFERENCES who_country,
-     new_cases integer NOT NULL,
-     cumulative_cases integer NOT NULL,
-     new_deaths integer NOT NULL,
-     cumulative_deaths integer
-);
+version https://git-lfs.github.com/spec/v1
+oid sha256:fdecb7d81e0e8977e46880a53d517a0ec29dfce036c425e86d0124e03eadb3d5
+size 307

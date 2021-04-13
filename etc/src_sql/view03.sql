@@ -1,3 +1,3 @@
-select date_reported as my_date from who_global_data_import group by date_reported not in (
-select distinct d.date_reported as my_date from who_global_data as i left join who_date_reported as d on i.date_reported_id=d.id
-) order by date_reported desc;
+version https://git-lfs.github.com/spec/v1
+oid sha256:67d81bb434ef66cf873be188ed0166407a35cce9a1814e89cbfedb966d61e7b1
+size 252

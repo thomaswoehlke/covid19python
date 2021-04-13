@@ -1,19 +1,3 @@
-CREATE VIEW view_who_global_data
-AS SELECT DISTINCT
-    date_reported,
-    country_code,
-    country,
-    new_cases,
-    new_deaths,
-    cumulative_cases,
-    cumulative_deaths
-FROM who_global_data
-     LEFT JOIN who_country wc ON wc.id = who_global_data.country_id
-     LEFT JOIN who_date_reported wdr ON wdr.id = who_global_data.date_reported_id
-ORDER BY
-    date_reported DESC,
-    new_deaths DESC,
-    cumulative_deaths DESC,
-    new_cases DESC,
-    cumulative_cases DESC
-LIMIT 500
+version https://git-lfs.github.com/spec/v1
+oid sha256:43a3b2e444bd7d3c44b452eaf841023a5181c8e3b98746d5c20b21b17b7e0ba5
+size 486

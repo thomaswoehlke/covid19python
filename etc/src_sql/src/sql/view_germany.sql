@@ -1,23 +1,3 @@
-CREATE VIEW
-    view_who_germany
-AS
-SELECT DISTINCT
-    date_reported,
-    country_code,
-    new_deaths,
-    cumulative_deaths,
-    new_cases,
-    cumulative_cases,
-    country
-FROM
-    who_global_data o
-        LEFT JOIN
-    who_date_reported wdr
-    ON
-            wdr.id = o.date_reported_id
-        LEFT JOIN
-    who_country wc
-    ON
-            wc.id = o.country_id
-WHERE country_code = 'DE'
-ORDER BY date_reported DESC
+version https://git-lfs.github.com/spec/v1
+oid sha256:978ab800f9a9db73bdd14081a6ce4da5a1d6bf4377706886bb653cbe0d7d4098
+size 425

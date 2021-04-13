@@ -1,16 +1,3 @@
-insert into who_country(
-    country_code,
-    country,
-    who_region_id
-)
-select distinct
-    country_code,
-    country,
-    who_region.id as who_region_id
-from
-    who_global_data_import,
-    who_region
-where
-    (country_code) NOT IN (
-        select country_code from who_country
-    )
+version https://git-lfs.github.com/spec/v1
+oid sha256:2b2f6eb8abffca2c236fc4cec1640a39121f70d5e006e93f34646ab295b34a3c
+size 290

@@ -1,11 +1,3 @@
-CREATE TABLE who_global_data_import (
-    id SERIAL PRIMARY KEY,
-    Date_reported VARCHAR(255) NOT NULL,
-    Country_code VARCHAR(255) NOT NULL,
-    Country VARCHAR(255) NOT NULL,
-    WHO_region VARCHAR(255) NOT NULL,
-    New_cases VARCHAR(255) NOT NULL,
-    Cumulative_cases VARCHAR(255) NOT NULL,
-    New_deaths VARCHAR(255) NOT NULL,
-    Cumulative_deaths VARCHAR(255) NOT NULL
-);
+version https://git-lfs.github.com/spec/v1
+oid sha256:de0af472fa59a8555adb1c99dfa521c0c94614c20e76b8a161720836b58a4c83
+size 384

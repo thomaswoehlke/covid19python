@@ -1,13 +1,3 @@
-insert into
-    who_date_reported (
-        date_reported
-    )
-select distinct
-    who_global_data_import.Date_reported as date_reported
-from
-    who_date_reported,
-    who_global_data_import
-where
-    who_global_data_import.Date_reported NOT IN (
-        select who_date_reported.date_reported from who_date_reported
-    )
+version https://git-lfs.github.com/spec/v1
+oid sha256:8bcea6a55e0d735f9ad2592bc6fea0225fd44a942204c87a74ccbd730ea009b5
+size 324

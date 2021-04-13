@@ -1,8 +1,3 @@
-select distinct
-    who_region
-from
-    who_global_data_import
-where
-    who_global_data_import.WHO_region NOT IN (
-        select who_region from who_region
-    ) order by who_global_data_import.WHO_region
+version https://git-lfs.github.com/spec/v1
+oid sha256:a462b484ffdcaca679cf38d05c5287ced2c39b30edc32a98684cd337c57de4a2
+size 206
