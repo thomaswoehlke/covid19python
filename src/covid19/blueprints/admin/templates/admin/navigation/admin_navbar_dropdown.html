@@ -1,38 +1,61 @@
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin
+                <li class="dropdown">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="javascript:void(0)">
+                        Admin<i class="glyphicon glyphicon-chevron-down small"></i>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_tasks') }}">
-                            Admin
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_tasks') }}">
-                            admin tasks
-                        </a>
-                        <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_info') }}">
-                            admin info
-                        </a>
-                        <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_index') }}">
-                            flask admin
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ url_for( 'app_admin.url_alive_message_start') }}">
-                            Task: Admin :: alive message
-                        </a>
-                        <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_database_drop') }}">
-                            Task: Admin :: database :: drop_create and import
-                        </a>
-                          <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_database_dropcreate_only') }}">
-                            Task: Admin :: database :: drop_create only
-                        </a>
-                        <a class="dropdown-item"  href="{{ url_for( 'app_admin.url_admin_database_dump') }}">
-                            Task: Admin :: database :: dump
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_database_dump_reimport') }}">
-                            Task: Admin :: database :: dump :: reimport
-                        </a>
-                    </div>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_tasks') }}">
+                                Admin
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_tasks') }}">
+                                admin tasks
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_info') }}">
+                                admin info
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_index') }}">
+                                flask admin
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'app_admin.url_alive_message_start') }}">
+                                Task: Admin :: alive message
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_database_drop') }}">
+                                Task: Admin :: database :: drop_create and import
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_database_dropcreate_only') }}">
+                                Task: Admin :: database :: drop_create only
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"  href="{{ url_for( 'app_admin.url_admin_database_dump') }}">
+                                Task: Admin :: database :: dump
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_database_dump_reimport') }}">
+                                Task: Admin :: database :: dump :: reimport
+                            </a>
+                        </li>
+                    </ul>
                 </li>

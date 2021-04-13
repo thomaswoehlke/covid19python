@@ -137,7 +137,7 @@ requires_test = [
 ]
 
 requires_docs = [
-    	"alabaster==0.7.12",
+    "alabaster==0.7.12",
 	"babel==2.9.0",
 	"certifi==2020.12.5",
 	"cffi==1.14.5",
@@ -225,7 +225,7 @@ requires_dev = [
 	"filelock==3.0.12",
 	"flask-admin==1.5.7",
 	"flask-babel==2.0.0",
-	"flask-bs4==5.0.0.1",
+	"flask-bs4==4.5.3.0",
 	"flask-cors==3.0.10",
 	"flask-db==0.3.1",
 	"flask-fixtures==0.3.8",

@@ -1,26 +1,33 @@
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        OWID
+                <li class="dropdown">
+                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="javascript:void(0)">
+                        OWID<i class="glyphicon glyphicon-chevron-down small"></i>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item"
-                           href="{{ url_for( 'owid.url_owid_date_reported_all') }}">
-                            OWID Date Reported
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item"
-                           href="{{ url_for( 'owid.url_owid_imported') }}">
-                            OWID imported
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item"
-                           href="{{ url_for( 'owid.url_owid_info') }}">
-                            OWID Info
-                        </a>
-                        <a class="dropdown-item"
-                           href="{{ url_for( 'owid.url_owid_tasks') }}">
-                            OWID Tasks
-                        </a>
-                    </div>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'owid.url_owid_date_reported_all') }}">
+                                OWID Date Reported
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'owid.url_owid_imported') }}">
+                                OWID imported
+                            </a>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'owid.url_owid_info') }}">
+                                OWID Info
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'owid.url_owid_tasks') }}">
+                                OWID Tasks
+                            </a>
+                        </li>
+                    </ul>
                 </li>
