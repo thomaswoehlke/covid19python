@@ -11,6 +11,7 @@ class AdminService:
         app.logger.debug("------------------------------------------------------------")
         self.__database = database
         self.limit_nr = 20
+        self.file_path = '..'+os.sep+'data'+os.sep+'db'+os.sep+'covid19data.sql'
         app.logger.debug("------------------------------------------------------------")
         app.logger.info(" Admin Service [ready]")
 
@@ -25,10 +26,10 @@ class AdminService:
         url = app.config['SQLALCHEMY_POSTGRES_URL']
         db = app.config['SQLALCHEMY_POSTGRES_DB']
         cmd = 'pg_dump -U '+user+' -h '+url+' '+db\
-              +' --compress=9 --clean --if-exists --no-tablespaces '\
+              +' --clean --if-exists --no-tablespaces '\
               +' --on-conflict-do-nothing --rows-per-insert=200 --column-inserts '\
               +' --quote-all-identifiers --no-privileges > '\
-              + '..'+os.sep+'data'+os.sep+'db'+os.sep+'covid19data.sql.gz'
+              + self.file_path
         app.logger.info(" start: "+str(cmd))
         returncode = self.__run_ome_shell_command(cmd)
         app.logger.info(" result: " + str(returncode))
@@ -57,11 +58,8 @@ class AdminService:
         user = app.config['SQLALCHEMY_POSTGRES_USER']
         url = app.config['SQLALCHEMY_POSTGRES_URL']
         db = app.config['SQLALCHEMY_POSTGRES_DB']
-        file_path = '..' + os.sep + '..' + os.sep + 'data' + os.sep + 'db' + os.sep + 'covid19data.sql'
         cmd_list = [
-            'gunzip ' + file_path + '.gz',
-            'pgsql -U ' + user + ' -h ' + url + ' ' + db + ' < ' + file_path,
-            'gzip ' + file_path
+            'pgsql -U ' + user + ' -h ' + url + ' ' + db + ' < ' + self.file_path
         ]
         for cmd in cmd_list:
             returncode = self.__run_ome_shell_command(cmd)
