@@ -85,6 +85,8 @@ flask-db==0.3.1
     # via -r requirements/tests.in
 flask-fixtures==0.3.8
     # via -r requirements/tests.in
+flask-login==0.5.0
+    # via -r requirements/dev.in
 flask-sqlalchemy==2.5.1
     # via
     #   -r requirements/dev.in
@@ -101,6 +103,7 @@ flask==1.1.2
     #   flask-cors
     #   flask-db
     #   flask-fixtures
+    #   flask-login
     #   flask-sqlalchemy
     #   flask-wtf
     #   pytest-flask
