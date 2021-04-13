@@ -1,0 +1,21 @@
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser"
+                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        User
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'user.url_user_info') }}">
+                            User
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'user.url_user_info') }}">
+                            User Info
+                        </a>
+                        <a class="dropdown-item"
+                           href="{{ url_for( 'user.url_user_tasks') }}">
+                            User Tasks
+                        </a>
+                    </div>
+                </li>

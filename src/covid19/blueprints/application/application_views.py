@@ -19,6 +19,7 @@ from covid19.blueprints.rki.rki_landkreise.rki_landkreise_views import app_rki_l
 from covid19.blueprints.rki.rki_vaccination.rki_vaccination_views import app_rki_vaccination
 from covid19.blueprints.who.who_views import app_who
 from covid19.blueprints.owid.owid_views import app_owid
+from covid19.blueprints.user.user_views import app_user
 
 app_application = Blueprint('application', __name__, template_folder='templates', url_prefix='/')
 
@@ -30,6 +31,8 @@ app.register_blueprint(app_rki_landkreise, url_prefix='/rki/landkreise')
 app.register_blueprint(app_rki_vaccination, url_prefix='/rki/vaccination')
 app.register_blueprint(app_who, url_prefix='/who')
 app.register_blueprint(app_owid, url_prefix='/owid')
+app.register_blueprint(app_user, url_prefix='/user')
+
 
 ############################################################################################
 #
