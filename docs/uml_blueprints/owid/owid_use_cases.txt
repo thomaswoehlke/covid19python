@@ -32,7 +32,7 @@ package owid_celery_tasks {
 	usecase owid_task_update_starschema_initial as UC105
 	usecase owid_task_update_starschema_incremental as UC106
 }
-package owid_views_frontend_visual_data {
+package owid_views_frontend_visual_data_1 {
     usecase Biweekly_change_in_confirmed_COVID19_cases as UC200
     usecase Biweekly_change_in_confirmed_COVID19_deaths as UC201
     usecase Biweekly_confirmed_COVID19_cases as UC202
@@ -64,6 +64,8 @@ package owid_views_frontend_visual_data {
     usecase Cumulative_confirmed_COVID19_deaths_By_Region as UC228
     usecase Cumulative_confirmed_COVID19_deaths_and_cases as UC229
     usecase Cumulative_confirmed_COVID19_deaths_vs_cases as UC230
+}
+package owid_views_frontend_visual_data_2 {
     usecase Daily_COVID19_Tests as UC231
     usecase Daily_COVID19_Tests as UC232
     usecase Daily_COVID19_tests_per_thousand_people as UC233
@@ -73,65 +75,69 @@ package owid_views_frontend_visual_data {
     usecase Daily_and_Total_confirmed_COVID19_deaths as UC237
     usecase Daily_and_Total_confirmed_COVID19_deaths_per_million as UC238
     usecase Daily_confirmed_COVID19_casesMap_and_country_time_series as UC239
-    usecase Daily_confirmed_COVID19_casesStacked_area_chart__by_world_region as UC340
-    usecase Daily_confirmed_COVID19_cases_and_deaths as UC200
-    usecase Daily_confirmed_COVID19_cases_per_million_people as UC200
-    usecase Daily_confirmed_COVID19_cases_per_million__3day_rolling_average as UC200
-    usecase Daily_confirmed_COVID19_cases_per_million__which_countries_are_bending_the_curve__Trajectories as UC200
-    usecase Daily_confirmed_COVID19_cases__rolling_7day_average as UC200
-    usecase Daily_confirmed_COVID19_cases__which_countries_are_bending_the_curve as UC200
-    usecase Daily_confirmed_COVID19_deathsMap_and_time_series as UC200
-    usecase Daily_confirmed_COVID19_deathsBy_Region as UC200
-    usecase Daily_confirmed_COVID19_deaths_per_million_people as UC200
-    usecase Daily_confirmed_COVID19_deaths_per_million__3day_rolling_average as UC200
-    usecase Daily_confirmed_COVID19_deaths_per_million__rolling_7day_average as UC200
-    usecase Daily_confirmed_COVID19_deaths_per_million__which_countries_are_bending_the_curve__Trajectories as UC200
-    usecase Daily_confirmed_COVID19_deaths__rolling_7day_average as UC200
-    usecase Daily_confirmed_COVID19_deaths__which_countries_are_bending_the_curve__Trajectories as UC200
-    usecase Daily_new_confirmed_COVID19_cases_and_deaths as UC200
-    usecase Daily_new_confirmed_cases_of_COVID19 as UC200
-    usecase Daily_new_confirmed_cases_of_COVID19 as UC200
-    usecase Daily_new_confirmed_cases_of_COVID19_per_million_people as UC200
-    usecase Daily_new_estimated_COVID19_infections_from_the_ICL_model as UC200
-    usecase Daily_new_estimated_COVID19_infections_from_the_IHME_model as UC200
-    usecase Daily_new_estimated_COVID19_infections_from_the_LSHTM_model as UC200
-    usecase Daily_new_estimated_COVID19_infections_from_the_YYG_model as UC200
-    usecase Daily_new_estimated_infections_of_COVID19 as UC200
-    usecase Daily_tests_per_thousand_people_Since_Total_confirmed_cases_reached_1_per_million as UC200
-    usecase Daily_vs_Total_confirmed_COVID19_cases as UC200
-    usecase Daily_vs_Total_confirmed_COVID19_cases_per_million_people as UC200
-    usecase Daily_vs_Total_confirmed_COVID19_deaths_per_million as UC200
-    usecase Daily_vs_Cumulative_confirmed_deaths_due_to_COVID19 as UC200
-    usecase Debt_or_contract_relief_during_the_COVID19_pandemic as UC200
-    usecase Excess_mortality_during_COVID19__Deaths_from_all_causes_compared_to_previous_years__all_ages_P_scores as UC200
-    usecase Excess_mortality_during_COVID19__Deaths_from_all_causes_compared_to_previous_years__all_age_P_scores as UC200
-    usecase Excess_mortality_during_COVID19__Number_of_deaths_from_all_causes_compared_to_previous_years_Raw_death_counts as UC200
-    usecase Face_covering_policies_during_the_COVID19_pandemic as UC200
-    usecase Government_Response_Stringency_Index_vs_Biweekly_change_in_confirmed_COVID19_cases as UC200
-    usecase Grocery_and_pharmacy_stores__How_did_the_Number_of_visitors_change_since_the_beginning_of_the_pandemic as UC200
-    usecase How_did_the_Number_of_visitors_change_since_the_beginning_of_the_pandemic as UC200
-    usecase Income_support_during_the_COVID19_pandemic as UC200
-    usecase International_travel_controls_during_the_COVID19_pandemic as UC200
-    usecase Number_of_COVID19_patients_in_ICU_per_million as UC200
-    usecase Number_of_COVID19_patients_in_hospital as UC200
-    usecase Number_of_COVID19_patients_in_hospital_per_million as UC200
-    usecase Number_of_COVID19_patients_in_intensive_care__ICU as UC200
-    usecase Number_of_people_fully_vaccinated_against_COVID19 as UC200
-    usecase Number_of_people_who_received_at_least_one_dose_of_COVID19_vaccine as UC200
-    usecase Number_of_tests_per_confirmed_case_vs_Total_confirmed_COVID19_cases_per_million_people as UC200
-    usecase Parks_and_outdoor_spaces__How_did_the_Number_of_visitors_change_since_the_beginning_of_the_pandemic as UC200
-    usecase Per_capita__COVID19_tests_vs_Confirmed_deaths as UC200
-    usecase Per_capita__tests_for_COVID19_vs_Confirmed_cases as UC200
-    usecase Public_information_campaigns_on_the_COVID19_pandemic as UC200
-    usecase Public_transport_closures_during_the_COVID19_pandemic as UC200
-    usecase Residential_areas__How_did_the_time_spent_at_home_change_since_the_beginning_of_the_pandemic as UC200
-    usecase Restrictions_on_internal_movement_during_the_COVID19_pandemic as UC200
-    usecase Restrictions_on_public_gatherings_in_the_COVID19_pandemic as UC200
-    usecase Retail_and_recreation__How_did_the_Number_of_visitors_change_since_the_beginning_of_the_pandemic as UC200
-    usecase School_closures_during_the_COVID19_pandemic as UC200
-    usecase Share_of_COVID19_tests_that_were_positive_Over_time__since_5th_death_was_confirmed as UC200
-    usecase Share_of_people_who_received_at_least_one_dose_of_COVID19_vaccine as UC200
-    usecase Share_of_the_population_fully_vaccinated_against_COVID19 as UC200
+    usecase Daily_confirmed_COVID19_casesStacked_area_chart__by_world_region as UC240
+    usecase Daily_confirmed_COVID19_cases_and_deaths as UC241
+    usecase Daily_confirmed_COVID19_cases_per_million_people as UC242
+    usecase Daily_confirmed_COVID19_cases_per_million__3day_rolling_average as UC244
+    usecase Daily_confirmed_COVID19_cases_per_million__which_countries_are_bending_the_curve__Trajectories as UC245
+    usecase Daily_confirmed_COVID19_cases__rolling_7day_average as UC246
+    usecase Daily_confirmed_COVID19_cases__which_countries_are_bending_the_curve as UC247
+    usecase Daily_confirmed_COVID19_deathsMap_and_time_series as UC248
+    usecase Daily_confirmed_COVID19_deathsBy_Region as UC249
+    usecase Daily_confirmed_COVID19_deaths_per_million_people as UC250
+    usecase Daily_confirmed_COVID19_deaths_per_million__3day_rolling_average as UC251
+    usecase Daily_confirmed_COVID19_deaths_per_million__rolling_7day_average as UC252
+    usecase Daily_confirmed_COVID19_deaths_per_million__which_countries_are_bending_the_curve__Trajectories as UC253
+    usecase Daily_confirmed_COVID19_deaths__rolling_7day_average as UC254
+    usecase Daily_confirmed_COVID19_deaths__which_countries_are_bending_the_curve__Trajectories as UC255
+    usecase Daily_new_confirmed_COVID19_cases_and_deaths as UC256
+    usecase Daily_new_confirmed_cases_of_COVID19 as UC257
+    usecase Daily_new_confirmed_cases_of_COVID19 as UC258
+    usecase Daily_new_confirmed_cases_of_COVID19_per_million_people as UC259
+}
+package owid_views_frontend_visual_data_3 {
+    usecase Daily_new_estimated_COVID19_infections_from_the_ICL_model as UC260
+    usecase Daily_new_estimated_COVID19_infections_from_the_IHME_model as UC261
+    usecase Daily_new_estimated_COVID19_infections_from_the_LSHTM_model as UC262
+    usecase Daily_new_estimated_COVID19_infections_from_the_YYG_model as UC263
+    usecase Daily_new_estimated_infections_of_COVID19 as UC264
+    usecase Daily_tests_per_thousand_people_Since_Total_confirmed_cases_reached_1_per_million as UC265
+    usecase Daily_vs_Total_confirmed_COVID19_cases as UC266
+    usecase Daily_vs_Total_confirmed_COVID19_cases_per_million_people as UC267
+    usecase Daily_vs_Total_confirmed_COVID19_deaths_per_million as UC268
+    usecase Daily_vs_Cumulative_confirmed_deaths_due_to_COVID19 as UC269
+    usecase Debt_or_contract_relief_during_the_COVID19_pandemic as UC270
+    usecase Excess_mortality_during_COVID19__Deaths_from_all_causes_compared_to_previous_years__all_ages_P_scores as UC271
+    usecase Excess_mortality_during_COVID19__Deaths_from_all_causes_compared_to_previous_years__all_age_P_scores as UC272
+    usecase Excess_mortality_during_COVID19__Number_of_deaths_from_all_causes_compared_to_previous_years_Raw_death_counts as UC273
+    usecase Face_covering_policies_during_the_COVID19_pandemic as UC274
+    usecase Government_Response_Stringency_Index_vs_Biweekly_change_in_confirmed_COVID19_cases as UC275
+    usecase Grocery_and_pharmacy_stores__How_did_the_Number_of_visitors_change_since_the_beginning_of_the_pandemic as UC276
+    usecase How_did_the_Number_of_visitors_change_since_the_beginning_of_the_pandemic as UC277
+    usecase Income_support_during_the_COVID19_pandemic as UC278
+    usecase International_travel_controls_during_the_COVID19_pandemic as UC279
+    usecase Number_of_COVID19_patients_in_ICU_per_million as UC280
+    usecase Number_of_COVID19_patients_in_hospital as UC281
+    usecase Number_of_COVID19_patients_in_hospital_per_million as UC282
+    usecase Number_of_COVID19_patients_in_intensive_care__ICU as UC283
+    usecase Number_of_people_fully_vaccinated_against_COVID19 as UC284
+    usecase Number_of_people_who_received_at_least_one_dose_of_COVID19_vaccine as UC285
+    usecase Number_of_tests_per_confirmed_case_vs_Total_confirmed_COVID19_cases_per_million_people as UC286
+    usecase Parks_and_outdoor_spaces__How_did_the_Number_of_visitors_change_since_the_beginning_of_the_pandemic as UC287
+    usecase Per_capita__COVID19_tests_vs_Confirmed_deaths as UC288
+    usecase Per_capita__tests_for_COVID19_vs_Confirmed_cases as UC289
+}
+package owid_views_frontend_visual_data_4 {
+    usecase Public_information_campaigns_on_the_COVID19_pandemic as UC290
+    usecase Public_transport_closures_during_the_COVID19_pandemic as UC291
+    usecase Residential_areas__How_did_the_time_spent_at_home_change_since_the_beginning_of_the_pandemic as UC292
+    usecase Restrictions_on_internal_movement_during_the_COVID19_pandemic as UC293
+    usecase Restrictions_on_public_gatherings_in_the_COVID19_pandemic as UC294
+    usecase Retail_and_recreation__How_did_the_Number_of_visitors_change_since_the_beginning_of_the_pandemic as UC295
+    usecase School_closures_during_the_COVID19_pandemic as UC296
+    usecase Share_of_COVID19_tests_that_were_positive_Over_time__since_5th_death_was_confirmed as UC297
+    usecase Share_of_people_who_received_at_least_one_dose_of_COVID19_vaccine as UC298
+    usecase Share_of_the_population_fully_vaccinated_against_COVID19 as UC299
     usecase Share_of_Total_COVID19_tests_that_were_positive as UC200
     usecase Share_who_would_get_a_COVID19_vaccine_if_it_was_available_to_them_this_week as UC200
     usecase Stay_at_home_requirements_during_the_COVID19_pandemic as UC200
