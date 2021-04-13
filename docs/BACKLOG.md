@@ -270,7 +270,8 @@
 * Fixed #197 UML use cases for OWID reports and Visaul Data  
 
 ### 0.0.28 Release
-* ------------------------------------- 
+* Fixed #199 Database export without gzip
+* Fixed #200 Database import without gzip
 
 ### 0.0.29 Release
 * ------------------------------------- 
@@ -280,8 +281,6 @@
 
 ### 00 Inbox
 * ------------------------------------- 
-* Issue #199 Database export without gzip
-* Issue #200 Database import without gzip
 
 ### 01 Next
 * -------------------------------------
