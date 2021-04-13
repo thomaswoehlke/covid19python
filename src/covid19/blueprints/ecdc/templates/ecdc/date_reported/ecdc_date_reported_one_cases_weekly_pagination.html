@@ -3,7 +3,7 @@
                     {% if page_data.has_prev %}
                     <li class="page-item">
                         <a class="page-link"
-                           href="{{ url_for( 'europe.url_ecdc_date_reported_one_cases_weekly',
+                           href="{{ url_for( 'ecdc.url_ecdc_date_reported_one_cases_weekly',
                            europe_date_reported_id=europe_date_reported.id,
                            page=page_data.prev_num) }}">
                             Previous
@@ -15,7 +15,7 @@
                             {% if page_num != page_data.page %}
                                 <li class="page-item">
                                     <a class="page-link"
-                                       href="{{ url_for( 'europe.url_ecdc_date_reported_one_cases_weekly',
+                                       href="{{ url_for( 'ecdc.url_ecdc_date_reported_one_cases_weekly',
                                         europe_date_reported_id=europe_date_reported.id,
                                         page=page_num) }}">
                                         {{ page_num }}
@@ -35,7 +35,7 @@
                     {% if page_data.has_next %}
                     <li class="page-item">
                         <a class="page-link"
-                           href="{{ url_for( 'europe.url_ecdc_date_reported_one_cases_weekly',
+                           href="{{ url_for( 'ecdc.url_ecdc_date_reported_one_cases_weekly',
                                         europe_date_reported_id=europe_date_reported.id, page=page_data.next_num) }}">
                             Next
                         </a>
