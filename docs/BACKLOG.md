@@ -280,6 +280,8 @@
 
 ### 00 Inbox
 * ------------------------------------- 
+* Issue #199 Database export without gzip
+* Issue #200 Database import without gzip
 
 ### 01 Next
 * -------------------------------------
