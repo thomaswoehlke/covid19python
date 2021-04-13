@@ -275,6 +275,7 @@
 
 ### 0.0.29 Release
 * Fixed #201 UML: blueprint user 
+* Issue #205 navbar is broken
 
 ### 0.0.30 Release
 * ------------------------------------- 
