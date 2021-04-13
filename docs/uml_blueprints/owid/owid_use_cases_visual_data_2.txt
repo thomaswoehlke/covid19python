@@ -6,34 +6,34 @@ package user {
 	actor Admin as au
 }
 package owid_views_frontend_visual_data_2 {
-    usecase Daily_COVID19_Tests as UC231
-    usecase Daily_COVID19_Tests as UC232
-    usecase Daily_COVID19_tests_per_thousand_people as UC233
-    usecase Daily_COVID19_tests_per_thousand_people_Rolling_7day_average as UC234
-    usecase Daily_COVID19_vaccine_doses_administered as UC235
-    usecase Daily_COVID19_vaccine_doses_administered_per_100_people as UC236
-    usecase Daily_and_Total_confirmed_COVID19_deaths as UC237
-    usecase Daily_and_Total_confirmed_COVID19_deaths_per_million as UC238
-    usecase Daily_confirmed_COVID19_casesMap_and_country_time_series as UC239
-    usecase Daily_confirmed_COVID19_casesStacked_area_chart__by_world_region as UC240
-    usecase Daily_confirmed_COVID19_cases_and_deaths as UC241
-    usecase Daily_confirmed_COVID19_cases_per_million_people as UC242
-    usecase Daily_confirmed_COVID19_cases_per_million__3day_rolling_average as UC244
-    usecase Daily_confirmed_COVID19_cases_per_million__which_countries_are_bending_the_curve__Trajectories as UC245
-    usecase Daily_confirmed_COVID19_cases__rolling_7day_average as UC246
-    usecase Daily_confirmed_COVID19_cases__which_countries_are_bending_the_curve as UC247
-    usecase Daily_confirmed_COVID19_deathsMap_and_time_series as UC248
-    usecase Daily_confirmed_COVID19_deathsBy_Region as UC249
-    usecase Daily_confirmed_COVID19_deaths_per_million_people as UC250
-    usecase Daily_confirmed_COVID19_deaths_per_million__3day_rolling_average as UC251
-    usecase Daily_confirmed_COVID19_deaths_per_million__rolling_7day_average as UC252
-    usecase Daily_confirmed_COVID19_deaths_per_million__which_countries_are_bending_the_curve__Trajectories as UC253
-    usecase Daily_confirmed_COVID19_deaths__rolling_7day_average as UC254
-    usecase Daily_confirmed_COVID19_deaths__which_countries_are_bending_the_curve__Trajectories as UC255
-    usecase Daily_new_confirmed_COVID19_cases_and_deaths as UC256
-    usecase Daily_new_confirmed_cases_of_COVID19 as UC257
-    usecase Daily_new_confirmed_cases_of_COVID19 as UC258
-    usecase Daily_new_confirmed_cases_of_COVID19_per_million_people as UC259
+    usecase owid_report_Daily_COVID19_Tests as UC231
+    usecase owid_report_Daily_COVID19_Tests as UC232
+    usecase owid_report_Daily_COVID19_tests_per_thousand_people as UC233
+    usecase owid_report_Daily_COVID19_tests_per_thousand_people_Rolling_7day_average as UC234
+    usecase owid_report_Daily_COVID19_vaccine_doses_administered as UC235
+    usecase owid_report_Daily_COVID19_vaccine_doses_administered_per_100_people as UC236
+    usecase owid_report_Daily_and_Total_confirmed_COVID19_deaths as UC237
+    usecase owid_report_Daily_and_Total_confirmed_COVID19_deaths_per_million as UC238
+    usecase owid_report_Daily_confirmed_COVID19_casesMap_and_country_time_series as UC239
+    usecase owid_report_Daily_confirmed_COVID19_casesStacked_area_chart__by_world_region as UC240
+    usecase owid_report_Daily_confirmed_COVID19_cases_and_deaths as UC241
+    usecase owid_report_Daily_confirmed_COVID19_cases_per_million_people as UC242
+    usecase owid_report_Daily_confirmed_COVID19_cases_per_million__3day_rolling_average as UC244
+    usecase owid_report_Daily_confirmed_COVID19_cases_per_million__which_countries_are_bending_the_curve__Trajectories as UC245
+    usecase owid_report_Daily_confirmed_COVID19_cases__rolling_7day_average as UC246
+    usecase owid_report_Daily_confirmed_COVID19_cases__which_countries_are_bending_the_curve as UC247
+    usecase owid_report_Daily_confirmed_COVID19_deathsMap_and_time_series as UC248
+    usecase owid_report_Daily_confirmed_COVID19_deathsBy_Region as UC249
+    usecase owid_report_Daily_confirmed_COVID19_deaths_per_million_people as UC250
+    usecase owid_report_Daily_confirmed_COVID19_deaths_per_million__3day_rolling_average as UC251
+    usecase owid_report_Daily_confirmed_COVID19_deaths_per_million__rolling_7day_average as UC252
+    usecase owid_report_Daily_confirmed_COVID19_deaths_per_million__which_countries_are_bending_the_curve__Trajectories as UC253
+    usecase owid_report_Daily_confirmed_COVID19_deaths__rolling_7day_average as UC254
+    usecase owid_report_Daily_confirmed_COVID19_deaths__which_countries_are_bending_the_curve__Trajectories as UC255
+    usecase owid_report_Daily_new_confirmed_COVID19_cases_and_deaths as UC256
+    usecase owid_report_Daily_new_confirmed_cases_of_COVID19 as UC257
+    usecase owid_report_Daily_new_confirmed_cases_of_COVID19 as UC258
+    usecase owid_report_Daily_new_confirmed_cases_of_COVID19_per_million_people as UC259
 }
 vu --> UC231
 vu --> UC232
