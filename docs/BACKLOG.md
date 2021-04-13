@@ -277,15 +277,14 @@
 * Fixed #201 UML: blueprint user 
 * Fixed #205 navbar is broken
 * Fixed #202 add blueprint user
-
+* Fixed #203 find python module for blueprint user
+* Fixed #204 add python module for blueprint user
 
 ### 0.0.30 Release
 * ------------------------------------- 
 
 ### 00 Inbox
 * -------------------------------------
-* Issue #203 find python module for blueprint user
-* Issue #204 add python module for blueprint user
 
 ### 01 Next
 * -------------------------------------
