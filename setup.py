@@ -326,6 +326,7 @@ requires_dev = [
 	"flask-cors==3.0.10",
 	"flask-db==0.3.1",
 	"flask-fixtures==0.3.8",
+	"Flask-Login==0.5.0",
 	"flask-sqlalchemy==2.5.1",
 	"flask-wtf==0.14.3",
 	"flask==1.1.2",
