@@ -4,6 +4,7 @@ from celery import states
 from celery.utils.log import get_task_logger
 from flask_admin.contrib.sqla import ModelView
 from flask_login import AnonymousUserMixin, login_required, login_user
+import flask
 
 
 from database import app, admin, db, login_manager
@@ -23,7 +24,15 @@ admin.add_view(ModelView(User, db.session, category="usr"))
 # URLs Login and Logout
 # ---------------------------------------------------------------------------------------------------------------
 
-@app_user.route('/login', methods=['GET', 'POST'])
+@app_user.route('/login', methods=['GET'])
+def loginForm():
+    # Here we use a class of some kind to represent and validate our
+    # client-side form data. For example, WTForms is a library that will
+    # handle this for us, and we use a custom LoginForm to validate.
+    form = LoginForm()
+    return flask.render_template('login.html', form=form)
+
+@app_user.route('/login', methods=['POST'])
 def login():
     # Here we use a class of some kind to represent and validate our
     # client-side form data. For example, WTForms is a library that will
@@ -34,9 +43,7 @@ def login():
         # usr should be an instance of your `User` class
         user = user_service.get_user_from_login_form(form)
         login_user(user)
-
-        flask.flash('Logged in successfully.')
-
+        flash('Logged in successfully.')
         next = flask.request.args.get('next')
         # is_safe_url should check if the url is safe for redirects.
         # See http://flask.pocoo.org/snippets/62/ for an example.
