@@ -42,7 +42,8 @@ class User(UserMixin, db.Model):
 
     @classmethod
     def get_by_id(cls, other_id):
-        return db.session.query(cls).filter(cls.id == other_id).one()
+        my_other_id = int(other_id)
+        return db.session.query(cls).filter(cls.id == my_other_id).one()
 
 
 class AnonymousUserValueObject(AnonymousUserMixin):

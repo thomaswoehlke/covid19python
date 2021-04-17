@@ -58,28 +58,22 @@ def profile():
     return flask.render_template('usr/profile.html', page_info=page_info)
 
 
-@app_user.route("/settings")
-@login_required
-def settings():
-    pass
-
-
 @app_user.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect("usr.login")
+    return redirect(url_for('usr.login'))
 
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    return User.get_by_id(user_id)
 
 
 @login_manager.unauthorized_handler
 def unauthorized():
     flash("not authorized")
-    return redirect("usr.login")
+    return redirect(url_for('usr.login'))
 
 # ---------------------------------------------------------------------------------------------------------------
 #  Url Routes Frontend
