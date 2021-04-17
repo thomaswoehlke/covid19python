@@ -66,6 +66,10 @@ cycler==0.10.0
     # via matplotlib
 distlib==0.3.1
     # via virtualenv
+dnspython==2.1.0
+    # via
+    #   -r requirements/dev.in
+    #   email-validator
 docutils==0.17
     # via
     #   -r requirements/build.in
@@ -73,6 +77,8 @@ docutils==0.17
     #   sphinx
 dominate==2.6.0
     # via flask-bs4
+email-validator==1.1.2
+    # via -r requirements/dev.in
 filelock==3.0.12
     # via virtualenv
 flask-admin==1.5.7
@@ -94,7 +100,9 @@ flask-sqlalchemy==2.5.1
     #   flask-fixtures
     #   pytest-flask-sqlalchemy
 flask-wtf==0.14.3
-    # via flask-bs4
+    # via
+    #   -r requirements/dev.in
+    #   flask-bs4
 flask==1.1.2
     # via
     #   -r requirements/dev.in
@@ -118,7 +126,9 @@ identify==2.2.2
     #   -r requirements/build.in
     #   pre-commit
 idna==2.10
-    # via requests
+    # via
+    #   email-validator
+    #   requests
 imagesize==1.2.0
     # via sphinx
 importlib-metadata==3.10.0
