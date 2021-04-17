@@ -18,30 +18,25 @@ function pip_compile() {
 }
 
 function pip_install() {
-  pip install -r requirements/build.in  --log logfile1.txt
-  pip install -r requirements/docs.in  --log logfile2.txt
-  pip install -r requirements/tests.in --log logfile3.txt
-  pip install -r requirements/dev.in --log logfile4.txt
+  pip install -r requirements/build.in
+  pip install -r requirements/docs.in
+  pip install -r requirements/tests.in
+  pip install -r requirements/dev.in
   pip check
 }
 
 function pip_install_via_setup_py() {
+  python setup.py develop
   pip install -e .
-  # pip install -e . --compile --force-reinstall --progress-bar pretty --log logfile5.txt
-  # pip install -e . --compile --progress-bar pretty --log logfile5.txt
   pip check
 }
 
 function build_wheel() {
-  python -m build --wheel
-  pip check
-}
-
-function foo(){
   python -m pip install --upgrade pip
   pip install setuptools wheel twine
   python setup.py sdist bdist_wheel
-  # twine upload dist/*
+  python -m build --wheel
+  pip check
 }
 
 function main() {
@@ -49,7 +44,6 @@ function main() {
   pip_compile
   pip_install
   pip_install_via_setup_py
-  foo
   build_wheel
 }
 
