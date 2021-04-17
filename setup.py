@@ -97,6 +97,7 @@ requires_build = [
 	"webencodings==0.5.1",
 	"wheel==0.36.2",
 	"zipp==3.4.1",
+	"Flask-WTF==0.14.3"
 ]
 
 requires_test = [

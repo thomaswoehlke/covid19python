@@ -5,6 +5,9 @@ from sqlalchemy.orm import joinedload
 from flask_login import UserMixin, AnonymousUserMixin
 from wtforms import Form, BooleanField, StringField, validators
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from covid19.blueprints.application.application_model import ApplicationDateReported, ApplicationRegion
 
 

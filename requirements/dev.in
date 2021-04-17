@@ -22,3 +22,4 @@ StatisticalDiagrams>=20.5
 Pillow>=8.1.1
 dnspython==2.1.0
 email-validator==1.1.2
+Flask-WTF==0.14.3
