@@ -31,7 +31,7 @@ app.register_blueprint(app_rki_landkreise, url_prefix='/rki/landkreise')
 app.register_blueprint(app_rki_vaccination, url_prefix='/rki/vaccination')
 app.register_blueprint(app_who, url_prefix='/who')
 app.register_blueprint(app_owid, url_prefix='/owid')
-app.register_blueprint(app_user, url_prefix='/user')
+app.register_blueprint(app_user, url_prefix='/usr')
 
 
 ############################################################################################
