@@ -1,4 +1,7 @@
-from sqlalchemy.orm import Load, load_only
+from sqlalchemy.orm import Load
+from sqlalchemy import func
+from sqlalchemy.orm import Bundle
+from sqlalchemy.orm.strategy_options import load_only
 from database import db, ITEMS_PER_PAGE
 
 
@@ -111,7 +114,7 @@ class WhoImport(db.Model):
     # TODO: #___ WhoImport.countries() SQLalchemy instead of SQL
     @classmethod
     def countries(cls):
-        return cls.__countries_sql()
+        return cls.__countries_orm()
 
     @classmethod
     def __countries_sql(cls):
@@ -126,4 +129,5 @@ class WhoImport(db.Model):
 
     @classmethod
     def __countries_orm(cls):
-        return db.session.query(cls).load_only("country_code", "country", "who_region").distinct().fetchall()
+        bu = Bundle('countries', cls.country_code, cls.country, cls.who_region)
+        return db.session.query(bu).distinct()

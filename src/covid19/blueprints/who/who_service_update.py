@@ -63,9 +63,9 @@ class WhoServiceUpdate:
         i = 0
         for result_item in result:
             i += 1
-            i_country_code = result_item.country_code
-            i_country = result_item.country
-            i_who_region = result_item.who_region
+            i_country_code = result_item.countries.country_code
+            i_country = result_item.countries.country
+            i_who_region = result_item.countries.who_region
             output = " [ " + str(i) + " ] " + i_country_code + " | " + i_country + " | " + i_who_region + " | "
             my_region = WhoRegion.find_by_region(i_who_region)
             my_country = WhoCountry.find_by_country_code_and_country_and_who_region_id(

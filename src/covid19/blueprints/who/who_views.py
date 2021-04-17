@@ -326,14 +326,11 @@ def url_who_germany(page: int = 1):
 @app_who.route('/mytest')
 def url_who_mytest():
     flash("url_who_mytest - Start")
-    who_import_countries = WhoImport.countries()
     i = 0
-    for c in who_import_countries:
+    for c in WhoImport.countries():
         i += 1
-        app_who.logger.info(i)
-        app_who.logger.info(c['country_code'])
-        app_who.logger.info(c['country'])
-        app_who.logger.info(c['who_region'])
+        line = " | " + str(i) + " | " + c.countries.country_code + " | " + c.countries.country + " | " + c.countries.who_region + " | "
+        app.logger.info(line)
     flash("url_who_mytest - Done")
     return redirect(url_for('who.url_who_tasks'))
 
