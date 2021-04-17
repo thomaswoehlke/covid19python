@@ -51,8 +51,9 @@ class AnonymousUserValueObject(AnonymousUserMixin):
 
 class LoginForm(FlaskForm):
     email = StringField('Email Address', [validators.Length(min=6, max=35), validators.Email(), validators.InputRequired()])
-    password = StringField('Password', [validators.Length(min=6, max=35), validators.InputRequired()])
+    password = PasswordField('Password', [validators.Length(min=6, max=35), validators.InputRequired()])
     accept_rules = BooleanField('I accept the site rules', [validators.InputRequired()])
+    remember_me = BooleanField('Remember me')
     submit = SubmitField('Login')
 
     def validate_on_submit(self):

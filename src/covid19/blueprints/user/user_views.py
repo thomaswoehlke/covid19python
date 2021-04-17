@@ -25,24 +25,15 @@ admin.add_view(ModelView(User, db.session, category="usr"))
 # URLs Login and Logout
 # ---------------------------------------------------------------------------------------------------------------
 
-@app_user.route('/login', methods=['GET'])
-def loginForm():
-    page_info = ApplicationPage('usr', "Login")
-    # Here we use a class of some kind to represent and validate our
-    # client-side form data. For example, WTForms is a library that will
-    # handle this for us, and we use a custom LoginForm to validate.
-    form = LoginForm()
-    return flask.render_template('usr/login.html', form=form, page_info=page_info)
 
-
-@app_user.route('/login', methods=['POST'])
+@app_user.route('/login', methods=['GET', 'POST'])
 def login():
     page_info = ApplicationPage('usr', "Login")
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
@@ -51,29 +42,11 @@ def login():
     return flask.render_template('usr/login.html', form=form, page_info=page_info)
 
 
-    # Here we use a class of some kind to represent and validate our
-    # client-side form data. For example, WTForms is a library that will
-    # handle this for us, and we use a custom LoginForm to validate.
-    form = LoginForm()
-    if form.validate_on_submit():
-        # Login and validate the usr.
-        # usr should be an instance of your `User` class
-        user = user_service.get_user_from_login_form(form)
-        login_user(user)
-        flash('Logged in successfully.')
-        next = flask.request.args.get('next')
-        # is_safe_url should check if the url is safe for redirects.
-        # See http://flask.pocoo.org/snippets/62/ for an example.
-        if not is_safe_url(next):
-            return flask.abort(400)
-
-        return flask.redirect(next or flask.url_for('index'))
-    return flask.render_template('usr/login.html', form=form)
-
 @app_user.route("/settings")
 @login_required
 def settings():
     pass
+
 
 @app_user.route("/logout")
 @login_required
@@ -81,9 +54,11 @@ def logout():
     logout_user()
     return redirect("usr.login")
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
+
 
 @login_manager.unauthorized_handler
 def unauthorized():
