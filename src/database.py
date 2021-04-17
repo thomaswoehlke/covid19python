@@ -18,6 +18,7 @@ def create_app():
     my_app = Flask('covid19')
     app_cors.init_app(my_app)
     app_bootstrap.init_app(my_app)
+    login_manager.login_view = 'usr.login'
     login_manager.init_app(my_app)
     my_app.config.from_object("config")
     my_db_url = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(

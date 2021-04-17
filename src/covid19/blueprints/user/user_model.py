@@ -4,28 +4,23 @@ from database import db, ITEMS_PER_PAGE
 from sqlalchemy.orm import joinedload
 from flask_login import UserMixin, AnonymousUserMixin
 from wtforms import Form, BooleanField, StringField, validators
+from werkzeug.security import generate_password_hash, check_password_hash
 from covid19.blueprints.application.application_model import ApplicationDateReported, ApplicationRegion
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'usr'
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.Unicode, nullable=False, unique=True)
-    password = db.Column(db.String, nullable=False)
+    password_hash = db.Column(db.String, nullable=False)
     name = db.Column(db.String(1000), nullable=False)
 
-    def is_authenticated(self):
-        return True
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
 
-    def is_active(self):
-        return True
-
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        return self.email
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     @classmethod
     def remove_all(cls):
@@ -45,10 +40,6 @@ class User(db.Model):
     @classmethod
     def get_by_id(cls, other_id):
         return db.session.query(cls).filter(cls.id == other_id).one()
-
-
-class UserValueObject(UserMixin):
-    pass
 
 
 class AnonymousUserValueObject(AnonymousUserMixin):

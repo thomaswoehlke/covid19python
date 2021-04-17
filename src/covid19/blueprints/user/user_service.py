@@ -1,5 +1,6 @@
 from flask import flash
 from flask_login import login_manager
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from database import app
 from covid19.blueprints.user.user_model import User, LoginForm
