@@ -290,7 +290,7 @@
 * -------------------------------------    
 * Issue #195 RkiVaccinationImport.get_daterep_missing_in_vaccination_data(): native SQL to SQLalechemy Query
 * Issue #83  WhoImport.get_new_dates_as_array() SQLalchemy instead of SQL
-* Issue #219 WhoImport.countries() SQLalchemy instead of SQL
+* Fixed #219 WhoImport.countries() SQLalchemy instead of SQL
 * -------------------------------------
 * Issue #207 remove deprecated: database.port
 * Issue #208 remove deprecated: database.run_run_with_debug
