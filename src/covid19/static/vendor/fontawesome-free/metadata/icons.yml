@@ -6949,7 +6949,7 @@ female:
       - human
       - person
       - profile
-      - usr
+      - user
       - woman
   styles:
     - solid
@@ -12074,7 +12074,7 @@ male:
       - man
       - person
       - profile
-      - usr
+      - user
   styles:
     - solid
   unicode: f183
