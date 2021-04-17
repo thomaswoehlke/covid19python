@@ -44,7 +44,7 @@ function main() {
   pip_compile
   pip_install
   pip_install_via_setup_py
-  build_wheel
+  #build_wheel
 }
 
 main
