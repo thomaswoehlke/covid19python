@@ -3,6 +3,7 @@ from flask import Flask, logging
 from flask_cors import CORS
 from flask_bs4 import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 from logging.config import dictConfig
 from flask_admin import Admin
 from celery import Celery
@@ -11,12 +12,13 @@ from celery.utils.log import LoggingProxy
 # cache = Cache(config={"CACHE_TYPE": "simple"})
 app_cors = CORS()
 app_bootstrap = Bootstrap()
-
+login_manager = LoginManager()
 
 def create_app():
     my_app = Flask('covid19')
     app_cors.init_app(my_app)
     app_bootstrap.init_app(my_app)
+    login_manager.init_app(my_app)
     my_app.config.from_object("config")
     my_db_url = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
         user=my_app.config['SQLALCHEMY_POSTGRES_USER'],

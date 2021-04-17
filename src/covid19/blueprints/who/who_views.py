@@ -3,6 +3,7 @@ from sqlalchemy.exc import OperationalError
 from celery import states
 from celery.utils.log import get_task_logger
 from flask_admin.contrib.sqla import ModelView
+from flask_login import login_required
 
 from database import app, admin, db
 from covid19.blueprints.application.application_services import who_service
@@ -36,6 +37,7 @@ def url_who_info():
 
 
 @app_who.route('/tasks')
+@login_required
 def url_who_tasks():
     page_info = ApplicationPage('WHO', "Tasks")
     return render_template(
@@ -45,6 +47,7 @@ def url_who_tasks():
 
 @app_who.route('/imported/page/<int:page>')
 @app_who.route('/imported')
+@login_required
 def url_who_imported(page=1):
     page_info = ApplicationPage('WHO', "Last Import")
     try:
@@ -420,6 +423,7 @@ def task_who_update_star_schema_initial(self):
 
 
 @app_who.route('/task/download/only')
+@login_required
 def url_task_who_download_only():
     app.logger.info("url_who_task_download_only [start]")
     who_service.run_download_only()
@@ -429,6 +433,7 @@ def url_task_who_download_only():
 
 
 @app_who.route('/task/import/only')
+@login_required
 def url_task_who_import_only():
     app.logger.info("url_who_update_run [start]")
     task_who_import_only.apply_async()
@@ -439,6 +444,7 @@ def url_task_who_import_only():
 
 
 @app_who.route('/task/update/dimension-tables/only')
+@login_required
 def url_task_who_update_dimension_tables_only():
     app.logger.info("url_task_who_update_dimension_tables_only [start]")
     task_who_update_dimension_tables_only.apply_async()
@@ -449,6 +455,7 @@ def url_task_who_update_dimension_tables_only():
 
 
 @app_who.route('/task/update/fact-table/incremental/only')
+@login_required
 def url_task_who_update_fact_table_incremental_only():
     app.logger.info("url_task_who_update_fact_table_incremental_only [start]")
     task_who_update_fact_table_incremental_only.apply_async()
@@ -459,6 +466,7 @@ def url_task_who_update_fact_table_incremental_only():
 
 
 @app_who.route('/task/update/fact-table/initial/only')
+@login_required
 def url_task_who_update_fact_table_initial_only():
     app.logger.info("url_task_who_update_fact_table_initial_only [start]")
     task_who_update_fact_table_initial_only.apply_async()
@@ -469,6 +477,7 @@ def url_task_who_update_fact_table_initial_only():
 
 
 @app_who.route('/task/update/star_schema/initial')
+@login_required
 def url_task_who_update_star_schema_initial():
     app.logger.info("url_who_task_update_full [start]")
     who_service.run_download_only()
@@ -481,6 +490,7 @@ def url_task_who_update_star_schema_initial():
 
 
 @app_who.route('/task/update/star_schema/incremental')
+@login_required
 def url_task_who_update_star_schema_incremental():
     app.logger.info("url_task_who_update_star_schema_incremental [start]")
     who_service.run_download_only()
