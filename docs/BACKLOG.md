@@ -285,17 +285,22 @@
 
 ### 0.0.31 Release
 * -------------------------------------
+* Fixed #211 ECDC-templates: change URL to for_url()
+* Fixed #213 WHO-template: change URL to for_url() 
+* -------------------------------------    
 * Issue #195 RkiVaccinationImport.get_daterep_missing_in_vaccination_data(): native SQL to SQLalechemy Query
-* Issue #196 OwidImport.get_new_dates_reported_as_array() needs implementation
-* Issue #82 WhoImport.get_new_dates_as_array() BUG: change to ORM ClassHierarchy
 * Issue #83 WhoImport.get_new_dates_as_array() SQLalchemy instead of SQL
+* -------------------------------------
 * Issue #207 remove deprecated: database.port
 * Issue #208 remove deprecated: database.run_run_with_debug
-* Issue #209 remove deprecated database.ITEMS_PER_PAGE
+* Issue #209 remove deprecated: database.ITEMS_PER_PAGE
+* -------------------------------------  
 * Issue #210 database.py: logging for Celery on Windows
-* Fixed #211 ECDC-templates: change URL to for_url()
+*-------------------------------------
+* Issue #196 OwidImport.get_new_dates_reported_as_array() needs implementation
+* -------------------------------------
 * Issue #212 implement OwidService.task_database_drop_create()
-* Fixed #213 WHO-template: change URL to for_url() 
+* -------------------------------------
 * Issue #214 implement OwidServiceUpdate.update_dimension_tables_only()
 * Issue #215 implement OwidServiceUpdate.update_fact_table_incremental_only()
 * Issue #216 implement OwidServiceUpdate.update_fact_table_initial_only()
