@@ -1,44 +1,43 @@
     <table class="table table-hover table-striped table-dark">
         <thead class="table-secondary">
             <tr>
-                <!-- TODO: #213 WHO-template: change URL to for_url() -->
                 <th scope="col">
-                    <a href="/who/date_reported/all">
+                    <a href="{{ url_for('who.url_who_date_reported_all') }}">
                         date reported
                     </a>
                 </th>
-                <th scope="col">
-                    <a href="/who/date_reported/{{ who_date_reported.id }}/deaths_new">
+                <th scope="col"> who.
+                    <a href="{{ url_for('who.url_who_date_reported_deaths_new', date_reported_id=who_date_reported.id) }}">
                     deaths new
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/who/date_reported/{{ who_date_reported.id }}/cases_new">
+                    <a href="{{ url_for('who.url_who_date_reported_cases_new', date_reported_id=who_date_reported.id) }}">
                     cases new
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/who/date_reported/{{ who_date_reported.id }}/deaths_cumulative">
+                    <a href="{{ url_for('who.url_who_date_reported_deaths_cumulative', date_reported_id=who_date_reported.id) }}">
                     deaths cumulative
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/who/date_reported/{{ who_date_reported.id }}/cases_cumulative">
+                    <a href="{{ url_for('who.url_who_date_reported_cases_cumulative', date_reported_id=who_date_reported.id) }}">
                     cases cumulative
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/who/country/all">
+                    <a href="{{ url_for('who.url_who_country_all') }}">
                         country code
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/who/country/all">
+                    <a href="{{ url_for('who.url_who_country_all') }}">
                         country
                     </a>
                 </th>
                 <th scope="col">
-                    <a href="/who/region/all">
+                    <a href="{{ url_for('who.url_who_region_all') }}">
                         region
                     </a>
                 </th>
@@ -48,7 +47,7 @@
         {% for who_global_data in page_data.items %}
             <tr>
                 <th>
-                    <a href="/who/date_reported/{{ who_global_data.date_reported.id }}">
+                    <a href="{{ url_for('who.url_who_date_reported', date_reported_id=who_global_data.date_reported.id) }}">
                         {{ who_global_data.date_reported }}
                     </a>
                 </th>
@@ -65,17 +64,17 @@
                     {{ who_global_data.cases_cumulative }}
                 </td>
                 <td>
-                    <a href="/who/country/{{ who_global_data.country.id }}">
+                    <a href="{{ url_for('who.url_who_country', country_id=who_global_data.country.id ) }}">
                         {{ who_global_data.country.country_code }}
                     </a>
                 </td>
                 <td>
-                    <a href="/who/country/{{ who_global_data.country.id }}">
+                    <a href="{{ url_for('who.url_who_country', country_id=who_global_data.country.id) }}">
                         {{ who_global_data.country.country }}
                     </a>
                 </td>
                 <th>
-                    <a href="/who/region/{{ who_global_data.country.region.id }}">
+                    <a href="{{ url_for('who.url_who_region', region_id=who_global_data.country.region.id) }}">
                         {{ who_global_data.country.region.region }}
                     </a>
                 </th>

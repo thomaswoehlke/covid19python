@@ -295,7 +295,7 @@
 * Issue #210 database.py: logging for Celery on Windows
 * Issue #211 ECDC-templates: change URL to for_url() 
 * Issue #212 implement OwidService.task_database_drop_create()
-* Issue #213 WHO-template: change URL to for_url() 
+* Fixed #213 WHO-template: change URL to for_url() 
 * Issue #214 implement OwidServiceUpdate.update_dimension_tables_only()
 * Issue #215 implement OwidServiceUpdate.update_fact_table_incremental_only()
 * Issue #216 implement OwidServiceUpdate.update_fact_table_initial_only()
