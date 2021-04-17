@@ -73,7 +73,6 @@ class WhoImport(db.Model):
 
     @classmethod
     def get_new_dates_as_array(cls):
-        # TODO: #82 WhoImport.get_new_dates_as_array() BUG: change to ORM ClassHierarchy
         # TODO: #83 WhoImport.get_new_dates_as_array() SQLalchemy instead of SQL
         sql_query = """
             select
@@ -110,6 +109,7 @@ class WhoImport(db.Model):
 
     @classmethod
     def countries(cls):
+        # TODO: #___ WhoImport.countries() SQLalchemy instead of SQL
         sql_query = """
             select distinct 
                 application__import__who.country_code,
