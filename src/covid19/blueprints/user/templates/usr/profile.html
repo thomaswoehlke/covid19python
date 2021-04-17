@@ -1,0 +1,18 @@
+{% extends 'application/page_layout.html' %}
+
+{% block content %}
+    {{super()}}
+    {% include 'who/navigation/who_navtabs.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Hi, {{ current_user.username }}!</h1>
+            </div>
+         </div>
+     </div>
+{% endblock %}
+
+
+
+

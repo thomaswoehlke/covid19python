@@ -35,9 +35,8 @@
                             {% endfor %}
                         </div>
                         <div class="form-group ">
-                            {{ form.accept_rules.label(class="control-label",required=True) }}
-                            <strong style="color: red">&#42;</strong>
-                            {{ form.accept_rules(class="form-control") }}
+                            {{ form.remember_me.label(class="control-label") }}
+                            {{ form.remember_me(class="form-control") }}
                             {% for error in form.accept_rules.errors %}
                             <span style="color: red;">[{{ error }}]</span>
                             {% endfor %}

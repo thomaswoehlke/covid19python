@@ -26,20 +26,36 @@ admin.add_view(ModelView(User, db.session, category="usr"))
 # ---------------------------------------------------------------------------------------------------------------
 
 
-@app_user.route('/login', methods=['GET', 'POST'])
+@app_user.route('/login', methods=['GET'])
+def login_form():
+    page_info = ApplicationPage('usr', "Login")
+    if current_user.is_authenticated:
+        return redirect(url_for('usr.profile'))
+    form = LoginForm()
+    return flask.render_template('usr/login.html', form=form, page_info=page_info)
+
+
+@app_user.route('/login', methods=['POST'])
 def login():
     page_info = ApplicationPage('usr', "Login")
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('usr.profile'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
-            return redirect(url_for('login'))
+            return redirect(url_for('usr.login'))
         login_user(user, remember=form.remember_me.data)
-        return redirect(url_for('index'))
+        return redirect(url_for('usr.profile'))
     return flask.render_template('usr/login.html', form=form, page_info=page_info)
+
+
+@app_user.route("/profile")
+@login_required
+def profile():
+    page_info = ApplicationPage('usr', "profile")
+    return flask.render_template('usr/profile.html', page_info=page_info)
 
 
 @app_user.route("/settings")
