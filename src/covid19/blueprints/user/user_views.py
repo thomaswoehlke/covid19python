@@ -3,7 +3,7 @@ from sqlalchemy.exc import OperationalError
 from celery import states
 from celery.utils.log import get_task_logger
 from flask_admin.contrib.sqla import ModelView
-from flask_login import AnonymousUserMixin, login_required, login_user
+from flask_login import AnonymousUserMixin, login_required, login_user, logout_user
 import flask
 
 
@@ -26,7 +26,7 @@ admin.add_view(ModelView(User, db.session, category="usr"))
 
 @app_user.route('/login', methods=['GET'])
 def loginForm():
-    page_info = ApplicationPage('usr', "Info")
+    page_info = ApplicationPage('usr', "Login")
     # Here we use a class of some kind to represent and validate our
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.

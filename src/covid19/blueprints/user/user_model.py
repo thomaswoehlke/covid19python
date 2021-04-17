@@ -13,7 +13,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.Unicode, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
-    accept_rules = db.Column(db.Boolean, nullable=False)
+    name = db.Column(db.String(1000), nullable=False)
 
     def is_authenticated(self):
         return True
