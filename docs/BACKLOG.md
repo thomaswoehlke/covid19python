@@ -293,7 +293,7 @@
 * Issue #208 remove deprecated: database.run_run_with_debug
 * Issue #209 remove deprecated database.ITEMS_PER_PAGE
 * Issue #210 database.py: logging for Celery on Windows
-* Fixed #211 ECDC-templates: change URL to for_url() 
+* Fixed #211 ECDC-templates: change URL to for_url()
 * Issue #212 implement OwidService.task_database_drop_create()
 * Fixed #213 WHO-template: change URL to for_url() 
 * Issue #214 implement OwidServiceUpdate.update_dimension_tables_only()
@@ -301,6 +301,7 @@
 * Issue #216 implement OwidServiceUpdate.update_fact_table_initial_only()
 * Issue #217 implement OwidServiceUpdate.update_star_schema_incremental()
 * Issue #218 implement OwidServiceUpdate.update_star_schema_initial()
+
 
 
 ### 00 Inbox
