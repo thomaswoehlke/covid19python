@@ -281,8 +281,7 @@
 * Fixed #204 add python module for blueprint user
 
 ### 0.0.30 Release
-* ------------------------------------- 
-
+* Fixed #206 implement user login and authorization using blueprint user and flask-login
 
 ### 00 Inbox
 * -------------------------------------
