@@ -26,11 +26,12 @@ admin.add_view(ModelView(User, db.session, category="usr"))
 
 @app_user.route('/login', methods=['GET'])
 def loginForm():
+    page_info = ApplicationPage('usr', "Info")
     # Here we use a class of some kind to represent and validate our
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.
     form = LoginForm()
-    return flask.render_template('login.html', form=form)
+    return flask.render_template('usr/login.html', form=form, page_info=page_info)
 
 @app_user.route('/login', methods=['POST'])
 def login():
@@ -51,7 +52,7 @@ def login():
             return flask.abort(400)
 
         return flask.redirect(next or flask.url_for('index'))
-    return flask.render_template('login.html', form=form)
+    return flask.render_template('usr/login.html', form=form)
 
 @app_user.route("/settings")
 @login_required
