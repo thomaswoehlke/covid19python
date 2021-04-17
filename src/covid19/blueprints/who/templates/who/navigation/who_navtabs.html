@@ -8,10 +8,12 @@
                         <a class="nav-link"
                            href="{{ url_for( 'who.url_who_info') }}">WHO Info</a>
                     </li>
+                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link"
                            href="{{ url_for( 'who.url_who_tasks') }}">WHO tasks</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link"
                            href="{{ url_for( 'who.url_who_date_reported_all') }}">WHO Date Reported</a>
@@ -28,10 +30,12 @@
                         <a class="nav-link"
                            href="{{ url_for( 'who.url_who_country_all') }}">WHO Countries</a>
                     </li>
+                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link"
                            href="{{ url_for( 'who.url_who_imported') }}">WHO imported</a>
                     </li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>

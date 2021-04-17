@@ -8,10 +8,12 @@
                         <a class="nav-link"
                            href="{{ url_for( 'usr.url_user_info') }}">User Info</a>
                     </li>
+                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link"
                            href="{{ url_for( 'usr.url_user_tasks') }}">User tasks</a>
                     </li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>

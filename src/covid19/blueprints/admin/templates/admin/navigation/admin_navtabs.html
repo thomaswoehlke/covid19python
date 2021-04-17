@@ -8,10 +8,12 @@
                             <a class="nav-link"
                                href="{{ url_for( 'app_admin.url_admin_info') }}">admin Info</a>
                         </li>
+                        {% if current_user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link"
                                href="{{ url_for( 'app_admin.url_admin_tasks') }}">admin tasks</a>
                         </li>
+                        {% endif %}
                         <li class="nav-item">
                             <a class="nav-link"
                                href="{{ url_for( 'app_admin.url_admin_index') }}">flask admin</a>

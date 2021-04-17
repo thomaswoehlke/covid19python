@@ -6,10 +6,12 @@
                         <a class="nav-link"
                            href="{{ url_for( 'ecdc.url_ecdc_info') }}">ECDC Info</a>
                     </li>
+                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link"
                            href="{{ url_for( 'ecdc.url_ecdc_tasks') }}">ECDC tasks</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link"
                            href="{{ url_for( 'ecdc.url_ecdc_date_reported_all') }}">
@@ -28,10 +30,12 @@
                         <a class="nav-link"
                            href="{{ url_for( 'ecdc.url_ecdc_country_all') }}">ECDC country</a>
                     </li>
+                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link"
                            href="{{ url_for( 'ecdc.url_ecdc_data_imported') }}">ECDC imported</a>
                     </li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>

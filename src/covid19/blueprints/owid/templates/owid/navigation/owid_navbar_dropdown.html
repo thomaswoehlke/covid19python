@@ -12,11 +12,6 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ url_for( 'owid.url_owid_imported') }}">
-                                OWID imported
-                            </a>
-                        </li>
-                        <li>
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
@@ -24,10 +19,17 @@
                                 OWID Info
                             </a>
                         </li>
+                        {% if current_user.is_authenticated %}
                         <li>
                             <a class="dropdown-item" href="{{ url_for( 'owid.url_owid_tasks') }}">
                                 OWID Tasks
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url_for( 'owid.url_owid_imported') }}">
+                                OWID imported
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </li>

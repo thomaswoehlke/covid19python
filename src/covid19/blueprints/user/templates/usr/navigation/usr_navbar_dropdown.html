@@ -18,11 +18,13 @@
                                 User Info
                             </a>
                         </li>
+                        {% if current_user.is_authenticated %}
                         <li>
                             <a class="dropdown-item"
                                href="{{ url_for( 'usr.url_user_tasks') }}">
                                 User Tasks
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                 </li>

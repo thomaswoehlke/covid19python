@@ -4,18 +4,20 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_tasks') }}">
+                            <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_info') }}">
                                 Admin
                             </a>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
+                        {% if current_user.is_authenticated %}
                         <li>
                             <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_tasks') }}">
                                 admin tasks
                             </a>
                         </li>
+                        {% endif %}
                         <li>
                             <a class="dropdown-item" href="{{ url_for( 'app_admin.url_admin_info') }}">
                                 admin info
@@ -26,6 +28,7 @@
                                 flask admin
                             </a>
                         </li>
+                        {% if current_user.is_authenticated %}
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
@@ -57,5 +60,6 @@
                                 Task: Admin :: database :: dump :: reimport
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                 </li>
