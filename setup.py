@@ -119,6 +119,8 @@ requires_test = [
 	"flask-db==0.3.1",
 	"flask-fixtures==0.3.8",
 	"flask-sqlalchemy==2.4.4",
+	"dnspython==2.1.0",
+	"email-validator==1.1.2",
 	"flask==1.1.2",
 	"identify==2.2.2",
 	"idna==2.10",

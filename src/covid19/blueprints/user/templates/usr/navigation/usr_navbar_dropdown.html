@@ -26,5 +26,16 @@
                             </a>
                         </li>
                         {% endif %}
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ url_for( 'usr.login') }}">Login</a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ url_for( 'usr.logout') }}">Logout</a>
+                        </li>
+                        {% endif %}
+
                     </ul>
                 </li>
