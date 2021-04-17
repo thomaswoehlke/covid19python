@@ -25,7 +25,7 @@ class User(db.Model):
         return False
 
     def get_id(self):
-        return usr_unicode_id
+        return self.email
 
     @classmethod
     def remove_all(cls):
@@ -54,10 +54,11 @@ class UserValueObject(UserMixin):
 class AnonymousUserValueObject(AnonymousUserMixin):
     pass
 
+
 class LoginForm(Form):
     email = StringField('Email Address', [validators.Length(min=6, max=35), validators.Email(), validators.InputRequired()])
     password = StringField('Password', [validators.Length(min=6, max=35), validators.InputRequired()])
     accept_rules = BooleanField('I accept the site rules', [validators.InputRequired()])
 
-    def validate_on_submit():
-        pass
+    def validate_on_submit(self):
+        return True
