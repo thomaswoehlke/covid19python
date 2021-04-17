@@ -1,3 +1,4 @@
+# TODO: #210 database.py: logging for Celery on Windows
 from flask import Flask, logging
 # from flask_caching import Cache
 from flask_cors import CORS
@@ -7,12 +8,14 @@ from flask_login import LoginManager
 from logging.config import dictConfig
 from flask_admin import Admin
 from celery import Celery
+# TODO: #210 database.py: logging for Celery on Windows
 from celery.utils.log import LoggingProxy
 
 # cache = Cache(config={"CACHE_TYPE": "simple"})
 app_cors = CORS()
 app_bootstrap = Bootstrap()
 login_manager = LoginManager()
+
 
 def create_app():
     my_app = Flask('covid19')
@@ -79,13 +82,14 @@ app = create_app()
 db = create_db(app)
 admin = create_admin(app)
 
-# TODO: deprecated
+# TODO: #207 remove deprecated: database.port
 port = app.config['PORT']
-# TODO: deprecated
+# TODO: #208 remove deprecated: database.run_run_with_debug
 run_run_with_debug = app.config['FLASK_APP_DEBUGGER_ACTIVE']
-# TODO: deprecated
+# TODO: #209 remove deprecated database.ITEMS_PER_PAGE
 ITEMS_PER_PAGE = app.config['SQLALCHEMY_ITEMS_PER_PAGE']
 
+# TODO: #210 database.py: logging for Celery on Windows
 my_logging_config = {
         'version': 1,
         'formatters': {'default': {

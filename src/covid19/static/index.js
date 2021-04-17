@@ -1,5 +1,5 @@
 import "/static/vendor/bootswatch/superhero/bootstrap.min.css";
-// TODO: Note: Replace ^[theme]^ (examples: darkly, slate, cosmo, spacelab, and superhero.
+// Note: Replace ^[theme]^ (examples: darkly, slate, cosmo, spacelab, and superhero.
 // See https://bootswatch.com for current theme names.)
 //import "/static/vendor/bootstrap/css/bootstrap.min.css";
 import "/static/vendor/fontawesome-free/css/all.css";

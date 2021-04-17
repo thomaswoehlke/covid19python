@@ -1,7 +1,6 @@
 from database import app
 
 
-#TODO: deprecated
 class ApplicationService:
     def __init__(self, database):
         app.logger.debug("------------------------------------------------------------")

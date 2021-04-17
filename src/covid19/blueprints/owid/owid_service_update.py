@@ -265,7 +265,7 @@ class OwidServiceUpdate:
     def update_dimension_tables_only(self):
         app.logger.info(" update_dimension_tables_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        # TODO
+        # TODO #214 implement OwidServiceUpdate.update_dimension_tables_only()
         self.__update_dimension_tables()
         app.logger.info(" update_dimension_tables_only [done]")
         app.logger.info("------------------------------------------------------------")
@@ -274,7 +274,7 @@ class OwidServiceUpdate:
     def update_fact_table_incremental_only(self):
         app.logger.info(" update_fact_tables_incremental_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        # TODO
+        # TODO #215 implement OwidServiceUpdate.update_fact_table_incremental_only()
         self.__update_fact_table_incremental()
         app.logger.info(" update_fact_tables_incremental_only [done]")
         app.logger.info("------------------------------------------------------------")
@@ -283,7 +283,7 @@ class OwidServiceUpdate:
     def update_fact_table_initial_only(self):
         app.logger.info(" update_fact_tables_initial_only [begin]")
         app.logger.info("------------------------------------------------------------")
-        # TODO
+        # TODO #216 implement OwidServiceUpdate.update_fact_table_initial_only()
         self.__update_fact_table_initial()
         app.logger.info(" update_fact_tables_initial_only [done]")
         app.logger.info("------------------------------------------------------------")
@@ -292,7 +292,7 @@ class OwidServiceUpdate:
     def update_star_schema_incremental(self):
         app.logger.info(" update_star_schema_incremental [begin]")
         app.logger.info("------------------------------------------------------------")
-        # TODO
+        # TODO #217 implement OwidServiceUpdate.update_star_schema_incremental()
         self.__update_dimension_tables()
         self.__update_fact_table_incremental()
         app.logger.info(" update_star_schema_incremental [done]")
@@ -302,7 +302,7 @@ class OwidServiceUpdate:
     def update_star_schema_initial(self):
         app.logger.info(" update_star_schema_initial [begin]")
         app.logger.info("------------------------------------------------------------")
-        # TODO
+        # TODO #218 implement OwidServiceUpdate.update_star_schema_initial()
         self.__update_dimension_tables()
         self.__update_fact_table_initial()
         app.logger.info(" update_star_schema_initial [done]")
