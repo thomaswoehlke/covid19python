@@ -4,6 +4,7 @@ from celery import states
 from celery.utils.log import get_task_logger
 from flask_admin.contrib.sqla import ModelView
 from flask_login import AnonymousUserMixin, login_required, login_user, logout_user
+from flask_login import current_user, login_user
 import flask
 
 
@@ -33,8 +34,23 @@ def loginForm():
     form = LoginForm()
     return flask.render_template('usr/login.html', form=form, page_info=page_info)
 
+
 @app_user.route('/login', methods=['POST'])
 def login():
+    page_info = ApplicationPage('usr', "Login")
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user, remember=form.remember_me.data)
+        return redirect(url_for('index'))
+    return flask.render_template('usr/login.html', form=form, page_info=page_info)
+
+
     # Here we use a class of some kind to represent and validate our
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.

@@ -52,4 +52,11 @@ class LoginForm(Form):
     accept_rules = BooleanField('I accept the site rules', [validators.InputRequired()])
 
     def validate_on_submit(self):
+        if self.email is None:
+            return False
+        if self.password is None:
+            return False
+        if self.accept_rules is None:
+            return False
         return True
+
