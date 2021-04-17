@@ -76,7 +76,7 @@ class WhoImport(db.Model):
         return myresultarray
 
     @classmethod
-    def get_new_dates_as_array(cls):
+    def __get_new_dates_as_array_sql(cls):
         # TODO: #83 WhoImport.get_new_dates_as_array() SQLalchemy instead of SQL
         sql_query = """
             select
@@ -111,23 +111,47 @@ class WhoImport(db.Model):
             new_dates.append(item['date_reported'])
         return new_dates
 
-    # TODO: #___ WhoImport.countries() SQLalchemy instead of SQL
+    @classmethod
+    def __get_new_dates_as_array_orm(cls):
+        # TODO: #83 WhoImport.get_new_dates_as_array() SQLalchemy instead of SQL
+        sql_query = """
+                select
+                    distinct 
+                        application__import__who.date_reported
+                    from
+                        application__import__who
+                    where
+                        date_reported
+                    not in (
+                        select
+                            distinct
+                                who_datereported.date_reported
+                            from
+                                who
+                            left join
+                                who_datereported
+                            on
+                                who.date_reported_id=who_datereported.id
+                            group by 
+                                who_datereported.date_reported
+                            order by
+                                who_datereported.date_reported desc
+                    )
+                    group by
+                        application__import__who.date_reported
+                    order by 
+                        application__import__who.date_reported desc
+                """
+        new_dates = []
+        for item in db.session.execute(sql_query):
+            new_dates.append(item['date_reported'])
+        return new_dates
+
+    @classmethod
+    def get_new_dates_as_array(cls):
+        return cls.__get_new_dates_as_array_sql()
+
     @classmethod
     def countries(cls):
-        return cls.__countries_orm()
-
-    @classmethod
-    def __countries_sql(cls):
-        sql_query = """
-                    select distinct 
-                        application__import__who.country_code,
-                        application__import__who.country,
-                        application__import__who.who_region
-                        from application__import__who
-                    """
-        return db.session.execute(sql_query).fetchall()
-
-    @classmethod
-    def __countries_orm(cls):
         bu = Bundle('countries', cls.country_code, cls.country, cls.who_region)
         return db.session.query(bu).distinct()
