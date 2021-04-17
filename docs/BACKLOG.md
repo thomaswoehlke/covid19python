@@ -285,6 +285,8 @@
 
 ### 0.0.31 Release
 * -------------------------------------
+* Issue #195 RkiVaccinationImport.get_daterep_missing_in_vaccination_data(): native SQL to SQLalechemy Query
+* Issue #196 OwidImport.get_new_dates_reported_as_array() needs implementation
 
 ### 00 Inbox
 * -------------------------------------
@@ -295,8 +297,6 @@
 * Issue #5 WHO Visual Graphs for Data per Countries order by Date
 * Issue #177 BUG: RkiBundeslaenderServiceImport.import_file 
 * Issue #178 BUG: RkiLandkreiseServiceImport.import_file
-* Issue #195 RkiVaccinationImport.get_daterep_missing_in_vaccination_data(): native SQL to SQLalechemy Query
-* Issue #196 OwidImport.get_new_dates_reported_as_array() needs implementation
 
 ### 02 Soon
 * -------------------------------------
