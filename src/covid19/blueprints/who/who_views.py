@@ -323,9 +323,24 @@ def url_who_germany(page: int = 1):
         page_info=page_info)
 
 
+@app_who.route('/mytest')
+def url_who_mytest():
+    flash("url_who_mytest - Start")
+    who_import_countries = WhoImport.countries()
+    i = 0
+    for c in who_import_countries:
+        i += 1
+        app_who.logger.info(i)
+        app_who.logger.info(c['country_code'])
+        app_who.logger.info(c['country'])
+        app_who.logger.info(c['who_region'])
+    flash("url_who_mytest - Done")
+    return redirect(url_for('who.url_who_tasks'))
+
 # ----------------------------------------------------------------------------------------------------------------
 #  Celery TASKS
 # ----------------------------------------------------------------------------------------------------------------
+
 
 @celery.task(bind=True)
 def task_who_download_only(self):

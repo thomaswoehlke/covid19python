@@ -1,3 +1,4 @@
+from sqlalchemy.orm import Load, load_only
 from database import db, ITEMS_PER_PAGE
 
 
@@ -107,14 +108,22 @@ class WhoImport(db.Model):
             new_dates.append(item['date_reported'])
         return new_dates
 
+    # TODO: #___ WhoImport.countries() SQLalchemy instead of SQL
     @classmethod
     def countries(cls):
-        # TODO: #___ WhoImport.countries() SQLalchemy instead of SQL
+        return cls.__countries_sql()
+
+    @classmethod
+    def __countries_sql(cls):
         sql_query = """
-            select distinct 
-                application__import__who.country_code,
-                application__import__who.country,
-                application__import__who.who_region
-                from application__import__who
-            """
+                    select distinct 
+                        application__import__who.country_code,
+                        application__import__who.country,
+                        application__import__who.who_region
+                        from application__import__who
+                    """
         return db.session.execute(sql_query).fetchall()
+
+    @classmethod
+    def __countries_orm(cls):
+        return db.session.query(cls).load_only("country_code", "country", "who_region").distinct().fetchall()
