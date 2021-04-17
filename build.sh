@@ -26,6 +26,7 @@ function pip_install() {
 }
 
 function pip_install_via_setup_py() {
+  python setup.py develop
   pip install -e .
   # pip install -e . --compile --force-reinstall --progress-bar pretty --log logfile5.txt
   # pip install -e . --compile --progress-bar pretty --log logfile5.txt
