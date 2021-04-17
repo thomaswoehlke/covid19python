@@ -1,5 +1,5 @@
 # covid19python
-* Version 0.0.21
+* Version 0.0.31
 
 ## git
 * github: https://github.com/thomaswoehlke/covid19python.git

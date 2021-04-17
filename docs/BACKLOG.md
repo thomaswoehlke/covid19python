@@ -283,6 +283,9 @@
 ### 0.0.30 Release
 * Fixed #206 implement user login and authorization using blueprint user and flask-login
 
+### 0.0.31 Release
+* -------------------------------------
+
 ### 00 Inbox
 * -------------------------------------
 
